@@ -1,0 +1,38 @@
+{{ define "main" }}
+<div class="map-page">
+    <div class="map-header">
+        <h1 class="page-title">🗺️ Observationskarta</h1>
+        <p class="map-intro">Fåglar observerade i Åstorps kommun 2026</p>
+        <div class="map-stats">
+            <span class="map-stat"><strong id="location-count">0</strong> platser</span>
+            <span class="map-stat"><strong id="species-count">0</strong> arter</span>
+        </div>
+    </div>
+
+    <div id="map" class="observation-map"></div>
+
+    <div class="map-legend">
+        <h3>Teckenförklaring</h3>
+        <div class="legend-items">
+            <span class="legend-item">
+                <span class="legend-marker" style="background: #2B5A2B;"></span>
+                Observationsplats
+            </span>
+        </div>
+    </div>
+</div>
+
+<!-- Leaflet CSS -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+
+<!-- Leaflet JS -->
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+
+<!-- Pass baseURL to JavaScript -->
+<script>
+    window.siteBaseURL = '{{ .Site.BaseURL }}';
+</script>
+
+<!-- Map initialization -->
+<script src="{{ "js/map.js" | relURL }}"></script>
+{{ end }}

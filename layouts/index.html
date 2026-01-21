@@ -1,0 +1,152 @@
+{{ define "main" }}
+<!-- RSPB-inspired Hero with full-width image -->
+<section class="hero-rspb">
+    <div class="hero-image-container">
+        <img src="{{ `images/hero-red-kite.png` | relURL }}" alt="Röd glada över Åstorps landskap"
+            class="hero-bg-image">
+        <div class="hero-overlay"></div>
+    </div>
+
+    <div class="hero-content-box">
+        <h1>Fågelåret i Åstorp</h1>
+        <p>Upptäck fågellivet i kommunen med 1298 observerade röda glador och rariteter som svart stork.</p>
+        <a href="{{ `arslista/` | relURL }}" class="hero-cta">Se årslistan 2026 →</a>
+    </div>
+
+    <!-- Floating progress card -->
+    <div class="progress-card">
+        <div class="progress-header">
+            <span class="progress-label">Årsmål 2026</span>
+            <span class="progress-count"><span id="species-count">—</span> / 130</span>
+        </div>
+        <div class="progress-bar-mini">
+            <div class="progress-fill-mini" id="progress-fill"></div>
+        </div>
+        <div class="progress-milestones">
+            <span>🥉 100</span>
+            <span>🥈 125</span>
+            <span>🥇 150</span>
+        </div>
+    </div>
+</section>
+
+<!-- Featured species section -->
+<section class="featured-species">
+    <div class="container">
+        <h2 class="section-title">Utvalda arter</h2>
+        <div class="species-feature-grid">
+
+            <article class="feature-card feature-card-large">
+                <img src="{{ `images/little-ringed-plover.png` | relURL }}" alt="Mindre strandpipare" loading="lazy">
+                <div class="feature-content">
+                    <span class="feature-tag">Kommunfågel</span>
+                    <h3>Mindre strandpipare</h3>
+                    <p>Åstorps officiella kommunfågel med sin karakteristiska gula ögonring. Häckar vid grusmarker och
+                        stränder.</p>
+                    <a href="#" class="feature-link">Läs mer →</a>
+                </div>
+            </article>
+
+            <article class="feature-card">
+                <img src="{{ `images/white-stork.png` | relURL }}" alt="Vit stork" loading="lazy">
+                <div class="feature-content">
+                    <span class="feature-tag">Klassisk</span>
+                    <h3>Vit stork</h3>
+                    <p>293 observationer i kommunen. Häckar på Söderåsen.</p>
+                </div>
+            </article>
+
+            <article class="feature-card">
+                <img src="{{ `images/fieldfare.png` | relURL }}" alt="Björktrast" loading="lazy">
+                <div class="feature-content">
+                    <span class="feature-tag">Vinter</span>
+                    <h3>Björktrast</h3>
+                    <p>Vanlig vintergäst i stora flockar på Åstorps fält.</p>
+                </div>
+            </article>
+
+        </div>
+    </div>
+</section>
+
+<!-- Latest observations -->
+<section class="latest-observations">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">Senaste observationerna</h2>
+            <a href="{{ `arkiv/` | relURL }}" class="view-all">Visa alla →</a>
+        </div>
+
+        <div class="posts-grid-rspb">
+            {{ $posts := where .Site.RegularPages "Section" "posts" }}
+            {{ range first 3 $posts }}
+            <article class="post-card-rspb">
+                {{ with .Params.image }}
+                <img src="{{ . | relURL }}" alt="{{ $.Title }}" class="post-image" loading="lazy">
+                {{ else }}
+                <div class="post-image-placeholder-rspb">
+                    <img src="{{ `images/wetland-sunrise.png` | relURL }}" alt="Våtmark" loading="lazy">
+                </div>
+                {{ end }}
+                <div class="post-content-rspb">
+                    <span class="post-category">{{ with .Params.location }}{{ . }}{{ else }}Observation{{ end }}</span>
+                    <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
+                    <time datetime="{{ .Date.Format `2006-01-02` }}">{{ .Date.Format "2 januari 2006" }}</time>
+                </div>
+            </article>
+            {{ end }}
+        </div>
+    </div>
+</section>
+
+<!-- Quick links section -->
+<section class="explore-section">
+    <div class="container">
+        <h2 class="section-title">Utforska</h2>
+        <div class="explore-grid">
+            <a href="{{ `arslista/` | relURL }}" class="explore-card">
+                <div class="explore-icon">📋</div>
+                <h3>Årslista 2026</h3>
+                <p>Interaktiv krysslista med <span id="total-species">78</span> arter att jaga</p>
+            </a>
+            <a href="{{ `karta/` | relURL }}" class="explore-card">
+                <div class="explore-icon">🗺️</div>
+                <h3>Karta</h3>
+                <p>Se observationsplatser i kommunen</p>
+            </a>
+            <a href="{{ `om/` | relURL }}" class="explore-card">
+                <div class="explore-icon">🐦</div>
+                <h3>Om projektet</h3>
+                <p>Lär känna Åstorps fågelliv</p>
+            </a>
+        </div>
+    </div>
+</section>
+{{ end }}
+
+{{ define "scripts" }}
+<script>
+    const YEAR_GOAL = 130;
+
+    fetch('{{ `data/checklist-2026.json` | relURL }}')
+        .then(r => r.json())
+        .then(data => {
+            const uniqueSpecies = new Set(data.observations.map(o => o.species));
+            const speciesCount = uniqueSpecies.size;
+
+            // Update all stats
+            document.querySelectorAll('#species-count').forEach(el => el.textContent = speciesCount);
+
+            // Update progress bar
+            const percentage = Math.min((speciesCount / YEAR_GOAL) * 100, 100);
+            const fill = document.getElementById('progress-fill');
+            if (fill) {
+                fill.style.width = percentage + '%';
+                if (speciesCount >= 150) fill.style.background = 'linear-gradient(90deg, #ffd700, #ffb700)';
+                else if (speciesCount >= 125) fill.style.background = 'linear-gradient(90deg, #c0c0c0, #a0a0a0)';
+                else if (speciesCount >= 100) fill.style.background = 'linear-gradient(90deg, #cd7f32, #b87333)';
+            }
+        })
+        .catch(console.error);
+</script>
+{{ end }}

@@ -1,0 +1,61 @@
+baseURL = 'https://hakkarlsson.github.io/astorp-faglar/'
+languageCode = 'sv'
+title = 'Fågelåret i Åstorp'
+theme = ''
+
+# Permalinks
+[permalinks]
+  posts = '/posts/:year/:month/:slug/'
+
+# Taxonomies
+[taxonomies]
+  tag = 'tags'
+  month = 'months'
+
+# Menu
+[menus]
+  [[menus.main]]
+    name = 'Hem'
+    pageRef = '/'
+    weight = 10
+  [[menus.main]]
+    name = 'Arkiv'
+    pageRef = '/arkiv/'
+    weight = 20
+  [[menus.main]]
+    name = 'Årslista'
+    pageRef = '/arslista/'
+    weight = 30
+  [[menus.main]]
+    name = 'Karta'
+    pageRef = '/karta/'
+    weight = 40
+  [[menus.main]]
+    name = 'Om'
+    pageRef = '/om/'
+    weight = 50
+
+# Params
+[params]
+  description = 'En fågelårsbok för Åstorps kommun — observationer, bilder och krysslista'
+  author = 'Håkan Karlsson'
+  municipality = 'Åstorp'
+  year = 2026
+
+# Build settings
+[build]
+  writeStats = true
+
+# Date format
+[frontmatter]
+  date = ['date', 'publishDate', 'lastmod']
+  lastmod = ['lastmod', ':git', 'date', 'publishDate']
+  publishDate = ['publishDate', 'date']
+
+# Hugo server settings
+[server]
+  [[server.headers]]
+    for = '/**'
+    [server.headers.values]
+      X-Frame-Options = 'DENY'
+      X-Content-Type-Options = 'nosniff'

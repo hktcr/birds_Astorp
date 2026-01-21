@@ -1,0 +1,114 @@
+{
+    "year": 2026,
+    "municipality": "Åstorp",
+    "observations": [
+        {
+            "species": "Koltrast",
+            "latin": "Turdus merula",
+            "date": "2026-01-01",
+            "location": "Åstorp centrum"
+        },
+        {
+            "species": "Talgoxe",
+            "latin": "Parus major",
+            "date": "2026-01-01",
+            "location": "Trädgården"
+        },
+        {
+            "species": "Blåmes",
+            "latin": "Cyanistes caeruleus",
+            "date": "2026-01-01",
+            "location": "Trädgården"
+        },
+        {
+            "species": "Röd glada",
+            "latin": "Milvus milvus",
+            "date": "2026-01-02",
+            "location": "Gråmanstorp"
+        },
+        {
+            "species": "Grågås",
+            "latin": "Anser anser",
+            "date": "2026-01-03",
+            "location": "Åstorps mader"
+        },
+        {
+            "species": "Ormvråk",
+            "latin": "Buteo buteo",
+            "date": "2026-01-05",
+            "location": "Väg 109"
+        },
+        {
+            "species": "Skata",
+            "latin": "Pica pica",
+            "date": "2026-01-01",
+            "location": "Åstorp centrum"
+        },
+        {
+            "species": "Kaja",
+            "latin": "Coloeus monedula",
+            "date": "2026-01-01",
+            "location": "Åstorp kyrka"
+        },
+        {
+            "species": "Kråka",
+            "latin": "Corvus cornix",
+            "date": "2026-01-01",
+            "location": "Åstorps mader"
+        },
+        {
+            "species": "Ringduva",
+            "latin": "Columba palumbus",
+            "date": "2026-01-02",
+            "location": "Trädgården"
+        },
+        {
+            "species": "Gråsparv",
+            "latin": "Passer domesticus",
+            "date": "2026-01-01",
+            "location": "Åstorp centrum"
+        },
+        {
+            "species": "Pilfink",
+            "latin": "Passer montanus",
+            "date": "2026-01-03",
+            "location": "Trädgården"
+        },
+        {
+            "species": "Grönfink",
+            "latin": "Chloris chloris",
+            "date": "2026-01-04",
+            "location": "Matningen"
+        },
+        {
+            "species": "Domherre",
+            "latin": "Pyrrhula pyrrhula",
+            "date": "2026-01-06",
+            "location": "Trädgården"
+        },
+        {
+            "species": "Gulsparv",
+            "latin": "Emberiza citrinella",
+            "date": "2026-01-08",
+            "location": "Gråmanstorp"
+        },
+        {
+            "species": "Björktrast",
+            "latin": "Turdus pilaris",
+            "date": "2026-01-10",
+            "location": "Åstorps mader"
+        },
+        {
+            "species": "Nötväcka",
+            "latin": "Sitta europaea",
+            "date": "2026-01-12",
+            "location": "Trädgården"
+        },
+        {
+            "species": "Större hackspett",
+            "latin": "Dendrocopos major",
+            "date": "2026-01-15",
+            "location": "Trädgården"
+        }
+    ]
+}

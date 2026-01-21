@@ -1,0 +1,40 @@
+{{ define "main" }}
+<section class="archive-page">
+    <h1 class="page-title">{{ .Title }}</h1>
+
+    {{ if .Content }}
+    <div class="page-intro prose">
+        {{ .Content }}
+    </div>
+    {{ end }}
+
+    <!-- Group posts by month -->
+    {{ $posts := where .Site.RegularPages "Section" "posts" }}
+    {{ $months := dict }}
+
+    <div class="archive-timeline">
+        {{ range $posts }}
+        {{ $monthKey := .Date.Format "2006-01" }}
+        {{ $monthLabel := .Date.Format "January 2006" }}
+
+        <article class="archive-item">
+            <time datetime="{{ .Date.Format " 2006-01-02" }}" class="archive-date">
+                {{ .Date.Format "2 Jan" }}
+            </time>
+            <div class="archive-content">
+                <h2 class="archive-title">
+                    <a href="{{ .Permalink }}">{{ .Title }}</a>
+                </h2>
+                {{ with .Params.location }}
+                <span class="archive-location">📍 {{ . }}</span>
+                {{ end }}
+            </div>
+        </article>
+        {{ end }}
+    </div>
+
+    {{ if eq (len $posts) 0 }}
+    <p class="empty-state">Inga inlägg ännu. Håll utkik!</p>
+    {{ end }}
+</section>
+{{ end }}
