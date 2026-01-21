@@ -12,13 +12,15 @@
     --color-primary: #2B5A2B;
     --color-primary-dark: #1E4220;
     --color-primary-light: #3D7A3D;
-    --color-accent: #D4A84B;
-    --color-accent-light: #E8C87A;
+    --color-accent: #C45B28;
+    /* Terrakotta - från röd gladans fjäderdräkt (VEP 2026-01-21) */
+    --color-accent-light: #D97B4A;
 
     /* Backgrounds */
     --color-bg: #F9F6F0;
     --color-bg-alt: #FFFFFF;
-    --color-bg-dark: #1A1A1A;
+    --color-bg-dark: #1E4220;
+    /* Mörkgrön footer istället för svart (VEP 2026-01-21) */
 
     /* Text */
     --color-text: #1A1A1A;
@@ -238,16 +240,46 @@ a:hover {
 .site-logo {
     display: flex;
     align-items: center;
-    gap: var(--space-sm);
+    gap: var(--space-md);
     text-decoration: none;
     font-family: var(--font-heading);
     font-weight: 700;
     font-size: var(--text-lg);
     color: var(--color-primary-dark);
+    transition: transform var(--transition-fast);
+}
+
+.site-logo:hover {
+    transform: scale(1.02);
 }
 
 .logo-icon {
     font-size: 1.5em;
+}
+
+/* Responsiv logotypbild (VEP 2026-01-21) */
+.site-logo img {
+    height: 48px;
+    width: auto;
+    transition: transform var(--transition-fast);
+}
+
+@media (min-width: 768px) {
+    .site-logo img {
+        height: 64px;
+    }
+}
+
+@media (min-width: 1024px) {
+    .site-logo img {
+        height: 80px;
+    }
+}
+
+@media (hover: hover) and (pointer: fine) {
+    .site-logo:hover img {
+        transform: rotate(2deg);
+    }
 }
 
 .nav-list {
@@ -268,10 +300,20 @@ a:hover {
     transition: all var(--transition-fast);
 }
 
-.nav-link:hover,
-.nav-link.active {
+/* Touch-device friendly hover (VEP 2026-01-21 - Dr. Skeptis fix) */
+@media (hover: hover) and (pointer: fine) {
+    .nav-link:hover {
+        color: var(--color-primary-light);
+        border-bottom-color: var(--color-primary-light);
+    }
+}
+
+/* Aktiv navigeringsstate med terrakotta-accent (VEP 2026-01-21) */
+.nav-link.active,
+.nav-link[aria-current="page"] {
     color: var(--color-primary);
-    border-bottom-color: var(--color-primary);
+    border-bottom-color: var(--color-accent);
+    font-weight: 600;
 }
 
 .mobile-menu-toggle {
@@ -705,11 +747,18 @@ a:hover {
 
 .footer-credit {
     font-size: var(--text-sm);
-    opacity: 0.7;
+    opacity: 0.8;
 }
 
 .footer-credit a {
-    color: inherit;
+    color: #A8D5A2;
+    /* Ljusgrön för WCAG AA kontrast på mörkgrön bakgrund */
+    transition: color var(--transition-fast);
+}
+
+.footer-credit a:hover {
+    color: var(--color-text-light);
+    text-decoration: underline;
 }
 
 /* --------------------------------------------------------------------------
