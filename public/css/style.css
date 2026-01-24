@@ -838,9 +838,10 @@ a:hover {
 }
 
 .species-card {
-    display: flex;
+    display: grid;
+    grid-template-columns: 24px 1fr auto;
     align-items: center;
-    gap: var(--space-sm);
+    gap: var(--space-md);
     padding: var(--space-sm) var(--space-md);
     background: #FFFFFF;
     border-bottom: 1px solid var(--color-border);
@@ -875,8 +876,6 @@ a:hover {
 }
 
 .species-info {
-    flex: none;
-    min-width: 280px;
     display: flex;
     align-items: baseline;
     gap: var(--space-sm);
@@ -900,11 +899,13 @@ a:hover {
     font-size: var(--text-sm);
     color: var(--color-primary);
     flex-shrink: 0;
-    margin-left: var(--space-2xl);
+    min-width: 180px;
+    justify-content: flex-start;
 }
 
 .species-date {
     font-weight: 500;
+    min-width: 50px;
 }
 
 .species-location {
