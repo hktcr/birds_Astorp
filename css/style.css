@@ -839,7 +839,8 @@ a:hover {
 
 .species-card {
     display: grid;
-    grid-template-columns: 24px 1fr auto;
+    grid-template-columns: 24px auto auto;
+    justify-content: start;
     align-items: center;
     gap: var(--space-md);
     padding: var(--space-sm) var(--space-md);
