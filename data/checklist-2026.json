@@ -1,0 +1,118 @@
+{
+    "year": 2026,
+    "municipality": "Åstorp",
+    "observations": [
+        {
+            "species": "Havsörn",
+            "latin": "Haliaeetus albicilla",
+            "date": "2026-01-22",
+            "location": "Sönnarslöv",
+            "lat": 56.12868,
+            "lng": 13.08559
+        },
+        {
+            "species": "Skata",
+            "latin": "Pica pica",
+            "date": "2026-01-22",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.04310
+        },
+        {
+            "species": "Koltrast",
+            "latin": "Turdus merula",
+            "date": "2026-01-22",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.04310
+        },
+        {
+            "species": "Kaja",
+            "latin": "Coloeus monedula",
+            "date": "2026-01-22",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.04310
+        },
+        {
+            "species": "Kråka",
+            "latin": "Corvus cornix",
+            "date": "2026-01-22",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.04310
+        },
+        {
+            "species": "Gärdsmyg",
+            "latin": "Troglodytes troglodytes",
+            "date": "2026-01-23",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.04310
+        },
+        {
+            "species": "Gråtrut",
+            "latin": "Larus argentatus",
+            "date": "2026-01-23",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.04310
+        },
+        {
+            "species": "Råka",
+            "latin": "Corvus frugilegus",
+            "date": "2026-01-23",
+            "location": "Sönnarslöv",
+            "lat": 56.13015,
+            "lng": 13.07099
+        },
+        {
+            "species": "Röd glada",
+            "latin": "Milvus milvus",
+            "date": "2026-01-23",
+            "location": "Bron vid Rönneå",
+            "lat": 56.13312,
+            "lng": 13.09428
+        },
+        {
+            "species": "Ormvråk",
+            "latin": "Buteo buteo",
+            "date": "2026-01-23",
+            "location": "Bron vid Rönneå",
+            "lat": 56.13312,
+            "lng": 13.09428
+        },
+        {
+            "species": "Gräsand",
+            "latin": "Anas platyrhynchos",
+            "date": "2026-01-23",
+            "location": "Tranarpsbron",
+            "lat": 56.17858,
+            "lng": 13.02111
+        },
+        {
+            "species": "Rödhake",
+            "latin": "Erithacus rubecula",
+            "date": "2026-01-23",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.04310
+        },
+        {
+            "species": "Domherre",
+            "latin": "Pyrrhula pyrrhula",
+            "date": "2026-01-24",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.04310
+        },
+        {
+            "species": "Talgoxe",
+            "latin": "Parus major",
+            "date": "2026-01-24",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.04310
+        }
+    ]
+}
