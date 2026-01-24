@@ -27,7 +27,6 @@ document.addEventListener('DOMContentLoaded', function () {
     }).addTo(map);
 
     // Gul overlay utanför Åstorps kommun
-    // Skapa en stor polygon som täcker hela kartan, med ett hål för kommunen
     fetch(geoPath)
         .then(response => response.json())
         .then(kommunData => {
@@ -51,14 +50,14 @@ document.addEventListener('DOMContentLoaded', function () {
                 kommunHole
             ], {
                 color: 'transparent',
-                fillColor: '#FFD700',  // Gul toning
-                fillOpacity: 0,        // Avaktiverad - sätt till 0.4 för att aktivera igen
+                fillColor: '#FFD700',
+                fillOpacity: 0,
                 interactive: false
             }).addTo(map);
 
             // Lägg också till en kraftig gräns runt kommunen
             L.polygon(kommunHole, {
-                color: '#1e40af',  // Kraftig blå
+                color: '#1e40af',
                 weight: 4,
                 fill: false,
                 opacity: 0.8
@@ -68,24 +67,23 @@ document.addEventListener('DOMContentLoaded', function () {
             console.log('Kunde inte ladda kommungränser:', err);
         });
 
-    // Observationsplatser med koordinater
-    // Dessa fylls automatiskt från observationsdata
-    const locations = {
-        "Västra Sönnarslöv": { lat: 56.12868, lng: 13.08559, species: [] },
-        "Kvidinge": { lat: 56.13675, lng: 13.04310, species: [] },
-        "Bron vid Rönneå": { lat: 56.13312, lng: 13.09428, species: [] },
-        "Tranarpsbron": { lat: 56.17858, lng: 13.02111, species: [] }
-    };
-
-    // Hämta observationsdata
+    // Hämta observationsdata och bygg platser dynamiskt
     fetch(dataPath)
         .then(response => response.json())
         .then(data => {
-            // Aggregera arter per plats
+            // Bygg locations dynamiskt från observationsdata
+            const locations = {};
+
             data.observations.forEach(obs => {
-                const loc = locations[obs.location];
-                if (loc && !loc.species.includes(obs.species)) {
-                    loc.species.push(obs.species);
+                if (!locations[obs.location]) {
+                    locations[obs.location] = {
+                        lat: obs.lat,
+                        lng: obs.lng,
+                        species: []
+                    };
+                }
+                if (!locations[obs.location].species.includes(obs.species)) {
+                    locations[obs.location].species.push(obs.species);
                 }
             });
 
@@ -114,8 +112,8 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Röd markör med samma border som fill
                     const marker = L.circleMarker([loc.lat, loc.lng], {
                         radius: 8 + Math.min(loc.species.length, 10),
-                        fillColor: '#dc2626',  // Röd
-                        color: '#dc2626',       // Samma röda som fill
+                        fillColor: '#dc2626',
+                        color: '#dc2626',
                         weight: 2,
                         opacity: 1,
                         fillOpacity: 0.8,
@@ -125,22 +123,25 @@ document.addEventListener('DOMContentLoaded', function () {
                     // Pulseffekt på senaste
                     if (isLatest) {
                         latestMarker = marker;
-                        // Lägg till pulsring via SVG
                         const pulseIcon = L.divIcon({
                             className: 'pulse-marker',
-                            html: `<div class=\"pulse-ring-container\">\n                                <svg class=\"pulse-svg\" viewBox=\"0 0 50 50\">\n                                    <circle class=\"pulse-ring\" cx=\"25\" cy=\"25\" r=\"20\" fill=\"none\" stroke=\"#dc2626\" stroke-width=\"2\"/>\n                                </svg>\n                            </div>`,
+                            html: `<div class=\"pulse-ring-container\">
+                                <svg class=\"pulse-svg\" viewBox=\"0 0 50 50\">
+                                    <circle class=\"pulse-ring\" cx=\"25\" cy=\"25\" r=\"20\" fill=\"none\" stroke=\"#dc2626\" stroke-width=\"2\"/>
+                                </svg>
+                            </div>`,
                             iconSize: [50, 50],
                             iconAnchor: [25, 25]
                         });
                         L.marker([loc.lat, loc.lng], { icon: pulseIcon, interactive: false }).addTo(map);
                     }
 
-                    // Popup med artlista
+                    // Popup med artlista — "Här kryssades:"
                     const speciesList = loc.species.map(s => `<li>${s}</li>`).join('');
                     marker.bindPopup(`
                         <div class="map-popup">
                             <h4>${name}</h4>
-                            <p><strong>${loc.species.length}</strong> arter observerade</p>
+                            <p><strong>Här kryssades:</strong></p>
                             <ul class="popup-species-list">${speciesList}</ul>
                         </div>
                     `);
