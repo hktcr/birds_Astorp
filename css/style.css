@@ -880,7 +880,8 @@ a:hover {
     display: flex;
     align-items: baseline;
     gap: var(--space-sm);
-    min-width: 320px;
+    width: 320px;
+    flex-shrink: 0;
 }
 
 .species-name {
