@@ -174,12 +174,17 @@
         if (currentSort === 'alphabetical') {
             species.sort((a, b) => a.name.localeCompare(b.name, 'sv'));
         } else if (currentSort === 'chronological') {
-            // Observed species first, sorted by date
+            // Observed species first, sorted by date then by order in JSON
             species.sort((a, b) => {
                 const obsA = getObservation(a.name);
                 const obsB = getObservation(b.name);
                 if (obsA && obsB) {
-                    return new Date(obsA.date) - new Date(obsB.date);
+                    const dateCompare = new Date(obsA.date) - new Date(obsB.date);
+                    if (dateCompare !== 0) return dateCompare;
+                    // Same date: use order in observations array
+                    const indexA = observations.findIndex(o => o.species.toLowerCase() === a.name.toLowerCase());
+                    const indexB = observations.findIndex(o => o.species.toLowerCase() === b.name.toLowerCase());
+                    return indexA - indexB;
                 }
                 if (obsA) return -1;
                 if (obsB) return 1;
@@ -234,11 +239,8 @@
         }
 
         if (lastEl && observations.length > 0) {
-            // Find most recent observation
-            const sorted = [...observations].sort((a, b) =>
-                new Date(b.date) - new Date(a.date)
-            );
-            lastEl.textContent = sorted[0].species;
+            // Last observation in array is the most recently added
+            lastEl.textContent = observations[observations.length - 1].species;
         }
     }
 
