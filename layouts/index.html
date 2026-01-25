@@ -76,12 +76,9 @@
             const lightness = 55;
             fill.style.backgroundColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
 
-            // Visa senaste kryssade art
-            const sorted = [...data.observations].sort((a, b) =>
-                new Date(b.date) - new Date(a.date)
-            );
-            if (sorted.length > 0) {
-                const latest = sorted[0];
+            // Visa senaste kryssade art (sista i arrayen = senast tillagd)
+            if (data.observations.length > 0) {
+                const latest = data.observations[data.observations.length - 1];
                 const latestEl = document.getElementById('latest-species');
                 latestEl.innerHTML = `<span class="latest-label">Senast kryssad:</span> <strong>${latest.species}</strong> <span class="latest-meta">(${latest.location}, ${new Date(latest.date).toLocaleDateString('sv-SE', { day: 'numeric', month: 'short' })})</span>`;
             }
