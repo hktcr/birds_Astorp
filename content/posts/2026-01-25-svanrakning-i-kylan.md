@@ -37,7 +37,7 @@ Senare under dagen stöter jag på ytterligare några arter. Först en kniphona 
 
 ---
 
-![Tomarps Ene i vintergrått](/images/posts/2026-01-25-tomarps-ene.png)
+![Tomarps Ene i vintergrått](../../../../images/posts/2026-01-25-tomarps-ene.png)
 
 *Fågelåret i Åstorp, 21/150*
 
