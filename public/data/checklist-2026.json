@@ -113,6 +113,62 @@
             "location": "Kvidinge",
             "lat": 56.13675,
             "lng": 13.04310
+        },
+        {
+            "species": "Sångsvan",
+            "latin": "Cygnus cygnus",
+            "date": "2026-01-25",
+            "location": "Kungsgårdsmaderna",
+            "lat": 56.15343,
+            "lng": 13.06878
+        },
+        {
+            "species": "Kanadagås",
+            "latin": "Branta canadensis",
+            "date": "2026-01-25",
+            "location": "Kungsgårdsmaderna",
+            "lat": 56.15343,
+            "lng": 13.06878
+        },
+        {
+            "species": "Nötväcka",
+            "latin": "Sitta europaea",
+            "date": "2026-01-25",
+            "location": "Tomarps Ene",
+            "lat": 56.14870,
+            "lng": 13.07359
+        },
+        {
+            "species": "Storskarv",
+            "latin": "Phalacrocorax carbo",
+            "date": "2026-01-25",
+            "location": "Kungsgårdsmaderna",
+            "lat": 56.15343,
+            "lng": 13.06878
+        },
+        {
+            "species": "Knipa",
+            "latin": "Bucephala clangula",
+            "date": "2026-01-25",
+            "location": "Bron vid Rönneå",
+            "lat": 56.13312,
+            "lng": 13.09428
+        },
+        {
+            "species": "Blåmes",
+            "latin": "Cyanistes caeruleus",
+            "date": "2026-01-25",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.04310
+        },
+        {
+            "species": "Sparvhök",
+            "latin": "Accipiter nisus",
+            "date": "2026-01-25",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.04310
         }
     ]
 }
