@@ -1,9 +1,9 @@
 <header class="site-header">
     <div class="header-container">
-        <a href="{{ `/` | relURL }}" class="site-logo">
-            <img src="{{ `images/logo-strandpipare.jpg` | relURL }}" alt="Mindre strandpipare" class="logo-image">
+        <a href="{{ .Site.BaseURL }}" class="site-logo">
             <span class="site-title">{{ .Site.Title }}</span>
         </a>
+
 
         <nav class="main-nav" aria-label="Huvudnavigation">
             <ul class="nav-list">

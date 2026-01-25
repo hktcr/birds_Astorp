@@ -1,22 +1,25 @@
 {{ define "main" }}
 <div class="map-page">
     <div class="map-header">
-        <h1 class="page-title">🗺️ Observationskarta</h1>
+        <h1 class="page-title">Observationskarta</h1>
         <p class="map-intro">Fåglar observerade i Åstorps kommun 2026</p>
         <div class="map-stats">
-            <span class="map-stat"><strong id="location-count">0</strong> platser</span>
-            <span class="map-stat"><strong id="species-count">0</strong> arter</span>
+            <a href="{{ `arslista/` | relURL }}" class="map-stat-link"><strong id="species-count">0</strong> arter</a>
         </div>
     </div>
 
     <div id="map" class="observation-map"></div>
 
     <div class="map-legend">
-        <h3>Teckenförklaring</h3>
         <div class="legend-items">
             <span class="legend-item">
-                <span class="legend-marker" style="background: #2B5A2B;"></span>
+                <span class="legend-marker" style="background: #dc2626;"></span>
                 Observationsplats
+            </span>
+            <span class="legend-item">
+                <span class="legend-marker legend-pulse"
+                    style="background: #dc2626; animation: legend-pulse 1.5s ease-out infinite;"></span>
+                Senaste observation
             </span>
         </div>
     </div>

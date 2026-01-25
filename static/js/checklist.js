@@ -11,7 +11,7 @@
     const SPECIES_LIST = [
         { id: 1, name: "Knölsvan", latin: "Cygnus olor", order: 1 },
         { id: 2, name: "Sångsvan", latin: "Cygnus cygnus", order: 2 },
-        { id: 3, name: "Sädgås", latin: "Anser fabalis", order: 3 },
+        { id: 3, name: "Skogsgås", latin: "Anser fabalis", order: 3 },
         { id: 4, name: "Grågås", latin: "Anser anser", order: 4 },
         { id: 5, name: "Kanadagås", latin: "Branta canadensis", order: 5 },
         { id: 6, name: "Vitkindad gås", latin: "Branta leucopsis", order: 6 },
@@ -84,7 +84,7 @@
         { id: 73, name: "Gråsiska", latin: "Acanthis flammea", order: 73 },
         { id: 74, name: "Domherre", latin: "Pyrrhula pyrrhula", order: 74 },
         { id: 75, name: "Stenknäck", latin: "Coccothraustes coccothraustes", order: 75 },
-        { id: 76, name: "Korsnäbb", latin: "Loxia curvirostra", order: 76 },
+        { id: 76, name: "Mindre korsnäbb", latin: "Loxia curvirostra", order: 76 },
         { id: 77, name: "Gulsparv", latin: "Emberiza citrinella", order: 77 },
         { id: 78, name: "Sävsparv", latin: "Emberiza schoeniclus", order: 78 }
     ];
@@ -107,7 +107,9 @@
      */
     async function loadObservations() {
         try {
-            const response = await fetch('/astorp-faglar/data/checklist-2026.json');
+            // Använd dynamisk baseURL från Hugo
+            const baseURL = window.siteBaseURL || '/birds_Astorp/';
+            const response = await fetch(baseURL + 'data/checklist-2026.json');
             const data = await response.json();
             observations = data.observations || [];
         } catch (error) {
@@ -204,9 +206,11 @@
             ${obs ? '✓' : ''}
           </div>
           <div class="species-info">
-            <div class="species-name">${s.name}</div>
-            <div class="species-latin">${s.latin}</div>
-            ${obs ? `<div class="species-meta">${formatDate(obs.date)} · ${obs.location}</div>` : ''}
+            <span class="species-name">${s.name}</span>
+            <span class="species-latin">${s.latin}</span>
+          </div>
+          <div class="species-obs-data">
+            ${obs ? `<span class="species-date">${formatDate(obs.date)}</span><span class="species-location">${obs.location}</span>` : ''}
           </div>
         </div>
       `;

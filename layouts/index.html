@@ -1,132 +1,62 @@
 {{ define "main" }}
-<!-- RSPB-inspired Hero with full-width image -->
-<section class="hero-rspb">
-    <div class="hero-image-container">
-        <img src="{{ `images/hero-red-kite.png` | relURL }}" alt="Röd glada över Åstorps landskap"
-            class="hero-bg-image">
-        <div class="hero-overlay"></div>
-    </div>
-
-    <div class="hero-content-box">
-        <h1>Fågelåret i Åstorp</h1>
-        <p>Upptäck fågellivet i kommunen med 1298 observerade röda glador och rariteter som svart stork.</p>
-        <a href="{{ `arslista/` | relURL }}" class="hero-cta">Se årslistan 2026 →</a>
-    </div>
-
-    <!-- Floating progress card -->
-    <div class="progress-card">
-        <div class="progress-header">
-            <span class="progress-label">Årsmål 2026</span>
-            <span class="progress-count"><span id="species-count">—</span> / 130</span>
+<!-- Professionell mjuk startsida -->
+<section class="home-hero">
+    <div class="home-container">
+        <!-- Stor logga centrerad -->
+        <div class="hero-logo">
+            <img src="{{ `images/logo-fagelaret-2026.png` | relURL }}" alt="Ett år med fåglar — Åstorp 2026">
         </div>
-        <div class="progress-bar-mini">
-            <div class="progress-fill-mini" id="progress-fill"></div>
-        </div>
-        <div class="progress-milestones">
-            <span>🥉 100</span>
-            <span>🥈 125</span>
-            <span>🥇 150</span>
-        </div>
-    </div>
-</section>
 
-<!-- Featured species section -->
-<section class="featured-species">
-    <div class="container">
-        <h2 class="section-title">Utvalda arter</h2>
-        <div class="species-feature-grid">
-
-            <article class="feature-card feature-card-large">
-                <img src="{{ `images/little-ringed-plover.png` | relURL }}" alt="Mindre strandpipare" loading="lazy">
-                <div class="feature-content">
-                    <span class="feature-tag">Kommunfågel</span>
-                    <h3>Mindre strandpipare</h3>
-                    <p>Åstorps officiella kommunfågel med sin karakteristiska gula ögonring. Häckar vid grusmarker och
-                        stränder.</p>
-                    <a href="#" class="feature-link">Läs mer →</a>
+        <!-- Progressbar som termometer -->
+        <div class="hero-progress">
+            <div class="progress-header">
+                <span class="progress-label">Årslista</span>
+                <span class="progress-count"><span id="species-count">—</span> av 150 arter</span>
+            </div>
+            <div class="thermometer">
+                <div class="thermometer-scale">
+                    <span class="scale-mark" style="left: 0%">0</span>
+                    <span class="scale-mark" style="left: 33%">50</span>
+                    <span class="scale-mark" style="left: 66%">100</span>
+                    <span class="scale-mark" style="left: 100%">150</span>
                 </div>
-            </article>
-
-            <article class="feature-card">
-                <img src="{{ `images/white-stork.png` | relURL }}" alt="Vit stork" loading="lazy">
-                <div class="feature-content">
-                    <span class="feature-tag">Klassisk</span>
-                    <h3>Vit stork</h3>
-                    <p>293 observationer i kommunen. Häckar på Söderåsen.</p>
+                <div class="thermometer-bar">
+                    <div class="thermometer-fill" id="progress-fill"></div>
                 </div>
-            </article>
-
-            <article class="feature-card">
-                <img src="{{ `images/fieldfare.png` | relURL }}" alt="Björktrast" loading="lazy">
-                <div class="feature-content">
-                    <span class="feature-tag">Vinter</span>
-                    <h3>Björktrast</h3>
-                    <p>Vanlig vintergäst i stora flockar på Åstorps fält.</p>
-                </div>
-            </article>
-
-        </div>
-    </div>
-</section>
-
-<!-- Latest observations -->
-<section class="latest-observations">
-    <div class="container">
-        <div class="section-header">
-            <h2 class="section-title">Senaste observationerna</h2>
-            <a href="{{ `arkiv/` | relURL }}" class="view-all">Visa alla →</a>
+            </div>
+            <div class="latest-species" id="latest-species"></div>
         </div>
 
-        <div class="posts-grid-rspb">
-            {{ $posts := where .Site.RegularPages "Section" "posts" }}
-            {{ range first 3 $posts }}
-            <article class="post-card-rspb">
-                {{ with .Params.image }}
-                <img src="{{ . | relURL }}" alt="{{ $.Title }}" class="post-image" loading="lazy">
-                {{ else }}
-                <div class="post-image-placeholder-rspb">
-                    <img src="{{ `images/wetland-sunrise.png` | relURL }}" alt="Våtmark" loading="lazy">
-                </div>
-                {{ end }}
-                <div class="post-content-rspb">
-                    <span class="post-category">{{ with .Params.location }}{{ . }}{{ else }}Observation{{ end }}</span>
-                    <h3><a href="{{ .Permalink }}">{{ .Title }}</a></h3>
-                    <time datetime="{{ .Date.Format `2006-01-02` }}">{{ .Date.Format "2 januari 2006" }}</time>
-                </div>
-            </article>
-            {{ end }}
+        <!-- Observationsspår / Tidslinje -->
+        <div class="observation-trail">
+            <h2 class="trail-title">Observationsspår</h2>
+            <div class="trail-timeline" id="trail-timeline">
+                <!-- Fylls av JavaScript -->
+            </div>
         </div>
-    </div>
-</section>
 
-<!-- Quick links section -->
-<section class="explore-section">
-    <div class="container">
-        <h2 class="section-title">Utforska</h2>
-        <div class="explore-grid">
-            <a href="{{ `arslista/` | relURL }}" class="explore-card">
-                <div class="explore-icon">📋</div>
-                <h3>Årslista 2026</h3>
-                <p>Interaktiv krysslista med <span id="total-species">78</span> arter att jaga</p>
+        <!-- Navigeringsalternativ -->
+        <nav class="hero-nav">
+            <a href="{{ `arslista/` | relURL }}" class="nav-card">
+                <span class="nav-label">Artlista</span>
+                <span class="nav-desc">Alla observerade arter</span>
             </a>
-            <a href="{{ `karta/` | relURL }}" class="explore-card">
-                <div class="explore-icon">🗺️</div>
-                <h3>Karta</h3>
-                <p>Se observationsplatser i kommunen</p>
+            <a href="{{ `karta/` | relURL }}" class="nav-card">
+                <span class="nav-label">Karta</span>
+                <span class="nav-desc">Var arterna hittats</span>
             </a>
-            <a href="{{ `om/` | relURL }}" class="explore-card">
-                <div class="explore-icon">🐦</div>
-                <h3>Om projektet</h3>
-                <p>Lär känna Åstorps fågelliv</p>
+            <a href="{{ `arkiv/` | relURL }}" class="nav-card">
+                <span class="nav-label">Notiser</span>
+                <span class="nav-desc">Berättelser från fält</span>
             </a>
-        </div>
+        </nav>
     </div>
 </section>
 {{ end }}
 
 {{ define "scripts" }}
 <script>
-    const YEAR_GOAL = 130;
+    const YEAR_GOAL = 150;
 
     fetch('{{ `data/checklist-2026.json` | relURL }}')
         .then(r => r.json())
@@ -134,18 +64,61 @@
             const uniqueSpecies = new Set(data.observations.map(o => o.species));
             const speciesCount = uniqueSpecies.size;
 
-            // Update all stats
-            document.querySelectorAll('#species-count').forEach(el => el.textContent = speciesCount);
+            document.getElementById('species-count').textContent = speciesCount;
 
-            // Update progress bar
-            const percentage = Math.min((speciesCount / YEAR_GOAL) * 100, 100);
+            const percentage = (speciesCount / YEAR_GOAL) * 100;
             const fill = document.getElementById('progress-fill');
-            if (fill) {
-                fill.style.width = percentage + '%';
-                if (speciesCount >= 150) fill.style.background = 'linear-gradient(90deg, #ffd700, #ffb700)';
-                else if (speciesCount >= 125) fill.style.background = 'linear-gradient(90deg, #c0c0c0, #a0a0a0)';
-                else if (speciesCount >= 100) fill.style.background = 'linear-gradient(90deg, #cd7f32, #b87333)';
+            fill.style.width = Math.min(percentage, 100) + '%';
+
+            // Dynamisk färg: klarare gul (hue 50) → klarare grön (hue 130)
+            const hue = 50 + (percentage / 100) * 80;
+            const saturation = 90;
+            const lightness = 55;
+            fill.style.backgroundColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+
+            // Visa senaste kryssade art
+            const sorted = [...data.observations].sort((a, b) =>
+                new Date(b.date) - new Date(a.date)
+            );
+            if (sorted.length > 0) {
+                const latest = sorted[0];
+                const latestEl = document.getElementById('latest-species');
+                latestEl.innerHTML = `<span class="latest-label">Senast kryssad:</span> <strong>${latest.species}</strong> <span class="latest-meta">(${latest.location}, ${new Date(latest.date).toLocaleDateString('sv-SE', { day: 'numeric', month: 'short' })})</span>`;
             }
+
+            // Bygg observationsspår (tidslinje)
+            const byDate = {};
+            data.observations.forEach(obs => {
+                if (!byDate[obs.date]) {
+                    byDate[obs.date] = { species: [], locations: new Set() };
+                }
+                byDate[obs.date].species.push(obs.species);
+                byDate[obs.date].locations.add(obs.location);
+            });
+
+            const dates = Object.keys(byDate).sort((a, b) => new Date(b) - new Date(a));
+            const trailEl = document.getElementById('trail-timeline');
+
+            trailEl.innerHTML = dates.map((date, i) => {
+                const info = byDate[date];
+                const dateObj = new Date(date);
+                const day = dateObj.getDate();
+                const month = dateObj.toLocaleDateString('sv-SE', { month: 'short' });
+                const locations = [...info.locations].join(', ');
+                const isLast = i === dates.length - 1;
+
+                return `
+                    <div class="trail-item ${i === 0 ? 'trail-item-latest' : ''}">
+                        <div class="trail-line ${isLast ? 'trail-line-end' : ''}"></div>
+                        <div class="trail-dot"></div>
+                        <div class="trail-content">
+                            <div class="trail-date">${day} ${month}</div>
+                            <div class="trail-species">${info.species.join(', ')}</div>
+                            <div class="trail-location">${locations}</div>
+                        </div>
+                    </div>
+                `;
+            }).join('');
         })
         .catch(console.error);
 </script>

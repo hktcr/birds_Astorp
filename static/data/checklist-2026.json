@@ -3,112 +3,172 @@
     "municipality": "Åstorp",
     "observations": [
         {
-            "species": "Koltrast",
-            "latin": "Turdus merula",
-            "date": "2026-01-01",
-            "location": "Åstorp centrum"
-        },
-        {
-            "species": "Talgoxe",
-            "latin": "Parus major",
-            "date": "2026-01-01",
-            "location": "Trädgården"
-        },
-        {
-            "species": "Blåmes",
-            "latin": "Cyanistes caeruleus",
-            "date": "2026-01-01",
-            "location": "Trädgården"
-        },
-        {
-            "species": "Röd glada",
-            "latin": "Milvus milvus",
-            "date": "2026-01-02",
-            "location": "Gråmanstorp"
-        },
-        {
-            "species": "Grågås",
-            "latin": "Anser anser",
-            "date": "2026-01-03",
-            "location": "Åstorps mader"
-        },
-        {
-            "species": "Ormvråk",
-            "latin": "Buteo buteo",
-            "date": "2026-01-05",
-            "location": "Väg 109"
+            "species": "Havsörn",
+            "latin": "Haliaeetus albicilla",
+            "date": "2026-01-22",
+            "location": "Sönnarslöv",
+            "lat": 56.12868,
+            "lng": 13.08559
         },
         {
             "species": "Skata",
             "latin": "Pica pica",
-            "date": "2026-01-01",
-            "location": "Åstorp centrum"
+            "date": "2026-01-22",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.04310
+        },
+        {
+            "species": "Koltrast",
+            "latin": "Turdus merula",
+            "date": "2026-01-22",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.04310
         },
         {
             "species": "Kaja",
             "latin": "Coloeus monedula",
-            "date": "2026-01-01",
-            "location": "Åstorp kyrka"
+            "date": "2026-01-22",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.04310
         },
         {
             "species": "Kråka",
             "latin": "Corvus cornix",
-            "date": "2026-01-01",
-            "location": "Åstorps mader"
+            "date": "2026-01-22",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.04310
         },
         {
-            "species": "Ringduva",
-            "latin": "Columba palumbus",
-            "date": "2026-01-02",
-            "location": "Trädgården"
+            "species": "Gärdsmyg",
+            "latin": "Troglodytes troglodytes",
+            "date": "2026-01-23",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.04310
         },
         {
-            "species": "Gråsparv",
-            "latin": "Passer domesticus",
-            "date": "2026-01-01",
-            "location": "Åstorp centrum"
+            "species": "Gråtrut",
+            "latin": "Larus argentatus",
+            "date": "2026-01-23",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.04310
         },
         {
-            "species": "Pilfink",
-            "latin": "Passer montanus",
-            "date": "2026-01-03",
-            "location": "Trädgården"
+            "species": "Råka",
+            "latin": "Corvus frugilegus",
+            "date": "2026-01-23",
+            "location": "Sönnarslöv",
+            "lat": 56.13015,
+            "lng": 13.07099
         },
         {
-            "species": "Grönfink",
-            "latin": "Chloris chloris",
-            "date": "2026-01-04",
-            "location": "Matningen"
+            "species": "Röd glada",
+            "latin": "Milvus milvus",
+            "date": "2026-01-23",
+            "location": "Bron vid Rönneå",
+            "lat": 56.13312,
+            "lng": 13.09428
+        },
+        {
+            "species": "Ormvråk",
+            "latin": "Buteo buteo",
+            "date": "2026-01-23",
+            "location": "Bron vid Rönneå",
+            "lat": 56.13312,
+            "lng": 13.09428
+        },
+        {
+            "species": "Gräsand",
+            "latin": "Anas platyrhynchos",
+            "date": "2026-01-23",
+            "location": "Tranarpsbron",
+            "lat": 56.17858,
+            "lng": 13.02111
+        },
+        {
+            "species": "Rödhake",
+            "latin": "Erithacus rubecula",
+            "date": "2026-01-23",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.04310
         },
         {
             "species": "Domherre",
             "latin": "Pyrrhula pyrrhula",
-            "date": "2026-01-06",
-            "location": "Trädgården"
+            "date": "2026-01-24",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.04310
         },
         {
-            "species": "Gulsparv",
-            "latin": "Emberiza citrinella",
-            "date": "2026-01-08",
-            "location": "Gråmanstorp"
+            "species": "Talgoxe",
+            "latin": "Parus major",
+            "date": "2026-01-24",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.04310
         },
         {
-            "species": "Björktrast",
-            "latin": "Turdus pilaris",
-            "date": "2026-01-10",
-            "location": "Åstorps mader"
+            "species": "Sångsvan",
+            "latin": "Cygnus cygnus",
+            "date": "2026-01-25",
+            "location": "Kungsgårdsmaderna",
+            "lat": 56.15343,
+            "lng": 13.06878
+        },
+        {
+            "species": "Kanadagås",
+            "latin": "Branta canadensis",
+            "date": "2026-01-25",
+            "location": "Kungsgårdsmaderna",
+            "lat": 56.15343,
+            "lng": 13.06878
         },
         {
             "species": "Nötväcka",
             "latin": "Sitta europaea",
-            "date": "2026-01-12",
-            "location": "Trädgården"
+            "date": "2026-01-25",
+            "location": "Tomarps Ene",
+            "lat": 56.14870,
+            "lng": 13.07359
         },
         {
-            "species": "Större hackspett",
-            "latin": "Dendrocopos major",
-            "date": "2026-01-15",
-            "location": "Trädgården"
+            "species": "Storskarv",
+            "latin": "Phalacrocorax carbo",
+            "date": "2026-01-25",
+            "location": "Kungsgårdsmaderna",
+            "lat": 56.15343,
+            "lng": 13.06878
+        },
+        {
+            "species": "Knipa",
+            "latin": "Bucephala clangula",
+            "date": "2026-01-25",
+            "location": "Bron vid Rönneå",
+            "lat": 56.13312,
+            "lng": 13.09428
+        },
+        {
+            "species": "Blåmes",
+            "latin": "Cyanistes caeruleus",
+            "date": "2026-01-25",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.04310
+        },
+        {
+            "species": "Sparvhök",
+            "latin": "Accipiter nisus",
+            "date": "2026-01-25",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.04310
         }
     ]
 }

@@ -8,8 +8,10 @@ document.addEventListener('DOMContentLoaded', function () {
     const astorpCenter = [56.1346, 12.9449];
     const defaultZoom = 12;
 
-    // Use relative path for data - works in dev and production
-    const dataPath = '/data/checklist-2026.json';
+    // Använd baseURL från Hugo för korrekta paths
+    const baseURL = window.siteBaseURL || '/';
+    const dataPath = baseURL + 'data/checklist-2026.json';
+    const geoPath = baseURL + 'data/astorp-kommun.geojson';
 
     // Initiera kartan
     const map = L.map('map', {
@@ -24,52 +26,122 @@ document.addEventListener('DOMContentLoaded', function () {
         attribution: 'Kartdata: © <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
     }).addTo(map);
 
-    // Observationsplatser med koordinater
-    // Baserat på checklist-2026.json, manuellt geocodade för Åstorps kommun
-    const locations = {
-        "Åstorp centrum": { lat: 56.1346, lng: 12.9449, species: [] },
-        "Trädgården": { lat: 56.1340, lng: 12.9420, species: [] },
-        "Gråmanstorp": { lat: 56.1150, lng: 12.9700, species: [] },
-        "Åstorps mader": { lat: 56.1480, lng: 12.9200, species: [] },
-        "Väg 109": { lat: 56.1200, lng: 12.9100, species: [] },
-        "Åstorp kyrka": { lat: 56.1350, lng: 12.9460, species: [] },
-        "Matningen": { lat: 56.1330, lng: 12.9400, species: [] }
-    };
+    // Gul overlay utanför Åstorps kommun
+    fetch(geoPath)
+        .then(response => response.json())
+        .then(kommunData => {
+            const kommunCoords = kommunData.features[0].geometry.coordinates[0];
 
-    // Hämta observationsdata
+            // Skapa en "world" polygon som täcker allt
+            const worldBounds = [
+                [-90, -180],
+                [-90, 180],
+                [90, 180],
+                [90, -180],
+                [-90, -180]
+            ];
+
+            // Konvertera kommunkoordinater till [lat, lng] format
+            const kommunHole = kommunCoords.map(coord => [coord[1], coord[0]]);
+
+            // Skapa polygon med hål (world minus kommun) - GUL färg (avaktiverad)
+            const overlayPolygon = L.polygon([
+                worldBounds.map(c => [c[0], c[1]]),
+                kommunHole
+            ], {
+                color: 'transparent',
+                fillColor: '#FFD700',
+                fillOpacity: 0,
+                interactive: false
+            }).addTo(map);
+
+            // Lägg också till en kraftig gräns runt kommunen
+            L.polygon(kommunHole, {
+                color: '#1e40af',
+                weight: 4,
+                fill: false,
+                opacity: 0.8
+            }).addTo(map);
+        })
+        .catch(err => {
+            console.log('Kunde inte ladda kommungränser:', err);
+        });
+
+    // Hämta observationsdata och bygg platser dynamiskt
     fetch(dataPath)
         .then(response => response.json())
         .then(data => {
-            // Aggregera arter per plats
+            // Bygg locations dynamiskt från observationsdata
+            const locations = {};
+
             data.observations.forEach(obs => {
-                const loc = locations[obs.location];
-                if (loc && !loc.species.includes(obs.species)) {
-                    loc.species.push(obs.species);
+                if (!locations[obs.location]) {
+                    locations[obs.location] = {
+                        lat: obs.lat,
+                        lng: obs.lng,
+                        species: []
+                    };
+                }
+                if (!locations[obs.location].species.includes(obs.species)) {
+                    locations[obs.location].species.push(obs.species);
                 }
             });
 
             // Skapa markörer
             let totalSpecies = new Set();
             let markerCount = 0;
+            let latestMarker = null;
+            let latestDate = null;
+
+            // Hitta senaste observation
+            data.observations.forEach(obs => {
+                const obsDate = new Date(obs.date);
+                if (!latestDate || obsDate > latestDate) {
+                    latestDate = obsDate;
+                }
+            });
 
             Object.entries(locations).forEach(([name, loc]) => {
                 if (loc.species.length > 0) {
-                    // Anpassad markör i naturbutiken-grön
+                    // Kolla om detta är den senaste observationsplatsen
+                    const isLatest = data.observations.some(obs =>
+                        obs.location === name &&
+                        new Date(obs.date).getTime() === latestDate.getTime()
+                    );
+
+                    // Röd markör med samma border som fill
                     const marker = L.circleMarker([loc.lat, loc.lng], {
                         radius: 8 + Math.min(loc.species.length, 10),
-                        fillColor: '#2B5A2B',
-                        color: '#1E4220',
+                        fillColor: '#dc2626',
+                        color: '#dc2626',
                         weight: 2,
                         opacity: 1,
-                        fillOpacity: 0.8
+                        fillOpacity: 0.8,
+                        className: isLatest ? 'latest-marker' : ''
                     }).addTo(map);
 
-                    // Popup med artlista
+                    // Pulseffekt på senaste
+                    if (isLatest) {
+                        latestMarker = marker;
+                        const pulseIcon = L.divIcon({
+                            className: 'pulse-marker',
+                            html: `<div class=\"pulse-ring-container\">
+                                <svg class=\"pulse-svg\" viewBox=\"0 0 50 50\">
+                                    <circle class=\"pulse-ring\" cx=\"25\" cy=\"25\" r=\"20\" fill=\"none\" stroke=\"#dc2626\" stroke-width=\"2\"/>
+                                </svg>
+                            </div>`,
+                            iconSize: [50, 50],
+                            iconAnchor: [25, 25]
+                        });
+                        L.marker([loc.lat, loc.lng], { icon: pulseIcon, interactive: false }).addTo(map);
+                    }
+
+                    // Popup med artlista — "Här kryssades:"
                     const speciesList = loc.species.map(s => `<li>${s}</li>`).join('');
                     marker.bindPopup(`
                         <div class="map-popup">
                             <h4>${name}</h4>
-                            <p><strong>${loc.species.length}</strong> arter observerade</p>
+                            <p><strong>Här kryssades:</strong></p>
                             <ul class="popup-species-list">${speciesList}</ul>
                         </div>
                     `);
@@ -81,8 +153,8 @@ document.addEventListener('DOMContentLoaded', function () {
             });
 
             // Uppdatera statistik i header
-            document.getElementById('location-count').textContent = markerCount;
-            document.getElementById('species-count').textContent = totalSpecies.size;
+            const speciesEl = document.getElementById('species-count');
+            if (speciesEl) speciesEl.textContent = totalSpecies.size;
         })
         .catch(err => {
             console.error('Kunde inte ladda observationsdata:', err);

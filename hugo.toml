@@ -19,21 +19,22 @@ theme = ''
     pageRef = '/'
     weight = 10
   [[menus.main]]
-    name = 'Arkiv'
-    pageRef = '/arkiv/'
-    weight = 20
+    name = 'Notiser'
+    pageRef = '/posts/'
+    weight = 15
   [[menus.main]]
     name = 'Årslista'
     pageRef = '/arslista/'
-    weight = 30
+    weight = 20
   [[menus.main]]
     name = 'Karta'
     pageRef = '/karta/'
-    weight = 40
+    weight = 30
   [[menus.main]]
     name = 'Om'
     pageRef = '/om/'
-    weight = 50
+    weight = 40
+
 
 # Params
 [params]
