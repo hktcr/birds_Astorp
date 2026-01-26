@@ -63,13 +63,17 @@ document.addEventListener('DOMContentLoaded', function () {
                 opacity: 0.8
             }).addTo(map);
 
-            // Zooma så kommungränsen nästan touchar kanterna
-            // Mer padding upptill för att kompensera för header
+            // Beräkna centrum och optimal zoom baserat på höjden
             const bounds = L.latLngBounds(kommunHole);
-            map.fitBounds(bounds, {
-                paddingTopLeft: [10, 80],
-                paddingBottomRight: [10, 10]
-            });
+            const center = bounds.getCenter();
+
+            // Beräkna zoom så att nord-syd touchar kanterna
+            const mapHeight = map.getSize().y;
+            const latDiff = bounds.getNorth() - bounds.getSouth();
+            // Formel: zoom ≈ log2(180 * mapHeight / (latDiff * 256))
+            const zoom = Math.floor(Math.log2(180 * mapHeight / (latDiff * 256)));
+
+            map.setView(center, zoom);
         })
         .catch(err => {
             console.log('Kunde inte ladda kommungränser:', err);
