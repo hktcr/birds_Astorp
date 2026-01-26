@@ -65,7 +65,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Anpassa kartvyn så hela kommunen syns med minimal marginal
             const bounds = L.latLngBounds(kommunHole);
-            map.fitBounds(bounds, { padding: [10, 10] });
+            map.fitBounds(bounds, { padding: [15, 15], maxZoom: 12 });
         })
         .catch(err => {
             console.log('Kunde inte ladda kommungränser:', err);
