@@ -63,7 +63,9 @@ document.addEventListener('DOMContentLoaded', function () {
                 opacity: 0.8
             }).addTo(map);
 
-            // Kartan använder redan rätt centrum och zoom - ingen fitBounds behövs
+            // Zooma så kommungränsen nästan touchar kanterna
+            const bounds = L.latLngBounds(kommunHole);
+            map.fitBounds(bounds, { padding: [2, 2] });
         })
         .catch(err => {
             console.log('Kunde inte ladda kommungränser:', err);
