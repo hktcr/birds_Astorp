@@ -57,7 +57,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             // Lägg också till en kraftig gräns runt kommunen
             L.polygon(kommunHole, {
-                color: '#1e40af',
+                color: '#b91c1c',
                 weight: 4,
                 fill: false,
                 opacity: 0.8
