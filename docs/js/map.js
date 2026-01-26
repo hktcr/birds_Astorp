@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function () {
         attribution: 'Kartdata: © <a href="https://opentopomap.org">OpenTopoMap</a> (<a href="https://creativecommons.org/licenses/by-sa/3.0/">CC-BY-SA</a>)'
     }).addTo(map);
 
-    // Gul overlay utanför Åstorps kommun
+    // Grå overlay utanför Åstorps kommun
     fetch(geoPath)
         .then(response => response.json())
         .then(kommunData => {
@@ -44,14 +44,14 @@ document.addEventListener('DOMContentLoaded', function () {
             // Konvertera kommunkoordinater till [lat, lng] format
             const kommunHole = kommunCoords.map(coord => [coord[1], coord[0]]);
 
-            // Skapa polygon med hål (world minus kommun) - GUL färg (avaktiverad)
+            // Skapa polygon med hål (world minus kommun) - GRÅ färg
             const overlayPolygon = L.polygon([
                 worldBounds.map(c => [c[0], c[1]]),
                 kommunHole
             ], {
                 color: 'transparent',
-                fillColor: '#FFD700',
-                fillOpacity: 0,
+                fillColor: '#4b5563',
+                fillOpacity: 0.4,
                 interactive: false
             }).addTo(map);
 
@@ -62,6 +62,10 @@ document.addEventListener('DOMContentLoaded', function () {
                 fill: false,
                 opacity: 0.8
             }).addTo(map);
+
+            // Anpassa kartvyn så hela kommunen syns
+            const bounds = L.latLngBounds(kommunHole);
+            map.fitBounds(bounds, { padding: [20, 20] });
         })
         .catch(err => {
             console.log('Kunde inte ladda kommungränser:', err);
