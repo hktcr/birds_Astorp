@@ -64,8 +64,12 @@ document.addEventListener('DOMContentLoaded', function () {
             }).addTo(map);
 
             // Zooma så kommungränsen nästan touchar kanterna
+            // Mer padding upptill för att kompensera för header
             const bounds = L.latLngBounds(kommunHole);
-            map.fitBounds(bounds, { padding: [2, 2] });
+            map.fitBounds(bounds, {
+                paddingTopLeft: [10, 80],
+                paddingBottomRight: [10, 10]
+            });
         })
         .catch(err => {
             console.log('Kunde inte ladda kommungränser:', err);
