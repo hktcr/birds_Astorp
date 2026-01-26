@@ -169,6 +169,14 @@
             "location": "Kvidinge",
             "lat": 56.13675,
             "lng": 13.04310
+        },
+        {
+            "species": "Tamduva",
+            "latin": "Columba livia",
+            "date": "2026-01-26",
+            "location": "Rörspjäll",
+            "lat": 56.13477,
+            "lng": 13.01199
         }
     ]
 }
