@@ -4,8 +4,8 @@
  */
 
 document.addEventListener('DOMContentLoaded', function () {
-    // Åstorps kommun centrum (approx)
-    const astorpCenter = [56.1346, 12.9449];
+    // Åstorps kommun centrum (justerat för bättre vy)
+    const astorpCenter = [56.14, 13.05];
     const defaultZoom = 12;
 
     // Använd baseURL från Hugo för korrekta paths
@@ -63,9 +63,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 opacity: 0.8
             }).addTo(map);
 
-            // Anpassa kartvyn så hela kommunen syns med minimal marginal
-            const bounds = L.latLngBounds(kommunHole);
-            map.fitBounds(bounds, { padding: [15, 15], maxZoom: 12 });
+            // Kartan använder redan rätt centrum och zoom - ingen fitBounds behövs
         })
         .catch(err => {
             console.log('Kunde inte ladda kommungränser:', err);
