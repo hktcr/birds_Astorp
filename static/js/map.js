@@ -71,7 +71,7 @@ document.addEventListener('DOMContentLoaded', function () {
             const mapHeight = map.getSize().y;
             const latDiff = bounds.getNorth() - bounds.getSouth();
             // Formel: zoom ≈ log2(180 * mapHeight / (latDiff * 256))
-            const zoom = Math.floor(Math.log2(180 * mapHeight / (latDiff * 256)));
+            const zoom = Math.round(Math.log2(180 * mapHeight / (latDiff * 256)));
 
             map.setView(center, zoom);
         })
