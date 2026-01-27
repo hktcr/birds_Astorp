@@ -8,9 +8,11 @@ En hybrid fågelblogg för Åstorps kommun — observationer, bilder och interak
 
 ## 🐦 Snabbguide: Lägg till observationer
 
+> ⚠️ **VIKTIGT:** Redigera ENDAST filer i `data/`-katalogen. Kör sedan `./sync-data.sh` före publicering.
+
 ### Endast artnotering (utan blogginlägg)
 
-1. Öppna `static/data/checklist-2026.json`
+1. Öppna `data/checklist-2026.json`
 2. Lägg till i slutet av `observations`-arrayen:
    ```json
    {
@@ -22,9 +24,9 @@ En hybrid fågelblogg för Åstorps kommun — observationer, bilder och interak
        "lng": 13.xxxxx
    }
    ```
-3. Bygg och pusha:
+3. Synka och pusha:
    ```bash
-   hugo --minify && git add -A && git commit -m "Art #N: Artnamn, Lokal" && git push
+   ./sync-data.sh && git add -A && git commit -m "Art #N: Artnamn, Lokal" && git push
    ```
 
 ### Med blogginlägg
@@ -46,8 +48,11 @@ En hybrid fågelblogg för Åstorps kommun — observationer, bilder och interak
      lon: 13.xxxxx
    ---
    ```
-3. Lägg till alla nya arter i `checklist-2026.json` (se ovan)
-4. Bygg och pusha
+3. Lägg till alla nya arter i `data/checklist-2026.json`
+4. Synka och pusha:
+   ```bash
+   ./sync-data.sh && hugo --minify && git add -A && git commit -m "Notis: Rubrik" && git push
+   ```
 
 ---
 
@@ -55,13 +60,16 @@ En hybrid fågelblogg för Åstorps kommun — observationer, bilder och interak
 
 | Fil | Syfte |
 |-----|-------|
-| `static/data/checklist-2026.json` | **Huvuddata** — alla observerade arter |
-| `static/data/locations.json` | Standardlokaler med koordinater |
+| `data/checklist-2026.json` | **ENDA KÄLLAN** — alla observerade arter |
+| `data/locations.json` | Standardlokaler med koordinater |
+| `docs/data/*.json` | *Genereras av sync-data.sh* — redigera EJ |
+| `sync-data.sh` | Synkar data/ → docs/data/ |
 | `content/posts/*.md` | Blogginlägg |
 | `layouts/index.html` | Startsidans layout + progressbar |
 | `static/js/checklist.js` | Logik för årslistan |
 | `static/css/style.css` | All CSS |
 | `hugo.toml` | Hugo-konfiguration |
+
 
 ---
 

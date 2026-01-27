@@ -177,6 +177,30 @@
             "location": "Rörspjäll",
             "lat": 56.13477,
             "lng": 13.01199
+        },
+        {
+            "species": "Bofink",
+            "latin": "Fringilla coelebs",
+            "date": "2026-01-27",
+            "location": "Bron mot Klippan",
+            "lat": 56.13312,
+            "lng": 13.09428
+        },
+        {
+            "species": "Pilfink",
+            "latin": "Passer montanus",
+            "date": "2026-01-27",
+            "location": "Tranarpsbron",
+            "lat": 56.17858,
+            "lng": 13.02111
+        },
+        {
+            "species": "Gråsparv",
+            "latin": "Passer domesticus",
+            "date": "2026-01-27",
+            "location": "Tranarpsbron",
+            "lat": 56.17858,
+            "lng": 13.02111
         }
     ]
 }
