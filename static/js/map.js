@@ -67,11 +67,13 @@ document.addEventListener('DOMContentLoaded', function () {
             const bounds = L.latLngBounds(kommunHole);
             const center = bounds.getCenter();
 
-            // Beräkna zoom så att nord-syd touchar kanterna
+            // Beräkna zoom så att nord-syd touchar kanterna med minimal padding
             const mapHeight = map.getSize().y;
             const latDiff = bounds.getNorth() - bounds.getSouth();
             // Formel: zoom ≈ log2(180 * mapHeight / (latDiff * 256))
-            const zoom = Math.round(Math.log2(180 * mapHeight / (latDiff * 256)));
+            // Lägg till 0.3 för att få tätare passform innan avrundning
+            const rawZoom = Math.log2(180 * mapHeight / (latDiff * 256));
+            const zoom = Math.round(rawZoom + 0.3);
 
             map.setView(center, zoom);
         })
