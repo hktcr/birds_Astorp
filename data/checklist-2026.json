@@ -201,6 +201,22 @@
             "location": "Kvidinge",
             "lat": 56.13675,
             "lng": 13.04310
+        },
+        {
+            "species": "Grågås",
+            "latin": "Anser anser",
+            "date": "2026-01-28",
+            "location": "Tranarpsbron",
+            "lat": 56.18073,
+            "lng": 13.01804
+        },
+        {
+            "species": "Tornfalk",
+            "latin": "Falco tinnunculus",
+            "date": "2026-01-28",
+            "location": "Killåkravägen",
+            "lat": 56.16593,
+            "lng": 13.01946
         }
     ]
 }
