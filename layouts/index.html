@@ -27,25 +27,12 @@
             <div class="latest-species" id="latest-species"></div>
         </div>
 
-        <!-- Senaste notis -->
+        <!-- Senaste notis (minimal stil) -->
         {{ $latest := first 1 (where .Site.RegularPages "Section" "posts") }}
         {{ range $latest }}
-        <div class="latest-post-preview">
-            <h3 class="latest-post-label">Senaste notis</h3>
-            <a href="{{ .RelPermalink }}" class="latest-post-card">
-                <div class="latest-post-content">
-                    <span class="latest-post-date">{{ .Date | time.Format "2 Jan" }}</span>
-                    <h4 class="latest-post-title">{{ .Title }}</h4>
-                    <p class="latest-post-summary">{{ .Summary | truncate 100 }}</p>
-                </div>
-                {{ if .Params.image }}
-                <div class="latest-post-image">
-                    <img src="{{ .Params.image | relURL }}" alt="">
-                </div>
-                {{ end }}
-                <div class="latest-post-arrow">→</div>
-            </a>
-        </div>
+        <a href="{{ .RelPermalink }}" class="latest-post-link">
+            📝 <strong>{{ .Title }}</strong> <span class="latest-post-meta">— {{ .Date | time.Format "2 jan" }}</span>
+        </a>
         {{ end }}
 
         <!-- Observationsspår / Tidslinje -->
@@ -56,21 +43,6 @@
             </div>
         </div>
 
-        <!-- Navigeringsalternativ -->
-        <nav class="hero-nav">
-            <a href="{{ `arslista/` | relURL }}" class="nav-card">
-                <span class="nav-label">Artlista</span>
-                <span class="nav-desc">Alla observerade arter</span>
-            </a>
-            <a href="{{ `karta/` | relURL }}" class="nav-card">
-                <span class="nav-label">Karta</span>
-                <span class="nav-desc">Var arterna hittats</span>
-            </a>
-            <a href="{{ `posts/` | relURL }}" class="nav-card">
-                <span class="nav-label">Notiser</span>
-                <span class="nav-desc">Berättelser från fält</span>
-            </a>
-        </nav>
     </div>
 </section>
 {{ end }}
@@ -81,12 +53,12 @@
 
     // Mappa datum till notiser (genereras av Hugo)
     const postsByDate = {};
-    {{ $allPosts := where .Site.RegularPages "Section" "posts" }}
-    {{ range $allPosts }}
+    { { $allPosts:= where.Site.RegularPages "Section" "posts" } }
+    { { range $allPosts } }
     postsByDate["{{ .Date.Format "2006-01-02" }}"] = "{{ .RelPermalink }}";
-    {{ end }}
+    { { end } }
 
-    // DATA LOADING: Direct pipeline to avoid variable scope issues
+    // DATA LOADING
     const data = {{ index .Site.Data "checklist-2026" | jsonify | safeJS }};
 
     function initDashboard() {
@@ -95,42 +67,35 @@
             return;
         }
 
-        const uniqueSpecies = new Set(data.observations.map(o => o.species));
+        const uniqueSpecies = new Set(data.observations.map(function (o) { return o.species; }));
         const speciesCount = uniqueSpecies.size;
 
-        // Uppdatera räknare
-        const countEl = document.getElementById('species-count');
+        var countEl = document.getElementById('species-count');
         if (countEl) countEl.textContent = speciesCount;
 
-        // Uppdatera progressbar
-        const percentage = (speciesCount / YEAR_GOAL) * 100;
-        const fill = document.getElementById('progress-fill');
+        var percentage = (speciesCount / YEAR_GOAL) * 100;
+        var fill = document.getElementById('progress-fill');
         if (fill) {
             fill.style.width = Math.min(percentage, 100) + '%';
-
-            // FÄRGJUSTERING
-            let hue = 45;
+            var hue = 45;
             if (percentage > 20) {
                 hue = 45 + ((percentage - 20) / 80) * 75;
             }
-
-            const saturation = 90;
-            const lightness = 50;
-            fill.style.backgroundColor = 'hsl(' + hue + ', ' + saturation + '%, ' + lightness + '%)';
+            fill.style.backgroundColor = 'hsl(' + hue + ', 90%, 50%)';
         }
 
-        // Visa senaste kryssade art
+        // Senast kryssad
         if (data.observations.length > 0) {
-            const latest = data.observations[data.observations.length - 1];
-            const latestEl = document.getElementById('latest-species');
+            var latest = data.observations[data.observations.length - 1];
+            var latestEl = document.getElementById('latest-species');
             if (latestEl) {
                 latestEl.innerHTML = '<span class="latest-label">Senast kryssad:</span> <strong>' + latest.species + '</strong> <span class="latest-meta">(' + latest.location + ', ' + new Date(latest.date).toLocaleDateString('sv-SE', { day: 'numeric', month: 'short' }) + ')</span>';
             }
         }
 
-        // Bygg observationsspår (tidslinje)
-        const byDate = {};
-        data.observations.forEach(function(obs) {
+        // Observationsspår
+        var byDate = {};
+        data.observations.forEach(function (obs) {
             if (!byDate[obs.date]) {
                 byDate[obs.date] = { species: [], locations: [] };
             }
@@ -140,41 +105,38 @@
             }
         });
 
-        const dates = Object.keys(byDate).sort(function(a, b) { return new Date(b) - new Date(a); });
-        const trailEl = document.getElementById('trail-timeline');
+        var dates = Object.keys(byDate).sort(function (a, b) { return new Date(b) - new Date(a); });
+        var trailEl = document.getElementById('trail-timeline');
 
         if (trailEl) {
             var html = '';
-            dates.forEach(function(date, i) {
-                const info = byDate[date];
-                const dateObj = new Date(date);
-                const day = dateObj.getDate();
-                const month = dateObj.toLocaleDateString('sv-SE', { month: 'short' });
-                const locations = info.locations.join(', ');
-                const isLast = i === dates.length - 1;
+            dates.forEach(function (date, i) {
+                var info = byDate[date];
+                var dateObj = new Date(date);
+                var day = dateObj.getDate();
+                var month = dateObj.toLocaleDateString('sv-SE', { month: 'short' });
+                var locations = info.locations.join(', ');
+                var isLast = i === dates.length - 1;
 
-                // Kolla om det finns en notis för detta datum
-                const postLink = postsByDate[date];
-                var dateHtml;
-                if (postLink) {
-                    dateHtml = '<a href="' + postLink + '" class="trail-date has-post" title="Läs notis"><span class="trail-day">' + day + '</span> <span class="trail-month">' + month + '</span><span class="trail-icon">📝</span></a>';
-                } else {
-                    dateHtml = '<div class="trail-date"><span class="trail-day">' + day + '</span> <span class="trail-month">' + month + '</span></div>';
-                }
+                var postLink = postsByDate[date];
+                var hasPost = postLink ? ' has-post' : '';
+                var postIcon = postLink ? ' 📝' : '';
+                var dateTag = postLink ? 'a href="' + postLink + '"' : 'span';
+                var dateTagClose = postLink ? 'a' : 'span';
 
-                html += '<div class="trail-item ' + (i === 0 ? 'trail-item-latest' : '') + '">';
-                html += '<div class="trail-line ' + (isLast ? 'trail-line-end' : '') + '"></div>';
+                html += '<div class="trail-item' + (i === 0 ? ' trail-item-latest' : '') + '">';
+                html += '<div class="trail-line' + (isLast ? ' trail-line-end' : '') + '"></div>';
                 html += '<div class="trail-dot"></div>';
-                html += '<div class="trail-content">' + dateHtml;
-                html += '<div class="trail-details"><div class="trail-species">' + info.species.join(', ') + '</div>';
-                html += '<div class="trail-location">' + locations + '</div></div></div></div>';
+                html += '<div class="trail-content">';
+                html += '<' + dateTag + ' class="trail-date' + hasPost + '"><span class="trail-day">' + day + '</span><span class="trail-month">' + month + '</span>' + postIcon + '</' + dateTagClose + '>';
+                html += '<div class="trail-details"><span class="trail-species">' + info.species.join(', ') + '</span>';
+                html += '<span class="trail-location">' + locations + '</span></div>';
+                html += '</div></div>';
             });
             trailEl.innerHTML = html;
         }
     }
 
-    // Kör direkt
     initDashboard();
-
 </script>
 {{ end }}

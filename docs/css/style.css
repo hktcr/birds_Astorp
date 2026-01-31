@@ -2238,125 +2238,66 @@ a:hover {
     font-style: italic;
 }
 
-/* Senaste notis på startsidan */
-.latest-post-preview {
-    background: var(--color-bg-alt);
-    margin: var(--space-md) 0 var(--space-lg) 0;
-    /* Tightare marginaler */
-    width: 100%;
-}
-
-.latest-post-label {
-    font-size: var(--text-xs);
-    /* Mindre label */
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--color-text-muted);
-    margin-bottom: var(--space-xs);
-    /* Mindre gap */
-    opacity: 0.8;
-}
-
-.latest-post-card {
-    display: flex;
-    align-items: center;
-    background: var(--color-bg);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-md);
-    padding: var(--space-sm) var(--space-md);
-    /* Mindre padding */
-    text-decoration: none;
-    color: inherit;
-    transition: all var(--transition-base);
-    box-shadow: var(--shadow-sm);
-    gap: var(--space-md);
-}
-
-.latest-post-card:hover {
-    border-color: var(--color-primary);
-    transform: translateY(-2px);
-    box-shadow: var(--shadow-md);
-}
-
-.latest-post-content {
-    flex: 1;
-}
-
-.latest-post-date {
-    font-size: 0.7rem;
-    /* Ännu mindre */
-    color: var(--color-accent);
-    font-weight: 600;
-    text-transform: uppercase;
+/* Senaste notis - minimal stil */
+.latest-post-link {
     display: block;
-    margin-bottom: 0;
-}
-
-.latest-post-title {
-    font-size: var(--text-base);
-    margin: 2px 0 2px 0;
-    /* Tightare titel */
-    color: var(--color-primary-dark);
-}
-
-.latest-post-summary {
-    font-size: var(--text-sm);
-    color: var(--color-text-muted);
-    margin: 0;
-    display: -webkit-box;
-    -webkit-line-clamp: 1;
-    /* Max 1 rad för description för extra tightness */
-    -webkit-box-orient: vertical;
-    overflow: hidden;
-    line-height: 1.4;
-}
-
-.latest-post-arrow {
-    font-size: var(--text-lg);
-    color: var(--color-primary);
-    font-weight: 300;
-}
-
-/* Uppdaterad Trail Styling */
-.trail-content {
-    display: flex;
-    align-items: flex-start;
-    gap: var(--space-md);
-    padding-bottom: var(--space-lg);
-}
-
-.trail-date {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-width: 60px;
-    padding: var(--space-xs) var(--space-sm);
-    background: var(--color-bg-alt);
-    border: 1px solid var(--color-border);
-    border-radius: var(--radius-sm);
     text-align: center;
-    line-height: 1.2;
+    padding: var(--space-sm) var(--space-md);
+    margin: var(--space-md) 0;
+    background: var(--color-bg-alt);
+    border-radius: var(--radius-sm);
     text-decoration: none;
+    color: var(--color-text);
+    font-size: var(--text-sm);
     transition: all var(--transition-fast);
 }
 
+.latest-post-link:hover {
+    background: var(--color-bg);
+    box-shadow: var(--shadow-sm);
+}
+
+.latest-post-meta {
+    color: var(--color-text-muted);
+}
+
+/* Observationsspår - renare inline design */
+.trail-item {
+    display: flex;
+    align-items: flex-start;
+    gap: var(--space-sm);
+    padding: var(--space-xs) 0;
+    position: relative;
+}
+
+.trail-content {
+    display: flex;
+    align-items: baseline;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+    flex: 1;
+}
+
+.trail-date {
+    display: inline-flex;
+    align-items: baseline;
+    gap: 4px;
+    font-weight: 600;
+    color: var(--color-primary-dark);
+    text-decoration: none;
+    min-width: 55px;
+}
+
 .trail-date.has-post {
-    border-color: var(--color-accent);
-    background: #FFF8F5;
-    /* Mycket ljus terrakotta-ton */
-    cursor: pointer;
+    color: var(--color-accent);
 }
 
 .trail-date.has-post:hover {
-    transform: translateY(-1px);
-    box-shadow: var(--shadow-sm);
-    background: white;
+    text-decoration: underline;
 }
 
 .trail-day {
-    font-size: var(--text-lg);
-    font-weight: 700;
-    color: var(--color-text);
+    font-size: var(--text-base);
 }
 
 .trail-month {
@@ -2365,23 +2306,24 @@ a:hover {
     color: var(--color-text-muted);
 }
 
-.trail-icon {
-    font-size: 1rem;
-    margin-top: 2px;
-}
-
 .trail-details {
-    flex: 1;
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    align-items: baseline;
 }
 
 .trail-species {
-    font-weight: 600;
-    color: var(--color-primary-dark);
-    line-height: 1.4;
+    color: var(--color-text);
 }
 
 .trail-location {
     font-size: var(--text-sm);
     color: var(--color-text-muted);
-    margin-top: 2px;
+    font-style: italic;
+}
+
+.trail-location::before {
+    content: "—";
+    margin-right: var(--space-xs);
 }
