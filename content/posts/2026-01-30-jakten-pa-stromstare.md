@@ -24,8 +24,5 @@ Körslättsbäcken kan vara ett bra ställe, men idag var merparten av bäckfår
 
 Dagen gav ändå utdelning i form av fyra nya arter för året. Vid Högalid dök både **större hackspett** och **nötskrika** upp nästan samtidigt. En överflygande **grönsiska** noterades vid ravinen, och på vägen hem svepte en **korp** förbi grustagen i Maglaby.
 
----
-
-![Vinter i Körslättsravinen](../../../../images/posts/2026-01-30-vinterravin.png)
 
 *Fågelåret i Åstorp, 31/150*
