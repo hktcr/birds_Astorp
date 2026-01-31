@@ -2280,31 +2280,32 @@ a:hover {
     color: var(--color-text-muted);
 }
 
-/* Observationsspår - renare inline design */
+/* Observationsspår - vertikal layout */
 .trail-item {
     display: flex;
     align-items: flex-start;
-    gap: var(--space-sm);
-    padding: var(--space-xs) 0;
+    gap: var(--space-md);
+    padding: var(--space-md) 0;
     position: relative;
+    border-bottom: 1px solid var(--color-border);
+}
+
+.trail-item:last-child {
+    border-bottom: none;
 }
 
 .trail-content {
     display: flex;
-    align-items: baseline;
-    gap: var(--space-sm);
-    flex-wrap: wrap;
+    flex-direction: column;
+    gap: 4px;
     flex: 1;
 }
 
 .trail-date {
-    display: inline-flex;
-    align-items: baseline;
-    gap: 4px;
     font-weight: 600;
+    font-size: var(--text-base);
     color: var(--color-primary-dark);
     text-decoration: none;
-    min-width: 55px;
 }
 
 .trail-date.has-post {
@@ -2315,34 +2316,13 @@ a:hover {
     text-decoration: underline;
 }
 
-.trail-day {
-    font-size: var(--text-base);
-}
-
-.trail-month {
-    font-size: var(--text-xs);
-    text-transform: uppercase;
-    color: var(--color-text-muted);
-}
-
-.trail-details {
-    display: flex;
-    flex-wrap: wrap;
-    gap: var(--space-xs);
-    align-items: baseline;
-}
-
 .trail-species {
     color: var(--color-text);
+    line-height: 1.5;
 }
 
 .trail-location {
     font-size: var(--text-sm);
     color: var(--color-text-muted);
     font-style: italic;
-}
-
-.trail-location::before {
-    content: "—";
-    margin-right: var(--space-xs);
 }

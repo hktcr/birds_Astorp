@@ -4,8 +4,6 @@
     VIKTIGT: Hugo-syntax måste vara EXAKT dubbelklammer UTAN mellanslag!
     FEL:  klammer-mellanslag-klammer range
     RATT: dubbelklammer range dubbelklammer
-    
-    Detta är ett återkommande problem som bryter JavaScript-renderingen.
 */}}
 
 {{ define "main" }}
@@ -61,7 +59,7 @@
 
 {{ define "scripts" }}
 <script>
-    // Dashboard-logik - OBS: Hugo-taggar KRÄVER dubbelklammer utan mellanslag!
+    // Dashboard-logik
     var YEAR_GOAL = 150;
 
     // Mappa datum till notiser (genereras av Hugo vid byggtid)
@@ -105,6 +103,7 @@
             }
         }
 
+        // Bygg observationsspår med ny layout
         var byDate = {};
         data.observations.forEach(function(obs) {
             if (!byDate[obs.date]) {
@@ -125,29 +124,28 @@
                 var info = byDate[date];
                 var dateObj = new Date(date);
                 var day = dateObj.getDate();
-                var month = dateObj.toLocaleDateString('sv-SE', { month: 'short' });
-                var locations = info.locations.join(', ');
+                var month = dateObj.toLocaleDateString('sv-SE', { month: 'long' });
                 var isLast = i === dates.length - 1;
-
                 var postLink = postsByDate[date];
-                var hasPost = postLink ? ' has-post' : '';
-                var postIcon = postLink ? ' <span class="post-icon">*</span>' : '';
 
                 html += '<div class="trail-item' + (i === 0 ? ' trail-item-latest' : '') + '">';
                 html += '<div class="trail-line' + (isLast ? ' trail-line-end' : '') + '"></div>';
                 html += '<div class="trail-dot"></div>';
                 html += '<div class="trail-content">';
                 
+                // Rad 1: Datum (länkat om notis finns)
                 if (postLink) {
-                    html += '<a href="' + postLink + '" class="trail-date has-post">';
+                    html += '<a href="' + postLink + '" class="trail-date has-post">' + day + ' ' + month + ' ↗</a>';
                 } else {
-                    html += '<span class="trail-date">';
+                    html += '<div class="trail-date">' + day + ' ' + month + '</div>';
                 }
-                html += '<span class="trail-day">' + day + '</span><span class="trail-month">' + month + '</span>' + postIcon;
-                html += postLink ? '</a>' : '</span>';
                 
-                html += '<div class="trail-details"><span class="trail-species">' + info.species.join(', ') + '</span>';
-                html += '<span class="trail-location">' + locations + '</span></div>';
+                // Rad 2: Arter
+                html += '<div class="trail-species">' + info.species.join(', ') + '</div>';
+                
+                // Rad 3: Platser
+                html += '<div class="trail-location">' + info.locations.join(' • ') + '</div>';
+                
                 html += '</div></div>';
             });
             trailEl.innerHTML = html;
