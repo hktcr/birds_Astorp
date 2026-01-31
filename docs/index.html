@@ -189,10 +189,14 @@
 
     
     const postsByDate = {};
-    { { $allPosts:= where.Site.RegularPages "Section" "posts" } }
-    { { range $allPosts } }
-    postsByDate["2026-01-30"] = "\/birds_Astorp\/";
-    { { end } }
+    
+    
+    postsByDate["2026-01-30"] = "\/birds_Astorp\/posts\/2026\/01\/jakten-p%C3%A5-str%C3%B6mstare\/";
+    
+    postsByDate["2026-01-25"] = "\/birds_Astorp\/posts\/2026\/01\/vita-svanar-kall-vind\/";
+    
+    postsByDate["2026-01-22"] = "\/birds_Astorp\/posts\/2026\/01\/havs%C3%B6rn-startar-f%C3%A5gel%C3%A5ret\/";
+    
 
     
     const data = {"municipality":"Åstorp","observations":[{"date":"2026-01-22","lat":56.12868,"latin":"Haliaeetus albicilla","lng":13.08559,"location":"Sönnarslöv","species":"Havsörn"},{"date":"2026-01-22","lat":56.13675,"latin":"Pica pica","lng":13.0431,"location":"Kvidinge","species":"Skata"},{"date":"2026-01-22","lat":56.13675,"latin":"Turdus merula","lng":13.0431,"location":"Kvidinge","species":"Koltrast"},{"date":"2026-01-22","lat":56.13675,"latin":"Coloeus monedula","lng":13.0431,"location":"Kvidinge","species":"Kaja"},{"date":"2026-01-22","lat":56.13675,"latin":"Corvus cornix","lng":13.0431,"location":"Kvidinge","species":"Kråka"},{"date":"2026-01-23","lat":56.13675,"latin":"Troglodytes troglodytes","lng":13.0431,"location":"Kvidinge","species":"Gärdsmyg"},{"date":"2026-01-23","lat":56.13675,"latin":"Larus argentatus","lng":13.0431,"location":"Kvidinge","species":"Gråtrut"},{"date":"2026-01-23","lat":56.13015,"latin":"Corvus frugilegus","lng":13.07099,"location":"Sönnarslöv","species":"Råka"},{"date":"2026-01-23","lat":56.13312,"latin":"Milvus milvus","lng":13.09428,"location":"Bron vid Rönneå","species":"Röd glada"},{"date":"2026-01-23","lat":56.13312,"latin":"Buteo buteo","lng":13.09428,"location":"Bron vid Rönneå","species":"Ormvråk"},{"date":"2026-01-23","lat":56.17858,"latin":"Anas platyrhynchos","lng":13.02111,"location":"Gamla Tranarpsbron","species":"Gräsand"},{"date":"2026-01-23","lat":56.13675,"latin":"Erithacus rubecula","lng":13.0431,"location":"Kvidinge","species":"Rödhake"},{"date":"2026-01-24","lat":56.13675,"latin":"Pyrrhula pyrrhula","lng":13.0431,"location":"Kvidinge","species":"Domherre"},{"date":"2026-01-24","lat":56.13675,"latin":"Parus major","lng":13.0431,"location":"Kvidinge","species":"Talgoxe"},{"date":"2026-01-25","lat":56.15343,"latin":"Cygnus cygnus","lng":13.06878,"location":"Kungsgårdsmaderna","species":"Sångsvan"},{"date":"2026-01-25","lat":56.15343,"latin":"Branta canadensis","lng":13.06878,"location":"Kungsgårdsmaderna","species":"Kanadagås"},{"date":"2026-01-25","lat":56.1487,"latin":"Sitta europaea","lng":13.07359,"location":"Tomarps Ene","species":"Nötväcka"},{"date":"2026-01-25","lat":56.15343,"latin":"Phalacrocorax carbo","lng":13.06878,"location":"Kungsgårdsmaderna","species":"Storskarv"},{"date":"2026-01-25","lat":56.13312,"latin":"Bucephala clangula","lng":13.09428,"location":"Bron vid Rönneå","species":"Knipa"},{"date":"2026-01-25","lat":56.13675,"latin":"Cyanistes caeruleus","lng":13.0431,"location":"Kvidinge","species":"Blåmes"},{"date":"2026-01-25","lat":56.13675,"latin":"Accipiter nisus","lng":13.0431,"location":"Kvidinge","species":"Sparvhök"},{"date":"2026-01-26","lat":56.13477,"latin":"Columba livia","lng":13.01199,"location":"Rörspjäll","species":"Tamduva"},{"date":"2026-01-27","lat":56.13312,"latin":"Fringilla coelebs","lng":13.09428,"location":"Bron mot Klippan","species":"Bofink"},{"date":"2026-01-27","lat":56.13675,"latin":"Passer montanus","lng":13.0431,"location":"Kvidinge","species":"Pilfink"},{"date":"2026-01-27","lat":56.13675,"latin":"Passer domesticus","lng":13.0431,"location":"Kvidinge","species":"Gråsparv"},{"date":"2026-01-28","lat":56.18073,"latin":"Anser anser","lng":13.01804,"location":"Tranarpsbron","species":"Grågås"},{"date":"2026-01-28","lat":56.16593,"latin":"Falco tinnunculus","lng":13.01946,"location":"Killåkravägen","species":"Tornfalk"},{"date":"2026-01-30","lat":56.09711,"latin":"Dendrocopos major","lng":13.06836,"location":"Högalid","species":"Större hackspett"},{"date":"2026-01-30","lat":56.09711,"latin":"Garrulus glandarius","lng":13.06836,"location":"Högalid","species":"Nötskrika"},{"date":"2026-01-30","lat":56.09874,"latin":"Spinus spinus","lng":13.07474,"location":"Körslättsravinen","species":"Grönsiska"},{"date":"2026-01-30","lat":56.11749,"latin":"Corvus corax","lng":13.06674,"location":"Grustagen, Maglaby","species":"Korp"},{"date":"2026-01-31","lat":56.14148,"latin":"Columba palumbus","lng":13.04893,"location":"Prästamarken","species":"Ringduva"}],"year":2026};
@@ -224,7 +228,7 @@
 
             const saturation = 90;
             const lightness = 50;
-            fill.style.backgroundColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+            fill.style.backgroundColor = 'hsl(' + hue + ', ' + saturation + '%, ' + lightness + '%)';
         }
 
         
@@ -232,59 +236,52 @@
             const latest = data.observations[data.observations.length - 1];
             const latestEl = document.getElementById('latest-species');
             if (latestEl) {
-                latestEl.innerHTML = `<span class="latest-label">Senast kryssad:</span> <strong>${latest.species}</strong> <span class="latest-meta">(${latest.location}, ${new Date(latest.date).toLocaleDateString('sv-SE', { day: 'numeric', month: 'short' })})</span>`;
+                latestEl.innerHTML = '<span class="latest-label">Senast kryssad:</span> <strong>' + latest.species + '</strong> <span class="latest-meta">(' + latest.location + ', ' + new Date(latest.date).toLocaleDateString('sv-SE', { day: 'numeric', month: 'short' }) + ')</span>';
             }
         }
 
         
         const byDate = {};
-        data.observations.forEach(obs => {
+        data.observations.forEach(function(obs) {
             if (!byDate[obs.date]) {
-                byDate[obs.date] = { species: [], locations: new Set() };
+                byDate[obs.date] = { species: [], locations: [] };
             }
             byDate[obs.date].species.push(obs.species);
-            byDate[obs.date].locations.add(obs.location);
+            if (byDate[obs.date].locations.indexOf(obs.location) === -1) {
+                byDate[obs.date].locations.push(obs.location);
+            }
         });
 
-        const dates = Object.keys(byDate).sort((a, b) => new Date(b) - new Date(a));
+        const dates = Object.keys(byDate).sort(function(a, b) { return new Date(b) - new Date(a); });
         const trailEl = document.getElementById('trail-timeline');
 
         if (trailEl) {
-            trailEl.innerHTML = dates.map((date, i) => {
+            var html = '';
+            dates.forEach(function(date, i) {
                 const info = byDate[date];
                 const dateObj = new Date(date);
                 const day = dateObj.getDate();
                 const month = dateObj.toLocaleDateString('sv-SE', { month: 'short' });
-                const locations = [...info.locations].join(', ');
+                const locations = info.locations.join(', ');
                 const isLast = i === dates.length - 1;
 
                 
                 const postLink = postsByDate[date];
-                const dateHtml = postLink
-                    ? `<a href="${postLink}" class="trail-date has-post" title="Läs notis">
-                         <span class="trail-day">${day}</span> 
-                         <span class="trail-month">${month}</span>
-                         <span class="trail-icon">📝</span>
-                       </a>`
-                    : `<div class="trail-date">
-                         <span class="trail-day">${day}</span> 
-                         <span class="trail-month">${month}</span>
-                       </div>`;
+                var dateHtml;
+                if (postLink) {
+                    dateHtml = '<a href="' + postLink + '" class="trail-date has-post" title="Läs notis"><span class="trail-day">' + day + '</span> <span class="trail-month">' + month + '</span><span class="trail-icon">📝</span></a>';
+                } else {
+                    dateHtml = '<div class="trail-date"><span class="trail-day">' + day + '</span> <span class="trail-month">' + month + '</span></div>';
+                }
 
-                return `
-                    <div class="trail-item ${i === 0 ? 'trail-item-latest' : ''}">
-                        <div class="trail-line ${isLast ? 'trail-line-end' : ''}"></div>
-                        <div class="trail-dot"></div>
-                        <div class="trail-content">
-                            ${dateHtml}
-                            <div class="trail-details">
-                                <div class="trail-species">${info.species.join(', ')}</div>
-                                <div class="trail-location">${locations}</div>
-                            </div>
-                        </div>
-                    </div>
-                `;
-            }).join('');
+                html += '<div class="trail-item ' + (i === 0 ? 'trail-item-latest' : '') + '">';
+                html += '<div class="trail-line ' + (isLast ? 'trail-line-end' : '') + '"></div>';
+                html += '<div class="trail-dot"></div>';
+                html += '<div class="trail-content">' + dateHtml;
+                html += '<div class="trail-details"><div class="trail-species">' + info.species.join(', ') + '</div>';
+                html += '<div class="trail-location">' + locations + '</div></div></div></div>';
+            });
+            trailEl.innerHTML = html;
         }
     }
 
