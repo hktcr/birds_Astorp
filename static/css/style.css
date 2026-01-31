@@ -2238,26 +2238,45 @@ a:hover {
     font-style: italic;
 }
 
-/* Senaste notis - minimal stil */
-.latest-post-link {
-    display: block;
-    text-align: center;
-    padding: var(--space-sm) var(--space-md);
-    margin: var(--space-md) 0;
-    background: var(--color-bg-alt);
-    border-radius: var(--radius-sm);
-    text-decoration: none;
-    color: var(--color-text);
-    font-size: var(--text-sm);
-    transition: all var(--transition-fast);
-}
-
-.latest-post-link:hover {
+/* Senaste notis - rundad ruta */
+.latest-post-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 4px;
+    padding: var(--space-md) var(--space-lg);
+    margin: var(--space-lg) 0;
     background: var(--color-bg);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-lg);
+    text-decoration: none;
+    color: inherit;
+    transition: all var(--transition-fast);
     box-shadow: var(--shadow-sm);
 }
 
-.latest-post-meta {
+.latest-post-box:hover {
+    border-color: var(--color-primary);
+    box-shadow: var(--shadow-md);
+    transform: translateY(-2px);
+}
+
+.latest-post-label {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--color-text-muted);
+}
+
+.latest-post-title {
+    font-size: var(--text-lg);
+    font-weight: 600;
+    color: var(--color-primary-dark);
+    text-align: center;
+}
+
+.latest-post-date {
+    font-size: var(--text-sm);
     color: var(--color-text-muted);
 }
 
