@@ -24,6 +24,12 @@ Körslättsravinen, där Körslättsbäcken genom årtusenden skurit sig ner i S
 
 ![Ett av de mindre fallen i Körslättsravinen, nu helt fruset](../../../../images/posts/2026-01-30-fruset-fall-korslattsravinen.jpg)
 
+### Hitta hit
+Tidigare har jag ofta gått stigen ända uppifrån bron vid Fårabökevägen, en fin led som följer bäcken nära. På senare år har dock nedfallna träd och grenar gjort den vägen svårframkomlig. Numera är det smidigare att välja den lite större stigen som viker av från en av Fårabökevägens stickvägar.
+
+![Karta över stigen ner till ravinen](../../../../images/posts/2026-01-30-hitta-hit-korslattsravinen.jpg)
+
+### Dagens skörd
 Dagen gav ändå utdelning i form av fyra nya arter för året. Vid Högalid dök både **större hackspett** och **nötskrika** upp nästan samtidigt. En överflygande **grönsiska** noterades vid ravinen, och på vägen hem svepte en **korp** förbi grustagen i Maglaby.
 
 *Fågelåret i Åstorp, 31/150*

@@ -10,6 +10,7 @@
       "em",
       "h1",
       "h2",
+      "h3",
       "head",
       "header",
       "hr",
@@ -112,6 +113,8 @@
     ],
     "ids": [
       "bakgrund",
+      "dagens-skörd",
+      "hitta-hit",
       "kontakt",
       "last-added",
       "latest-species",
