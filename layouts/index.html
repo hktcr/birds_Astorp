@@ -87,7 +87,7 @@
     { { end } }
 
     // DATA LOADING: Direct pipeline to avoid variable scope issues
-    const data = {{ index .Site.Data "checklist-2026" | jsonify }};
+    const data = {{ index .Site.Data "checklist-2026" | jsonify | safeJS }};
 
     function initDashboard() {
         if (!data || !data.observations) {
