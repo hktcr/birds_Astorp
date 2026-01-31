@@ -200,23 +200,27 @@
             const uniqueSpecies = new Set(data.observations.map(o => o.species));
             const speciesCount = uniqueSpecies.size;
 
-            document.getElementById('species-count').textContent = speciesCount;
+            const countEl = document.getElementById('species-count');
+            if (countEl) countEl.textContent = speciesCount;
 
             const percentage = (speciesCount / YEAR_GOAL) * 100;
             const fill = document.getElementById('progress-fill');
-            fill.style.width = Math.min(percentage, 100) + '%';
-
-            
-            const hue = 45 + (percentage / 100) * 60;
-            const saturation = 90;
-            const lightness = 55;
-            fill.style.backgroundColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+            if (fill) {
+                fill.style.width = Math.min(percentage, 100) + '%';
+                
+                const hue = 45 + (percentage / 100) * 60;
+                const saturation = 90;
+                const lightness = 55;
+                fill.style.backgroundColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
+            }
 
             
             if (data.observations.length > 0) {
                 const latest = data.observations[data.observations.length - 1];
                 const latestEl = document.getElementById('latest-species');
-                latestEl.innerHTML = `<span class="latest-label">Senast kryssad:</span> <strong>${latest.species}</strong> <span class="latest-meta">(${latest.location}, ${new Date(latest.date).toLocaleDateString('sv-SE', { day: 'numeric', month: 'short' })})</span>`;
+                if (latestEl) {
+                    latestEl.innerHTML = `<span class="latest-label">Senast kryssad:</span> <strong>${latest.species}</strong> <span class="latest-meta">(${latest.location}, ${new Date(latest.date).toLocaleDateString('sv-SE', { day: 'numeric', month: 'short' })})</span>`;
+                }
             }
 
             
@@ -232,41 +236,43 @@
             const dates = Object.keys(byDate).sort((a, b) => new Date(b) - new Date(a));
             const trailEl = document.getElementById('trail-timeline');
 
-            trailEl.innerHTML = dates.map((date, i) => {
-                const info = byDate[date];
-                const dateObj = new Date(date);
-                const day = dateObj.getDate();
-                const month = dateObj.toLocaleDateString('sv-SE', { month: 'short' });
-                const locations = [...info.locations].join(', ');
-                const isLast = i === dates.length - 1;
+            if (trailEl) {
+                trailEl.innerHTML = dates.map((date, i) => {
+                    const info = byDate[date];
+                    const dateObj = new Date(date);
+                    const day = dateObj.getDate();
+                    const month = dateObj.toLocaleDateString('sv-SE', { month: 'short' });
+                    const locations = [...info.locations].join(', ');
+                    const isLast = i === dates.length - 1;
 
-                
-                const postLink = postsByDate[date];
-                const dateHtml = postLink
-                    ? `<a href="${postLink}" class="trail-date has-post" title="Läs notis">
-                         <span class="trail-day">${day}</span> 
-                         <span class="trail-month">${month}</span>
-                         <span class="trail-icon">📝</span>
-                       </a>`
-                    : `<div class="trail-date">
-                         <span class="trail-day">${day}</span> 
-                         <span class="trail-month">${month}</span>
-                       </div>`;
+                    
+                    const postLink = postsByDate[date];
+                    const dateHtml = postLink
+                        ? `<a href="${postLink}" class="trail-date has-post" title="Läs notis">
+                             <span class="trail-day">${day}</span> 
+                             <span class="trail-month">${month}</span>
+                             <span class="trail-icon">📝</span>
+                           </a>`
+                        : `<div class="trail-date">
+                             <span class="trail-day">${day}</span> 
+                             <span class="trail-month">${month}</span>
+                           </div>`;
 
-                return `
-                    <div class="trail-item ${i === 0 ? 'trail-item-latest' : ''}">
-                        <div class="trail-line ${isLast ? 'trail-line-end' : ''}"></div>
-                        <div class="trail-dot"></div>
-                        <div class="trail-content">
-                            ${dateHtml}
-                            <div class="trail-details">
-                                <div class="trail-species">${info.species.join(', ')}</div>
-                                <div class="trail-location">${locations}</div>
+                    return `
+                        <div class="trail-item ${i === 0 ? 'trail-item-latest' : ''}">
+                            <div class="trail-line ${isLast ? 'trail-line-end' : ''}"></div>
+                            <div class="trail-dot"></div>
+                            <div class="trail-content">
+                                ${dateHtml}
+                                <div class="trail-details">
+                                    <div class="trail-species">${info.species.join(', ')}</div>
+                                    <div class="trail-location">${locations}</div>
+                                </div>
                             </div>
                         </div>
-                    </div>
-                `;
-            }).join('');
+                    `;
+                }).join('');
+            }
         })
         .catch(console.error);
 </script>
