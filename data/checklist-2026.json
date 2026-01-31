@@ -217,6 +217,38 @@
             "location": "Killåkravägen",
             "lat": 56.16593,
             "lng": 13.01946
+        },
+        {
+            "species": "Större hackspett",
+            "latin": "Dendrocopos major",
+            "date": "2026-01-30",
+            "location": "Högalid",
+            "lat": 56.09711,
+            "lng": 13.06836
+        },
+        {
+            "species": "Nötskrika",
+            "latin": "Garrulus glandarius",
+            "date": "2026-01-30",
+            "location": "Högalid",
+            "lat": 56.09711,
+            "lng": 13.06836
+        },
+        {
+            "species": "Grönsiska",
+            "latin": "Spinus spinus",
+            "date": "2026-01-30",
+            "location": "Körslättsravinen",
+            "lat": 56.09874,
+            "lng": 13.07474
+        },
+        {
+            "species": "Korp",
+            "latin": "Corvus corax",
+            "date": "2026-01-30",
+            "location": "Grustagen, Maglaby",
+            "lat": 56.11749,
+            "lng": 13.06674
         }
     ]
 }
