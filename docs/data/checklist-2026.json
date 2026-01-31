@@ -249,6 +249,14 @@
             "location": "Grustagen, Maglaby",
             "lat": 56.11749,
             "lng": 13.06674
+        },
+        {
+            "species": "Ringduva",
+            "latin": "Columba palumbus",
+            "date": "2026-01-31",
+            "location": "Prästamarken",
+            "lat": 56.14148,
+            "lng": 13.04893
         }
     ]
 }
