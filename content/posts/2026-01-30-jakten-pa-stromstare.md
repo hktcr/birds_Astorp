@@ -20,7 +20,7 @@ Vinterdagar som dessa går det ibland långt mellan fåglarna. Inte för att de 
 
 För den som bygger en årslista finns det arter man gärna vill säkra tidigt. Strömstare är en sådan. Vissa år hittar man dem enkelt, andra år är de övervintrande exemplaren betydligt färre. När de väl valt ut en sträcka av ett vattendrag brukar de dock vara trogna platsen dag efter dag.
 
-Körslättsravinen, där Körslättsbäcken genom årtusenden skurit sig ner i Söderåsens sluttning, kan vara ett bra ställe. Idag var dock merparten av bäckfåran täckt av is, och någon strömstare syntes inte till. Det är värt att återkomma när isen släpper. Den lilla bit av Klövaravinen som ligger inom Åstorps kommun erbjuder också goda chanser, men dit hann jag inte idag.
+Körslättsravinen, där Körslättabäcken genom årtusenden skurit sig ner i Söderåsens sluttning, kan vara ett bra ställe. Idag var dock merparten av bäckfåran täckt av is, och någon strömstare syntes inte till. Det är värt att återkomma när isen släpper. Den lilla bit av Klövaravinen som ligger inom Åstorps kommun erbjuder också goda chanser, men dit hann jag inte idag.
 
 ![Ett av de mindre fallen i Körslättsravinen, nu helt fruset](../../../../images/posts/2026-01-30-fruset-fall-korslattsravinen.jpg)
 
