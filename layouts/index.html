@@ -27,6 +27,27 @@
             <div class="latest-species" id="latest-species"></div>
         </div>
 
+        <!-- Senaste notis -->
+        {{ $latest := first 1 (where .Site.RegularPages "Section" "posts") }}
+        {{ range $latest }}
+        <div class="latest-post-preview">
+            <h3 class="latest-post-label">Senaste notis</h3>
+            <a href="{{ .RelPermalink }}" class="latest-post-card">
+                <div class="latest-post-content">
+                    <span class="latest-post-date">{{ .Date | time.Format "2 Jan" }}</span>
+                    <h4 class="latest-post-title">{{ .Title }}</h4>
+                    <p class="latest-post-summary">{{ .Summary | truncate 100 }}</p>
+                </div>
+                {{ if .Params.image }}
+                <div class="latest-post-image">
+                    <img src="{{ .Params.image | relURL }}" alt="">
+                </div>
+                {{ end }}
+                <div class="latest-post-arrow">→</div>
+            </a>
+        </div>
+        {{ end }}
+
         <!-- Observationsspår / Tidslinje -->
         <div class="observation-trail">
             <h2 class="trail-title">Observationsspår</h2>
@@ -58,6 +79,13 @@
 <script>
     const YEAR_GOAL = 150;
 
+    // Mappa datum till notiser (genereras av Hugo)
+    const postsByDate = {};
+    { { $allPosts:= where.Site.RegularPages "Section" "posts" } }
+    { { range $allPosts } }
+    postsByDate["{{ .Date.Format "2006-01-02" }}"] = "{{ .RelPermalink }}";
+    { { end } }
+
     fetch('{{ `data/checklist-2026.json` | relURL }}')
         .then(r => r.json())
         .then(data => {
@@ -70,13 +98,13 @@
             const fill = document.getElementById('progress-fill');
             fill.style.width = Math.min(percentage, 100) + '%';
 
-            // Dynamisk färg: klarare gul (hue 50) → klarare grön (hue 130)
-            const hue = 50 + (percentage / 100) * 80;
+            // Dynamisk färg justerad för att vara mer gul längre
+            const hue = 45 + (percentage / 100) * 60;
             const saturation = 90;
             const lightness = 55;
             fill.style.backgroundColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
 
-            // Visa senaste kryssade art (sista i arrayen = senast tillagd)
+            // Visa senaste kryssade art
             if (data.observations.length > 0) {
                 const latest = data.observations[data.observations.length - 1];
                 const latestEl = document.getElementById('latest-species');
@@ -104,14 +132,29 @@
                 const locations = [...info.locations].join(', ');
                 const isLast = i === dates.length - 1;
 
+                // Kolla om det finns en notis för detta datum
+                const postLink = postsByDate[date];
+                const dateHtml = postLink
+                    ? `<a href="${postLink}" class="trail-date has-post" title="Läs notis">
+                         <span class="trail-day">${day}</span> 
+                         <span class="trail-month">${month}</span>
+                         <span class="trail-icon">📝</span>
+                       </a>`
+                    : `<div class="trail-date">
+                         <span class="trail-day">${day}</span> 
+                         <span class="trail-month">${month}</span>
+                       </div>`;
+
                 return `
                     <div class="trail-item ${i === 0 ? 'trail-item-latest' : ''}">
                         <div class="trail-line ${isLast ? 'trail-line-end' : ''}"></div>
                         <div class="trail-dot"></div>
                         <div class="trail-content">
-                            <div class="trail-date">${day} ${month}</div>
-                            <div class="trail-species">${info.species.join(', ')}</div>
-                            <div class="trail-location">${locations}</div>
+                            ${dateHtml}
+                            <div class="trail-details">
+                                <div class="trail-species">${info.species.join(', ')}</div>
+                                <div class="trail-location">${locations}</div>
+                            </div>
                         </div>
                     </div>
                 `;

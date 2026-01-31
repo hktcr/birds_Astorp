@@ -68,11 +68,43 @@
             </ul>
         </nav>
 
-        <button class="mobile-menu-toggle" aria-label="Öppna meny" aria-expanded="false">
+        <button class="mobile-menu-toggle" aria-label="Öppna meny" aria-expanded="false" id="mobile-menu-btn">
             <span class="hamburger"></span>
         </button>
     </div>
 </header>
+
+<script>
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuToggle = document.getElementById('mobile-menu-btn');
+        const mainNav = document.querySelector('.main-nav');
+
+        if (menuToggle && mainNav) {
+            menuToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                
+                mainNav.classList.toggle('open');
+
+                
+                const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+                menuToggle.setAttribute('aria-expanded', !isExpanded);
+            });
+
+            
+            document.addEventListener('click', (e) => {
+                if (mainNav.classList.contains('open') &&
+                    !mainNav.contains(e.target) &&
+                    !menuToggle.contains(e.target)) {
+                    mainNav.classList.remove('open');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+    });
+</script>
 
     <main id="main-content" class="main">
         
@@ -105,6 +137,23 @@
         </div>
 
         
+        
+        
+        <div class="latest-post-preview">
+            <h3 class="latest-post-label">Senaste notis</h3>
+            <a href="/birds_Astorp/posts/2026/01/jakten-p%C3%A5-str%C3%B6mstare/" class="latest-post-card">
+                <div class="latest-post-content">
+                    <span class="latest-post-date">30 Jan</span>
+                    <h4 class="latest-post-title">Jakten på strömstare</h4>
+                    <p class="latest-post-summary"><p>Vinterdagar som dessa går det ibland långt mellan fåglarna. Inte för att de inte finns där, men snö …</p></p>
+                </div>
+                
+                <div class="latest-post-arrow">→</div>
+            </a>
+        </div>
+        
+
+        
         <div class="observation-trail">
             <h2 class="trail-title">Observationsspår</h2>
             <div class="trail-timeline" id="trail-timeline">
@@ -134,10 +183,16 @@
 
     
 
-    <script src="/birds_Astorp/%20js/menu.js"></script>
     
 <script>
     const YEAR_GOAL = 150;
+
+    
+    const postsByDate = {};
+    { { $allPosts:= where.Site.RegularPages "Section" "posts" } }
+    { { range $allPosts } }
+    postsByDate["2026-01-30"] = "\/birds_Astorp\/";
+    { { end } }
 
     fetch('\/birds_Astorp\/data\/checklist-2026.json')
         .then(r => r.json())
@@ -152,7 +207,7 @@
             fill.style.width = Math.min(percentage, 100) + '%';
 
             
-            const hue = 50 + (percentage / 100) * 80;
+            const hue = 45 + (percentage / 100) * 60;
             const saturation = 90;
             const lightness = 55;
             fill.style.backgroundColor = `hsl(${hue}, ${saturation}%, ${lightness}%)`;
@@ -185,14 +240,29 @@
                 const locations = [...info.locations].join(', ');
                 const isLast = i === dates.length - 1;
 
+                
+                const postLink = postsByDate[date];
+                const dateHtml = postLink
+                    ? `<a href="${postLink}" class="trail-date has-post" title="Läs notis">
+                         <span class="trail-day">${day}</span> 
+                         <span class="trail-month">${month}</span>
+                         <span class="trail-icon">📝</span>
+                       </a>`
+                    : `<div class="trail-date">
+                         <span class="trail-day">${day}</span> 
+                         <span class="trail-month">${month}</span>
+                       </div>`;
+
                 return `
                     <div class="trail-item ${i === 0 ? 'trail-item-latest' : ''}">
                         <div class="trail-line ${isLast ? 'trail-line-end' : ''}"></div>
                         <div class="trail-dot"></div>
                         <div class="trail-content">
-                            <div class="trail-date">${day} ${month}</div>
-                            <div class="trail-species">${info.species.join(', ')}</div>
-                            <div class="trail-location">${locations}</div>
+                            ${dateHtml}
+                            <div class="trail-details">
+                                <div class="trail-species">${info.species.join(', ')}</div>
+                                <div class="trail-location">${locations}</div>
+                            </div>
                         </div>
                     </div>
                 `;
