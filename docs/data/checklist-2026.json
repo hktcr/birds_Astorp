@@ -238,7 +238,7 @@
             "species": "Grönsiska",
             "latin": "Spinus spinus",
             "date": "2026-01-30",
-            "location": "Körslättsravinen",
+            "location": "Körslättaravinen",
             "lat": 56.09874,
             "lng": 13.07474
         },
@@ -257,6 +257,22 @@
             "location": "Prästamarken",
             "lat": 56.14148,
             "lng": 13.04893
+        },
+        {
+            "species": "Trädkrypare",
+            "latin": "Certhia familiaris",
+            "date": "2026-02-01",
+            "location": "Vändplats, V Maglabyväg",
+            "lat": 56.11793,
+            "lng": 12.99447
+        },
+        {
+            "species": "Stjärtmes",
+            "latin": "Aegithalos caudatus",
+            "date": "2026-02-01",
+            "location": "Hermanssons stuga",
+            "lat": 56.12383,
+            "lng": 12.98772
         }
     ]
 }
