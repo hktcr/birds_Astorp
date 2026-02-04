@@ -24,10 +24,11 @@ En hybrid fågelblogg för Åstorps kommun — observationer, bilder och interak
        "lng": 13.xxxxx
    }
    ```
-3. Synka och pusha:
+3. Publicera:
    ```bash
-   ./sync-data.sh && git add -A && git commit -m "Art #N: Artnamn, Lokal" && git push
+   ./sync-data.sh --deploy
    ```
+   (Alternativt manuellt: `./sync-data.sh && git add -A && git commit -m "..." && git push`)
 
 ### Med blogginlägg
 
