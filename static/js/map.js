@@ -96,8 +96,12 @@ document.addEventListener('DOMContentLoaded', function () {
                         species: []
                     };
                 }
-                if (!locations[obs.location].species.includes(obs.species)) {
-                    locations[obs.location].species.push(obs.species);
+                // Lagra art + datum (undvik dubletter baserat på artnamn)
+                if (!locations[obs.location].species.some(s => s.name === obs.species)) {
+                    locations[obs.location].species.push({
+                        name: obs.species,
+                        date: obs.date
+                    });
                 }
             });
 
@@ -150,8 +154,15 @@ document.addEventListener('DOMContentLoaded', function () {
                         L.marker([loc.lat, loc.lng], { icon: pulseIcon, interactive: false }).addTo(map);
                     }
 
-                    // Popup med artlista — "Här kryssades:"
-                    const speciesList = loc.species.map(s => `<li>${s}</li>`).join('');
+                    // Popup med artlista — "Här kryssades:" med datum
+                    const formatDate = (dateStr) => {
+                        const d = new Date(dateStr);
+                        const months = ['jan', 'feb', 'mar', 'apr', 'maj', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
+                        return `${d.getDate()} ${months[d.getMonth()]}`;
+                    };
+                    const speciesList = loc.species.map(s =>
+                        `<li>${s.name} <span class="popup-date">(${formatDate(s.date)})</span></li>`
+                    ).join('');
                     marker.bindPopup(`
                         <div class="map-popup">
                             <h4>${name}</h4>
@@ -161,7 +172,7 @@ document.addEventListener('DOMContentLoaded', function () {
                     `);
 
                     // Räkna statistik
-                    loc.species.forEach(s => totalSpecies.add(s));
+                    loc.species.forEach(s => totalSpecies.add(s.name));
                     markerCount++;
                 }
             });
