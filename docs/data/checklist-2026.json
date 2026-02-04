@@ -273,6 +273,14 @@
             "location": "Hermanssons stuga",
             "lat": 56.12383,
             "lng": 12.98772
+        },
+        {
+            "species": "Stenknäck",
+            "latin": "Coccothraustes coccothraustes",
+            "date": "2026-02-04",
+            "location": "Björnekullaskolan",
+            "lat": 56.13677,
+            "lng": 12.95158
         }
     ]
 }
