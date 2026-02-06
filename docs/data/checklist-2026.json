@@ -289,6 +289,22 @@
             "location": "Floarna",
             "lat": 56.16532231534232,
             "lng": 12.984207625328134
+        },
+        {
+            "species": "Gulsparv",
+            "latin": "Emberiza citrinella",
+            "date": "2026-02-06",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.04310
+        },
+        {
+            "species": "Storskrake",
+            "latin": "Mergus merganser",
+            "date": "2026-02-06",
+            "location": "Tomarps Ene",
+            "lat": 56.14870,
+            "lng": 13.07359
         }
     ]
 }
