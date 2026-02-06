@@ -2,7 +2,7 @@
 title: "Fjällvråken i Tranarp"
 date: 2026-02-05
 draft: false
-location: "Flodarna"
+location: "Floarna"
 species:
   - Fjällvråk
   - Gräsand
