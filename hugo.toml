@@ -1,7 +1,7 @@
-baseURL = 'https://hktcr.github.io/birds_Astorp/'
+baseURL = 'https://astorpsfaglar.se/'
 languageCode = 'sv'
 title = 'Fågelåret i Åstorp'
-theme = ''
+
 publishDir = 'docs'
 
 # Permalinks
