@@ -111,10 +111,8 @@
         <div>
             <h1 class="page-title">Årslista 2026</h1>
             <p>Arter observerade i Åstorps kommun</p>
-            <p class="checklist-description">Artlistan baseras på vanliga fågelarter i Skåne. Observationer registreras
-                löpande under året.</p>
+            <p class="checklist-description">Artlistan baseras på vanliga fågelarter i Skåne. Observationer registreras löpande under året.</p>
         </div>
-
         <div class="checklist-stats">
             <div class="checklist-stat">
                 <div class="checklist-stat-value" id="total-species">—</div>
@@ -126,14 +124,12 @@
             </div>
         </div>
     </header>
-
     <div class="checklist-controls">
         <div class="checklist-filters">
             <button class="checklist-filter active" data-filter="all">Alla</button>
             <button class="checklist-filter" data-filter="observed">Kryssade</button>
             <button class="checklist-filter" data-filter="pending">Saknas</button>
         </div>
-
         <div class="checklist-sort">
             <select id="sort-select" class="checklist-filter">
                 <option value="taxonomic">Taxonomisk ordning</option>
@@ -142,7 +138,6 @@
             </select>
         </div>
     </div>
-
     <div class="checklist-grid" id="species-grid">
         
         <p class="empty-state">Laddar artlista...</p>
@@ -154,6 +149,9 @@
     
 
     
+<script>
+    window.siteBaseURL = 'https:\/\/astorpsfaglar.se\/';
+</script>
 <script src="/js/checklist.js"></script>
 
 </body>
