@@ -1,0 +1,72 @@
+{
+    "municipality": "Åstorp",
+    "description": "Standardlokaler för Fågelåret i Åstorp 2026",
+    "locations": [
+        {
+            "name": "Sönnarslöv",
+            "lat": 56.12868,
+            "lng": 13.08559,
+            "description": "Vägen mellan Kvidinge och Klippan"
+        },
+        {
+            "name": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.04310,
+            "description": "Tätorten Kvidinge"
+        },
+        {
+            "name": "Bron vid Rönneå",
+            "lat": 56.13312,
+            "lng": 13.09428,
+            "description": "Bron över Rönneå vid Sönnarslöv"
+        },
+        {
+            "name": "Tranarpsbron",
+            "lat": 56.17858,
+            "lng": 13.02111,
+            "description": "Bron vid Tranarp"
+        },
+        {
+            "name": "Tomarps Ene",
+            "lat": 56.14870,
+            "lng": 13.07359,
+            "description": "Naturområde med gamla ekar vid Rönneå"
+        },
+        {
+            "name": "Kungsgårdsmaderna",
+            "lat": 56.15343,
+            "lng": 13.06878,
+            "description": "Våtmarker vid Tomarps Kungsgård (myntad lokal)"
+        },
+        {
+            "name": "Kungsgårdsmaderna, södra",
+            "lat": 56.14647,
+            "lng": 13.07571,
+            "description": "Södra delen av Kungsgårdsmaderna"
+        },
+        {
+            "name": "Kungsgårdsmaderna, norra",
+            "lat": 56.16260,
+            "lng": 13.05597,
+            "description": "Norra delen av Kungsgårdsmaderna"
+        },
+        {
+            "name": "Fält vid Tomarp",
+            "lat": 56.14630,
+            "lng": 13.05720,
+            "description": "Åkermark vid Tomarp"
+        },
+        {
+            "name": "Fält vid järnvägen, Kvidinge",
+            "lat": 56.13970,
+            "lng": 13.06710,
+            "description": "Fält intill järnvägen vid Kvidinge"
+        },
+        {
+            "name": "Flodarna",
+            "lat": 56.16532231534232,
+            "lng": 12.984207625328134,
+            "description": "Fält vid Flodarna, NV om Tranarp"
+        }
+    ]
+}
