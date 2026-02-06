@@ -61,6 +61,12 @@
             "lat": 56.13970,
             "lng": 13.06710,
             "description": "Fält intill järnvägen vid Kvidinge"
+        },
+        {
+            "name": "Flodarna",
+            "lat": 56.16532231534232,
+            "lng": 12.984207625328134,
+            "description": "Fält vid Flodarna, NV om Tranarp"
         }
     ]
 }

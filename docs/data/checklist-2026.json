@@ -281,6 +281,14 @@
             "location": "Björnekullaskolan",
             "lat": 56.13677,
             "lng": 12.95158
+        },
+        {
+            "species": "Fjällvråk",
+            "latin": "Buteo lagopus",
+            "date": "2026-02-05",
+            "location": "Flodarna",
+            "lat": 56.16532231534232,
+            "lng": 12.984207625328134
         }
     ]
 }
