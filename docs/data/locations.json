@@ -67,6 +67,12 @@
             "lat": 56.16532231534232,
             "lng": 12.984207625328134,
             "description": "Fält vid Floarna, NV om Tranarp"
+        },
+        {
+            "name": "Rönneå vid Tomarps Ene",
+            "lat": 56.14721124325686,
+            "lng": 13.076779186245918,
+            "description": "Öppet vatten i Rönneå vid Tomarps Ene"
         }
     ]
 }
