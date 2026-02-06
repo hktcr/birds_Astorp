@@ -2,7 +2,7 @@
 title: "Fjällvråken i Tranarp"
 date: 2026-02-05
 draft: false
-location: "Tranarp"
+location: "Flodarna"
 species:
   - Fjällvråk
   - Gräsand
@@ -11,8 +11,8 @@ tags:
   - rovfåglar
   - årskryss
 coordinates:
-  lat: 56.1234
-  lon: 12.9876
+  lat: 56.16532231534232
+  lon: 12.984207625328134
 ---
 
 Vinterkylan håller i sig, men det är skånsk vinterkyla. Inte så långt under nollstrecket på termometern, men en isande kyla som skär ända in i märgen. Rönne å fryser till och lämnar bara små sträckor öppet vatten till fåglarna som söker det. Mellan gamla och nya Tranarpsbron har en stor mängd gräsänder samlats. Chansen att hitta mer fåtaliga arter bland dem är god, men inget hittills.
