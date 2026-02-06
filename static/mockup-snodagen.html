@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vem äter mest, vem äter sist? | Fågelåret i Åstorp</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            line-height: 1.8;
+            color: #333;
+            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
+            min-height: 100vh;
+        }
+
+        header {
+            background: linear-gradient(135deg, #1a5f3c 0%, #2d8a5e 100%);
+            color: white;
+            padding: 1.5rem 2rem;
+            text-align: center;
+        }
+
+        header h1 {
+            font-size: 1.5rem;
+            font-weight: 400;
+            letter-spacing: 0.05em;
+        }
+
+        nav {
+            margin-top: 0.5rem;
+            font-size: 0.9rem;
+        }
+
+        nav a {
+            color: rgba(255, 255, 255, 0.8);
+            text-decoration: none;
+            margin: 0 1rem;
+        }
+
+        nav a:hover {
+            color: white;
+        }
+
+        main {
+            max-width: 720px;
+            margin: 2rem auto;
+            padding: 2rem;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+        }
+
+        h2 {
+            font-size: 2rem;
+            color: #1a5f3c;
+            margin-bottom: 1.5rem;
+            font-weight: 400;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            text-align: justify;
+        }
+
+        .section-break {
+            text-align: center;
+            margin: 2rem 0;
+            color: #1a5f3c;
+            font-size: 1.5rem;
+        }
+
+        .byline {
+            font-style: italic;
+            color: #666;
+            text-align: right;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px solid #eee;
+        }
+
+        /* Gallery */
+        .gallery {
+            display: flex;
+            gap: 12px;
+            margin: 2rem 0 1rem;
+            justify-content: center;
+        }
+
+        .gallery img {
+            height: 200px;
+            width: auto;
+            object-fit: cover;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+        }
+
+        .gallery-caption {
+            text-align: center;
+            font-size: 0.9rem;
+            color: #666;
+            font-style: italic;
+        }
+
+        /* Lightbox */
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.9);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            cursor: pointer;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 8px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            color: white;
+            font-size: 2.5rem;
+            cursor: pointer;
+            opacity: 0.8;
+        }
+
+        .lightbox-close:hover {
+            opacity: 1;
+        }
+    </style>
+</head>
+
+<body>
+    <header>
+        <h1>Fågelåret i Åstorp</h1>
+        <nav>
+            <a href="#">Hem</a>
+            <a href="#">Notiser</a>
+            <a href="#">Årslista</a>
+            <a href="#">Karta</a>
+            <a href="#">Om</a>
+        </nav>
+    </header>
+
+    <main>
+        <h2>Vem äter mest, vem äter sist?</h2>
+
+        <p>Så fort jag hann, gick jag ut för att sopa undan snön under matplatsen. Koltrastarna satt runt omkring,
+            nästan som om de väntade på mig. Jag fyllde på maten i den gamla cykelkorgen som sköter sin uppgift alldeles
+            förträffligt.</p>
+
+        <p>Redan i gryningen hade de första talgoxarna börjat besöka matningen, och allteftersom morgonen övergick i
+            förmiddag ökade antalet besökare. På marken ett tiotal koltrastar, stundtals kajor och råkor. Ett tiotal
+            gråsparvar höll mestadels till på marken, men någon enstaka gav sig på att sätta sig direkt på nätkorgen.
+            Allt eftersom talgoxarna blev fler började även enstaka blåmesar dyka upp. En rödhake likaså.</p>
+
+        <p>Men vem bestämmer egentligen vem som äter när?</p>
+
+        <p>Man skulle kunna tänka sig att de starkaste och mest dominerande individerna skulle spendera hela dagen vid
+            matplatsen. Verkligheten är mer spännande än så.</p>
+
+        <p>Det är viktigt för en fågel att få i sig tillräckligt med mat, ha ett tillräckligt lager fett, för att
+            överleva kylan. Men att bli för tung är farligt. En tung fågel blir betydligt lättare tagen av en rovfågel
+            än en som är rörlig och inte bär på mer än vad den behöver.</p>
+
+        <p>Så länge det finns en plats där mat finns tillgänglig kommer en dominant fågel att kunna vara ganska säker på
+            att hitta mat när den väl besöker platsen. En fågel som står lägre i rang behöver ta alla chanser den kan
+            för att få tag i mat. Den vet inte om den kommer att få tag i tillräckligt under dygnets ljusa timmar för
+            att klara natten.</p>
+
+        <p>Ju mer tid fågeln spenderar på matplatsen, och ju tyngre den är, desto större är risken att bli tagen. Det är
+            en knivskarp balansgång. Men det leder till att de starkaste individerna inte spenderar mer tid på
+            matplatsen än vad de behöver.</p>
+
+        <p>De individer som spenderar mer tid vid matplatsen, och som man därför tror är de mest dominanta och
+            starkaste, är kanske i själva verket de "svagare" individerna.</p>
+
+        <div class="section-break">✦</div>
+
+        <p>Fågelmatningen hemmavid är inget märkvärdigt. Den ligger nog inte ens särskilt bra till. Runt omkring, i
+            såväl Kvidinge som Åstorp, finns gott om matningar som besöks av fler arter och fler individer. Men det
+            roliga med att ha en matning nära sig är att man har chans att se fåglarna på nära håll. Och det finns
+            alltid ett mått av spänning i vad som kan dyka upp. De mest oväntade arterna har dykt upp vid fågelbord runt
+            om i landet.</p>
+
+        <p>Snön tvingar många fåglar att söka sig till säkra matplatser. Och fåglar lockar fler fåglar. Med lite tur kan
+            en dag som denna hjälpa till att sprida ryktet om matningen bland fåglarna i området.</p>
+
+        <p>Mitt under förmiddagen dök det upp en gulsparv vid korgen, årets art nummer 37 för Åstorpslistan. Först en
+            honfärgad, sedan även en hane med sitt karaktäristiska gula huvud. De höll sig mestadels på marken, i
+            utkanten av aktiviteten.</p>
+
+        <div class="section-break">✦</div>
+
+        <p>Snötäckt mark gör att fåglarna står ut. Gäss, rovfåglar och mycket annat avtecknas plötsligt tydligare i
+            landskapet. Rönne å-dalen är känd för övervintrande rovfåglar och gäss. Mellan Gråmanstorps kyrka och ån
+            satt idag två gamla havsörnar på ett fält. De satt där länge och åt på något, tydligt avtecknade mot den
+            vita bakgrunden.</p>
+
+        <div class="section-break">✦</div>
+
+        <p>Det blev ytterligare ett årskryss. Nere vid Tomarps Ene, i ett parti av ån med öppet vatten, simmade tre
+            granna storskrakshanar. Svartvita och pråliga, som målat porslin mot det mörka vattnet.</p>
+
+        <div class="gallery">
+            <img src="/images/2026-02-06-snodagen/gulsparv.jpg" alt="Gulsparv" onclick="openLightbox(this)">
+            <img src="/images/2026-02-06-snodagen/havsorn.jpg" alt="Havsörnar" onclick="openLightbox(this)">
+            <img src="/images/2026-02-06-snodagen/storskrake.jpg" alt="Storskrakar" onclick="openLightbox(this)">
+        </div>
+        <p class="gallery-caption">Gulsparv vid matningen · Havsörnar vid Gråmanstorp · Storskrakar vid Tomarps Ene</p>
+
+        <p class="byline">Fågelåret i Åstorp, 38/150</p>
+    </main>
+
+    <!-- Lightbox -->
+    <div class="lightbox" id="lightbox" onclick="closeLightbox()">
+        <span class="lightbox-close">&times;</span>
+        <img id="lightbox-img" src="" alt="">
+    </div>
+
+    <script>
+        function openLightbox(img) {
+            const lightbox = document.getElementById('lightbox');
+            const lightboxImg = document.getElementById('lightbox-img');
+            lightboxImg.src = img.src;
+            lightboxImg.alt = img.alt;
+            lightbox.classList.add('active');
+        }
+
+        function closeLightbox() {
+            document.getElementById('lightbox').classList.remove('active');
+        }
+
+        // Close on Escape key
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') closeLightbox();
+        });
+    </script>
+</body>
+
+</html>
