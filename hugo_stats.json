@@ -8,6 +8,8 @@
       "button",
       "div",
       "em",
+      "figcaption",
+      "figure",
       "h1",
       "h2",
       "h3",
@@ -26,11 +28,13 @@
       "script",
       "section",
       "select",
+      "source",
       "span",
       "strong",
       "time",
       "title",
-      "ul"
+      "ul",
+      "video"
     ],
     "classes": [
       "active",
