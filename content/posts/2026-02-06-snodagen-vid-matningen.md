@@ -2,7 +2,7 @@
 title: "Vem äter mest, vem äter sist?"
 date: 2026-02-06
 draft: false
-location: "Kvidinge · Tomarps Ene"
+location: "Kvidinge · Rönneå vid Tomarps Ene"
 species:
   - Gulsparv
   - Storskrake
