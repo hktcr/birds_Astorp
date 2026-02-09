@@ -266,15 +266,8 @@
         const monthHeading = document.querySelector('.artguide-month-heading');
         if (monthHeading) monthHeading.style.display = '';
 
-        // Filter species based on sort mode
-        let monthSpecies;
-        if (currentSort === 'chronological') {
-            // Show all species in chronological mode
-            monthSpecies = [...speciesData];
-        } else {
-            // Filter species that have observations in this month
-            monthSpecies = speciesData.filter(sp => sp.months[month] > 0);
-        }
+        // Filter species that have observations in this month
+        let monthSpecies = speciesData.filter(sp => sp.months[month] > 0);
 
         monthSpecies = filterSpecies(monthSpecies);
         if (currentSort === 'chronological') {
