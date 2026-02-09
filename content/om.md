@@ -12,6 +12,14 @@ Sidan fungerar främst som en personlig logg för att hålla ordning på mina ob
 
 *\*Kommunornitologen är [Skånes Ornitologiska Förenings](https://www.skof.se) kontaktperson i respektive kommun.*
 
+## Mina regler
+
+Vid fågelskådning i större områden — som ett län eller ett land — tillämpas ofta det *geografiska imperativet*: det kvittar var observatören befinner sig, så länge den observerade individen befinner sig inom området. Man kan alltså stå på ena sidan av en länsgräns och kryssa en fågel som flyger på andra sidan.
+
+Det här projektet följer en annan princip, närmare besläktad med *tomtkryss* — den klassiska traditionen att kryssa arter på sin egen tomt. Grundregeln för tomtkryss är enkel: antingen fågeln eller observatören ska befinna sig på tomten. I det här projektet gäller samma sak, fast "tomten" är hela Åstorps kommun.
+
+Min utgångspunkt är: **vad kan jag se om jag tittar efter fåglar i Åstorps kommun?** Jag ska befinna mig inom kommunens gränser när jag gör observationen. En fågel som flyger över grannkommunen medan jag står i Åstorp räknas inte.
+
 ## Om Åstorps kommun
 
 Åstorps kommun ligger i nordvästra Skåne och utgör porten till Söderåsen. Här möter den öppna slättbygden åsens skogklädda sluttningar. Landskapet domineras av jordbruksmark, men längs Rönne å och vid åsens fot finns våtmarker, beteshagar och lövskog.

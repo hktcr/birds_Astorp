@@ -305,6 +305,14 @@
             "location": "Rönneå vid Tomarps Ene",
             "lat": 56.14721124325686,
             "lng": 13.076779186245918
+        },
+        {
+            "species": "Grönfink",
+            "latin": "Chloris chloris",
+            "date": "2026-02-09",
+            "location": "Trädgårdsgatan 15",
+            "lat": 56.136750782641876,
+            "lng": 13.043105305042882
         }
     ]
 }

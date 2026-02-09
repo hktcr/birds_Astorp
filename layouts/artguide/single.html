@@ -1,0 +1,99 @@
+{{ define "main" }}
+<div class="artguide">
+    <!-- Progress bar -->
+    <div class="artguide-progress" role="progressbar" aria-valuemin="0" aria-valuemax="150" aria-valuenow="0"
+        aria-label="Årslista framsteg">
+        <div class="artguide-progress__bar">
+            <div class="artguide-progress__fill"></div>
+            <div class="artguide-progress__milestones">
+                <span class="artguide-progress__milestone" style="left: 33.3%">50</span>
+                <span class="artguide-progress__milestone" style="left: 66.6%">100</span>
+                <span class="artguide-progress__milestone" style="left: 100%">150</span>
+            </div>
+        </div>
+        <div class="artguide-progress__text">
+            <span class="artguide-progress__count">0/150 arter</span>
+            <span class="artguide-progress__latest"></span>
+        </div>
+    </div>
+
+    <!-- Month navigation -->
+    <nav class="artguide-months" aria-label="Välj månad">
+        <button class="artguide-months__btn" data-month="0">Jan</button>
+        <button class="artguide-months__btn" data-month="1">Feb</button>
+        <button class="artguide-months__btn" data-month="2">Mar</button>
+        <button class="artguide-months__btn" data-month="3">Apr</button>
+        <button class="artguide-months__btn" data-month="4">Maj</button>
+        <button class="artguide-months__btn" data-month="5">Jun</button>
+        <button class="artguide-months__btn" data-month="6">Jul</button>
+        <button class="artguide-months__btn" data-month="7">Aug</button>
+        <button class="artguide-months__btn" data-month="8">Sep</button>
+        <button class="artguide-months__btn" data-month="9">Okt</button>
+        <button class="artguide-months__btn" data-month="10">Nov</button>
+        <button class="artguide-months__btn" data-month="11">Dec</button>
+    </nav>
+
+    <!-- View toggle + filters -->
+    <div class="artguide-controls">
+        <div class="artguide-view-toggle" role="tablist" aria-label="Växla vy">
+            <button class="artguide-view-toggle__btn artguide-view-toggle__btn--active" data-view="month" role="tab"
+                aria-selected="true">Månadsvy</button>
+            <button class="artguide-view-toggle__btn" data-view="year" role="tab"
+                aria-selected="false">Helårsöversikt</button>
+        </div>
+        <div class="artguide-sort-toggle" aria-label="Sortering">
+            <button class="artguide-sort__btn artguide-sort__btn--active" data-sort="likely">Troligast</button>
+            <button class="artguide-sort__btn" data-sort="taxonomy">Taxonomisk</button>
+        </div>
+        <div class="artguide-filters">
+            <button class="artguide-filter artguide-filter--active" data-filter="all">Alla</button>
+            <button class="artguide-filter" data-filter="abundant">Förväntade</button>
+            <button class="artguide-filter" data-filter="regular">Möjliga</button>
+            <button class="artguide-filter" data-filter="uncommon">Ovanliga</button>
+            <button class="artguide-filter" data-filter="rare">Rariteter</button>
+            <button class="artguide-filter" data-filter="checked">Kryssade ✓</button>
+            <button class="artguide-filter" data-filter="missing">Saknade</button>
+        </div>
+    </div>
+
+    <!-- Month view heading -->
+    <div class="artguide-month-heading">
+        <h2 class="artguide-month-heading__title"></h2>
+        <p class="artguide-month-heading__subtitle"></p>
+    </div>
+
+    <!-- Species container (filled by JS) -->
+    <div class="artguide-species" id="artguide-species"></div>
+
+    <!-- Legend -->
+    <div class="artguide-legend">
+        <div class="artguide-legend__item">
+            <span class="artguide-legend__swatch artguide-legend__swatch--abundant"></span>
+            <span>Förväntad (≥50 rapporter)</span>
+        </div>
+        <div class="artguide-legend__item">
+            <span class="artguide-legend__swatch artguide-legend__swatch--regular"></span>
+            <span>Möjlig (10–49)</span>
+        </div>
+        <div class="artguide-legend__item">
+            <span class="artguide-legend__swatch artguide-legend__swatch--uncommon"></span>
+            <span>Ovanlig (5–9) ◆</span>
+        </div>
+        <div class="artguide-legend__item">
+            <span class="artguide-legend__swatch artguide-legend__swatch--rare"></span>
+            <span>Raritet (1–4) ⭐</span>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="artguide-footer">
+        <p>Data: <a href="https://www.artportalen.se" target="_blank" rel="noopener">Artportalen</a> — samtliga
+            fågelobservationer i Åstorps kommun, alla observatörer, alla år.</p>
+        <p class="artguide-footer__date"></p>
+    </footer>
+</div>
+{{ end }}
+
+{{ define "scripts" }}
+<script src="{{ `js/artguide.js` | relURL }}"></script>
+{{ end }}
