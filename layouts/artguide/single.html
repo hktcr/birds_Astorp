@@ -96,5 +96,6 @@
 {{ end }}
 
 {{ define "scripts" }}
-<script src="{{ `js/artguide.js` | relURL }}"></script>
+{{ $js := resources.Get "js/artguide.js" | fingerprint }}
+<script src="{{ $js.RelPermalink }}"></script>
 {{ end }}
