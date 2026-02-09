@@ -210,6 +210,19 @@
         });
     }
 
+    function sortChronological(species) {
+        return [...species].sort((a, b) => {
+            // Checked species first, sorted by date (earliest first)
+            if (a.checked && b.checked) {
+                return (a.checkDate || '').localeCompare(b.checkDate || '');
+            }
+            if (a.checked) return -1;
+            if (b.checked) return 1;
+            // Unchecked: taxonomic order
+            return 0;
+        });
+    }
+
     function filterSpecies(species) {
         switch (currentFilter) {
             case 'abundant':
@@ -241,7 +254,11 @@
         let monthSpecies = speciesData.filter(sp => sp.months[month] > 0);
 
         monthSpecies = filterSpecies(monthSpecies);
-        monthSpecies = sortSpecies(monthSpecies, month);
+        if (currentSort === 'chronological') {
+            monthSpecies = sortChronological(monthSpecies);
+        } else {
+            monthSpecies = sortSpecies(monthSpecies, month);
+        }
 
         const checkedInMonth = monthSpecies.filter(s => s.checked).length;
 
@@ -274,9 +291,11 @@
 
         const sparkline = renderSparkline(sp.months, activeMonth, sp.category);
 
-        // Show month count when sorted by likelihood, total otherwise
+        // Show contextual count based on sort mode
         let countText;
-        if (currentSort === 'likely' && activeMonth !== undefined) {
+        if (currentSort === 'chronological' && sp.checked) {
+            countText = `Kryssad ${sp.checkDate}`;
+        } else if (currentSort === 'likely' && activeMonth !== undefined) {
             const monthCount = sp.months[activeMonth];
             countText = `${monthCount} i ${MONTH_NAMES[activeMonth].toLowerCase()} · ${sp.total} totalt`;
         } else {
@@ -388,7 +407,11 @@
         if (monthHeading) monthHeading.style.display = 'none';
 
         let filtered = filterSpecies(speciesData);
-        filtered = sortSpecies(filtered, undefined);
+        if (currentSort === 'chronological') {
+            filtered = sortChronological(filtered);
+        } else {
+            filtered = sortSpecies(filtered, undefined);
+        }
 
         container.className = 'artguide-species artguide-species--heatmap';
 
