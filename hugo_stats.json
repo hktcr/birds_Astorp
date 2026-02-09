@@ -56,6 +56,7 @@
       "artguide-footer",
       "artguide-footer__date",
       "artguide-legend",
+      "artguide-legend__count",
       "artguide-legend__item",
       "artguide-legend__swatch",
       "artguide-legend__swatch--abundant",
@@ -158,6 +159,7 @@
       "trail-title"
     ],
     "ids": [
+      "artguide-legend",
       "artguide-species",
       "bakgrund",
       "dagens-skörd",
@@ -165,6 +167,10 @@
       "kontakt",
       "last-added",
       "latest-species",
+      "legend-count-abundant",
+      "legend-count-rare",
+      "legend-count-regular",
+      "legend-count-uncommon",
       "lightbox",
       "lightbox-img",
       "main-content",

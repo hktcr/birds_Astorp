@@ -57,6 +57,30 @@
         </div>
     </div>
 
+    <!-- Legend with category counts (populated by JS) -->
+    <div class="artguide-legend" id="artguide-legend">
+        <div class="artguide-legend__item" data-category="abundant">
+            <span class="artguide-legend__swatch artguide-legend__swatch--abundant"></span>
+            <span>Förväntad</span>
+            <span class="artguide-legend__count" id="legend-count-abundant"></span>
+        </div>
+        <div class="artguide-legend__item" data-category="regular">
+            <span class="artguide-legend__swatch artguide-legend__swatch--regular"></span>
+            <span>Möjlig</span>
+            <span class="artguide-legend__count" id="legend-count-regular"></span>
+        </div>
+        <div class="artguide-legend__item" data-category="uncommon">
+            <span class="artguide-legend__swatch artguide-legend__swatch--uncommon"></span>
+            <span>Ovanlig ◆</span>
+            <span class="artguide-legend__count" id="legend-count-uncommon"></span>
+        </div>
+        <div class="artguide-legend__item" data-category="rare">
+            <span class="artguide-legend__swatch artguide-legend__swatch--rare"></span>
+            <span>Raritet ⭐</span>
+            <span class="artguide-legend__count" id="legend-count-rare"></span>
+        </div>
+    </div>
+
     <!-- Month view heading -->
     <div class="artguide-month-heading">
         <h2 class="artguide-month-heading__title"></h2>
@@ -65,26 +89,6 @@
 
     <!-- Species container (filled by JS) -->
     <div class="artguide-species" id="artguide-species"></div>
-
-    <!-- Legend -->
-    <div class="artguide-legend">
-        <div class="artguide-legend__item">
-            <span class="artguide-legend__swatch artguide-legend__swatch--abundant"></span>
-            <span>Förväntad (≥50 rapporter)</span>
-        </div>
-        <div class="artguide-legend__item">
-            <span class="artguide-legend__swatch artguide-legend__swatch--regular"></span>
-            <span>Möjlig (10–49)</span>
-        </div>
-        <div class="artguide-legend__item">
-            <span class="artguide-legend__swatch artguide-legend__swatch--uncommon"></span>
-            <span>Ovanlig (5–9) ◆</span>
-        </div>
-        <div class="artguide-legend__item">
-            <span class="artguide-legend__swatch artguide-legend__swatch--rare"></span>
-            <span>Raritet (1–4) ⭐</span>
-        </div>
-    </div>
 
     <!-- Footer -->
     <footer class="artguide-footer">

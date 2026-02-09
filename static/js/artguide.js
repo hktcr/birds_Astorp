@@ -200,6 +200,17 @@
         }
     }
 
+    function updateLegendCounts(displayedSpecies) {
+        const categories = ['abundant', 'regular', 'uncommon', 'rare'];
+        categories.forEach(cat => {
+            const el = document.getElementById('legend-count-' + cat);
+            if (!el) return;
+            const inCat = displayedSpecies.filter(s => s.category === cat);
+            const checked = inCat.filter(s => s.checked).length;
+            el.textContent = `${checked}/${inCat.length}`;
+        });
+    }
+
     function sortSpecies(species, month) {
         if (currentSort === 'taxonomy') return species;
         // Sort by observation count in given month (descending), fallback to total
@@ -277,6 +288,7 @@
         // Render cards
         container.className = 'artguide-species artguide-species--cards';
         container.innerHTML = monthSpecies.map(sp => renderCard(sp, month)).join('');
+        updateLegendCounts(monthSpecies);
 
         // Add click handlers for expansion
         container.querySelectorAll('.artguide-card').forEach(card => {
@@ -450,6 +462,7 @@
 
         html += '</tbody></table></div>';
         container.innerHTML = html;
+        updateLegendCounts(filtered);
     }
 
     // --- Helpers ---

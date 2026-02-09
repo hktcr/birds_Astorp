@@ -2993,8 +2993,8 @@ a:hover {
     display: flex;
     flex-wrap: wrap;
     gap: var(--space-md);
-    margin-top: var(--space-xl);
-    padding: var(--space-md);
+    margin-bottom: var(--space-md);
+    padding: var(--space-sm) var(--space-md);
     border: 1px solid var(--color-border);
     border-radius: var(--radius-sm);
     background: var(--color-bg-alt);
@@ -3033,6 +3033,13 @@ a:hover {
 .artguide-legend__swatch--rare {
     background: var(--ag-rare-bg);
     border-color: var(--ag-rare-border);
+}
+
+.artguide-legend__count {
+    font-weight: 600;
+    font-size: var(--text-xs);
+    color: var(--color-text);
+    margin-left: 2px;
 }
 
 /* --- Footer --- */
