@@ -38,6 +38,15 @@ EXCLUDE_SUBSPECIES = {
     "nordlig kärrsnäppa",
 }
 
+# Name remapping: merge old/aggregate taxa into accepted species
+# "sädgås" = obestämd skogsgås/tundragås, most records in Skåne are skogsgås
+NAME_REMAP = {
+    "sädgås": "skogsgås",
+}
+LATIN_REMAP = {
+    "Anser fabalis/serrirostris": "Anser fabalis",
+}
+
 # Category thresholds (total observations)
 CATEGORIES = [
     (50, "abundant"),    # ≥50: Förväntad
@@ -152,8 +161,12 @@ def main():
             excluded_count += 1
             continue
 
+        # Remap aggregate taxa to accepted species
+        name_lower = NAME_REMAP.get(name_lower, name_lower)
+
         month = props.get("Startdatum (månad)")
         latin = props.get("Vetenskapligt namn", "")
+        latin = LATIN_REMAP.get(latin, latin)
         sort_order = props.get("Taxon sorteringsordning", float("inf"))
 
         species_data[name_lower]["total"] += 1

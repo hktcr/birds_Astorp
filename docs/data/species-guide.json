@@ -205,8 +205,8 @@
       ]
     },
     {
-      "name": "Skogsgås/tundragås",
-      "latin": "Anser fabalis/serrirostris",
+      "name": "Skogsgås",
+      "latin": "Anser fabalis",
       "total": 11,
       "category": "regular",
       "months": [
@@ -2247,30 +2247,10 @@
     {
       "name": "Kråka",
       "latin": "Corvus corone",
-      "total": 4,
-      "category": "rare",
-      "months": [
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1,
-        0,
-        2
-      ]
-    },
-    {
-      "name": "Gråkråka",
-      "latin": "Corvus corone cornix",
-      "total": 225,
+      "total": 229,
       "category": "abundant",
       "months": [
-        32,
+        33,
         20,
         32,
         31,
@@ -2279,9 +2259,9 @@
         5,
         7,
         11,
-        19,
+        20,
         17,
-        14
+        16
       ]
     },
     {

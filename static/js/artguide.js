@@ -202,13 +202,18 @@
 
     function updateLegendCounts(displayedSpecies) {
         const categories = ['abundant', 'regular', 'uncommon', 'rare'];
+        let totalChecked = 0, totalAll = 0;
         categories.forEach(cat => {
             const el = document.getElementById('legend-count-' + cat);
             if (!el) return;
             const inCat = displayedSpecies.filter(s => s.category === cat);
             const checked = inCat.filter(s => s.checked).length;
             el.textContent = `${checked}/${inCat.length}`;
+            totalChecked += checked;
+            totalAll += inCat.length;
         });
+        const totalEl = document.getElementById('legend-count-total');
+        if (totalEl) totalEl.textContent = `Totalt ${totalChecked}/${totalAll}`;
     }
 
     function sortSpecies(species, month) {
@@ -421,9 +426,17 @@
         const container = document.getElementById('artguide-species');
         if (!container) return;
 
-        // Hide month heading
+        // Show year heading
         const monthHeading = document.querySelector('.artguide-month-heading');
-        if (monthHeading) monthHeading.style.display = 'none';
+        if (monthHeading) {
+            monthHeading.style.display = '';
+            const title = monthHeading.querySelector('.artguide-month-heading__title');
+            const subtitle = monthHeading.querySelector('.artguide-month-heading__subtitle');
+            const filtered0 = filterSpecies(speciesData);
+            const checkedTotal = filtered0.filter(s => s.checked).length;
+            if (title) title.textContent = 'Helårsöversikt';
+            if (subtitle) subtitle.textContent = `${filtered0.length} arter historiskt observerade · ${checkedTotal} kryssade`;
+        }
 
         let filtered = filterSpecies(speciesData);
         if (currentSort === 'chronological') {

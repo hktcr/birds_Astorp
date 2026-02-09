@@ -3042,6 +3042,18 @@ a:hover {
     margin-left: 2px;
 }
 
+.artguide-legend__label {
+    font-weight: 600;
+    font-size: var(--text-xs);
+    color: var(--color-text);
+    margin-right: var(--space-xs);
+}
+
+.artguide-legend__item--total {
+    margin-left: auto;
+    font-weight: 700;
+}
+
 /* --- Footer --- */
 .artguide-footer {
     margin-top: var(--space-xl);
