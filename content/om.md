@@ -14,7 +14,7 @@ Sidan fungerar främst som en personlig logg för att hålla ordning på mina ob
 
 ## Mina regler
 
-Vid fågelskådning i större områden, som ett län eller ett land, tillämpas ofta det *geografiska imperativet*: det kvittar var observatören befinner sig, så länge den observerade individen befinner sig inom området. Du kan alltså stå på ena sidan av en länsgräns och kryssa en fågel som flyger på andra sidan.
+Vid fågelskådning i större områden, som ett landskap eller land, tillämpas ofta det *geografiska imperativet*: det kvittar var observatören befinner sig, så länge den observerade individen befinner sig inom området. Du kan alltså stå på ena sidan av en länsgräns och kryssa en fågel som flyger på andra sidan.
 
 Det här projektet följer en annan princip, närmare besläktad med *tomtkryss*, den klassiska traditionen att kryssa arter på sin egen tomt. Grundregeln för tomtkryss är enkel: antingen fågeln eller observatören ska befinna sig på tomten. I det här projektet gäller samma sak, fast "tomten" är hela Åstorps kommun.
 
