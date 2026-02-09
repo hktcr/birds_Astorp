@@ -44,5 +44,5 @@ Det finns ett antal naturreservat i kommunen med rikt fågelliv.
 
 ---
 
-*Håkan Karlsson*
+*Håkan Karlsson*<br>
 *Kommunornitolog, Åstorps kommun*
