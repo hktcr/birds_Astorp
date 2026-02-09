@@ -250,8 +250,15 @@
         const monthHeading = document.querySelector('.artguide-month-heading');
         if (monthHeading) monthHeading.style.display = '';
 
-        // Filter species that have observations in this month
-        let monthSpecies = speciesData.filter(sp => sp.months[month] > 0);
+        // Filter species based on sort mode
+        let monthSpecies;
+        if (currentSort === 'chronological') {
+            // Show all species in chronological mode
+            monthSpecies = [...speciesData];
+        } else {
+            // Filter species that have observations in this month
+            monthSpecies = speciesData.filter(sp => sp.months[month] > 0);
+        }
 
         monthSpecies = filterSpecies(monthSpecies);
         if (currentSort === 'chronological') {
@@ -294,7 +301,7 @@
         // Show contextual count based on sort mode
         let countText;
         if (currentSort === 'chronological' && sp.checked) {
-            countText = `Kryssad ${sp.checkDate}`;
+            countText = `Kryssad ${formatDate(sp.checkDate)}`;
         } else if (currentSort === 'likely' && activeMonth !== undefined) {
             const monthCount = sp.months[activeMonth];
             countText = `${monthCount} i ${MONTH_NAMES[activeMonth].toLowerCase()} · ${sp.total} totalt`;
