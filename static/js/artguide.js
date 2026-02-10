@@ -1,5 +1,5 @@
 /**
- * Fågelåret i Åstorp — Artguide
+ * Fågelåret i Åstorp — Artkalender
  * Interactive species guide with monthly navigation,
  * rarity color coding, and checklist integration.
  */

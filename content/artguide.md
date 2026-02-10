@@ -1,5 +1,5 @@
 ---
-title: "Artguide"
+title: "Artkalender"
 layout: "artguide"
 type: "artguide"
 ---

@@ -24,7 +24,7 @@ publishDir = 'docs'
     pageRef = '/posts/'
     weight = 15
   [[menus.main]]
-    name = 'Artguide'
+    name = 'Artkalender'
     pageRef = '/artguide/'
     weight = 25
   [[menus.main]]
