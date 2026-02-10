@@ -2340,10 +2340,10 @@ a:hover {
 
 /* --- Artguide custom properties --- */
 .artguide {
-    --ag-abundant-bg: #d8f3dc;
-    --ag-abundant-text: #1b4332;
-    --ag-abundant-border: #52b788;
-    --ag-abundant-fill: #2d6a4f;
+    --ag-abundant-bg: #cff5f6;
+    --ag-abundant-text: #164e63;
+    --ag-abundant-border: #22b8cf;
+    --ag-abundant-fill: #0e7490;
 
     --ag-regular-bg: #caf0f8;
     --ag-regular-text: #023e8a;
