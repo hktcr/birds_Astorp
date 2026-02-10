@@ -2445,6 +2445,7 @@ a:hover {
 .artguide-progress__latest {
     font-size: var(--text-sm);
     color: var(--color-text-muted);
+    margin-right: 2rem;
 }
 
 /* --- Month navigation --- */
