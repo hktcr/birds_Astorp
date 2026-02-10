@@ -16,7 +16,7 @@
             "date": "2026-01-22",
             "location": "Kvidinge",
             "lat": 56.13675,
-            "lng": 13.04310
+            "lng": 13.0431
         },
         {
             "species": "Koltrast",
@@ -24,7 +24,7 @@
             "date": "2026-01-22",
             "location": "Kvidinge",
             "lat": 56.13675,
-            "lng": 13.04310
+            "lng": 13.0431
         },
         {
             "species": "Kaja",
@@ -32,7 +32,7 @@
             "date": "2026-01-22",
             "location": "Kvidinge",
             "lat": 56.13675,
-            "lng": 13.04310
+            "lng": 13.0431
         },
         {
             "species": "Kråka",
@@ -40,7 +40,7 @@
             "date": "2026-01-22",
             "location": "Kvidinge",
             "lat": 56.13675,
-            "lng": 13.04310
+            "lng": 13.0431
         },
         {
             "species": "Gärdsmyg",
@@ -48,7 +48,7 @@
             "date": "2026-01-23",
             "location": "Kvidinge",
             "lat": 56.13675,
-            "lng": 13.04310
+            "lng": 13.0431
         },
         {
             "species": "Gråtrut",
@@ -56,7 +56,7 @@
             "date": "2026-01-23",
             "location": "Kvidinge",
             "lat": 56.13675,
-            "lng": 13.04310
+            "lng": 13.0431
         },
         {
             "species": "Råka",
@@ -96,7 +96,7 @@
             "date": "2026-01-23",
             "location": "Kvidinge",
             "lat": 56.13675,
-            "lng": 13.04310
+            "lng": 13.0431
         },
         {
             "species": "Domherre",
@@ -104,7 +104,7 @@
             "date": "2026-01-24",
             "location": "Kvidinge",
             "lat": 56.13675,
-            "lng": 13.04310
+            "lng": 13.0431
         },
         {
             "species": "Talgoxe",
@@ -112,7 +112,7 @@
             "date": "2026-01-24",
             "location": "Kvidinge",
             "lat": 56.13675,
-            "lng": 13.04310
+            "lng": 13.0431
         },
         {
             "species": "Sångsvan",
@@ -135,7 +135,7 @@
             "latin": "Sitta europaea",
             "date": "2026-01-25",
             "location": "Tomarps Ene",
-            "lat": 56.14870,
+            "lat": 56.1487,
             "lng": 13.07359
         },
         {
@@ -160,7 +160,7 @@
             "date": "2026-01-25",
             "location": "Kvidinge",
             "lat": 56.13675,
-            "lng": 13.04310
+            "lng": 13.0431
         },
         {
             "species": "Sparvhök",
@@ -168,7 +168,7 @@
             "date": "2026-01-25",
             "location": "Kvidinge",
             "lat": 56.13675,
-            "lng": 13.04310
+            "lng": 13.0431
         },
         {
             "species": "Tamduva",
@@ -192,7 +192,7 @@
             "date": "2026-01-27",
             "location": "Kvidinge",
             "lat": 56.13675,
-            "lng": 13.04310
+            "lng": 13.0431
         },
         {
             "species": "Gråsparv",
@@ -200,7 +200,7 @@
             "date": "2026-01-27",
             "location": "Kvidinge",
             "lat": 56.13675,
-            "lng": 13.04310
+            "lng": 13.0431
         },
         {
             "species": "Grågås",
@@ -284,9 +284,9 @@
         },
         {
             "species": "Fjällvråk",
-            "latin": "Buteo lagopus",
+            "latin": "",
             "date": "2026-02-05",
-            "location": "Floarna",
+            "location": "Flodarna",
             "lat": 56.16532231534232,
             "lng": 12.984207625328134
         },
@@ -294,15 +294,15 @@
             "species": "Gulsparv",
             "latin": "Emberiza citrinella",
             "date": "2026-02-06",
-            "location": "Kvidinge",
-            "lat": 56.13675,
-            "lng": 13.04310
+            "location": "Trädgårdsgatan 15",
+            "lat": 56.136750782641876,
+            "lng": 13.043105305042882
         },
         {
             "species": "Storskrake",
             "latin": "Mergus merganser",
             "date": "2026-02-06",
-            "location": "Rönneå vid Tomarps Ene",
+            "location": "Tomarps Ene",
             "lat": 56.14721124325686,
             "lng": 13.076779186245918
         },
@@ -313,6 +313,30 @@
             "location": "Trädgårdsgatan 15",
             "lat": 56.136750782641876,
             "lng": 13.043105305042882
+        },
+        {
+            "species": "Ägretthäger",
+            "latin": "Ardea alba",
+            "date": "2026-02-09",
+            "location": "Bron vid Rönneå",
+            "lat": 56.13312,
+            "lng": 13.09428
+        },
+        {
+            "species": "Vitkindad gås",
+            "latin": "Branta leucopsis",
+            "date": "2026-02-09",
+            "location": "Tomarps mader",
+            "lat": 56.15596454204231,
+            "lng": 13.0706159722571
+        },
+        {
+            "species": "Gröngöling",
+            "latin": "Picus viridis",
+            "date": "2026-02-09",
+            "location": "Tomarps Ene",
+            "lat": 56.1487,
+            "lng": 13.07359
         }
     ]
 }
