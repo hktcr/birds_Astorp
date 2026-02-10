@@ -2653,15 +2653,15 @@ a:hover {
     background: var(--ag-rare-bg);
 }
 
-/* Checked state — warm gold wash ("achieved") */
+/* Checked state — green "achieved" (separerad från alla kategorifärger) */
 .artguide-card--checked {
-    background: #fff8e1 !important;
-    border-left-color: #ffb300 !important;
-    border-color: #ffe082;
+    background: #f0fdf4 !important;
+    border-left-color: #22c55e !important;
+    border-color: #bbf7d0;
 }
 
 .artguide-card--checked:hover {
-    background: #fff3c4 !important;
+    background: #dcfce7 !important;
 }
 
 .artguide-card__header {
@@ -2695,7 +2695,7 @@ a:hover {
     justify-content: center;
     width: 20px;
     height: 20px;
-    background: #f59e0b;
+    background: #22c55e;
     color: white;
     border-radius: 50%;
     font-size: 0.7rem;
@@ -2706,7 +2706,7 @@ a:hover {
 }
 
 .artguide-heatmap__checkmark {
-    color: #f59e0b;
+    color: #22c55e;
     font-weight: 700;
 }
 
@@ -2922,11 +2922,11 @@ a:hover {
 }
 
 .artguide-heatmap__row--checked {
-    background: #fff8e1 !important;
+    background: #f0fdf4 !important;
 }
 
 .artguide-heatmap__row--checked:hover {
-    background: #fff3c4 !important;
+    background: #dcfce7 !important;
 }
 
 .artguide-heatmap__name {

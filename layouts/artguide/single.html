@@ -104,6 +104,9 @@
 {{ end }}
 
 {{ define "scripts" }}
+<script>
+    window.siteBaseURL = '{{ .Site.BaseURL }}';
+</script>
 {{ $js := resources.Get "js/artguide.js" | fingerprint }}
 <script src="{{ $js.RelPermalink }}"></script>
 {{ end }}

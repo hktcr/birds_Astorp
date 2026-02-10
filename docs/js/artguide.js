@@ -39,9 +39,10 @@
     // --- Init ---
     async function init() {
         try {
+            const baseURL = window.siteBaseURL || '/';
             const [guideRes, checklistRes] = await Promise.all([
-                fetch('/data/species-guide.json'),
-                fetch('/data/checklist-2026.json')
+                fetch(baseURL + 'data/species-guide.json'),
+                fetch(baseURL + 'data/checklist-2026.json')
             ]);
             const guideJson = await guideRes.json();
             const checklistJson = await checklistRes.json();
