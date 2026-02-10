@@ -287,6 +287,20 @@
             subtitle.textContent = `${monthSpecies.length} arter i ${MONTH_NAMES[month].toLowerCase()} · ${checkedInMonth} kryssade här · ${yearChecked} totalt i år`;
         }
 
+        // Description text
+        const descEl = document.getElementById('artguide-description');
+        if (descEl) {
+            const totalInMonth = speciesData.filter(sp => sp.months[month] > 0).length;
+            const totalCheckedInMonth = speciesData.filter(sp => sp.months[month] > 0 && sp.checked).length;
+            const monthName = MONTH_NAMES[month].toLowerCase();
+            let desc = `${yearChecked} av ${TARGET} arter har kryssats under 2026. I ${monthName} finns ${totalInMonth} arter rapporterade genom åren — ${totalCheckedInMonth} av dessa är kryssade.`;
+            if (currentFilter && currentFilter !== 'all' && monthSpecies.length !== totalInMonth) {
+                desc += ` Visar just nu: ${monthSpecies.length} arter.`;
+            }
+            descEl.textContent = desc;
+            descEl.style.display = '';
+        }
+
         // Render cards
         container.className = 'artguide-species artguide-species--cards';
         container.innerHTML = monthSpecies.map(sp => renderCard(sp, month)).join('');
@@ -433,6 +447,8 @@
             const checkedTotal = filtered0.filter(s => s.checked).length;
             if (title) title.textContent = 'Helårsöversikt';
             if (subtitle) subtitle.textContent = `${filtered0.length} arter historiskt observerade · ${checkedTotal} kryssade`;
+            const descEl = document.getElementById('artguide-description');
+            if (descEl) descEl.style.display = 'none';
         }
 
         let filtered = filterSpecies(speciesData);
