@@ -337,6 +337,14 @@
             "location": "Tomarps Ene",
             "lat": 56.1487,
             "lng": 13.07359
+        },
+        {
+            "species": "Fasan",
+            "latin": "Phasianus colchicus",
+            "date": "2026-02-10",
+            "location": "Målarkalk, Hyllinge",
+            "lat": 56.101169833958345,
+            "lng": 12.871921799623898
         }
     ]
 }

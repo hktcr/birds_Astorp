@@ -2340,15 +2340,15 @@ a:hover {
 
 /* --- Artguide custom properties --- */
 .artguide {
-    --ag-abundant-bg: #cff5f6;
-    --ag-abundant-text: #164e63;
-    --ag-abundant-border: #22b8cf;
-    --ag-abundant-fill: #0e7490;
+    --ag-abundant-bg: #e6f4ea;
+    --ag-abundant-text: #2d6a4f;
+    --ag-abundant-border: #6bab90;
+    --ag-abundant-fill: #3d8b67;
 
-    --ag-regular-bg: #caf0f8;
-    --ag-regular-text: #023e8a;
-    --ag-regular-border: #48cae4;
-    --ag-regular-fill: #1d7a8c;
+    --ag-regular-bg: #e8e0f0;
+    --ag-regular-text: #4a3072;
+    --ag-regular-border: #9b8ec4;
+    --ag-regular-fill: #6c5ba7;
 
     --ag-uncommon-bg: #fff3cd;
     --ag-uncommon-text: #7c4a00;
