@@ -2340,10 +2340,10 @@ a:hover {
 
 /* --- Artguide custom properties --- */
 .artguide {
-    --ag-abundant-bg: #e0f5f5;
-    --ag-abundant-text: #0e5f6c;
-    --ag-abundant-border: #26a6b5;
-    --ag-abundant-fill: #148898;
+    --ag-abundant-bg: #d1eff9;
+    --ag-abundant-text: #0c4a6e;
+    --ag-abundant-border: #2196b5;
+    --ag-abundant-fill: #0e7490;
 
     --ag-regular-bg: #e8e0f0;
     --ag-regular-text: #4a3072;
@@ -2603,6 +2603,14 @@ a:hover {
 .artguide-month-heading__subtitle {
     font-size: var(--text-sm);
     color: var(--color-text-muted);
+}
+
+.artguide-month-heading__description {
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-top: var(--space-sm);
+    line-height: 1.6;
+    font-style: italic;
 }
 
 /* --- Species cards grid --- */
