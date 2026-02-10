@@ -213,8 +213,10 @@
             totalChecked += checked;
             totalAll += inCat.length;
         });
+        // Always show the full-year total, not the month-filtered total
+        const yearChecked = speciesData.filter(s => s.checked).length;
         const totalEl = document.getElementById('legend-count-total');
-        if (totalEl) totalEl.textContent = `Totalt ${totalChecked}/${totalAll}`;
+        if (totalEl) totalEl.textContent = `Årstotal: ${yearChecked}/${TARGET} · Visade: ${totalChecked}/${totalAll}`;
     }
 
     function sortSpecies(species, month) {
@@ -278,10 +280,11 @@
         }
 
         const checkedInMonth = monthSpecies.filter(s => s.checked).length;
+        const yearChecked = speciesData.filter(s => s.checked).length;
 
         if (heading) heading.textContent = MONTH_NAMES[month];
         if (subtitle) {
-            subtitle.textContent = `${monthSpecies.length} arter historiskt observerade · ${checkedInMonth} kryssade`;
+            subtitle.textContent = `${monthSpecies.length} arter i ${MONTH_NAMES[month].toLowerCase()} · ${checkedInMonth} kryssade här · ${yearChecked} totalt i år`;
         }
 
         // Render cards
