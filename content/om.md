@@ -14,7 +14,7 @@ Sidan fungerar främst som en personlig logg för att hålla ordning på mina ob
 
 ## Mina regler
 
-Vid fågelskådning i större områden, som ett landskap eller land, tillämpas ofta det *geografiska imperativet*: det kvittar var observatören befinner sig, så länge den observerade individen befinner sig inom området. Du kan alltså stå på ena sidan av en länsgräns och kryssa en fågel som flyger på andra sidan.
+Vid fågelskådning i större områden, som ett landskap eller land, tillämpas ofta det *geografiska imperativet*: det kvittar var observatören befinner sig, så länge den observerade individen befinner sig inom området. Du kan alltså stå på ena sidan av en landskapsgräns och kryssa en fågel som flyger på andra sidan.
 
 Det här projektet följer en annan princip, närmare besläktad med *tomtkryss*, den klassiska traditionen att kryssa arter på sin egen tomt. Grundregeln för tomtkryss är enkel: antingen fågeln eller observatören ska befinna sig på tomten. I det här projektet gäller samma sak, fast "tomten" är hela Åstorps kommun.
 
@@ -22,7 +22,7 @@ Min utgångspunkt är: **vad kan jag se om jag tittar efter fåglar i Åstorps k
 
 ## Om Åstorps kommun
 
-Åstorps kommun ligger i nordvästra Skåne och utgör porten till Söderåsen. Här möter den öppna slättbygden åsens skogklädda sluttningar. Landskapet domineras av jordbruksmark, men längs Rönne å och vid åsens fot finns våtmarker, beteshagar och lövskog.
+Åstorps kommun ligger i nordvästra Skåne och utgör porten till Söderåsen. Här möter den öppna slättbygden åsens skogsklädda sluttningar. Landskapet domineras av jordbruksmark, men längs Rönne å och vid åsens fot finns våtmarker, beteshagar och lövskog.
 
 Kvidinge, med anor från medeltiden, utgör kommunens sydöstra del. Där finner man Tomarps mader med sina blöta ängsmarker invid Rönne å och de kuperade ekbackarna vid Tomarps ene.
 
