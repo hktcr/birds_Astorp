@@ -37,6 +37,10 @@ Från denna export beräknas en månadsvis fördelning av observationer för var
 
 Arterna presenteras i taxonomisk ordning enligt IOC:s klassificering, via Artportalens sorteringsordning.
 
+### Taxonlistan — komplett artlista
+
+Utöver Artportalen-exporten finns en komplett taxonlista för kommunen. Den innehåller alla fågelarter som någonsin rapporterats i Åstorps kommun — inklusive aggregerade taxa, underarter och observationer på familjenivå — med svenskt namn, vetenskapligt namn, auktor, eventuell rödlistekategori och totalt antal observationer. Listan följer IOC-ordning och ligger till grund för den preprocessing som genererar artöversikten i Artkalendern.
+
 ### Årskrysslistan — mina observationer 2026
 
 Den andra datakällan är min personliga krysslista för 2026. Här registrerar jag varje ny art som jag observerar i kommunen under året, med datum, plats och koordinater. Det är dessa data som driver progressbaren på startsidan, markeringarna på kartan, och kryssmarkeringarna i Artkalendern.
@@ -69,3 +73,7 @@ Det finns ett antal naturreservat i kommunen med rikt fågelliv.
 
 *Håkan Karlsson*<br>
 *Kommunornitolog, Åstorps kommun*
+
+---
+
+*Fotografierna på denna webbplats är mina egna. När aktuella foton saknas har jag i vissa fall använt generativ AI för att skapa enkla illustrationer utgående från mina tidigare bilder av arten.*

@@ -2340,10 +2340,10 @@ a:hover {
     --ag-abundant-border: #2196b5;
     --ag-abundant-fill: #0e7490;
 
-    --ag-regular-bg: #e8e0f0;
-    --ag-regular-text: #4a3072;
-    --ag-regular-border: #9b8ec4;
-    --ag-regular-fill: #6c5ba7;
+    --ag-regular-bg: #ede2fb;
+    --ag-regular-text: #4c1d95;
+    --ag-regular-border: #8b5cf6;
+    --ag-regular-fill: #7c3aed;
 
     --ag-uncommon-bg: #fff3cd;
     --ag-uncommon-text: #7c4a00;
@@ -2962,7 +2962,7 @@ a:hover {
 }
 
 .artguide-heatmap__cell--regular {
-    background: rgba(108, 91, 167, calc(var(--intensity) * 0.3));
+    background: rgba(124, 58, 237, calc(var(--intensity) * 0.3));
 }
 
 .artguide-heatmap__cell--uncommon {
