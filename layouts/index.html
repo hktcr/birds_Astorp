@@ -88,6 +88,11 @@ RATT: dubbelklammer range dubbelklammer
         var fill = document.getElementById('progress-fill');
         if (fill) {
             fill.style.width = Math.min(percentage, 100) + '%';
+            var hue = 45;
+            if (percentage > 20) {
+                hue = 45 + ((percentage - 20) / 80) * 75;
+            }
+            fill.style.backgroundColor = 'hsl(' + hue + ', 90%, 50%)';
         }
 
         if (data.observations.length > 0) {
