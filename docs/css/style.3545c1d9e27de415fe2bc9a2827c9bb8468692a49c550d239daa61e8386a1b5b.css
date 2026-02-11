@@ -1155,15 +1155,10 @@ a:hover {
 
 .thermometer-fill {
     height: 100%;
-    /* Dynamisk färg via CSS custom property eller fast gradient */
-    /* Vid låg procent: gul, vid hög procent: grön */
-    background: hsl(55, 85%, 70%);
-    /* Svagt ljusgult vid start */
-    /* Standard gul - JS kan uppdatera */
+    background: var(--color-primary);
     border-radius: var(--radius-full);
     width: 0%;
-    transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1),
-        background-color 1s ease;
+    transition: width 1.5s cubic-bezier(0.4, 0, 0.2, 1);
     position: relative;
 }
 
@@ -1968,11 +1963,10 @@ a:hover {
 
 .progress-fill {
     height: 100%;
-    /* Börjar ljusgul, JS uppdaterar dynamiskt mot grön */
-    background: hsl(55, 85%, 70%);
+    background: var(--color-primary);
     border-radius: var(--radius-full);
     width: 0;
-    transition: width 1s ease-out, background-color 1s ease;
+    transition: width 1s ease-out;
 }
 
 .progress-fill.bronze {
@@ -2962,7 +2956,7 @@ a:hover {
 
 /* Heatmap cell intensity via CSS variable */
 .artguide-heatmap__cell--abundant {
-    background: rgba(45, 106, 79, calc(var(--intensity) * 0.35));
+    background: rgba(33, 150, 181, calc(var(--intensity) * 0.3));
 }
 
 .artguide-heatmap__cell--regular {
