@@ -47,67 +47,41 @@
             <button class="artguide-sort__btn" data-sort="taxonomy">Taxonomisk</button>
         </div>
         <div class="artguide-filters">
-            <!-- Category pills with integrated legend -->
-            <div class="artguide-filters__categories" role="group" aria-label="Filtrera efter kategori">
-                <button class="artguide-cat-pill artguide-cat-pill--abundant" data-filter="abundant"
-                    aria-pressed="false" aria-label="Filtrera förväntade arter">
-                    <span class="artguide-cat-pill__header">
-                        <span class="artguide-cat-pill__icon">●</span>
-                        <span class="artguide-cat-pill__name">Förväntade</span>
-                    </span>
-                    <span class="artguide-cat-pill__count" id="count-abundant">0</span>
-                    <span class="artguide-cat-pill__progress" role="progressbar" aria-valuenow="0" aria-valuemin="0"
-                        aria-valuemax="100">
-                        <span class="artguide-cat-pill__progress-fill"></span>
-                    </span>
-                </button>
-                <button class="artguide-cat-pill artguide-cat-pill--regular" data-filter="regular" aria-pressed="false"
-                    aria-label="Filtrera möjliga arter">
-                    <span class="artguide-cat-pill__header">
-                        <span class="artguide-cat-pill__icon">○</span>
-                        <span class="artguide-cat-pill__name">Möjliga</span>
-                    </span>
-                    <span class="artguide-cat-pill__count" id="count-regular">0</span>
-                    <span class="artguide-cat-pill__progress" role="progressbar" aria-valuenow="0" aria-valuemin="0"
-                        aria-valuemax="100">
-                        <span class="artguide-cat-pill__progress-fill"></span>
-                    </span>
-                </button>
-                <button class="artguide-cat-pill artguide-cat-pill--uncommon" data-filter="uncommon"
-                    aria-pressed="false" aria-label="Filtrera ovanliga arter">
-                    <span class="artguide-cat-pill__header">
-                        <span class="artguide-cat-pill__icon">◆</span>
-                        <span class="artguide-cat-pill__name">Ovanliga</span>
-                    </span>
-                    <span class="artguide-cat-pill__count" id="count-uncommon">0</span>
-                    <span class="artguide-cat-pill__progress" role="progressbar" aria-valuenow="0" aria-valuemin="0"
-                        aria-valuemax="100">
-                        <span class="artguide-cat-pill__progress-fill"></span>
-                    </span>
-                </button>
-                <button class="artguide-cat-pill artguide-cat-pill--rare" data-filter="rare" aria-pressed="false"
-                    aria-label="Filtrera rariteter">
-                    <span class="artguide-cat-pill__header">
-                        <span class="artguide-cat-pill__icon">⭐</span>
-                        <span class="artguide-cat-pill__name">Rariteter</span>
-                    </span>
-                    <span class="artguide-cat-pill__count" id="count-rare">0</span>
-                    <span class="artguide-cat-pill__progress" role="progressbar" aria-valuenow="0" aria-valuemin="0"
-                        aria-valuemax="100">
-                        <span class="artguide-cat-pill__progress-fill"></span>
-                    </span>
-                </button>
-                <button class="artguide-filters__reset" aria-label="Nollställ filter"
-                    style="visibility: hidden; opacity: 0;">✕</button>
-            </div>
-            <!-- Meta filters as text links -->
-            <div class="artguide-filters__meta">
-                <button class="artguide-meta-link" data-filter="checked">Kryssade ✓</button>
-                <span class="artguide-meta-sep">·</span>
-                <button class="artguide-meta-link" data-filter="missing">Saknade</button>
-                <span class="artguide-meta-sep">·</span>
-                <span class="artguide-meta-total" id="legend-count-total"></span>
-            </div>
+            <button class="artguide-filter artguide-filter--active" data-filter="all">Alla</button>
+            <button class="artguide-filter" data-filter="abundant">Förväntade</button>
+            <button class="artguide-filter" data-filter="regular">Möjliga</button>
+            <button class="artguide-filter" data-filter="uncommon">Ovanliga</button>
+            <button class="artguide-filter" data-filter="rare">Rariteter</button>
+            <button class="artguide-filter" data-filter="checked">Kryssade ✓</button>
+            <button class="artguide-filter" data-filter="missing">Saknade</button>
+        </div>
+    </div>
+
+    <!-- Legend with category counts (populated by JS) -->
+    <div class="artguide-legend" id="artguide-legend">
+        <span class="artguide-legend__label">Kryssade:</span>
+        <div class="artguide-legend__item" data-category="abundant">
+            <span class="artguide-legend__swatch artguide-legend__swatch--abundant"></span>
+            <span>Förväntad</span>
+            <span class="artguide-legend__count" id="legend-count-abundant"></span>
+        </div>
+        <div class="artguide-legend__item" data-category="regular">
+            <span class="artguide-legend__swatch artguide-legend__swatch--regular"></span>
+            <span>Möjlig</span>
+            <span class="artguide-legend__count" id="legend-count-regular"></span>
+        </div>
+        <div class="artguide-legend__item" data-category="uncommon">
+            <span class="artguide-legend__swatch artguide-legend__swatch--uncommon"></span>
+            <span>Ovanlig ◆</span>
+            <span class="artguide-legend__count" id="legend-count-uncommon"></span>
+        </div>
+        <div class="artguide-legend__item" data-category="rare">
+            <span class="artguide-legend__swatch artguide-legend__swatch--rare"></span>
+            <span>Raritet ⭐</span>
+            <span class="artguide-legend__count" id="legend-count-rare"></span>
+        </div>
+        <div class="artguide-legend__item artguide-legend__item--total">
+            <span class="artguide-legend__count" id="legend-count-total"></span>
         </div>
     </div>
 

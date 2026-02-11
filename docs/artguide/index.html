@@ -1,251 +1,128 @@
-<!DOCTYPE html>
-<html lang="sv">
+<!doctype html>
+<html lang=sv>
 
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="En fågelårsbok för Åstorps kommun — observationer, bilder och krysslista">
-    <meta name="author" content="Håkan Karlsson">
+    <meta charset=utf-8>
+    <meta name=viewport content="width=device-width,initial-scale=1">
+    <meta name=description content="En fågelårsbok för Åstorps kommun — observationer, bilder och krysslista">
+    <meta name=author content="Håkan Karlsson">
     <title>Artkalender | Fågelåret i Åstorp</title>
-
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-
-    
-    
-    <link rel="stylesheet" href="/css/style.3185f1ce6f990ebbe96b067bd18affe841c7a80814a904bb0869be332309665f.css">
-
-    
-    
+    <link rel=preconnect href=https://fonts.googleapis.com>
+    <link rel=preconnect href=https://fonts.gstatic.com crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel=stylesheet>
+    <link rel=stylesheet href=/css/style.ca0ae7ab9b8e945a6e4489369a5ee68d8c89037e5a8cbee2d0d1b296b9e7d642.css>
 </head>
 
-<body>
-    <a href="#main-content" class="skip-link">Hoppa till innehåll</a>
-
-    <header class="site-header">
-    <div class="header-container">
-        <a href="https://astorpsfaglar.se/" class="site-logo">
-            <span class="site-title">Fågelåret i Åstorp</span>
-        </a>
-
-
-        <nav class="main-nav" aria-label="Huvudnavigation">
-            <ul class="nav-list">
-                
-                <li class="nav-item">
-                    <a href="/" class="nav-link">
-                        Hem
-                    </a>
-                </li>
-                
-                <li class="nav-item">
-                    <a href="/posts/" class="nav-link">
-                        Notiser
-                    </a>
-                </li>
-                
-                <li class="nav-item">
-                    <a href="/artguide/" class="nav-link">
-                        Artkalender
-                    </a>
-                </li>
-                
-                <li class="nav-item">
-                    <a href="/karta/" class="nav-link">
-                        Karta
-                    </a>
-                </li>
-                
-                <li class="nav-item">
-                    <a href="/om/" class="nav-link">
-                        Om
-                    </a>
-                </li>
-                
-            </ul>
-        </nav>
-
-        <button class="mobile-menu-toggle" aria-label="Öppna meny" aria-expanded="false" id="mobile-menu-btn">
-            <span class="hamburger"></span>
-        </button>
-    </div>
-</header>
-
-<script>
-    
-    document.addEventListener('DOMContentLoaded', () => {
-        const menuToggle = document.getElementById('mobile-menu-btn');
-        const mainNav = document.querySelector('.main-nav');
-
-        if (menuToggle && mainNav) {
-            menuToggle.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-
-                
-                mainNav.classList.toggle('open');
-
-                
-                const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-                menuToggle.setAttribute('aria-expanded', !isExpanded);
-            });
-
-            
-            document.addEventListener('click', (e) => {
-                if (mainNav.classList.contains('open') &&
-                    !mainNav.contains(e.target) &&
-                    !menuToggle.contains(e.target)) {
-                    mainNav.classList.remove('open');
-                    menuToggle.setAttribute('aria-expanded', 'false');
-                }
-            });
-        }
-    });
-</script>
-
-    <main id="main-content" class="main">
-        
-<div class="artguide">
-    
-    <div class="artguide-progress" role="progressbar" aria-valuemin="0" aria-valuemax="150" aria-valuenow="0"
-        aria-label="Årslista framsteg">
-        <div class="artguide-progress__bar">
-            <div class="artguide-progress__fill"></div>
-            <div class="artguide-progress__milestones">
-                <span class="artguide-progress__milestone" style="left: 33.3%">50</span>
-                <span class="artguide-progress__milestone" style="left: 66.6%">100</span>
-                <span class="artguide-progress__milestone" style="left: 100%">150</span>
+<body><a href=#main-content class=skip-link>Hoppa till innehåll</a>
+    <header class=site-header>
+        <div class=header-container><a href=https://astorpsfaglar.se/ class=site-logo><span class=site-title>Fågelåret i
+                    Åstorp</span></a>
+            <nav class=main-nav aria-label=Huvudnavigation>
+                <ul class=nav-list>
+                    <li class=nav-item><a href=/ class=nav-link>Hem</a></li>
+                    <li class=nav-item><a href=/posts/ class=nav-link>Notiser</a></li>
+                    <li class=nav-item><a href=/artguide/ class=nav-link>Artkalender</a></li>
+                    <li class=nav-item><a href=/karta/ class=nav-link>Karta</a></li>
+                    <li class=nav-item><a href=/om/ class=nav-link>Om</a></li>
+                </ul>
+            </nav><button class=mobile-menu-toggle aria-label="Öppna meny" aria-expanded=false id=mobile-menu-btn>
+                <span class=hamburger></span></button>
+        </div>
+    </header>
+    <script>document.addEventListener("DOMContentLoaded", () => { const e = document.getElementById("mobile-menu-btn"), t = document.querySelector(".main-nav"); e && t && (e.addEventListener("click", n => { n.preventDefault(), n.stopPropagation(), t.classList.toggle("open"); const s = e.getAttribute("aria-expanded") === "true"; e.setAttribute("aria-expanded", !s) }), document.addEventListener("click", n => { t.classList.contains("open") && !t.contains(n.target) && !e.contains(n.target) && (t.classList.remove("open"), e.setAttribute("aria-expanded", "false")) })) })</script>
+    <main id=main-content class=main>
+        <div class=artguide>
+            <div class=artguide-progress role=progressbar aria-valuemin=0 aria-valuemax=150 aria-valuenow=0
+                aria-label="Årslista framsteg">
+                <div class=artguide-progress__bar>
+                    <div class=artguide-progress__fill></div>
+                    <div class=artguide-progress__milestones><span class=artguide-progress__milestone
+                            style=left:33.3%>50</span>
+                        <span class=artguide-progress__milestone style=left:66.6%>100</span>
+                        <span class=artguide-progress__milestone style=left:100%>150</span>
+                    </div>
+                </div>
+                <div class=artguide-progress__text><span class=artguide-progress__count>0/150 arter</span>
+                    <span class=artguide-progress__latest></span>
+                </div>
             </div>
-        </div>
-        <div class="artguide-progress__text">
-            <span class="artguide-progress__count">0/150 arter</span>
-            <span class="artguide-progress__latest"></span>
-        </div>
-    </div>
-
-    
-    <nav class="artguide-months" aria-label="Välj månad">
-        <button class="artguide-months__btn" data-month="0">Jan</button>
-        <button class="artguide-months__btn" data-month="1">Feb</button>
-        <button class="artguide-months__btn" data-month="2">Mar</button>
-        <button class="artguide-months__btn" data-month="3">Apr</button>
-        <button class="artguide-months__btn" data-month="4">Maj</button>
-        <button class="artguide-months__btn" data-month="5">Jun</button>
-        <button class="artguide-months__btn" data-month="6">Jul</button>
-        <button class="artguide-months__btn" data-month="7">Aug</button>
-        <button class="artguide-months__btn" data-month="8">Sep</button>
-        <button class="artguide-months__btn" data-month="9">Okt</button>
-        <button class="artguide-months__btn" data-month="10">Nov</button>
-        <button class="artguide-months__btn" data-month="11">Dec</button>
-    </nav>
-
-    
-    <div class="artguide-controls">
-        <div class="artguide-view-toggle" role="tablist" aria-label="Växla vy">
-            <button class="artguide-view-toggle__btn artguide-view-toggle__btn--active" data-view="month" role="tab"
-                aria-selected="true">Månadsvy</button>
-            <button class="artguide-view-toggle__btn" data-view="year" role="tab"
-                aria-selected="false">Helårsöversikt</button>
-        </div>
-        <div class="artguide-sort-toggle" aria-label="Sortering">
-            <button class="artguide-sort__btn artguide-sort__btn--active" data-sort="likely">Troligast</button>
-            <button class="artguide-sort__btn" data-sort="chronological">Kronologisk</button>
-            <button class="artguide-sort__btn" data-sort="taxonomy">Taxonomisk</button>
-        </div>
-        <div class="artguide-filters">
-            
-            <div class="artguide-filters__categories" role="group" aria-label="Filtrera efter kategori">
-                <button class="artguide-cat-pill artguide-cat-pill--abundant" data-filter="abundant"
-                    aria-pressed="false" aria-label="Filtrera förväntade arter">
-                    <span class="artguide-cat-pill__header">
-                        <span class="artguide-cat-pill__icon">●</span>
-                        <span class="artguide-cat-pill__name">Förväntade</span>
-                    </span>
-                    <span class="artguide-cat-pill__count" id="count-abundant">0</span>
-                    <span class="artguide-cat-pill__progress" role="progressbar" aria-valuenow="0" aria-valuemin="0"
-                        aria-valuemax="100">
-                        <span class="artguide-cat-pill__progress-fill"></span>
-                    </span>
-                </button>
-                <button class="artguide-cat-pill artguide-cat-pill--regular" data-filter="regular" aria-pressed="false"
-                    aria-label="Filtrera möjliga arter">
-                    <span class="artguide-cat-pill__header">
-                        <span class="artguide-cat-pill__icon">○</span>
-                        <span class="artguide-cat-pill__name">Möjliga</span>
-                    </span>
-                    <span class="artguide-cat-pill__count" id="count-regular">0</span>
-                    <span class="artguide-cat-pill__progress" role="progressbar" aria-valuenow="0" aria-valuemin="0"
-                        aria-valuemax="100">
-                        <span class="artguide-cat-pill__progress-fill"></span>
-                    </span>
-                </button>
-                <button class="artguide-cat-pill artguide-cat-pill--uncommon" data-filter="uncommon"
-                    aria-pressed="false" aria-label="Filtrera ovanliga arter">
-                    <span class="artguide-cat-pill__header">
-                        <span class="artguide-cat-pill__icon">◆</span>
-                        <span class="artguide-cat-pill__name">Ovanliga</span>
-                    </span>
-                    <span class="artguide-cat-pill__count" id="count-uncommon">0</span>
-                    <span class="artguide-cat-pill__progress" role="progressbar" aria-valuenow="0" aria-valuemin="0"
-                        aria-valuemax="100">
-                        <span class="artguide-cat-pill__progress-fill"></span>
-                    </span>
-                </button>
-                <button class="artguide-cat-pill artguide-cat-pill--rare" data-filter="rare" aria-pressed="false"
-                    aria-label="Filtrera rariteter">
-                    <span class="artguide-cat-pill__header">
-                        <span class="artguide-cat-pill__icon">⭐</span>
-                        <span class="artguide-cat-pill__name">Rariteter</span>
-                    </span>
-                    <span class="artguide-cat-pill__count" id="count-rare">0</span>
-                    <span class="artguide-cat-pill__progress" role="progressbar" aria-valuenow="0" aria-valuemin="0"
-                        aria-valuemax="100">
-                        <span class="artguide-cat-pill__progress-fill"></span>
-                    </span>
-                </button>
-                <button class="artguide-filters__reset" aria-label="Nollställ filter"
-                    style="visibility: hidden; opacity: 0;">✕</button>
+            <nav class=artguide-months aria-label="Välj månad"><button class=artguide-months__btn
+                    data-month=0>Jan</button>
+                <button class=artguide-months__btn data-month=1>Feb</button>
+                <button class=artguide-months__btn data-month=2>Mar</button>
+                <button class=artguide-months__btn data-month=3>Apr</button>
+                <button class=artguide-months__btn data-month=4>Maj</button>
+                <button class=artguide-months__btn data-month=5>Jun</button>
+                <button class=artguide-months__btn data-month=6>Jul</button>
+                <button class=artguide-months__btn data-month=7>Aug</button>
+                <button class=artguide-months__btn data-month=8>Sep</button>
+                <button class=artguide-months__btn data-month=9>Okt</button>
+                <button class=artguide-months__btn data-month=10>Nov</button>
+                <button class=artguide-months__btn data-month=11>Dec</button>
+            </nav>
+            <div class=artguide-controls>
+                <div class=artguide-view-toggle role=tablist aria-label="Växla vy"><button
+                        class="artguide-view-toggle__btn artguide-view-toggle__btn--active" data-view=month role=tab
+                        aria-selected=true>Månadsvy</button>
+                    <button class=artguide-view-toggle__btn data-view=year role=tab
+                        aria-selected=false>Helårsöversikt</button>
+                </div>
+                <div class=artguide-sort-toggle aria-label=Sortering><button
+                        class="artguide-sort__btn artguide-sort__btn--active" data-sort=likely>Troligast</button>
+                    <button class=artguide-sort__btn data-sort=chronological>Kronologisk</button>
+                    <button class=artguide-sort__btn data-sort=taxonomy>Taxonomisk</button>
+                </div>
+                <div class=artguide-filters><button class="artguide-filter artguide-filter--active"
+                        data-filter=all>Alla</button>
+                    <button class=artguide-filter data-filter=abundant>Förväntade</button>
+                    <button class=artguide-filter data-filter=regular>Möjliga</button>
+                    <button class=artguide-filter data-filter=uncommon>Ovanliga</button>
+                    <button class=artguide-filter data-filter=rare>Rariteter</button>
+                    <button class=artguide-filter data-filter=checked>Kryssade ✓</button>
+                    <button class=artguide-filter data-filter=missing>Saknade</button>
+                </div>
             </div>
-            
-            <div class="artguide-filters__meta">
-                <button class="artguide-meta-link" data-filter="checked">Kryssade ✓</button>
-                <span class="artguide-meta-sep">·</span>
-                <button class="artguide-meta-link" data-filter="missing">Saknade</button>
-                <span class="artguide-meta-sep">·</span>
-                <span class="artguide-meta-total" id="legend-count-total"></span>
+            <div class=artguide-legend id=artguide-legend><span class=artguide-legend__label>Kryssade:</span>
+                <div class=artguide-legend__item data-category=abundant><span
+                        class="artguide-legend__swatch artguide-legend__swatch--abundant"></span>
+                    <span>Förväntad</span>
+                    <span class=artguide-legend__count id=legend-count-abundant></span>
+                </div>
+                <div class=artguide-legend__item data-category=regular><span
+                        class="artguide-legend__swatch artguide-legend__swatch--regular"></span>
+                    <span>Möjlig</span>
+                    <span class=artguide-legend__count id=legend-count-regular></span>
+                </div>
+                <div class=artguide-legend__item data-category=uncommon><span
+                        class="artguide-legend__swatch artguide-legend__swatch--uncommon"></span>
+                    <span>Ovanlig ◆</span>
+                    <span class=artguide-legend__count id=legend-count-uncommon></span>
+                </div>
+                <div class=artguide-legend__item data-category=rare><span
+                        class="artguide-legend__swatch artguide-legend__swatch--rare"></span>
+                    <span>Raritet ⭐</span>
+                    <span class=artguide-legend__count id=legend-count-rare></span>
+                </div>
+                <div class="artguide-legend__item artguide-legend__item--total"><span class=artguide-legend__count
+                        id=legend-count-total></span></div>
             </div>
+            <div class=artguide-month-heading>
+                <h2 class=artguide-month-heading__title></h2>
+                <p class=artguide-month-heading__subtitle></p>
+                <p class=artguide-month-heading__description id=artguide-description></p>
+            </div>
+            <div class=artguide-species id=artguide-species></div>
+            <footer class=artguide-footer>
+                <p>Data: <a href=https://www.artportalen.se target=_blank rel=noopener>Artportalen</a> — samtliga
+                    fågelobservationer i Åstorps kommun, alla observatörer, alla år.</p>
+                <p class=artguide-footer__date></p>
+            </footer>
         </div>
-    </div>
-
-    
-    <div class="artguide-month-heading">
-        <h2 class="artguide-month-heading__title"></h2>
-        <p class="artguide-month-heading__subtitle"></p>
-        <p class="artguide-month-heading__description" id="artguide-description"></p>
-    </div>
-
-    
-    <div class="artguide-species" id="artguide-species"></div>
-
-    
-    <footer class="artguide-footer">
-        <p>Data: <a href="https://www.artportalen.se" target="_blank" rel="noopener">Artportalen</a> — samtliga
-            fågelobservationer i Åstorps kommun, alla observatörer, alla år.</p>
-        <p class="artguide-footer__date"></p>
-    </footer>
-</div>
-
     </main>
-
-    
-
-    
-    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-        <div class="lightbox-content" onclick="event.stopPropagation()">
-            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
-            <img id="lightbox-img" src="" alt="">
+    <div id=lightbox class=lightbox onclick=closeLightbox()>
+        <div class=lightbox-content onclick=event.stopPropagation()><button class=lightbox-close
+                onclick=closeLightbox()>&#215;</button>
+            <img id=lightbox-img src alt>
         </div>
     </div>
     <style>
@@ -256,33 +133,33 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0, 0, 0, 0.7);
+            background: rgba(0, 0, 0, .7);
             justify-content: center;
             align-items: center;
             z-index: 1000;
-            cursor: pointer;
+            cursor: pointer
         }
 
         .lightbox.active {
-            display: flex;
+            display: flex
         }
 
         .lightbox-content {
             position: relative;
-            background: white;
+            background: #fff;
             padding: 1rem;
             border-radius: 12px;
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, .4);
             max-width: 85%;
             max-height: 85%;
-            cursor: default;
+            cursor: default
         }
 
         .lightbox-content img {
             max-width: 100%;
             max-height: 75vh;
             border-radius: 8px;
-            display: block;
+            display: block
         }
 
         .lightbox-close {
@@ -292,8 +169,8 @@
             width: 32px;
             height: 32px;
             background: #333;
-            color: white;
-            border: 3px solid white;
+            color: #fff;
+            border: 3px solid #fff;
             border-radius: 50%;
             font-size: 1.5rem;
             line-height: 1;
@@ -301,55 +178,25 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, .3)
         }
 
         .lightbox-close:hover {
-            background: #555;
+            background: #555
         }
 
         .gallery img {
             cursor: pointer;
-            transition: transform 0.3s ease;
+            transition: transform .3s ease
         }
 
         .gallery img:hover {
-            transform: scale(1.05);
+            transform: scale(1.05)
         }
     </style>
-    <script>
-        function openLightbox(src, alt) {
-            const lb = document.getElementById('lightbox');
-            const img = document.getElementById('lightbox-img');
-            img.src = src; img.alt = alt || '';
-            lb.classList.add('active');
-        }
-        function closeLightbox() {
-            document.getElementById('lightbox').classList.remove('active');
-        }
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
-        document.addEventListener('DOMContentLoaded', () => {
-            document.querySelectorAll('.lightbox-link').forEach(a => {
-                a.addEventListener('click', e => {
-                    e.preventDefault();
-                    openLightbox(a.href, a.querySelector('img')?.alt);
-                });
-            });
-            document.querySelectorAll('.gallery img').forEach(img => {
-                if (!img.closest('.lightbox-link')) {
-                    img.addEventListener('click', () => openLightbox(img.src, img.alt));
-                }
-            });
-        });
-    </script>
-
-    
-<script>
-    window.siteBaseURL = 'https:\/\/astorpsfaglar.se\/';
-</script>
-
-<script src="/js/artguide.107a509bd8c349de718acac72652726bef6fdd53c76e0a783fd064679a41af85.js"></script>
-
+    <script>function openLightbox(e, t) { const s = document.getElementById("lightbox"), n = document.getElementById("lightbox-img"); n.src = e, n.alt = t || "", s.classList.add("active") } function closeLightbox() { document.getElementById("lightbox").classList.remove("active") } document.addEventListener("keydown", e => { e.key === "Escape" && closeLightbox() }), document.addEventListener("DOMContentLoaded", () => { document.querySelectorAll(".lightbox-link").forEach(e => { e.addEventListener("click", t => { t.preventDefault(), openLightbox(e.href, e.querySelector("img")?.alt) }) }), document.querySelectorAll(".gallery img").forEach(e => { e.closest(".lightbox-link") || e.addEventListener("click", () => openLightbox(e.src, e.alt)) }) })</script>
+    <script>window.siteBaseURL = "https://astorpsfaglar.se/"</script>
+    <script src=/js/artguide.29f97de4f18adda5b6377ea4edb1c5ed900867bec31d01caeac3c4e79e8a96bc.js></script>
 </body>
 
 </html>
