@@ -131,12 +131,32 @@
             });
         });
 
-        // Filters
-        document.querySelectorAll('.artguide-filter').forEach(btn => {
+        // Category pills
+        document.querySelectorAll('.artguide-cat-pill').forEach(btn => {
             btn.addEventListener('click', () => {
-                document.querySelectorAll('.artguide-filter').forEach(b => b.classList.remove('artguide-filter--active'));
-                btn.classList.add('artguide-filter--active');
-                currentFilter = btn.dataset.filter;
+                const filter = btn.dataset.filter;
+                const isActive = btn.getAttribute('aria-pressed') === 'true';
+
+                if (isActive) {
+                    // Toggle off — return to all
+                    btn.setAttribute('aria-pressed', 'false');
+                    currentFilter = 'all';
+                    hideResetButton();
+                    removeDimming();
+                } else {
+                    // Activate this pill
+                    document.querySelectorAll('.artguide-cat-pill').forEach(b => {
+                        b.setAttribute('aria-pressed', 'false');
+                    });
+                    document.querySelectorAll('.artguide-meta-link').forEach(b => {
+                        b.setAttribute('aria-pressed', 'false');
+                    });
+                    btn.setAttribute('aria-pressed', 'true');
+                    currentFilter = filter;
+                    showResetButton();
+                    applyDimming(btn);
+                }
+
                 if (currentView === 'month') {
                     renderMonthView(currentMonth);
                 } else {
@@ -144,6 +164,61 @@
                 }
             });
         });
+
+        // Meta-filter links (Kryssade, Saknade)
+        document.querySelectorAll('.artguide-meta-link').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const filter = btn.dataset.filter;
+                const isActive = btn.getAttribute('aria-pressed') === 'true';
+
+                if (isActive) {
+                    // Toggle off
+                    btn.setAttribute('aria-pressed', 'false');
+                    currentFilter = 'all';
+                    hideResetButton();
+                } else {
+                    // Activate
+                    document.querySelectorAll('.artguide-cat-pill').forEach(b => {
+                        b.setAttribute('aria-pressed', 'false');
+                    });
+                    document.querySelectorAll('.artguide-meta-link').forEach(b => {
+                        b.setAttribute('aria-pressed', 'false');
+                    });
+                    btn.setAttribute('aria-pressed', 'true');
+                    currentFilter = filter;
+                    showResetButton();
+                    removeDimming();
+                }
+
+                if (currentView === 'month') {
+                    renderMonthView(currentMonth);
+                } else {
+                    renderYearView();
+                }
+            });
+        });
+
+        // Reset button
+        const resetBtn = document.querySelector('.artguide-filters__reset');
+        if (resetBtn) {
+            resetBtn.addEventListener('click', () => {
+                document.querySelectorAll('.artguide-cat-pill').forEach(b => {
+                    b.setAttribute('aria-pressed', 'false');
+                });
+                document.querySelectorAll('.artguide-meta-link').forEach(b => {
+                    b.setAttribute('aria-pressed', 'false');
+                });
+                currentFilter = 'all';
+                hideResetButton();
+                removeDimming();
+
+                if (currentView === 'month') {
+                    renderMonthView(currentMonth);
+                } else {
+                    renderYearView();
+                }
+            });
+        }
 
         // Sort toggle
         document.querySelectorAll('.artguide-sort__btn').forEach(btn => {
@@ -157,6 +232,39 @@
                     renderYearView();
                 }
             });
+        });
+    }
+
+    // --- Helper functions for filter UI ---
+    function showResetButton() {
+        const resetBtn = document.querySelector('.artguide-filters__reset');
+        if (resetBtn) {
+            resetBtn.style.visibility = 'visible';
+            resetBtn.style.opacity = '1';
+        }
+    }
+
+    function hideResetButton() {
+        const resetBtn = document.querySelector('.artguide-filters__reset');
+        if (resetBtn) {
+            resetBtn.style.visibility = 'hidden';
+            resetBtn.style.opacity = '0';
+        }
+    }
+
+    function applyDimming(activeBtn) {
+        document.querySelectorAll('.artguide-cat-pill').forEach(btn => {
+            if (btn !== activeBtn) {
+                btn.classList.add('artguide-cat-pill--dimmed');
+            } else {
+                btn.classList.remove('artguide-cat-pill--dimmed');
+            }
+        });
+    }
+
+    function removeDimming() {
+        document.querySelectorAll('.artguide-cat-pill').forEach(btn => {
+            btn.classList.remove('artguide-cat-pill--dimmed');
         });
     }
 
@@ -204,15 +312,48 @@
     function updateLegendCounts(displayedSpecies) {
         const categories = ['abundant', 'regular', 'uncommon', 'rare'];
         let totalChecked = 0, totalAll = 0;
+
         categories.forEach(cat => {
-            const el = document.getElementById('legend-count-' + cat);
-            if (!el) return;
+            // Update count in pill
+            const countEl = document.getElementById('count-' + cat);
+            if (!countEl) return;
+
             const inCat = displayedSpecies.filter(s => s.category === cat);
             const checked = inCat.filter(s => s.checked).length;
-            el.textContent = `${checked}/${inCat.length}`;
+            const total = inCat.length;
+
+            countEl.textContent = checked;
+
+            // Update progress bar
+            const pill = document.querySelector(`.artguide-cat-pill--${cat}`);
+            if (pill) {
+                const progressBar = pill.querySelector('.artguide-cat-pill__progress');
+                const progressFill = pill.querySelector('.artguide-cat-pill__progress-fill');
+
+                if (progressBar && progressFill) {
+                    const percentage = total > 0 ? (checked / total) * 100 : 0;
+                    progressFill.style.width = percentage + '%';
+
+                    // Update aria attributes
+                    progressBar.setAttribute('aria-valuenow', checked);
+                    progressBar.setAttribute('aria-valuemax', total);
+
+                    // Add dashed style if count is 0
+                    if (checked === 0) {
+                        progressBar.classList.add('artguide-cat-pill__progress--empty');
+                    } else {
+                        progressBar.classList.remove('artguide-cat-pill__progress--empty');
+                    }
+                }
+
+                // Update aria-label
+                pill.setAttribute('aria-label', `Filtrera ${cat === 'abundant' ? 'förväntade' : cat === 'regular' ? 'möjliga' : cat === 'uncommon' ? 'ovanliga' : 'rariteter'} arter: ${checked} av ${total} kryssade`);
+            }
+
             totalChecked += checked;
-            totalAll += inCat.length;
+            totalAll += total;
         });
+
         // Always show the full-year total, not the month-filtered total
         const yearChecked = speciesData.filter(s => s.checked).length;
         const totalEl = document.getElementById('legend-count-total');
