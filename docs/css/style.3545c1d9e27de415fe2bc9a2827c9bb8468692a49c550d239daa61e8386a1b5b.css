@@ -2961,7 +2961,7 @@ a:hover {
 }
 
 .artguide-heatmap__cell--regular {
-    background: rgba(29, 122, 140, calc(var(--intensity) * 0.3));
+    background: rgba(108, 91, 167, calc(var(--intensity) * 0.3));
 }
 
 .artguide-heatmap__cell--uncommon {

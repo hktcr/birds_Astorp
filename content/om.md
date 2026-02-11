@@ -20,6 +20,29 @@ Det här projektet följer en annan princip, närmare besläktad med *tomtkryss*
 
 Min utgångspunkt är: **vad kan jag se om jag tittar efter fåglar i Åstorps kommun?** Antingen jag eller fågeln ska befinna sig inom kommungränsen.
 
+## Data och observationskällor
+
+Webbplatsen bygger på två separata datakällor som fyller olika syften.
+
+### Artportalen — historisk artöversikt
+
+Den historiska artöversikten i [Artkalendern](/artguide/) baseras på en export från [Artportalen](https://www.artportalen.se), den nationella databasen för naturobservationer som drivs av SLU Artdatabanken. Exportfilen innehåller samtliga fågelobservationer som någonsin rapporterats i Åstorps kommun — av alla observatörer, under alla år. Det rör sig om drygt 13 000 observationer fördelade på cirka 200 arter.
+
+Från denna export beräknas en månadsvis fördelning av observationer för varje art, vilket gör det möjligt att se vilka arter man kan förvänta sig att se under olika delar av året. Arterna delas in i fyra raritetskategorier utifrån totalt antal rapporter i kommunen:
+
+- **Förväntad** — 50 eller fler rapporter. Arter som regelbundet ses i kommunen.
+- **Möjlig** — 10–49 rapporter. Arter som förekommer men inte alltid är lätta att hitta.
+- **Ovanlig** — 5–9 rapporter. Arter som sällan observeras.
+- **Raritet** — 1–4 rapporter. Arter som bara noterats enstaka gånger.
+
+Arterna presenteras i taxonomisk ordning enligt IOC:s klassificering, via Artportalens sorteringsordning.
+
+### Årskrysslistan — mina observationer 2026
+
+Den andra datakällan är min personliga krysslista för 2026. Här registrerar jag varje ny art som jag observerar i kommunen under året, med datum, plats och koordinater. Det är dessa data som driver progressbaren på startsidan, markeringarna på kartan, och kryssmarkeringarna i Artkalendern.
+
+Årskrysslistan uppdateras manuellt vid varje nytt årskryss — det vill säga varje gång jag ser en art i kommunen som jag inte sett där tidigare under 2026.
+
 ## Om Åstorps kommun
 
 Åstorps kommun ligger i nordvästra Skåne och utgör porten till Söderåsen. Här möter den öppna slättbygden åsens skogsklädda sluttningar. Landskapet domineras av jordbruksmark, men längs Rönne å och vid åsens fot finns våtmarker, beteshagar och lövskog.
