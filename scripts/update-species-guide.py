@@ -244,8 +244,9 @@ def process_observations(observations, taxon_list):
             continue
 
         # Filtrera till rena arter (2-delat vetenskapligt namn)
+        # Undantag: "domesticated populations" (t.ex. tamduva)
         sci_parts = sci_name.split()
-        if len(sci_parts) != 2:
+        if len(sci_parts) != 2 and "domesticated" not in sci_name.lower():
             continue
         if '/' in sci_name or ' x ' in sci_name:
             continue
@@ -296,11 +297,12 @@ def build_species_guide(taxon_list, stats):
                         api_stat = stat_val
                         break
 
-        if api_stat and not api_stat.get("uncertain_only", True):
+        if api_stat and api_stat["total"] > 0:
+            # Använd API-data (oavsett om alla obs är osäkra — de räknas ändå)
             total = api_stat["total"]
             months = api_stat["months"]
         elif sp["existing_count"] > 0:
-            # Arten finns i TaxonList men inte i API (t.ex. Tamduva med annan taxonomi)
+            # Arten finns i TaxonList men inte i API (koordinatnoggrannhet etc.)
             # Behåll befintligt antal, tomt månadsfördelning
             total = sp["existing_count"]
             months = [0] * 12
