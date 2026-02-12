@@ -55,6 +55,12 @@ TAXON_ID = 4000104  # Aves (alla fåglar)
 # (API:t returnerar dem med 3-delat vetenskapligt namn men de bör räknas)
 ALLOWED_SUBSPECIES = ["domesticated", "cornix"]
 
+# Artsammanslagningar: observationer av nyckeln räknas under värdet
+# (t.ex. "kråka" i Åstorp = gråkråka i praktiken)
+SPECIES_MERGES = {
+    "kråka": "gråkråka",  # Corvus corone → Corvus corone cornix
+}
+
 # Raritetskategorier baserat på observationsantal
 def classify_category(total):
     """Klassificera art baserat på totalt antal observationer."""
@@ -257,6 +263,10 @@ def process_observations(observations, taxon_list):
 
         key = swe_name.lower()
 
+        # Slå ihop arter enligt SPECIES_MERGES
+        if key in SPECIES_MERGES:
+            key = SPECIES_MERGES[key]
+
         # Bara räkna säkra observationer om det inte är osäkert
         if not uncertain:
             stats[key]["uncertain_only"] = False
@@ -287,6 +297,10 @@ def build_species_guide(taxon_list, stats):
         name = sp["name"]
         latin = sp["latin"]
         key = name.lower()
+
+        # Skippa arter som slagits ihop med en annan art
+        if key in SPECIES_MERGES:
+            continue
 
         # Hämta API-statistik om den finns
         api_stat = stats.get(key)

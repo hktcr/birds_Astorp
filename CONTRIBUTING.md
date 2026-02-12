@@ -126,7 +126,32 @@ Skriptet:
 
 **Kräver:** Python 3, `requests`-biblioteket, giltig API-nyckel i `../data_mining/config.yaml`.
 
-**Dataflöde:**
+### Taxonomisk hantering
+
+Skriptet filtrerar bort underarter (3+ delat vetenskapligt namn), genus utan artepithet, och hybrider. Två undantag definieras i `ALLOWED_SUBSPECIES`:
+
+| Art | Vetenskapligt namn | Varför undantag |
+|-----|-------------------|-----------------|
+| Tamduva | `Columba livia, domesticated populations` | API returnerar 4-delat namn |
+| Gråkråka | `Corvus corone cornix` | Nordisk underart som bör räknas separat |
+
+Nya undantag läggs till i `ALLOWED_SUBSPECIES`-listan i skriptet.
+
+### Kända begränsningar (SOS API)
+
+1. **Koordinatnoggrannhet:** API:t filtrerar geografiskt via point-in-polygon. Observationer med låg GPS-precision (±2km+) nära kommungränsen kan saknas. Artportalen-webben matchar via lokalnamn — skillnaden är marginell (<0,01%).
+2. **Filtrerade poster:** ~0,4% av alla obs tillhör underarter/genus/hybrider som inte mappas till en TaxonList-art.
+3. **Osäkra bestämningar:** Inkluderas i statistiken (räknas som giltiga obs).
+
+### Validering efter uppdatering
+
+Kör alltid en rimlighetskontroll efter `update-species-guide.py`. Skriptet bör passera:
+- `total == sum(months)` för varje art
+- Alla arter har exakt 12 månader
+- Kategorier matchar tröskelvärden (abundant≥80, regular≥20, uncommon≥5, rare<5)
+- Inga dubblettarter
+
+### Dataflöde
 ```
 TaxonList.csv + Artportalen API
         ↓
