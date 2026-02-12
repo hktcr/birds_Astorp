@@ -64,9 +64,9 @@ RATT: dubbelklammer range dubbelklammer
 
     // Mappa datum till notiser (genereras av Hugo vid byggtid)
     var postsByDate = {};
-    { { range where.Site.RegularPages "Section" "posts" } }
+    {{ range where .Site.RegularPages "Section" "posts" }}
     postsByDate["{{ .Date.Format "2006-01-02" }}"] = "{{ .RelPermalink }}";
-    { { end } }
+    {{ end }}
 
     // DATA: Inbäddas vid byggtid
     var data = {{ index .Site.Data "checklist-2026" | jsonify | safeJS }};

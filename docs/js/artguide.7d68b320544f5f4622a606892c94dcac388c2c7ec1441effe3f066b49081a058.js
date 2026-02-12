@@ -283,8 +283,20 @@
         const yearChecked = speciesData.filter(s => s.checked).length;
 
         if (heading) heading.textContent = MONTH_NAMES[month];
-        if (subtitle) {
-            subtitle.textContent = `${monthSpecies.length} arter i ${MONTH_NAMES[month].toLowerCase()} · ${checkedInMonth} kryssade här · ${yearChecked} totalt i år`;
+        if (subtitle) subtitle.textContent = '';
+
+        // Description text
+        const descEl = document.getElementById('artguide-description');
+        if (descEl) {
+            const totalInMonth = speciesData.filter(sp => sp.months[month] > 0).length;
+            const totalCheckedInMonth = speciesData.filter(sp => sp.months[month] > 0 && sp.checked).length;
+            const monthName = MONTH_NAMES[month].toLowerCase();
+            let desc = `${yearChecked} av ${TARGET} arter har kryssats under 2026. I ${monthName} finns ${totalInMonth} arter rapporterade genom åren, och ${totalCheckedInMonth} av dessa är kryssade.`;
+            if (currentFilter && currentFilter !== 'all' && monthSpecies.length !== totalInMonth) {
+                desc += ` Visar just nu: ${monthSpecies.length} arter.`;
+            }
+            descEl.textContent = desc;
+            descEl.style.display = '';
         }
 
         // Render cards
@@ -323,7 +335,7 @@
             countText = `${sp.total} rapp. totalt`;
         }
 
-        const ariaLabel = `${sp.name} — ${label}, ${sp.total} rapporter${sp.checked ? ', kryssad ' + sp.checkDate : ''}`;
+        const ariaLabel = `${sp.name}: ${label}, ${sp.total} rapporter${sp.checked ? ', kryssad ' + sp.checkDate : ''}`;
 
         return `
         <div class="artguide-card artguide-card--${sp.category}${checkedClass}"
@@ -391,7 +403,7 @@
         html += `<p><strong>Totalt:</strong> ${sp.total} rapporter i Åstorps kommun</p>`;
         if (sp.checked) {
             html += `<p><strong>Kryssad:</strong> ${formatDate(sp.checkDate)}`;
-            if (sp.checkLocation) html += ` — ${sp.checkLocation}`;
+            if (sp.checkLocation) html += `, ${sp.checkLocation}`;
             html += `</p>`;
         }
         html += '</div>';
@@ -433,6 +445,8 @@
             const checkedTotal = filtered0.filter(s => s.checked).length;
             if (title) title.textContent = 'Helårsöversikt';
             if (subtitle) subtitle.textContent = `${filtered0.length} arter historiskt observerade · ${checkedTotal} kryssade`;
+            const descEl = document.getElementById('artguide-description');
+            if (descEl) descEl.style.display = 'none';
         }
 
         let filtered = filterSpecies(speciesData);

@@ -66,6 +66,7 @@
       "artguide-legend__swatch--regular",
       "artguide-legend__swatch--uncommon",
       "artguide-month-heading",
+      "artguide-month-heading__description",
       "artguide-month-heading__subtitle",
       "artguide-month-heading__title",
       "artguide-months",
@@ -161,10 +162,13 @@
       "trail-title"
     ],
     "ids": [
+      "artguide-description",
       "artguide-legend",
       "artguide-species",
+      "artportalen--historisk-artöversikt",
       "bakgrund",
       "dagens-skörd",
+      "data-och-observationskällor",
       "hitta-hit",
       "kontakt",
       "last-added",
@@ -188,8 +192,10 @@
       "sort-select",
       "species-count",
       "species-grid",
+      "taxonlistan--komplett-artlista",
       "total-species",
-      "trail-timeline"
+      "trail-timeline",
+      "årskrysslistan--mina-observationer-2026"
     ]
   }
 }

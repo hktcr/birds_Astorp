@@ -106,6 +106,47 @@ Om "Tomarps Ene" ska bli "Rönneå vid Tomarps Ene":
 
 ---
 
+## Artportalen-datapipeline
+
+> **⚠️ VIKTIGT:** Skriptet nedan uppdaterar ENBART `static/data/species-guide.json`.
+> Det rör ALDRIG `data/checklist-2026.json` (din manuella krysslista).
+
+### Uppdatera artstatistik från Artportalen
+
+```bash
+cd scripts/
+python3 update-species-guide.py
+```
+
+Skriptet:
+1. Läser `static/data/TaxonList_fåglar_Åstorpskommun.csv` (alla kända arter i kommunen)
+2. Laddar ner aktuell data via Artportalen API (SOS API)
+3. Beräknar totaler och månadsfördelning per art
+4. Skriver ny `static/data/species-guide.json`
+
+**Kräver:** Python 3, `requests`-biblioteket, giltig API-nyckel i `../data_mining/config.yaml`.
+
+**Dataflöde:**
+```
+TaxonList.csv + Artportalen API
+        ↓
+  update-species-guide.py
+        ↓
+  static/data/species-guide.json  (historisk statistik)
+        +
+  data/checklist-2026.json        (manuella kryss, ORÖRDA)
+        ↓
+  artguide.js slår ihop vid rendering
+```
+
+### Sajtsidor och datakällor (uppdaterad)
+
+| Sida | Datakälla | Renderas |
+|------|-----------|----------|
+| **Artguide** (`/artguide/`) | `species-guide.json` + `checklist-2026.json` via JS | Klient-side |
+
+---
+
 ## Lokal utveckling
 
 ```bash
