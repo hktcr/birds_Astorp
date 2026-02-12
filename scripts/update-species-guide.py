@@ -51,6 +51,10 @@ AREA_TYPE = "Municipality"
 AREA_FEATURE_ID = "1277"  # Åstorp
 TAXON_ID = 4000104  # Aves (alla fåglar)
 
+# Underarter som ska behandlas som egna arter i statistiken
+# (API:t returnerar dem med 3-delat vetenskapligt namn men de bör räknas)
+ALLOWED_SUBSPECIES = ["domesticated", "cornix"]
+
 # Raritetskategorier baserat på observationsantal
 def classify_category(total):
     """Klassificera art baserat på totalt antal observationer."""
@@ -107,8 +111,8 @@ def load_taxon_list():
             sci_parts = sci.split()
             if len(sci_parts) < 2:
                 continue
-            # Skippa underarter (3+ delar) och speciella
-            if len(sci_parts) > 2 and "domesticated" not in sci.lower():
+            # Skippa underarter (3+ delar) utom kända undantag
+            if len(sci_parts) > 2 and not any(kw in sci.lower() for kw in ALLOWED_SUBSPECIES):
                 continue
 
             red_list = parts[3].strip() if len(parts) > 3 else ""
@@ -244,9 +248,9 @@ def process_observations(observations, taxon_list):
             continue
 
         # Filtrera till rena arter (2-delat vetenskapligt namn)
-        # Undantag: "domesticated populations" (t.ex. tamduva)
+        # Undantag: ALLOWED_SUBSPECIES (t.ex. tamduva, gråkråka)
         sci_parts = sci_name.split()
-        if len(sci_parts) != 2 and "domesticated" not in sci_name.lower():
+        if len(sci_parts) != 2 and not any(kw in sci_name.lower() for kw in ALLOWED_SUBSPECIES):
             continue
         if '/' in sci_name or ' x ' in sci_name:
             continue
