@@ -345,6 +345,30 @@
             "location": "Målarkalk, Hyllinge",
             "lat": 56.101169833958345,
             "lng": 12.871921799623898
+        },
+        {
+            "species": "Skogsgås",
+            "latin": "Anser fabalis",
+            "date": "2026-02-13",
+            "location": "Tomarps kungsgård",
+            "lat": 56.149612,
+            "lng": 13.0625373
+        },
+        {
+            "species": "Bläsgås",
+            "latin": "Anser albifrons",
+            "date": "2026-02-13",
+            "location": "Tomarps kungsgård",
+            "lat": 56.149612,
+            "lng": 13.0625373
+        },
+        {
+            "species": "Rapphöna",
+            "latin": "Perdix perdix",
+            "date": "2026-02-13",
+            "location": "Tomarps kungsgård",
+            "lat": 56.149612,
+            "lng": 13.0625373
         }
     ]
 }

@@ -111,6 +111,9 @@ Om "Tomarps Ene" ska bli "Rönneå vid Tomarps Ene":
 > **⚠️ VIKTIGT:** Skriptet nedan uppdaterar ENBART `static/data/species-guide.json`.
 > Det rör ALDRIG `data/checklist-2026.json` (din manuella krysslista).
 
+> [!CAUTION] Taxon-ID och Area-ID
+> Vid manuella API-anrop: verifiera **alltid** taxon-ID och area-ID mot tabellerna i `/ArtportalenAPI`-workflowen. Se pre-flight-checklistan där för detaljer och bakgrund (2026-02-13 incident).
+
 ### Uppdatera artstatistik från Artportalen
 
 ```bash
