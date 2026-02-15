@@ -369,6 +369,14 @@
             "location": "Tomarps kungsgård",
             "lat": 56.149612,
             "lng": 13.0625373
+        },
+        {
+            "species": "Blå kärrhök",
+            "latin": "Circus cyaneus",
+            "date": "2026-02-15",
+            "location": "Bron mot Klippan",
+            "lat": 56.13312,
+            "lng": 13.09428
         }
     ]
 }
