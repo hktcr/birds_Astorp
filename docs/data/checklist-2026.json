@@ -377,6 +377,30 @@
             "location": "Bron mot Klippan",
             "lat": 56.13312,
             "lng": 13.09428
+        },
+        {
+            "species": "Vinterhämpling",
+            "latin": "Linaria flavirostris",
+            "date": "2026-02-16",
+            "location": "Vångarna",
+            "lat": 56.13335909031484,
+            "lng": 13.085150154227945
+        },
+        {
+            "species": "Skogsduva",
+            "latin": "Columba oenas",
+            "date": "2026-02-16",
+            "location": "Vångarna",
+            "lat": 56.13335909031484,
+            "lng": 13.085150154227945
+        },
+        {
+            "species": "Bläsand",
+            "latin": "Mareca penelope",
+            "date": "2026-02-16",
+            "location": "Utloppet av Röda-diket",
+            "lat": 56.14244190869201,
+            "lng": 13.077277080127024
         }
     ]
 }
