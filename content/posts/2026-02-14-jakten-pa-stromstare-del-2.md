@@ -13,7 +13,7 @@ coordinates:
   lon: 13.1050
 ---
 
-Första försöket på strömstare, vid [Körslättaravinen](/posts/2026-01-30-jakten-pa-stromstare/), gav ingenting. Bäcken låg frusen. Klövaravinen borde vara bättre. Mer vatten, mer fart.
+Första försöket på strömstare, vid [Körslättaravinen](/posts/2026/01/jakten-på-strömstare/), gav ingenting. Bäcken låg frusen. Klövaravinen borde vara bättre. Mer vatten, mer fart.
 
 Strömstaren står aldrig still. Jag söker den som en rörelse mot strömmen, en mörk figur som nickar och dyker.
 
