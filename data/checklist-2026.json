@@ -401,6 +401,14 @@
             "location": "Utloppet av Röda-diket",
             "lat": 56.14244190869201,
             "lng": 13.077277080127024
+        },
+        {
+            "species": "Entita",
+            "latin": "Poecile montanus",
+            "date": "2026-02-18",
+            "location": "NV Mosshult",
+            "lat": 56.09095485579307,
+            "lng": 13.050526620868753
         }
     ]
 }
