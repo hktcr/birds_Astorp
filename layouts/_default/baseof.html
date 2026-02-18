@@ -70,6 +70,7 @@
             max-width: 85%;
             max-height: 85%;
             cursor: default;
+            overflow: auto;
         }
 
         .lightbox-content img {
@@ -77,6 +78,14 @@
             max-height: 75vh;
             border-radius: 8px;
             display: block;
+            cursor: zoom-in;
+            transition: max-width 0.3s ease, max-height 0.3s ease;
+        }
+
+        .lightbox-content img.zoomed {
+            max-width: none;
+            max-height: none;
+            cursor: zoom-out;
         }
 
         .lightbox-close {
@@ -116,13 +125,23 @@
             const lb = document.getElementById('lightbox');
             const img = document.getElementById('lightbox-img');
             img.src = src; img.alt = alt || '';
+            img.classList.remove('zoomed');
             lb.classList.add('active');
         }
         function closeLightbox() {
+            const img = document.getElementById('lightbox-img');
+            img.classList.remove('zoomed');
             document.getElementById('lightbox').classList.remove('active');
+        }
+        function toggleZoom() {
+            document.getElementById('lightbox-img').classList.toggle('zoomed');
         }
         document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
         document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('lightbox-img').addEventListener('click', e => {
+                e.stopPropagation();
+                toggleZoom();
+            });
             document.querySelectorAll('.lightbox-link').forEach(a => {
                 a.addEventListener('click', e => {
                     e.preventDefault();
