@@ -14,6 +14,10 @@ tags:
   - vinter
   - inventering
   - svanräkning
+locations:
+  - name: "Kungsgårdsmaderna"
+    lat: 56.15343
+    lng: 13.06878
 coordinates:
   lat: 56.15343
   lon: 13.06878

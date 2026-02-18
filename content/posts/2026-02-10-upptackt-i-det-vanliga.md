@@ -9,6 +9,10 @@ tags:
   - vinter
   - jordbrukslandskap
   - årskryss
+locations:
+  - name: "Målarkalk, Hyllinge"
+    lat: 56.10117
+    lng: 12.87192
 coordinates:
   lat: 56.101169833958345
   lon: 12.871921799623898

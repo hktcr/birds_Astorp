@@ -8,6 +8,10 @@ tags:
   - rovfåglar
   - vinter
   - fågelåret
+locations:
+  - name: "Sönnarslöv"
+    lat: 56.12868
+    lng: 13.08559
 coordinates:
   lat: 56.12868
   lon: 13.08559

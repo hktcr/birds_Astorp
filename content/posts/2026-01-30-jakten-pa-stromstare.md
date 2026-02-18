@@ -11,6 +11,10 @@ tags:
   - vinter
   - årskryss
   - strömstare
+locations:
+  - name: "Körslättsravinen"
+    lat: 56.09874
+    lng: 13.07474
 coordinates:
   lat: 56.09874
   lon: 13.07474

@@ -5,9 +5,14 @@
             {{ .Date.Format "2 January 2006" }}
         </time>
         <h1 class="post-title">{{ .Title }}</h1>
-        {{ with .Params.location }}
+        {{ if .Params.locations }}
+        <p class="post-location">📍
+            {{ range $i, $loc := .Params.locations }}{{ if $i }} · {{ end }}<span class="location-link"
+                data-lat="{{ $loc.lat }}" data-lng="{{ $loc.lng }}">{{ $loc.name }}</span>{{ end }}
+        </p>
+        {{ else }}{{ with .Params.location }}
         <p class="post-location">📍 {{ . }}</p>
-        {{ end }}
+        {{ end }}{{ end }}
     </header>
 
     {{ with .Params.image }}

@@ -8,6 +8,10 @@ tags:
   - vinter
   - strömstare
   - ravin
+locations:
+  - name: "Klövaravinen"
+    lat: 56.0850
+    lng: 13.1050
 coordinates:
   lat: 56.0850
   lon: 13.1050

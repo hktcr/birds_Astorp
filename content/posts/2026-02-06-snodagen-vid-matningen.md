@@ -20,6 +20,13 @@ tags:
   - fågelmatning
   - årskryss
   - snö
+locations:
+  - name: "Kvidinge"
+    lat: 56.13675
+    lng: 13.04311
+  - name: "Rönneå vid Tomarps Ene"
+    lat: 56.14721
+    lng: 13.07678
 coordinates:
   lat: 56.136750782641876
   lon: 13.043105305042882

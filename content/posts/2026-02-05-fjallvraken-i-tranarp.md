@@ -10,6 +10,10 @@ tags:
   - vinter
   - rovfåglar
   - årskryss
+locations:
+  - name: "Floarna"
+    lat: 56.16532
+    lng: 12.98421
 coordinates:
   lat: 56.16532231534232
   lon: 12.984207625328134
