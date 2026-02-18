@@ -2245,26 +2245,6 @@
       ]
     },
     {
-      "name": "Kråka",
-      "latin": "Corvus corone",
-      "total": 4,
-      "category": "rare",
-      "months": [
-        1,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        0,
-        1,
-        0,
-        2
-      ]
-    },
-    {
       "name": "Gråkråka",
       "latin": "Corvus corone cornix",
       "total": 225,

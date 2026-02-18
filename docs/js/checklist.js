@@ -52,7 +52,7 @@
         { id: 40, name: "Nötskrika", latin: "Garrulus glandarius", order: 40 },
         { id: 41, name: "Kaja", latin: "Coloeus monedula", order: 41 },
         { id: 42, name: "Råka", latin: "Corvus frugilegus", order: 42 },
-        { id: 43, name: "Kråka", latin: "Corvus cornix", order: 43 },
+        { id: 43, name: "Gråkråka", latin: "Corvus cornix", order: 43 },
         { id: 44, name: "Korp", latin: "Corvus corax", order: 44 },
         { id: 45, name: "Tofsmes", latin: "Lophophanes cristatus", order: 45 },
         { id: 46, name: "Svartmes", latin: "Periparus ater", order: 46 },
