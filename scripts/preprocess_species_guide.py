@@ -39,9 +39,11 @@ EXCLUDE_SUBSPECIES = {
 }
 
 # Name remapping: merge old/aggregate taxa into accepted species
-# "sädgås" = obestämd skogsgås/tundragås, most records in Skåne are skogsgås
+# "sädgås" and "ob. skogsgås/tundragås" = obestämda records that in Skåne
+# overwhelmingly represent skogsgås (Anser fabalis), not tundragås.
 NAME_REMAP = {
     "sädgås": "skogsgås",
+    "ob. skogsgås/tundragås": "skogsgås",
 }
 LATIN_REMAP = {
     "Anser fabalis/serrirostris": "Anser fabalis",
@@ -157,12 +159,12 @@ def main():
         name_raw = props.get("Svenskt namn", "")
         name_lower = name_raw.lower().strip()
 
+        # Remap aggregate taxa to accepted species (must happen before exclusion check)
+        name_lower = NAME_REMAP.get(name_lower, name_lower)
+
         if should_exclude(name_lower):
             excluded_count += 1
             continue
-
-        # Remap aggregate taxa to accepted species
-        name_lower = NAME_REMAP.get(name_lower, name_lower)
 
         month = props.get("Startdatum (månad)")
         latin = props.get("Vetenskapligt namn", "")

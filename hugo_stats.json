@@ -165,12 +165,10 @@
       "artguide-description",
       "artguide-legend",
       "artguide-species",
-      "artportalen--historisk-artöversikt",
-      "bakgrund",
+      "artkalendern",
       "dagens-skörd",
-      "data-och-observationskällor",
+      "fler-observationer",
       "hitta-hit",
-      "kontakt",
       "last-added",
       "latest-species",
       "legend-count-abundant",
@@ -182,20 +180,16 @@
       "lightbox-img",
       "main-content",
       "map",
-      "mina-regler",
       "mobile-menu-btn",
       "målet-150-arter",
-      "om-åstorps-kommun",
       "ornitologiska-föreningar",
       "progress-fill",
-      "se-fler-observationer",
+      "reglerna",
       "sort-select",
       "species-count",
       "species-grid",
-      "taxonlistan--komplett-artlista",
       "total-species",
-      "trail-timeline",
-      "årskrysslistan--mina-observationer-2026"
+      "trail-timeline"
     ]
   }
 }
