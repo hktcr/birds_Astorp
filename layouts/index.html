@@ -104,8 +104,14 @@ RATT: dubbelklammer range dubbelklammer
         }
 
         // Bygg observationsspår med ny layout
+        // Tilldela löpnummer per unik art i kronologisk ordning
+        var speciesNumber = {};
+        var nextNumber = 1;
         var byDate = {};
         data.observations.forEach(function (obs) {
+            if (!speciesNumber[obs.species]) {
+                speciesNumber[obs.species] = nextNumber++;
+            }
             if (!byDate[obs.date]) {
                 byDate[obs.date] = { species: [], locations: [] };
             }
@@ -140,8 +146,11 @@ RATT: dubbelklammer range dubbelklammer
                     html += '<div class="trail-date">' + day + ' ' + month + '</div>';
                 }
 
-                // Rad 2: Arter
-                html += '<div class="trail-species">' + info.species.join(', ') + '</div>';
+                // Rad 2: Arter med löpnummer
+                var speciesWithNumbers = info.species.map(function (sp) {
+                    return '<span class="trail-species-number">#' + speciesNumber[sp] + '</span> ' + sp;
+                });
+                html += '<div class="trail-species">' + speciesWithNumbers.join(', ') + '</div>';
 
                 // Rad 3: Platser
                 html += '<div class="trail-location">' + info.locations.join(' • ') + '</div>';
