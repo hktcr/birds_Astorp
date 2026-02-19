@@ -99,6 +99,7 @@
      */
     async function init() {
         await loadObservations();
+        injectNewSpecies();
         setupEventListeners();
         render();
     }
@@ -116,6 +117,28 @@
         } catch (error) {
             console.log('No observations data found, starting fresh');
             observations = [];
+        }
+    }
+
+    /**
+     * Add species from checklist that aren't in the hardcoded SPECIES_LIST
+     */
+    function injectNewSpecies() {
+        const knownNames = new Set(SPECIES_LIST.map(s => s.name.toLowerCase()));
+        let nextOrder = Math.max(...SPECIES_LIST.map(s => s.order)) + 1;
+        let nextId = Math.max(...SPECIES_LIST.map(s => s.id)) + 1;
+        for (const obs of observations) {
+            const key = obs.species.toLowerCase();
+            if (!knownNames.has(key)) {
+                SPECIES_LIST.push({
+                    id: nextId++,
+                    name: obs.species,
+                    latin: obs.latin,
+                    order: nextOrder++,
+                    isNew: true
+                });
+                knownNames.add(key);
+            }
         }
     }
 
@@ -206,13 +229,15 @@
             const obs = getObservation(s.name);
             const observedClass = obs ? 'observed' : '';
 
+            const newBadge = s.isNew ? ' <span class="species-new-badge">🆕</span>' : '';
+
             return `
         <div class="species-card ${observedClass}">
           <div class="species-checkbox">
             ${obs ? '✓' : ''}
           </div>
           <div class="species-info">
-            <span class="species-name">${s.name}</span>
+            <span class="species-name">${s.name}${newBadge}</span>
             <span class="species-latin">${s.latin}</span>
           </div>
           <div class="species-obs-data">
@@ -233,10 +258,12 @@
         const totalEl = document.getElementById('total-species');
         const lastEl = document.getElementById('last-added');
 
-        const observedSpecies = SPECIES_LIST.filter(s => getObservation(s.name));
+        // Always count against the full SPECIES_LIST, regardless of filter
+        const observedCount = SPECIES_LIST.filter(s => getObservation(s.name)).length;
+        const totalCount = SPECIES_LIST.length;
 
         if (totalEl) {
-            totalEl.textContent = observedSpecies.length;
+            totalEl.textContent = `${observedCount}/${totalCount}`;
         }
 
         if (lastEl && observations.length > 0) {
