@@ -17,7 +17,7 @@ coordinates:
   lon: 13.05897539571212
 ---
 
-Häromdagen årskryssade jag två vinterhämplingar nere vid ån. Idag hittade Sara och jag en flock om mer än hundra individer på ett fält uppe vid <span class="location-link">Brånnhus</span>.
+Häromdagen årskryssade jag två vinterhämplingar nere vid ån. Idag hittade Sara och jag en flock om mer än hundra individer på ett fält uppe vid Brånnhus.
 
 Flockar av den här storleken hör inte till vanligheterna. De är rörliga, håller till på såväl marken som i trädtopparna, men de rör sig som en enda stor massa. Hundra fåglar i takt. Det gör dem lätta att hitta.
 
