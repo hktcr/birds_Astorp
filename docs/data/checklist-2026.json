@@ -417,6 +417,14 @@
             "location": "Röda smedja, Kvidinge",
             "lat": 56.14176,
             "lng": 13.059863
+        },
+        {
+            "species": "Turkduva",
+            "latin": "Streptopelia decaocto",
+            "date": "2026-02-19",
+            "location": "Längs Gamla Vägen, Östra Ljungby",
+            "lat": 56.19163004177668,
+            "lng": 13.070734437905429
         }
     ]
 }
