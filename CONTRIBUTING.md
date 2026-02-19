@@ -66,12 +66,45 @@ Om "Tomarps Ene" ska bli "Rönneå vid Tomarps Ene":
 
 | Sida | Datakälla | Renderas |
 |------|-----------|----------|
-| **Startsidan** (`/`) | `data/checklist-2026.json` via Hugo-template | Vid byggtid |
+| **Startsidan** (`/`) | `data/checklist-2026.json` via Hugo-template + `docs/index.html` inline JS | Byggtid + manuell synk |
 | **Artlistan** (`/arslista/`) | `docs/data/checklist-2026.json` via JS `fetch()` | Klient-side |
+| **Artguide** (`/artguide/`) | `species-guide.json` + `checklist-2026.json` via JS | Klient-side |
 | **Kartan** (`/karta/`) | `docs/data/checklist-2026.json` + `docs/data/locations.json` via JS | Klient-side |
 | **Notiser** (`/posts/`) | Blogginlägg frontmatter | Vid byggtid |
 
 ---
+
+## Startsidans arkitektur
+
+> **OBS:** Startsidan har en unik arkitektur med **dubbellagring** av observationsdata.
+
+### Källfilen: `layouts/index.html`
+
+Hugo-templaten genererar startsidans HTML vid byggtid. Den innehåller JavaScript som bygger tre komponenter:
+
+1. **Termometer** — visar artantal / 150 med dynamisk HSL-färg
+2. **Senast kryssad** — senaste arten i `observations`-arrayen
+3. **Observationsspår** — vertikal tidslinje med alla observationer, grupperade per datum
+
+#### Observationsspåret — numrering
+
+Varje unik art tilldelas ett löpnummer (#1, #2, ...) baserat på den **kronologiska ordningen** arten först förekommer i `data.observations`-arrayen. Numren visas som `<span class="trail-species-number">#N</span>` framför artnamnet.
+
+**Exempel:** Havsörn → Skata → Koltrast visas som `#1 Havsörn, #2 Skata, #3 Koltrast`
+
+Numreringen beräknas dynamiskt av JS — inga nummer lagras i JSON. CSS-klassen `.trail-species-number` stylar numren (monospace, grön, 80% storlek).
+
+### Produktionsfilen: `docs/index.html`
+
+> ⚠️ **KRITISKT:** `docs/index.html` innehåller en **inline `<script>`-tagg** med en kopia av all observationsdata (minifierad). Denna uppdateras **INTE** automatiskt av `hugo --minify` eller `deploy.sh`.
+
+Vid nya observationer måste `docs/index.html` uppdateras manuellt:
+1. Lägg till ny observation i inline `data.observations`-arrayen
+2. Kontrollera att hue-beräkningen finns intakt
+3. Kontrollera att observationsspårets numrering (`sn`/`nn`-variabler) fungerar
+
+Se `/Åstorp-2026`-workflowen, steg **A3b** för detaljerade instruktioner.
+
 
 ## Nytt blogginlägg — checklista
 
@@ -167,7 +200,7 @@ TaxonList.csv + Artportalen API
   artguide.js slår ihop vid rendering
 ```
 
-### Sajtsidor och datakällor (uppdaterad)
+### Artguide — datakällor
 
 | Sida | Datakälla | Renderas |
 |------|-----------|----------|

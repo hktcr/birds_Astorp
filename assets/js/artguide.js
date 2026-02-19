@@ -58,6 +58,19 @@
 
             matchChecklist();
             setupEventListeners();
+
+            // Check URL params for pre-selected filter (e.g. ?filter=checked)
+            const urlParams = new URLSearchParams(window.location.search);
+            const filterParam = urlParams.get('filter');
+            if (filterParam) {
+                const filterBtn = document.querySelector(`.artguide-filter[data-filter="${filterParam}"]`);
+                if (filterBtn) {
+                    document.querySelectorAll('.artguide-filter').forEach(b => b.classList.remove('artguide-filter--active'));
+                    filterBtn.classList.add('artguide-filter--active');
+                    currentFilter = filterParam;
+                }
+            }
+
             renderProgressBar();
             setActiveMonth(currentMonth);
             renderMonthView(currentMonth);

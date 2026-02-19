@@ -66,7 +66,7 @@ En hybrid fågelblogg för Åstorps kommun — observationer, bilder och interak
 | `docs/data/*.json` | *Genereras av sync-data.sh* — redigera EJ |
 | `sync-data.sh` | Synkar data/ → docs/data/ |
 | `content/posts/*.md` | Blogginlägg |
-| `layouts/index.html` | Startsidans layout + progressbar |
+| `layouts/index.html` | Startsidans layout: progressbar + observationsspår (#1–#N) |
 | `static/js/checklist.js` | Logik för årslistan |
 | `static/css/style.css` | All CSS |
 | `hugo.toml` | Hugo-konfiguration |
