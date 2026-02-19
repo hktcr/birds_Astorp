@@ -16,14 +16,7 @@
         {{ end }}{{ end }}
     </header>
 
-    {{ with .Params.image }}
-    <figure class="post-hero-image">
-        <img src="{{ . | relURL }}" alt="{{ $.Title }}" loading="lazy">
-        {{ with $.Params.image_caption }}
-        <figcaption>{{ . }}</figcaption>
-        {{ end }}
-    </figure>
-    {{ end }}
+
 
     <div class="post-body prose">
         {{ .Content }}

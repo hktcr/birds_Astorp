@@ -28,7 +28,7 @@
                 {{ end }}
                 <div class="archive-card__body">
                     <h2 class="archive-title">
-                        <a href="{{ .Permalink }}">{{ .Title }}</a>
+                        <a href="{{ .Permalink }}" class="archive-card__link">{{ .Title }}</a>
                     </h2>
                     {{ with .Params.location }}
                     <span class="archive-location">📍 {{ . }}</span>
