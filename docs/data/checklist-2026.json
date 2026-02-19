@@ -409,6 +409,14 @@
             "location": "NV Mosshult",
             "lat": 56.09095485579307,
             "lng": 13.050526620868753
+        },
+        {
+            "species": "Steglits",
+            "latin": "Carduelis carduelis",
+            "date": "2026-02-19",
+            "location": "Röda smedja, Kvidinge",
+            "lat": 56.14176,
+            "lng": 13.059863
         }
     ]
 }
