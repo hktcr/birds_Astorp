@@ -10,10 +10,16 @@
 
     {{ $posts := where .Site.RegularPages "Section" "posts" }}
 
+    <div id="active-filter-bar" class="active-filter-bar" style="display: none;">
+        <span>Visar inlägg om: <strong id="active-filter-name"></strong></span>
+        <a href="{{ .Permalink }}" class="clear-filter-btn">✕ Visa alla inlägg</a>
+    </div>
+
     <div class="archive-timeline">
         {{ range $posts }}
-        <article class="archive-item">
-            <time datetime="{{ .Date.Format " 2006-01-02" }}" class="archive-date">
+        <article class="archive-item"
+            data-species="{{ with .Params.species }}{{ delimit (apply . `urlize` `.`) `,` | lower }}{{ end }}">
+            <time datetime="{{ .Date.Format `2006-01-02` }}" class="archive-date">
                 {{ .Date.Format "2 Jan" }}
             </time>
             <div class="archive-card">
@@ -35,10 +41,13 @@
                     {{ end }}
                     <p class="archive-summary">{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate
                         120 }}{{ end }}</p>
-                    {{ with .Params.tags }}
+                    {{ with .Params.species }}
                     <div class="archive-tags">
                         {{ range (first 3 .) }}
-                        <span class="archive-tag">{{ . }}</span>
+                        <a href="?species={{ . | urlize }}" class="archive-tag">{{ . }}</a>
+                        {{ end }}
+                        {{ if gt (len .) 3 }}
+                        <span class="archive-tag archive-tag--more">+{{ sub (len .) 3 }}</span>
                         {{ end }}
                     </div>
                     {{ end }}
@@ -52,4 +61,50 @@
     <p class="empty-state">Inga inlägg ännu. Håll utkik!</p>
     {{ end }}
 </section>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const params = new URLSearchParams(window.location.search);
+        const filterSpecies = params.get('species');
+
+        if (filterSpecies) {
+            // Show filter bar
+            const filterBar = document.getElementById('active-filter-bar');
+            const filterName = document.getElementById('active-filter-name');
+
+            // Try to get a nice display name from the URL by capitalizing it (or we can just show the slug if it's tricky)
+            // A simple readable format from the slug: replace dashes with spaces, uppercase first letter
+            const displayLabel = filterSpecies.replace(/-/g, ' ').replace(/^./, str => str.toUpperCase());
+
+            if (filterBar && filterName) {
+                filterName.textContent = displayLabel;
+                filterBar.style.display = 'flex';
+            }
+
+            // Filter items
+            const items = document.querySelectorAll('.archive-item');
+            let visibleCount = 0;
+
+            items.forEach(item => {
+                const speciesStr = item.getAttribute('data-species') || '';
+                const speciesList = speciesStr.split(',').map(s => s.trim().toLowerCase());
+
+                if (speciesList.includes(filterSpecies.toLowerCase())) {
+                    item.style.display = '';
+                    visibleCount++;
+                } else {
+                    item.style.display = 'none';
+                }
+            });
+
+            // Show empty message if nothing matches
+            if (visibleCount === 0) {
+                const timeline = document.querySelector('.archive-timeline');
+                if (timeline) {
+                    timeline.innerHTML = '<p class="empty-state">Inga inlägg hittades för ' + displayLabel + '.</p>';
+                }
+            }
+        }
+    });
+</script>
 {{ end }}

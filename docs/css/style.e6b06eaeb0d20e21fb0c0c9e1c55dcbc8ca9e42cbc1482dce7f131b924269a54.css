@@ -621,6 +621,9 @@ a:hover {
 }
 
 /* Field notebook styling */
+.single-post .post-body {
+    /* Removed margin line based on feedback */
+}
 
 /* Species pills — redesigned with links to Artkalendern */
 .species-list {
@@ -910,7 +913,6 @@ a:hover {
     margin: 0;
     line-height: 1.5;
     display: -webkit-box;
-    line-clamp: 2;
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
