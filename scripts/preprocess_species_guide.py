@@ -37,7 +37,6 @@ EXCLUDE_HYBRIDS = {
     "bofink/bergfink",
     "hornuggla/jorduggla",
     "mindre sångsvan/sångsvan",
-    "stäpphök/ängshök",
 }
 # Subspecies/NE entries to exclude (lowercase)
 EXCLUDE_SUBSPECIES = {
@@ -46,7 +45,6 @@ EXCLUDE_SUBSPECIES = {
     "sydlig gulärla",
     "västlig svart rödstjärt",
     "nordsjösilltrut",
-    "nordlig kärrsnäppa",
     "europeisk sånglärka",  # subspecies-level; sånglärka is the species
 }
 
@@ -57,6 +55,9 @@ NAME_REMAP = {
     "sädgås": "skogsgås",
     "ob. skogsgås/tundragås": "skogsgås",
     "kråka": "gråkråka",  # modern taxonomy split
+    "stäpphök/ängshök": "ängshök",  # hybrid combo → count as ängshök
+    "nordlig kärrsnäppa": "kärrsnäppa",  # subspecies → parent species
+    "tamduva": "klippduva",  # match Artportalen's naming (Columba livia)
 }
 LATIN_REMAP = {
     "Anser fabalis/serrirostris": "Anser fabalis",
