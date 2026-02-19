@@ -1,5 +1,6 @@
 ---
 title: "Reflekterat ljus"
+description: "Steglits, bläsgåsar och reflekterat ljus vid Röda smedja."
 date: 2026-02-19
 draft: false
 location: "Röda smedja, Kvidinge"

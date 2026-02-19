@@ -1,5 +1,7 @@
 ---
 title: "Jakten på strömstare"
+description: "Första försöket att hitta strömstare i Körslättsravinen — frusen bäck och tomma klippor."
+image: "/images/posts/2026-01-30-fruset-fall-korslattsravinen.jpg"
 date: 2026-01-30
 location: "Körslättsravinen"
 species:

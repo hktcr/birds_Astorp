@@ -8,26 +8,41 @@
     </div>
     {{ end }}
 
-    <!-- Group posts by month -->
     {{ $posts := where .Site.RegularPages "Section" "posts" }}
-    {{ $months := dict }}
 
     <div class="archive-timeline">
         {{ range $posts }}
-        {{ $monthKey := .Date.Format "2006-01" }}
-        {{ $monthLabel := .Date.Format "January 2006" }}
-
         <article class="archive-item">
             <time datetime="{{ .Date.Format " 2006-01-02" }}" class="archive-date">
                 {{ .Date.Format "2 Jan" }}
             </time>
-            <div class="archive-content">
-                <h2 class="archive-title">
-                    <a href="{{ .Permalink }}">{{ .Title }}</a>
-                </h2>
-                {{ with .Params.location }}
-                <span class="archive-location">📍 {{ . }}</span>
+            <div class="archive-card">
+                {{ if .Params.image }}
+                <div class="archive-thumb">
+                    <img src="{{ .Params.image | relURL }}" alt="{{ .Title }}" loading="lazy">
+                </div>
+                {{ else }}
+                <div class="archive-thumb archive-thumb--fallback">
+                    <span class="archive-thumb__date">{{ .Date.Format "2 Jan" }}</span>
+                </div>
                 {{ end }}
+                <div class="archive-card__body">
+                    <h2 class="archive-title">
+                        <a href="{{ .Permalink }}">{{ .Title }}</a>
+                    </h2>
+                    {{ with .Params.location }}
+                    <span class="archive-location">📍 {{ . }}</span>
+                    {{ end }}
+                    <p class="archive-summary">{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate
+                        120 }}{{ end }}</p>
+                    {{ with .Params.tags }}
+                    <div class="archive-tags">
+                        {{ range (first 3 .) }}
+                        <span class="archive-tag">{{ . }}</span>
+                        {{ end }}
+                    </div>
+                    {{ end }}
+                </div>
             </div>
         </article>
         {{ end }}

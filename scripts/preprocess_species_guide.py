@@ -25,8 +25,19 @@ from datetime import date
 # Taxa to exclude: aggregated taxa, family-level entries, subspecies with NE status
 EXCLUDE_PREFIXES = ["ob. "]
 EXCLUDE_EXACT = {
+    # Family-level / aggregate taxa
     "fasanfåglar",
     "hägrar",
+    "gäss",
+    "korsnäbbar",
+    "vråkar",
+}
+# Hybrid combos to exclude (lowercase)
+EXCLUDE_HYBRIDS = {
+    "bofink/bergfink",
+    "hornuggla/jorduggla",
+    "mindre sångsvan/sångsvan",
+    "stäpphök/ängshök",
 }
 # Subspecies/NE entries to exclude (lowercase)
 EXCLUDE_SUBSPECIES = {
@@ -36,6 +47,7 @@ EXCLUDE_SUBSPECIES = {
     "västlig svart rödstjärt",
     "nordsjösilltrut",
     "nordlig kärrsnäppa",
+    "europeisk sånglärka",  # subspecies-level; sånglärka is the species
 }
 
 # Name remapping: merge old/aggregate taxa into accepted species
@@ -44,9 +56,11 @@ EXCLUDE_SUBSPECIES = {
 NAME_REMAP = {
     "sädgås": "skogsgås",
     "ob. skogsgås/tundragås": "skogsgås",
+    "kråka": "gråkråka",  # modern taxonomy split
 }
 LATIN_REMAP = {
     "Anser fabalis/serrirostris": "Anser fabalis",
+    "Corvus corone": "Corvus cornix",  # kråka → gråkråka
 }
 
 # Category thresholds (total observations)
@@ -91,6 +105,8 @@ def should_exclude(name_lower):
         if name_lower.startswith(prefix):
             return True
     if name_lower in EXCLUDE_EXACT:
+        return True
+    if name_lower in EXCLUDE_HYBRIDS:
         return True
     if name_lower in EXCLUDE_SUBSPECIES:
         return True
@@ -153,10 +169,32 @@ def main():
         "sort_order": float("inf"),
     })
 
+    # Detect GeoJSON format: old Artportalen web export vs new SOS API export
+    sample_props = features[0].get("properties", {}) if features else {}
+    is_api_format = "VernacularName" in sample_props
+    if is_api_format:
+        print("  Format: SOS API GeoJSON (VernacularName, StartDate, ...)")
+    else:
+        print("  Format: Artportalen web export (Svenskt namn, Startdatum, ...)")
+
     excluded_count = 0
     for feat in features:
         props = feat.get("properties", {})
-        name_raw = props.get("Svenskt namn", "")
+
+        # Extract fields based on format
+        if is_api_format:
+            name_raw = props.get("VernacularName") or ""
+            latin = props.get("ScientificName") or ""
+            start_date = props.get("StartDate") or ""
+            # Extract month from ISO date: "2024-12-12T11:48:00" → 12
+            month = int(start_date[5:7]) if len(start_date) >= 7 else None
+            sort_order = props.get("DyntaxaTaxonId", float("inf"))
+        else:
+            name_raw = props.get("Svenskt namn", "")
+            month = props.get("Startdatum (månad)")
+            latin = props.get("Vetenskapligt namn", "")
+            sort_order = props.get("Taxon sorteringsordning", float("inf"))
+
         name_lower = name_raw.lower().strip()
 
         # Remap aggregate taxa to accepted species (must happen before exclusion check)
@@ -166,10 +204,7 @@ def main():
             excluded_count += 1
             continue
 
-        month = props.get("Startdatum (månad)")
-        latin = props.get("Vetenskapligt namn", "")
         latin = LATIN_REMAP.get(latin, latin)
-        sort_order = props.get("Taxon sorteringsordning", float("inf"))
 
         species_data[name_lower]["total"] += 1
         if month is not None:

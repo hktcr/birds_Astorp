@@ -1,5 +1,7 @@
 ---
 title: "Vinterhämplingsflock"
+description: "En flock om hundra vinterhämplingar på ett fält vid Brånnhus — ovanligt stor samling."
+image: "/images/posts/2026-02-18-vinterhamplingsflock/vinterhamplingsflock.jpg"
 date: 2026-02-18
 draft: false
 location: "Fält vid Brånnhus"

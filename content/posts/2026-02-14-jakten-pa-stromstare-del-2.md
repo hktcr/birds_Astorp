@@ -1,5 +1,6 @@
 ---
 title: "Jakten på strömstare, del 2"
+description: "Andra försöket på strömstare, nu i Klövaravinen. Mer vatten, mer fart."
 date: 2026-02-14
 draft: false
 location: "Klövaravinen (Klöva hallar)"

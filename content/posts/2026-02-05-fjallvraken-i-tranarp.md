@@ -1,5 +1,7 @@
 ---
 title: "Fjällvråken i Tranarp"
+description: "En fjällvråk sitter på en stolpe vid Tranarp. Vinterbesökare från norr."
+image: "/images/posts/2026-02-05-fjallvrak-tranarp.jpg"
 date: 2026-02-05
 draft: false
 location: "Floarna"
