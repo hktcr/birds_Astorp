@@ -1,0 +1,150 @@
+{{ define "main" }}
+<div class="row section justify-content-center">
+    <div class="col-lg-10">
+        <div class="mb-5 text-center">
+            <h1 class="display-4 text-primary">{{ .Title }}</h1>
+            {{ with .Params.description }}
+            <p class="lead text-muted">{{ . }}</p>
+            {{ end }}
+        </div>
+
+        <!-- Gallery CSS Masonry Grid -->
+        <style>
+            .gallery-grid {
+                column-count: 1;
+                column-gap: 1.5rem;
+            }
+
+            @media (min-width: 576px) {
+                .gallery-grid {
+                    column-count: 2;
+                }
+            }
+
+            @media (min-width: 992px) {
+                .gallery-grid {
+                    column-count: 3;
+                }
+            }
+
+            .gallery-item {
+                break-inside: avoid;
+                margin-bottom: 1.5rem;
+                display: block;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+                position: relative;
+                background: #f8f9fa;
+            }
+
+            .gallery-item:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+            }
+
+            .gallery-item img {
+                width: 100%;
+                height: auto;
+                display: block;
+                margin: 0;
+            }
+
+            .gallery-overlay {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+                padding: 20px 15px 15px;
+                color: white;
+                opacity: 0;
+                transition: opacity 0.2s ease;
+            }
+
+            .gallery-item:hover .gallery-overlay {
+                opacity: 1;
+            }
+
+            .gallery-title {
+                font-size: 0.9rem;
+                font-weight: 600;
+                margin-bottom: 0.25rem;
+                display: block;
+            }
+
+            .gallery-date {
+                font-size: 0.75rem;
+                color: rgba(255, 255, 255, 0.8);
+                display: block;
+            }
+        </style>
+
+        <div class="gallery-grid">
+
+            {{ $pages := where .Site.RegularPages "Section" "posts" }}
+
+            {{ range $pages }}
+            {{ $post := . }}
+            {{ $content := .RawContent }}
+            {{ $post.Scratch.Set "seen_images" dict }}
+
+            {{/* 1. Extract markdown images: ![alt](url) */}}
+            {{ $mdRegex := `!\[.*?\]\((.*?)\)` }}
+            {{ $mdImages := findRE $mdRegex $content }}
+            {{ range $imgStr := $mdImages }}
+            {{ $url := replaceRE `!\[.*?\]\((.*?)\)` "$1" $imgStr }}
+            {{ $alt := replaceRE `!\[(.*?)\]\(.*?\)` "$1" $imgStr }}
+            {{ $dict := $post.Scratch.Get "seen_images" }}
+            {{ if not (isset $dict $url) }}
+            {{ $post.Scratch.SetInMap "seen_images" $url $alt }}
+            {{ end }}
+            {{ end }}
+
+            {{/* 2. Extract HTML img tags: <img src="url" alt="alt"> */}}
+            {{ $htmlRegex := `<img[^>]+src=["']([^"']+)["'][^>]*>` }}
+                {{ $htmlImages := findRE $htmlRegex $content }}
+                {{ range $imgStr := $htmlImages }}
+                {{ $url := replaceRE `.*src=["']([^"']+)["'].*` "$1" $imgStr }}
+                {{ $alt := "" }}
+                {{ if findRE `alt=["']([^"']+)["']` $imgStr }}
+                {{ $alt = replaceRE `.*alt=["']([^"']+)["'].*` "$1" $imgStr }}
+                {{ end }}
+                {{ $dict := $post.Scratch.Get "seen_images" }}
+                {{ if not (isset $dict $url) }}
+                {{ $post.Scratch.SetInMap "seen_images" $url $alt }}
+                {{ end }}
+                {{ end }}
+
+                {{/* 3. Frontmatter initially set image */}}
+                {{ if .Params.image }}
+                {{ $url := .Params.image }}
+                {{ $dict := $post.Scratch.Get "seen_images" }}
+                {{ if not (isset $dict $url) }}
+                {{ $post.Scratch.SetInMap "seen_images" $url $post.Title }}
+                {{ end }}
+                {{ end }}
+
+                {{/* Render collected unique images for this post */}}
+                {{ $seen := $post.Scratch.Get "seen_images" }}
+                {{ range $url, $alt := $seen }}
+                {{/* Clean URLs that might be relative like ../../../images */}}
+                {{ $cleanUrl := replaceRE `^(\.\.\/)+` "/" $url }}
+                {{/* Ignore maps or svgs unless they are actually photos */}}
+                {{ if not (in $cleanUrl "hitta-hit") }}
+                <a href="{{ $post.RelPermalink }}" class="gallery-item" title="Gå till: {{ $post.Title }}">
+                    <img src="{{ $cleanUrl }}" alt="{{ $alt }}" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-title">{{ $post.Title }}</span>
+                        <span class="gallery-date">{{ $post.Date.Format "2 Jan, 2006" }}</span>
+                    </div>
+                </a>
+                {{ end }}
+                {{ end }}
+                {{ end }}
+        </div>
+
+    </div>
+</div>
+{{ end }}

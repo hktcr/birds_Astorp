@@ -1,0 +1,774 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Ett samlat galleri med alla bilder från fågelårets notiser.">
+    <meta name="author" content="Håkan Karlsson">
+    <title>Bildgalleri | Fågelåret i Åstorp</title>
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    
+    
+    <link rel="stylesheet" href="/css/style.ae051ed19c14abfe3ad64158c211c78b7e25b2e649fc6c8265656d0c4a17c0d3.css">
+
+    
+    
+    <link rel="alternate" type="application/rss+xml" href="https://astorpsfaglar.se/galleri/index.xml" title="Fågelåret i Åstorp">
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Hoppa till innehåll</a>
+
+    <header class="site-header">
+    <div class="header-container">
+        <a href="https://astorpsfaglar.se/" class="site-logo">
+            <span class="site-title">Fågelåret i Åstorp</span>
+        </a>
+
+
+        <nav class="main-nav" aria-label="Huvudnavigation">
+            <ul class="nav-list">
+                
+                <li class="nav-item">
+                    <a href="/" class="nav-link">
+                        Hem
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="/posts/" class="nav-link">
+                        Notiser
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="/artguide/" class="nav-link">
+                        Artkalender
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="/galleri/" class="nav-link">
+                        Galleri
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="/karta/" class="nav-link">
+                        Karta
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="/om/" class="nav-link">
+                        Om
+                    </a>
+                </li>
+                
+            </ul>
+        </nav>
+
+        <button class="mobile-menu-toggle" aria-label="Öppna meny" aria-expanded="false" id="mobile-menu-btn">
+            <span class="hamburger"></span>
+        </button>
+    </div>
+</header>
+
+<script>
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuToggle = document.getElementById('mobile-menu-btn');
+        const mainNav = document.querySelector('.main-nav');
+
+        if (menuToggle && mainNav) {
+            menuToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                
+                mainNav.classList.toggle('open');
+
+                
+                const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+                menuToggle.setAttribute('aria-expanded', !isExpanded);
+            });
+
+            
+            document.addEventListener('click', (e) => {
+                if (mainNav.classList.contains('open') &&
+                    !mainNav.contains(e.target) &&
+                    !menuToggle.contains(e.target)) {
+                    mainNav.classList.remove('open');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+    });
+</script>
+
+    <main id="main-content" class="main">
+        
+<div class="row section justify-content-center">
+    <div class="col-lg-10">
+        <div class="mb-5 text-center">
+            <h1 class="display-4 text-primary">Bildgalleri</h1>
+            
+            <p class="lead text-muted">Ett samlat galleri med alla bilder från fågelårets notiser.</p>
+            
+        </div>
+
+        
+        <style>
+            .gallery-grid {
+                column-count: 1;
+                column-gap: 1.5rem;
+            }
+
+            @media (min-width: 576px) {
+                .gallery-grid {
+                    column-count: 2;
+                }
+            }
+
+            @media (min-width: 992px) {
+                .gallery-grid {
+                    column-count: 3;
+                }
+            }
+
+            .gallery-item {
+                break-inside: avoid;
+                margin-bottom: 1.5rem;
+                display: block;
+                border-radius: 8px;
+                overflow: hidden;
+                box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+                transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+                position: relative;
+                background: #f8f9fa;
+            }
+
+            .gallery-item:hover {
+                transform: translateY(-5px);
+                box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+            }
+
+            .gallery-item img {
+                width: 100%;
+                height: auto;
+                display: block;
+                margin: 0;
+            }
+
+            .gallery-overlay {
+                position: absolute;
+                bottom: 0;
+                left: 0;
+                right: 0;
+                background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
+                padding: 20px 15px 15px;
+                color: white;
+                opacity: 0;
+                transition: opacity 0.2s ease;
+            }
+
+            .gallery-item:hover .gallery-overlay {
+                opacity: 1;
+            }
+
+            .gallery-title {
+                font-size: 0.9rem;
+                font-weight: 600;
+                margin-bottom: 0.25rem;
+                display: block;
+            }
+
+            .gallery-date {
+                font-size: 0.75rem;
+                color: rgba(255, 255, 255, 0.8);
+                display: block;
+            }
+        </style>
+
+        <div class="gallery-grid">
+
+            
+
+            
+            
+            
+            
+
+            
+            
+            
+            
+
+            
+            
+                
+                
+
+                
+                
+
+                
+                
+                
+                
+            
+            
+            
+
+            
+            
+            
+            
+
+            
+            
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+
+                
+                
+                
+                
+                
+                
+
+                
+                
+                
+                
+                
+                
+                
+                <a href="/posts/2026/02/vinterh%C3%A4mplingsflock/" class="gallery-item" title="Gå till: Vinterhämplingsflock">
+                    <img src="/images/posts/2026-02-18-vinterhamplingsflock/vinterhamplingsflock.jpg" alt="Vinterhämplingsflock vid Brånnhus" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-title">Vinterhämplingsflock</span>
+                        <span class="gallery-date">18 Feb, 2026</span>
+                    </div>
+                </a>
+                
+                
+                
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+                
+                
+
+                
+                
+                
+                
+                
+                
+
+                
+                
+                
+                
+                
+                
+                
+                <a href="/posts/2026/02/50-arter/" class="gallery-item" title="Gå till: 50 arter!">
+                    <img src="/images/posts/2026-02-16-50-arter/vinterh%c3%a4mpling.jpg" alt="En av de två vinterhämplingarna, smälter väl in mot fjolårets växtlighet" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-title">50 arter!</span>
+                        <span class="gallery-date">16 Feb, 2026</span>
+                    </div>
+                </a>
+                
+                
+                
+            
+            
+            
+
+            
+            
+            
+            
+
+            
+            
+                
+                
+
+                
+                
+
+                
+                
+                
+                
+            
+            
+            
+
+            
+            
+            
+            
+
+            
+            
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+
+                
+                
+
+                
+                
+                
+                
+                
+                
+                
+                <a href="/posts/2026/02/vem-%C3%A4ter-mest-vem-%C3%A4ter-sist/" class="gallery-item" title="Gå till: Vem äter mest, vem äter sist?">
+                    <img src="/images/2026-02-06-snodagen/gulsparv.jpg" alt="Gulsparv" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-title">Vem äter mest, vem äter sist?</span>
+                        <span class="gallery-date">6 Feb, 2026</span>
+                    </div>
+                </a>
+                
+                
+                
+                
+                
+                
+                <a href="/posts/2026/02/vem-%C3%A4ter-mest-vem-%C3%A4ter-sist/" class="gallery-item" title="Gå till: Vem äter mest, vem äter sist?">
+                    <img src="/images/2026-02-06-snodagen/havsorn.jpg" alt="Havsörnar" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-title">Vem äter mest, vem äter sist?</span>
+                        <span class="gallery-date">6 Feb, 2026</span>
+                    </div>
+                </a>
+                
+                
+                
+                
+                
+                
+                <a href="/posts/2026/02/vem-%C3%A4ter-mest-vem-%C3%A4ter-sist/" class="gallery-item" title="Gå till: Vem äter mest, vem äter sist?">
+                    <img src="/images/2026-02-06-snodagen/storskrake.jpg" alt="Storskrakar" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-title">Vem äter mest, vem äter sist?</span>
+                        <span class="gallery-date">6 Feb, 2026</span>
+                    </div>
+                </a>
+                
+                
+                
+            
+            
+            
+
+            
+            
+            
+            
+
+            
+            
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+
+                
+                
+                
+                
+                
+                
+
+                
+                
+                
+                
+                
+                
+                
+                <a href="/posts/2026/02/fj%C3%A4llvr%C3%A5ken-i-tranarp/" class="gallery-item" title="Gå till: Fjällvråken i Tranarp">
+                    <img src="/images/posts/2026-02-05-fjallvrak-tranarp.jpg" alt="Fjällvråk sittande på marken i Tranarp" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-title">Fjällvråken i Tranarp</span>
+                        <span class="gallery-date">5 Feb, 2026</span>
+                    </div>
+                </a>
+                
+                
+                
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+                
+                
+
+                
+                
+                
+                
+                
+                
+                
+                
+
+                
+                
+                
+                
+                
+                
+                
+                <a href="/posts/2026/01/jakten-p%C3%A5-str%C3%B6mstare/" class="gallery-item" title="Gå till: Jakten på strömstare">
+                    <img src="/images/posts/2026-01-30-fruset-fall-korslattsravinen.jpg" alt="Ett av de mindre fallen i Körslättsravinen, nu helt fruset" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-title">Jakten på strömstare</span>
+                        <span class="gallery-date">30 Jan, 2026</span>
+                    </div>
+                </a>
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                
+                <a href="/posts/2026/01/jakten-p%C3%A5-str%C3%B6mstare/" class="gallery-item" title="Gå till: Jakten på strömstare">
+                    <img src="/images/posts/2026-01-30-fruset-fall-korslattsravinen.jpg" alt="Jakten på strömstare" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-title">Jakten på strömstare</span>
+                        <span class="gallery-date">30 Jan, 2026</span>
+                    </div>
+                </a>
+                
+                
+                
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+
+            
+            
+                
+                
+
+                
+                
+                
+                
+                
+                
+                
+                
+
+                
+                
+                
+                
+                
+                
+                
+                <a href="/posts/2026/01/vita-svanar-kall-vind/" class="gallery-item" title="Gå till: Vita svanar, kall vind">
+                    <img src="/images/posts/2026-01-25-tomarps-ene.png" alt="Tomarps Ene i vintergrått" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-title">Vita svanar, kall vind</span>
+                        <span class="gallery-date">25 Jan, 2026</span>
+                    </div>
+                </a>
+                
+                
+                
+                
+                
+                
+                <a href="/posts/2026/01/vita-svanar-kall-vind/" class="gallery-item" title="Gå till: Vita svanar, kall vind">
+                    <img src="/images/posts/2026-01-25-tomarps-ene.png" alt="Vita svanar, kall vind" loading="lazy">
+                    <div class="gallery-overlay">
+                        <span class="gallery-title">Vita svanar, kall vind</span>
+                        <span class="gallery-date">25 Jan, 2026</span>
+                    </div>
+                </a>
+                
+                
+                
+            
+            
+            
+
+            
+            
+            
+            
+
+            
+            
+                
+                
+
+                
+                
+
+                
+                
+                
+                
+        </div>
+
+    </div>
+</div>
+
+    </main>
+
+    
+
+    
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+            <img id="lightbox-img" src="" alt="">
+        </div>
+    </div>
+    <style>
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            cursor: pointer;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            background: white;
+            padding: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            max-width: 85%;
+            max-height: 85%;
+            cursor: default;
+            overflow: auto;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 75vh;
+            border-radius: 8px;
+            display: block;
+            cursor: zoom-in;
+            transition: max-width 0.3s ease, max-height 0.3s ease;
+        }
+
+        .lightbox-content img.zoomed {
+            max-width: none;
+            max-height: none;
+            cursor: zoom-out;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            width: 32px;
+            height: 32px;
+            background: #333;
+            color: white;
+            border: 3px solid white;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .lightbox-close:hover {
+            background: #555;
+        }
+
+        .gallery img {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+    </style>
+    <script>
+        function openLightbox(src, alt) {
+            const lb = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = src; img.alt = alt || '';
+            img.classList.remove('zoomed');
+            lb.classList.add('active');
+        }
+        function closeLightbox() {
+            const img = document.getElementById('lightbox-img');
+            img.classList.remove('zoomed');
+            document.getElementById('lightbox').classList.remove('active');
+        }
+        function toggleZoom() {
+            document.getElementById('lightbox-img').classList.toggle('zoomed');
+        }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('lightbox-img').addEventListener('click', e => {
+                e.stopPropagation();
+                toggleZoom();
+            });
+            document.querySelectorAll('.lightbox-link').forEach(a => {
+                a.addEventListener('click', e => {
+                    e.preventDefault();
+                    openLightbox(a.href, a.querySelector('img')?.alt);
+                });
+            });
+            document.querySelectorAll('.gallery img').forEach(img => {
+                if (!img.closest('.lightbox-link')) {
+                    img.addEventListener('click', () => openLightbox(img.src, img.alt));
+                }
+            });
+        });
+    </script>
+
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>window.siteBaseURL = "https:\/\/astorpsfaglar.se\/";</script>
+    <script src="/js/location-popup.js"></script>
+
+    
+
+    
+    <script data-goatcounter="https://hlgk.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+</body>
+
+</html>

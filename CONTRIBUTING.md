@@ -69,6 +69,7 @@ Om "Tomarps Ene" ska bli "Rönneå vid Tomarps Ene":
 | **Startsidan** (`/`) | `data/checklist-2026.json` via Hugo-template + `docs/index.html` inline JS | Byggtid + manuell synk |
 | **Artlistan** (`/arslista/`) | `docs/data/checklist-2026.json` via JS `fetch()` | Klient-side |
 | **Artguide** (`/artguide/`) | `species-guide.json` + `checklist-2026.json` via JS | Klient-side |
+| **Galleri** (`/galleri/`) | Blogginlägg (bilder extraheras via HTML/regex) | Vid byggtid |
 | **Kartan** (`/karta/`) | `docs/data/checklist-2026.json` + `docs/data/locations.json` via JS | Klient-side |
 | **Notiser** (`/posts/`) | Blogginlägg frontmatter | Vid byggtid |
 

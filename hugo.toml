@@ -28,6 +28,10 @@ publishDir = 'docs'
     pageRef = '/artguide/'
     weight = 25
   [[menus.main]]
+    name = 'Galleri'
+    pageRef = '/galleri/'
+    weight = 28
+  [[menus.main]]
     name = 'Karta'
     pageRef = '/karta/'
     weight = 30
