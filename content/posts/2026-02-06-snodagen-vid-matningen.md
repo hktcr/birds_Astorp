@@ -1,6 +1,5 @@
 ---
 title: "Vem äter mest, vem äter sist?"
-description: "Fågelmatning i snön — gulsparvar, pilfink och en havsörn som glider förbi."
 date: 2026-02-06
 draft: false
 location: "Kvidinge · Rönneå vid Tomarps Ene"

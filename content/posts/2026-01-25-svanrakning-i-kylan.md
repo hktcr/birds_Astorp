@@ -1,6 +1,5 @@
 ---
 title: "Vita svanar, kall vind"
-description: "Årets svanräkning vid Kungsgårdsmaderna, med sångsvanar och sparvhök i kylan."
 image: "/images/posts/2026-01-25-tomarps-ene.png"
 date: 2026-01-25
 location: "Kungsgårdsmaderna"

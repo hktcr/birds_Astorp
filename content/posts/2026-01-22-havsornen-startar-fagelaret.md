@@ -1,6 +1,5 @@
 ---
 title: "Havsörn startar Fågelåret"
-description: "En havsörn över Sönnarslöv inleder fågelåret 2026 — målet: 150 arter i Åstorps kommun."
 date: 2026-01-22
 location: "Sönnarslöv"
 species:
