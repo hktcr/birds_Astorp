@@ -28,7 +28,7 @@
         <div class="species-pills">
             {{ range . }}
             {{ $slug := . | urlize }}
-            <a href="{{ " artguide/" | absURL }}?view=year&highlight={{ . }}" class="species-pill">{{ . }}</a>
+            <a href="/species/{{ $slug }}/" class="species-pill">{{ . }}</a>
             {{ end }}
         </div>
     </aside>

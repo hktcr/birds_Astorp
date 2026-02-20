@@ -12,6 +12,7 @@ publishDir = 'docs'
 [taxonomies]
   tag = 'tags'
   month = 'months'
+  species = 'species'
 
 # Menu
 [menus]

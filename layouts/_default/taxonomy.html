@@ -1,0 +1,100 @@
+{{ define "main" }}
+{{/* Only species taxonomy gets the atlas treatment */}}
+{{ if eq .Data.Plural "species" }}
+
+<div class="atlas-page">
+    <div class="atlas-disclaimer">
+        🔬 <em>Fågelatlasen för Åstorps kommun är ett pågående projekt under utveckling. Data och innehåll byggs upp
+            successivt under fågelåret 2026.</em>
+    </div>
+
+    <div class="atlas-header">
+        <h1 class="atlas-title">{{ .Title }}</h1>
+        <p class="atlas-subtitle">{{ with .Description }}{{ . }}{{ end }}</p>
+        <p class="atlas-count">{{ len .Pages }} arter dokumenterade i fältdagboken</p>
+    </div>
+
+    <!-- Search/filter -->
+    <div class="atlas-search-bar">
+        <input type="text" id="atlas-search" class="atlas-search-input" placeholder="Sök art..." autocomplete="off">
+    </div>
+
+    <div class="atlas-grid" id="atlas-grid">
+        {{ range .Pages.ByTitle }}
+        {{ $speciesName := .Title }}
+        {{ $slug := $speciesName | urlize }}
+
+        {{/* Find first image for this species across all posts */}}
+        {{ $thumbUrl := "" }}
+        {{ range .Pages }}
+        {{ if eq $thumbUrl "" }}
+        {{ $content := .RawContent }}
+        {{ $imgRegex := `<img[^>]+src=["']([^"']+)["'][^>]*>` }}
+            {{ $mdRegex := `!\[.*?\]\((.*?)\)` }}
+            {{ range (findRE $imgRegex $content) }}
+            {{ if eq $thumbUrl "" }}
+            {{ $thumbUrl = replaceRE `.*src=["']([^"']+)["'].*` "$1" . }}
+            {{ end }}
+            {{ end }}
+            {{ if eq $thumbUrl "" }}
+            {{ range (findRE $mdRegex $content) }}
+            {{ if eq $thumbUrl "" }}
+            {{ $thumbUrl = replaceRE `!\[.*?\]\((.*?)\)` "$1" . }}
+            {{ end }}
+            {{ end }}
+            {{ end }}
+            {{ if eq $thumbUrl "" }}
+            {{ with .Params.image }}
+            {{ $thumbUrl = . }}
+            {{ end }}
+            {{ end }}
+            {{ end }}
+            {{ end }}
+
+            <a href="{{ .Permalink }}" class="atlas-card" data-name="{{ lower $speciesName }}">
+                {{ if ne $thumbUrl "" }}
+                <div class="atlas-card-thumb">
+                    <img src="{{ $thumbUrl }}" alt="{{ $speciesName }}" loading="lazy">
+                </div>
+                {{ else }}
+                <div class="atlas-card-thumb atlas-card-no-image">
+                    <span>🐦</span>
+                </div>
+                {{ end }}
+                <div class="atlas-card-info">
+                    <span class="atlas-card-name">{{ $speciesName }}</span>
+                    <span class="atlas-card-count">{{ len .Pages }} {{ if eq (len .Pages) 1 }}notis{{ else }}notiser{{
+                        end }}</span>
+                </div>
+            </a>
+            {{ end }}
+    </div>
+</div>
+
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const search = document.getElementById('atlas-search');
+        const cards = document.querySelectorAll('.atlas-card');
+
+        search.addEventListener('input', () => {
+            const q = search.value.toLowerCase().trim();
+            cards.forEach(card => {
+                const name = card.getAttribute('data-name');
+                card.style.display = (!q || name.includes(q)) ? '' : 'none';
+            });
+        });
+    });
+</script>
+
+{{ else }}
+{{/* Default taxonomy list for non-species taxonomies */}}
+<div class="container py-4 py-md-5">
+    <h1>{{ .Title }}</h1>
+    <ul>
+        {{ range .Pages }}
+        <li><a href="{{ .Permalink }}">{{ .Title }}</a> ({{ len .Pages }})</li>
+        {{ end }}
+    </ul>
+</div>
+{{ end }}
+{{ end }}

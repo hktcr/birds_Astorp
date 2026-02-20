@@ -1,0 +1,220 @@
+{{ define "main" }}
+<div class="atlas-page">
+    <div class="atlas-disclaimer">
+        🔬 <em>Fågelatlasen för Åstorps kommun är ett pågående projekt under utveckling. Data och innehåll byggs upp
+            successivt under fågelåret 2026.</em>
+    </div>
+
+    {{/* ── DATA COLLECTION ── */}}
+    {{ $speciesName := .Title }}
+    {{ $posts := .Pages }}
+
+    {{/* Checklist data */}}
+    {{ $checklist := site.Data.checklist_2026 | default (dict) }}
+    {{ $checklistObs := index $checklist "observations" | default slice }}
+    {{ $tickDate := "" }}
+    {{ $tickNumber := 0 }}
+    {{ $tickLocation := "" }}
+    {{ $counter := 0 }}
+    {{ range $checklistObs }}
+    {{ $counter = add $counter 1 }}
+    {{ if eq .species $speciesName }}
+    {{ if eq $tickDate "" }}
+    {{ $tickDate = .date }}
+    {{ $tickNumber = $counter }}
+    {{ $tickLocation = .location }}
+    {{ end }}
+    {{ end }}
+    {{ end }}
+
+    {{/* Species guide data (Artportalen stats) */}}
+    {{ $guide := site.Data.species_guide | default (dict) }}
+    {{ $guideSpecies := index $guide "species" | default slice }}
+    {{ $latinName := "" }}
+    {{ $totalObs := 0 }}
+    {{ $monthData := slice 0 0 0 0 0 0 0 0 0 0 0 0 }}
+    {{ range $guideSpecies }}
+    {{ if eq .name $speciesName }}
+    {{ $latinName = .latin }}
+    {{ $totalObs = .total }}
+    {{ $monthData = .months }}
+    {{ end }}
+    {{ end }}
+
+    {{/* Collect images */}}
+    {{ $allImages := slice }}
+    {{ range $posts }}
+    {{ $post := . }}
+    {{ $content := .RawContent }}
+    {{ $imgRegex := `<img[^>]+src=["']([^"']+)["'][^>]*>` }}
+        {{ $mdRegex := `!\[.*?\]\((.*?)\)` }}
+        {{ range (findRE $imgRegex $content) }}
+        {{ $url := replaceRE `.*src=["']([^"']+)["'].*` "$1" . }}
+        {{ if not (in $url "hitta-hit") }}
+        {{ $allImages = $allImages | append (dict "url" $url "post" $post) }}
+        {{ end }}
+        {{ end }}
+        {{ range (findRE $mdRegex $content) }}
+        {{ $url := replaceRE `!\[.*?\]\((.*?)\)` "$1" . }}
+        {{ if not (in $url "hitta-hit") }}
+        {{ $allImages = $allImages | append (dict "url" $url "post" $post) }}
+        {{ end }}
+        {{ end }}
+        {{ with .Params.image }}
+        {{ $allImages = $allImages | append (dict "url" . "post" $post) }}
+        {{ end }}
+        {{ end }}
+
+        {{/* Collect unique locations with coordinates */}}
+        {{ $locationDicts := slice }}
+        {{ $seenLocNames := slice }}
+        {{ range $posts }}
+        {{ with .Params.locations }}
+        {{ range . }}
+        {{ if not (in $seenLocNames .name) }}
+        {{ $seenLocNames = $seenLocNames | append .name }}
+        {{ $locationDicts = $locationDicts | append (dict "name" .name "lat" .lat "lng" .lng) }}
+        {{ end }}
+        {{ end }}
+        {{ end }}
+        {{ with .Params.location }}
+        {{ if not (in $seenLocNames .) }}
+        {{ $seenLocNames = $seenLocNames | append . }}
+        {{ $locationDicts = $locationDicts | append (dict "name" . "lat" 0 "lng" 0) }}
+        {{ end }}
+        {{ end }}
+        {{ end }}
+
+        {{/* Collect months with posts (for fenology) */}}
+        {{ $postMonths := slice 0 0 0 0 0 0 0 0 0 0 0 0 }}
+        {{ range $posts }}
+        {{ $m := sub (int (.Date.Format "1")) 1 }}
+        {{ $postMonths = $postMonths | append $m }}
+        {{ end }}
+
+        {{/* ── HEADER ── */}}
+        <div class="species-page-header">
+            <h1 class="species-page-title">{{ $speciesName }}</h1>
+            {{ with $latinName }}
+            <p class="species-page-latin"><em>{{ . }}</em></p>
+            {{ end }}
+        </div>
+
+        {{/* ── LAYOUT: Two columns on desktop ── */}}
+        <div class="species-page-layout">
+
+            {{/* ── SIDEBAR ── */}}
+            <aside class="species-sidebar">
+                <div class="species-fact-card">
+                    <h3>📌 Ditt Fågelår</h3>
+                    {{ if ne $tickDate "" }}
+                    <div class="species-fact-row">
+                        <span class="species-fact-label">Kryss</span>
+                        <span class="species-fact-value">#{{ $tickNumber }} av 150</span>
+                    </div>
+                    <div class="species-fact-row">
+                        <span class="species-fact-label">Första obs</span>
+                        <span class="species-fact-value">{{ $tickDate }}</span>
+                    </div>
+                    {{ with $tickLocation }}
+                    <div class="species-fact-row">
+                        <span class="species-fact-label">Plats</span>
+                        <span class="species-fact-value">{{ . }}</span>
+                    </div>
+                    {{ end }}
+                    {{ else }}
+                    <p class="species-fact-pending">Ej kryssad 2026</p>
+                    {{ end }}
+                </div>
+
+                {{ if gt $totalObs 0 }}
+                <div class="species-fact-card">
+                    <h3>📊 Artportalen (alla år)</h3>
+                    <div class="species-fact-row">
+                        <span class="species-fact-label">Rapporter</span>
+                        <span class="species-fact-value">{{ $totalObs }}</span>
+                    </div>
+                    <div class="species-fact-row">
+                        <span class="species-fact-label">Kommun</span>
+                        <span class="species-fact-value">Åstorp</span>
+                    </div>
+                </div>
+                {{ end }}
+
+                {{ if gt (len $locationDicts) 0 }}
+                <div class="species-fact-card">
+                    <h3>🗺️ Där vi setts</h3>
+                    <p class="species-locations-list">
+                        {{ range $i, $loc := $locationDicts }}{{ if $i }} · {{ end }}<span class="location-link" {{ with
+                            $loc.lat }}{{ if ne (printf "%v" .) "0" }}data-lat="{{ . }}" data-lng="{{ $loc.lng }}" {{
+                            end }}{{ end }}>{{ $loc.name }}</span>{{ end }}
+                    </p>
+                </div>
+                {{ end }}
+            </aside>
+
+            {{/* ── MAIN COLUMN ── */}}
+            <div class="species-main-col">
+
+                {{/* Mini-gallery with lightbox */}}
+                {{ if gt (len $allImages) 0 }}
+                <section class="species-section">
+                    <h2>Bilder</h2>
+                    <div class="species-mini-gallery">
+                        {{ range $allImages }}
+                        <div class="species-gallery-thumb" onclick="openLightbox('{{ .url }}', '{{ $speciesName }}')">
+                            <img src="{{ .url }}" alt="{{ $speciesName }}" loading="lazy">
+                        </div>
+                        {{ end }}
+                    </div>
+                </section>
+                {{ end }}
+
+                {{/* Fenology Chart */}}
+                {{ if gt $totalObs 0 }}
+                <section class="species-section">
+                    <h2>Närvaro i Åstorps kommun</h2>
+                    <p class="species-chart-caption">Rapporter per månad till Artportalen (alla år)</p>
+                    <div class="species-fenology" id="fenology-chart">
+                        {{ $months := slice "J" "F" "M" "A" "M" "J" "J" "A" "S" "O" "N" "D" }}
+                        {{ $maxVal := 1 }}
+                        {{ range $monthData }}{{ if gt (int .) (int $maxVal) }}{{ $maxVal = . }}{{ end }}{{ end }}
+                        {{ range $i, $label := $months }}
+                        {{ $val := index $monthData $i }}
+                        {{ $pct := 0 }}{{ if gt (int $maxVal) 0 }}{{ $pct = div (mul (int $val) 100) (int $maxVal) }}{{
+                        end }}
+                        <div class="fenology-bar-wrap">
+                            <div class="fenology-bar" style="height: {{ $pct }}%;" title="{{ $val }} rapporter"></div>
+                            <span class="fenology-label">{{ $label }}</span>
+                        </div>
+                        {{ end }}
+                    </div>
+                </section>
+                {{ end }}
+
+                {{/* Related posts */}}
+                {{ if gt (len $posts) 0 }}
+                <section class="species-section">
+                    <h2>Fältdagboken</h2>
+                    <div class="species-posts-list">
+                        {{ range $posts.ByDate.Reverse }}
+                        <a href="{{ .Permalink }}" class="species-post-item">
+                            <time>{{ .Date.Format "2 Jan 2006" }}</time>
+                            <span class="species-post-title">{{ .Title }}</span>
+                            {{ with .Params.location }}
+                            <span class="species-post-location">📍 {{ . }}</span>
+                            {{ end }}
+                        </a>
+                        {{ end }}
+                    </div>
+                </section>
+                {{ end }}
+
+            </div>
+        </div>
+
+        <div class="species-back-link">
+            <a href="/species/">← Tillbaka till Fågelatlasen</a>
+        </div>
+</div>
+{{ end }}
