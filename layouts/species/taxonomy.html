@@ -12,51 +12,87 @@
         <p class="atlas-subtitle">En självbyggande fågelbok för Åstorps kommun — art för art, driven av fältdagboken</p>
     </div>
 
-    {{/* Get all checklist species */}}
+    {{/* Data sources */}}
     {{ $checklist := site.Data.checklist_2026 | default (dict) }}
     {{ $checklistObs := index $checklist "observations" | default slice }}
-    {{ $totalSpecies := len $checklistObs }}
+    {{ $portraits := site.Data.species_portraits | default (dict) }}
+    {{ $portraitMap := index $portraits "portraits" | default (dict) }}
+    {{ $guide := site.Data.species_guide | default (dict) }}
+    {{ $guideSpecies := index $guide "species" | default slice }}
 
-    {{/* Build lookup of taxonomy term pages */}}
-    {{ $termPages := dict }}
-    {{ range .Pages }}
-    {{ $termPages = merge $termPages (dict (lower .Title) .) }}
+    {{/* Build checklist lookup */}}
+    {{ $tickedNames := slice }}
+    {{ $tickDates := dict }}
+    {{ range $checklistObs }}
+    {{ $tickedNames = $tickedNames | append .species }}
+    {{ $tickDates = merge $tickDates (dict .species .date) }}
     {{ end }}
 
-    <p class="atlas-count">{{ $totalSpecies }} arter kryssade under fågelåret</p>
+    {{/* Build taxonomy term page lookup */}}
+    {{ $termPages := dict }}
+    {{ range .Pages }}
+    {{ $termPages = merge $termPages (dict .Title .) }}
+    {{ end }}
+
+    <p class="atlas-count">{{ len $tickedNames }} arter kryssade av 198 rapporterade i kommunen</p>
 
     <div class="atlas-search-bar">
         <input type="text" id="atlas-search" class="atlas-search-input" placeholder="Sök art..." autocomplete="off">
     </div>
 
-    <div class="atlas-grid" id="atlas-grid">
+    {{/* Section: Kryssade arter */}}
+    <h2 class="atlas-section-title">Kryssade 2026</h2>
+    <div class="atlas-grid" id="atlas-grid-ticked">
         {{ range $checklistObs }}
         {{ $name := .species }}
-        {{ $nameLower := lower $name }}
-        {{ $termPage := index $termPages $nameLower }}
-        {{ $postCount := 0 }}
-        {{ with $termPage }}
-        {{/* Subtract 1 for the hidden artregister page */}}
-        {{ $rawCount := len .Pages }}
-        {{ $postCount = sub $rawCount 1 }}
-        {{ if lt $postCount 0 }}{{ $postCount = 0 }}{{ end }}
-        {{ end }}
+        {{ $termPage := index $termPages $name }}
+        {{ $portrait := index $portraitMap $name }}
 
-        <a href="{{ with $termPage }}{{ .Permalink }}{{ end }}"
-            class="atlas-card{{ if eq $postCount 0 }} atlas-card-pending{{ end }}" data-name="{{ $nameLower }}">
+        <a href="{{ with $termPage }}{{ .Permalink }}{{ end }}" class="atlas-card" data-name="{{ lower $name }}">
+            {{ if $portrait }}
+            <div class="atlas-card-thumb">
+                <img src="{{ $portrait }}" alt="{{ $name }}" loading="lazy">
+            </div>
+            {{ else }}
             <div class="atlas-card-thumb atlas-card-text-placeholder">
                 <span>{{ $name }}</span>
             </div>
+            {{ end }}
             <div class="atlas-card-info">
                 <span class="atlas-card-name">{{ $name }}</span>
+                {{ with $termPage }}
+                {{ $postCount := sub (len .Pages) 1 }}
                 {{ if gt $postCount 0 }}
                 <span class="atlas-card-count">{{ $postCount }} {{ if eq $postCount 1 }}notis{{ else }}notiser{{ end
                     }}</span>
                 {{ else }}
-                <span class="atlas-card-count atlas-card-awaiting">Kryssad {{ .date }}</span>
+                <span class="atlas-card-count atlas-card-awaiting">Kryssad {{ index $tickDates $name }}</span>
+                {{ end }}
                 {{ end }}
             </div>
         </a>
+        {{ end }}
+    </div>
+
+    {{/* Section: Alla andra arter i kommunen */}}
+    <h2 class="atlas-section-title atlas-section-divider">Övriga arter i Åstorps kommun</h2>
+    <div class="atlas-grid" id="atlas-grid-all">
+        {{ range $guideSpecies }}
+        {{ $name := .name }}
+        {{ if and (gt .total 0) (not (in $tickedNames $name)) }}
+        {{ $termPage := index $termPages $name }}
+
+        <a href="{{ with $termPage }}{{ .Permalink }}{{ end }}" class="atlas-card atlas-card-pending"
+            data-name="{{ lower $name }}">
+            <div class="atlas-card-thumb atlas-card-text-placeholder atlas-card-text-muted">
+                <span>{{ $name }}</span>
+            </div>
+            <div class="atlas-card-info">
+                <span class="atlas-card-name">{{ $name }}</span>
+                <span class="atlas-card-count atlas-card-awaiting">{{ .total }} rapporter</span>
+            </div>
+        </a>
+        {{ end }}
         {{ end }}
     </div>
 </div>
@@ -71,6 +107,15 @@
                 const name = card.getAttribute('data-name');
                 card.style.display = (!q || name.includes(q)) ? '' : 'none';
             });
+            // Show/hide section titles
+            document.querySelectorAll('.atlas-section-title').forEach(h => {
+                if (!q) { h.style.display = ''; return; }
+                const grid = h.nextElementSibling;
+                if (grid) {
+                    const visible = grid.querySelectorAll('.atlas-card:not([style*="none"])');
+                    h.style.display = visible.length ? '' : 'none';
+                }
+            });
         });
     });
 </script>
@@ -79,9 +124,7 @@
 <div class="container py-4 py-md-5">
     <h1>{{ .Title }}</h1>
     <ul>
-        {{ range .Pages }}
-        <li><a href="{{ .Permalink }}">{{ .Title }}</a> ({{ len .Pages }})</li>
-        {{ end }}
+        {{ range .Pages }}<li><a href="{{ .Permalink }}">{{ .Title }}</a> ({{ len .Pages }})</li>{{ end }}
     </ul>
 </div>
 {{ end }}
