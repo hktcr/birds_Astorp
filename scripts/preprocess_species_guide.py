@@ -21,6 +21,11 @@ from collections import defaultdict
 from datetime import date
 
 # --- Configuration ---
+SCRIPT_DIR = os.path.dirname(os.path.abspath(__file__))
+PROJECT_DIR = os.path.dirname(SCRIPT_DIR)  # astorp-faglar/
+TAXON_LIST_PATH = os.path.join(PROJECT_DIR, "static", "data", "TaxonList_fåglar_Åstorpskommun.csv")
+SVENSKA_NAMN_PATH = os.path.join(PROJECT_DIR, "data", "svenska-namn.json")
+
 
 # Taxa to exclude: aggregated taxa, family-level entries, subspecies with NE status
 EXCLUDE_PREFIXES = ["ob. "]
@@ -56,8 +61,6 @@ NAME_REMAP = {
     "ob. skogsgås/tundragås": "skogsgås",
     "kråka": "gråkråka",  # modern taxonomy split
     "stäpphök/ängshök": "ängshök",  # hybrid combo → count as ängshök
-    "nordlig kärrsnäppa": "kärrsnäppa",  # subspecies → parent species
-    "tamduva": "klippduva",  # match Artportalen's naming (Columba livia)
 }
 LATIN_REMAP = {
     "Anser fabalis/serrirostris": "Anser fabalis",
@@ -128,6 +131,40 @@ def capitalize_swedish(name):
         return name
     return name[0].upper() + name[1:]
 
+def load_svenska_namn():
+    """Läs in NL20 officiella svenska namn."""
+    if not os.path.exists(SVENSKA_NAMN_PATH):
+        print(f"⚠️ Hittar inte {SVENSKA_NAMN_PATH}, använder fallback-namn.")
+        return {}
+    with open(SVENSKA_NAMN_PATH, 'r', encoding='utf-8') as f:
+        return json.load(f)
+
+def load_taxon_list():
+    """Läs TaxonList CSV och returnera mappning: latin/svenst namn -> taxonomisk position och namn."""
+    if not os.path.exists(TAXON_LIST_PATH):
+        print(f"❌ Hittar inte TaxonList: {TAXON_LIST_PATH}")
+        sys.exit(1)
+
+    taxa = {}
+    with open(TAXON_LIST_PATH, 'r', encoding='utf-8') as f:
+        for line_num, line in enumerate(f, 1):
+            parts = line.strip().split(';')
+            if len(parts) < 2:
+                continue
+            name = parts[0].strip()
+            sci = parts[1].strip()
+            if not name or not sci:
+                continue
+            
+            data = {
+                "name": name,
+                "latin": sci,
+                "sort_order": line_num
+            }
+            taxa[name.lower()] = data
+            taxa[sci.lower()] = data
+    return taxa
+
 
 def main():
     # Determine base directory
@@ -162,12 +199,14 @@ def main():
     features = data.get("features", [])
     print(f"  Total features: {len(features)}")
 
+    taxon_list = load_taxon_list()
+    svenska_namn = load_svenska_namn()
+
     # Aggregate per species
     species_data = defaultdict(lambda: {
         "total": 0,
         "months": defaultdict(int),
-        "latin": None,
-        "sort_order": float("inf"),
+        "latin": None
     })
 
     # Detect GeoJSON format: old Artportalen web export vs new SOS API export
@@ -189,12 +228,10 @@ def main():
             start_date = props.get("StartDate") or ""
             # Extract month from ISO date: "2024-12-12T11:48:00" → 12
             month = int(start_date[5:7]) if len(start_date) >= 7 else None
-            sort_order = props.get("DyntaxaTaxonId", float("inf"))
         else:
             name_raw = props.get("Svenskt namn", "")
             month = props.get("Startdatum (månad)")
             latin = props.get("Vetenskapligt namn", "")
-            sort_order = props.get("Taxon sorteringsordning", float("inf"))
 
         name_lower = name_raw.lower().strip()
 
@@ -212,31 +249,70 @@ def main():
             species_data[name_lower]["months"][int(month)] += 1
         if latin and not species_data[name_lower]["latin"]:
             species_data[name_lower]["latin"] = latin
-        if sort_order < species_data[name_lower]["sort_order"]:
-            species_data[name_lower]["sort_order"] = sort_order
 
     print(f"  Excluded observations: {excluded_count}")
     print(f"  Unique species: {len(species_data)}")
 
     # Build output
     species_list = []
+    
+    # We only include species that are in the TaxonList to filter out Jaktfalk and similar errors
+    taxa_processed = set()
+    
     for name_lower, info in species_data.items():
+        latin = info["latin"] or ""
+        
+        # Determine taxonomy from TaxonList
+        taxon_info = taxon_list.get(name_lower)
+        if not taxon_info and latin:
+            taxon_info = taxon_list.get(latin.lower())
+            
+        if not taxon_info:
+            continue
+            
+        avi_name = taxon_info["name"]
+        sort_order = taxon_info["sort_order"]
+        
+        # Avoid duplicate entries for the same resolved taxon
+        if avi_name in taxa_processed:
+            # We already added this taxon, we should merge the totals/months
+            for sp in species_list:
+                if sp["_avi_name"] == avi_name:
+                    sp["total"] += info["total"]
+                    for m in range(12):
+                        sp["months"][m] += info["months"].get(m+1, 0)
+                    sp["category"] = categorize(sp["total"])
+                    break
+            continue
+            
+        taxa_processed.add(avi_name)
+        
+        # 1. Look up in NL20 (svenska_namn) by scientific name
+        # 2. If not found, fallback to AviList (TaxonList)
+        final_name = svenska_namn.get(latin.lower(), avi_name)
+        
+        # Special case for Tamduva/Klippduva
+        if final_name.lower() == "klippduva" or avi_name.lower() == "tamduva":
+            final_name = "Klippduva (tamduva)"
+
         months_array = [info["months"].get(m, 0) for m in range(1, 13)]
         species_list.append({
-            "name": capitalize_swedish(name_lower),
-            "latin": info["latin"] or "",
+            "name": capitalize_swedish(final_name),
+            "latin": latin,
             "total": info["total"],
             "category": categorize(info["total"]),
             "months": months_array,
-            "sortOrder": info["sort_order"],
+            "sortOrder": sort_order,
+            "_avi_name": avi_name
         })
 
     # Sort by taxonomic order
     species_list.sort(key=lambda s: s["sortOrder"])
 
-    # Remove sortOrder from output (internal only)
+    # Remove internal fields
     for sp in species_list:
         del sp["sortOrder"]
+        del sp["_avi_name"]
 
     # Category summary
     cat_counts = defaultdict(int)

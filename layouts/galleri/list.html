@@ -258,6 +258,10 @@
                 {{ end }}
                 {{ end }}
 
+                {{ if strings.Contains $altStr "landskap" }}
+                {{ $imageSpecies = $imageSpecies | append "Landskap" }}
+                {{ end }}
+
                 {{/* Fallback: If no species found in alt text, but the post only has 1 species, assume it's that one
                 */}}
                 {{ if and (eq (len $imageSpecies) 0) $post.Params.species }}
@@ -282,9 +286,9 @@
                 <!-- Filter UI -->
                 <div class="gallery-filter-bar">
                     <div class="gallery-filter-group">
-                        <label for="species-filter"><strong>Art:</strong></label>
+                        <label for="species-filter"><strong>Art / Motiv:</strong></label>
                         <select id="species-filter" class="gallery-filter-select">
-                            <option value="">Alla arter</option>
+                            <option value="">Alla</option>
                             {{ range sort ($speciesList.Get "list") }}
                             <option value="{{ . | urlize }}">{{ . }}</option>
                             {{ end }}

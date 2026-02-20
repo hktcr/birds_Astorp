@@ -43,6 +43,7 @@ DATA_MINING_DIR = os.path.join(os.path.dirname(PROJECT_DIR), "data_mining")
 
 CONFIG_PATH = os.path.join(DATA_MINING_DIR, "config.yaml")
 TAXON_LIST_PATH = os.path.join(PROJECT_DIR, "static", "data", "TaxonList_fåglar_Åstorpskommun.csv")
+SVENSKA_NAMN_PATH = os.path.join(PROJECT_DIR, "data", "svenska-namn.json")
 OUTPUT_PATH = os.path.join(PROJECT_DIR, "static", "data", "species-guide.json")
 
 # Artportalen SOS API
@@ -92,6 +93,15 @@ def load_api_key():
                     return key
     print("❌ Kunde inte läsa API-nyckel")
     sys.exit(1)
+
+
+def load_svenska_namn():
+    """Läs in NL20 officiella svenska namn."""
+    if not os.path.exists(SVENSKA_NAMN_PATH):
+        print(f"⚠️ Hittar inte {SVENSKA_NAMN_PATH}, använder fallback-namn.")
+        return {}
+    with open(SVENSKA_NAMN_PATH, 'r', encoding='utf-8') as f:
+        return json.load(f)
 
 
 def load_taxon_list():
@@ -288,15 +298,24 @@ def process_observations(observations, taxon_list):
     return stats
 
 
-def build_species_guide(taxon_list, stats):
+def build_species_guide(taxon_list, stats, svenska_namn):
     """Bygg species-guide.json-strukturen."""
 
     species_entries = []
 
     for sp in taxon_list:
-        name = sp["name"]
+        avi_name = sp["name"]
         latin = sp["latin"]
-        key = name.lower()
+        key = avi_name.lower()
+        
+        # Determine the name to use based on the rules:
+        # 1. Look up in NL20 (svenska_namn) by scientific name
+        # 2. If not found, fallback to AviList (TaxonList)
+        name = svenska_namn.get(latin.lower(), avi_name)
+        
+        # Special case for Tamduva/Klippduva
+        if name.lower() == "klippduva" or avi_name.lower() == "tamduva":
+            name = "Klippduva (tamduva)"
 
         # Skippa arter som slagits ihop med en annan art
         if key in SPECIES_MERGES:
@@ -397,8 +416,11 @@ def main():
     print("🧮 Beräknar artstatistik...")
     stats = process_observations(observations, taxon_list)
 
+    # 4.5. Ladda svenska namn (NL20)
+    svenska_namn = load_svenska_namn()
+
     # 5. Bygg species-guide
-    species_entries = build_species_guide(taxon_list, stats)
+    species_entries = build_species_guide(taxon_list, stats, svenska_namn)
 
     # 6. Spara
     print()
