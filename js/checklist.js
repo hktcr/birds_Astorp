@@ -39,7 +39,7 @@
         { id: 28, name: "Gråtrut", latin: "Larus argentatus", order: 28 },
         { id: 29, name: "Havstrut", latin: "Larus marinus", order: 29 },
         { id: 30, name: "Skrattmås", latin: "Chroicocephalus ridibundus", order: 30 },
-        { id: 31, name: "Tamduva", latin: "Columba livia", order: 31 },
+        { id: 31, name: "Klippduva (tamduva)", latin: "Columba livia", order: 31 },
         { id: 32, name: "Skogsduva", latin: "Columba oenas", order: 32 },
         { id: 33, name: "Ringduva", latin: "Columba palumbus", order: 33 },
         { id: 34, name: "Turkduva", latin: "Streptopelia decaocto", order: 34 },
