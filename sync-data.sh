@@ -7,21 +7,21 @@
 #   ./sync-data.sh --deploy        (synkar + build + commit + push)
 #
 # SINGLE SOURCE OF TRUTH:
-#   data/checklist-2026.json  →  docs/data/checklist-2026.json
-#   data/locations.json       →  docs/data/locations.json
+#   data/checklist-2026.json  →  static/data/checklist-2026.json
+#   data/locations.json       →  static/data/locations.json
 
 set -e
 cd "$(dirname "$0")"
 
 if [[ "$1" == "--verify" ]]; then
     echo "🔍 Verifierar synk..."
-    if diff -q data/checklist-2026.json docs/data/checklist-2026.json > /dev/null 2>&1; then
+    if diff -q data/checklist-2026.json static/data/checklist-2026.json > /dev/null 2>&1; then
         echo "✅ checklist-2026.json är synkad"
     else
         echo "❌ checklist-2026.json är INTE synkad!"
         exit 1
     fi
-    if diff -q data/locations.json docs/data/locations.json > /dev/null 2>&1; then
+    if diff -q data/locations.json static/data/locations.json > /dev/null 2>&1; then
         echo "✅ locations.json är synkad"
     else
         echo "❌ locations.json är INTE synkad!"
@@ -32,8 +32,8 @@ if [[ "$1" == "--verify" ]]; then
 elif [[ "$1" == "--deploy" ]]; then
     # Full deploy: sync + build + commit + push
     echo "📋 Synkar datafiler..."
-    cp data/checklist-2026.json docs/data/checklist-2026.json
-    cp data/locations.json docs/data/locations.json
+    cp data/checklist-2026.json static/data/checklist-2026.json
+    cp data/locations.json static/data/locations.json
     SPECIES_COUNT=$(grep -c '"species"' data/checklist-2026.json)
     echo "   Antal arter: $SPECIES_COUNT"
     
@@ -48,9 +48,9 @@ elif [[ "$1" == "--deploy" ]]; then
     echo "✅ Publicerat! Vänta ~1 min för GitHub Pages cache."
 else
     echo "📋 Synkar datafiler..."
-    cp data/checklist-2026.json docs/data/checklist-2026.json
-    cp data/locations.json docs/data/locations.json
-    echo "✅ Synkat till docs/data/"
+    cp data/checklist-2026.json static/data/checklist-2026.json
+    cp data/locations.json static/data/locations.json
+    echo "✅ Synkat till static/data/"
     echo "   Antal arter: $(grep -c '"species"' data/checklist-2026.json)"
     
     echo "🏗️  Bygger Hugo-sajt..."
