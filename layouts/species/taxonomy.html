@@ -9,66 +9,102 @@
     </div>
 
     <div class="atlas-header">
-        <h1 class="atlas-title">{{ .Title }}</h1>
-        <p class="atlas-subtitle">{{ with .Description }}{{ . }}{{ end }}</p>
-        <p class="atlas-count">{{ len .Pages }} arter dokumenterade i fältdagboken</p>
+        <h1 class="atlas-title">Fågelatlasen</h1>
+        <p class="atlas-subtitle">En självbyggande fågelbok för Åstorps kommun — art för art, driven av fältdagboken</p>
     </div>
+
+    {{/* Build a lookup map of existing taxonomy term pages */}}
+    {{ $termPages := dict }}
+    {{ range .Pages }}
+    {{ $termPages = merge $termPages (dict (lower .Title) .) }}
+    {{ end }}
+
+    {{/* Get all checklist species */}}
+    {{ $checklist := site.Data.checklist_2026 | default (dict) }}
+    {{ $checklistObs := index $checklist "observations" | default slice }}
+    {{ $totalSpecies := len $checklistObs }}
+    {{ $speciesWithPages := len .Pages }}
+
+    <p class="atlas-count">{{ $totalSpecies }} arter kryssade under fågelåret · {{ $speciesWithPages }} har egna
+        atlassidor</p>
 
     <!-- Search/filter -->
     <div class="atlas-search-bar">
         <input type="text" id="atlas-search" class="atlas-search-input" placeholder="Sök art..." autocomplete="off">
     </div>
 
-    <div class="atlas-grid" id="atlas-grid">
-        {{ range .Pages.ByTitle }}
-        {{ $speciesName := .Title }}
-        {{ $slug := $speciesName | urlize }}
+    {{/* Collect first image per species from posts */}}
+    {{ $speciesImages := dict }}
+    {{ range .Pages }}
+    {{ $speciesName := lower .Title }}
+    {{ if not (index $speciesImages $speciesName) }}
+    {{ range .Pages }}
+    {{ if not (index $speciesImages $speciesName) }}
+    {{ $content := .RawContent }}
+    {{ $imgRegex := `<img[^>]+src=["']([^"']+)["'][^>]*>` }}
+        {{ $mdRegex := `!\[.*?\]\((.*?)\)` }}
+        {{ range (findRE $imgRegex $content) }}
+        {{ if not (index $speciesImages $speciesName) }}
+        {{ $url := replaceRE `.*src=["']([^"']+)["'].*` "$1" . }}
+        {{ if not (in $url "hitta-hit") }}
+        {{ $speciesImages = merge $speciesImages (dict $speciesName $url) }}
+        {{ end }}
+        {{ end }}
+        {{ end }}
+        {{ if not (index $speciesImages $speciesName) }}
+        {{ range (findRE $mdRegex $content) }}
+        {{ if not (index $speciesImages $speciesName) }}
+        {{ $url := replaceRE `!\[.*?\]\((.*?)\)` "$1" . }}
+        {{ if not (in $url "hitta-hit") }}
+        {{ $speciesImages = merge $speciesImages (dict $speciesName $url) }}
+        {{ end }}
+        {{ end }}
+        {{ end }}
+        {{ end }}
+        {{ end }}
+        {{ end }}
+        {{ end }}
+        {{ end }}
 
-        {{/* Find first image for this species across all posts */}}
-        {{ $thumbUrl := "" }}
-        {{ range .Pages }}
-        {{ if eq $thumbUrl "" }}
-        {{ $content := .RawContent }}
-        {{ $imgRegex := `<img[^>]+src=["']([^"']+)["'][^>]*>` }}
-            {{ $mdRegex := `!\[.*?\]\((.*?)\)` }}
-            {{ range (findRE $imgRegex $content) }}
-            {{ if eq $thumbUrl "" }}
-            {{ $thumbUrl = replaceRE `.*src=["']([^"']+)["'].*` "$1" . }}
-            {{ end }}
-            {{ end }}
-            {{ if eq $thumbUrl "" }}
-            {{ range (findRE $mdRegex $content) }}
-            {{ if eq $thumbUrl "" }}
-            {{ $thumbUrl = replaceRE `!\[.*?\]\((.*?)\)` "$1" . }}
-            {{ end }}
-            {{ end }}
-            {{ end }}
-            {{ if eq $thumbUrl "" }}
-            {{ with .Params.image }}
-            {{ $thumbUrl = . }}
-            {{ end }}
-            {{ end }}
-            {{ end }}
-            {{ end }}
+        <div class="atlas-grid" id="atlas-grid">
+            {{/* Iterate over all checklist species */}}
+            {{ range $checklistObs }}
+            {{ $name := .species }}
+            {{ $slug := $name | urlize }}
+            {{ $nameLower := lower $name }}
+            {{ $termPage := index $termPages $nameLower }}
+            {{ $thumbUrl := index $speciesImages $nameLower }}
 
-            <a href="{{ .Permalink }}" class="atlas-card" data-name="{{ lower $speciesName }}">
-                {{ if ne $thumbUrl "" }}
-                <div class="atlas-card-thumb">
-                    <img src="{{ $thumbUrl }}" alt="{{ $speciesName }}" loading="lazy">
-                </div>
+            {{ if $termPage }}
+            <a href="{{ $termPage.Permalink }}" class="atlas-card" data-name="{{ $nameLower }}">
                 {{ else }}
-                <div class="atlas-card-thumb atlas-card-no-image">
-                    <span>🐦</span>
-                </div>
-                {{ end }}
-                <div class="atlas-card-info">
-                    <span class="atlas-card-name">{{ $speciesName }}</span>
-                    <span class="atlas-card-count">{{ len .Pages }} {{ if eq (len .Pages) 1 }}notis{{ else }}notiser{{
-                        end }}</span>
-                </div>
+                <div class="atlas-card atlas-card-pending" data-name="{{ $nameLower }}">
+                    {{ end }}
+                    {{ if $thumbUrl }}
+                    <div class="atlas-card-thumb">
+                        <img src="{{ $thumbUrl }}" alt="{{ $name }}" loading="lazy">
+                    </div>
+                    {{ else }}
+                    <div class="atlas-card-thumb atlas-card-no-image">
+                        <span>🐦</span>
+                    </div>
+                    {{ end }}
+                    <div class="atlas-card-info">
+                        <span class="atlas-card-name">{{ $name }}</span>
+                        {{ if $termPage }}
+                        <span class="atlas-card-count">{{ len $termPage.Pages }} {{ if eq (len $termPage.Pages) 1
+                            }}notis{{ else }}notiser{{ end }}</span>
+                        {{ else }}
+                        <span class="atlas-card-count atlas-card-awaiting">Kryssad {{ .date }}</span>
+                        {{ end }}
+                    </div>
+                    {{ if $termPage }}
             </a>
-            {{ end }}
-    </div>
+            {{ else }}
+        </div>
+        {{ end }}
+        {{ end }}
+</div>
 </div>
 
 <script>
