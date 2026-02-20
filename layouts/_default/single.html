@@ -27,8 +27,7 @@
         <h2>Arter i detta inlägg</h2>
         <div class="species-pills">
             {{ range . }}
-            {{ $slug := . | urlize }}
-            <a href="/species/{{ $slug }}/" class="species-pill">{{ . }}</a>
+            <span class="species-pill species-pill--static">{{ . }}</span>
             {{ end }}
         </div>
     </aside>

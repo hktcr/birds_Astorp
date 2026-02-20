@@ -2,17 +2,8 @@
 {{ if eq .Data.Plural "species" }}
 
 <div class="atlas-page">
-    <div class="atlas-disclaimer">
-        🔬 <em>Fågelatlasen för Åstorps kommun är ett pågående projekt under utveckling. Data och innehåll byggs upp
-            successivt under fågelåret 2026.</em>
-    </div>
 
-    <div class="atlas-header">
-        <h1 class="atlas-title">Fågelatlasen</h1>
-        <p class="atlas-subtitle">En självbyggande fågelbok för Åstorps kommun — art för art, driven av fältdagboken</p>
-    </div>
-
-    {{/* Data sources */}}
+    {{/* ── DATA SOURCES ── */}}
     {{ $checklist := site.Data.checklist_2026 | default (dict) }}
     {{ $checklistObs := index $checklist "observations" | default slice }}
     {{ $portraits := site.Data.species_portraits | default (dict) }}
@@ -23,9 +14,13 @@
     {{/* Build checklist lookup */}}
     {{ $tickedNames := slice }}
     {{ $tickDates := dict }}
+    {{ $tickNumbers := dict }}
+    {{ $counter := 0 }}
     {{ range $checklistObs }}
+    {{ $counter = add $counter 1 }}
     {{ $tickedNames = $tickedNames | append .species }}
     {{ $tickDates = merge $tickDates (dict .species .date) }}
+    {{ $tickNumbers = merge $tickNumbers (dict .species $counter) }}
     {{ end }}
 
     {{/* Build taxonomy term page lookup */}}
@@ -34,30 +29,66 @@
     {{ $termPages = merge $termPages (dict .Title .) }}
     {{ end }}
 
-    <p class="atlas-count">{{ len $tickedNames }} arter kryssade av 198 rapporterade i kommunen</p>
+    {{/* ── DISCLAIMER BANNER ── */}}
+    <div class="atlas-disclaimer">
+        <span class="atlas-icon atlas-icon--flask"></span>
+        <em>Fågelatlasen för Åstorps kommun är ett pågående projekt under utveckling. Data och innehåll byggs upp
+            successivt under fågelåret 2026.</em>
+    </div>
 
+    {{/* ── HERO SECTION ── */}}
+    <div class="atlas-hero">
+        <div class="atlas-hero-inner">
+            <h1 class="atlas-title">Fågelatlasen</h1>
+            <p class="atlas-subtitle">En självbyggande fågelbok för Åstorps kommun — art för art, driven av
+                fältdagboken</p>
+            <div class="atlas-hero-stats">
+                <div class="atlas-hero-stat">
+                    <span class="atlas-hero-number">{{ len $tickedNames }}</span>
+                    <span class="atlas-hero-label">kryssade</span>
+                </div>
+                <div class="atlas-hero-divider"></div>
+                <div class="atlas-hero-stat">
+                    <span class="atlas-hero-number atlas-hero-number--muted">150</span>
+                    <span class="atlas-hero-label">mål</span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    {{/* ── SEARCH BAR ── */}}
     <div class="atlas-search-bar">
+        <span class="atlas-icon atlas-icon--search"></span>
         <input type="text" id="atlas-search" class="atlas-search-input" placeholder="Sök art..." autocomplete="off">
     </div>
 
-    {{/* Section: Kryssade arter */}}
-    <h2 class="atlas-section-title">Kryssade 2026</h2>
+    {{/* ── SECTION: Kryssade arter ── */}}
+    <h2 class="atlas-section-title">
+        <span class="atlas-icon atlas-icon--check"></span>
+        Kryssade 2026
+    </h2>
     <div class="atlas-grid" id="atlas-grid-ticked">
         {{ range $checklistObs }}
         {{ $name := .species }}
         {{ $termPage := index $termPages $name }}
         {{ $portrait := index $portraitMap $name }}
+        {{ $num := index $tickNumbers $name }}
 
-        <a href="{{ with $termPage }}{{ .Permalink }}{{ end }}" class="atlas-card" data-name="{{ lower $name }}">
+        <a href="{{ with $termPage }}{{ .Permalink }}{{ end }}" class="atlas-card atlas-card--ticked"
+            data-name="{{ lower $name }}">
             {{ if $portrait }}
             <div class="atlas-card-thumb">
                 <img src="{{ $portrait }}" alt="{{ $name }}" loading="lazy">
+                <div class="atlas-card-overlay">
+                    <span class="atlas-card-overlay-name">{{ $name }}</span>
+                </div>
             </div>
             {{ else }}
             <div class="atlas-card-thumb atlas-card-text-placeholder">
                 <span>{{ $name }}</span>
             </div>
             {{ end }}
+            <div class="atlas-card-badge">#{{ $num }}</div>
             <div class="atlas-card-info">
                 <span class="atlas-card-name">{{ $name }}</span>
                 {{ with $termPage }}
@@ -74,8 +105,11 @@
         {{ end }}
     </div>
 
-    {{/* Section: Alla andra arter i kommunen */}}
-    <h2 class="atlas-section-title atlas-section-divider">Övriga arter i Åstorps kommun</h2>
+    {{/* ── SECTION: Övriga arter ── */}}
+    <h2 class="atlas-section-title atlas-section-divider">
+        <span class="atlas-icon atlas-icon--list"></span>
+        Övriga arter i Åstorps kommun
+    </h2>
     <div class="atlas-grid" id="atlas-grid-all">
         {{ range $guideSpecies }}
         {{ $name := .name }}
@@ -101,6 +135,13 @@
     document.addEventListener('DOMContentLoaded', () => {
         const search = document.getElementById('atlas-search');
         const cards = document.querySelectorAll('.atlas-card');
+
+        // Fade-in animation
+        cards.forEach((card, i) => {
+            card.style.animationDelay = `${Math.min(i * 30, 600)}ms`;
+            card.classList.add('atlas-card--animate');
+        });
+
         search.addEventListener('input', () => {
             const q = search.value.toLowerCase().trim();
             cards.forEach(card => {

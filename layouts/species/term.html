@@ -1,7 +1,10 @@
 {{ define "main" }}
 <div class="atlas-page">
+
+    {{/* ── DISCLAIMER ── */}}
     <div class="atlas-disclaimer">
-        🔬 <em>Fågelatlasen för Åstorps kommun är ett pågående projekt under utveckling. Data och innehåll byggs upp
+        <span class="atlas-icon atlas-icon--flask"></span>
+        <em>Fågelatlasen för Åstorps kommun är ett pågående projekt under utveckling. Data och innehåll byggs upp
             successivt under fågelåret 2026.</em>
     </div>
 
@@ -40,6 +43,11 @@
     {{ $monthData = .months }}
     {{ end }}
     {{ end }}
+
+    {{/* Portrait image */}}
+    {{ $portraits := site.Data.species_portraits | default (dict) }}
+    {{ $portraitMap := index $portraits "portraits" | default (dict) }}
+    {{ $portrait := index $portraitMap $speciesName }}
 
     {{/* Collect images */}}
     {{ $allImages := slice }}
@@ -85,18 +93,33 @@
         {{ end }}
         {{ end }}
 
-        {{/* Collect months with posts (for fenology) */}}
-        {{ $postMonths := slice 0 0 0 0 0 0 0 0 0 0 0 0 }}
-        {{ range $posts }}
-        {{ $m := sub (int (.Date.Format "1")) 1 }}
-        {{ $postMonths = $postMonths | append $m }}
-        {{ end }}
+        {{/* ── BREADCRUMBS ── */}}
+        <nav class="atlas-breadcrumb" aria-label="Brödsmulor">
+            <a href="/species/">Fågelatlasen</a>
+            <span class="atlas-breadcrumb-sep">/</span>
+            <span class="atlas-breadcrumb-current">{{ $speciesName }}</span>
+        </nav>
 
         {{/* ── HEADER ── */}}
         <div class="species-page-header">
+            {{ with $portrait }}
+            <div class="species-hero-portrait">
+                <img src="{{ . }}" alt="{{ $speciesName }}" loading="lazy">
+            </div>
+            {{ end }}
             <h1 class="species-page-title">{{ $speciesName }}</h1>
             {{ with $latinName }}
             <p class="species-page-latin"><em>{{ . }}</em></p>
+            {{ end }}
+            {{ if ne $tickDate "" }}
+            <div class="species-status-badge species-status-badge--ticked">
+                <span class="atlas-icon atlas-icon--check"></span>
+                Kryss #{{ $tickNumber }}
+            </div>
+            {{ else }}
+            <div class="species-status-badge species-status-badge--pending">
+                Ej kryssad 2026
+            </div>
             {{ end }}
         </div>
 
@@ -106,7 +129,7 @@
             {{/* ── SIDEBAR ── */}}
             <aside class="species-sidebar">
                 <div class="species-fact-card">
-                    <h3>📌 Ditt Fågelår</h3>
+                    <h3><span class="atlas-icon atlas-icon--pin"></span> Ditt Fågelår</h3>
                     {{ if ne $tickDate "" }}
                     <div class="species-fact-row">
                         <span class="species-fact-label">Kryss</span>
@@ -129,7 +152,7 @@
 
                 {{ if gt $totalObs 0 }}
                 <div class="species-fact-card">
-                    <h3>📊 Artportalen (alla år)</h3>
+                    <h3><span class="atlas-icon atlas-icon--chart"></span> Artportalen (alla år)</h3>
                     <div class="species-fact-row">
                         <span class="species-fact-label">Rapporter</span>
                         <span class="species-fact-value">{{ $totalObs }}</span>
@@ -143,7 +166,7 @@
 
                 {{ if gt (len $locationDicts) 0 }}
                 <div class="species-fact-card">
-                    <h3>🗺️ Där vi setts</h3>
+                    <h3><span class="atlas-icon atlas-icon--map"></span> Där vi setts</h3>
                     <p class="species-locations-list">
                         {{ range $i, $loc := $locationDicts }}{{ if $i }} · {{ end }}<span class="location-link" {{ with
                             $loc.lat }}{{ if ne (printf "%v" .) "0" }}data-lat="{{ . }}" data-lng="{{ $loc.lng }}" {{
@@ -184,7 +207,8 @@
                         {{ $pct := 0 }}{{ if gt (int $maxVal) 0 }}{{ $pct = div (mul (int $val) 100) (int $maxVal) }}{{
                         end }}
                         <div class="fenology-bar-wrap">
-                            <div class="fenology-bar" style="height: {{ $pct }}%;" title="{{ $val }} rapporter"></div>
+                            <div class="fenology-bar" style="height: {{ $pct }}%;" title="{{ $val }} rapporter"
+                                data-count="{{ $val }}"></div>
                             <span class="fenology-label">{{ $label }}</span>
                         </div>
                         {{ end }}
@@ -202,7 +226,8 @@
                             <time>{{ .Date.Format "2 Jan 2006" }}</time>
                             <span class="species-post-title">{{ .Title }}</span>
                             {{ with .Params.location }}
-                            <span class="species-post-location">📍 {{ . }}</span>
+                            <span class="species-post-location"><span class="atlas-icon atlas-icon--pin-small"></span>
+                                {{ . }}</span>
                             {{ end }}
                         </a>
                         {{ end }}
@@ -213,8 +238,12 @@
             </div>
         </div>
 
+        {{/* ── BACK LINK ── */}}
         <div class="species-back-link">
-            <a href="/species/">← Tillbaka till Fågelatlasen</a>
+            <a href="/species/">
+                <span class="atlas-icon atlas-icon--arrow-left"></span>
+                Tillbaka till Fågelatlasen
+            </a>
         </div>
 </div>
 {{ end }}

@@ -74,7 +74,7 @@
 
             // Try to get a nice display name from the URL by capitalizing it (or we can just show the slug if it's tricky)
             // A simple readable format from the slug: replace dashes with spaces, uppercase first letter
-            const displayLabel = filterSpecies.replace(/-/g, ' ').replace(/^./, str => str.toUpperCase());
+            const displayLabel = decodeURIComponent(filterSpecies).replace(/-/g, ' ').replace(/^./, str => str.toUpperCase());
 
             if (filterBar && filterName) {
                 filterName.textContent = displayLabel;
