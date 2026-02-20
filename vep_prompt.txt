@@ -1,0 +1,5 @@
+Vi har precis tittat på notisernas "Arter i detta inlägg"-klickbara piller på Fåglar i Åstorp. Just nu länkar de till Artguiden via:
+`/?view=year&highlight={{ artnamn }}`
+Men användaren undrar hur vi kan göra detta bättre.
+
+Fråga till panelen: Vad tycker ni bör hända när man klickar på en art i en notis (i rutan "Arter i detta inlägg")? Ska de länka till Artguiden, starta en filtrering i galleriet, öppna en egen art-specifik sida, eller något helt annat?

@@ -213,6 +213,16 @@
             {{ $postImages := newScratch }}
             {{ $postImages.Set "list" slice }}
 
+            {{ if isset $post.Params "images" }}
+            {{ range $post.Params.images }}
+            {{ $categories := slice }}
+            {{ if isset . "categories" }}
+            {{ $categories = .categories }}
+            {{ end }}
+            {{ $postImages.Add "list" (dict "url" .url "alt" .alt "categories" $categories) }}
+            {{ end }}
+            {{ else }}
+            {{/* Fallback for older posts without "images" frontmatter */}}
             {{/* 1. Extract markdown images */}}
             {{ $mdRegex := `!\[.*?\]\((.*?)\)` }}
             {{ range (findRE $mdRegex $content) }}
@@ -237,6 +247,7 @@
                 {{ $url := . }}
                 {{ $postImages.Add "list" (dict "url" $url "alt" $post.Title) }}
                 {{ end }}
+                {{ end }}
 
                 {{/* Process this post's images */}}
                 {{ range ($postImages.Get "list") }}
@@ -246,26 +257,12 @@
                 {{ if not (isset ($globalImages.Get "urls") $cleanUrl) }}
                 {{ $globalImages.SetInMap "urls" $cleanUrl true }}
 
-                {{/* Figure out the species for THIS image */}}
                 {{ $imageSpecies := slice }}
-                {{ $altStr := lower .alt }}
-
-                {{ with $post.Params.species }}
-                {{ range . }}
-                {{ if strings.Contains $altStr (lower .) }}
-                {{ $imageSpecies = $imageSpecies | append . }}
-                {{ end }}
-                {{ end }}
-                {{ end }}
-
-                {{ if strings.Contains $altStr "landskap" }}
-                {{ $imageSpecies = $imageSpecies | append "Landskap" }}
-                {{ end }}
-
-                {{/* Fallback: If no species found in alt text, but the post only has 1 species, assume it's that one
-                */}}
-                {{ if and (eq (len $imageSpecies) 0) $post.Params.species }}
-                {{ if eq (len $post.Params.species) 1 }}
+                {{ if isset . "categories" }}
+                {{ $imageSpecies = .categories }}
+                {{ else }}
+                {{/* Fallback: Assign the post's species to all its images */}}
+                {{ if $post.Params.species }}
                 {{ $imageSpecies = $post.Params.species }}
                 {{ end }}
                 {{ end }}
