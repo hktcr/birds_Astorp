@@ -2,13 +2,13 @@
 <div class="row section justify-content-center">
     <div class="col-lg-10">
         <div class="mb-5 text-center">
-            <h1 class="display-4 text-primary">{{ .Title }}</h1>
+            <h1 class="display-4 text-primary" style="font-family: 'Lora', Georgia, serif;">{{ .Title }}</h1>
             {{ with .Params.description }}
             <p class="lead text-muted">{{ . }}</p>
             {{ end }}
         </div>
 
-        <!-- Gallery CSS Masonry Grid -->
+        <!-- Gallery CSS Masonry Grid & Filters -->
         <style>
             .gallery-grid {
                 column-count: 1;
@@ -36,7 +36,9 @@
                 box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
                 transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
                 position: relative;
-                background: #f8f9fa;
+                background: #fcfbf9;
+                /* fältdagboks-känsla */
+                cursor: pointer;
             }
 
             .gallery-item:hover {
@@ -56,95 +58,368 @@
                 bottom: 0;
                 left: 0;
                 right: 0;
-                background: linear-gradient(to top, rgba(0, 0, 0, 0.8), transparent);
-                padding: 20px 15px 15px;
+                background: linear-gradient(to top, rgba(0, 0, 0, 0.85), transparent);
+                padding: 30px 15px 15px;
                 color: white;
                 opacity: 0;
-                transition: opacity 0.2s ease;
+                transition: opacity 0.3s ease;
+                font-family: 'Lora', Georgia, serif;
+                pointer-events: none;
+                /* Let clicks pass to the parent <a> */
             }
 
             .gallery-item:hover .gallery-overlay {
                 opacity: 1;
             }
 
+            @media (max-width: 768px) {
+                .gallery-overlay {
+                    opacity: 1;
+                    background: linear-gradient(to top, rgba(0, 0, 0, 0.75), transparent);
+                    padding: 20px 12px 12px;
+                }
+            }
+
             .gallery-title {
-                font-size: 0.9rem;
+                font-size: 1.05rem;
                 font-weight: 600;
                 margin-bottom: 0.25rem;
                 display: block;
             }
 
             .gallery-date {
-                font-size: 0.75rem;
-                color: rgba(255, 255, 255, 0.8);
+                font-size: 0.8rem;
+                color: rgba(255, 255, 255, 0.9);
                 display: block;
+            }
+
+            .gallery-species {
+                font-size: 0.75rem;
+                color: #a8cf92;
+                display: block;
+                margin-top: 4px;
+                font-family: 'Inter', sans-serif;
+                text-transform: uppercase;
+                letter-spacing: 0.5px;
+            }
+
+            /* Filter Bar Styles */
+            .gallery-filter-bar {
+                background: #eef2eb;
+                border: 1px solid #d4ddd0;
+                border-radius: 8px;
+                padding: 12px 20px;
+                margin-bottom: 24px;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 15px;
+                align-items: center;
+                justify-content: space-between;
+                font-size: 14px;
+            }
+
+            .gallery-filter-group {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+            }
+
+            .gallery-filter-select {
+                padding: 6px 12px;
+                border: 1px solid #c5cfc0;
+                border-radius: 4px;
+                background: white;
+                font-family: 'Inter', sans-serif;
+                font-size: 14px;
+                color: #333;
+                cursor: pointer;
+            }
+
+            .gallery-filter-select:focus {
+                outline: none;
+                border-color: #6b7f61;
+            }
+
+            .active-filter-indicator {
+                display: none;
+                align-items: center;
+                gap: 10px;
+                background: #fff;
+                padding: 6px 12px;
+                border-radius: 20px;
+                border: 1px solid #a8cf92;
+                font-size: 13px;
+                color: #2b4022;
+            }
+
+            .clear-filter-btn {
+                color: #d32f2f;
+                text-decoration: none;
+                font-weight: 500;
+                cursor: pointer;
+            }
+
+            .clear-filter-btn:hover {
+                text-decoration: underline;
+            }
+
+            .empty-gallery-msg {
+                display: none;
+                text-align: center;
+                padding: 40px;
+                font-style: italic;
+                color: #666;
             }
         </style>
 
-        <div class="gallery-grid">
+        {{ $pages := where .Site.RegularPages "Section" "posts" }}
 
-            {{ $pages := where .Site.RegularPages "Section" "posts" }}
+        {{/* Global structures for deduplication and filters */}}
+        {{ $globalImages := newScratch }}
+        {{ $globalImages.Set "images" slice }}
+        {{ $globalImages.Set "urls" dict }}
 
-            {{ range $pages }}
-            {{ $post := . }}
-            {{ $content := .RawContent }}
-            {{ $post.Scratch.Set "seen_images" dict }}
+        {{ $speciesList := newScratch }}
+        {{ $speciesList.Set "list" slice }}
+        {{ $monthsList := newScratch }}
+        {{ $monthsList.Set "list" slice }}
 
-            {{/* 1. Extract markdown images: ![alt](url) */}}
-            {{ $mdRegex := `!\[.*?\]\((.*?)\)` }}
-            {{ $mdImages := findRE $mdRegex $content }}
-            {{ range $imgStr := $mdImages }}
-            {{ $url := replaceRE `!\[.*?\]\((.*?)\)` "$1" $imgStr }}
-            {{ $alt := replaceRE `!\[(.*?)\]\(.*?\)` "$1" $imgStr }}
-            {{ $dict := $post.Scratch.Get "seen_images" }}
-            {{ if not (isset $dict $url) }}
-            {{ $post.Scratch.SetInMap "seen_images" $url $alt }}
+        {{/* Collect unique images across all posts */}}
+        {{ range $pages }}
+        {{ $post := . }}
+        {{ $content := .RawContent }}
+
+        {{/* Track months for filter */}}
+        {{ $monthStr := $post.Date.Format "2006-01" }}
+        {{ if not (in ($monthsList.Get "list") $monthStr) }}
+        {{ $monthsList.Add "list" $monthStr }}
+        {{ end }}
+
+        {{/* Track species for filter */}}
+        {{ with .Params.species }}
+        {{ range . }}
+        {{ if not (in ($speciesList.Get "list") .) }}
+        {{ $speciesList.Add "list" . }}
+        {{ end }}
+        {{ end }}
+        {{ end }}
+
+        {{/* 1. Extract markdown images */}}
+        {{ $mdRegex := `!\[.*?\]\((.*?)\)` }}
+        {{ range (findRE $mdRegex $content) }}
+        {{ $url := replaceRE `!\[.*?\]\((.*?)\)` "$1" . }}
+        {{ $alt := replaceRE `!\[(.*?)\]\(.*?\)` "$1" . }}
+
+        {{ if not (isset ($globalImages.Get "urls") $url) }}
+        {{ $globalImages.SetInMap "urls" $url true }}
+        {{ $globalImages.Add "images" (dict "url" $url "alt" $alt "post" $post) }}
+        {{ end }}
+        {{ end }}
+
+        {{/* 2. Extract HTML images */}}
+        {{ $htmlRegex := `<img[^>]+src=["']([^"']+)["'][^>]*>` }}
+            {{ range (findRE $htmlRegex $content) }}
+            {{ $url := replaceRE `.*src=["']([^"']+)["'].*` "$1" . }}
+            {{ $alt := "" }}
+            {{ if findRE `alt=["']([^"']+)["']` . }}
+            {{ $alt = replaceRE `.*alt=["']([^"']+)["'].*` "$1" . }}
+            {{ end }}
+
+            {{ if not (isset ($globalImages.Get "urls") $url) }}
+            {{ $globalImages.SetInMap "urls" $url true }}
+            {{ $globalImages.Add "images" (dict "url" $url "alt" $alt "post" $post) }}
             {{ end }}
             {{ end }}
 
-            {{/* 2. Extract HTML img tags: <img src="url" alt="alt"> */}}
-            {{ $htmlRegex := `<img[^>]+src=["']([^"']+)["'][^>]*>` }}
-                {{ $htmlImages := findRE $htmlRegex $content }}
-                {{ range $imgStr := $htmlImages }}
-                {{ $url := replaceRE `.*src=["']([^"']+)["'].*` "$1" $imgStr }}
-                {{ $alt := "" }}
-                {{ if findRE `alt=["']([^"']+)["']` $imgStr }}
-                {{ $alt = replaceRE `.*alt=["']([^"']+)["'].*` "$1" $imgStr }}
-                {{ end }}
-                {{ $dict := $post.Scratch.Get "seen_images" }}
-                {{ if not (isset $dict $url) }}
-                {{ $post.Scratch.SetInMap "seen_images" $url $alt }}
-                {{ end }}
-                {{ end }}
+            {{/* 3. Frontmatter image */}}
+            {{ with .Params.image }}
+            {{ $url := . }}
+            {{ if not (isset ($globalImages.Get "urls") $url) }}
+            {{ $globalImages.SetInMap "urls" $url true }}
+            {{ $globalImages.Add "images" (dict "url" $url "alt" $post.Title "post" $post) }}
+            {{ end }}
+            {{ end }}
+            {{ end }}
 
-                {{/* 3. Frontmatter initially set image */}}
-                {{ if .Params.image }}
-                {{ $url := .Params.image }}
-                {{ $dict := $post.Scratch.Get "seen_images" }}
-                {{ if not (isset $dict $url) }}
-                {{ $post.Scratch.SetInMap "seen_images" $url $post.Title }}
-                {{ end }}
-                {{ end }}
+            <!-- Filter UI -->
+            <div class="gallery-filter-bar">
+                <div class="gallery-filter-group">
+                    <label for="species-filter"><strong>Art:</strong></label>
+                    <select id="species-filter" class="gallery-filter-select">
+                        <option value="">Alla arter</option>
+                        {{ range sort ($speciesList.Get "list") }}
+                        <option value="{{ . | urlize }}">{{ . }}</option>
+                        {{ end }}
+                    </select>
 
-                {{/* Render collected unique images for this post */}}
-                {{ $seen := $post.Scratch.Get "seen_images" }}
-                {{ range $url, $alt := $seen }}
-                {{/* Clean URLs that might be relative like ../../../images */}}
+                    <label for="month-filter" style="margin-left: 10px;"><strong>Månad:</strong></label>
+                    <select id="month-filter" class="gallery-filter-select">
+                        <option value="">Alla månader</option>
+                        {{ range sort ($monthsList.Get "list") "value" "desc" }}
+                        {{/* Simple readable month, assuming standard YYYY-MM */}}
+                        <option value="{{ . }}">{{ . }}</option>
+                        {{ end }}
+                    </select>
+                </div>
+
+                <div id="active-filter-indicator" class="active-filter-indicator">
+                    <span id="active-filter-text">Filtrerad</span>
+                    <a class="clear-filter-btn" onclick="resetFilters()">✕ Rensa</a>
+                </div>
+            </div>
+
+            <div id="empty-msg" class="empty-gallery-msg">
+                Inga bilder hittades för det valda filtret.
+            </div>
+
+            <div class="gallery-grid" id="gallery-grid">
+                {{/* Render collected unique images */}}
+                {{ range sort ($globalImages.Get "images") "post.Date" "desc" }}
+                {{ $url := .url }}
+                {{ $alt := .alt }}
+                {{ $post := .post }}
+
                 {{ $cleanUrl := replaceRE `^(\.\.\/)+` "/" $url }}
-                {{/* Ignore maps or svgs unless they are actually photos */}}
                 {{ if not (in $cleanUrl "hitta-hit") }}
-                <a href="{{ $post.RelPermalink }}" class="gallery-item" title="Gå till: {{ $post.Title }}">
+                {{/* Setup data attributes for JavaScript filtering */}}
+                {{ $speciesData := "" }}
+                {{ with $post.Params.species }}
+                {{ $speciesData = delimit (apply . `urlize` `.`) `,` | lower }}
+                {{ end }}
+                {{ $monthData := $post.Date.Format "2006-01" }}
+
+                <a href="{{ $post.RelPermalink }}" class="gallery-item" data-species="{{ $speciesData }}"
+                    data-month="{{ $monthData }}" data-image-src="{{ $cleanUrl }}" data-image-alt="{{ $alt }}"
+                    title="Läs mer: {{ $post.Title }}">
                     <img src="{{ $cleanUrl }}" alt="{{ $alt }}" loading="lazy">
                     <div class="gallery-overlay">
                         <span class="gallery-title">{{ $post.Title }}</span>
                         <span class="gallery-date">{{ $post.Date.Format "2 Jan, 2006" }}</span>
+                        {{ with $post.Params.species }}
+                        <span class="gallery-species">{{ delimit . ", " }}</span>
+                        {{ end }}
                     </div>
                 </a>
                 {{ end }}
                 {{ end }}
-                {{ end }}
-        </div>
+            </div>
 
     </div>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', () => {
+    const speciesSelect = document.getElementById('species-filter');
+    const monthSelect = document.getElementById('month-filter');
+    const indicator = document.getElementById('active-filter-indicator');
+    const indicatorText = document.getElementById('active-filter-text');
+    const items = document.querySelectorAll('.gallery-item');
+    const emptyMsg = document.getElementById('empty-msg');
+    const grid = document.getElementById('gallery-grid');
+
+    // Parse URL params on load
+    const params = new URLSearchParams(window.location.search);
+    if(params.has('species')) speciesSelect.value = params.get('species');
+    if(params.has('month')) monthSelect.value = params.get('month');
+
+    function applyFilters() {
+        const speciesVal = speciesSelect.value.toLowerCase();
+        const monthVal = monthSelect.value;
+        let visibleCount = 0;
+
+        items.forEach(item => {
+            const itemSpecies = item.getAttribute('data-species') || '';
+            const itemMonth = item.getAttribute('data-month') || '';
+            
+            const matchSpecies = !speciesVal || itemSpecies.split(',').includes(speciesVal);
+            const matchMonth = !monthVal || itemMonth === monthVal;
+
+            if(matchSpecies && matchMonth) {
+                item.style.display = 'block';
+                visibleCount++;
+            } else {
+                item.style.display = 'none';
+            }
+        });
+
+        // Update URL
+        const newUrl = new URL(window.location);
+        speciesVal ? newUrl.searchParams.set('species', speciesVal) : newUrl.searchParams.delete('species');
+        monthVal ? newUrl.searchParams.set('month', monthVal) : newUrl.searchParams.delete('month');
+        window.history.replaceState({}, '', newUrl);
+
+        // UI Updates
+        grid.style.display = visibleCount > 0 ? 'block' : 'none'; // Grid fallback if empty
+        emptyMsg.style.display = visibleCount === 0 ? 'block' : 'none';
+        
+        if (speciesVal || monthVal) {
+            indicator.style.display = 'flex';
+            let txt = [];
+            if(speciesVal) txt.push(speciesSelect.options[speciesSelect.selectedIndex].text);
+            if(monthVal) txt.push(monthSelect.options[monthSelect.selectedIndex].text);
+            indicatorText.textContent = txt.join(' + ');
+        } else {
+            indicator.style.display = 'none';
+        }
+    }
+
+    speciesSelect.addEventListener('change', applyFilters);
+    monthSelect.addEventListener('change', applyFilters);
+    
+    window.resetFilters = function() {
+        speciesSelect.value = '';
+        monthSelect.value = '';
+        applyFilters();
+    };
+
+    // Integration with existing Lightbox in baseof.html
+    items.forEach(item => {
+        item.addEventListener('click', (e) => {
+            e.preventDefault();
+            const imgSrc = item.getAttribute('data-image-src');
+            const imgAlt = item.getAttribute('data-image-alt');
+            const postHref = item.getAttribute('href');
+            
+            // Call the global openLightbox function defined in baseof.html
+            if (typeof window.openLightbox === 'function') {
+                window.openLightbox(imgSrc, imgAlt);
+                
+                // For gallery specifically, we want to add a link to the original post inside the lightbox.
+                // baseof.html has a .lightbox-content div. We can check if a post link already exists, if not, add it.
+                // We'll timeout slightly to allow lightbox to render if needed
+                setTimeout(() => {
+                    const lbContent = document.querySelector('.lightbox-content');
+                    if (lbContent) {
+                        let postLink = document.getElementById('lb-post-link');
+                        if (!postLink) {
+                            postLink = document.createElement('a');
+                            postLink.id = 'lb-post-link';
+                            postLink.style.display = 'block';
+                            postLink.style.marginTop = '15px';
+                            postLink.style.textAlign = 'center';
+                            postLink.style.color = 'white';
+                            postLink.style.textDecoration = 'none';
+                            postLink.style.fontFamily = "'Lora', Georgia, serif";
+                            postLink.style.background = '#6b7f61';
+                            postLink.style.padding = '8px 16px';
+                            postLink.style.borderRadius = '20px';
+                            postLink.style.width = 'max-content';
+                            postLink.style.margin = '15px auto 0 auto';
+                            lbContent.appendChild(postLink);
+                        }
+                        postLink.href = postHref;
+                        postLink.innerHTML = 'Läs fältdagboken &rarr;';
+                    }
+                }, 10);
+            } else {
+                // Fallback if lightbox goes away
+                window.location.href = postHref;
+            }
+        });
+    });
+
+    // Run once on init
+    applyFilters();
+});
+</script>
 {{ end }}
