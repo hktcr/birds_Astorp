@@ -153,7 +153,11 @@ layouts/species/term.html      → enskild art-sida (/species/{artnamn}/)
 
 - **Ny art i checklist** → Fågelatlasen uppdateras automatiskt vid nästa Hugo-build (arten finns redan i artregistret)
 - **Ny notis som nämner art** → Art-sidan visar notisen automatiskt (via `species:`-tagg i frontmatter)
-- **Ny porträttbild** → Uppdatera `data/species_portraits.json` med sökväg till bilden
+- **Ny porträttbild** → Uppdatera `data/species_portraits.json` med sökväg till bilden:
+  ```json
+  "Artnamn": "/images/posts/YYYY-MM-DD-slug/bild.jpg"
+  ```
+  > **Trigger:** När en bild taggas med `categories: [Artnamn]` i `images:`-frontmatter, eller när användaren nämner att en bra bild finns, ska porträttet läggas till proaktivt. Kör `/astorpsfaglar` H3 för att hitta arter som saknar porträtt.
 - **Ny art i kommunen** (aldrig rapporterad) → Lägg till i `content/species/artregister.md`
 
 > **OBS:** `artregister.md` har `build: list: never` i frontmatter — den renderas aldrig själv, bara dess taxonomy-termer.
@@ -188,18 +192,56 @@ locations:
    species:
      - Art1
      - Art2
+   tags:
+     - relevant-tagg
    locations:
      - name: "Lokalnamn"
        lat: 56.xxxxx
        lng: 13.xxxxx
+   images:
+     - url: "/images/posts/YYYY-MM-DD-slug/filnamn.jpg"
+       alt: "Beskrivande bildtext"
+       categories:
+         - Art1
    ---
    ```
+   > **OBS:** `locations:` ersätter det äldre `coordinates:`-fältet. Några äldre poster har kvar `coordinates:` men det behövs inte längre.
 2. Uppdatera `data/checklist-2026.json` med nya arter/lokaler
 3. Lägg till eventuella nya lokaler i `data/locations.json`
-4. Placera bilder i `static/images/posts/`
-5. Avsluta med milestone-signatur: `*Fågelåret i Åstorp, XX/150*`
-6. (Valfritt) Uppdatera `data/species_portraits.json` om en bra bild finns
-7. Kör `./deploy.sh`
+4. Placera bilder i `static/images/posts/YYYY-MM-DD-slug/`
+5. Tagga bilder i frontmatter `images:` med `categories:` (se nedan)
+6. Avsluta med milestone-signatur: `*Fågelåret i Åstorp, XX/150*`
+7. (Valfritt) Uppdatera `data/species_portraits.json` om en bra bild finns
+8. Kör `./deploy.sh`
+
+---
+
+## Bildtaggning i blogginlägg (`images:` frontmatter)
+
+Bilder som ska visas i **Galleriet** (filtrerbara per art/kategori) och i **Fågelatlasen** (mini-galleri på art-sidan) måste tagas i blogginläggets frontmatter:
+
+```yaml
+images:
+  - url: "/images/posts/2026-02-21-vigg/vigg.jpg"
+    alt: "En vigghane på snötäckt fält"
+    categories:
+      - Vigg
+  - url: "/images/posts/2026-02-21-vigg/landskap.jpg"
+    alt: "Vy över Kungsgårdsmaderna"
+    categories:
+      - Landskap
+```
+
+| Fält | Syfte |
+|------|-------|
+| `url` | Sökväg till bilden (relativ till site root) |
+| `alt` | Alt-text och bildtext i lightbox |
+| `categories` | Filterkategorier — artnamn eller "Landskap" |
+
+**Regler:**
+- Bilder utan `images:`-taggning visas i galleriet men INTE i artspecifika filter
+- `categories:` med artnamn kopplar bilden till artens sida i Fågelatlasen
+- Befintliga kategorier: artnamn (t.ex. "Vigg", "Fjällvråk") + "Landskap"
 
 ---
 

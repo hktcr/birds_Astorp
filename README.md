@@ -44,9 +44,15 @@ En hybrid fågelblogg för Åstorps kommun — observationer, bilder och interak
      - Art 2
    tags:
      - relevant-tagg
-   coordinates:
-     lat: 56.xxxxx
-     lon: 13.xxxxx
+   locations:
+     - name: "Lokalnamn"
+       lat: 56.xxxxx
+       lng: 13.xxxxx
+   images:
+     - url: "/images/posts/2026-MM-DD-slug/bild.jpg"
+       alt: "Beskrivande text"
+       categories:
+         - Art 1
    ---
    ```
 3. Lägg till alla nya arter i `data/checklist-2026.json`
