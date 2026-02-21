@@ -117,11 +117,6 @@
 
         {{/* ── HEADER ── */}}
         <div class="species-page-header">
-            {{ with $portrait }}
-            <div class="species-hero-portrait">
-                <img src="{{ . }}" alt="{{ $speciesName }}" loading="lazy">
-            </div>
-            {{ end }}
             <h1 class="species-page-title">{{ $speciesName }}</h1>
             {{ with $latinName }}
             <p class="species-page-latin"><em>{{ . }}</em></p>
