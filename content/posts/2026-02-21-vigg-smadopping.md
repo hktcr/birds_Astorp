@@ -6,6 +6,7 @@ location: "Rönne å, Tomarp · Sånna, Tomarp"
 species:
   - Vigg
   - Smådopping
+  - Rapphöna
 tags:
   - rapport
 locations:
