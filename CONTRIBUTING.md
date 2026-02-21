@@ -216,11 +216,20 @@ locations:
 
 ## Artportalen-datapipeline
 
-> **⚠️ VIKTIGT:** Skriptet nedan uppdaterar ENBART `static/data/species-guide.json`.
-> Det rör ALDRIG `data/checklist-2026.json` (din manuella krysslista).
+> **⚠️ VIKTIGT:** Skripten nedan uppdaterar ENBART `static/data/species-guide.json`.
+> De rör ALDRIG `data/checklist-2026.json` (din manuella krysslista).
 
 > [!CAUTION] Taxon-ID och Area-ID
 > Vid manuella API-anrop: verifiera **alltid** taxon-ID och area-ID mot tabellerna i `/ArtportalenAPI`-workflowen. Se pre-flight-checklistan där för detaljer och bakgrund (2026-02-13 incident).
+
+### Två skript — två datakällor
+
+| Skript | Datakälla | Syfte |
+|--------|-----------|-------|
+| `update-species-guide.py` | Artportalen API (live) | Hämtar aktuell statistik direkt från API:t |
+| `preprocess_species_guide.py` | GeoJSON-export (offline) | Bearbetar nedladdad kommunexport till samma format |
+
+Båda producerar `static/data/species-guide.json`. Använd `update-species-guide.py` för rutinuppdateringar. `preprocess_species_guide.py` används vid bulk-import av historical data från GeoJSON-exporter (sparade i `resources/artportalen-kommun-export/`).
 
 ### Uppdatera artstatistik från Artportalen
 
@@ -242,7 +251,7 @@ Skriptet:
 Skriptet filtrerar bort underarter (3+ delat vetenskapligt namn), genus utan artepithet, och hybrider. Två undantag definieras i `ALLOWED_SUBSPECIES`:
 
 | Art | Vetenskapligt namn | Varför undantag |
-|-----|-------------------|-----------------|
+|-----|-------------------|-----------------| 
 | Tamduva | `Columba livia, domesticated populations` | API returnerar 4-delat namn |
 | Gråkråka | `Corvus corone cornix` | Nordisk underart som bör räknas separat |
 
@@ -264,16 +273,28 @@ Kör alltid en rimlighetskontroll efter `update-species-guide.py`. Skriptet bör
 
 ### Dataflöde
 ```
-TaxonList.csv + Artportalen API
-        ↓
-  update-species-guide.py
-        ↓
-  static/data/species-guide.json  (historisk statistik)
+TaxonList.csv + Artportalen API        GeoJSON-export
+        ↓                                     ↓
+  update-species-guide.py          preprocess_species_guide.py
+        ↓                                     ↓
+  static/data/species-guide.json  ◄────────────┘
+        │
+        ├── Hugo kopierar → docs/data/ (klient-side JS)
+        └── Kopia i data/species_guide.json (Hugo byggtid: site.Data)
         +
   data/checklist-2026.json        (manuella kryss, ORÖRDA)
         ↓
-  artguide.js slår ihop vid rendering
+  artguide.js + checklist.js + Fågelatlasen slår ihop vid rendering
 ```
+
+### Stödfiler
+
+| Fil | Syfte |
+|-----|-------|
+| `data/svenska-namn.json` | NL20 officiella svenska fågelnamn (namnuppslag för `preprocess_species_guide.py`) |
+| `data/species_guide.json` | Kopia av `static/data/species-guide.json` som Hugo läser vid byggtid via `site.Data.species_guide` (krävs för Fågelatlasen och term-sidor) |
+| `static/data/TaxonList_fåglar_Åstorpskommun.csv` | Lista över alla kända arter i kommunen (input till `update-species-guide.py`) |
+| `resources/artportalen-kommun-export/*.geojson` | Nedladdade exporter (input till `preprocess_species_guide.py`) |
 
 ### Artguide — datakällor
 

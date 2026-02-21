@@ -1,5 +1,5 @@
 ---
-title: "Vigg på avvägar och en dykare i ån"
+title: "Ensam and på land ... och en smådopping"
 date: 2026-02-21
 draft: false
 location: "Rönne å, Tomarp · Sånna, Tomarp"
@@ -32,4 +32,4 @@ Ute på ett fält vid Tomarp låg en ensam fågel: en vigghane, långt från fly
 
 Nere i Rönne å, precis nedanför maderna vid Tomarps kungsgård, låg några stora fåglar i form av ett par sångsvanar i ån. I ett pilträd satt en äldre havsörn och spanade, men allra längst bort – så långt vi överhuvudtaget kunde se – simmade och dök en smådopping. Det är en art jag länge hoppats få se under vintermånaderna. Jag är nämligen tveksam till om det finns någon lämplig damm i kommunen som kan husera dem när det väl blir häckningstid, så att få in den på årslistan nu var en ren bonus.
 
-*Fågelåret i Åstorp, 59/150*
+*Fågelåret i Åstorp, 54/150*
