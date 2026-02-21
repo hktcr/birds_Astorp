@@ -14,12 +14,12 @@
     <div class="map-legend">
         <div class="legend-items">
             <span class="legend-item">
-                <span class="legend-marker" style="background: #dc2626;"></span>
+                <span class="legend-marker" style="background: transparent; border: 2px solid #dc2626;"></span>
                 Observationsplats
             </span>
             <span class="legend-item">
-                <span class="legend-marker legend-pulse"
-                    style="background: #dc2626; animation: legend-pulse 1.5s ease-out infinite;"></span>
+                <span class="legend-marker legend-pulse legend-blink"
+                    style="background: transparent; border: 2px solid #dc2626;"></span>
                 Senaste observation
             </span>
         </div>
@@ -38,5 +38,5 @@
 </script>
 
 <!-- Map initialization -->
-<script src="{{ "js/map.js" | relURL }}"></script>
+<script src="{{ " js/map.js" | relURL }}"></script>
 {{ end }}
