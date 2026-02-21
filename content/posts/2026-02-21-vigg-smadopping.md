@@ -2,6 +2,7 @@
 title: "Ensam and på land ... och en smådopping"
 date: 2026-02-21
 draft: false
+image: "/images/posts/2026-02-21-vigg-smadopping/vigg.jpg"
 location: "Stora fältet - Sånna/Egnahem/Tomarp · Rönne å, Kungsgårdsmaderna · Rönnliden, Tranarp"
 species:
   - Vigg
