@@ -61,7 +61,13 @@ Vid ändring av **art**, **lokal** eller **koordinater** — uppdatera ALLA dess
 |-----------|-----|------|
 | Checklista | `data/checklist-2026.json` | `species`, `location`, `lat`, `lng` |
 | Lokaler | `data/locations.json` | `name`, `lat`, `lng`, `description` |
-| Blogginlägg | `content/posts/*.md` | frontmatter `location:`, `species:` |
+| Blogginlägg | `content/posts/*.md` | frontmatter `location:`, `species:`, `locations:` |
+
+> **OBS:** Kartan (`map.js`) bygger sina markörer direkt från `checklist-2026.json` — den läser INTE `locations.json`. Koordinaterna i checklistan måste vara korrekta.
+>
+> **`location:` vs `locations:`** — Båda fälten behövs i blogginlägg:
+> - `location:` (singular, sträng) → Visar arkivtext i notislistan ("📍 Kvidinge · Tomarps Ene")
+> - `locations:` (plural, array) → Popup-kartor med klickbara lokalnamn
 
 ### Exempel: Byta lokalnamn
 
@@ -84,8 +90,8 @@ Om "Tomarps Ene" ska bli "Rönneå vid Tomarps Ene":
 | **Notiser** (`/posts/`) | Blogginlägg frontmatter + `location-popup.js` | Vid byggtid |
 | **Artkalender** (`/artguide/`) | `species-guide.json` + `checklist-2026.json` via `artguide.js` | Klient-side |
 | **Galleri** (`/galleri/`) | Bilder extraherade ur blogginlägg via Hugo regex, med JS-filter (art/månad/landskap) + lightbox | Vid byggtid |
-| **Karta** (`/karta/`) | `checklist-2026.json` + `astorp-kommun.geojson` via `map.js` | Klient-side |
-| **Årslista** (`/arslista/`) | `species-guide.json` + `checklist-2026.json` via `checklist.js` | Klient-side |
+| **Karta** (`/karta/`) | `checklist-2026.json` (koordinater per obs) + `astorp-kommun.geojson` via `map.js` | Klient-side |
+| **Årslista** (`/arslista/`) | `species-guide.json` + `checklist-2026.json` via `checklist.js` (TARGET=150 hårdkodad) | Klient-side |
 | **Fågelatlasen** (`/species/`) | `checklist-2026.json` + `species-guide.json` + `species_portraits.json` via Hugo-taxonomi | Vid byggtid |
 | **Om** (`/om/`) | `content/om.md` | Vid byggtid |
 
@@ -373,3 +379,38 @@ hugo server -D          # Inkl. utkast
 **Hugo-version:** 0.154.5+extended (Homebrew)
 **Publicering:** GitHub Pages från `docs/` på `main`-branchen
 **Domän:** astorpsfaglar.se (via Cloudflare DNS → GitHub Pages)
+
+---
+
+## Infrastruktur och dolda beteenden
+
+### Analytics
+GoatCounter (`hlgk.goatcounter.com`) laddas i `baseof.html`. Cookiefritt, GDPR-vänligt.
+
+### Lightbox
+`baseof.html` innehåller ett komplett lightbox-system. Bilder med `.lightbox-link`-klass eller i `.gallery` öppnas i modal. Klick på bilden togglar zoom. Escape stänger.
+
+### Leaflet (globalt)
+Leaflet CSS + JS laddas via CDN i `baseof.html` på **alla** sidor — krävs av `location-popup.js` i blogginlägg.
+
+### RSS
+Hugo genererar automatiskt en RSS-feed (`<link rel="alternate" type="application/rss+xml">`).
+
+### Fågelatlasen — Easter egg
+Atlas-ingången (☀-symbolen) är en dold länk i `baseof.html`, inte i navigationsmenyn. Kommentar i koden: *"enda ingång under utvecklingsfasen"*.
+
+### `youtube:` frontmatter
+`single.html` renderar en inbäddad YouTube-video om `youtube:` finns i frontmatter (YouTube video-ID som sträng). Oanvänt idag men klart.
+
+### Notislistan — artfilter via URL
+`list.html` stöder `?species=artnamn` i URL:en. Art-pills i arkivvyn är klickbara och filtrerar.
+
+### Årslistan — TARGET och 🆕-badge
+- `TARGET = 150` är hårdkodad i `checklist.js` rad 17. Ändra här vid nytt årsmål.
+- `checklist.js` injekterar arter från checklistan som saknas i `species-guide.json` med `isNew: true` och visar 🆕-badge. Dessa är arter som aldrig rapporterats i kommunen.
+
+### Kartan — pulseffekt
+`map.js` identifierar automatiskt den senaste observationsplatsen och visar en pulserande SVG-ring.
+
+### Galleriet — bildextraktion
+`galleri/list.html` extraherar bilder via regex från blogginlägg (både `![alt](url)` och `<img src>`). Bilder **utan** `images:`-taggning tilldelas postens `species:` som fallback-kategori i gallerifiltren.

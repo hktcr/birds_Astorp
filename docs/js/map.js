@@ -127,15 +127,15 @@ document.addEventListener('DOMContentLoaded', function () {
                         new Date(obs.date).getTime() === latestDate.getTime()
                     );
 
-                    // Röd markör med samma border som fill
+                    // Röd markör — transparent fill, röd border (senaste får blinkande fill via CSS)
                     const marker = L.circleMarker([loc.lat, loc.lng], {
                         radius: 8 + Math.min(loc.species.length, 10),
                         fillColor: '#dc2626',
                         color: '#dc2626',
                         weight: 2,
                         opacity: 1,
-                        fillOpacity: 0.8,
-                        className: isLatest ? 'latest-marker' : ''
+                        fillOpacity: 0,
+                        className: isLatest ? 'latest-marker blink-fill' : ''
                     }).addTo(map);
 
                     // Pulseffekt på senaste
