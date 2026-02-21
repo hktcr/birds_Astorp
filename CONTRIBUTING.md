@@ -8,14 +8,28 @@ Detta dokument beskriver rutiner och checklistor för att underhålla sajten [as
 
 ```
 birds_Astorp/
-├── content/posts/      ← Blogginlägg (Hugo Markdown)
-├── data/               ← JSON-datakällor (checklist, locations)
-├── layouts/            ← Hugo-templates
-├── static/             ← JS, CSS, bilder, video
+├── content/
+│   ├── posts/          ← Blogginlägg (Hugo Markdown)
+│   ├── species/        ← Fågelatlasen (artregister + _index)
+│   ├── galleri/        ← Galleri-sektion
+│   └── om.md           ← Om-sida
+├── data/               ← JSON-datakällor (checklist, locations, portraits)
+├── layouts/
+│   ├── index.html      ← Startsidans template
+│   ├── species/        ← Fågelatlas-templates (taxonomy + term)
+│   ├── galleri/        ← Galleri-template
+│   ├── _default/       ← Generella templates (baseof, single, list)
+│   └── partials/       ← Header, footer
+├── static/
+│   ├── js/             ← checklist.js, artguide.js, map.js, location-popup.js
+│   ├── css/style.css   ← All CSS
+│   └── data/           ← Kopia av checklist + species-guide (synkas)
 ├── docs/               ← Byggd sajt (GitHub Pages serverar härifrån)
-│   └── data/           ← Kopia av data/ — MANUELL SYNK KRÄVS
-├── deploy.sh           ← Atomisk deploy-ritual
-└── hugo.toml           ← Hugo-konfiguration
+│   └── data/           ← Slutgiltig data som klienten hämtar
+├── scripts/            ← Python-skript (Artportalen-pipeline)
+├── deploy.sh           ← Atomisk deploy-ritual (PRIMÄR)
+├── sync-data.sh        ← Synk + build + verify (ALTERNATIV)
+└── hugo.toml           ← Hugo-konfiguration (taxonomier, meny, params)
 ```
 
 > **OBS:** Hugo kopierar INTE `data/`-filer till `docs/`. Artlistan och kartan hämtar JSON via klient-side `fetch()` från `docs/data/`. Startsidan bäddar in data vid byggtid via Hugo-template.
@@ -67,11 +81,13 @@ Om "Tomarps Ene" ska bli "Rönneå vid Tomarps Ene":
 | Sida | Datakälla | Renderas |
 |------|-----------|----------|
 | **Startsidan** (`/`) | `data/checklist-2026.json` via Hugo-template + `docs/index.html` inline JS | Byggtid + manuell synk |
-| **Artlistan** (`/arslista/`) | `docs/data/checklist-2026.json` via JS `fetch()` | Klient-side |
-| **Artguide** (`/artguide/`) | `species-guide.json` + `checklist-2026.json` via JS | Klient-side |
-| **Galleri** (`/galleri/`) | Blogginlägg (bilder extraheras via HTML/regex) | Vid byggtid |
-| **Kartan** (`/karta/`) | `docs/data/checklist-2026.json` + `docs/data/locations.json` via JS | Klient-side |
-| **Notiser** (`/posts/`) | Blogginlägg frontmatter | Vid byggtid |
+| **Notiser** (`/posts/`) | Blogginlägg frontmatter + `location-popup.js` | Vid byggtid |
+| **Artkalender** (`/artguide/`) | `species-guide.json` + `checklist-2026.json` via `artguide.js` | Klient-side |
+| **Galleri** (`/galleri/`) | Bilder extraherade ur blogginlägg via Hugo regex, med JS-filter (art/månad/landskap) + lightbox | Vid byggtid |
+| **Karta** (`/karta/`) | `checklist-2026.json` + `astorp-kommun.geojson` via `map.js` | Klient-side |
+| **Årslista** (`/arslista/`) | `species-guide.json` + `checklist-2026.json` via `checklist.js` | Klient-side |
+| **Fågelatlasen** (`/species/`) | `checklist-2026.json` + `species-guide.json` + `species_portraits.json` via Hugo-taxonomi | Vid byggtid |
+| **Om** (`/om/`) | `content/om.md` | Vid byggtid |
 
 ---
 
@@ -107,6 +123,59 @@ Vid nya observationer måste `docs/index.html` uppdateras manuellt:
 Se `/Åstorp-2026`-workflowen, steg **A3b** för detaljerade instruktioner.
 
 
+## Fågelatlasen (`/species/`)
+
+Fågelatlasen är en Hugo-taxonomi-driven sektion som automatiskt genererar en sida per fågelart i Åstorps kommun.
+
+### Hur det fungerar
+
+```
+hugo.toml taxonomies: species = 'species'
+        ↓
+content/species/artregister.md (dold, listar alla ~200 arter i frontmatter)
+        ↓
+Hugo genererar /species/{artnamn}/ för varje art
+        ↓
+layouts/species/taxonomy.html  → index-sida (/species/)
+layouts/species/term.html      → enskild art-sida (/species/{artnamn}/)
+```
+
+### Datakällor vid byggtid
+
+| Data | Källa | Vad den styr |
+|------|-------|--------------|
+| Kryssade arter | `data/checklist-2026.json` | Vilka kort som markeras som kryssade + #-nummer |
+| Historisk statistik | `data/species_guide.json` | "Övriga arter"-sektionen + antal rapporter |
+| Porträttbilder | `data/species_portraits.json` | Miniatyrbilder på atlas-korten |
+| Notiser per art | Blogginlägg med `species:` i frontmatter | Antal notiser + mini-galleri på art-sidan |
+
+### Uppdateringsregler
+
+- **Ny art i checklist** → Fågelatlasen uppdateras automatiskt vid nästa Hugo-build (arten finns redan i artregistret)
+- **Ny notis som nämner art** → Art-sidan visar notisen automatiskt (via `species:`-tagg i frontmatter)
+- **Ny porträttbild** → Uppdatera `data/species_portraits.json` med sökväg till bilden
+- **Ny art i kommunen** (aldrig rapporterad) → Lägg till i `content/species/artregister.md`
+
+> **OBS:** `artregister.md` har `build: list: never` i frontmatter — den renderas aldrig själv, bara dess taxonomy-termer.
+
+---
+
+## Popup-karta i notiser (`location-popup.js`)
+
+Blogginlägg med `locations:`-fält i frontmatter får klickbara lokalnamn som öppnar en popup-karta med Leaflet. Kartan visar gula markörer för alla lokaler i notisen, med kommungrins-overlay.
+
+Frontmatter-exempel:
+```yaml
+locations:
+  - name: "Kvidinge"
+    lat: 56.13675
+    lng: 13.04310
+```
+
+> **OBS:** Använd INTE `<span class="location-link">` i brödtexten. Hugo-templaten genererar dessa automatiskt från `locations:`-fältet.
+
+---
+
 ## Nytt blogginlägg — checklista
 
 1. Skapa `content/posts/YYYY-MM-DD-slug.md` med frontmatter:
@@ -119,13 +188,18 @@ Se `/Åstorp-2026`-workflowen, steg **A3b** för detaljerade instruktioner.
    species:
      - Art1
      - Art2
+   locations:
+     - name: "Lokalnamn"
+       lat: 56.xxxxx
+       lng: 13.xxxxx
    ---
    ```
 2. Uppdatera `data/checklist-2026.json` med nya arter/lokaler
 3. Lägg till eventuella nya lokaler i `data/locations.json`
 4. Placera bilder i `static/images/posts/`
 5. Avsluta med milestone-signatur: `*Fågelåret i Åstorp, XX/150*`
-6. Kör `./deploy.sh`
+6. (Valfritt) Uppdatera `data/species_portraits.json` om en bra bild finns
+7. Kör `./deploy.sh`
 
 ---
 
@@ -206,6 +280,23 @@ TaxonList.csv + Artportalen API
 | Sida | Datakälla | Renderas |
 |------|-----------|----------|
 | **Artguide** (`/artguide/`) | `species-guide.json` + `checklist-2026.json` via JS | Klient-side |
+
+---
+
+## Deploy-skript: deploy.sh vs sync-data.sh
+
+Projektet har **två** deploy-hjälpare. Använd `deploy.sh` för publicering:
+
+| | `deploy.sh` (PRIMÄR) | `sync-data.sh` |
+|---|---|---|
+| **Syfte** | Atomisk publicering | Synk + build + verifiering |
+| Hugo build | ✅ | ✅ |
+| `data/` → `static/data/` | ❌ | ✅ |
+| `data/` → `docs/data/` | ✅ (`cp data/*.json docs/data/`) | ❌ (via Hugo) |
+| Git commit + push | ✅ (interaktivt) | ✅ (med `--deploy`) |
+| Verifieringsläge | ❌ | ✅ (`--verify`) |
+
+**Rekommendation:** Använd `deploy.sh` vid publicering. Använd `sync-data.sh --verify` för att kontrollera synkstatus utan att publicera.
 
 ---
 

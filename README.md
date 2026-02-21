@@ -63,13 +63,21 @@ En hybrid fågelblogg för Åstorps kommun — observationer, bilder och interak
 |-----|-------|
 | `data/checklist-2026.json` | **ENDA KÄLLAN** — alla observerade arter |
 | `data/locations.json` | Standardlokaler med koordinater |
-| `docs/data/*.json` | *Genereras av sync-data.sh* — redigera EJ |
-| `sync-data.sh` | Synkar data/ → docs/data/ |
+| `data/species_portraits.json` | Porträttbilder för Fågelatlasen |
+| `docs/data/*.json` | *Genereras av deploy.sh* — redigera EJ |
+| `deploy.sh` | Atomisk deploy-ritual (hugo + synk + git) |
+| `sync-data.sh` | Synka data + verifiera (`--verify`) |
 | `content/posts/*.md` | Blogginlägg |
-| `layouts/index.html` | Startsidans layout: progressbar + observationsspår (#1–#N) |
+| `content/species/artregister.md` | Genererar artsidor (alla kommunens arter) |
+| `layouts/index.html` | Startsidans layout: progressbar + observationsspår |
+| `layouts/species/taxonomy.html` | Fågelatlasen — index-vy |
+| `layouts/species/term.html` | Fågelatlasen — enskild art-sida |
 | `static/js/checklist.js` | Logik för årslistan |
+| `static/js/artguide.js` | Artkalendern — månadsnavigation + sparklines |
+| `static/js/map.js` | Interaktiv karta med Leaflet |
+| `static/js/location-popup.js` | Popup-karta för lokaler i notiser |
 | `static/css/style.css` | All CSS |
-| `hugo.toml` | Hugo-konfiguration |
+| `hugo.toml` | Hugo-konfiguration (taxonomier, meny) |
 
 
 ---
