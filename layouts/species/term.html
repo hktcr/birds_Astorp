@@ -88,24 +88,14 @@
         {{ end }}
         {{ end }}
 
-        {{/* Collect unique locations with coordinates */}}
+        {{/* Collect unique locations from checklist (species-specific, not post-level) */}}
         {{ $locationDicts := slice }}
         {{ $seenLocNames := slice }}
-        {{ range $posts }}
-        {{ with .Params.locations }}
-        {{ range . }}
-        {{ if not (in $seenLocNames .name) }}
-        {{ $seenLocNames = $seenLocNames | append .name }}
-        {{ $locationDicts = $locationDicts | append (dict "name" .name "lat" .lat "lng" .lng) }}
-        {{ end }}
-        {{ end }}
-        {{ else }}
-        {{/* Fallback: use location string only if no structured locations exist */}}
-        {{ with .Params.location }}
-        {{ if not (in $seenLocNames .) }}
-        {{ $seenLocNames = $seenLocNames | append . }}
-        {{ $locationDicts = $locationDicts | append (dict "name" . "lat" 0 "lng" 0) }}
-        {{ end }}
+        {{ range $checklistObs }}
+        {{ if eq .species $speciesName }}
+        {{ if not (in $seenLocNames .location) }}
+        {{ $seenLocNames = $seenLocNames | append .location }}
+        {{ $locationDicts = $locationDicts | append (dict "name" .location "lat" .lat "lng" .lng) }}
         {{ end }}
         {{ end }}
         {{ end }}
