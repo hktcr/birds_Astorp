@@ -2,7 +2,7 @@
 title: "Ensam and på land ... och en smådopping"
 date: 2026-02-21
 draft: false
-location: "Rönne å, Tomarp · Sånna, Tomarp"
+location: "Egnahem, Tommarp · Kungsgårdsmaderna · Rönnliden, Tranarp"
 species:
   - Vigg
   - Smådopping
@@ -10,12 +10,15 @@ species:
 tags:
   - rapport
 locations:
-  - name: "Tomarp"
-    lat: 56.149612
-    lng: 13.0625373
-  - name: "Rönne å"
+  - name: "Egnahem, Tommarp"
+    lat: 56.1573972
+    lng: 13.0529702
+  - name: "Kungsgårdsmaderna"
     lat: 56.15343
     lng: 13.06878
+  - name: "Rönnliden, Tranarp"
+    lat: 56.17547
+    lng: 13.01700
 images:
   - url: "/images/posts/2026-02-21-vigg-smadopping/vigg.jpg"
     alt: "En vigghane som vilar på det snötäckta fältet, långt från öppet vatten."
