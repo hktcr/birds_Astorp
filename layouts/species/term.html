@@ -99,11 +99,13 @@
         {{ $locationDicts = $locationDicts | append (dict "name" .name "lat" .lat "lng" .lng) }}
         {{ end }}
         {{ end }}
-        {{ end }}
+        {{ else }}
+        {{/* Fallback: use location string only if no structured locations exist */}}
         {{ with .Params.location }}
         {{ if not (in $seenLocNames .) }}
         {{ $seenLocNames = $seenLocNames | append . }}
         {{ $locationDicts = $locationDicts | append (dict "name" . "lat" 0 "lng" 0) }}
+        {{ end }}
         {{ end }}
         {{ end }}
         {{ end }}
