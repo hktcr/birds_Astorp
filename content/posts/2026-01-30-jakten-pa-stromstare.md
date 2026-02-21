@@ -19,6 +19,11 @@ locations:
 coordinates:
   lat: 56.09874
   lon: 13.07474
+images:
+  - url: "/images/posts/2026-01-30-fruset-fall-korslattsravinen.jpg"
+    alt: "Fruset vattenfall i Körslättsravinen"
+    categories:
+      - Landskap
 ---
 
 Vinterdagar som dessa går det ibland långt mellan fåglarna. Inte för att de inte finns där, men snö och vinande vind gör dem mindre synliga. I blåsten dränks locklätena och det är fortfarande lite för tidigt på året för att fågelsången ska ha kommit igång på allvar. Än är det mestadels talgoxar och någon enstaka blåmes som hörs. Under skymningstimmarna stämmer dock rödhakarna upp, ivriga att hävda sina vinterrevir.

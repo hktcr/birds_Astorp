@@ -16,6 +16,11 @@ locations:
 coordinates:
   lat: 56.1223699500075
   lon: 13.05897539571212
+images:
+  - url: "/images/posts/2026-02-18-vinterhamplingsflock/vinterhamplingsflock.jpg"
+    alt: "En del av den stora vinterhämplingsflocken vid Brånnhus, i björktoppar"
+    categories:
+      - Vinterhämpling
 ---
 
 Häromdagen årskryssade jag två vinterhämplingar nere vid ån. Idag hittade Sara och jag en flock om mer än hundra individer på ett fält uppe vid Brånnhus.

@@ -30,6 +30,21 @@ locations:
 coordinates:
   lat: 56.136750782641876
   lon: 13.043105305042882
+images:
+  - url: "/images/2026-02-06-snodagen/gulsparv.jpg"
+    alt: "Gulsparv, bra porträttbild, en gråsparv skymtar i bildens nedre del, snö i bakgrunden"
+    categories:
+      - Gulsparv
+      - Gråsparv
+  - url: "/images/2026-02-06-snodagen/havsorn.jpg"
+    alt: "Två havsörnar vid byte, snö på marken, omgivna av kråkor"
+    categories:
+      - Havsörn
+      - Kråka
+  - url: "/images/2026-02-06-snodagen/storskrake.jpg"
+    alt: "Tre storskrakar (hanar) simmar i Rönne å, is i kanten"
+    categories:
+      - Storskrake
 ---
 
 Efter nattens snöfall behövde fåglarnas matplats sopas ren. Koltrastarna satt runt omkring och väntade på att jag skulle bli klar. Den gamla cykelkorgen fungerar alldeles utmärkt som fågelmatare.

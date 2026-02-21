@@ -4,8 +4,7 @@
     {{/* ── DISCLAIMER ── */}}
     <div class="atlas-disclaimer">
         <span class="atlas-icon atlas-icon--flask"></span>
-        <em>Fågelatlasen för Åstorps kommun är ett pågående projekt under utveckling. Data och innehåll byggs upp
-            successivt under fågelåret 2026.</em>
+        <em>Fågelatlasen. Åstorps kommun, art för art. Fältdagboken bygger innehållet.</em>
     </div>
 
     {{/* ── DATA COLLECTION ── */}}
@@ -13,7 +12,7 @@
     {{ $posts := .Pages }}
 
     {{/* Checklist data */}}
-    {{ $checklist := site.Data.checklist_2026 | default (dict) }}
+    {{ $checklist := index site.Data "checklist-2026" | default (dict) }}
     {{ $checklistObs := index $checklist "observations" | default slice }}
     {{ $tickDate := "" }}
     {{ $tickNumber := 0 }}

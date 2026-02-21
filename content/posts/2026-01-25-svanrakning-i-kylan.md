@@ -22,6 +22,11 @@ locations:
 coordinates:
   lat: 56.15343
   lon: 13.06878
+images:
+  - url: "/images/posts/2026-01-25-tomarps-ene.png"
+    alt: "Trädtoppar mot gråhimmel, Prästamarken"
+    categories:
+      - Landskap
 ---
 
 När skånevintern biter och det känns som om det tar lika lång tid att göra sig redo för att gå ut som tiden man faktiskt spenderar ute, är en årslista inte så dum att ha. Jag har fått ta mina tjockaste handskar. Med vinden känns minusgraderna dubbla. Typisk skånevinter.

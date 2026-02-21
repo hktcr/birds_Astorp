@@ -4,7 +4,7 @@
 <div class="atlas-page">
 
     {{/* ── DATA SOURCES ── */}}
-    {{ $checklist := site.Data.checklist_2026 | default (dict) }}
+    {{ $checklist := index site.Data "checklist-2026" | default (dict) }}
     {{ $checklistObs := index $checklist "observations" | default slice }}
     {{ $portraits := site.Data.species_portraits | default (dict) }}
     {{ $portraitMap := index $portraits "portraits" | default (dict) }}
@@ -32,15 +32,14 @@
     {{/* ── DISCLAIMER BANNER ── */}}
     <div class="atlas-disclaimer">
         <span class="atlas-icon atlas-icon--flask"></span>
-        <em>Fågelatlasen för Åstorps kommun är ett pågående projekt under utveckling. Data och innehåll byggs upp
-            successivt under fågelåret 2026.</em>
+        <em>Fågelatlasen. Åstorps kommun, art för art. Fältdagboken bygger innehållet.</em>
     </div>
 
     {{/* ── HERO SECTION ── */}}
     <div class="atlas-hero">
         <div class="atlas-hero-inner">
             <h1 class="atlas-title">Fågelatlasen</h1>
-            <p class="atlas-subtitle">En självbyggande fågelbok för Åstorps kommun — art för art, driven av
+            <p class="atlas-subtitle">En självbyggande fågelbok för Åstorps kommun, art för art, driven av
                 fältdagboken</p>
             <div class="atlas-hero-stats">
                 <div class="atlas-hero-stat">
