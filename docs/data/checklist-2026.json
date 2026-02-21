@@ -417,6 +417,22 @@
             "location": "Röda smedja, Kvidinge",
             "lat": 56.14176,
             "lng": 13.059863
+        },
+        {
+            "species": "Vigg",
+            "latin": "Aythya fuligula",
+            "date": "2026-02-21",
+            "location": "Egnahem, Tommarp",
+            "lat": 56.150295674056615,
+            "lng": 13.051556814010734
+        },
+        {
+            "species": "Smådopping",
+            "latin": "Tachybaptus ruficollis",
+            "date": "2026-02-21",
+            "location": "Kungsgårdsmaderna",
+            "lat": 56.156655789969676,
+            "lng": 13.069328770839913
         }
     ]
 }

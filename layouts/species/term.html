@@ -52,6 +52,20 @@
     {{ $allImages := slice }}
     {{ range $posts }}
     {{ $post := . }}
+    {{ if isset .Params "images" }}
+    {{ range .Params.images }}
+    {{ $categories := slice }}
+    {{ if isset . "categories" }}
+    {{ $categories = .categories }}
+    {{ end }}
+    {{ if in $categories $speciesName }}
+    {{ $allImages = $allImages | append (dict "url" .url "post" $post) }}
+    {{ end }}
+    {{ end }}
+    {{ else }}
+    {{/* Fallback for untagged posts: only use images if the post is explicitly about this 1 species */}}
+    {{ $speciesList := .Params.species | default slice }}
+    {{ if eq (len $speciesList) 1 }}
     {{ $content := .RawContent }}
     {{ $imgRegex := `<img[^>]+src=["']([^"']+)["'][^>]*>` }}
         {{ $mdRegex := `!\[.*?\]\((.*?)\)` }}
@@ -69,6 +83,8 @@
         {{ end }}
         {{ with .Params.image }}
         {{ $allImages = $allImages | append (dict "url" . "post" $post) }}
+        {{ end }}
+        {{ end }}
         {{ end }}
         {{ end }}
 
