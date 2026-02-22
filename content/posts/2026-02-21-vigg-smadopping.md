@@ -35,6 +35,6 @@ Ute på ett fält vid Tomarp låg en ensam fågel: en vigghane, långt från fly
 </a>
 <p style="text-align: center; font-style: italic; font-size: 0.9em; color: #666;">En vigghane som vilar på det snötäckta fältet, långt från öppet vatten.</p>
 
-Nere i Rönne å, precis nedanför maderna vid Tomarps kungsgård, låg några stora fåglar i form av ett par sångsvanar i ån. I ett pilträd satt en äldre havsörn och spanade, men allra längst bort – så långt vi överhuvudtaget kunde se – simmade och dök en smådopping. Det är en art jag länge hoppats få se under vintermånaderna. Jag är nämligen tveksam till om det finns någon lämplig damm i kommunen som kan husera dem när det väl blir häckningstid, så att få in den på årslistan nu var en ren bonus.
+Nere i Rönne å, precis nedanför maderna vid Tomarps kungsgård, låg några stora fåglar i form av ett par sångsvanar i ån. I ett pilträd satt en äldre havsörn och spanade, men allra längst bort, så långt vi överhuvudtaget kunde se, simmade och dök en smådopping. Det är en art jag länge hoppats få se under vintermånaderna. Jag är nämligen tveksam till om det finns någon lämplig damm i kommunen som kan husera dem när det väl blir häckningstid, så att få in den på årslistan nu var en ren bonus.
 
 *Fågelåret i Åstorp, 54/150*
