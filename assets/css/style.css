@@ -4242,16 +4242,85 @@ a.archive-tag:hover {
     justify-content: flex-end;
 }
 
+.fenology-count {
+    font-size: 0.6rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    margin-bottom: 3px;
+    line-height: 1;
+}
+
 .fenology-bar {
     width: 100%;
     max-width: 28px;
-    background: linear-gradient(to top, var(--color-primary), var(--color-primary-light));
     border-radius: 3px 3px 0 0;
     min-height: 0;
     transition: height 0.5s ease, opacity 0.3s ease;
     cursor: default;
     position: relative;
 }
+
+/* Seasonal colors: winter = cool steel-blue, spring/autumn = green, summer = warm amber */
+.fenology-bar[data-month="0"] {
+    background: linear-gradient(to top, #5b7a8a, #7d9dae);
+}
+
+/* Jan — vinter */
+.fenology-bar[data-month="1"] {
+    background: linear-gradient(to top, #5b7a8a, #7d9dae);
+}
+
+/* Feb — vinter */
+.fenology-bar[data-month="2"] {
+    background: linear-gradient(to top, #5a7a5e, #7a9e7e);
+}
+
+/* Mar — vår */
+.fenology-bar[data-month="3"] {
+    background: linear-gradient(to top, #5a8a4a, #7aae6a);
+}
+
+/* Apr — vår */
+.fenology-bar[data-month="4"] {
+    background: linear-gradient(to top, #6a8a3a, #8aae5a);
+}
+
+/* Maj — vår/sommar */
+.fenology-bar[data-month="5"] {
+    background: linear-gradient(to top, #a08030, #c4a050);
+}
+
+/* Jun — sommar */
+.fenology-bar[data-month="6"] {
+    background: linear-gradient(to top, #b08828, #d4a848);
+}
+
+/* Jul — sommar */
+.fenology-bar[data-month="7"] {
+    background: linear-gradient(to top, #a08030, #c4a050);
+}
+
+/* Aug — sommar */
+.fenology-bar[data-month="8"] {
+    background: linear-gradient(to top, #6a8a3a, #8aae5a);
+}
+
+/* Sep — höst */
+.fenology-bar[data-month="9"] {
+    background: linear-gradient(to top, #5a7a5e, #7a9e7e);
+}
+
+/* Okt — höst */
+.fenology-bar[data-month="10"] {
+    background: linear-gradient(to top, #5e7080, #7e90a0);
+}
+
+/* Nov — höst/vinter */
+.fenology-bar[data-month="11"] {
+    background: linear-gradient(to top, #5b7a8a, #7d9dae);
+}
+
+/* Dec — vinter */
 
 .fenology-bar:hover {
     opacity: 0.8;

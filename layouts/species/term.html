@@ -209,8 +209,9 @@
                         {{ $pct := 0 }}{{ if gt (int $maxVal) 0 }}{{ $pct = div (mul (int $val) 100) (int $maxVal) }}{{
                         end }}
                         <div class="fenology-bar-wrap">
+                            {{ if gt (int $val) 0 }}<span class="fenology-count">{{ $val }}</span>{{ end }}
                             <div class="fenology-bar" style="height: {{ $pct }}%;" title="{{ $val }} rapporter"
-                                data-count="{{ $val }}"></div>
+                                data-month="{{ $i }}" data-count="{{ $val }}"></div>
                             <span class="fenology-label">{{ $label }}</span>
                         </div>
                         {{ end }}
