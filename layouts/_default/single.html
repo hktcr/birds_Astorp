@@ -22,6 +22,15 @@
         {{ .Content }}
     </div>
 
+    {{ with .Params.youtube }}
+    <div class="video-embed">
+        <iframe src="https://www.youtube.com/embed/{{ . }}" title="Video: {{ $.Title }}" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+            allowfullscreen>
+        </iframe>
+    </div>
+    {{ end }}
+
     {{ with .Params.species }}
     <aside class="species-list">
         <h2>Arter i detta inlägg</h2>
@@ -31,15 +40,6 @@
             {{ end }}
         </div>
     </aside>
-    {{ end }}
-
-    {{ with .Params.youtube }}
-    <div class="video-embed">
-        <iframe src="https://www.youtube.com/embed/{{ . }}" title="Video: {{ $.Title }}" frameborder="0"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-            allowfullscreen>
-        </iframe>
-    </div>
     {{ end }}
 
     <nav class="post-navigation">

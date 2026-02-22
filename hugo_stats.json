@@ -19,6 +19,7 @@
       "header",
       "hr",
       "html",
+      "iframe",
       "img",
       "input",
       "label",
@@ -277,7 +278,8 @@
       "thermometer-fill",
       "thermometer-scale",
       "trail-timeline",
-      "trail-title"
+      "trail-title",
+      "video-embed"
     ],
     "ids": [
       "active-filter-bar",

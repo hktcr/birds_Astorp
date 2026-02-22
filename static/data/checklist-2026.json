@@ -433,6 +433,14 @@
             "location": "Rönne å, Kungsgårdsmaderna",
             "lat": 56.156655789969676,
             "lng": 13.069328770839913
+        },
+        {
+            "species": "Strömstare",
+            "latin": "Cinclus cinclus",
+            "date": "2026-02-22",
+            "location": "Klövaravinen",
+            "lat": 56.09126322298655,
+            "lng": 13.102010171371758
         }
     ]
 }
