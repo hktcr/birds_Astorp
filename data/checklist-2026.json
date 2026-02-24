@@ -465,6 +465,14 @@
             "location": "Kungsgårdsmaderna",
             "lat": 56.15343,
             "lng": 13.06878
+        },
+        {
+            "species": "Gråhäger",
+            "latin": "Ardea cinerea",
+            "date": "2026-02-24",
+            "location": "Björkenäs mosse",
+            "lat": 56.14072103796272,
+            "lng": 13.031572672305218
         }
     ]
 }
