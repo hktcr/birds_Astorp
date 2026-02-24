@@ -441,6 +441,30 @@
             "location": "Klövaravinen",
             "lat": 56.09126322298655,
             "lng": 13.102010171371758
+        },
+        {
+            "species": "Tofsvipa",
+            "latin": "Vanellus vanellus",
+            "date": "2026-02-24",
+            "location": "Kungsgårdsmaderna",
+            "lat": 56.15343,
+            "lng": 13.06878
+        },
+        {
+            "species": "Kricka",
+            "latin": "Anas crecca",
+            "date": "2026-02-24",
+            "location": "Kungsgårdsmaderna",
+            "lat": 56.15343,
+            "lng": 13.06878
+        },
+        {
+            "species": "Stenfalk",
+            "latin": "Falco columbarius",
+            "date": "2026-02-24",
+            "location": "Kungsgårdsmaderna",
+            "lat": 56.15343,
+            "lng": 13.06878
         }
     ]
 }
