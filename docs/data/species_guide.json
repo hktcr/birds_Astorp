@@ -1,0 +1,3968 @@
+{
+  "generated": "2026-02-20",
+  "exportDate": "2026-02-20",
+  "source": "Artportalen via SOS API — samtliga fågelobservationer, Åstorps kommun",
+  "totalObservations": 19304,
+  "species": [
+    {
+      "name": "Knölsvan",
+      "latin": "Cygnus olor",
+      "total": 55,
+      "category": "regular",
+      "months": [
+        9,
+        7,
+        10,
+        13,
+        1,
+        3,
+        1,
+        1,
+        2,
+        4,
+        3,
+        1
+      ]
+    },
+    {
+      "name": "Mindre sångsvan",
+      "latin": "Cygnus columbianus",
+      "total": 2,
+      "category": "rare",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "Sångsvan",
+      "latin": "Cygnus cygnus",
+      "total": 311,
+      "category": "abundant",
+      "months": [
+        81,
+        62,
+        57,
+        10,
+        3,
+        0,
+        0,
+        0,
+        1,
+        12,
+        32,
+        53
+      ]
+    },
+    {
+      "name": "Prutgås",
+      "latin": "Branta bernicla",
+      "total": 1,
+      "category": "rare",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Rödhalsad gås",
+      "latin": "Branta ruficollis",
+      "total": 1,
+      "category": "rare",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Kanadagås",
+      "latin": "Branta canadensis",
+      "total": 117,
+      "category": "abundant",
+      "months": [
+        38,
+        49,
+        15,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        10
+      ]
+    },
+    {
+      "name": "Vitkindad gås",
+      "latin": "Branta leucopsis",
+      "total": 57,
+      "category": "regular",
+      "months": [
+        8,
+        13,
+        5,
+        3,
+        3,
+        1,
+        0,
+        0,
+        1,
+        14,
+        5,
+        4
+      ]
+    },
+    {
+      "name": "Stripgås",
+      "latin": "Anser indicus",
+      "total": 1,
+      "category": "rare",
+      "months": [
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Grågås",
+      "latin": "Anser anser",
+      "total": 208,
+      "category": "abundant",
+      "months": [
+        56,
+        54,
+        29,
+        4,
+        3,
+        3,
+        0,
+        2,
+        1,
+        22,
+        17,
+        17
+      ]
+    },
+    {
+      "name": "Bläsgås",
+      "latin": "Anser albifrons",
+      "total": 65,
+      "category": "regular",
+      "months": [
+        14,
+        21,
+        12,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        6,
+        6,
+        5
+      ]
+    },
+    {
+      "name": "Tundragås",
+      "latin": "Anser serrirostris",
+      "total": 1,
+      "category": "rare",
+      "months": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Spetsbergsgås",
+      "latin": "Anser brachyrhynchus",
+      "total": 1,
+      "category": "rare",
+      "months": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Skogsgås",
+      "latin": "Anser fabalis",
+      "total": 4,
+      "category": "rare",
+      "months": [
+        1,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Nilgås",
+      "latin": "Alopochen aegyptiaca",
+      "total": 2,
+      "category": "rare",
+      "months": [
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Gravand",
+      "latin": "Tadorna tadorna",
+      "total": 40,
+      "category": "regular",
+      "months": [
+        0,
+        3,
+        12,
+        15,
+        9,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Ejder",
+      "latin": "Somateria mollissima",
+      "total": 2,
+      "category": "rare",
+      "months": [
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Knipa",
+      "latin": "Bucephala clangula",
+      "total": 209,
+      "category": "abundant",
+      "months": [
+        35,
+        57,
+        52,
+        27,
+        14,
+        8,
+        0,
+        0,
+        0,
+        2,
+        3,
+        11
+      ]
+    },
+    {
+      "name": "Salskrake",
+      "latin": "Mergellus albellus",
+      "total": 34,
+      "category": "regular",
+      "months": [
+        1,
+        11,
+        21,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Storskrake",
+      "latin": "Mergus merganser",
+      "total": 43,
+      "category": "regular",
+      "months": [
+        7,
+        8,
+        12,
+        11,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        2
+      ]
+    },
+    {
+      "name": "Brunand",
+      "latin": "Aythya ferina",
+      "total": 15,
+      "category": "uncommon",
+      "months": [
+        2,
+        0,
+        8,
+        4,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Vigg",
+      "latin": "Aythya fuligula",
+      "total": 43,
+      "category": "regular",
+      "months": [
+        2,
+        4,
+        19,
+        10,
+        3,
+        1,
+        0,
+        0,
+        1,
+        2,
+        1,
+        0
+      ]
+    },
+    {
+      "name": "Årta",
+      "latin": "Spatula querquedula",
+      "total": 2,
+      "category": "rare",
+      "months": [
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Skedand",
+      "latin": "Spatula clypeata",
+      "total": 18,
+      "category": "uncommon",
+      "months": [
+        0,
+        0,
+        1,
+        11,
+        4,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Snatterand",
+      "latin": "Mareca strepera",
+      "total": 9,
+      "category": "uncommon",
+      "months": [
+        0,
+        2,
+        0,
+        4,
+        1,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Bläsand",
+      "latin": "Mareca penelope",
+      "total": 103,
+      "category": "abundant",
+      "months": [
+        14,
+        16,
+        32,
+        12,
+        1,
+        0,
+        0,
+        0,
+        4,
+        12,
+        3,
+        9
+      ]
+    },
+    {
+      "name": "Gräsand",
+      "latin": "Anas platyrhynchos",
+      "total": 260,
+      "category": "abundant",
+      "months": [
+        52,
+        47,
+        52,
+        24,
+        25,
+        8,
+        2,
+        3,
+        3,
+        19,
+        9,
+        16
+      ]
+    },
+    {
+      "name": "Stjärtand",
+      "latin": "Anas acuta",
+      "total": 18,
+      "category": "uncommon",
+      "months": [
+        1,
+        3,
+        9,
+        4,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Kricka",
+      "latin": "Anas crecca",
+      "total": 115,
+      "category": "abundant",
+      "months": [
+        1,
+        10,
+        48,
+        33,
+        4,
+        1,
+        1,
+        0,
+        1,
+        13,
+        3,
+        0
+      ]
+    },
+    {
+      "name": "Rapphöna",
+      "latin": "Perdix perdix",
+      "total": 138,
+      "category": "abundant",
+      "months": [
+        17,
+        16,
+        11,
+        5,
+        24,
+        20,
+        10,
+        8,
+        2,
+        4,
+        8,
+        13
+      ]
+    },
+    {
+      "name": "Fasan",
+      "latin": "Phasianus colchicus",
+      "total": 96,
+      "category": "abundant",
+      "months": [
+        17,
+        11,
+        5,
+        11,
+        18,
+        5,
+        4,
+        1,
+        4,
+        6,
+        9,
+        5
+      ]
+    },
+    {
+      "name": "Vaktel",
+      "latin": "Coturnix coturnix",
+      "total": 26,
+      "category": "regular",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        4,
+        13,
+        7,
+        1,
+        0,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Smådopping",
+      "latin": "Tachybaptus ruficollis",
+      "total": 7,
+      "category": "uncommon",
+      "months": [
+        0,
+        0,
+        1,
+        1,
+        1,
+        0,
+        0,
+        0,
+        0,
+        4,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Gråhakedopping",
+      "latin": "Podiceps grisegena",
+      "total": 5,
+      "category": "uncommon",
+      "months": [
+        0,
+        0,
+        0,
+        3,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Gök",
+      "latin": "Cuculus canorus",
+      "total": 133,
+      "category": "abundant",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        72,
+        53,
+        4,
+        4,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Turturduva",
+      "latin": "Streptopelia turtur",
+      "total": 1,
+      "category": "rare",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Turkduva",
+      "latin": "Streptopelia decaocto",
+      "total": 145,
+      "category": "abundant",
+      "months": [
+        27,
+        7,
+        10,
+        17,
+        17,
+        9,
+        8,
+        13,
+        14,
+        4,
+        6,
+        13
+      ]
+    },
+    {
+      "name": "Ringduva",
+      "latin": "Columba palumbus",
+      "total": 380,
+      "category": "abundant",
+      "months": [
+        36,
+        34,
+        33,
+        36,
+        44,
+        19,
+        30,
+        29,
+        47,
+        40,
+        17,
+        15
+      ]
+    },
+    {
+      "name": "Klippduva (tamduva)",
+      "latin": "Columba livia, domesticated populations",
+      "total": 58,
+      "category": "regular",
+      "months": [
+        8,
+        4,
+        0,
+        5,
+        2,
+        1,
+        10,
+        9,
+        4,
+        9,
+        1,
+        5
+      ]
+    },
+    {
+      "name": "Skogsduva",
+      "latin": "Columba oenas",
+      "total": 167,
+      "category": "abundant",
+      "months": [
+        2,
+        15,
+        15,
+        26,
+        27,
+        4,
+        13,
+        16,
+        28,
+        15,
+        4,
+        2
+      ]
+    },
+    {
+      "name": "Trana",
+      "latin": "Grus grus",
+      "total": 183,
+      "category": "abundant",
+      "months": [
+        1,
+        9,
+        57,
+        22,
+        9,
+        2,
+        2,
+        9,
+        48,
+        23,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Vattenrall",
+      "latin": "Rallus aquaticus",
+      "total": 2,
+      "category": "rare",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Kornknarr",
+      "latin": "Crex crex",
+      "total": 30,
+      "category": "regular",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        5,
+        17,
+        8,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Småfläckig sumphöna",
+      "latin": "Porzana porzana",
+      "total": 1,
+      "category": "rare",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Rörhöna",
+      "latin": "Gallinula chloropus",
+      "total": 12,
+      "category": "uncommon",
+      "months": [
+        0,
+        0,
+        0,
+        4,
+        5,
+        1,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Sothöna",
+      "latin": "Fulica atra",
+      "total": 14,
+      "category": "uncommon",
+      "months": [
+        0,
+        1,
+        4,
+        4,
+        2,
+        2,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Skärfläcka",
+      "latin": "Recurvirostra avosetta",
+      "total": 3,
+      "category": "rare",
+      "months": [
+        0,
+        0,
+        0,
+        2,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Strandskata",
+      "latin": "Haematopus ostralegus",
+      "total": 71,
+      "category": "regular",
+      "months": [
+        0,
+        0,
+        22,
+        28,
+        11,
+        6,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Ljungpipare",
+      "latin": "Pluvialis apricaria",
+      "total": 77,
+      "category": "regular",
+      "months": [
+        1,
+        1,
+        5,
+        4,
+        0,
+        0,
+        0,
+        8,
+        19,
+        22,
+        14,
+        3
+      ]
+    },
+    {
+      "name": "Större strandpipare",
+      "latin": "Charadrius hiaticula",
+      "total": 12,
+      "category": "uncommon",
+      "months": [
+        0,
+        0,
+        7,
+        3,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Mindre strandpipare",
+      "latin": "Thinornis dubius",
+      "total": 51,
+      "category": "regular",
+      "months": [
+        0,
+        0,
+        3,
+        22,
+        8,
+        11,
+        7,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Tofsvipa",
+      "latin": "Vanellus vanellus",
+      "total": 342,
+      "category": "abundant",
+      "months": [
+        5,
+        46,
+        103,
+        44,
+        27,
+        13,
+        8,
+        5,
+        23,
+        42,
+        23,
+        3
+      ]
+    },
+    {
+      "name": "Småspov",
+      "latin": "Numenius phaeopus",
+      "total": 1,
+      "category": "rare",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Storspov",
+      "latin": "Numenius arquata",
+      "total": 139,
+      "category": "abundant",
+      "months": [
+        0,
+        1,
+        36,
+        46,
+        34,
+        17,
+        2,
+        2,
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Rödspov",
+      "latin": "Limosa limosa",
+      "total": 4,
+      "category": "rare",
+      "months": [
+        0,
+        0,
+        0,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Dvärgbeckasin",
+      "latin": "Lymnocryptes minimus",
+      "total": 7,
+      "category": "uncommon",
+      "months": [
+        2,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Morkulla",
+      "latin": "Scolopax rusticola",
+      "total": 31,
+      "category": "regular",
+      "months": [
+        1,
+        1,
+        4,
+        9,
+        5,
+        4,
+        2,
+        0,
+        0,
+        0,
+        5,
+        0
+      ]
+    },
+    {
+      "name": "Dubbelbeckasin",
+      "latin": "Gallinago media",
+      "total": 4,
+      "category": "rare",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Enkelbeckasin",
+      "latin": "Gallinago gallinago",
+      "total": 64,
+      "category": "regular",
+      "months": [
+        5,
+        2,
+        8,
+        26,
+        2,
+        1,
+        0,
+        1,
+        4,
+        11,
+        1,
+        3
+      ]
+    },
+    {
+      "name": "Drillsnäppa",
+      "latin": "Actitis hypoleucos",
+      "total": 4,
+      "category": "rare",
+      "months": [
+        0,
+        0,
+        0,
+        2,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Skogssnäppa",
+      "latin": "Tringa ochropus",
+      "total": 62,
+      "category": "regular",
+      "months": [
+        0,
+        0,
+        12,
+        37,
+        3,
+        4,
+        4,
+        1,
+        0,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Grönbena",
+      "latin": "Tringa glareola",
+      "total": 22,
+      "category": "regular",
+      "months": [
+        0,
+        0,
+        0,
+        6,
+        7,
+        4,
+        5,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Rödbena",
+      "latin": "Tringa totanus",
+      "total": 19,
+      "category": "uncommon",
+      "months": [
+        0,
+        0,
+        6,
+        5,
+        7,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Svartsnäppa",
+      "latin": "Tringa erythropus",
+      "total": 2,
+      "category": "rare",
+      "months": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Gluttsnäppa",
+      "latin": "Tringa nebularia",
+      "total": 16,
+      "category": "uncommon",
+      "months": [
+        0,
+        0,
+        0,
+        9,
+        3,
+        0,
+        1,
+        3,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Brushane",
+      "latin": "Calidris pugnax",
+      "total": 25,
+      "category": "regular",
+      "months": [
+        0,
+        0,
+        7,
+        5,
+        6,
+        1,
+        2,
+        1,
+        3,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Mosnäppa",
+      "latin": "Calidris temminckii",
+      "total": 2,
+      "category": "rare",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Småsnäppa",
+      "latin": "Calidris minuta",
+      "total": 1,
+      "category": "rare",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Fisktärna",
+      "latin": "Sterna hirundo",
+      "total": 1,
+      "category": "rare",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Skrattmås",
+      "latin": "Chroicocephalus ridibundus",
+      "total": 90,
+      "category": "abundant",
+      "months": [
+        5,
+        0,
+        37,
+        22,
+        7,
+        3,
+        8,
+        4,
+        2,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "name": "Svarthuvad mås",
+      "latin": "Ichthyaetus melanocephalus",
+      "total": 1,
+      "category": "rare",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Fiskmås",
+      "latin": "Larus canus",
+      "total": 89,
+      "category": "abundant",
+      "months": [
+        5,
+        2,
+        21,
+        17,
+        9,
+        5,
+        15,
+        6,
+        5,
+        1,
+        3,
+        0
+      ]
+    },
+    {
+      "name": "Kaspisk trut",
+      "latin": "Larus cachinnans",
+      "total": 1,
+      "category": "rare",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Gråtrut",
+      "latin": "Larus argentatus",
+      "total": 159,
+      "category": "abundant",
+      "months": [
+        33,
+        15,
+        35,
+        17,
+        7,
+        1,
+        7,
+        6,
+        9,
+        16,
+        7,
+        6
+      ]
+    },
+    {
+      "name": "Havstrut",
+      "latin": "Larus marinus",
+      "total": 15,
+      "category": "uncommon",
+      "months": [
+        5,
+        4,
+        2,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "name": "Silltrut",
+      "latin": "Larus fuscus",
+      "total": 7,
+      "category": "uncommon",
+      "months": [
+        0,
+        0,
+        0,
+        1,
+        1,
+        0,
+        1,
+        2,
+        1,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "name": "Stormfågel",
+      "latin": "Fulmarus glacialis",
+      "total": 1,
+      "category": "rare",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Svart stork",
+      "latin": "Ciconia nigra",
+      "total": 2,
+      "category": "rare",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Vit stork",
+      "latin": "Ciconia ciconia",
+      "total": 363,
+      "category": "abundant",
+      "months": [
+        19,
+        9,
+        22,
+        22,
+        13,
+        40,
+        13,
+        22,
+        51,
+        42,
+        64,
+        46
+      ]
+    },
+    {
+      "name": "Storskarv",
+      "latin": "Phalacrocorax carbo",
+      "total": 71,
+      "category": "regular",
+      "months": [
+        13,
+        16,
+        8,
+        3,
+        1,
+        1,
+        0,
+        5,
+        9,
+        7,
+        5,
+        3
+      ]
+    },
+    {
+      "name": "Ägretthäger",
+      "latin": "Ardea alba",
+      "total": 46,
+      "category": "regular",
+      "months": [
+        3,
+        4,
+        15,
+        1,
+        0,
+        0,
+        0,
+        1,
+        10,
+        8,
+        2,
+        2
+      ]
+    },
+    {
+      "name": "Gråhäger",
+      "latin": "Ardea cinerea",
+      "total": 124,
+      "category": "abundant",
+      "months": [
+        22,
+        6,
+        6,
+        4,
+        0,
+        4,
+        4,
+        8,
+        18,
+        31,
+        10,
+        11
+      ]
+    },
+    {
+      "name": "Nattskärra",
+      "latin": "Caprimulgus europaeus",
+      "total": 15,
+      "category": "uncommon",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        8,
+        3,
+        1,
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Tornseglare",
+      "latin": "Apus apus",
+      "total": 226,
+      "category": "abundant",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        40,
+        52,
+        53,
+        68,
+        13,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Jorduggla",
+      "latin": "Asio flammeus",
+      "total": 9,
+      "category": "uncommon",
+      "months": [
+        2,
+        2,
+        1,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "Hornuggla",
+      "latin": "Asio otus",
+      "total": 24,
+      "category": "regular",
+      "months": [
+        2,
+        1,
+        0,
+        6,
+        3,
+        5,
+        3,
+        1,
+        1,
+        0,
+        1,
+        1
+      ]
+    },
+    {
+      "name": "Berguv",
+      "latin": "Bubo bubo",
+      "total": 17,
+      "category": "uncommon",
+      "months": [
+        1,
+        0,
+        3,
+        5,
+        3,
+        1,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Kattuggla",
+      "latin": "Strix aluco",
+      "total": 81,
+      "category": "abundant",
+      "months": [
+        1,
+        9,
+        10,
+        12,
+        13,
+        10,
+        9,
+        1,
+        2,
+        8,
+        4,
+        2
+      ]
+    },
+    {
+      "name": "Fiskgjuse",
+      "latin": "Pandion haliaetus",
+      "total": 32,
+      "category": "regular",
+      "months": [
+        0,
+        0,
+        1,
+        12,
+        0,
+        2,
+        0,
+        6,
+        11,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Bivråk",
+      "latin": "Pernis apivorus",
+      "total": 58,
+      "category": "regular",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        4,
+        2,
+        3,
+        26,
+        22,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Stäppörn",
+      "latin": "Aquila nipalensis",
+      "total": 1,
+      "category": "rare",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Kungsörn",
+      "latin": "Aquila chrysaetos",
+      "total": 52,
+      "category": "regular",
+      "months": [
+        10,
+        11,
+        7,
+        2,
+        0,
+        2,
+        0,
+        0,
+        0,
+        6,
+        3,
+        11
+      ]
+    },
+    {
+      "name": "Sparvhök",
+      "latin": "Accipiter nisus",
+      "total": 210,
+      "category": "abundant",
+      "months": [
+        23,
+        9,
+        16,
+        11,
+        7,
+        0,
+        0,
+        18,
+        53,
+        40,
+        20,
+        13
+      ]
+    },
+    {
+      "name": "Duvhök",
+      "latin": "Astur gentilis",
+      "total": 61,
+      "category": "regular",
+      "months": [
+        5,
+        3,
+        4,
+        8,
+        1,
+        0,
+        0,
+        5,
+        10,
+        8,
+        10,
+        7
+      ]
+    },
+    {
+      "name": "Stäpphök",
+      "latin": "Circus macrourus",
+      "total": 2,
+      "category": "rare",
+      "months": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Blå kärrhök",
+      "latin": "Circus cyaneus",
+      "total": 180,
+      "category": "abundant",
+      "months": [
+        14,
+        16,
+        24,
+        6,
+        3,
+        0,
+        0,
+        5,
+        16,
+        55,
+        32,
+        9
+      ]
+    },
+    {
+      "name": "Brun kärrhök",
+      "latin": "Circus aeruginosus",
+      "total": 135,
+      "category": "abundant",
+      "months": [
+        0,
+        0,
+        1,
+        27,
+        10,
+        15,
+        11,
+        29,
+        40,
+        2,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Röd glada",
+      "latin": "Milvus milvus",
+      "total": 1295,
+      "category": "abundant",
+      "months": [
+        160,
+        140,
+        128,
+        107,
+        99,
+        54,
+        58,
+        75,
+        129,
+        109,
+        107,
+        129
+      ]
+    },
+    {
+      "name": "Brun glada",
+      "latin": "Milvus migrans",
+      "total": 18,
+      "category": "uncommon",
+      "months": [
+        1,
+        0,
+        0,
+        2,
+        3,
+        2,
+        3,
+        2,
+        3,
+        2,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Havsörn",
+      "latin": "Haliaeetus albicilla",
+      "total": 246,
+      "category": "abundant",
+      "months": [
+        47,
+        44,
+        26,
+        2,
+        3,
+        3,
+        0,
+        10,
+        21,
+        36,
+        26,
+        28
+      ]
+    },
+    {
+      "name": "Fjällvråk",
+      "latin": "Buteo lagopus",
+      "total": 255,
+      "category": "abundant",
+      "months": [
+        45,
+        39,
+        30,
+        10,
+        0,
+        0,
+        0,
+        0,
+        12,
+        40,
+        42,
+        37
+      ]
+    },
+    {
+      "name": "Ormvråk",
+      "latin": "Buteo buteo",
+      "total": 911,
+      "category": "abundant",
+      "months": [
+        145,
+        124,
+        76,
+        48,
+        40,
+        28,
+        16,
+        49,
+        82,
+        109,
+        100,
+        94
+      ]
+    },
+    {
+      "name": "Kungsfiskare",
+      "latin": "Alcedo atthis",
+      "total": 20,
+      "category": "regular",
+      "months": [
+        4,
+        1,
+        0,
+        1,
+        0,
+        0,
+        3,
+        0,
+        0,
+        0,
+        2,
+        9
+      ]
+    },
+    {
+      "name": "Göktyta",
+      "latin": "Jynx torquilla",
+      "total": 5,
+      "category": "uncommon",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        1,
+        1,
+        0,
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Gröngöling",
+      "latin": "Picus viridis",
+      "total": 97,
+      "category": "abundant",
+      "months": [
+        7,
+        12,
+        5,
+        11,
+        6,
+        4,
+        10,
+        7,
+        10,
+        13,
+        5,
+        7
+      ]
+    },
+    {
+      "name": "Spillkråka",
+      "latin": "Dryocopus martius",
+      "total": 79,
+      "category": "regular",
+      "months": [
+        8,
+        9,
+        7,
+        11,
+        6,
+        3,
+        0,
+        2,
+        6,
+        7,
+        11,
+        9
+      ]
+    },
+    {
+      "name": "Större hackspett",
+      "latin": "Dendrocopos major",
+      "total": 296,
+      "category": "abundant",
+      "months": [
+        38,
+        28,
+        22,
+        26,
+        23,
+        12,
+        11,
+        19,
+        32,
+        29,
+        20,
+        36
+      ]
+    },
+    {
+      "name": "Mindre hackspett",
+      "latin": "Dryobates minor",
+      "total": 18,
+      "category": "uncommon",
+      "months": [
+        0,
+        1,
+        2,
+        4,
+        0,
+        2,
+        2,
+        2,
+        4,
+        0,
+        1,
+        0
+      ]
+    },
+    {
+      "name": "Tornfalk",
+      "latin": "Falco tinnunculus",
+      "total": 579,
+      "category": "abundant",
+      "months": [
+        84,
+        47,
+        29,
+        24,
+        27,
+        21,
+        38,
+        35,
+        96,
+        76,
+        49,
+        53
+      ]
+    },
+    {
+      "name": "Aftonfalk",
+      "latin": "Falco vespertinus",
+      "total": 1,
+      "category": "rare",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Stenfalk",
+      "latin": "Falco columbarius",
+      "total": 56,
+      "category": "regular",
+      "months": [
+        0,
+        1,
+        2,
+        3,
+        2,
+        0,
+        0,
+        1,
+        20,
+        17,
+        7,
+        3
+      ]
+    },
+    {
+      "name": "Lärkfalk",
+      "latin": "Falco subbuteo",
+      "total": 38,
+      "category": "regular",
+      "months": [
+        0,
+        0,
+        0,
+        1,
+        2,
+        5,
+        5,
+        7,
+        16,
+        2,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Pilgrimsfalk",
+      "latin": "Falco peregrinus",
+      "total": 54,
+      "category": "regular",
+      "months": [
+        2,
+        4,
+        5,
+        5,
+        7,
+        0,
+        1,
+        4,
+        11,
+        8,
+        3,
+        4
+      ]
+    },
+    {
+      "name": "Varfågel",
+      "latin": "Lanius excubitor",
+      "total": 40,
+      "category": "regular",
+      "months": [
+        14,
+        5,
+        3,
+        3,
+        0,
+        0,
+        0,
+        0,
+        0,
+        4,
+        6,
+        5
+      ]
+    },
+    {
+      "name": "Törnskata",
+      "latin": "Lanius collurio",
+      "total": 26,
+      "category": "regular",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        9,
+        3,
+        4,
+        10,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Nötskrika",
+      "latin": "Garrulus glandarius",
+      "total": 93,
+      "category": "abundant",
+      "months": [
+        16,
+        9,
+        1,
+        9,
+        1,
+        4,
+        2,
+        7,
+        11,
+        13,
+        10,
+        10
+      ]
+    },
+    {
+      "name": "Skata",
+      "latin": "Pica pica",
+      "total": 152,
+      "category": "abundant",
+      "months": [
+        33,
+        16,
+        10,
+        14,
+        10,
+        10,
+        12,
+        6,
+        7,
+        7,
+        15,
+        12
+      ]
+    },
+    {
+      "name": "Nötkråka",
+      "latin": "Nucifraga caryocatactes",
+      "total": 11,
+      "category": "uncommon",
+      "months": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        2,
+        3,
+        3,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Kaja",
+      "latin": "Coloeus monedula",
+      "total": 236,
+      "category": "abundant",
+      "months": [
+        43,
+        20,
+        9,
+        13,
+        19,
+        16,
+        24,
+        13,
+        17,
+        21,
+        21,
+        20
+      ]
+    },
+    {
+      "name": "Råka",
+      "latin": "Corvus frugilegus",
+      "total": 318,
+      "category": "abundant",
+      "months": [
+        38,
+        27,
+        18,
+        47,
+        22,
+        24,
+        37,
+        17,
+        32,
+        28,
+        18,
+        10
+      ]
+    },
+    {
+      "name": "Korp",
+      "latin": "Corvus corax",
+      "total": 273,
+      "category": "abundant",
+      "months": [
+        51,
+        34,
+        17,
+        15,
+        15,
+        8,
+        11,
+        14,
+        27,
+        27,
+        23,
+        31
+      ]
+    },
+    {
+      "name": "Gråkråka",
+      "latin": "Corvus corone cornix",
+      "total": 421,
+      "category": "abundant",
+      "months": [
+        67,
+        38,
+        41,
+        41,
+        35,
+        30,
+        23,
+        18,
+        26,
+        36,
+        36,
+        30
+      ]
+    },
+    {
+      "name": "Blåmes",
+      "latin": "Cyanistes caeruleus",
+      "total": 170,
+      "category": "abundant",
+      "months": [
+        37,
+        21,
+        9,
+        14,
+        11,
+        10,
+        5,
+        7,
+        10,
+        14,
+        15,
+        17
+      ]
+    },
+    {
+      "name": "Talgoxe",
+      "latin": "Parus major",
+      "total": 177,
+      "category": "abundant",
+      "months": [
+        46,
+        21,
+        6,
+        16,
+        29,
+        9,
+        6,
+        6,
+        4,
+        8,
+        11,
+        15
+      ]
+    },
+    {
+      "name": "Svartmes",
+      "latin": "Periparus ater",
+      "total": 52,
+      "category": "regular",
+      "months": [
+        5,
+        2,
+        6,
+        11,
+        3,
+        4,
+        2,
+        4,
+        3,
+        7,
+        2,
+        3
+      ]
+    },
+    {
+      "name": "Tofsmes",
+      "latin": "Lophophanes cristatus",
+      "total": 6,
+      "category": "uncommon",
+      "months": [
+        0,
+        0,
+        1,
+        1,
+        0,
+        0,
+        0,
+        1,
+        0,
+        1,
+        0,
+        2
+      ]
+    },
+    {
+      "name": "Entita",
+      "latin": "Poecile palustris",
+      "total": 129,
+      "category": "abundant",
+      "months": [
+        21,
+        17,
+        10,
+        7,
+        2,
+        8,
+        4,
+        9,
+        12,
+        11,
+        11,
+        17
+      ]
+    },
+    {
+      "name": "Talltita",
+      "latin": "Poecile montanus",
+      "total": 18,
+      "category": "uncommon",
+      "months": [
+        1,
+        1,
+        1,
+        6,
+        1,
+        1,
+        1,
+        2,
+        1,
+        2,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Trädlärka",
+      "latin": "Lullula arborea",
+      "total": 18,
+      "category": "uncommon",
+      "months": [
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        1,
+        6,
+        10,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Sånglärka",
+      "latin": "Alauda arvensis",
+      "total": 561,
+      "category": "abundant",
+      "months": [
+        7,
+        79,
+        113,
+        66,
+        68,
+        57,
+        44,
+        22,
+        34,
+        56,
+        5,
+        10
+      ]
+    },
+    {
+      "name": "Härmsångare",
+      "latin": "Hippolais icterina",
+      "total": 43,
+      "category": "regular",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        26,
+        13,
+        3,
+        1,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Sävsångare",
+      "latin": "Acrocephalus schoenobaenus",
+      "total": 5,
+      "category": "uncommon",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Kärrsångare",
+      "latin": "Acrocephalus palustris",
+      "total": 50,
+      "category": "regular",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        18,
+        31,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Rörsångare",
+      "latin": "Acrocephalus scirpaceus",
+      "total": 8,
+      "category": "uncommon",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        1,
+        5,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Gräshoppsångare",
+      "latin": "Locustella naevia",
+      "total": 30,
+      "category": "regular",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        9,
+        15,
+        6,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Backsvala",
+      "latin": "Riparia riparia",
+      "total": 92,
+      "category": "abundant",
+      "months": [
+        0,
+        0,
+        0,
+        1,
+        24,
+        34,
+        12,
+        19,
+        2,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Ladusvala",
+      "latin": "Hirundo rustica",
+      "total": 317,
+      "category": "abundant",
+      "months": [
+        0,
+        0,
+        0,
+        31,
+        63,
+        28,
+        35,
+        65,
+        77,
+        18,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Hussvala",
+      "latin": "Delichon urbicum",
+      "total": 92,
+      "category": "abundant",
+      "months": [
+        0,
+        0,
+        0,
+        5,
+        23,
+        26,
+        12,
+        17,
+        9,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Stjärtmes",
+      "latin": "Aegithalos caudatus",
+      "total": 46,
+      "category": "regular",
+      "months": [
+        3,
+        7,
+        8,
+        7,
+        0,
+        3,
+        1,
+        2,
+        1,
+        8,
+        3,
+        3
+      ]
+    },
+    {
+      "name": "Grönsångare",
+      "latin": "Phylloscopus sibilatrix",
+      "total": 35,
+      "category": "regular",
+      "months": [
+        0,
+        0,
+        0,
+        4,
+        23,
+        7,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Lövsångare",
+      "latin": "Phylloscopus trochilus",
+      "total": 111,
+      "category": "abundant",
+      "months": [
+        0,
+        0,
+        0,
+        27,
+        45,
+        16,
+        3,
+        6,
+        12,
+        2,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Gransångare",
+      "latin": "Phylloscopus collybita",
+      "total": 175,
+      "category": "abundant",
+      "months": [
+        0,
+        0,
+        28,
+        23,
+        25,
+        13,
+        11,
+        6,
+        32,
+        33,
+        4,
+        0
+      ]
+    },
+    {
+      "name": "Lundsångare",
+      "latin": "Phylloscopus trochiloides",
+      "total": 1,
+      "category": "rare",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Trädgårdssångare",
+      "latin": "Sylvia borin",
+      "total": 63,
+      "category": "regular",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        37,
+        14,
+        7,
+        4,
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Svarthätta",
+      "latin": "Sylvia atricapilla",
+      "total": 104,
+      "category": "abundant",
+      "months": [
+        0,
+        0,
+        0,
+        22,
+        45,
+        13,
+        4,
+        6,
+        4,
+        9,
+        0,
+        1
+      ]
+    },
+    {
+      "name": "Ärtsångare",
+      "latin": "Curruca curruca",
+      "total": 75,
+      "category": "regular",
+      "months": [
+        0,
+        0,
+        0,
+        19,
+        32,
+        8,
+        4,
+        10,
+        2,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Törnsångare",
+      "latin": "Curruca communis",
+      "total": 66,
+      "category": "regular",
+      "months": [
+        0,
+        0,
+        0,
+        2,
+        40,
+        18,
+        6,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Sidensvans",
+      "latin": "Bombycilla garrulus",
+      "total": 93,
+      "category": "abundant",
+      "months": [
+        12,
+        9,
+        4,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        13,
+        32,
+        23
+      ]
+    },
+    {
+      "name": "Brandkronad kungsfågel",
+      "latin": "Regulus ignicapilla",
+      "total": 12,
+      "category": "uncommon",
+      "months": [
+        1,
+        0,
+        0,
+        5,
+        0,
+        1,
+        2,
+        2,
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Kungsfågel",
+      "latin": "Regulus regulus",
+      "total": 44,
+      "category": "regular",
+      "months": [
+        11,
+        4,
+        6,
+        4,
+        1,
+        1,
+        0,
+        3,
+        2,
+        6,
+        3,
+        3
+      ]
+    },
+    {
+      "name": "Nötväcka",
+      "latin": "Sitta europaea",
+      "total": 164,
+      "category": "abundant",
+      "months": [
+        26,
+        20,
+        8,
+        15,
+        6,
+        5,
+        10,
+        9,
+        13,
+        12,
+        16,
+        24
+      ]
+    },
+    {
+      "name": "Trädkrypare",
+      "latin": "Certhia familiaris",
+      "total": 88,
+      "category": "abundant",
+      "months": [
+        13,
+        14,
+        10,
+        14,
+        8,
+        6,
+        2,
+        2,
+        4,
+        5,
+        5,
+        5
+      ]
+    },
+    {
+      "name": "Trädgårdsträdkrypare",
+      "latin": "Certhia brachydactyla",
+      "total": 1,
+      "category": "rare",
+      "months": [
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Gärdsmyg",
+      "latin": "Troglodytes troglodytes",
+      "total": 146,
+      "category": "abundant",
+      "months": [
+        19,
+        12,
+        8,
+        16,
+        8,
+        7,
+        4,
+        6,
+        5,
+        16,
+        19,
+        26
+      ]
+    },
+    {
+      "name": "Stare",
+      "latin": "Sturnus vulgaris",
+      "total": 354,
+      "category": "abundant",
+      "months": [
+        7,
+        13,
+        41,
+        32,
+        59,
+        27,
+        16,
+        19,
+        45,
+        70,
+        18,
+        7
+      ]
+    },
+    {
+      "name": "Strömstare",
+      "latin": "Cinclus cinclus",
+      "total": 13,
+      "category": "uncommon",
+      "months": [
+        4,
+        2,
+        3,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        1
+      ]
+    },
+    {
+      "name": "Dubbeltrast",
+      "latin": "Turdus viscivorus",
+      "total": 52,
+      "category": "regular",
+      "months": [
+        1,
+        1,
+        10,
+        14,
+        4,
+        3,
+        1,
+        1,
+        3,
+        8,
+        4,
+        2
+      ]
+    },
+    {
+      "name": "Taltrast",
+      "latin": "Turdus philomelos",
+      "total": 72,
+      "category": "regular",
+      "months": [
+        1,
+        0,
+        13,
+        23,
+        10,
+        6,
+        1,
+        2,
+        2,
+        14,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Rödvingetrast",
+      "latin": "Turdus iliacus",
+      "total": 61,
+      "category": "regular",
+      "months": [
+        7,
+        0,
+        7,
+        12,
+        0,
+        0,
+        0,
+        0,
+        0,
+        17,
+        14,
+        4
+      ]
+    },
+    {
+      "name": "Koltrast",
+      "latin": "Turdus merula",
+      "total": 332,
+      "category": "abundant",
+      "months": [
+        86,
+        29,
+        8,
+        21,
+        38,
+        22,
+        13,
+        8,
+        6,
+        30,
+        27,
+        44
+      ]
+    },
+    {
+      "name": "Björktrast",
+      "latin": "Turdus pilaris",
+      "total": 212,
+      "category": "abundant",
+      "months": [
+        30,
+        13,
+        10,
+        24,
+        8,
+        11,
+        0,
+        0,
+        3,
+        34,
+        33,
+        46
+      ]
+    },
+    {
+      "name": "Ringtrast",
+      "latin": "Turdus torquatus",
+      "total": 1,
+      "category": "rare",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Grå flugsnappare",
+      "latin": "Muscicapa striata",
+      "total": 28,
+      "category": "regular",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        4,
+        8,
+        6,
+        6,
+        4,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Rödhake",
+      "latin": "Erithacus rubecula",
+      "total": 167,
+      "category": "abundant",
+      "months": [
+        43,
+        8,
+        9,
+        13,
+        10,
+        5,
+        3,
+        4,
+        14,
+        20,
+        21,
+        17
+      ]
+    },
+    {
+      "name": "Näktergal",
+      "latin": "Luscinia luscinia",
+      "total": 94,
+      "category": "abundant",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        63,
+        31,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Mindre flugsnappare",
+      "latin": "Ficedula parva",
+      "total": 2,
+      "category": "rare",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Svartvit flugsnappare",
+      "latin": "Ficedula hypoleuca",
+      "total": 39,
+      "category": "regular",
+      "months": [
+        0,
+        0,
+        0,
+        2,
+        21,
+        8,
+        0,
+        8,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Svart rödstjärt",
+      "latin": "Phoenicurus ochruros",
+      "total": 37,
+      "category": "regular",
+      "months": [
+        0,
+        2,
+        0,
+        9,
+        10,
+        6,
+        6,
+        0,
+        1,
+        1,
+        2,
+        0
+      ]
+    },
+    {
+      "name": "Rödstjärt",
+      "latin": "Phoenicurus phoenicurus",
+      "total": 124,
+      "category": "abundant",
+      "months": [
+        0,
+        0,
+        0,
+        25,
+        55,
+        22,
+        5,
+        9,
+        6,
+        2,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Buskskvätta",
+      "latin": "Saxicola rubetra",
+      "total": 119,
+      "category": "abundant",
+      "months": [
+        0,
+        0,
+        0,
+        10,
+        39,
+        20,
+        7,
+        30,
+        13,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Stenskvätta",
+      "latin": "Oenanthe oenanthe",
+      "total": 140,
+      "category": "abundant",
+      "months": [
+        0,
+        0,
+        0,
+        24,
+        34,
+        18,
+        8,
+        26,
+        27,
+        3,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Järnsparv",
+      "latin": "Prunella modularis",
+      "total": 76,
+      "category": "regular",
+      "months": [
+        1,
+        0,
+        21,
+        14,
+        3,
+        2,
+        0,
+        2,
+        12,
+        13,
+        3,
+        5
+      ]
+    },
+    {
+      "name": "Pilfink",
+      "latin": "Passer montanus",
+      "total": 122,
+      "category": "abundant",
+      "months": [
+        23,
+        6,
+        3,
+        9,
+        13,
+        12,
+        12,
+        8,
+        6,
+        9,
+        11,
+        10
+      ]
+    },
+    {
+      "name": "Gråsparv",
+      "latin": "Passer domesticus",
+      "total": 72,
+      "category": "regular",
+      "months": [
+        29,
+        3,
+        2,
+        6,
+        2,
+        5,
+        7,
+        2,
+        1,
+        3,
+        4,
+        8
+      ]
+    },
+    {
+      "name": "Forsärla",
+      "latin": "Motacilla cinerea",
+      "total": 38,
+      "category": "regular",
+      "months": [
+        3,
+        1,
+        2,
+        5,
+        2,
+        4,
+        0,
+        3,
+        4,
+        6,
+        4,
+        4
+      ]
+    },
+    {
+      "name": "Gulärla",
+      "latin": "Motacilla flava",
+      "total": 202,
+      "category": "abundant",
+      "months": [
+        0,
+        0,
+        0,
+        5,
+        48,
+        38,
+        37,
+        48,
+        26,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Sädesärla",
+      "latin": "Motacilla alba",
+      "total": 172,
+      "category": "abundant",
+      "months": [
+        0,
+        2,
+        11,
+        36,
+        18,
+        21,
+        18,
+        13,
+        43,
+        9,
+        1,
+        0
+      ]
+    },
+    {
+      "name": "Trädpiplärka",
+      "latin": "Anthus trivialis",
+      "total": 63,
+      "category": "regular",
+      "months": [
+        0,
+        0,
+        0,
+        18,
+        19,
+        4,
+        0,
+        12,
+        10,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Rödstrupig piplärka",
+      "latin": "Anthus cervinus",
+      "total": 1,
+      "category": "rare",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Ängspiplärka",
+      "latin": "Anthus pratensis",
+      "total": 121,
+      "category": "abundant",
+      "months": [
+        3,
+        1,
+        10,
+        21,
+        2,
+        4,
+        8,
+        5,
+        25,
+        36,
+        5,
+        1
+      ]
+    },
+    {
+      "name": "Bergfink",
+      "latin": "Fringilla montifringilla",
+      "total": 62,
+      "category": "regular",
+      "months": [
+        11,
+        7,
+        4,
+        5,
+        0,
+        0,
+        0,
+        0,
+        3,
+        9,
+        10,
+        13
+      ]
+    },
+    {
+      "name": "Bofink",
+      "latin": "Fringilla coelebs",
+      "total": 166,
+      "category": "abundant",
+      "months": [
+        19,
+        7,
+        17,
+        20,
+        24,
+        5,
+        4,
+        1,
+        29,
+        18,
+        10,
+        12
+      ]
+    },
+    {
+      "name": "Stenknäck",
+      "latin": "Coccothraustes coccothraustes",
+      "total": 93,
+      "category": "abundant",
+      "months": [
+        16,
+        12,
+        7,
+        8,
+        6,
+        2,
+        1,
+        2,
+        12,
+        9,
+        6,
+        12
+      ]
+    },
+    {
+      "name": "Tallbit",
+      "latin": "Pinicola enucleator",
+      "total": 2,
+      "category": "rare",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        1,
+        0
+      ]
+    },
+    {
+      "name": "Domherre",
+      "latin": "Pyrrhula pyrrhula",
+      "total": 169,
+      "category": "abundant",
+      "months": [
+        42,
+        24,
+        6,
+        4,
+        0,
+        1,
+        0,
+        5,
+        4,
+        15,
+        38,
+        30
+      ]
+    },
+    {
+      "name": "Grönfink",
+      "latin": "Chloris chloris",
+      "total": 238,
+      "category": "abundant",
+      "months": [
+        28,
+        28,
+        28,
+        33,
+        18,
+        15,
+        15,
+        13,
+        13,
+        10,
+        17,
+        20
+      ]
+    },
+    {
+      "name": "Vinterhämpling",
+      "latin": "Linaria flavirostris",
+      "total": 56,
+      "category": "regular",
+      "months": [
+        10,
+        3,
+        15,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        7,
+        10,
+        11
+      ]
+    },
+    {
+      "name": "Hämpling",
+      "latin": "Linaria cannabina",
+      "total": 217,
+      "category": "abundant",
+      "months": [
+        1,
+        0,
+        12,
+        39,
+        47,
+        22,
+        25,
+        29,
+        25,
+        13,
+        4,
+        0
+      ]
+    },
+    {
+      "name": "Gråsiska",
+      "latin": "Acanthis flammea",
+      "total": 81,
+      "category": "abundant",
+      "months": [
+        25,
+        6,
+        3,
+        3,
+        0,
+        1,
+        0,
+        3,
+        1,
+        7,
+        20,
+        12
+      ]
+    },
+    {
+      "name": "Bändelkorsnäbb",
+      "latin": "Loxia leucoptera",
+      "total": 8,
+      "category": "uncommon",
+      "months": [
+        2,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        2,
+        2,
+        0,
+        2,
+        0
+      ]
+    },
+    {
+      "name": "Större korsnäbb",
+      "latin": "Loxia pytyopsittacus",
+      "total": 2,
+      "category": "rare",
+      "months": [
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Mindre korsnäbb",
+      "latin": "Loxia curvirostra",
+      "total": 41,
+      "category": "regular",
+      "months": [
+        5,
+        1,
+        4,
+        1,
+        1,
+        0,
+        2,
+        11,
+        2,
+        2,
+        7,
+        5
+      ]
+    },
+    {
+      "name": "Steglits",
+      "latin": "Carduelis carduelis",
+      "total": 242,
+      "category": "abundant",
+      "months": [
+        13,
+        8,
+        15,
+        35,
+        27,
+        24,
+        15,
+        18,
+        35,
+        35,
+        10,
+        7
+      ]
+    },
+    {
+      "name": "Gulhämpling",
+      "latin": "Serinus serinus",
+      "total": 1,
+      "category": "rare",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Grönsiska",
+      "latin": "Spinus spinus",
+      "total": 63,
+      "category": "regular",
+      "months": [
+        7,
+        0,
+        5,
+        10,
+        0,
+        2,
+        3,
+        5,
+        8,
+        6,
+        9,
+        8
+      ]
+    },
+    {
+      "name": "Snösparv",
+      "latin": "Plectrophenax nivalis",
+      "total": 14,
+      "category": "uncommon",
+      "months": [
+        0,
+        1,
+        8,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        2,
+        2
+      ]
+    },
+    {
+      "name": "Sävsparv",
+      "latin": "Emberiza schoeniclus",
+      "total": 58,
+      "category": "regular",
+      "months": [
+        1,
+        0,
+        11,
+        11,
+        6,
+        4,
+        5,
+        3,
+        3,
+        14,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Kornsparv",
+      "latin": "Emberiza calandra",
+      "total": 1,
+      "category": "rare",
+      "months": [
+        0,
+        0,
+        0,
+        0,
+        0,
+        1,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "name": "Gulsparv",
+      "latin": "Emberiza citrinella",
+      "total": 304,
+      "category": "abundant",
+      "months": [
+        31,
+        20,
+        24,
+        26,
+        40,
+        23,
+        23,
+        16,
+        16,
+        33,
+        22,
+        30
+      ]
+    }
+  ]
+}
