@@ -2,6 +2,7 @@
 title: "Vem äter mest, vem äter sist?"
 date: 2026-02-06
 draft: false
+image: "/images/2026-02-06-snodagen/talgoxe-blames-matningen.jpg"
 location: "Kvidinge · Rönneå vid Tomarps Ene"
 species:
   - Gulsparv
