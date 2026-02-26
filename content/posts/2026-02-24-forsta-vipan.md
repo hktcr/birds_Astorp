@@ -48,6 +48,6 @@ En snabb rörelse i ögonvrån. En liten falk med riktad flykt. En stenfalk. Inn
     <img src="/images/posts/2026-02-24-forsta-vipan/Kungsgårdsmaderna_2.jpg" alt="Maderna börjar fyllas med vatten" style="height: 240px; width: auto; object-fit: cover; border-radius: 8px;">
   </a>
 </div>
-<p style="text-align: center; font-style: italic; font-size: 0.9em; color: #666;">Kungsgårdsmaderna i februari. Snön ger med sig, maderna börjar fyllas.</p>
+<p style="text-align: center; font-style: italic; font-size: 0.9em; color: #666;">Rönneå och Kungsgårdsmaderna. Snön försvinner på maderna och vattnet stiger.</p>
 
 *Fågelåret i Åstorp, 59/150*
