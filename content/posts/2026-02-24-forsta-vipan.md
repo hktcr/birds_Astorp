@@ -38,7 +38,7 @@ En tofsvipa passerade med starka, målmedvetna vingslag. Den såg ut att landa l
 
 Ute i ån hördes gräsändernas småpratande. Isen hade släppt rejält. Invävt i den försynta ljudkulissen, sporadiskt, en kricka.
 
-En snabb rörelse i ögonvrån. En liten falk med riktad flykt. En stenfalk. Innan jag fick fram kikaren var den borta. Strax dök den upp igen, högt mot himlen, med snabba utfall mot en tofsvipa. Snart gav den upp. Tofsvipan fortsatte åt ett håll, stenfalken åt ett annat, och jag åt ett tredje.
+En snabb rörelse i ögonvrån. En liten falk med riktad flykt. En stenfalk. Innan jag fick fram kikaren var den borta. Strax dök den upp igen, högt mot himlen, med snabba utfall mot en tofsvipa. Var det samma, kanske helt nyanlända vipa, som var uppe på vingarna igen? Snart gav den upp. Tofsvipan fortsatte åt ett håll, stenfalken åt ett annat, och jag åt ett tredje.
 
 <div class="gallery" style="display: flex; gap: 12px; margin: 2rem 0; justify-content: center;">
   <a href="/images/posts/2026-02-24-forsta-vipan/Kungsgårdsmaderna_1.jpg" class="lightbox-link">
