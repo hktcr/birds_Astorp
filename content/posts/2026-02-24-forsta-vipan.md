@@ -2,6 +2,7 @@
 title: "Första vipan"
 date: 2026-02-24
 draft: false
+image: "/images/posts/2026-02-24-forsta-vipan/Kungsgårdsmaderna_1.jpg"
 location: "Kungsgårdsmaderna"
 species:
   - Tofsvipa
@@ -18,11 +19,11 @@ locations:
     lng: 13.06878
 images:
   - url: "/images/posts/2026-02-24-forsta-vipan/Kungsgårdsmaderna_1.jpg"
-    alt: "Kungsgårdsmaderna i februari — snön ger med sig"
+    alt: "Kungsgårdsmaderna i februari, snön ger med sig"
     categories:
       - Landskap
   - url: "/images/posts/2026-02-24-forsta-vipan/Kungsgårdsmaderna_2.jpg"
-    alt: "Kungsgårdsmaderna — maderna börjar fyllas med vatten"
+    alt: "Maderna börjar fyllas med vatten"
     categories:
       - Landskap
 ---
@@ -47,6 +48,6 @@ En snabb rörelse i ögonvrån. En liten falk med riktad flykt. En stenfalk. Inn
     <img src="/images/posts/2026-02-24-forsta-vipan/Kungsgårdsmaderna_2.jpg" alt="Maderna börjar fyllas med vatten" style="height: 240px; width: auto; object-fit: cover; border-radius: 8px;">
   </a>
 </div>
-<p style="text-align: center; font-style: italic; font-size: 0.9em; color: #666;">Kungsgårdsmaderna i februari — snön ger med sig, maderna börjar fyllas</p>
+<p style="text-align: center; font-style: italic; font-size: 0.9em; color: #666;">Kungsgårdsmaderna i februari. Snön ger med sig, maderna börjar fyllas.</p>
 
 *Fågelåret i Åstorp, 59/150*
