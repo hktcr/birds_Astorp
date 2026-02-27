@@ -3,7 +3,6 @@ title: "Våren rullar in"
 date: 2026-02-27
 draft: false
 image: "/images/posts/2026-02-27-varen-rullar-in/kungsorn_och_havsorn_tomarps_ene_20260227.jpg"
-youtube: iUn7yYroX9M
 location: "Kölebäckens mader, V Broby · Kungsgårdsmaderna"
 species:
   - Sånglärka
@@ -46,6 +45,10 @@ images:
 Idag rullade våren in över markerna. Den kom med lärkkvitter och gåskackel. Plog efter annan med kanadagäss och grågäss. Överallt sånglärkor. Sjungande, sträckande, rastande. Där det nyss varit tomt och tyst fylldes de översvämmade maderna av tofsvipor. Bläsänder, krickor, två par snatteränder simmade fram och tillbaka på vattenspeglarna vid Kölebäcken. Två gravänder.
 
 Nere vid Tomarps Ene fortsatte sånglärkorna. Men örnarna tog över. Två havsörnar kretsade över maderna, och när jag följde en av dem i tubkikaren gled en kungsörn in i synfältet. En ung fågel, 3K, inne på sitt tredje kalenderår, fortfarande med stora vita fält i vingarna.
+
+<div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin: 2rem 0; border-radius: 8px;">
+  <iframe src="https://www.youtube.com/embed/iUn7yYroX9M" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 8px;" allowfullscreen></iframe>
+</div>
 
 <div class="gallery" style="display: flex; gap: 12px; margin: 2rem 0; justify-content: center;">
   <a href="/images/posts/2026-02-27-varen-rullar-in/Kölebäckens_mader_1.jpg" class="lightbox-link">
