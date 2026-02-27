@@ -2,7 +2,7 @@
 title: "Våren rullar in"
 date: 2026-02-27
 draft: false
-image: "/images/posts/2026-02-27-varen-rullar-in/tomarps_ene.jpg"
+image: "/images/posts/2026-02-27-varen-rullar-in/kungsorn_och_havsorn_tomarps_ene_20260227.jpg"
 youtube: iUn7yYroX9M
 location: "Kölebäckens mader, V Broby · Kungsgårdsmaderna"
 species:
@@ -28,11 +28,16 @@ locations:
     lat: 56.15343
     lng: 13.06878
 images:
+  - url: "/images/posts/2026-02-27-varen-rullar-in/kungsorn_och_havsorn_tomarps_ene_20260227.jpg"
+    alt: "Kungsörn och havsörn vid Tomarps Ene"
+    categories:
+      - Kungsörn
+      - Havsörn
   - url: "/images/posts/2026-02-27-varen-rullar-in/Kölebäckens_mader_1.jpg"
     alt: "Översvämningarna vid Kölebäckens mader"
     categories:
       - Landskap
-  - url: "/images/posts/2026-02-27-varen-rullar-in/tomarps_ene.jpg"
+  - url: "/images/posts/2026-02-27-varen-rullar-in/tomarps_ene_landskap_20260227.jpg"
     alt: "Tomarps Ene i februari"
     categories:
       - Landskap
@@ -46,8 +51,8 @@ Nere vid Tomarps Ene fortsatte sånglärkorna. Men örnarna tog över. Två havs
   <a href="/images/posts/2026-02-27-varen-rullar-in/Kölebäckens_mader_1.jpg" class="lightbox-link">
     <img src="/images/posts/2026-02-27-varen-rullar-in/Kölebäckens_mader_1.jpg" alt="Översvämningarna vid Kölebäckens mader" style="height: 240px; width: auto; object-fit: cover; border-radius: 8px;">
   </a>
-  <a href="/images/posts/2026-02-27-varen-rullar-in/tomarps_ene.jpg" class="lightbox-link">
-    <img src="/images/posts/2026-02-27-varen-rullar-in/tomarps_ene.jpg" alt="Tomarps Ene i februari" style="height: 240px; width: auto; object-fit: cover; border-radius: 8px;">
+  <a href="/images/posts/2026-02-27-varen-rullar-in/tomarps_ene_landskap_20260227.jpg" class="lightbox-link">
+    <img src="/images/posts/2026-02-27-varen-rullar-in/tomarps_ene_landskap_20260227.jpg" alt="Tomarps Ene i februari" style="height: 240px; width: auto; object-fit: cover; border-radius: 8px;">
   </a>
 </div>
 <p style="text-align: center; font-style: italic; font-size: 0.9em; color: #666;">Kölebäckens mader och Tomarps Ene. Fem nya arter på en dag.</p>
