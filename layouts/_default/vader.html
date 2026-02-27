@@ -1,0 +1,394 @@
+{{ define "main" }}
+<section class="vader-page">
+    <div class="vader-container">
+
+        <h1 class="vader-title">{{ .Title }}</h1>
+
+        <div class="vader-intro">
+            {{ .Content }}
+        </div>
+
+        <!-- Triptyk: tre diagram vertikalt -->
+        <div class="vader-triptych">
+
+            <!-- 1. Artprogress -->
+            <div class="vader-chart-card">
+                <h2 class="vader-chart-label">Artprogress</h2>
+                <div class="vader-chart-wrap">
+                    <canvas id="progress-chart"></canvas>
+                </div>
+            </div>
+
+            <!-- 2. Temperatur -->
+            <div class="vader-chart-card">
+                <h2 class="vader-chart-label">Temperatur</h2>
+                <div class="vader-chart-wrap">
+                    <canvas id="temp-chart"></canvas>
+                </div>
+                <p class="vader-chart-source">SMHI, Helsingborg A</p>
+            </div>
+
+            <!-- 3. Nederbörd -->
+            <div class="vader-chart-card">
+                <h2 class="vader-chart-label">Nederbörd</h2>
+                <div class="vader-chart-wrap">
+                    <canvas id="precip-chart"></canvas>
+                </div>
+                <p class="vader-chart-source">SMHI, Åstorp</p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+{{ end }}
+
+{{ define "scripts" }}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3"></script>
+<script>
+    var YEAR_GOAL = 150;
+
+    // Observationsdata (inbäddad vid byggtid)
+    var data = {{ index .Site.Data "checklist-2026" | jsonify | safeJS }};
+
+    // SMHI-stationer
+    var STATION_TEMP = 62040;   // Helsingborg A (param 19 & 20)
+    var STATION_PRECIP = 62060; // Åstorp (param 5)
+
+    // Gemensam x-axelkonfiguration
+    var timeScaleConfig = {
+        type: 'time',
+        time: {
+            unit: 'month',
+            displayFormats: { month: 'MMM' },
+            tooltipFormat: 'd MMM yyyy'
+        },
+        min: '2026-01-01',
+        max: '2026-12-31',
+        grid: {
+            color: 'rgba(0,0,0,0.06)',
+            drawTicks: false
+        },
+        border: { dash: [4, 4] },
+        ticks: {
+            font: { family: 'Inter', size: 11 },
+            color: '#666'
+        }
+    };
+
+    // ================================================================
+    // CHART 1: Artprogress
+    // ================================================================
+    function buildProgressChart() {
+        var canvas = document.getElementById('progress-chart');
+        if (!canvas || !data || !data.observations) return;
+
+        var seen = {};
+        var cumulative = [];
+        var sorted = data.observations.slice().sort(function (a, b) {
+            return a.date < b.date ? -1 : a.date > b.date ? 1 : 0;
+        });
+        sorted.forEach(function (obs) {
+            if (!seen[obs.species]) {
+                seen[obs.species] = true;
+                cumulative.push({ x: obs.date, y: Object.keys(seen).length });
+            }
+        });
+
+        // Förläng linjen till idag
+        var today = new Date().toISOString().slice(0, 10);
+        if (cumulative.length > 0 && cumulative[cumulative.length - 1].x < today) {
+            cumulative.push({ x: today, y: cumulative[cumulative.length - 1].y });
+        }
+
+        var startDate = cumulative.length > 0 ? cumulative[0].x : '2026-01-22';
+
+        new Chart(canvas, {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: 'Antal arter',
+                    data: cumulative,
+                    borderColor: '#C0392B',
+                    backgroundColor: function (ctx) {
+                        var chart = ctx.chart;
+                        var area = chart.chartArea;
+                        if (!area) return 'rgba(192, 57, 43, 0.08)';
+                        var gradient = chart.ctx.createLinearGradient(0, area.top, 0, area.bottom);
+                        gradient.addColorStop(0, 'rgba(192, 57, 43, 0.15)');
+                        gradient.addColorStop(1, 'rgba(192, 57, 43, 0.01)');
+                        return gradient;
+                    },
+                    borderWidth: 2.5,
+                    fill: true,
+                    tension: 0.3,
+                    pointRadius: 0,
+                    pointHitRadius: 10
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                aspectRatio: window.innerWidth < 600 ? 1.6 : 2.5,
+                scales: {
+                    x: JSON.parse(JSON.stringify(timeScaleConfig)),
+                    y: {
+                        min: 0,
+                        max: 170,
+                        grid: { color: 'rgba(0,0,0,0.04)', drawTicks: false },
+                        ticks: {
+                            stepSize: 25,
+                            font: { family: 'Inter', size: 11 },
+                            color: '#666'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: 'rgba(30,66,32,0.9)',
+                        titleFont: { family: 'Inter' },
+                        bodyFont: { family: 'Inter' },
+                        callbacks: {
+                            label: function (ctx) { return ctx.parsed.y + ' arter'; }
+                        }
+                    },
+                    annotation: {
+                        annotations: {
+                            goalLine: {
+                                type: 'line',
+                                yMin: YEAR_GOAL,
+                                yMax: YEAR_GOAL,
+                                borderColor: 'rgba(192, 57, 43, 0.4)',
+                                borderWidth: 1.5,
+                                borderDash: [6, 4],
+                                label: {
+                                    display: true,
+                                    content: 'Mål: ' + YEAR_GOAL + ' arter',
+                                    position: 'end',
+                                    backgroundColor: 'rgba(192, 57, 43, 0.8)',
+                                    color: '#fff',
+                                    font: { family: 'Inter', size: 11, weight: '500' },
+                                    padding: { top: 3, bottom: 3, left: 6, right: 6 },
+                                    borderRadius: 4
+                                }
+                            },
+                            startPoint: {
+                                type: 'point',
+                                xValue: startDate,
+                                yValue: 1,
+                                radius: 5,
+                                backgroundColor: '#C0392B',
+                                borderColor: '#fff',
+                                borderWidth: 2
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // ================================================================
+    // CHART 2: Temperatur — dag-max (orange) & natt-min (blå)
+    // ================================================================
+    function fetchSMHI(param, station) {
+        var url = 'https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/' +
+            param + '/station/' + station + '/period/latest-months/data.json';
+        return fetch(url).then(function (r) { return r.json(); });
+    }
+
+    function buildTempChart() {
+        var canvas = document.getElementById('temp-chart');
+        if (!canvas) return;
+
+        Promise.all([fetchSMHI(19, STATION_TEMP), fetchSMHI(20, STATION_TEMP)]).then(function (results) {
+            var minData = results[0].value || [];
+            var maxData = results[1].value || [];
+
+            var minPoints = [];
+            var maxPoints = [];
+            minData.forEach(function (v) {
+                if (v.ref >= '2026-01-01') minPoints.push({ x: v.ref, y: parseFloat(v.value) });
+            });
+            maxData.forEach(function (v) {
+                if (v.ref >= '2026-01-01') maxPoints.push({ x: v.ref, y: parseFloat(v.value) });
+            });
+
+            new Chart(canvas, {
+                type: 'line',
+                data: {
+                    datasets: [
+                        {
+                            label: 'Dag (max)',
+                            data: maxPoints,
+                            borderColor: '#E67E22',
+                            backgroundColor: 'rgba(230, 126, 34, 0.06)',
+                            borderWidth: 2,
+                            fill: false,
+                            tension: 0.3,
+                            pointRadius: 0,
+                            pointHitRadius: 8
+                        },
+                        {
+                            label: 'Natt (min)',
+                            data: minPoints,
+                            borderColor: '#2C3E82',
+                            backgroundColor: 'rgba(44, 62, 130, 0.06)',
+                            borderWidth: 2,
+                            fill: false,
+                            tension: 0.3,
+                            pointRadius: 0,
+                            pointHitRadius: 8
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    aspectRatio: window.innerWidth < 600 ? 1.6 : 2.5,
+                    scales: {
+                        x: JSON.parse(JSON.stringify(timeScaleConfig)),
+                        y: {
+                            grid: {
+                                color: function (ctx) {
+                                    return ctx.tick.value === 0 ? 'rgba(0,0,0,0.15)' : 'rgba(0,0,0,0.04)';
+                                },
+                                drawTicks: false
+                            },
+                            ticks: {
+                                callback: function (v) { return v + '°'; },
+                                font: { family: 'Inter', size: 11 },
+                                color: '#666'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            align: 'end',
+                            labels: {
+                                usePointStyle: true,
+                                pointStyle: 'line',
+                                font: { family: 'Inter', size: 11 },
+                                color: '#555',
+                                padding: 12
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(30,66,32,0.9)',
+                            titleFont: { family: 'Inter' },
+                            bodyFont: { family: 'Inter' },
+                            callbacks: {
+                                label: function (ctx) {
+                                    return ctx.dataset.label + ': ' + ctx.parsed.y.toFixed(1) + '°C';
+                                }
+                            }
+                        },
+                        annotation: {
+                            annotations: {
+                                zeroLine: {
+                                    type: 'line',
+                                    yMin: 0, yMax: 0,
+                                    borderColor: 'rgba(0,0,0,0.15)',
+                                    borderWidth: 1,
+                                    borderDash: [3, 3]
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }).catch(function (err) {
+            console.warn('Kunde inte hämta temperaturdata:', err);
+            canvas.parentElement.innerHTML = '<p class="vader-chart-error">Temperaturdata kunde inte laddas</p>';
+        });
+    }
+
+    // ================================================================
+    // CHART 3: Nederbörd — blå staplar per dag
+    // ================================================================
+    function buildPrecipChart() {
+        var canvas = document.getElementById('precip-chart');
+        if (!canvas) return;
+
+        fetchSMHI(5, STATION_PRECIP).then(function (result) {
+            var vals = result.value || [];
+            var points = [];
+            vals.forEach(function (v) {
+                if (v.ref >= '2026-01-01') {
+                    points.push({ x: v.ref, y: parseFloat(v.value) });
+                }
+            });
+
+            new Chart(canvas, {
+                type: 'bar',
+                data: {
+                    datasets: [{
+                        label: 'Nederbörd',
+                        data: points,
+                        backgroundColor: 'rgba(52, 152, 219, 0.6)',
+                        borderColor: 'rgba(52, 152, 219, 0.9)',
+                        borderWidth: 1,
+                        borderRadius: 2,
+                        barPercentage: 0.9,
+                        categoryPercentage: 0.9
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    aspectRatio: window.innerWidth < 600 ? 1.6 : 2.5,
+                    scales: {
+                        x: JSON.parse(JSON.stringify(timeScaleConfig)),
+                        y: {
+                            min: 0,
+                            grid: { color: 'rgba(0,0,0,0.04)', drawTicks: false },
+                            ticks: {
+                                callback: function (v) { return v + ' mm'; },
+                                font: { family: 'Inter', size: 11 },
+                                color: '#666'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: 'rgba(30,66,32,0.9)',
+                            titleFont: { family: 'Inter' },
+                            bodyFont: { family: 'Inter' },
+                            callbacks: {
+                                label: function (ctx) {
+                                    return ctx.parsed.y.toFixed(1) + ' mm';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }).catch(function (err) {
+            console.warn('Kunde inte hämta nederbördsdata:', err);
+            canvas.parentElement.innerHTML = '<p class="vader-chart-error">Nederbördsdata kunde inte laddas</p>';
+        });
+    }
+
+    // Ladda Luxon time adapter, sedan bygg alla diagram
+    (function () {
+        var s1 = document.createElement('script');
+        s1.src = 'https://cdn.jsdelivr.net/npm/luxon@3/build/global/luxon.min.js';
+        s1.onload = function () {
+            var s2 = document.createElement('script');
+            s2.src = 'https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1';
+            s2.onload = function () {
+                buildProgressChart();
+                buildTempChart();
+                buildPrecipChart();
+            };
+            document.head.appendChild(s2);
+        };
+        document.head.appendChild(s1);
+    })();
+</script>
+{{ end }}

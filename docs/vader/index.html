@@ -1,0 +1,660 @@
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="En fågelårsbok för Åstorps kommun — observationer, bilder och krysslista">
+    <meta name="author" content="Håkan Karlsson">
+    <title>Väder &amp; fågelpuls | Fågelåret i Åstorp</title>
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    
+    
+    <link rel="stylesheet" href="/css/style.57baa1c58c7164a9d7dbd1de6a14f55cdf2d845ae46b1311a5cdf568afbe0d6d.css">
+
+    
+    
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Hoppa till innehåll</a>
+
+    <header class="site-header">
+    <div class="header-container">
+        <a href="https://astorpsfaglar.se/" class="site-logo">
+            <span class="site-title">Fågelåret i Åstorp</span>
+        </a>
+
+
+        <nav class="main-nav" aria-label="Huvudnavigation">
+            <ul class="nav-list">
+                
+                <li class="nav-item">
+                    <a href="/" class="nav-link">
+                        Hem
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="/posts/" class="nav-link">
+                        Notiser
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="/artguide/" class="nav-link">
+                        Artkalender
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="/vader/" class="nav-link">
+                        Väder
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="/galleri/" class="nav-link">
+                        Galleri
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="/karta/" class="nav-link">
+                        Karta
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a href="/om/" class="nav-link">
+                        Om
+                    </a>
+                </li>
+                
+            </ul>
+        </nav>
+
+        <button class="mobile-menu-toggle" aria-label="Öppna meny" aria-expanded="false" id="mobile-menu-btn">
+            <span class="hamburger"></span>
+        </button>
+    </div>
+</header>
+
+<script>
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuToggle = document.getElementById('mobile-menu-btn');
+        const mainNav = document.querySelector('.main-nav');
+
+        if (menuToggle && mainNav) {
+            menuToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                
+                mainNav.classList.toggle('open');
+
+                
+                const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+                menuToggle.setAttribute('aria-expanded', !isExpanded);
+            });
+
+            
+            document.addEventListener('click', (e) => {
+                if (mainNav.classList.contains('open') &&
+                    !mainNav.contains(e.target) &&
+                    !menuToggle.contains(e.target)) {
+                    mainNav.classList.remove('open');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+    });
+</script>
+
+    <main id="main-content" class="main">
+        
+<section class="vader-page">
+    <div class="vader-container">
+
+        <h1 class="vader-title">Väder &amp; fågelpuls</h1>
+
+        <div class="vader-intro">
+            <div class="vader-beta-notice">
+🚧 Den här sidan är under utveckling. Diagram och data kan ändras.
+</div>
+<p>Fågelåret formas av vädret. Nederbörden fyller våtmarkerna, temperaturen styr insekternas kläckning. De första vårdagarna lockar fram flyttfåglarna. Här utvecklas fågelåret i Åstorp, art för art, mot bakgrund av temperatur och nederbörd.</p>
+<p>Temperaturdata kommer från SMHI:s station <strong>Helsingborg A</strong>, 16 km sydväst om Åstorp. Nederbördsdata mäts vid <strong>Åstorps egen station</strong>, bara 4 km bort.</p>
+
+        </div>
+
+        
+        <div class="vader-triptych">
+
+            
+            <div class="vader-chart-card">
+                <h2 class="vader-chart-label">Artprogress</h2>
+                <div class="vader-chart-wrap">
+                    <canvas id="progress-chart"></canvas>
+                </div>
+            </div>
+
+            
+            <div class="vader-chart-card">
+                <h2 class="vader-chart-label">Temperatur</h2>
+                <div class="vader-chart-wrap">
+                    <canvas id="temp-chart"></canvas>
+                </div>
+                <p class="vader-chart-source">SMHI, Helsingborg A</p>
+            </div>
+
+            
+            <div class="vader-chart-card">
+                <h2 class="vader-chart-label">Nederbörd</h2>
+                <div class="vader-chart-wrap">
+                    <canvas id="precip-chart"></canvas>
+                </div>
+                <p class="vader-chart-source">SMHI, Åstorp</p>
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+    </main>
+
+    
+
+    
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+            <img id="lightbox-img" src="" alt="">
+        </div>
+    </div>
+    <style>
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            cursor: pointer;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            background: white;
+            padding: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            max-width: 85%;
+            max-height: 85%;
+            cursor: default;
+            overflow: auto;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 75vh;
+            border-radius: 8px;
+            display: block;
+            cursor: zoom-in;
+            transition: max-width 0.3s ease, max-height 0.3s ease;
+        }
+
+        .lightbox-content img.zoomed {
+            max-width: none;
+            max-height: none;
+            cursor: zoom-out;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            width: 32px;
+            height: 32px;
+            background: #333;
+            color: white;
+            border: 3px solid white;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .lightbox-close:hover {
+            background: #555;
+        }
+
+        .gallery img {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+    </style>
+    <script>
+        function openLightbox(src, alt) {
+            const lb = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = src; img.alt = alt || '';
+            img.classList.remove('zoomed');
+            lb.classList.add('active');
+        }
+        function closeLightbox() {
+            const img = document.getElementById('lightbox-img');
+            img.classList.remove('zoomed');
+            document.getElementById('lightbox').classList.remove('active');
+        }
+        function toggleZoom() {
+            document.getElementById('lightbox-img').classList.toggle('zoomed');
+        }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('lightbox-img').addEventListener('click', e => {
+                e.stopPropagation();
+                toggleZoom();
+            });
+            document.querySelectorAll('.lightbox-link').forEach(a => {
+                a.addEventListener('click', e => {
+                    e.preventDefault();
+                    openLightbox(a.href, a.querySelector('img')?.alt);
+                });
+            });
+            document.querySelectorAll('.gallery img').forEach(img => {
+                if (!img.closest('.lightbox-link')) {
+                    img.addEventListener('click', () => openLightbox(img.src, img.alt));
+                }
+            });
+        });
+    </script>
+
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>window.siteBaseURL = "https:\/\/astorpsfaglar.se\/";</script>
+    <script src="/js/location-popup.js"></script>
+
+    
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3"></script>
+<script>
+    var YEAR_GOAL = 150;
+
+    
+    var data = {"municipality":"Åstorp","observations":[{"date":"2026-01-22","lat":56.12868,"latin":"Haliaeetus albicilla","lng":13.08559,"location":"Sönnarslöv","species":"Havsörn"},{"date":"2026-01-22","lat":56.13675,"latin":"Pica pica","lng":13.0431,"location":"Kvidinge","species":"Skata"},{"date":"2026-01-22","lat":56.13675,"latin":"Turdus merula","lng":13.0431,"location":"Kvidinge","species":"Koltrast"},{"date":"2026-01-22","lat":56.13675,"latin":"Coloeus monedula","lng":13.0431,"location":"Kvidinge","species":"Kaja"},{"date":"2026-01-22","lat":56.13675,"latin":"Corvus cornix","lng":13.0431,"location":"Kvidinge","species":"Gråkråka"},{"date":"2026-01-23","lat":56.13675,"latin":"Troglodytes troglodytes","lng":13.0431,"location":"Kvidinge","species":"Gärdsmyg"},{"date":"2026-01-23","lat":56.13675,"latin":"Larus argentatus","lng":13.0431,"location":"Kvidinge","species":"Gråtrut"},{"date":"2026-01-23","lat":56.13015,"latin":"Corvus frugilegus","lng":13.07099,"location":"Sönnarslöv","species":"Råka"},{"date":"2026-01-23","lat":56.13312,"latin":"Milvus milvus","lng":13.09428,"location":"Bron mot Klippan","species":"Röd glada"},{"date":"2026-01-23","lat":56.13312,"latin":"Buteo buteo","lng":13.09428,"location":"Bron mot Klippan","species":"Ormvråk"},{"date":"2026-01-23","lat":56.17858,"latin":"Anas platyrhynchos","lng":13.02111,"location":"Gamla Tranarpsbron","species":"Gräsand"},{"date":"2026-01-23","lat":56.13675,"latin":"Erithacus rubecula","lng":13.0431,"location":"Kvidinge","species":"Rödhake"},{"date":"2026-01-24","lat":56.13675,"latin":"Pyrrhula pyrrhula","lng":13.0431,"location":"Kvidinge","species":"Domherre"},{"date":"2026-01-24","lat":56.13675,"latin":"Parus major","lng":13.0431,"location":"Kvidinge","species":"Talgoxe"},{"date":"2026-01-25","lat":56.15343,"latin":"Cygnus cygnus","lng":13.06878,"location":"Kungsgårdsmaderna","species":"Sångsvan"},{"date":"2026-01-25","lat":56.15343,"latin":"Branta canadensis","lng":13.06878,"location":"Kungsgårdsmaderna","species":"Kanadagås"},{"date":"2026-01-25","lat":56.1487,"latin":"Sitta europaea","lng":13.07359,"location":"Tomarps Ene","species":"Nötväcka"},{"date":"2026-01-25","lat":56.15343,"latin":"Phalacrocorax carbo","lng":13.06878,"location":"Kungsgårdsmaderna","species":"Storskarv"},{"date":"2026-01-25","lat":56.13312,"latin":"Bucephala clangula","lng":13.09428,"location":"Bron mot Klippan","species":"Knipa"},{"date":"2026-01-25","lat":56.13675,"latin":"Cyanistes caeruleus","lng":13.0431,"location":"Kvidinge","species":"Blåmes"},{"date":"2026-01-25","lat":56.13675,"latin":"Accipiter nisus","lng":13.0431,"location":"Kvidinge","species":"Sparvhök"},{"date":"2026-01-26","lat":56.13477,"latin":"Columba livia","lng":13.01199,"location":"Rörspjäll","species":"Klippduva (tamduva)"},{"date":"2026-01-27","lat":56.13312,"latin":"Fringilla coelebs","lng":13.09428,"location":"Bron mot Klippan","species":"Bofink"},{"date":"2026-01-27","lat":56.13675,"latin":"Passer montanus","lng":13.0431,"location":"Kvidinge","species":"Pilfink"},{"date":"2026-01-27","lat":56.13675,"latin":"Passer domesticus","lng":13.0431,"location":"Kvidinge","species":"Gråsparv"},{"date":"2026-01-28","lat":56.18073,"latin":"Anser anser","lng":13.01804,"location":"Tranarpsbron","species":"Grågås"},{"date":"2026-01-28","lat":56.16593,"latin":"Falco tinnunculus","lng":13.01946,"location":"Killåkravägen","species":"Tornfalk"},{"date":"2026-01-30","lat":56.09711,"latin":"Dendrocopos major","lng":13.06836,"location":"Högalid","species":"Större hackspett"},{"date":"2026-01-30","lat":56.09711,"latin":"Garrulus glandarius","lng":13.06836,"location":"Högalid","species":"Nötskrika"},{"date":"2026-01-30","lat":56.09874,"latin":"Spinus spinus","lng":13.07474,"location":"Körslättaravinen","species":"Grönsiska"},{"date":"2026-01-30","lat":56.11749,"latin":"Corvus corax","lng":13.06674,"location":"Grustagen, Maglaby","species":"Korp"},{"date":"2026-01-31","lat":56.14148,"latin":"Columba palumbus","lng":13.04893,"location":"Prästamarken","species":"Ringduva"},{"date":"2026-02-01","lat":56.11793,"latin":"Certhia familiaris","lng":12.99447,"location":"Vändplats, V Maglabyväg","species":"Trädkrypare"},{"date":"2026-02-01","lat":56.12383,"latin":"Aegithalos caudatus","lng":12.98772,"location":"Hermanssons stuga","species":"Stjärtmes"},{"date":"2026-02-04","lat":56.13677,"latin":"Coccothraustes coccothraustes","lng":12.95158,"location":"Björnekullaskolan","species":"Stenknäck"},{"date":"2026-02-05","lat":56.16532231534232,"latin":"Buteo lagopus","lng":12.984207625328134,"location":"Flodarna","species":"Fjällvråk"},{"date":"2026-02-06","lat":56.136750782641876,"latin":"Emberiza citrinella","lng":13.043105305042882,"location":"Kvidinge","species":"Gulsparv"},{"date":"2026-02-06","lat":56.14721124325686,"latin":"Mergus merganser","lng":13.076779186245918,"location":"Tomarps Ene","species":"Storskrake"},{"date":"2026-02-09","lat":56.136750782641876,"latin":"Chloris chloris","lng":13.043105305042882,"location":"Kvidinge","species":"Grönfink"},{"date":"2026-02-09","lat":56.13312,"latin":"Ardea alba","lng":13.09428,"location":"Bron mot Klippan","species":"Ägretthäger"},{"date":"2026-02-09","lat":56.15596454204231,"latin":"Branta leucopsis","lng":13.0706159722571,"location":"Tomarps mader","species":"Vitkindad gås"},{"date":"2026-02-09","lat":56.1487,"latin":"Picus viridis","lng":13.07359,"location":"Tomarps Ene","species":"Gröngöling"},{"date":"2026-02-10","lat":56.101169833958345,"latin":"Phasianus colchicus","lng":12.871921799623898,"location":"Målarkalk, Hyllinge","species":"Fasan"},{"date":"2026-02-13","lat":56.149612,"latin":"Anser fabalis","lng":13.0625373,"location":"Tomarps kungsgård","species":"Skogsgås"},{"date":"2026-02-13","lat":56.149612,"latin":"Anser albifrons","lng":13.0625373,"location":"Tomarps kungsgård","species":"Bläsgås"},{"date":"2026-02-13","lat":56.149612,"latin":"Perdix perdix","lng":13.0625373,"location":"Tomarps kungsgård","species":"Rapphöna"},{"date":"2026-02-15","lat":56.13312,"latin":"Circus cyaneus","lng":13.09428,"location":"Bron mot Klippan","species":"Blå kärrhök"},{"date":"2026-02-16","lat":56.13335909031484,"latin":"Linaria flavirostris","lng":13.085150154227945,"location":"Vångarna","species":"Vinterhämpling"},{"date":"2026-02-16","lat":56.13335909031484,"latin":"Columba oenas","lng":13.085150154227945,"location":"Vångarna","species":"Skogsduva"},{"date":"2026-02-16","lat":56.14244190869201,"latin":"Mareca penelope","lng":13.077277080127024,"location":"Utloppet av Röda-diket","species":"Bläsand"},{"date":"2026-02-18","lat":56.09095485579307,"latin":"Poecile montanus","lng":13.050526620868753,"location":"NV Mosshult","species":"Entita"},{"date":"2026-02-19","lat":56.14176,"latin":"Carduelis carduelis","lng":13.059863,"location":"Röda smedja, Kvidinge","species":"Steglits"},{"date":"2026-02-21","lat":56.150295674056615,"latin":"Aythya fuligula","lng":13.051556814010734,"location":"Stora fältet - Sånna/Egnahem/Tomarp","species":"Vigg"},{"date":"2026-02-21","lat":56.156655789969676,"latin":"Tachybaptus ruficollis","lng":13.069328770839913,"location":"Rönne å, Kungsgårdsmaderna","species":"Smådopping"},{"date":"2026-02-22","lat":56.09126322298655,"latin":"Cinclus cinclus","lng":13.102010171371758,"location":"Klövaravinen","species":"Strömstare"},{"date":"2026-02-24","lat":56.15343,"latin":"Vanellus vanellus","lng":13.06878,"location":"Kungsgårdsmaderna","species":"Tofsvipa"},{"date":"2026-02-24","lat":56.15343,"latin":"Anas crecca","lng":13.06878,"location":"Kungsgårdsmaderna","species":"Kricka"},{"date":"2026-02-24","lat":56.15343,"latin":"Falco columbarius","lng":13.06878,"location":"Kungsgårdsmaderna","species":"Stenfalk"},{"date":"2026-02-24","lat":56.14072103796272,"latin":"Ardea cinerea","lng":13.031572672305218,"location":"Björkenäs mosse","species":"Gråhäger"},{"date":"2026-02-27","lat":56.12774509697216,"latin":"Alauda arvensis","lng":12.868473108581973,"location":"Kölebäckens mader, V Broby","species":"Sånglärka"},{"date":"2026-02-27","lat":56.12774509697216,"latin":"Sturnus vulgaris","lng":12.868473108581973,"location":"Kölebäckens mader, V Broby","species":"Stare"},{"date":"2026-02-27","lat":56.12774509697216,"latin":"Mareca strepera","lng":12.868473108581973,"location":"Kölebäckens mader, V Broby","species":"Snatterand"},{"date":"2026-02-27","lat":56.12774509697216,"latin":"Tadorna tadorna","lng":12.868473108581973,"location":"Kölebäckens mader, V Broby","species":"Gravand"},{"date":"2026-02-27","lat":56.15343,"latin":"Aquila chrysaetos","lng":13.06878,"location":"Kungsgårdsmaderna","species":"Kungsörn"}],"year":2026};
+
+    
+    var STATION_TEMP = 62040;   
+    var STATION_PRECIP = 62060; 
+
+    
+    var timeScaleConfig = {
+        type: 'time',
+        time: {
+            unit: 'month',
+            displayFormats: { month: 'MMM' },
+            tooltipFormat: 'd MMM yyyy'
+        },
+        min: '2026-01-01',
+        max: '2026-12-31',
+        grid: {
+            color: 'rgba(0,0,0,0.06)',
+            drawTicks: false
+        },
+        border: { dash: [4, 4] },
+        ticks: {
+            font: { family: 'Inter', size: 11 },
+            color: '#666'
+        }
+    };
+
+    
+    
+    
+    function buildProgressChart() {
+        var canvas = document.getElementById('progress-chart');
+        if (!canvas || !data || !data.observations) return;
+
+        var seen = {};
+        var cumulative = [];
+        var sorted = data.observations.slice().sort(function (a, b) {
+            return a.date < b.date ? -1 : a.date > b.date ? 1 : 0;
+        });
+        sorted.forEach(function (obs) {
+            if (!seen[obs.species]) {
+                seen[obs.species] = true;
+                cumulative.push({ x: obs.date, y: Object.keys(seen).length });
+            }
+        });
+
+        
+        var today = new Date().toISOString().slice(0, 10);
+        if (cumulative.length > 0 && cumulative[cumulative.length - 1].x < today) {
+            cumulative.push({ x: today, y: cumulative[cumulative.length - 1].y });
+        }
+
+        var startDate = cumulative.length > 0 ? cumulative[0].x : '2026-01-22';
+
+        new Chart(canvas, {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: 'Antal arter',
+                    data: cumulative,
+                    borderColor: '#C0392B',
+                    backgroundColor: function (ctx) {
+                        var chart = ctx.chart;
+                        var area = chart.chartArea;
+                        if (!area) return 'rgba(192, 57, 43, 0.08)';
+                        var gradient = chart.ctx.createLinearGradient(0, area.top, 0, area.bottom);
+                        gradient.addColorStop(0, 'rgba(192, 57, 43, 0.15)');
+                        gradient.addColorStop(1, 'rgba(192, 57, 43, 0.01)');
+                        return gradient;
+                    },
+                    borderWidth: 2.5,
+                    fill: true,
+                    tension: 0.3,
+                    pointRadius: 0,
+                    pointHitRadius: 10
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                aspectRatio: window.innerWidth < 600 ? 1.6 : 2.5,
+                scales: {
+                    x: JSON.parse(JSON.stringify(timeScaleConfig)),
+                    y: {
+                        min: 0,
+                        max: 170,
+                        grid: { color: 'rgba(0,0,0,0.04)', drawTicks: false },
+                        ticks: {
+                            stepSize: 25,
+                            font: { family: 'Inter', size: 11 },
+                            color: '#666'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: 'rgba(30,66,32,0.9)',
+                        titleFont: { family: 'Inter' },
+                        bodyFont: { family: 'Inter' },
+                        callbacks: {
+                            label: function (ctx) { return ctx.parsed.y + ' arter'; }
+                        }
+                    },
+                    annotation: {
+                        annotations: {
+                            goalLine: {
+                                type: 'line',
+                                yMin: YEAR_GOAL,
+                                yMax: YEAR_GOAL,
+                                borderColor: 'rgba(192, 57, 43, 0.4)',
+                                borderWidth: 1.5,
+                                borderDash: [6, 4],
+                                label: {
+                                    display: true,
+                                    content: 'Mål: ' + YEAR_GOAL + ' arter',
+                                    position: 'end',
+                                    backgroundColor: 'rgba(192, 57, 43, 0.8)',
+                                    color: '#fff',
+                                    font: { family: 'Inter', size: 11, weight: '500' },
+                                    padding: { top: 3, bottom: 3, left: 6, right: 6 },
+                                    borderRadius: 4
+                                }
+                            },
+                            startPoint: {
+                                type: 'point',
+                                xValue: startDate,
+                                yValue: 1,
+                                radius: 5,
+                                backgroundColor: '#C0392B',
+                                borderColor: '#fff',
+                                borderWidth: 2
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    
+    
+    
+    function fetchSMHI(param, station) {
+        var url = 'https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/' +
+            param + '/station/' + station + '/period/latest-months/data.json';
+        return fetch(url).then(function (r) { return r.json(); });
+    }
+
+    function buildTempChart() {
+        var canvas = document.getElementById('temp-chart');
+        if (!canvas) return;
+
+        Promise.all([fetchSMHI(19, STATION_TEMP), fetchSMHI(20, STATION_TEMP)]).then(function (results) {
+            var minData = results[0].value || [];
+            var maxData = results[1].value || [];
+
+            var minPoints = [];
+            var maxPoints = [];
+            minData.forEach(function (v) {
+                if (v.ref >= '2026-01-01') minPoints.push({ x: v.ref, y: parseFloat(v.value) });
+            });
+            maxData.forEach(function (v) {
+                if (v.ref >= '2026-01-01') maxPoints.push({ x: v.ref, y: parseFloat(v.value) });
+            });
+
+            new Chart(canvas, {
+                type: 'line',
+                data: {
+                    datasets: [
+                        {
+                            label: 'Dag (max)',
+                            data: maxPoints,
+                            borderColor: '#E67E22',
+                            backgroundColor: 'rgba(230, 126, 34, 0.06)',
+                            borderWidth: 2,
+                            fill: false,
+                            tension: 0.3,
+                            pointRadius: 0,
+                            pointHitRadius: 8
+                        },
+                        {
+                            label: 'Natt (min)',
+                            data: minPoints,
+                            borderColor: '#2C3E82',
+                            backgroundColor: 'rgba(44, 62, 130, 0.06)',
+                            borderWidth: 2,
+                            fill: false,
+                            tension: 0.3,
+                            pointRadius: 0,
+                            pointHitRadius: 8
+                        }
+                    ]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    aspectRatio: window.innerWidth < 600 ? 1.6 : 2.5,
+                    scales: {
+                        x: JSON.parse(JSON.stringify(timeScaleConfig)),
+                        y: {
+                            grid: {
+                                color: function (ctx) {
+                                    return ctx.tick.value === 0 ? 'rgba(0,0,0,0.15)' : 'rgba(0,0,0,0.04)';
+                                },
+                                drawTicks: false
+                            },
+                            ticks: {
+                                callback: function (v) { return v + '°'; },
+                                font: { family: 'Inter', size: 11 },
+                                color: '#666'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            display: true,
+                            position: 'top',
+                            align: 'end',
+                            labels: {
+                                usePointStyle: true,
+                                pointStyle: 'line',
+                                font: { family: 'Inter', size: 11 },
+                                color: '#555',
+                                padding: 12
+                            }
+                        },
+                        tooltip: {
+                            backgroundColor: 'rgba(30,66,32,0.9)',
+                            titleFont: { family: 'Inter' },
+                            bodyFont: { family: 'Inter' },
+                            callbacks: {
+                                label: function (ctx) {
+                                    return ctx.dataset.label + ': ' + ctx.parsed.y.toFixed(1) + '°C';
+                                }
+                            }
+                        },
+                        annotation: {
+                            annotations: {
+                                zeroLine: {
+                                    type: 'line',
+                                    yMin: 0, yMax: 0,
+                                    borderColor: 'rgba(0,0,0,0.15)',
+                                    borderWidth: 1,
+                                    borderDash: [3, 3]
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }).catch(function (err) {
+            console.warn('Kunde inte hämta temperaturdata:', err);
+            canvas.parentElement.innerHTML = '<p class="vader-chart-error">Temperaturdata kunde inte laddas</p>';
+        });
+    }
+
+    
+    
+    
+    function buildPrecipChart() {
+        var canvas = document.getElementById('precip-chart');
+        if (!canvas) return;
+
+        fetchSMHI(5, STATION_PRECIP).then(function (result) {
+            var vals = result.value || [];
+            var points = [];
+            vals.forEach(function (v) {
+                if (v.ref >= '2026-01-01') {
+                    points.push({ x: v.ref, y: parseFloat(v.value) });
+                }
+            });
+
+            new Chart(canvas, {
+                type: 'bar',
+                data: {
+                    datasets: [{
+                        label: 'Nederbörd',
+                        data: points,
+                        backgroundColor: 'rgba(52, 152, 219, 0.6)',
+                        borderColor: 'rgba(52, 152, 219, 0.9)',
+                        borderWidth: 1,
+                        borderRadius: 2,
+                        barPercentage: 0.9,
+                        categoryPercentage: 0.9
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    aspectRatio: window.innerWidth < 600 ? 1.6 : 2.5,
+                    scales: {
+                        x: JSON.parse(JSON.stringify(timeScaleConfig)),
+                        y: {
+                            min: 0,
+                            grid: { color: 'rgba(0,0,0,0.04)', drawTicks: false },
+                            ticks: {
+                                callback: function (v) { return v + ' mm'; },
+                                font: { family: 'Inter', size: 11 },
+                                color: '#666'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: 'rgba(30,66,32,0.9)',
+                            titleFont: { family: 'Inter' },
+                            bodyFont: { family: 'Inter' },
+                            callbacks: {
+                                label: function (ctx) {
+                                    return ctx.parsed.y.toFixed(1) + ' mm';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }).catch(function (err) {
+            console.warn('Kunde inte hämta nederbördsdata:', err);
+            canvas.parentElement.innerHTML = '<p class="vader-chart-error">Nederbördsdata kunde inte laddas</p>';
+        });
+    }
+
+    
+    (function () {
+        var s1 = document.createElement('script');
+        s1.src = 'https://cdn.jsdelivr.net/npm/luxon@3/build/global/luxon.min.js';
+        s1.onload = function () {
+            var s2 = document.createElement('script');
+            s2.src = 'https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1';
+            s2.onload = function () {
+                buildProgressChart();
+                buildTempChart();
+                buildPrecipChart();
+            };
+            document.head.appendChild(s2);
+        };
+        document.head.appendChild(s1);
+    })();
+</script>
+
+
+    
+    <script data-goatcounter="https://hlgk.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+    
+    <a href="/species/" class="atlas-easter-egg" title="Fågelatlasen" aria-label="Fågelatlasen">☀</a>
+</body>
+
+</html>
