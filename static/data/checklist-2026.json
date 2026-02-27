@@ -505,6 +505,14 @@
             "location": "Kölebäckens mader, V Broby",
             "lat": 56.12774509697216,
             "lng": 12.868473108581973
+        },
+        {
+            "species": "Kungsörn",
+            "latin": "Aquila chrysaetos",
+            "date": "2026-02-27",
+            "location": "Kungsgårdsmaderna",
+            "lat": 56.15343,
+            "lng": 13.06878
         }
     ]
 }
