@@ -473,6 +473,38 @@
             "location": "Björkenäs mosse",
             "lat": 56.14072103796272,
             "lng": 13.031572672305218
+        },
+        {
+            "species": "Sånglärka",
+            "latin": "Alauda arvensis",
+            "date": "2026-02-27",
+            "location": "Kölebäckens mader, V Broby",
+            "lat": 56.12774509697216,
+            "lng": 12.868473108581973
+        },
+        {
+            "species": "Stare",
+            "latin": "Sturnus vulgaris",
+            "date": "2026-02-27",
+            "location": "Kölebäckens mader, V Broby",
+            "lat": 56.12774509697216,
+            "lng": 12.868473108581973
+        },
+        {
+            "species": "Snatterand",
+            "latin": "Mareca strepera",
+            "date": "2026-02-27",
+            "location": "Kölebäckens mader, V Broby",
+            "lat": 56.12774509697216,
+            "lng": 12.868473108581973
+        },
+        {
+            "species": "Gravand",
+            "latin": "Tadorna tadorna",
+            "date": "2026-02-27",
+            "location": "Kölebäckens mader, V Broby",
+            "lat": 56.12774509697216,
+            "lng": 12.868473108581973
         }
     ]
 }
