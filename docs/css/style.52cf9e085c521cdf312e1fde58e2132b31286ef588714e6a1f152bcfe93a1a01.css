@@ -2423,7 +2423,7 @@ a.archive-tag:hover {
     color: var(--color-text);
     line-height: 1.7;
     margin-bottom: var(--space-2xl);
-    text-align: center;
+    text-align: left;
     max-width: 600px;
     margin-left: auto;
     margin-right: auto;

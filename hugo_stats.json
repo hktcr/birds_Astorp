@@ -282,17 +282,14 @@
       "trail-timeline",
       "trail-title",
       "vader-beta-notice",
-      "vader-chart-card",
-      "vader-chart-label",
+      "vader-chart-box",
       "vader-chart-source",
-      "vader-chart-wrap",
       "vader-container",
       "vader-intro",
       "vader-notiser",
       "vader-page",
       "vader-title",
       "vader-triptych",
-      "vader-wind-wrap",
       "video-embed"
     ],
     "ids": [
