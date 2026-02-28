@@ -506,7 +506,7 @@
                 if (isNaN(deg) || spd === 0) return;
 
                 var d = new Date(v.date).toISOString().slice(0, 10);
-                if (!dayData[d]) dayData[d] = { ns_net: 0, ew_net: 0, sum_spd: 0, count: 0 };
+                if (!dayData[d]) dayData[d] = { ns_net: 0, ew_net: 0, count: 0 };
 
                 var rad = deg * Math.PI / 180;
                 // deg är varifrån vinden blåser. 0 = N, 90 = Ö, 180 = S, 270 = V
@@ -515,66 +515,40 @@
                 dayData[d].ns_net += Math.cos(rad) * spd;
                 // Öst/Väst-vektor. sin(90)=1 (Öst), sin(270)=-1 (Väst)
                 dayData[d].ew_net += Math.sin(rad) * spd;
-
-                dayData[d].sum_spd += spd;
                 dayData[d].count++;
             });
 
             var days = Object.keys(dayData).sort();
-            var dayItems = [];
-            var maxVal = 0;
-
-            // Färgpalett för väderstreck (RGB)
-            // N = Blå, Ö = Lila, S = Röd, V = Gul
-            var C_N = [70, 130, 180];
-            var C_E = [148, 0, 211];
-            var C_S = [205, 92, 92];
-            var C_W = [238, 175, 40];
-
-            function lerpColor(c1, c2, t) {
-                return [
-                    Math.round(c1[0] + (c2[0] - c1[0]) * t),
-                    Math.round(c1[1] + (c2[1] - c1[1]) * t),
-                    Math.round(c1[2] + (c2[2] - c1[2]) * t)
-                ];
-            }
-
-            function getColorFromAngle(deg) {
-                // Normalisera deg till 0-360
-                deg = ((deg % 360) + 360) % 360;
-                if (deg <= 90) return lerpColor(C_N, C_E, deg / 90);
-                if (deg <= 180) return lerpColor(C_E, C_S, (deg - 90) / 90);
-                if (deg <= 270) return lerpColor(C_S, C_W, (deg - 180) / 90);
-                return lerpColor(C_W, C_N, (deg - 270) / 90);
-            }
+            var ns_raw = [];
+            var ew_raw = [];
 
             days.forEach(function (d) {
                 var dd = dayData[d];
-                var ns = dd.count > 0 ? dd.ns_net / dd.count : 0;
-                var ew = dd.count > 0 ? dd.ew_net / dd.count : 0;
-
-                // Vinkel för dagens snittvind (i grader från Norr)
-                var angle = Math.atan2(ew, ns) * 180 / Math.PI;
-                if (angle < 0) angle += 360; // Hantera negativ vinkel
-                var color = getColorFromAngle(angle);
-
-                // Fördelning av höjd.
-                // Zonal (Ö/V) komponent delas 50/50 på både norr och söder raden för symmetri.
-                // Meridional (N/S) komponent bygger enbart på sin egen rad.
-                var absEW = Math.abs(ew);
-                var h_n = (ns > 0 ? ns : 0) + (absEW / 2);
-                var h_s = (ns < 0 ? Math.abs(ns) : 0) + (absEW / 2);
-
-                dayItems.push({
-                    h_n: h_n,
-                    h_s: h_s,
-                    color: color,
-                    totalMag: Math.sqrt(ns * ns + ew * ew) // Endast för intern max-check
-                });
-
-                if (h_n > maxVal) maxVal = h_n;
-                if (h_s > maxVal) maxVal = h_s;
+                // Positivt för Nord/Öst, Negativt för Syd/Väst
+                ns_raw.push(dd.count > 0 ? dd.ns_net / dd.count : 0);
+                ew_raw.push(dd.count > 0 ? dd.ew_net / dd.count : 0);
             });
+
+            // Utför en 7-dagars glidande medelvärdes-utjämning (smoothing) för böljande flod-effekt.
+            function smooth(arr) {
+                var res = [];
+                for (var i = 0; i < arr.length; i++) {
+                    var sum = 0, cnt = 0;
+                    for (var j = Math.max(0, i - 3); j <= Math.min(arr.length - 1, i + 3); j++) {
+                        sum += arr[j];
+                        cnt++;
+                    }
+                    res.push(sum / cnt);
+                }
+                return res;
+            }
+
+            var ns_smooth = smooth(ns_raw);
+            var ew_smooth = smooth(ew_raw);
+
+            var maxMag = 1;
+            ns_smooth.forEach(function (v) { if (Math.abs(v) > maxMag) maxMag = Math.abs(v); });
+            ew_smooth.forEach(function (v) { if (Math.abs(v) > maxMag) maxMag = Math.abs(v); });
 
             var dayIndices = days.map(function (d) {
                 var dt = new Date(d);
@@ -589,12 +563,15 @@
             var chartW = w - labelW;
             var cellW = chartW / 365;
 
-            // Endast 2 rader i detta nya format
-            var rowH = window.innerWidth < 600 ? 55 : 80;
-            var gap = 2; // Mycket litet gap mellan N och S (mittaxeln)
+            // Definition av rityta med två distinkta "floder"
+            var rowH = window.innerWidth < 600 ? 35 : 55; // Höjd från mitt-axeln (så en flods totala tjocklek = rowH * 2)
+            var gap = 16;
             var bottomPad = 24;
 
-            var h = (rowH * 2) + gap + bottomPad;
+            var base1 = rowH;
+            var base2 = (rowH * 3) + gap;
+            var h = (rowH * 4) + gap + bottomPad;
+
             canvas.width = w * dpr;
             canvas.height = h * dpr;
             canvas.style.width = w + 'px';
@@ -602,7 +579,46 @@
             var ctx = canvas.getContext('2d');
             ctx.scale(dpr, dpr);
 
-            // Ritar hela diagrammet (återanvänds vid redraw)
+            // Hjälpfunktion för att rita ett mjuka area-fält med ifylld färggradient
+            function drawAreaStream(dataArr, baseY, isPos, r, g, b) {
+                if (dataArr.length === 0) return;
+
+                // 1. Skapa Path för den fyllda ytan (Area)
+                ctx.beginPath();
+                ctx.moveTo(labelW + dayIndices[0] * cellW, baseY);
+                for (var i = 0; i < dataArr.length; i++) {
+                    var val = dataArr[i];
+                    var drawVal = isPos ? Math.max(0, val) : Math.max(0, -val);
+                    var x = labelW + dayIndices[i] * cellW;
+                    var y = baseY + (isPos ? -1 : 1) * (drawVal / maxMag) * (rowH - 4);
+                    ctx.lineTo(x, y);
+                }
+                ctx.lineTo(labelW + dayIndices[dataArr.length - 1] * cellW, baseY);
+                ctx.closePath();
+
+                // Translucid Gradient-fill från toppen av vågen mot baslinjen
+                var grad = ctx.createLinearGradient(0, baseY + (isPos ? -rowH : rowH), 0, baseY);
+                grad.addColorStop(0, 'rgba(' + r + ',' + g + ',' + b + ',0.7)');
+                grad.addColorStop(1, 'rgba(' + r + ',' + g + ',' + b + ',0.1)');
+                ctx.fillStyle = grad;
+                ctx.fill();
+
+                // 2. Skapa skarpa kanten överst (Line)
+                ctx.beginPath();
+                for (var i = 0; i < dataArr.length; i++) {
+                    var val = dataArr[i];
+                    var drawVal = isPos ? Math.max(0, val) : Math.max(0, -val);
+                    var x = labelW + dayIndices[i] * cellW;
+                    var y = baseY + (isPos ? -1 : 1) * (drawVal / maxMag) * (rowH - 4);
+                    if (i === 0) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.strokeStyle = 'rgba(' + r + ',' + g + ',' + b + ',1)';
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+            }
+
+            // Ritar hela diagrammet (återanvänds vid redraw och highlights)
             var drawAll = function (hightlightFromIdx, highlightToIdx) {
                 ctx.fillStyle = '#fff';
                 ctx.fillRect(0, 0, w, h);
@@ -617,65 +633,44 @@
                     ctx.strokeRect(hx1, 0, hx2 - hx1, h - bottomPad);
                 }
 
-                var y_n = 0;
-                var y_s = rowH + gap;
-
-                // Bakgrund för raderna
+                // Bakgrunder för diagramzoner
                 ctx.fillStyle = 'rgba(0,0,0,0.015)';
-                ctx.fillRect(labelW, y_n, chartW, rowH);
-                ctx.fillRect(labelW, y_s, chartW, rowH);
+                ctx.fillRect(labelW, 0, chartW, rowH * 2);
+                ctx.fillRect(labelW, rowH * 2 + gap, chartW, rowH * 2);
 
-                // Centerlinjen (mellan Nord och Syd raden)
-                ctx.strokeStyle = 'rgba(0,0,0,0.1)';
+                // Baslinjer för axlarna = 0 markeringarna
+                ctx.strokeStyle = 'rgba(0,0,0,0.15)';
                 ctx.lineWidth = 1;
-                ctx.beginPath();
-                ctx.moveTo(labelW, rowH + gap / 2);
-                ctx.lineTo(w, rowH + gap / 2);
-                ctx.stroke();
 
-                for (var i = 0; i < days.length; i++) {
-                    var item = dayItems[i];
-                    if (item.h_n < 0.1 && item.h_s < 0.1) continue;
+                ctx.beginPath(); ctx.moveTo(labelW, base1); ctx.lineTo(w, base1); ctx.stroke();
+                ctx.beginPath(); ctx.moveTo(labelW, base2); ctx.lineTo(w, base2); ctx.stroke();
 
-                    var xi = dayIndices[i];
-                    var x = labelW + xi * cellW;
+                // Flöden (Mindre opacitet i grunden, dras uppåt/neråt från respektive axel)
+                // N/S (Meridional)
+                drawAreaStream(ns_smooth, base1, true, 70, 130, 180); // Nord (Blå)
+                drawAreaStream(ns_smooth, base1, false, 205, 92, 92);  // Syd (Röd)
+                // E/W (Zonal)
+                drawAreaStream(ew_smooth, base2, true, 148, 0, 211);  // Öst (Lila)
+                drawAreaStream(ew_smooth, base2, false, 238, 175, 40); // Väst (Gul)
 
-                    var normN = maxVal > 0 ? item.h_n / maxVal : 0;
-                    var normS = maxVal > 0 ? item.h_s / maxVal : 0;
-
-                    var barH_N = normN * (rowH - 1);
-                    var barH_S = normS * (rowH - 1);
-
-                    // Alpha baserad på total "energi"
-                    var energyNorm = maxVal > 0 ? item.totalMag / (maxVal * 1.5) : 0;
-                    var alpha = 0.4 + 0.6 * Math.min(1, Math.pow(Math.abs(energyNorm), 0.5));
-
-                    var c = item.color;
-                    ctx.fillStyle = 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + alpha.toFixed(3) + ')';
-
-                    // Rita Nord-stapel (går nerifrån mittaxeln och UPPÅT ← dvs dras från rowH och upp)
-                    if (barH_N > 0) {
-                        ctx.fillRect(x, y_n + rowH - barH_N, Math.ceil(cellW) + 0.3, barH_N);
-                    }
-                    // Rita Syd-stapel (går från mittaxeln och NEDÅT)
-                    if (barH_S > 0) {
-                        ctx.fillRect(x, y_s, Math.ceil(cellW) + 0.3, barH_S);
-                    }
-                }
-
-                // Etiketter (N, S)  -- I mitten axeln!
+                // Etiketter vid axlarnas startpunkt
                 ctx.textAlign = 'right';
                 ctx.textBaseline = 'middle';
-                ctx.font = 'bold 12px Inter, sans-serif';
-                ctx.fillStyle = 'rgba(70,130,180,0.9)'; // Blå för N
-                ctx.fillText('N', labelW - 6, rowH - 6);
-                ctx.fillStyle = 'rgba(205,92,92,0.9)';  // Röd för S
-                ctx.fillText('S', labelW - 6, rowH + gap + 6);
+                ctx.font = 'bold 11px Inter, sans-serif';
+                ctx.fillStyle = '#333';
+
+                // Axel 1
+                ctx.fillText('N', labelW - 6, base1 - rowH / 2);
+                ctx.fillText('S', labelW - 6, base1 + rowH / 2);
+
+                // Axel 2
+                ctx.fillText('Ö', labelW - 6, base2 - rowH / 2);
+                ctx.fillText('V', labelW - 6, base2 + rowH / 2);
 
                 // Månadslinjer + labels
                 var monthStarts = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
                 var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'];
-                ctx.strokeStyle = 'rgba(0,0,0,0.08)';
+                ctx.strokeStyle = 'rgba(0,0,0,0.05)';
                 ctx.lineWidth = 0.5;
                 ctx.textAlign = 'center';
                 ctx.font = '9px Inter, sans-serif';
@@ -688,24 +683,19 @@
                     ctx.stroke();
                 }
 
-                // Enkel legend i övre vänstra hörnet av hela ritytan
+                // Legend minimalistsk design
+                var legX = labelW + 10;
+                var legY = 6;
+                ctx.fillStyle = 'rgba(255,255,255,0.7)';
+                ctx.fillRect(legX - 4, legY - 4, 150, 18);
+
                 ctx.textAlign = 'left';
                 ctx.textBaseline = 'top';
                 ctx.font = '9px Inter, sans-serif';
-                var legX = labelW + 6;
-                var legY = 6;
-                // Bakgrund till legenden
-                ctx.fillStyle = 'rgba(255,255,255,0.85)';
-                ctx.fillRect(legX - 2, legY - 2, 130, 14);
-
-                ctx.fillStyle = 'rgba(70,130,180,1)';
-                ctx.fillText('N: Blå', legX, legY);
-                ctx.fillStyle = 'rgba(148,0,211,1)';
-                ctx.fillText('Ö: Lila', legX + 33, legY);
-                ctx.fillStyle = 'rgba(205,92,92,1)';
-                ctx.fillText('S: Röd', legX + 66, legY);
-                ctx.fillStyle = 'rgba(238,175,40,1)';
-                ctx.fillText('V: Gul', legX + 99, legY);
+                ctx.fillStyle = '#4682B4'; ctx.fillText('Nord: Blå', legX, legY);
+                ctx.fillStyle = '#CD5C5C'; ctx.fillText('Syd: Röd', legX + 45, legY);
+                ctx.fillStyle = '#9400D3'; ctx.fillText('Öst: Lila', legX + 90, legY);
+                ctx.fillStyle = '#EEAF28'; ctx.fillText('Väst: Gul', legX + 135, legY);
             };
 
             drawAll();
