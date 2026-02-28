@@ -8,7 +8,7 @@
             {{ .Content }}
         </div>
 
-        <!-- Triptyk: tre diagram vertikalt -->
+        <!-- Kvartett: fyra diagram vertikalt -->
         <div class="vader-triptych">
 
             <!-- 1. Artprogress -->
@@ -37,6 +37,15 @@
                 <p class="vader-chart-source">SMHI, Åstorp</p>
             </div>
 
+            <!-- 4. Vattenföring -->
+            <div class="vader-chart-card">
+                <h2 class="vader-chart-label">Vattenföring</h2>
+                <div class="vader-chart-wrap">
+                    <canvas id="flow-chart"></canvas>
+                </div>
+                <p class="vader-chart-source">SMHI, Åbromölla</p>
+            </div>
+
         </div>
 
     </div>
@@ -55,6 +64,7 @@
     // SMHI-stationer
     var STATION_TEMP = 62040;   // Helsingborg A (param 19 & 20)
     var STATION_PRECIP = 62060; // Åstorp (param 5)
+    var STATION_FLOW = 2196;    // Åbromölla (vattenföring)
 
     // Gemensam x-axelkonfiguration
     var timeScaleConfig = {
@@ -374,6 +384,95 @@
         });
     }
 
+    // ================================================================
+    // CHART 4: Vattenföring — linjediagram (m³/s)
+    // ================================================================
+    function buildFlowChart() {
+        var canvas = document.getElementById('flow-chart');
+        if (!canvas) return;
+
+        var url = 'https://opendata-download-hydroobs.smhi.se/api/version/latest/parameter/1/station/' +
+            STATION_FLOW + '/period/corrected-archive/data.json';
+
+        fetch(url).then(function (r) { return r.json(); }).then(function (result) {
+            var vals = result.value || [];
+            var startMs = new Date('2026-01-01').getTime();
+
+            // Aggregera till dagsvärden (medel per dag)
+            var dayMap = {};
+            vals.forEach(function (v) {
+                if (v.date >= startMs) {
+                    var d = new Date(v.date).toISOString().slice(0, 10);
+                    if (!dayMap[d]) dayMap[d] = { sum: 0, count: 0 };
+                    dayMap[d].sum += v.value;
+                    dayMap[d].count++;
+                }
+            });
+
+            var points = Object.keys(dayMap).sort().map(function (d) {
+                return { x: d, y: Math.round(dayMap[d].sum / dayMap[d].count * 100) / 100 };
+            });
+
+            new Chart(canvas, {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: 'Vattenföring',
+                        data: points,
+                        borderColor: '#1ABC9C',
+                        backgroundColor: function (ctx) {
+                            var chart = ctx.chart;
+                            var area = chart.chartArea;
+                            if (!area) return 'rgba(26, 188, 156, 0.08)';
+                            var gradient = chart.ctx.createLinearGradient(0, area.top, 0, area.bottom);
+                            gradient.addColorStop(0, 'rgba(26, 188, 156, 0.2)');
+                            gradient.addColorStop(1, 'rgba(26, 188, 156, 0.01)');
+                            return gradient;
+                        },
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.3,
+                        pointRadius: 0,
+                        pointHitRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    aspectRatio: window.innerWidth < 600 ? 1.6 : 2.5,
+                    scales: {
+                        x: JSON.parse(JSON.stringify(timeScaleConfig)),
+                        y: {
+                            min: 0,
+                            grid: { color: 'rgba(0,0,0,0.04)', drawTicks: false },
+                            ticks: {
+                                callback: function (v) { return v + ' m\u00B3/s'; },
+                                font: { family: 'Inter', size: 11 },
+                                color: '#666'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: 'rgba(30,66,32,0.9)',
+                            titleFont: { family: 'Inter' },
+                            bodyFont: { family: 'Inter' },
+                            callbacks: {
+                                label: function (ctx) {
+                                    return ctx.parsed.y.toFixed(2) + ' m\u00B3/s';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        }).catch(function (err) {
+            console.warn('Kunde inte hämta vattenföringsdata:', err);
+            canvas.parentElement.innerHTML = '<p class="vader-chart-error">Vattenföringsdata kunde inte laddas</p>';
+        });
+    }
+
     // Ladda Luxon time adapter, sedan bygg alla diagram
     (function () {
         var s1 = document.createElement('script');
@@ -385,6 +484,7 @@
                 buildProgressChart();
                 buildTempChart();
                 buildPrecipChart();
+                buildFlowChart();
             };
             document.head.appendChild(s2);
         };
