@@ -46,6 +46,15 @@
                 <p class="vader-chart-source">SMHI, Åbromölla</p>
             </div>
 
+            <!-- 5. Vindraster -->
+            <div class="vader-chart-card">
+                <h2 class="vader-chart-label">Vind</h2>
+                <div class="vader-chart-wrap vader-wind-wrap">
+                    <canvas id="wind-chart"></canvas>
+                </div>
+                <p class="vader-chart-source">SMHI, Helsingborg A</p>
+            </div>
+
         </div>
 
     </div>
@@ -391,6 +400,7 @@
         var canvas = document.getElementById('flow-chart');
         if (!canvas) return;
 
+
         var url = 'https://opendata-download-hydroobs.smhi.se/api/version/latest/parameter/1/station/' +
             STATION_FLOW + '/period/corrected-archive/data.json';
 
@@ -485,10 +495,180 @@
                 buildTempChart();
                 buildPrecipChart();
                 buildFlowChart();
+                buildWindChart();
             };
             document.head.appendChild(s2);
         };
         document.head.appendChild(s1);
     })();
+
+    // ================================================================
+    // CHART 5: Vindraster — 8 sektorer × dagar, Canvas 2D
+    // ================================================================
+    function buildWindChart() {
+        var canvas = document.getElementById('wind-chart');
+        if (!canvas) return;
+
+        // Sektorer: S längst ner, medurs uppåt
+        var sectors = ['S', 'SV', 'V', 'NV', 'N', 'NO', 'O', 'SO'];
+        var sectorMid = [180, 225, 270, 315, 0, 45, 90, 135];
+
+        // Kontrasterande färgpalett (SW↔NE, S↔N, W↔E, NW↔SE)
+        var sectorColors = {
+            'S': { r: 205, g: 92, b: 92 },  // Coral
+            'SV': { r: 218, g: 145, b: 32 },  // Amber
+            'V': { r: 196, g: 164, b: 50 },  // Gold
+            'NV': { r: 46, g: 139, b: 110 },  // Emerald
+            'N': { r: 70, g: 130, b: 180 },  // Steel blue
+            'NO': { r: 136, g: 100, b: 168 },  // Violet
+            'O': { r: 56, g: 163, b: 155 },  // Teal
+            'SO': { r: 180, g: 90, b: 130 }   // Rose
+        };
+
+        function classifySector(deg) {
+            deg = ((deg % 360) + 360) % 360;
+            // Varje sektor = 45°, centrerad på sectorMid
+            for (var i = 0; i < sectorMid.length; i++) {
+                var mid = sectorMid[i];
+                var lo = ((mid - 22.5) + 360) % 360;
+                var hi = (mid + 22.5) % 360;
+                if (lo > hi) { // Wraps around 0
+                    if (deg >= lo || deg < hi) return i;
+                } else {
+                    if (deg >= lo && deg < hi) return i;
+                }
+            }
+            return 0;
+        }
+
+        // Hämta vindriktning (param 3) och vindhastighet (param 4)
+        var urlDir = 'https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/3/station/' + STATION_TEMP + '/period/latest-months/data.json';
+        var urlSpd = 'https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/4/station/' + STATION_TEMP + '/period/latest-months/data.json';
+
+        Promise.all([fetch(urlDir).then(function (r) { return r.json(); }), fetch(urlSpd).then(function (r) { return r.json(); })]).then(function (results) {
+            var dirVals = results[0].value || [];
+            var spdVals = results[1].value || [];
+
+            // Bygg snabb-lookup för hastighet per timestamp
+            var spdMap = {};
+            spdVals.forEach(function (v) { spdMap[v.date] = parseFloat(v.value) || 0; });
+
+            var startMs = new Date('2026-01-01').getTime();
+            var endMs = new Date('2026-12-31').getTime();
+
+            // Samla data per dag
+            var dayData = {};  // { 'YYYY-MM-DD': { sector_counts: [8], sector_speeds: [8] } }
+            dirVals.forEach(function (v) {
+                if (v.date < startMs) return;
+                var deg = parseFloat(v.value);
+                var spd = spdMap[v.date] || 0;
+                if (isNaN(deg)) return;
+
+                var d = new Date(v.date).toISOString().slice(0, 10);
+                if (!dayData[d]) {
+                    dayData[d] = {
+                        counts: [0, 0, 0, 0, 0, 0, 0, 0],
+                        speeds: [0, 0, 0, 0, 0, 0, 0, 0]
+                    };
+                }
+                var si = classifySector(deg);
+                dayData[d].counts[si]++;
+                dayData[d].speeds[si] += spd;
+            });
+
+            // Beräkna energi per sektor per dag: (andel timmar) × medelhastighet
+            var days = Object.keys(dayData).sort();
+            var maxEnergy = 0;
+            var energyGrid = [];  // [dayIndex][sectorIndex] = energy
+
+            days.forEach(function (d) {
+                var dd = dayData[d];
+                var totalObs = 0;
+                dd.counts.forEach(function (c) { totalObs += c; });
+                var row = [];
+                for (var s = 0; s < 8; s++) {
+                    var freq = totalObs > 0 ? dd.counts[s] / totalObs : 0;
+                    var meanSpd = dd.counts[s] > 0 ? dd.speeds[s] / dd.counts[s] : 0;
+                    var energy = freq * meanSpd;
+                    if (energy > maxEnergy) maxEnergy = energy;
+                    row.push(energy);
+                }
+                energyGrid.push(row);
+            });
+
+            // Beräkna dag-index för hela året (0 = 1 jan, 364 = 31 dec)
+            var dayIndices = days.map(function (d) {
+                var dt = new Date(d);
+                var jan1 = new Date(dt.getFullYear(), 0, 1);
+                return Math.floor((dt - jan1) / 86400000);
+            });
+
+            // Canvas setup
+            var dpr = window.devicePixelRatio || 1;
+            var w = canvas.parentElement.clientWidth;
+            var labelW = 30;  // Utrymme för sektor-labels
+            var chartW = w - labelW;
+            var cellH = window.innerWidth < 600 ? 14 : 18;
+            var h = cellH * 8 + 2;
+            canvas.width = w * dpr;
+            canvas.height = h * dpr;
+            canvas.style.width = w + 'px';
+            canvas.style.height = h + 'px';
+            var ctx = canvas.getContext('2d');
+            ctx.scale(dpr, dpr);
+
+            // Bakgrund
+            ctx.fillStyle = '#fff';
+            ctx.fillRect(0, 0, w, h);
+
+            // Rita celler
+            var cellW = chartW / 365;
+            for (var di = 0; di < days.length; di++) {
+                var xi = dayIndices[di];
+                var x = labelW + xi * cellW;
+                for (var si = 0; si < 8; si++) {
+                    var energy = energyGrid[di][si];
+                    var alpha = maxEnergy > 0 ? Math.min(energy / maxEnergy, 1) : 0;
+                    // Sätt minimum-alpha så att noll-vind är helt transparent
+                    alpha = Math.pow(alpha, 0.6);  // Gamma-korrigering för att få bra kontrast
+                    var c = sectorColors[sectors[si]];
+                    var y = h - (si + 1) * cellH;  // S längst ner
+                    ctx.fillStyle = 'rgba(' + c.r + ',' + c.g + ',' + c.b + ',' + alpha.toFixed(3) + ')';
+                    ctx.fillRect(x, y, Math.ceil(cellW) + 0.5, cellH - 1);
+                }
+            }
+
+            // Sektor-labels (å vänster)
+            ctx.textAlign = 'right';
+            ctx.textBaseline = 'middle';
+            ctx.font = '10px Inter, sans-serif';
+            ctx.fillStyle = '#888';
+            for (var si = 0; si < 8; si++) {
+                var y = h - (si + 0.5) * cellH;
+                ctx.fillText(sectors[si], labelW - 4, y);
+            }
+
+            // Månadslinjer
+            ctx.strokeStyle = 'rgba(0,0,0,0.08)';
+            ctx.lineWidth = 0.5;
+            var monthStarts = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
+            var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'];
+            ctx.textAlign = 'center';
+            ctx.font = '9px Inter, sans-serif';
+            ctx.fillStyle = '#999';
+            for (var m = 0; m < 12; m++) {
+                var mx = labelW + monthStarts[m] * cellW;
+                ctx.beginPath();
+                ctx.moveTo(mx, 0);
+                ctx.lineTo(mx, h);
+                ctx.stroke();
+            }
+
+        }).catch(function (err) {
+            console.warn('Kunde inte h\u00e4mta vinddata:', err);
+            canvas.parentElement.innerHTML = '<p class="vader-chart-error">Vinddata kunde inte laddas</p>';
+        });
+    }
+
 </script>
 {{ end }}

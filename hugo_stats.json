@@ -291,6 +291,7 @@
       "vader-page",
       "vader-title",
       "vader-triptych",
+      "vader-wind-wrap",
       "video-embed"
     ],
     "ids": [
@@ -338,7 +339,8 @@
       "species-grid",
       "temp-chart",
       "total-species",
-      "trail-timeline"
+      "trail-timeline",
+      "wind-chart"
     ]
   }
 }
