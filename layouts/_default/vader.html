@@ -479,7 +479,7 @@
     })();
 
     // ================================================================
-    // CHART 5: Vindkomponenter — S, N, V, Ö (Canvas 2D)
+    // CHART 5: Vindkomponenter 2.0 — Symmetrisk Zonal & Färgkodad
     // ================================================================
     function buildWindChart() {
         var canvas = document.getElementById('wind-chart');
@@ -497,7 +497,7 @@
 
             var startMs = new Date('2026-01-01').getTime();
 
-            // Samla energi (tid × hastighet) i de fyra kardinalriktningarna per dag
+            // Samla vektor-energi per dag för N/S och V/Ö
             var dayData = {};
             dirVals.forEach(function (v) {
                 if (v.date < startMs) return;
@@ -506,42 +506,74 @@
                 if (isNaN(deg) || spd === 0) return;
 
                 var d = new Date(v.date).toISOString().slice(0, 10);
-                if (!dayData[d]) dayData[d] = { s: 0, n: 0, v: 0, o: 0, count: 0 };
+                if (!dayData[d]) dayData[d] = { ns_net: 0, ew_net: 0, sum_spd: 0, count: 0 };
 
                 var rad = deg * Math.PI / 180;
                 // deg är varifrån vinden blåser. 0 = N, 90 = Ö, 180 = S, 270 = V
 
-                // Nord/Syd-komponent. cos(0)=1 (Nord), cos(180)=-1 (Syd)
-                var ns = Math.cos(rad);
-                if (ns > 0) dayData[d].n += ns * spd;
-                else if (ns < 0) dayData[d].s += Math.abs(ns) * spd;
+                // Nord/Syd-vektor. cos(0)=1 (Nord), cos(180)=-1 (Syd)
+                dayData[d].ns_net += Math.cos(rad) * spd;
+                // Öst/Väst-vektor. sin(90)=1 (Öst), sin(270)=-1 (Väst)
+                dayData[d].ew_net += Math.sin(rad) * spd;
 
-                // Öst/Väst-komponent. sin(90)=1 (Öst), sin(270)=-1 (Väst)
-                var ew = Math.sin(rad);
-                if (ew > 0) dayData[d].o += ew * spd;
-                else if (ew < 0) dayData[d].v += Math.abs(ew) * spd;
-
+                dayData[d].sum_spd += spd;
                 dayData[d].count++;
             });
 
             var days = Object.keys(dayData).sort();
-            var vals = { s: [], n: [], v: [], o: [] };
+            var dayItems = [];
             var maxVal = 0;
+
+            // Färgpalett för väderstreck (RGB)
+            // N = Blå, Ö = Lila, S = Röd, V = Gul
+            var C_N = [70, 130, 180];
+            var C_E = [148, 0, 211];
+            var C_S = [205, 92, 92];
+            var C_W = [238, 175, 40];
+
+            function lerpColor(c1, c2, t) {
+                return [
+                    Math.round(c1[0] + (c2[0] - c1[0]) * t),
+                    Math.round(c1[1] + (c2[1] - c1[1]) * t),
+                    Math.round(c1[2] + (c2[2] - c1[2]) * t)
+                ];
+            }
+
+            function getColorFromAngle(deg) {
+                // Normalisera deg till 0-360
+                deg = ((deg % 360) + 360) % 360;
+                if (deg <= 90) return lerpColor(C_N, C_E, deg / 90);
+                if (deg <= 180) return lerpColor(C_E, C_S, (deg - 90) / 90);
+                if (deg <= 270) return lerpColor(C_S, C_W, (deg - 180) / 90);
+                return lerpColor(C_W, C_N, (deg - 270) / 90);
+            }
 
             days.forEach(function (d) {
                 var dd = dayData[d];
-                // Snitt per observationstillfälle under dagen
-                var s = dd.count > 0 ? dd.s / dd.count : 0;
-                var n = dd.count > 0 ? dd.n / dd.count : 0;
-                var v = dd.count > 0 ? dd.v / dd.count : 0;
-                var o = dd.count > 0 ? dd.o / dd.count : 0;
+                var ns = dd.count > 0 ? dd.ns_net / dd.count : 0;
+                var ew = dd.count > 0 ? dd.ew_net / dd.count : 0;
 
-                vals.s.push(s);
-                vals.n.push(n);
-                vals.v.push(v);
-                vals.o.push(o);
+                // Vinkel för dagens snittvind (i grader från Norr)
+                var angle = Math.atan2(ew, ns) * 180 / Math.PI;
+                if (angle < 0) angle += 360; // Hantera negativ vinkel
+                var color = getColorFromAngle(angle);
 
-                maxVal = Math.max(maxVal, s, n, v, o);
+                // Fördelning av höjd.
+                // Zonal (Ö/V) komponent delas 50/50 på både norr och söder raden för symmetri.
+                // Meridional (N/S) komponent bygger enbart på sin egen rad.
+                var absEW = Math.abs(ew);
+                var h_n = (ns > 0 ? ns : 0) + (absEW / 2);
+                var h_s = (ns < 0 ? Math.abs(ns) : 0) + (absEW / 2);
+
+                dayItems.push({
+                    h_n: h_n,
+                    h_s: h_s,
+                    color: color,
+                    totalMag: Math.sqrt(ns * ns + ew * ew) // Endast för intern max-check
+                });
+
+                if (h_n > maxVal) maxVal = h_n;
+                if (h_s > maxVal) maxVal = h_s;
             });
 
             var dayIndices = days.map(function (d) {
@@ -557,27 +589,18 @@
             var chartW = w - labelW;
             var cellW = chartW / 365;
 
-            // Gör diagrammet rejält mycket högre. 4 rader.
-            var rowH = window.innerWidth < 600 ? 40 : 60;
-            var gap = 8;
-            var groupGap = 16; // Extra mellanrum mellan N/S och V/Ö paret
+            // Endast 2 rader i detta nya format
+            var rowH = window.innerWidth < 600 ? 55 : 80;
+            var gap = 2; // Mycket litet gap mellan N och S (mittaxeln)
             var bottomPad = 24;
 
-            var h = (rowH * 4) + (gap * 3) + groupGap + bottomPad; // 3 gaps between 4 rows, 1 groupGap
+            var h = (rowH * 2) + gap + bottomPad;
             canvas.width = w * dpr;
             canvas.height = h * dpr;
             canvas.style.width = w + 'px';
             canvas.style.height = h + 'px';
             var ctx = canvas.getContext('2d');
             ctx.scale(dpr, dpr);
-
-            // Raddefinitioner. S och N som ett block, sedan V och Ö.
-            var rows = [
-                { id: 'S', y: 0, data: vals.s, color: { r: 205, g: 92, b: 92 } },
-                { id: 'N', y: rowH + gap, data: vals.n, color: { r: 70, g: 130, b: 180 } },
-                { id: 'V', y: (rowH + gap) * 2 + groupGap, data: vals.v, color: { r: 218, g: 145, b: 32 } },
-                { id: 'Ö', y: (rowH + gap) * 3 + groupGap, data: vals.o, color: { r: 56, g: 163, b: 155 } }
-            ];
 
             // Ritar hela diagrammet (återanvänds vid redraw)
             var drawAll = function (hightlightFromIdx, highlightToIdx) {
@@ -594,42 +617,62 @@
                     ctx.strokeRect(hx1, 0, hx2 - hx1, h - bottomPad);
                 }
 
-                rows.forEach(function (row) {
-                    ctx.fillStyle = 'rgba(0,0,0,0.015)';
-                    ctx.fillRect(labelW, row.y, chartW, rowH);
+                var y_n = 0;
+                var y_s = rowH + gap;
 
-                    // Baslinje för raden (i botten av raden, stapeln växer uppåt)
-                    ctx.strokeStyle = 'rgba(0,0,0,0.08)';
-                    ctx.lineWidth = 0.5;
-                    ctx.beginPath();
-                    ctx.moveTo(labelW, row.y + rowH);
-                    ctx.lineTo(w, row.y + rowH);
-                    ctx.stroke();
+                // Bakgrund för raderna
+                ctx.fillStyle = 'rgba(0,0,0,0.015)';
+                ctx.fillRect(labelW, y_n, chartW, rowH);
+                ctx.fillRect(labelW, y_s, chartW, rowH);
 
-                    for (var i = 0; i < days.length; i++) {
-                        var val = row.data[i];
-                        if (val < 0.1) continue;
+                // Centerlinjen (mellan Nord och Syd raden)
+                ctx.strokeStyle = 'rgba(0,0,0,0.1)';
+                ctx.lineWidth = 1;
+                ctx.beginPath();
+                ctx.moveTo(labelW, rowH + gap / 2);
+                ctx.lineTo(w, rowH + gap / 2);
+                ctx.stroke();
 
-                        var xi = dayIndices[i];
-                        var x = labelW + xi * cellW;
+                for (var i = 0; i < days.length; i++) {
+                    var item = dayItems[i];
+                    if (item.h_n < 0.1 && item.h_s < 0.1) continue;
 
-                        var norm = maxVal > 0 ? val / maxVal : 0;
-                        var barH = norm * (rowH - 1);
-                        var alpha = 0.4 + 0.6 * norm;
+                    var xi = dayIndices[i];
+                    var x = labelW + xi * cellW;
 
-                        var c = row.color;
-                        ctx.fillStyle = 'rgba(' + c.r + ',' + c.g + ',' + c.b + ',' + alpha.toFixed(3) + ')';
-                        ctx.fillRect(x, row.y + rowH - barH, Math.ceil(cellW) + 0.2, barH);
+                    var normN = maxVal > 0 ? item.h_n / maxVal : 0;
+                    var normS = maxVal > 0 ? item.h_s / maxVal : 0;
+
+                    var barH_N = normN * (rowH - 1);
+                    var barH_S = normS * (rowH - 1);
+
+                    // Alpha baserad på total "energi"
+                    var energyNorm = maxVal > 0 ? item.totalMag / (maxVal * 1.5) : 0;
+                    var alpha = 0.4 + 0.6 * Math.min(1, Math.pow(Math.abs(energyNorm), 0.5));
+
+                    var c = item.color;
+                    ctx.fillStyle = 'rgba(' + c[0] + ',' + c[1] + ',' + c[2] + ',' + alpha.toFixed(3) + ')';
+
+                    // Rita Nord-stapel (går nerifrån mittaxeln och UPPÅT ← dvs dras från rowH och upp)
+                    if (barH_N > 0) {
+                        ctx.fillRect(x, y_n + rowH - barH_N, Math.ceil(cellW) + 0.3, barH_N);
                     }
+                    // Rita Syd-stapel (går från mittaxeln och NEDÅT)
+                    if (barH_S > 0) {
+                        ctx.fillRect(x, y_s, Math.ceil(cellW) + 0.3, barH_S);
+                    }
+                }
 
-                    // Etikett (S, N, V, Ö)
-                    ctx.textAlign = 'right';
-                    ctx.textBaseline = 'middle';
-                    ctx.font = '11px Inter, sans-serif';
-                    ctx.fillStyle = 'rgba(' + row.color.r + ',' + row.color.g + ',' + row.color.b + ',0.8)';
-                    ctx.fillText(row.id, labelW - 6, row.y + rowH / 2);
-                });
+                // Etiketter (N, S)  -- I mitten axeln!
+                ctx.textAlign = 'right';
+                ctx.textBaseline = 'middle';
+                ctx.font = 'bold 12px Inter, sans-serif';
+                ctx.fillStyle = 'rgba(70,130,180,0.9)'; // Blå för N
+                ctx.fillText('N', labelW - 6, rowH - 6);
+                ctx.fillStyle = 'rgba(205,92,92,0.9)';  // Röd för S
+                ctx.fillText('S', labelW - 6, rowH + gap + 6);
 
+                // Månadslinjer + labels
                 var monthStarts = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
                 var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'];
                 ctx.strokeStyle = 'rgba(0,0,0,0.08)';
@@ -643,18 +686,35 @@
                     ctx.moveTo(mx, 0);
                     ctx.lineTo(mx, h - bottomPad);
                     ctx.stroke();
-                    var labelX = mx + (m < 11 ? (monthStarts[m + 1] - monthStarts[m]) : (365 - monthStarts[m])) * cellW / 2;
-                    ctx.fillText(monthNames[m], labelX, h - 4);
                 }
+
+                // Enkel legend i övre vänstra hörnet av hela ritytan
+                ctx.textAlign = 'left';
+                ctx.textBaseline = 'top';
+                ctx.font = '9px Inter, sans-serif';
+                var legX = labelW + 6;
+                var legY = 6;
+                // Bakgrund till legenden
+                ctx.fillStyle = 'rgba(255,255,255,0.85)';
+                ctx.fillRect(legX - 2, legY - 2, 130, 14);
+
+                ctx.fillStyle = 'rgba(70,130,180,1)';
+                ctx.fillText('N: Blå', legX, legY);
+                ctx.fillStyle = 'rgba(148,0,211,1)';
+                ctx.fillText('Ö: Lila', legX + 33, legY);
+                ctx.fillStyle = 'rgba(205,92,92,1)';
+                ctx.fillText('S: Röd', legX + 66, legY);
+                ctx.fillStyle = 'rgba(238,175,40,1)';
+                ctx.fillText('V: Gul', legX + 99, legY);
             };
 
             drawAll();
 
             window._windChartMeta = { canvas: canvas, ctx: ctx, dpr: dpr, w: w, h: h, drawAll: drawAll, dayIndices: dayIndices };
-
-        }).catch(function (err) {
-            console.warn('Kunde inte h\u00e4mta vinddata:', err);
-            canvas.parentElement.innerHTML = '<p class="vader-chart-error">Vinddata kunde inte laddas</p>';
+        }).catch(function (error) {
+            console.error('Error fetching wind data:', error);
+            var el = document.getElementById('wind-chart');
+            if (el) el.parentElement.innerHTML = '<p class="vader-chart-error">Vinddata kunde inte laddas</p>';
         });
     }
 
