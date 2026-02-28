@@ -17,7 +17,7 @@
 
     
     
-    <link rel="stylesheet" href="/css/style.57baa1c58c7164a9d7dbd1de6a14f55cdf2d845ae46b1311a5cdf568afbe0d6d.css">
+    <link rel="stylesheet" href="/css/style.72efc6204caa1476dfdc9c17fdf437d10991610a5a5eb98a8d1849093b8d6e27.css">
 
     
     
@@ -130,10 +130,13 @@
             <div class="vader-beta-notice">
 🚧 Den här sidan är under utveckling.
 </div>
-<p>Fågelåret formas av vädret. Nederbörden fyller våtmarkerna, temperaturen styr insekternas kläckning. De första vårdagarna lockar fram flyttfåglarna. Här utvecklas fågelåret i Åstorp, art för art, mot bakgrund av temperatur och nederbörd.</p>
-<p>Temperaturdata kommer från SMHI:s station <strong>Helsingborg A</strong>, 16 km sydväst om Åstorp. Nederbördsdata mäts vid <strong>Åstorps egen station</strong>, bara 4 km bort. Vattenföringen registreras vid <strong>Åbromölla</strong>, 7 km söder om Åstorp.</p>
+<p>Fågelåret formas av vädret. Nederbörden fyller våtmarkerna, temperaturen styr insekternas kläckning. De första vårdagarna lockar fram flyttfåglarna. Här utvecklas fågelåret i Åstorp, art för art, mot bakgrund av temperatur, nederbörd och vattenflöde.</p>
+<p>Temperaturdata kommer från SMHI:s station <strong>Helsingborg A</strong>, 16 km sydväst om Åstorp. Nederbördsdata mäts vid <strong>Åstorps egen station</strong>, bara 4 km bort. Vattenföringen, det vill säga hur mycket vatten som rinner genom ån per sekund (mätt i kubikmeter), registreras vid <strong>Åbromölla</strong> längs Rönne å, 7 km söder om Åstorp. Vinddata hämtas från <strong>Helsingborg A</strong>. Ingen station ligger exakt i Åstorp, men sammantaget ger de en god bild av väderförutsättningarna i kommunen.</p>
 
         </div>
+
+        
+        <div class="vader-notiser" id="vader-notiser"></div>
 
         
         <div class="vader-triptych">
@@ -686,14 +689,14 @@
                     datasets: [{
                         label: 'Vattenföring',
                         data: points,
-                        borderColor: '#1ABC9C',
+                        borderColor: '#3B82C4',
                         backgroundColor: function (ctx) {
                             var chart = ctx.chart;
                             var area = chart.chartArea;
-                            if (!area) return 'rgba(26, 188, 156, 0.08)';
+                            if (!area) return 'rgba(59, 130, 196, 0.08)';
                             var gradient = chart.ctx.createLinearGradient(0, area.top, 0, area.bottom);
-                            gradient.addColorStop(0, 'rgba(26, 188, 156, 0.2)');
-                            gradient.addColorStop(1, 'rgba(26, 188, 156, 0.01)');
+                            gradient.addColorStop(0, 'rgba(59, 130, 196, 0.3)');
+                            gradient.addColorStop(1, 'rgba(59, 130, 196, 0.02)');
                             return gradient;
                         },
                         borderWidth: 2,
@@ -863,10 +866,11 @@
             
             var dpr = window.devicePixelRatio || 1;
             var w = canvas.parentElement.clientWidth;
-            var labelW = 30;  
+            var labelW = 30;
             var chartW = w - labelW;
             var cellH = window.innerWidth < 600 ? 14 : 18;
-            var h = cellH * 8 + 2;
+            var bottomPad = 16;  
+            var h = cellH * 8 + bottomPad;
             canvas.width = w * dpr;
             canvas.height = h * dpr;
             canvas.style.width = w + 'px';
@@ -880,18 +884,31 @@
 
             
             var cellW = chartW / 365;
+            for (var si = 0; si < 8; si++) {
+                var c = sectorColors[sectors[si]];
+                var y = h - bottomPad - (si + 1) * cellH;
+                ctx.fillStyle = 'rgba(' + c.r + ',' + c.g + ',' + c.b + ',0.04)';
+                ctx.fillRect(labelW, y, chartW, cellH);
+            }
+
+            
             for (var di = 0; di < days.length; di++) {
                 var xi = dayIndices[di];
                 var x = labelW + xi * cellW;
+                var maxE = 0, domSector = -1;
                 for (var si = 0; si < 8; si++) {
-                    var energy = energyGrid[di][si];
-                    var alpha = maxEnergy > 0 ? Math.min(energy / maxEnergy, 1) : 0;
-                    
-                    alpha = Math.pow(alpha, 0.6);  
-                    var c = sectorColors[sectors[si]];
-                    var y = h - (si + 1) * cellH;  
+                    if (energyGrid[di][si] > maxE) {
+                        maxE = energyGrid[di][si];
+                        domSector = si;
+                    }
+                }
+                if (domSector >= 0 && maxE > 0) {
+                    var alpha = maxEnergy > 0 ? Math.min(maxE / maxEnergy, 1) : 0;
+                    alpha = 0.25 + 0.75 * Math.pow(alpha, 0.5);  
+                    var c = sectorColors[sectors[domSector]];
+                    var y = h - bottomPad - (domSector + 1) * cellH;
                     ctx.fillStyle = 'rgba(' + c.r + ',' + c.g + ',' + c.b + ',' + alpha.toFixed(3) + ')';
-                    ctx.fillRect(x, y, Math.ceil(cellW) + 0.5, cellH - 1);
+                    ctx.fillRect(x, y, Math.ceil(cellW) + 0.5, cellH);
                 }
             }
 
@@ -901,7 +918,7 @@
             ctx.font = '10px Inter, sans-serif';
             ctx.fillStyle = '#888';
             for (var si = 0; si < 8; si++) {
-                var y = h - (si + 0.5) * cellH;
+                var y = h - bottomPad - (si + 0.5) * cellH;
                 ctx.fillText(sectors[si], labelW - 4, y);
             }
 
@@ -917,15 +934,209 @@
                 var mx = labelW + monthStarts[m] * cellW;
                 ctx.beginPath();
                 ctx.moveTo(mx, 0);
-                ctx.lineTo(mx, h);
+                ctx.lineTo(mx, h - bottomPad);
                 ctx.stroke();
+                
+                var labelX = mx + (m < 11 ? (monthStarts[m + 1] - monthStarts[m]) : (365 - monthStarts[m])) * cellW / 2;
+                ctx.fillText(monthNames[m], labelX, h - 3);
             }
+
+            
+            window._windChartMeta = { canvas: canvas, ctx: ctx, dpr: dpr, w: w, h: h, labelW: labelW, chartW: chartW, cellW: cellW, cellH: cellH, bottomPad: bottomPad, sectors: sectors, sectorColors: sectorColors, energyGrid: energyGrid, dayIndices: dayIndices, days: days, maxEnergy: maxEnergy, monthStarts: monthStarts, monthNames: monthNames };
 
         }).catch(function (err) {
             console.warn('Kunde inte h\u00e4mta vinddata:', err);
             canvas.parentElement.innerHTML = '<p class="vader-chart-error">Vinddata kunde inte laddas</p>';
         });
     }
+
+    
+    
+    
+    var notiser = [
+        {
+            from: '2026-02-27',
+            to: '2026-02-28',
+            title: 'Bläsänderna intar maderna',
+            text: 'Vattnet steg snabbt på maderna. Stora flockar bläsänder, många tiotals, på både Kälebäckens mader och Kungsgårdsmaderna vid Tomarp.'
+        }
+    ];
+
+    function buildNotiser() {
+        var container = document.getElementById('vader-notiser');
+        if (!container || notiser.length === 0) return;
+
+        notiser.forEach(function (n, i) {
+            var card = document.createElement('div');
+            card.className = 'vader-notis-card';
+            card.setAttribute('data-from', n.from);
+            card.setAttribute('data-to', n.to);
+            card.innerHTML = '<span class="vader-notis-date">' + formatNotisDate(n.from, n.to) + '</span>' +
+                '<strong>' + n.title + '</strong><br>' +
+                '<span class="vader-notis-text">' + n.text + '</span>';
+            card.addEventListener('click', function () {
+                var isActive = card.classList.contains('active');
+                
+                document.querySelectorAll('.vader-notis-card.active').forEach(function (c) { c.classList.remove('active'); });
+                if (!isActive) {
+                    card.classList.add('active');
+                    highlightDateRange(n.from, n.to);
+                } else {
+                    clearHighlights();
+                }
+            });
+            container.appendChild(card);
+        });
+    }
+
+    function formatNotisDate(from, to) {
+        var months = ['jan', 'feb', 'mar', 'apr', 'maj', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
+        var f = new Date(from);
+        var t = new Date(to);
+        if (from === to) return f.getDate() + ' ' + months[f.getMonth()];
+        if (f.getMonth() === t.getMonth()) return f.getDate() + '–' + t.getDate() + ' ' + months[f.getMonth()];
+        return f.getDate() + ' ' + months[f.getMonth()] + ' – ' + t.getDate() + ' ' + months[t.getMonth()];
+    }
+
+    
+    var _chartInstances = [];
+    var _origNewChart = Chart;
+    
+    (function () {
+        var origProto = Chart.prototype;
+        var origConstructor = Chart;
+    })();
+
+    function highlightDateRange(from, to) {
+        clearHighlights();
+
+        
+        var chartCanvases = ['progress-chart', 'temp-chart', 'precip-chart', 'flow-chart'];
+        chartCanvases.forEach(function (id) {
+            var el = document.getElementById(id);
+            if (!el) return;
+            var chartInstance = Chart.getChart(el);
+            if (!chartInstance) return;
+
+            
+            chartInstance.options.plugins.annotation.annotations.highlight = {
+                type: 'box',
+                xMin: from,
+                xMax: to + 'T23:59:59',
+                backgroundColor: 'rgba(255, 235, 59, 0.25)',
+                borderColor: 'rgba(255, 193, 7, 0.5)',
+                borderWidth: 1,
+                borderRadius: 2
+            };
+            chartInstance.update('none');
+        });
+
+        
+        var wm = window._windChartMeta;
+        if (wm) {
+            var fromDate = new Date(from);
+            var toDate = new Date(to);
+            var jan1 = new Date(fromDate.getFullYear(), 0, 1);
+            var fromIdx = Math.floor((fromDate - jan1) / 86400000);
+            var toIdx = Math.floor((toDate - jan1) / 86400000);
+            var x1 = wm.labelW + fromIdx * wm.cellW;
+            var x2 = wm.labelW + (toIdx + 1) * wm.cellW;
+            wm.ctx.save();
+            wm.ctx.setTransform(wm.dpr, 0, 0, wm.dpr, 0, 0);
+            wm.ctx.fillStyle = 'rgba(255, 235, 59, 0.3)';
+            wm.ctx.fillRect(x1, 0, x2 - x1, wm.h - wm.bottomPad);
+            wm.ctx.strokeStyle = 'rgba(255, 193, 7, 0.6)';
+            wm.ctx.lineWidth = 1;
+            wm.ctx.strokeRect(x1, 0, x2 - x1, wm.h - wm.bottomPad);
+            wm.ctx.restore();
+        }
+
+        
+        var triptych = document.querySelector('.vader-triptych');
+        if (triptych) triptych.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function clearHighlights() {
+        var chartCanvases = ['progress-chart', 'temp-chart', 'precip-chart', 'flow-chart'];
+        chartCanvases.forEach(function (id) {
+            var el = document.getElementById(id);
+            if (!el) return;
+            var chartInstance = Chart.getChart(el);
+            if (!chartInstance) return;
+            delete chartInstance.options.plugins.annotation.annotations.highlight;
+            chartInstance.update('none');
+        });
+
+        
+        var wm = window._windChartMeta;
+        if (wm) redrawWindChart(wm);
+    }
+
+    function redrawWindChart(wm) {
+        wm.ctx.save();
+        wm.ctx.setTransform(wm.dpr, 0, 0, wm.dpr, 0, 0);
+        wm.ctx.fillStyle = '#fff';
+        wm.ctx.fillRect(0, 0, wm.w, wm.h);
+
+        
+        for (var si = 0; si < 8; si++) {
+            var c = wm.sectorColors[wm.sectors[si]];
+            var y = wm.h - wm.bottomPad - (si + 1) * wm.cellH;
+            wm.ctx.fillStyle = 'rgba(' + c.r + ',' + c.g + ',' + c.b + ',0.04)';
+            wm.ctx.fillRect(wm.labelW, y, wm.chartW, wm.cellH);
+        }
+
+        
+        for (var di = 0; di < wm.days.length; di++) {
+            var xi = wm.dayIndices[di];
+            var x = wm.labelW + xi * wm.cellW;
+            var maxE = 0, domSector = -1;
+            for (var si = 0; si < 8; si++) {
+                if (wm.energyGrid[di][si] > maxE) {
+                    maxE = wm.energyGrid[di][si];
+                    domSector = si;
+                }
+            }
+            if (domSector >= 0 && maxE > 0) {
+                var alpha = wm.maxEnergy > 0 ? Math.min(maxE / wm.maxEnergy, 1) : 0;
+                alpha = 0.25 + 0.75 * Math.pow(alpha, 0.5);
+                var c = wm.sectorColors[wm.sectors[domSector]];
+                var y = wm.h - wm.bottomPad - (domSector + 1) * wm.cellH;
+                wm.ctx.fillStyle = 'rgba(' + c.r + ',' + c.g + ',' + c.b + ',' + alpha.toFixed(3) + ')';
+                wm.ctx.fillRect(x, y, Math.ceil(wm.cellW) + 0.5, wm.cellH);
+            }
+        }
+
+        
+        wm.ctx.textAlign = 'right';
+        wm.ctx.textBaseline = 'middle';
+        wm.ctx.font = '10px Inter, sans-serif';
+        wm.ctx.fillStyle = '#888';
+        for (var si = 0; si < 8; si++) {
+            var y = wm.h - wm.bottomPad - (si + 0.5) * wm.cellH;
+            wm.ctx.fillText(wm.sectors[si], wm.labelW - 4, y);
+        }
+
+        
+        wm.ctx.strokeStyle = 'rgba(0,0,0,0.08)';
+        wm.ctx.lineWidth = 0.5;
+        wm.ctx.textAlign = 'center';
+        wm.ctx.font = '9px Inter, sans-serif';
+        wm.ctx.fillStyle = '#999';
+        for (var m = 0; m < 12; m++) {
+            var mx = wm.labelW + wm.monthStarts[m] * wm.cellW;
+            wm.ctx.beginPath();
+            wm.ctx.moveTo(mx, 0);
+            wm.ctx.lineTo(mx, wm.h - wm.bottomPad);
+            wm.ctx.stroke();
+            var labelX = mx + (m < 11 ? (wm.monthStarts[m + 1] - wm.monthStarts[m]) : (365 - wm.monthStarts[m])) * wm.cellW / 2;
+            wm.ctx.fillText(wm.monthNames[m], labelX, wm.h - 3);
+        }
+        wm.ctx.restore();
+    }
+
+    
+    buildNotiser();
 
 </script>
 

@@ -288,6 +288,7 @@
       "vader-chart-wrap",
       "vader-container",
       "vader-intro",
+      "vader-notiser",
       "vader-page",
       "vader-title",
       "vader-triptych",
@@ -340,6 +341,7 @@
       "temp-chart",
       "total-species",
       "trail-timeline",
+      "vader-notiser",
       "wind-chart"
     ]
   }
