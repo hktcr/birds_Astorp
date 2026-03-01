@@ -479,11 +479,28 @@
     })();
 
     // ================================================================
-    // CHART 5: Vindkomponenter 2.0 — Symmetrisk Zonal & Färgkodad
+    // CHART 5: Vindkomponenter 4.0 — Hybrid Zoom (År = Stream, Månad = Staplar)
     // ================================================================
     function buildWindChart() {
         var canvas = document.getElementById('wind-chart');
         if (!canvas) return;
+
+        // Lägg till Månads-dropdown ovanför canvasen om den inte redan finns
+        var container = canvas.parentElement;
+        if (!document.getElementById('wind-month-select')) {
+            var selectHtml = '<div style="text-align:right; margin-bottom:8px;">' +
+                '<select id="wind-month-select" style="font-family:Inter,sans-serif; font-size:12px; padding:2px 8px; border-radius:4px; border:1px solid #ccc;">' +
+                '<option value="all">Hela året</option>';
+            var mNames = ['Januari', 'Februari', 'Mars', 'April', 'Maj', 'Juni', 'Juli', 'Augusti', 'September', 'Oktober', 'November', 'December'];
+            for (var m = 1; m <= 12; m++) {
+                var mStr = m < 10 ? '0' + m : m;
+                selectHtml += '<option value="2026-' + mStr + '">' + mNames[m - 1] + '</option>';
+            }
+            selectHtml += '</select></div>';
+
+            // Insert before canvas
+            container.insertAdjacentHTML('afterbegin', selectHtml);
+        }
 
         var urlDir = 'https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/3/station/' + STATION_TEMP + '/period/latest-months/data.json';
         var urlSpd = 'https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/4/station/' + STATION_TEMP + '/period/latest-months/data.json';
@@ -564,7 +581,7 @@
             var cellW = chartW / 365;
 
             // Definition av rityta med två distinkta "floder"
-            var rowH = window.innerWidth < 600 ? 35 : 55; // Höjd från mitt-axeln (så en flods totala tjocklek = rowH * 2)
+            var rowH = window.innerWidth < 600 ? 35 : 55; // Höjd från mitt-axeln
             var gap = 16;
             var bottomPad = 24;
 
@@ -579,21 +596,24 @@
             var ctx = canvas.getContext('2d');
             ctx.scale(dpr, dpr);
 
-            // Hjälpfunktion för att rita ett mjuka area-fält med ifylld färggradient
-            function drawAreaStream(dataArr, baseY, isPos, r, g, b) {
+            // Hjälpfunktion för att rita ett mjuka area-fält med ifylld färggradient (För Helår)
+            function drawAreaStream(dataArr, baseY, isPos, r, g, b, startIdx, endIdx) {
                 if (dataArr.length === 0) return;
+                var sIdx = startIdx !== undefined ? startIdx : 0;
+                var eIdx = endIdx !== undefined ? endIdx : dataArr.length - 1;
 
                 // 1. Skapa Path för den fyllda ytan (Area)
                 ctx.beginPath();
-                ctx.moveTo(labelW + dayIndices[0] * cellW, baseY);
-                for (var i = 0; i < dataArr.length; i++) {
+                ctx.moveTo(labelW + (dayIndices[sIdx] - dayIndices[sIdx]) * cellW, baseY);
+                for (var i = sIdx; i <= eIdx; i++) {
                     var val = dataArr[i];
                     var drawVal = isPos ? Math.max(0, val) : Math.max(0, -val);
-                    var x = labelW + dayIndices[i] * cellW;
+                    var localX = dayIndices[i] - dayIndices[sIdx];
+                    var x = labelW + localX * cellW;
                     var y = baseY + (isPos ? -1 : 1) * (drawVal / maxMag) * (rowH - 4);
                     ctx.lineTo(x, y);
                 }
-                ctx.lineTo(labelW + dayIndices[dataArr.length - 1] * cellW, baseY);
+                ctx.lineTo(labelW + (dayIndices[eIdx] - dayIndices[sIdx]) * cellW, baseY);
                 ctx.closePath();
 
                 // Translucid Gradient-fill från toppen av vågen mot baslinjen
@@ -605,12 +625,13 @@
 
                 // 2. Skapa skarpa kanten överst (Line)
                 ctx.beginPath();
-                for (var i = 0; i < dataArr.length; i++) {
+                for (var i = sIdx; i <= eIdx; i++) {
                     var val = dataArr[i];
                     var drawVal = isPos ? Math.max(0, val) : Math.max(0, -val);
-                    var x = labelW + dayIndices[i] * cellW;
+                    var localX = dayIndices[i] - dayIndices[sIdx];
+                    var x = labelW + localX * cellW;
                     var y = baseY + (isPos ? -1 : 1) * (drawVal / maxMag) * (rowH - 4);
-                    if (i === 0) ctx.moveTo(x, y);
+                    if (i === sIdx) ctx.moveTo(x, y);
                     else ctx.lineTo(x, y);
                 }
                 ctx.strokeStyle = 'rgba(' + r + ',' + g + ',' + b + ',1)';
@@ -618,19 +639,73 @@
                 ctx.stroke();
             }
 
-            // Ritar hela diagrammet (återanvänds vid redraw och highlights)
-            var drawAll = function (hightlightFromIdx, highlightToIdx) {
+            // Hjälpfunktion för att rita exakta daggstaplar (För Månadsvy)
+            function drawExactBars(dataArr, baseY, isPos, r, g, b, startIdx, endIdx) {
+                if (dataArr.length === 0) return;
+                var sIdx = startIdx !== undefined ? startIdx : 0;
+                var eIdx = endIdx !== undefined ? endIdx : dataArr.length - 1;
+
+                ctx.fillStyle = 'rgba(' + r + ',' + g + ',' + b + ',0.85)';
+                for (var i = sIdx; i <= eIdx; i++) {
+                    var val = dataArr[i];
+                    var drawVal = isPos ? Math.max(0, val) : Math.max(0, -val);
+                    if (drawVal < 0.1) continue;
+
+                    var localX = dayIndices[i] - dayIndices[sIdx];
+                    var x = labelW + localX * cellW;
+                    var barH = (drawVal / maxMag) * (rowH - 4);
+
+                    // Om det är en negativ (neråt) stapel drar vi den från baseY, annars uppåt från baseY
+                    var rectY = isPos ? baseY - barH : baseY;
+                    ctx.fillRect(x, rectY, Math.ceil(cellW) + 0.5, barH);
+                }
+            }
+
+            // Ritar hela diagrammet (återanvänds vid redraw, highlights, och månad-zoom)
+            // 'zoomMonth' är en sträng t.ex. '2026-05' eller 'all'
+            var drawAll = function (zoomMonth, hlStartIdx, hlEndIdx) {
+                zoomMonth = zoomMonth || 'all';
+
+                // Hitta start- och slutindex för den valda perioden
+                var sIdx = 0, eIdx = days.length - 1;
+                var timeframeDays = 365;
+
+                if (zoomMonth !== 'all') {
+                    // Filtrera fram första och sista index för månaden
+                    var mIdxs = [];
+                    for (var i = 0; i < days.length; i++) {
+                        if (days[i].startsWith(zoomMonth)) mIdxs.push(i);
+                    }
+                    if (mIdxs.length > 0) {
+                        sIdx = mIdxs[0];
+                        eIdx = mIdxs[mIdxs.length - 1];
+                    }
+                    // Månader är runt 30 dagar. Vi uppdaterar draw-skalan
+                    timeframeDays = new Date(zoomMonth.substring(0, 4), parseInt(zoomMonth.substring(5, 7)), 0).getDate();
+                }
+
+                // Uppdatera cellW temporärt baserat på inzoomningen
+                cellW = chartW / timeframeDays;
+
                 ctx.fillStyle = '#fff';
                 ctx.fillRect(0, 0, w, h);
 
-                if (hightlightFromIdx !== undefined && highlightToIdx !== undefined) {
-                    var hx1 = labelW + hightlightFromIdx * cellW;
-                    var hx2 = labelW + (highlightToIdx + 1) * cellW;
-                    ctx.fillStyle = 'rgba(255, 235, 59, 0.3)';
-                    ctx.fillRect(hx1, 0, hx2 - hx1, h - bottomPad);
-                    ctx.strokeStyle = 'rgba(255, 193, 7, 0.6)';
-                    ctx.lineWidth = 1;
-                    ctx.strokeRect(hx1, 0, hx2 - hx1, h - bottomPad);
+                // Rita Gul Highlight först (om aktiv)
+                if (hlStartIdx !== undefined && hlEndIdx !== undefined) {
+                    var hx1 = labelW + (hlStartIdx - dayIndices[sIdx]) * cellW;
+                    var hx2 = labelW + (hlEndIdx - dayIndices[sIdx] + 1) * cellW;
+
+                    // Klipp highlighten så den inte ritar utanför grafen om den går över månadsskiftet
+                    hx1 = Math.max(labelW, Math.min(w, hx1));
+                    hx2 = Math.max(labelW, Math.min(w, hx2));
+
+                    if (hx2 > hx1) {
+                        ctx.fillStyle = 'rgba(255, 235, 59, 0.3)';
+                        ctx.fillRect(hx1, 0, hx2 - hx1, h - bottomPad);
+                        ctx.strokeStyle = 'rgba(255, 193, 7, 0.6)';
+                        ctx.lineWidth = 1;
+                        ctx.strokeRect(hx1, 0, hx2 - hx1, h - bottomPad);
+                    }
                 }
 
                 // Bakgrunder för diagramzoner
@@ -645,13 +720,20 @@
                 ctx.beginPath(); ctx.moveTo(labelW, base1); ctx.lineTo(w, base1); ctx.stroke();
                 ctx.beginPath(); ctx.moveTo(labelW, base2); ctx.lineTo(w, base2); ctx.stroke();
 
-                // Flöden (Mindre opacitet i grunden, dras uppåt/neråt från respektive axel)
-                // N/S (Meridional)
-                drawAreaStream(ns_smooth, base1, true, 70, 130, 180); // Nord (Blå)
-                drawAreaStream(ns_smooth, base1, false, 205, 92, 92);  // Syd (Röd)
-                // E/W (Zonal)
-                drawAreaStream(ew_smooth, base2, true, 148, 0, 211);  // Öst (Lila)
-                drawAreaStream(ew_smooth, base2, false, 238, 175, 40); // Väst (Gul)
+                // Hybrid Render Logic
+                // Om vi tittar på en kortare period (t.ex. < 90 dagar / en månad), rita exakta staplar.
+                // Annars: Rita Flowing Stream (medelvärdeskurvan).
+                if (timeframeDays < 90) {
+                    drawExactBars(ns_raw, base1, true, 70, 130, 180, sIdx, eIdx); // Nord (Blå)
+                    drawExactBars(ns_raw, base1, false, 205, 92, 92, sIdx, eIdx);  // Syd (Röd)
+                    drawExactBars(ew_raw, base2, true, 148, 0, 211, sIdx, eIdx);  // Öst (Lila)
+                    drawExactBars(ew_raw, base2, false, 238, 175, 40, sIdx, eIdx); // Väst (Gul)
+                } else {
+                    drawAreaStream(ns_smooth, base1, true, 70, 130, 180, sIdx, eIdx); // Nord (Blå)
+                    drawAreaStream(ns_smooth, base1, false, 205, 92, 92, sIdx, eIdx);  // Syd (Röd)
+                    drawAreaStream(ew_smooth, base2, true, 148, 0, 211, sIdx, eIdx);  // Öst (Lila)
+                    drawAreaStream(ew_smooth, base2, false, 238, 175, 40, sIdx, eIdx); // Väst (Gul)
+                }
 
                 // Etiketter vid axlarnas startpunkt
                 ctx.textAlign = 'right';
@@ -667,20 +749,28 @@
                 ctx.fillText('Ö', labelW - 6, base2 - rowH / 2);
                 ctx.fillText('V', labelW - 6, base2 + rowH / 2);
 
-                // Månadslinjer + labels
-                var monthStarts = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
-                var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'];
+                // Månadslinjer / Dagslinjer
                 ctx.strokeStyle = 'rgba(0,0,0,0.05)';
                 ctx.lineWidth = 0.5;
                 ctx.textAlign = 'center';
                 ctx.font = '9px Inter, sans-serif';
                 ctx.fillStyle = '#999';
-                for (var m = 0; m < 12; m++) {
-                    var mx = labelW + monthStarts[m] * cellW;
-                    ctx.beginPath();
-                    ctx.moveTo(mx, 0);
-                    ctx.lineTo(mx, h - bottomPad);
-                    ctx.stroke();
+
+                if (zoomMonth === 'all') {
+                    var monthStarts = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
+                    for (var m = 0; m < 12; m++) {
+                        var mx = labelW + monthStarts[m] * cellW;
+                        ctx.beginPath(); ctx.moveTo(mx, 0); ctx.lineTo(mx, h - bottomPad); ctx.stroke();
+                    }
+                } else {
+                    // Rita ut dagslinjer för inzoomad månad var femte dag
+                    for (var d = 0; d < timeframeDays; d++) {
+                        if (d % 5 === 0 || d === timeframeDays - 1) {
+                            var mx = labelW + d * cellW;
+                            ctx.beginPath(); ctx.moveTo(mx, 0); ctx.lineTo(mx, h - bottomPad); ctx.stroke();
+                            ctx.fillText((d + 1) + '', mx, h - 10);
+                        }
+                    }
                 }
 
                 // Legend minimalistsk design
@@ -698,9 +788,23 @@
                 ctx.fillStyle = '#EEAF28'; ctx.fillText('Väst: Gul', legX + 135, legY);
             };
 
-            drawAll();
+            // Bind Dropdown Events
+            var sel = document.getElementById('wind-month-select');
+            if (sel) {
+                // Ensure it doesn't duplicate event listeners if rebuild runs
+                sel.onchange = function (e) {
+                    // Spara bort nuvarande val på _windChartMeta så vi vet vad som är aktivt
+                    if (window._windChartMeta) window._windChartMeta.currentMonth = e.target.value;
+                    drawAll(e.target.value);
+                };
+            }
 
-            window._windChartMeta = { canvas: canvas, ctx: ctx, dpr: dpr, w: w, h: h, drawAll: drawAll, dayIndices: dayIndices };
+            drawAll('all');
+
+            window._windChartMeta = {
+                canvas: canvas, ctx: ctx, dpr: dpr, w: w, h: h,
+                drawAll: drawAll, dayIndices: dayIndices, currentMonth: 'all'
+            };
         }).catch(function (error) {
             console.error('Error fetching wind data:', error);
             var el = document.getElementById('wind-chart');
@@ -798,9 +902,17 @@
             var fromIdx = Math.floor((fromDate - jan1) / 86400000);
             var toIdx = Math.floor((toDate - jan1) / 86400000);
 
+            // Auto-zooma till månaden för 'from' datumet om ui-delen kräver det
+            var targetMonth = from.substring(0, 7); // t.ex. '2026-02'
+            wm.currentMonth = targetMonth;
+
+            // Uppdatera dropdownen rent visuellt
+            var sel = document.getElementById('wind-month-select');
+            if (sel) sel.value = targetMonth;
+
             wm.ctx.save();
             wm.ctx.setTransform(wm.dpr, 0, 0, wm.dpr, 0, 0);
-            wm.drawAll(fromIdx, toIdx);
+            wm.drawAll(targetMonth, fromIdx, toIdx);
             wm.ctx.restore();
         }
 
@@ -825,7 +937,8 @@
         if (wm) {
             wm.ctx.save();
             wm.ctx.setTransform(wm.dpr, 0, 0, wm.dpr, 0, 0);
-            wm.drawAll();
+            // Återrita samma månad som den just nu är inställd på
+            wm.drawAll(wm.currentMonth);
             wm.ctx.restore();
         }
     }
