@@ -28,8 +28,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     for (let m = 0; m < 12; m++) {
         for (let d = 1; d <= daysInMonths[m]; d++) {
-            const startAngle = (currentDayOfYear / totalDays) * 360;
-            const endAngle = ((currentDayOfYear + 1) / totalDays) * 360;
+            const startAngle = (currentDayOfYear / totalDays) * 360 + 180;
+            const endAngle = ((currentDayOfYear + 1) / totalDays) * 360 + 180;
             const mm = (m + 1).toString().padStart(2, '0');
             const dd = d.toString().padStart(2, '0');
             dayAngles.push({
@@ -112,7 +112,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Month lines
         let curDay = 0;
         for (let m = 0; m < 12; m++) {
-            const monthStartAngle = (curDay / totalDays) * 360;
+            const monthStartAngle = (curDay / totalDays) * 360 + 180;
             const divider = document.createElementNS("http://www.w3.org/2000/svg", "line");
             const p1 = polarToCartesian(0, 0, innerRadius - 5, monthStartAngle);
             const p2 = polarToCartesian(0, 0, outerRadius + 5, monthStartAngle);
