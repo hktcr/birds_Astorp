@@ -1,0 +1,247 @@
+<div class="space-y-4 radial-calendar-wrapper">
+    <h2>Fenologins Cirkel</h2>
+    <p class="text-sm text-gray-600 mb-4">
+        Denna radiella kalender visar historisk närvaro i Åstorps kommun. Varje segment motsvarar en dag på året.
+        <br>Färgerna indikerar antal år arten setts under detta datum (gult/orange för sommarhalvåret maj–sep, blått för
+        vinterhalvåret okt–apr). Data hämtas kontinuerligt från Artportalen.
+    </p>
+
+    <!-- The container for our SVG -->
+    <div id="radial-calendar-container"
+        style="display:flex; justify-content:center; align-items:center; width: 100%; max-width: 400px; margin: 0 auto; position: relative;">
+        <!-- Tooltip overlay -->
+        <div id="radial-tooltip"
+            style="position: absolute; opacity: 0; pointer-events: none; background: rgba(0,0,0,0.8); color: white; padding: 4px 8px; border-radius: 4px; font-size: 12px; font-weight: bold; transform: translate(-50%, -100%); transition: opacity 0.2s; white-space: nowrap;">
+            <span id="tooltip-date"></span><br>
+            <span id="tooltip-count" style="font-weight: normal;"></span>
+        </div>
+
+        <svg id="radial-svg" viewBox="-110 -110 220 220"
+            style="width: 100%; height: auto; display: block; overflow: visible;">
+            <!-- Background circle to show the full year even if empty -->
+            <circle cx="0" cy="0" r="90" fill="none" stroke="#f0f0f0" stroke-width="20" />
+
+            <!-- Month lines/labels could go here -->
+            <g id="radial-months"></g>
+
+            <!-- Data segments -->
+            <g id="radial-segments"></g>
+
+            <!-- Center hole / text -->
+            <text id="radial-center-text" x="0" y="0" text-anchor="middle" dominant-baseline="middle" font-size="24"
+                font-weight="bold" fill="#333">0</text>
+            <text x="0" y="20" text-anchor="middle" font-size="10" fill="#666">Dagar</text>
+        </svg>
+    </div>
+
+</div>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const speciesName = "{{ .Title }}";
+        const dataUrl = "/data/species_days_historic.json";
+
+        // SVG Elements
+        const segmentsGroup = document.getElementById("radial-segments");
+        const monthsGroup = document.getElementById("radial-months");
+        const centerText = document.getElementById("radial-center-text");
+        const tooltip = document.getElementById("radial-tooltip");
+        const tooltipDate = document.getElementById("tooltip-date");
+        const tooltipCount = document.getElementById("tooltip-count");
+
+        // Geometry
+        const innerRadius = 80;
+        const outerRadius = 100;
+
+        // Helper functionality
+        function polarToCartesian(centerX, centerY, radius, angleInDegrees) {
+            // Start angle 0 at top (12 o'clock)
+            var angleInRadians = (angleInDegrees - 90) * Math.PI / 180.0;
+            return {
+                x: centerX + (radius * Math.cos(angleInRadians)),
+                y: centerY + (radius * Math.sin(angleInRadians))
+            };
+        }
+
+        function describeArc(x, y, radius, startAngle, endAngle) {
+            var start = polarToCartesian(x, y, radius, endAngle);
+            var end = polarToCartesian(x, y, radius, startAngle);
+            var arcSweep = endAngle - startAngle <= 180 ? "0" : "1";
+            var d = [
+                "M", start.x, start.y,
+                "A", radius, radius, 0, arcSweep, 0, end.x, end.y
+            ].join(" ");
+            return d;
+        }
+
+        // A simple function to get an annular segment (a thick arc)
+        function describeAnnularSegment(cx, cy, innerR, outerR, startAngle, endAngle) {
+            // SVG paths require explicit coordinates. We construct a path that draws the outer arc, 
+            // lines to the inner radius, draws the inner arc back, and closes.
+            const p1 = polarToCartesian(cx, cy, outerR, startAngle);
+            const p2 = polarToCartesian(cx, cy, outerR, endAngle);
+            const p3 = polarToCartesian(cx, cy, innerR, endAngle);
+            const p4 = polarToCartesian(cx, cy, innerR, startAngle);
+
+            const largeArc = endAngle - startAngle > 180 ? 1 : 0;
+
+            return [
+                "M", p1.x, p1.y,
+                "A", outerR, outerR, 0, largeArc, 1, p2.x, p2.y, // Outer arc
+                "L", p3.x, p3.y, // Line in
+                "A", innerR, innerR, 0, largeArc, 0, p4.x, p4.y, // Inner arc (sweep flag reversed)
+                "Z" // Close
+            ].join(" ");
+        }
+
+        // Color scales based on user input
+        // Summer (May-Sep): yellow -> light orange -> orange
+        // Winter (Oct-Apr): light blue -> mid blue -> clear blue
+        function getColor(month, count, maxCount) {
+            if (count === 0) return "none";
+
+            const isSummer = (month >= 5 && month <= 9);
+            const intensity = Math.min(1, count / (maxCount || 1)); // 0.0 to 1.0
+
+            if (isSummer) {
+                // HSL interpolator roughly: 
+                // Yellow ~ 50 deg, Orange ~ 30 deg
+                // Lightness from 70% to 50%
+                const hue = 50 - (20 * intensity);
+                const lightness = 65 - (15 * intensity);
+                return `hsl(${hue}, 100%, ${lightness}%)`;
+            } else {
+                // Winter: Light blue to clear dark blue
+                // Hue ~ 200 deg
+                // Lightness from 80% to 40%
+                const lightness = 80 - (40 * intensity);
+                return `hsl(210, 90%, ${lightness}%)`;
+            }
+        }
+
+        // Let's generate a full calendar array
+        // To handle leap years, we just generate 366 days for the visualization mapping
+        const isLeapYear = true;
+        const daysInMonths = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+        const monthNames = ["Jan", "Feb", "Mar", "Apr", "Maj", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"];
+        const totalDays = 366;
+
+        const dayAngles = [];
+        let currentDayOfYear = 0;
+
+        for (let m = 0; m < 12; m++) {
+            for (let d = 1; d <= daysInMonths[m]; d++) {
+                const startAngle = (currentDayOfYear / totalDays) * 360;
+                const endAngle = ((currentDayOfYear + 1) / totalDays) * 360;
+
+                // Pad month and day for dictionary key matching
+                const mm = (m + 1).toString().padStart(2, '0');
+                const dd = d.toString().padStart(2, '0');
+                const key = `${mm}-${dd}`;
+
+                dayAngles.push({
+                    month: m + 1,
+                    day: d,
+                    key: key,
+                    startAngle: startAngle,
+                    endAngle: endAngle,
+                    midAngle: (startAngle + endAngle) / 2
+                });
+                currentDayOfYear++;
+            }
+
+            // Add month dividers
+            const monthStartAngle = ((currentDayOfYear - daysInMonths[m]) / totalDays) * 360;
+            const divider = document.createElementNS("http://www.w3.org/2000/svg", "line");
+            const p1 = polarToCartesian(0, 0, innerRadius - 5, monthStartAngle);
+            const p2 = polarToCartesian(0, 0, outerRadius + 5, monthStartAngle);
+            divider.setAttribute("x1", p1.x);
+            divider.setAttribute("y1", p1.y);
+            divider.setAttribute("x2", p2.x);
+            divider.setAttribute("y2", p2.y);
+            divider.setAttribute("stroke", "#e2e8f0");
+            divider.setAttribute("stroke-width", "1");
+            monthsGroup.appendChild(divider);
+
+            // Add month labels
+            const labelMidAngle = monthStartAngle + ((daysInMonths[m] / totalDays) * 360) / 2;
+            const labelPos = polarToCartesian(0, 0, outerRadius + 15, labelMidAngle);
+            const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
+            label.setAttribute("x", labelPos.x);
+            label.setAttribute("y", labelPos.y);
+            label.setAttribute("text-anchor", "middle");
+            label.setAttribute("dominant-baseline", "middle");
+            label.setAttribute("font-size", "8");
+            label.setAttribute("fill", "#94a3b8");
+            // Rotate label slightly to align with angle if desired, or keep horizontal
+            /*
+            let rot = labelMidAngle - 90;
+            if (rot > 90 && rot < 270) rot += 180; // Keep text upright
+            label.setAttribute("transform", `translate(${labelPos.x}, ${labelPos.y}) rotate(${rot}) translate(${-labelPos.x}, ${-labelPos.y})`);
+            */
+            label.textContent = monthNames[m];
+            monthsGroup.appendChild(label);
+        }
+
+        // Fetch and render
+        fetch(dataUrl)
+            .then(response => response.json())
+            .then(data => {
+                const speciesData = data[speciesName] || {};
+
+                // Find max count to normalize colors
+                let maxCount = 1;
+                let totalActiveDays = 0;
+
+                for (const key in speciesData) {
+                    if (speciesData[key] > maxCount) maxCount = speciesData[key];
+                    if (speciesData[key] > 0) totalActiveDays++;
+                }
+
+                centerText.textContent = totalActiveDays;
+
+                // Render segments
+                dayAngles.forEach(da => {
+                    const count = speciesData[da.key] || 0;
+                    if (count > 0) {
+                        const color = getColor(da.month, count, maxCount);
+
+                        const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
+                        // Expand angles slightly to avoid sub-pixel gaps 
+                        path.setAttribute("d", describeAnnularSegment(0, 0, innerRadius, outerRadius, da.startAngle - 0.2, da.endAngle + 0.2));
+                        path.setAttribute("fill", color);
+                        path.style.transition = "fill 0.2s, transform 0.2s";
+                        path.style.cursor = "crosshair";
+
+                        // Interaction
+                        path.addEventListener("mouseenter", (e) => {
+                            path.setAttribute("fill", "#ff0000"); // highlight color
+
+                            // Tooltip
+                            tooltipDate.textContent = `${da.day} ${monthNames[da.month - 1]}`;
+                            tooltipCount.textContent = `Observerad under ${count} olika år`;
+
+                            const rect = e.target.getBoundingClientRect();
+                            const containerRect = document.getElementById("radial-calendar-container").getBoundingClientRect();
+
+                            tooltip.style.left = `${e.clientX - containerRect.left}px`;
+                            tooltip.style.top = `${e.clientY - containerRect.top - 10}px`;
+                            tooltip.style.opacity = 1;
+                        });
+
+                        path.addEventListener("mouseleave", () => {
+                            path.setAttribute("fill", color);
+                            tooltip.style.opacity = 0;
+                        });
+
+                        segmentsGroup.appendChild(path);
+                    }
+                });
+
+            })
+            .catch(error => {
+                console.error("Error loading radial calendar data:", error);
+                centerText.textContent = "?";
+            });
+    });
+</script>

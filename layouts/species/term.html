@@ -219,6 +219,13 @@
                 </section>
                 {{ end }}
 
+                {{/* Radial Calendar */}}
+                {{ if gt $totalObs 0 }}
+                <section class="species-section">
+                    {{ partial "radial_calendar.html" . }}
+                </section>
+                {{ end }}
+
                 {{/* Related posts */}}
                 {{ if gt (len $posts) 0 }}
                 <section class="species-section">

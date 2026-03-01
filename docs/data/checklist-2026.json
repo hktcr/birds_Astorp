@@ -513,6 +513,38 @@
             "location": "Kungsgårdsmaderna",
             "lat": 56.15343,
             "lng": 13.06878
+        },
+        {
+            "species": "Dubbeltrast",
+            "latin": "Turdus viscivorus",
+            "date": "2026-03-01",
+            "location": "Körslättabäckens våtmarker",
+            "lat": 56.093059657874605,
+            "lng": 13.065669791540584
+        },
+        {
+            "species": "Trana",
+            "latin": "Grus grus",
+            "date": "2026-03-01",
+            "location": "Körslättabäckens våtmarker",
+            "lat": 56.093059657874605,
+            "lng": 13.065669791540584
+        },
+        {
+            "species": "Varfågel",
+            "latin": "Lanius excubitor",
+            "date": "2026-03-01",
+            "location": "Pumphusmaderna, Tomarp",
+            "lat": 56.16202883696735,
+            "lng": 13.054738866046634
+        },
+        {
+            "species": "Stjärtand",
+            "latin": "Anas acuta",
+            "date": "2026-03-01",
+            "location": "Kungsgårdsmaderna",
+            "lat": 56.15343,
+            "lng": 13.06878
         }
     ]
 }
