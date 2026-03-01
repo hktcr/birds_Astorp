@@ -488,7 +488,10 @@
         // Lägg till Månads-dropdown ovanför canvasen om den inte redan finns
         var container = canvas.parentElement;
         if (!document.getElementById('wind-month-select')) {
-            var selectHtml = '<div style="text-align:right; margin-bottom:8px;">' +
+            var selectHtml = '<div style="display:flex; justify-content:flex-end; align-items:center; gap:12px; margin-bottom:8px;">' +
+                '<label style="font-family:Inter,sans-serif; font-size:11px; color:#555; cursor:pointer;" id="wind-smooth-label">' +
+                '<input type="checkbox" id="wind-smooth-toggle" checked style="margin-right:4px; vertical-align:middle;"> Jämna ut data (7 dagar)' +
+                '</label>' +
                 '<select id="wind-month-select" style="font-family:Inter,sans-serif; font-size:12px; padding:2px 8px; border-radius:4px; border:1px solid #ccc;">' +
                 '<option value="all">Hela året</option>';
             var mNames = ['Januari', 'Februari', 'Mars', 'April', 'Maj', 'Juni', 'Juli', 'Augusti', 'September', 'Oktober', 'November', 'December'];
@@ -687,6 +690,20 @@
                 // Uppdatera cellW temporärt baserat på inzoomningen
                 cellW = chartW / timeframeDays;
 
+                // Läs state från knappen
+                var smoothCheckbox = document.getElementById('wind-smooth-toggle');
+                var isSmoothChecked = smoothCheckbox ? smoothCheckbox.checked : true;
+
+                // Hantera synlighet för "Jämna ut data" etiketten
+                var smoothLabel = document.getElementById('wind-smooth-label');
+                if (smoothLabel) {
+                    if (zoomMonth === 'all') {
+                        smoothLabel.style.display = 'inline-flex';
+                    } else {
+                        smoothLabel.style.display = 'none';
+                    }
+                }
+
                 ctx.fillStyle = '#fff';
                 ctx.fillRect(0, 0, w, h);
 
@@ -721,9 +738,11 @@
                 ctx.beginPath(); ctx.moveTo(labelW, base2); ctx.lineTo(w, base2); ctx.stroke();
 
                 // Hybrid Render Logic
-                // Om vi tittar på en kortare period (t.ex. < 90 dagar / en månad), rita exakta staplar.
+                // Om vi tittar på en kortare period (t.ex. < 90 dagar / en månad), ELLER om smoothing är avstängt, rita exakta staplar.
                 // Annars: Rita Flowing Stream (medelvärdeskurvan).
-                if (timeframeDays < 90) {
+                var shouldSmooth = (timeframeDays >= 90) && isSmoothChecked;
+
+                if (!shouldSmooth) {
                     drawExactBars(ns_raw, base1, true, 70, 130, 180, sIdx, eIdx); // Nord (Blå)
                     drawExactBars(ns_raw, base1, false, 205, 92, 92, sIdx, eIdx);  // Syd (Röd)
                     drawExactBars(ew_raw, base2, true, 148, 0, 211, sIdx, eIdx);  // Öst (Lila)
@@ -796,6 +815,14 @@
                     // Spara bort nuvarande val på _windChartMeta så vi vet vad som är aktivt
                     if (window._windChartMeta) window._windChartMeta.currentMonth = e.target.value;
                     drawAll(e.target.value);
+                };
+            }
+
+            var chk = document.getElementById('wind-smooth-toggle');
+            if (chk) {
+                chk.onchange = function () {
+                    var m = window._windChartMeta ? window._windChartMeta.currentMonth : 'all';
+                    drawAll(m);
                 };
             }
 
