@@ -32,6 +32,10 @@ images:
       - Landskap
 ---
 
+<a href="/images/posts/2026-03-01-korslattabacken/Körslättabäckens_våtmarker.jpg" class="lightbox-link">
+  <img src="/images/posts/2026-03-01-korslattabacken/Körslättabäckens_våtmarker.jpg" alt="Körslättabäckens våtmarker med tunn is" style="width: 100%; border-radius: 8px; margin-bottom: 2rem;">
+</a>
+
 Redan vid första spanet över våtmarken avslöjar rörelse på fälten fyra dubbetrastar, som väl maskerade mot den gråbruna jorden blir nästan omöjliga att se när de står still. En yngre havsörn kretsar över skogen.
 
 Målet är att ta mig över bäcken mellan kärret och våtmarken, längre in ligger skog som jag tror kan hysa tre av mina målarter: tofsmes, talltita och svartmes. Jag misstänker att de kan bli en utmaning på årslistan. Normalt sett borde det inte vara några problem att ta sig fram här, men vattenståndet är högt och jag inser att jag borde ha tagit stövlar istället för kängor. Jag tvingas vända och får göra ett nytt försök senare. En trana ropar på håll och det dröjer inte länge förrän den passerar över mig. 
