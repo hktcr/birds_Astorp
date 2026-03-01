@@ -3,6 +3,7 @@ title: "Årets första trana vid en ny våtmark"
 date: 2026-03-01
 draft: false
 location: "Körslättabäckens våtmarker · Pumphusmaderna · Kungsgårdsmaderna"
+image: "/images/posts/2026-03-01-korslattabacken/korslattabackens_vatmarker.jpg"
 species:
   - Dubbeltrast
   - Trana
