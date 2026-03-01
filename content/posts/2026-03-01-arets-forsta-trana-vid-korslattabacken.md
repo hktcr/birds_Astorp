@@ -26,14 +26,14 @@ locations:
     lat: 56.16202883696735
     lng: 13.054738866046634
 images:
-  - url: "/images/posts/2026-03-01-korslattabacken/Körslättabäckens_våtmarker.jpg"
+  - url: "/images/posts/2026-03-01-korslattabacken/korslattabackens_vatmarker.jpg"
     alt: "Körslättabäckens våtmarker med tunn is"
     categories:
       - Landskap
 ---
 
-<a href="/images/posts/2026-03-01-korslattabacken/Körslättabäckens_våtmarker.jpg" class="lightbox-link">
-  <img src="/images/posts/2026-03-01-korslattabacken/Körslättabäckens_våtmarker.jpg" alt="Körslättabäckens våtmarker med tunn is" style="width: 100%; border-radius: 8px; margin-bottom: 2rem;">
+<a href="/images/posts/2026-03-01-korslattabacken/korslattabackens_vatmarker.jpg" class="lightbox-link">
+  <img src="/images/posts/2026-03-01-korslattabacken/korslattabackens_vatmarker.jpg" alt="Körslättabäckens våtmarker med tunn is" style="width: 100%; border-radius: 8px; margin-bottom: 2rem;">
 </a>
 
 Redan vid första spanet över våtmarken avslöjar rörelse på fälten fyra dubbetrastar, som väl maskerade mot den gråbruna jorden blir nästan omöjliga att se när de står still. En yngre havsörn kretsar över skogen.
