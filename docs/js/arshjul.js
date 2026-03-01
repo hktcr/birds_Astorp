@@ -14,9 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const modalTitle = document.getElementById("arshjul-modal-title");
     const modalSvgContainer = document.getElementById("arshjul-modal-svg-container");
     const modalTooltip = document.getElementById("arshjul-modal-tooltip");
-    const modalTooltipDate = document.getElementById("arshjul-modal-tooltip-date");
     const modalTooltipCount = document.getElementById("arshjul-modal-tooltip-count");
-    const modalLink = document.getElementById("arshjul-modal-link");
 
     // Pre-calculate Calendar Data (leap year, 366 days)
     const isLeapYear = true;
@@ -93,9 +91,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const outerRadius = 100;
 
         const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-        svg.setAttribute("viewBox", "-110 -110 220 220");
+        svg.setAttribute("viewBox", "-120 -120 240 240");
         svg.style.width = "100%";
-        svg.style.height = "auto";
+        svg.style.height = "100%";
+        svg.style.maxHeight = "100%";
         svg.style.display = "block";
         svg.style.overflow = "visible";
 
@@ -213,7 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Modal behavior
     function openModal(speciesName, slug, speciesData) {
         modalTitle.textContent = speciesName;
-        modalLink.href = `/species/${slug}/`;
+        modalTitle.textContent = speciesName;
 
         // Clear previous SVG
         const oldSvg = modalSvgContainer.querySelector("svg");
