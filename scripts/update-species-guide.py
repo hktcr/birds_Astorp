@@ -60,6 +60,8 @@ ALLOWED_SUBSPECIES = ["domesticated", "cornix"]
 # (t.ex. "kråka" i Åstorp = gråkråka i praktiken)
 SPECIES_MERGES = {
     "kråka": "gråkråka",  # Corvus corone → Corvus corone cornix
+    "sädgås": "skogsgås",
+    "ob. skogsgås/tundragås": "skogsgås",
 }
 
 # Raritetskategorier baserat på observationsantal

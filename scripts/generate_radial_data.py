@@ -41,6 +41,9 @@ def process_tsv_files():
                 if not artnamn or not startdatum:
                     continue
                 
+                if artnamn.lower() in ("sädgås", "ob. skogsgås/tundragås"):
+                    artnamn = "Skogsgås"
+                
                 try:
                     # Parse date Assuming format YYYY-MM-DD
                     dt = datetime.strptime(startdatum, "%Y-%m-%d")
