@@ -257,8 +257,20 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(data => {
             if (loadingEl) loadingEl.remove();
 
-            // Sort species ascending alphabetically
-            const allSpecies = Object.keys(data).sort();
+            // Taxonomic sorting using the index passed from Hugo
+            const taxaIndex = {};
+            if (window.arshjulTaxonomy) {
+                window.arshjulTaxonomy.forEach((name, i) => {
+                    taxaIndex[name] = i;
+                });
+            }
+
+            const allSpecies = Object.keys(data).sort((a, b) => {
+                const idxA = taxaIndex[a] ?? 99999;
+                const idxB = taxaIndex[b] ?? 99999;
+                if (idxA !== idxB) return idxA - idxB;
+                return a.localeCompare(b);
+            });
 
             // Intersection Observer for Lazy Loading
             // Render when Card is within 200px of Viewport
