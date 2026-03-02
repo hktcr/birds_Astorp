@@ -16,7 +16,7 @@
             <span id="tooltip-count" style="font-weight: normal;"></span>
         </div>
 
-        <svg id="radial-svg" viewBox="-110 -110 220 220"
+        <svg id="radial-svg" viewBox="-120 -120 240 240"
             style="width: 100%; height: auto; display: block; overflow: visible;">
             <!-- Background circle to show the full year even if empty -->
             <circle cx="0" cy="0" r="90" fill="none" stroke="#f0f0f0" stroke-width="20" />
@@ -131,8 +131,8 @@
 
         for (let m = 0; m < 12; m++) {
             for (let d = 1; d <= daysInMonths[m]; d++) {
-                const startAngle = (currentDayOfYear / totalDays) * 360;
-                const endAngle = ((currentDayOfYear + 1) / totalDays) * 360;
+                const startAngle = (currentDayOfYear / totalDays) * 360 + 180;
+                const endAngle = ((currentDayOfYear + 1) / totalDays) * 360 + 180;
 
                 // Pad month and day for dictionary key matching
                 const mm = (m + 1).toString().padStart(2, '0');
@@ -151,7 +151,7 @@
             }
 
             // Add month dividers
-            const monthStartAngle = ((currentDayOfYear - daysInMonths[m]) / totalDays) * 360;
+            const monthStartAngle = ((currentDayOfYear - daysInMonths[m]) / totalDays) * 360 + 180;
             const divider = document.createElementNS("http://www.w3.org/2000/svg", "line");
             const p1 = polarToCartesian(0, 0, innerRadius - 5, monthStartAngle);
             const p2 = polarToCartesian(0, 0, outerRadius + 5, monthStartAngle);

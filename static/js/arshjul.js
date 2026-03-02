@@ -14,9 +14,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const modalTitle = document.getElementById("arshjul-modal-title");
     const modalSvgContainer = document.getElementById("arshjul-modal-svg-container");
     const modalTooltip = document.getElementById("arshjul-modal-tooltip");
-    const modalTooltipDate = document.getElementById("arshjul-modal-tooltip-date");
     const modalTooltipCount = document.getElementById("arshjul-modal-tooltip-count");
-    const modalLink = document.getElementById("arshjul-modal-link");
 
     // Pre-calculate Calendar Data (leap year, 366 days)
     const isLeapYear = true;
@@ -28,8 +26,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     for (let m = 0; m < 12; m++) {
         for (let d = 1; d <= daysInMonths[m]; d++) {
-            const startAngle = (currentDayOfYear / totalDays) * 360;
-            const endAngle = ((currentDayOfYear + 1) / totalDays) * 360;
+            const startAngle = (currentDayOfYear / totalDays) * 360 + 180;
+            const endAngle = ((currentDayOfYear + 1) / totalDays) * 360 + 180;
             const mm = (m + 1).toString().padStart(2, '0');
             const dd = d.toString().padStart(2, '0');
             dayAngles.push({
@@ -93,9 +91,10 @@ document.addEventListener("DOMContentLoaded", () => {
         const outerRadius = 100;
 
         const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-        svg.setAttribute("viewBox", "-110 -110 220 220");
+        svg.setAttribute("viewBox", "-120 -120 240 240");
         svg.style.width = "100%";
-        svg.style.height = "auto";
+        svg.style.height = "100%";
+        svg.style.maxHeight = "100%";
         svg.style.display = "block";
         svg.style.overflow = "visible";
 
@@ -112,7 +111,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Month lines
         let curDay = 0;
         for (let m = 0; m < 12; m++) {
-            const monthStartAngle = (curDay / totalDays) * 360;
+            const monthStartAngle = (curDay / totalDays) * 360 + 180;
             const divider = document.createElementNS("http://www.w3.org/2000/svg", "line");
             const p1 = polarToCartesian(0, 0, innerRadius - 5, monthStartAngle);
             const p2 = polarToCartesian(0, 0, outerRadius + 5, monthStartAngle);
@@ -213,7 +212,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // Modal behavior
     function openModal(speciesName, slug, speciesData) {
         modalTitle.textContent = speciesName;
-        modalLink.href = `/species/${slug}/`;
+        modalTitle.textContent = speciesName;
 
         // Clear previous SVG
         const oldSvg = modalSvgContainer.querySelector("svg");
@@ -257,8 +256,20 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(data => {
             if (loadingEl) loadingEl.remove();
 
-            // Sort species ascending alphabetically
-            const allSpecies = Object.keys(data).sort();
+            // Taxonomic sorting using the index passed from Hugo
+            const taxaIndex = {};
+            if (window.arshjulTaxonomy) {
+                window.arshjulTaxonomy.forEach((name, i) => {
+                    taxaIndex[name] = i;
+                });
+            }
+
+            const allSpecies = Object.keys(data).sort((a, b) => {
+                const idxA = taxaIndex[a] ?? 99999;
+                const idxB = taxaIndex[b] ?? 99999;
+                if (idxA !== idxB) return idxA - idxB;
+                return a.localeCompare(b);
+            });
 
             // Intersection Observer for Lazy Loading
             // Render when Card is within 200px of Viewport
