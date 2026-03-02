@@ -133,25 +133,52 @@
         <div class="arshjul-page" style="max-width: 1200px; margin: 0 auto; padding: 1rem 0;">
 
             {{/* ── HEADER ── */}}
-            <div class="arshjul-header" style="text-align: center; margin-bottom: 3rem;">
+            <div class="arshjul-header" style="text-align: center; margin-bottom: 2rem;">
                 <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; color: #1e293b;">Årshjul</h2>
-                <p style="color: #64748b; font-size: 1.125rem; max-width: 600px; margin: 0 auto;">
-                    Historisk närvaro i Åstorps kommun. Färgerna indikerar under hur många olika år arten har
-                    observerats på det
-                    aktuella datumet.
+                <p style="color: #64748b; font-size: 1.05rem; max-width: 640px; margin: 0 auto; line-height: 1.6;">
+                    Varje segment i hjulet motsvarar en dag på året. En färgad markering betyder att arten
+                    har observerats i Åstorps kommun den dagen minst ett år. Ju starkare färg, desto fler
+                    år arten noterats just den dagen. Siffran i mitten visar totalt antal unika
+                    observationsdagar.
                 </p>
-                <div style="display: flex; justify-content: center; gap: 1rem; margin-top: 1rem; font-size: 0.875rem;">
-                    <span style="display: flex; align-items: center; gap: 0.25rem;">
+                <div
+                    style="display: flex; justify-content: center; gap: 1.5rem; margin-top: 1rem; font-size: 0.875rem; flex-wrap: wrap;">
+                    <span style="display: flex; align-items: center; gap: 0.35rem;">
                         <span
                             style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #facc15;"></span>
-                        Sommarhalvåret
+                        Sommarhalvåret <span style="color:#94a3b8">(maj–sep)</span>
                     </span>
-                    <span style="display: flex; align-items: center; gap: 0.25rem;">
+                    <span style="display: flex; align-items: center; gap: 0.35rem;">
                         <span
                             style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #38bdf8;"></span>
-                        Vinterhalvåret
+                        Vinterhalvåret <span style="color:#94a3b8">(okt–apr)</span>
+                    </span>
+                    <span style="display: flex; align-items: center; gap: 0.35rem;">
+                        <span
+                            style="display: inline-block; width: 8px; height: 2px; background: #dc2626; border-radius: 1px;"></span>
+                        Idag
                     </span>
                 </div>
+            </div>
+
+            {{/* ── FILTER BUTTONS ── */}}
+            <div id="arshjul-filters"
+                style="display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem;">
+                <button class="arshjul-filter-btn arshjul-filter-btn--active" data-filter="alla"
+                    style="padding: 0.4rem 1rem; border-radius: 999px; border: 1px solid #d1d5db; background: #2d5016; color: white; cursor: pointer; font-size: 0.85rem; transition: all 0.2s;">Alla</button>
+                <button class="arshjul-filter-btn" data-filter="regular"
+                    style="padding: 0.4rem 1rem; border-radius: 999px; border: 1px solid #d1d5db; background: white; color: #374151; cursor: pointer; font-size: 0.85rem; transition: all 0.2s;">Förväntade</button>
+                <button class="arshjul-filter-btn" data-filter="possible"
+                    style="padding: 0.4rem 1rem; border-radius: 999px; border: 1px solid #d1d5db; background: white; color: #374151; cursor: pointer; font-size: 0.85rem; transition: all 0.2s;">Möjliga</button>
+                <button class="arshjul-filter-btn" data-filter="unusual"
+                    style="padding: 0.4rem 1rem; border-radius: 999px; border: 1px solid #d1d5db; background: white; color: #374151; cursor: pointer; font-size: 0.85rem; transition: all 0.2s;">Ovanliga</button>
+                <button class="arshjul-filter-btn" data-filter="rare"
+                    style="padding: 0.4rem 1rem; border-radius: 999px; border: 1px solid #d1d5db; background: white; color: #374151; cursor: pointer; font-size: 0.85rem; transition: all 0.2s;">Rariteter</button>
+                <button class="arshjul-filter-btn" data-filter="checked"
+                    style="padding: 0.4rem 1rem; border-radius: 999px; border: 1px solid #d1d5db; background: white; color: #374151; cursor: pointer; font-size: 0.85rem; transition: all 0.2s;">Kryssade
+                    ✓</button>
+                <button class="arshjul-filter-btn" data-filter="missing"
+                    style="padding: 0.4rem 1rem; border-radius: 999px; border: 1px solid #d1d5db; background: white; color: #374151; cursor: pointer; font-size: 0.85rem; transition: all 0.2s;">Saknade</button>
             </div>
 
             {{/* ── GRID CONTAINER ── */}}

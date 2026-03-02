@@ -269,11 +269,33 @@ document.addEventListener("DOMContentLoaded", () => {
         document.body.style.overflow = "";
     });
 
-    // Fetch master JSON and init grid
-    fetch(dataUrl)
-        .then(res => res.json())
-        .then(data => {
+    // Fetch master JSON and category/checklist data, then init grid
+    const guideUrl = "/data/species-guide.json";
+    const checklistUrl = "/data/checklist-2026.json";
+
+    Promise.all([
+        fetch(dataUrl).then(r => r.json()),
+        fetch(guideUrl).then(r => r.json()).catch(() => null),
+        fetch(checklistUrl).then(r => r.json()).catch(() => null)
+    ])
+        .then(([data, guideData, checklistData]) => {
             if (loadingEl) loadingEl.remove();
+
+            // Build category lookup from species-guide.json
+            const categoryMap = {};
+            if (guideData && guideData.species) {
+                guideData.species.forEach(sp => {
+                    categoryMap[sp.name] = sp.category || "regular";
+                });
+            }
+
+            // Build checklist lookup
+            const checkedSet = new Set();
+            if (checklistData && checklistData.observations) {
+                checklistData.observations.forEach(entry => {
+                    if (entry.species) checkedSet.add(entry.species);
+                });
+            }
 
             // Taxonomic sorting using the index passed from Hugo
             const taxaIndex = {};
@@ -319,10 +341,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
             allSpecies.forEach(species => {
                 const slug = species.toLowerCase().replace(/å/g, "a").replace(/ä/g, "a").replace(/ö/g, "o").replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+                const category = categoryMap[species] || "regular";
+                const isChecked = checkedSet.has(species);
 
                 const card = document.createElement("div");
                 card.className = "arshjul-card";
                 card.dataset.species = species;
+                card.dataset.category = category;
+                card.dataset.checked = isChecked ? "true" : "false";
 
                 const header = document.createElement("h3");
                 header.textContent = species;
@@ -343,6 +369,41 @@ document.addEventListener("DOMContentLoaded", () => {
                 observer.observe(card);
             });
 
+            // ── FILTER LOGIC ──
+            const filterContainer = document.getElementById("arshjul-filters");
+            if (filterContainer) {
+                const filterBtns = filterContainer.querySelectorAll(".arshjul-filter-btn");
+                filterBtns.forEach(btn => {
+                    btn.addEventListener("click", () => {
+                        // Update active state
+                        filterBtns.forEach(b => {
+                            b.classList.remove("arshjul-filter-btn--active");
+                            b.style.background = "white";
+                            b.style.color = "#374151";
+                        });
+                        btn.classList.add("arshjul-filter-btn--active");
+                        btn.style.background = "#2d5016";
+                        btn.style.color = "white";
+
+                        const filter = btn.dataset.filter;
+                        const cards = gridEl.querySelectorAll(".arshjul-card");
+                        cards.forEach(card => {
+                            let show = false;
+                            if (filter === "alla") {
+                                show = true;
+                            } else if (filter === "checked") {
+                                show = card.dataset.checked === "true";
+                            } else if (filter === "missing") {
+                                show = card.dataset.checked === "false";
+                            } else {
+                                show = card.dataset.category === filter;
+                            }
+                            card.style.display = show ? "" : "none";
+                        });
+                    });
+                });
+            }
+
         })
         .catch(e => {
             console.error(e);
@@ -350,3 +411,4 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
 });
+
