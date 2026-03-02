@@ -67,14 +67,14 @@ SPECIES_MERGES = {
 # Raritetskategorier baserat på observationsantal
 def classify_category(total):
     """Klassificera art baserat på totalt antal observationer."""
-    if total >= 80:
-        return "abundant"    # Förväntad
-    elif total >= 20:
-        return "regular"     # Möjlig
+    if total >= 50:
+        return "abundant"    # Förväntad (50+)
+    elif total >= 10:
+        return "regular"     # Möjlig (10–49)
     elif total >= 5:
-        return "uncommon"    # Ovanlig
+        return "uncommon"    # Ovanlig (5–9)
     else:
-        return "rare"        # Raritet
+        return "rare"        # Raritet (1–4)
 
 
 def load_api_key():

@@ -2,7 +2,7 @@
 title: "Årets första trana vid en ny våtmark"
 date: 2026-03-01
 draft: false
-location: "Körslättabäckens våtmarker · Pumphusmaderna · Kungsgårdsmaderna"
+location: "Körslättabäckens våtmarker · Madkärr · Kungsgårdsmaderna"
 image: "/images/posts/2026-03-01-korslattabacken/korslattabackens_vatmarker.jpg"
 species:
   - Dubbeltrast
@@ -23,9 +23,9 @@ locations:
   - name: "Kungsgårdsmaderna"
     lat: 56.15343
     lng: 13.06878
-  - name: "Pumphusmaderna, Tomarp"
-    lat: 56.16202883696735
-    lng: 13.054738866046634
+  - name: "Madkärr, Tomarp"
+    lat: 56.16336146917374
+    lng: 13.062392835112023
 images:
   - url: "/images/posts/2026-03-01-korslattabacken/korslattabackens_vatmarker.jpg"
     alt: "Körslättabäckens våtmarker med tunn is"
@@ -43,6 +43,6 @@ Målet är att ta mig över bäcken mellan kärret och våtmarken, längre in li
 
 Även om vattnet kommer att sjunka tillbaka här inne i skogen, har grävmaskiner öppnat upp vattenytorna på fälten, så förhoppningsvis kommer de nya våtmarkerna hålla vatten en stor del av året. Ett mycket tunt lager is täcker fortfarande de största vattenspeglarna. Kanske öppnas de upp senare under dagen. 
 
-Nere vid Tomarp ligger ingen is och vattenspeglarna växer timme för timme. På Kungsgårdsmaderna simmar bläsänder och krickor i stora flockar och bland dessa sju par stjärtand. På Pumphusmaderna rastar bläsgäss (ett tiotal) och skogsgäss (närmare ett femtiotal). En varfågel sitter på en av de blekta snöpinnarna. Nu finns det spännande våtmarker såväl nere vid ån som uppe på åsen.
+Nere vid Tomarp ligger ingen is och vattenspeglarna växer timme för timme. På Kungsgårdsmaderna simmar bläsänder och krickor i stora flockar och bland dessa sju par stjärtand. På Madkärr rastar bläsgäss (ett tiotal) och skogsgäss (närmare ett femtiotal). En varfågel sitter på en av de blekta snöpinnarna. Nu finns det spännande våtmarker såväl nere vid ån som uppe på åsen.
 
 *Fågelåret i Åstorp, 68/150*
