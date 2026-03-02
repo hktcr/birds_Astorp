@@ -206,6 +206,25 @@ document.addEventListener("DOMContentLoaded", () => {
             }
         });
 
+        // Today marker — small red tick outside the wheel
+        const now = new Date();
+        const startOfYear = new Date(now.getFullYear(), 0, 0);
+        const diff = now - startOfYear;
+        const oneDay = 1000 * 60 * 60 * 24;
+        const todayDOY = Math.floor(diff / oneDay) - 1; // 0-indexed
+        const todayAngle = (todayDOY / totalDays) * 360 + 180;
+        const tickInner = polarToCartesian(0, 0, outerRadius + 3, todayAngle);
+        const tickOuter = polarToCartesian(0, 0, outerRadius + 10, todayAngle);
+        const todayTick = document.createElementNS("http://www.w3.org/2000/svg", "line");
+        todayTick.setAttribute("x1", tickInner.x);
+        todayTick.setAttribute("y1", tickInner.y);
+        todayTick.setAttribute("x2", tickOuter.x);
+        todayTick.setAttribute("y2", tickOuter.y);
+        todayTick.setAttribute("stroke", "#dc2626");
+        todayTick.setAttribute("stroke-width", "2");
+        todayTick.setAttribute("stroke-linecap", "round");
+        svg.appendChild(todayTick);
+
         return svg;
     }
 
