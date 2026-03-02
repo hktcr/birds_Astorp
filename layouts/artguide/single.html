@@ -17,21 +17,25 @@
     <div id="panel-kalender" class="artguide-panel artguide-panel--active" role="tabpanel"
         aria-labelledby="tab-kalender">
 
-        <!-- Progress bar -->
+        <!-- Progress bar (termometer-stil som startsidan) -->
         <div class="artguide-progress" role="progressbar" aria-valuemin="0" aria-valuemax="150" aria-valuenow="0"
             aria-label="Årslista framsteg">
-            <div class="artguide-progress__bar">
-                <div class="artguide-progress__fill"></div>
-                <div class="artguide-progress__milestones">
-                    <span class="artguide-progress__milestone" style="left: 33.3%">50</span>
-                    <span class="artguide-progress__milestone" style="left: 66.6%">100</span>
-                    <span class="artguide-progress__milestone" style="left: 100%">150</span>
+            <div class="artguide-progress__header">
+                <span class="artguide-progress__label">Årslista</span>
+                <span class="artguide-progress__count">0/150 arter</span>
+            </div>
+            <div class="artguide-progress__thermometer">
+                <div class="artguide-progress__scale">
+                    <span class="artguide-progress__scale-mark" style="left: 0%">0</span>
+                    <span class="artguide-progress__scale-mark" style="left: 33.3%">50</span>
+                    <span class="artguide-progress__scale-mark" style="left: 66.6%">100</span>
+                    <span class="artguide-progress__scale-mark" style="left: 100%">150</span>
+                </div>
+                <div class="artguide-progress__bar">
+                    <div class="artguide-progress__fill"></div>
                 </div>
             </div>
-            <div class="artguide-progress__text">
-                <span class="artguide-progress__count">0/150 arter</span>
-                <span class="artguide-progress__latest"></span>
-            </div>
+            <div class="artguide-progress__latest"></div>
         </div>
 
         <!-- Month navigation -->
@@ -228,6 +232,19 @@
                                 nyanser</span> = Vinter.<br>
                             Siffrorna i mitten visar totalt antal <strong>unika observationsdagar</strong> under året.
                         </p>
+                        <div
+                            style="display: flex; justify-content: center; gap: 1.2rem; margin-top: 0.5rem; font-size: 0.8rem;">
+                            <span style="display: flex; align-items: center; gap: 0.3rem;">
+                                <span
+                                    style="display: inline-block; width: 8px; height: 2px; background: #dc2626; border-radius: 1px;"></span>
+                                Idag
+                            </span>
+                            <span style="display: flex; align-items: center; gap: 0.3rem;">
+                                <span
+                                    style="display: inline-block; width: 8px; height: 2.5px; background: #22c55e; border-radius: 1px;"></span>
+                                Kryssad 2026
+                            </span>
+                        </div>
                     </div>
                 </div>
             </dialog>
