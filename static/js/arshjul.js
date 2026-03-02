@@ -65,10 +65,14 @@ document.addEventListener("DOMContentLoaded", () => {
         ].join(" ");
     }
 
-    function getColor(month, count, maxCount) {
+    // Global fixed scale: 1 year = light, GLOBAL_MAX_YEARS+ = full saturation.
+    // This ensures that rare species with 1 obs year don't appear at max intensity.
+    const GLOBAL_MAX_YEARS = 8;
+
+    function getColor(month, count) {
         if (count === 0) return "none";
         const isSummer = (month >= 5 && month <= 9);
-        const intensity = Math.min(1, count / (maxCount || 1));
+        const intensity = Math.min(1, count / GLOBAL_MAX_YEARS);
 
         if (isSummer) {
             const hue = 50 - (20 * intensity);
@@ -139,10 +143,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         // Calc stats
-        let maxCount = 1;
         let activeDays = 0;
         for (const key in speciesData) {
-            if (speciesData[key] > maxCount) maxCount = speciesData[key];
             if (speciesData[key] > 0) activeDays++;
         }
 
@@ -174,7 +176,7 @@ document.addEventListener("DOMContentLoaded", () => {
         dayAngles.forEach(da => {
             const count = speciesData[da.key] || 0;
             if (count > 0) {
-                const color = getColor(da.month, count, maxCount);
+                const color = getColor(da.month, count);
                 const path = document.createElementNS("http://www.w3.org/2000/svg", "path");
                 path.setAttribute("d", describeAnnularSegment(0, 0, innerRadius, outerRadius, da.startAngle - 0.2, da.endAngle + 0.2));
                 path.setAttribute("fill", color);
