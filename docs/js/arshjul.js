@@ -90,7 +90,7 @@ document.addEventListener("DOMContentLoaded", () => {
      * @param {boolean} isInteractive Should hover tooltips be attached? (true for modal, false for grid)
      * @returns {SVGElement}
      */
-    function createSVG(speciesData, isInteractive = false) {
+    function createSVG(speciesData, isInteractive = false, checkDate = null) {
         const innerRadius = 80;
         const outerRadius = 100;
 
@@ -227,12 +227,30 @@ document.addEventListener("DOMContentLoaded", () => {
         todayTick.setAttribute("stroke-linecap", "round");
         svg.appendChild(todayTick);
 
+        // Check-date marker — green tick outside the wheel (same radius as today)
+        if (checkDate) {
+            const checkD = new Date(checkDate);
+            const checkStartOfYear = new Date(checkD.getFullYear(), 0, 0);
+            const checkDOY = Math.floor((checkD - checkStartOfYear) / oneDay) - 1;
+            const checkAngle = (checkDOY / totalDays) * 360 + 180;
+            const checkInner = polarToCartesian(0, 0, outerRadius + 3, checkAngle);
+            const checkOuter = polarToCartesian(0, 0, outerRadius + 10, checkAngle);
+            const checkTick = document.createElementNS("http://www.w3.org/2000/svg", "line");
+            checkTick.setAttribute("x1", checkInner.x);
+            checkTick.setAttribute("y1", checkInner.y);
+            checkTick.setAttribute("x2", checkOuter.x);
+            checkTick.setAttribute("y2", checkOuter.y);
+            checkTick.setAttribute("stroke", "#22c55e");
+            checkTick.setAttribute("stroke-width", "2.5");
+            checkTick.setAttribute("stroke-linecap", "round");
+            svg.appendChild(checkTick);
+        }
+
         return svg;
     }
 
     // Modal behavior
-    function openModal(speciesName, slug, speciesData) {
-        modalTitle.textContent = speciesName;
+    function openModal(speciesName, slug, speciesData, checkDate) {
         modalTitle.textContent = speciesName;
 
         // Clear previous SVG
@@ -242,8 +260,8 @@ document.addEventListener("DOMContentLoaded", () => {
         // Hide tooltip just in case
         modalTooltip.style.opacity = 0;
 
-        // Render interactive SVG
-        const interactiveSvg = createSVG(speciesData, true);
+        // Render interactive SVG (pass checkDate for green tick)
+        const interactiveSvg = createSVG(speciesData, true, checkDate);
         modalSvgContainer.appendChild(interactiveSvg);
 
         modal.showModal();
@@ -332,7 +350,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         if (!svgWrapper.hasChildNodes()) {
                             // First time rendering!
-                            const svg = createSVG(data[speciesName], false); // false = non interactive tooltips
+                            const cardCheckDate = card.dataset.checkdate || null;
+                            const svg = createSVG(data[speciesName], false, cardCheckDate);
                             svgWrapper.appendChild(svg);
 
                             // Let layout settle, then fade in
@@ -360,32 +379,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 card.dataset.category = category;
                 card.dataset.checked = isChecked ? "true" : "false";
 
-                // ── Checked badge (green circle with seasonal tick) ──
+                // Store check date on card for lazy SVG rendering
                 if (isChecked && checkDate) {
+                    card.dataset.checkdate = checkDate;
+                }
+
+                // ── Checked badge (green circle with ✓) ──
+                if (isChecked) {
                     const badge = document.createElement("div");
                     badge.className = "arshjul-card-badge";
-                    badge.title = `Kryssad ${checkDate}`;
-
-                    // Parse month to determine season color
-                    const month = parseInt(checkDate.split("-")[1]);
-                    const isSummer = month >= 5 && month <= 9;
-                    const tickColor = isSummer ? "#d97706" : "#2563eb"; // orange / blue
-
-                    // Small SVG: green circle with a radial tick at the date's angle
-                    const dayOfYear = Math.floor((new Date(checkDate) - new Date(checkDate.split("-")[0] + "-01-01")) / 86400000);
-                    const angle = (dayOfYear / 365) * 360 - 90; // -90 to start at top
-                    const rad = angle * Math.PI / 180;
-                    const r = 10; // badge radius
-                    const innerR = 3;
-                    const outerR = 8.5;
-                    const x1 = r + Math.cos(rad) * innerR;
-                    const y1 = r + Math.sin(rad) * innerR;
-                    const x2 = r + Math.cos(rad) * outerR;
-                    const y2 = r + Math.sin(rad) * outerR;
-
-                    badge.innerHTML = `<svg width="20" height="20" viewBox="0 0 20 20">
-                        <circle cx="10" cy="10" r="9" fill="#16a34a" opacity="0.9"/>
-                        <line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="${tickColor}" stroke-width="2.5" stroke-linecap="round"/>
+                    badge.title = checkDate ? `Kryssad ${checkDate}` : 'Kryssad 2026';
+                    badge.innerHTML = `<svg width="22" height="22" viewBox="0 0 22 22">
+                        <circle cx="11" cy="11" r="10" fill="#22c55e"/>
+                        <path d="M6.5 11.5 L9.5 14.5 L15.5 8" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
                     </svg>`;
                     card.appendChild(badge);
                 }
@@ -400,7 +406,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 // Add click listener for Modal
                 card.addEventListener("click", () => {
-                    openModal(species, slug, data[species]);
+                    openModal(species, slug, data[species], card.dataset.checkdate || null);
                 });
 
                 gridEl.appendChild(card);
