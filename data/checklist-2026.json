@@ -547,8 +547,16 @@
             "lng": 13.06878
         },
         {
-            "species": "Knölsvan",
-            "latin": "Cygnus olor",
+            "species": "Skrattmås",
+            "latin": "Chroicocephalus ridibundus",
+            "date": "2026-03-02",
+            "location": "Kölebäckens mader",
+            "lat": 56.12774509697216,
+            "lng": 12.868473108581973
+        },
+        {
+            "species": "Sävsparv",
+            "latin": "Emberiza schoeniclus",
             "date": "2026-03-02",
             "location": "Kölebäckens mader",
             "lat": 56.12774509697216,
@@ -557,6 +565,14 @@
         {
             "species": "Skedand",
             "latin": "Spatula clypeata",
+            "date": "2026-03-02",
+            "location": "Kölebäckens mader",
+            "lat": 56.12774509697216,
+            "lng": 12.868473108581973
+        },
+        {
+            "species": "Knölsvan",
+            "latin": "Cygnus olor",
             "date": "2026-03-02",
             "location": "Kölebäckens mader",
             "lat": 56.12774509697216,
@@ -601,22 +617,6 @@
             "location": "Körslättabäckens mader",
             "lat": 56.093059657874605,
             "lng": 13.065669791540584
-        },
-        {
-            "species": "Skrattmås",
-            "latin": "Chroicocephalus ridibundus",
-            "date": "2026-03-02",
-            "location": "Kölebäckens mader",
-            "lat": 56.12774509697216,
-            "lng": 12.868473108581973
-        },
-        {
-            "species": "Sävsparv",
-            "latin": "Emberiza schoeniclus",
-            "date": "2026-03-02",
-            "location": "Kölebäckens mader",
-            "lat": 56.12774509697216,
-            "lng": 12.868473108581973
         }
     ]
 }

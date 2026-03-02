@@ -545,6 +545,78 @@
             "location": "Kungsgårdsmaderna",
             "lat": 56.15343,
             "lng": 13.06878
+        },
+        {
+            "species": "Skrattmås",
+            "latin": "Chroicocephalus ridibundus",
+            "date": "2026-03-02",
+            "location": "Kölebäckens mader",
+            "lat": 56.12774509697216,
+            "lng": 12.868473108581973
+        },
+        {
+            "species": "Sävsparv",
+            "latin": "Emberiza schoeniclus",
+            "date": "2026-03-02",
+            "location": "Kölebäckens mader",
+            "lat": 56.12774509697216,
+            "lng": 12.868473108581973
+        },
+        {
+            "species": "Skedand",
+            "latin": "Spatula clypeata",
+            "date": "2026-03-02",
+            "location": "Kölebäckens mader",
+            "lat": 56.12774509697216,
+            "lng": 12.868473108581973
+        },
+        {
+            "species": "Knölsvan",
+            "latin": "Cygnus olor",
+            "date": "2026-03-02",
+            "location": "Kölebäckens mader",
+            "lat": 56.12774509697216,
+            "lng": 12.868473108581973
+        },
+        {
+            "species": "Brunand",
+            "latin": "Aythya ferina",
+            "date": "2026-03-02",
+            "location": "Kungsgårdsmaderna",
+            "lat": 56.15343,
+            "lng": 13.06878
+        },
+        {
+            "species": "Gråsiska",
+            "latin": "Acanthis flammea",
+            "date": "2026-03-02",
+            "location": "Björkenäs mosse",
+            "lat": 56.14072103796272,
+            "lng": 13.031572672305218
+        },
+        {
+            "species": "Storspov",
+            "latin": "Numenius arquata",
+            "date": "2026-03-02",
+            "location": "Backadal, Kärrarp",
+            "lat": 56.141628953503115,
+            "lng": 13.01111255477116
+        },
+        {
+            "species": "Kattuggla",
+            "latin": "Strix aluco",
+            "date": "2026-03-02",
+            "location": "Fåraböke",
+            "lat": 56.07789001813259,
+            "lng": 13.067594119415102
+        },
+        {
+            "species": "Morkulla",
+            "latin": "Scolopax rusticola",
+            "date": "2026-03-02",
+            "location": "Körslättabäckens mader",
+            "lat": 56.093059657874605,
+            "lng": 13.065669791540584
         }
     ]
 }
