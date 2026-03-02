@@ -291,11 +291,16 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
 
-            // Build checklist lookup
-            const checkedSet = new Set();
+            // Build checklist lookup (species → earliest date)
+            const checkedMap = new Map();
             if (checklistData && checklistData.observations) {
                 checklistData.observations.forEach(entry => {
-                    if (entry.species) checkedSet.add(entry.species);
+                    if (entry.species) {
+                        const existing = checkedMap.get(entry.species);
+                        if (!existing || entry.date < existing) {
+                            checkedMap.set(entry.species, entry.date);
+                        }
+                    }
                 });
             }
 
@@ -346,13 +351,44 @@ document.addEventListener("DOMContentLoaded", () => {
             allSpecies.forEach(species => {
                 const slug = species.toLowerCase().replace(/å/g, "a").replace(/ä/g, "a").replace(/ö/g, "o").replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
                 const category = categoryMap[species] || "regular";
-                const isChecked = checkedSet.has(species);
+                const isChecked = checkedMap.has(species);
+                const checkDate = checkedMap.get(species) || null;
 
                 const card = document.createElement("div");
                 card.className = "arshjul-card";
                 card.dataset.species = species;
                 card.dataset.category = category;
                 card.dataset.checked = isChecked ? "true" : "false";
+
+                // ── Checked badge (green circle with seasonal tick) ──
+                if (isChecked && checkDate) {
+                    const badge = document.createElement("div");
+                    badge.className = "arshjul-card-badge";
+                    badge.title = `Kryssad ${checkDate}`;
+
+                    // Parse month to determine season color
+                    const month = parseInt(checkDate.split("-")[1]);
+                    const isSummer = month >= 5 && month <= 9;
+                    const tickColor = isSummer ? "#d97706" : "#2563eb"; // orange / blue
+
+                    // Small SVG: green circle with a radial tick at the date's angle
+                    const dayOfYear = Math.floor((new Date(checkDate) - new Date(checkDate.split("-")[0] + "-01-01")) / 86400000);
+                    const angle = (dayOfYear / 365) * 360 - 90; // -90 to start at top
+                    const rad = angle * Math.PI / 180;
+                    const r = 10; // badge radius
+                    const innerR = 3;
+                    const outerR = 8.5;
+                    const x1 = r + Math.cos(rad) * innerR;
+                    const y1 = r + Math.sin(rad) * innerR;
+                    const x2 = r + Math.cos(rad) * outerR;
+                    const y2 = r + Math.sin(rad) * outerR;
+
+                    badge.innerHTML = `<svg width="20" height="20" viewBox="0 0 20 20">
+                        <circle cx="10" cy="10" r="9" fill="#16a34a" opacity="0.9"/>
+                        <line x1="${x1.toFixed(1)}" y1="${y1.toFixed(1)}" x2="${x2.toFixed(1)}" y2="${y2.toFixed(1)}" stroke="${tickColor}" stroke-width="2.5" stroke-linecap="round"/>
+                    </svg>`;
+                    card.appendChild(badge);
+                }
 
                 const header = document.createElement("h3");
                 header.textContent = species;
