@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="sv">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="En fågelårsbok för Åstorps kommun — observationer, bilder och krysslista">
@@ -17,7 +17,7 @@
 
     
     
-    <link rel="stylesheet" href="/css/style.5fc87315b1a0563dad0875f5ea74a0d060102983b7b381d7e0adc8dfde42ee01.css">
+    <link rel="stylesheet" href="/css/style.41f2bc2fda4f42ff6ae178e906cdb99fa5bf3867561348732e3308bef366b390.css">
 
     
     
@@ -28,7 +28,7 @@
 
     <header class="site-header">
     <div class="header-container">
-        <a href="https://astorpsfaglar.se/" class="site-logo">
+        <a href="http://localhost:1313/" class="site-logo">
             <span class="site-title">Fågelåret i Åstorp</span>
         </a>
 
@@ -348,7 +348,7 @@
                     <div
                         style="text-align: center; margin-top: 1rem; color: #64748b; font-size: 0.9rem; max-width: 600px; line-height: 1.5;">
                         <p style="margin: 0;">
-                            Färgerna indikerar under hur många olika år arten har observerats.
+                            Färgerna indikerar under hur många olika år arten har observerats.<br>
                             <span style="color: #ca8a04;">Gula nyanser</span> = Sommar, <span
                                 style="color: #0284c7;">Blåa
                                 nyanser</span> = Vinter.<br>
@@ -613,12 +613,12 @@
     
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script>window.siteBaseURL = "https:\/\/astorpsfaglar.se\/";</script>
+    <script>window.siteBaseURL = "http:\/\/localhost:1313\/";</script>
     <script src="/js/location-popup.js"></script>
 
     
 <script>
-    window.siteBaseURL = 'https:\/\/astorpsfaglar.se\/';
+    window.siteBaseURL = 'http:\/\/localhost:1313\/';
     window.arshjulTaxonomy = [
         
         "Knölsvan", "Mindre sångsvan", "Sångsvan", "Prutgås", "Rödhalsad gås", "Kanadagås", "Vitkindad gås", "Stripgås", "Grågås", "Bläsgås", "Tundragås", "Spetsbergsgås", "Skogsgås", "Nilgås", "Gravand", "Ejder", "Knipa", "Salskrake", "Storskrake", "Brunand", "Vigg", "Årta", "Skedand", "Snatterand", "Bläsand", "Gräsand", "Stjärtand", "Kricka", "Rapphöna", "Fasan", "Vaktel", "Smådopping", "Gråhakedopping", "Gök", "Turturduva", "Turkduva", "Ringduva", "Klippduva (tamduva)", "Skogsduva", "Trana", "Vattenrall", "Kornknarr", "Småfläckig sumphöna", "Rörhöna", "Sothöna", "Skärfläcka", "Strandskata", "Ljungpipare", "Större strandpipare", "Mindre strandpipare", "Tofsvipa", "Småspov", "Storspov", "Rödspov", "Dvärgbeckasin", "Morkulla", "Dubbelbeckasin", "Enkelbeckasin", "Drillsnäppa", "Skogssnäppa", "Grönbena", "Rödbena", "Svartsnäppa", "Gluttsnäppa", "Brushane", "Mosnäppa", "Småsnäppa", "Fisktärna", "Skrattmås", "Svarthuvad mås", "Fiskmås", "Kaspisk trut", "Gråtrut", "Havstrut", "Silltrut", "Stormfågel", "Svart stork", "Vit stork", "Storskarv", "Ägretthäger", "Gråhäger", "Nattskärra", "Tornseglare", "Jorduggla", "Hornuggla", "Berguv", "Kattuggla", "Fiskgjuse", "Bivråk", "Stäppörn", "Kungsörn", "Sparvhök", "Duvhök", "Stäpphök", "Blå kärrhök", "Brun kärrhök", "Röd glada", "Brun glada", "Havsörn", "Fjällvråk", "Ormvråk", "Kungsfiskare", "Göktyta", "Gröngöling", "Spillkråka", "Större hackspett", "Mindre hackspett", "Tornfalk", "Aftonfalk", "Stenfalk", "Lärkfalk", "Pilgrimsfalk", "Varfågel", "Törnskata", "Nötskrika", "Skata", "Nötkråka", "Kaja", "Råka", "Korp", "Gråkråka", "Blåmes", "Talgoxe", "Svartmes", "Tofsmes", "Entita", "Talltita", "Trädlärka", "Sånglärka", "Härmsångare", "Sävsångare", "Kärrsångare", "Rörsångare", "Gräshoppsångare", "Backsvala", "Ladusvala", "Hussvala", "Stjärtmes", "Grönsångare", "Lövsångare", "Gransångare", "Lundsångare", "Trädgårdssångare", "Svarthätta", "Ärtsångare", "Törnsångare", "Sidensvans", "Brandkronad kungsfågel", "Kungsfågel", "Nötväcka", "Trädkrypare", "Trädgårdsträdkrypare", "Gärdsmyg", "Stare", "Strömstare", "Dubbeltrast", "Taltrast", "Rödvingetrast", "Koltrast", "Björktrast", "Ringtrast", "Grå flugsnappare", "Rödhake", "Näktergal", "Mindre flugsnappare", "Svartvit flugsnappare", "Svart rödstjärt", "Rödstjärt", "Buskskvätta", "Stenskvätta", "Järnsparv", "Pilfink", "Gråsparv", "Forsärla", "Gulärla", "Sädesärla", "Trädpiplärka", "Rödstrupig piplärka", "Ängspiplärka", "Bergfink", "Bofink", "Stenknäck", "Tallbit", "Domherre", "Grönfink", "Vinterhämpling", "Hämpling", "Gråsiska", "Bändelkorsnäbb", "Större korsnäbb", "Mindre korsnäbb", "Steglits", "Gulhämpling", "Grönsiska", "Snösparv", "Sävsparv", "Kornsparv", "Gulsparv", 

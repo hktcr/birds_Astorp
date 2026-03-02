@@ -16,6 +16,28 @@
             <div id="vader-blog-preview" class="vader-blog-preview" style="display:none;"></div>
         </div>
 
+        <!-- Global månadsväljare -->
+        <div class="vader-month-bar" id="vader-month-bar">
+            <select id="vader-month-select">
+                <option value="all">Hela året</option>
+                <option value="2026-01">Januari</option>
+                <option value="2026-02">Februari</option>
+                <option value="2026-03">Mars</option>
+                <option value="2026-04">April</option>
+                <option value="2026-05">Maj</option>
+                <option value="2026-06">Juni</option>
+                <option value="2026-07">Juli</option>
+                <option value="2026-08">Augusti</option>
+                <option value="2026-09">September</option>
+                <option value="2026-10">Oktober</option>
+                <option value="2026-11">November</option>
+                <option value="2026-12">December</option>
+            </select>
+            <label class="vader-smooth-label" id="wind-smooth-label">
+                <input type="checkbox" id="wind-smooth-toggle" checked> Jämna ut vinddata
+            </label>
+        </div>
+
         <!-- Kvintett: fem diagram vertikalt -->
         <div class="vader-triptych">
             <!-- 1. Artlista (Progress) -->
@@ -32,11 +54,13 @@
             <!-- 3. Temperatur -->
             <div class="vader-chart-box">
                 <canvas id="temp-chart"></canvas>
+                <div class="vader-chart-source">SMHI, Helsingborg A</div>
             </div>
 
             <!-- 4. Nederbörd -->
             <div class="vader-chart-box">
                 <canvas id="precip-chart"></canvas>
+                <div class="vader-chart-source">SMHI, Åstorp</div>
             </div>
 
             <!-- 5. Vattenföring -->
@@ -486,11 +510,82 @@
                 buildTempChart();
                 buildPrecipChart();
                 buildFlowChart();
+                setupGlobalMonthSelector();
             };
             document.head.appendChild(s2);
         };
         document.head.appendChild(s1);
     })();
+
+    // ================================================================
+    // GLOBAL MÅNADSVÄLJARE — Synkroniserar alla fem diagram
+    // ================================================================
+    function setMonthZoom(month) {
+        // 1. Beräkna datumgränser för Chart.js
+        var xMin, xMax;
+        if (month === 'all') {
+            xMin = '2026-01-01';
+            xMax = '2026-12-31';
+        } else {
+            var year = parseInt(month.substring(0, 4));
+            var mon = parseInt(month.substring(5, 7));
+            xMin = month + '-01';
+            var lastDay = new Date(year, mon, 0).getDate();
+            xMax = month + '-' + (lastDay < 10 ? '0' + lastDay : lastDay);
+        }
+
+        // 2. Uppdatera alla Chart.js-instanser
+        var chartIds = ['progress-chart', 'temp-chart', 'precip-chart', 'flow-chart'];
+        chartIds.forEach(function (id) {
+            var el = document.getElementById(id);
+            if (!el) return;
+            var chartInstance = Chart.getChart(el);
+            if (!chartInstance) return;
+
+            chartInstance.options.scales.x.min = xMin;
+            chartInstance.options.scales.x.max = xMax;
+            chartInstance.update();
+        });
+
+        // 3. Uppdatera vinddiagrammet
+        var wm = window._windChartMeta;
+        if (wm) {
+            wm.currentMonth = month;
+            wm.ctx.save();
+            wm.ctx.setTransform(wm.dpr, 0, 0, wm.dpr, 0, 0);
+            wm.drawAll(month);
+            wm.ctx.restore();
+        }
+
+        // 4. Hantera synlighet för smooth-toggle (bara relevant i helårsvy)
+        var smoothLabel = document.getElementById('wind-smooth-label');
+        if (smoothLabel) {
+            smoothLabel.style.display = (month === 'all') ? 'inline-flex' : 'none';
+        }
+    }
+
+    function setupGlobalMonthSelector() {
+        var sel = document.getElementById('vader-month-select');
+        if (sel) {
+            sel.onchange = function () {
+                setMonthZoom(sel.value);
+            };
+        }
+
+        var chk = document.getElementById('wind-smooth-toggle');
+        if (chk) {
+            chk.onchange = function () {
+                var wm = window._windChartMeta;
+                var m = wm ? wm.currentMonth : 'all';
+                if (wm) {
+                    wm.ctx.save();
+                    wm.ctx.setTransform(wm.dpr, 0, 0, wm.dpr, 0, 0);
+                    wm.drawAll(m);
+                    wm.ctx.restore();
+                }
+            };
+        }
+    }
 
     // ================================================================
     // CHART 5: Vindkomponenter 4.0 — Hybrid Zoom (År = Stream, Månad = Staplar)
@@ -499,25 +594,7 @@
         var canvas = document.getElementById('wind-chart');
         if (!canvas) return;
 
-        // Lägg till Månads-dropdown ovanför canvasen om den inte redan finns
-        var container = canvas.parentElement;
-        if (!document.getElementById('wind-month-select')) {
-            var selectHtml = '<div style="display:flex; justify-content:flex-end; align-items:center; gap:12px; margin-bottom:8px;">' +
-                '<label style="font-family:Inter,sans-serif; font-size:11px; color:#555; cursor:pointer;" id="wind-smooth-label">' +
-                '<input type="checkbox" id="wind-smooth-toggle" checked style="margin-right:4px; vertical-align:middle;"> Jämna ut data (7 dagar)' +
-                '</label>' +
-                '<select id="wind-month-select" style="font-family:Inter,sans-serif; font-size:12px; padding:2px 8px; border-radius:4px; border:1px solid #ccc;">' +
-                '<option value="all">Hela året</option>';
-            var mNames = ['Januari', 'Februari', 'Mars', 'April', 'Maj', 'Juni', 'Juli', 'Augusti', 'September', 'Oktober', 'November', 'December'];
-            for (var m = 1; m <= 12; m++) {
-                var mStr = m < 10 ? '0' + m : m;
-                selectHtml += '<option value="2026-' + mStr + '">' + mNames[m - 1] + '</option>';
-            }
-            selectHtml += '</select></div>';
-
-            // Insert before canvas
-            container.insertAdjacentHTML('afterbegin', selectHtml);
-        }
+        // Vinddiagrammet använder nu den globala månadsväljaren #vader-month-select
 
         var urlDir = 'https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/3/station/' + STATION_TEMP + '/period/latest-months/data.json';
         var urlSpd = 'https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/4/station/' + STATION_TEMP + '/period/latest-months/data.json';
@@ -821,24 +898,7 @@
                 ctx.fillStyle = '#EEAF28'; ctx.fillText('Väst: Gul', legX + 135, legY);
             };
 
-            // Bind Dropdown Events
-            var sel = document.getElementById('wind-month-select');
-            if (sel) {
-                // Ensure it doesn't duplicate event listeners if rebuild runs
-                sel.onchange = function (e) {
-                    // Spara bort nuvarande val på _windChartMeta så vi vet vad som är aktivt
-                    if (window._windChartMeta) window._windChartMeta.currentMonth = e.target.value;
-                    drawAll(e.target.value);
-                };
-            }
-
-            var chk = document.getElementById('wind-smooth-toggle');
-            if (chk) {
-                chk.onchange = function () {
-                    var m = window._windChartMeta ? window._windChartMeta.currentMonth : 'all';
-                    drawAll(m);
-                };
-            }
+            // Event-bindning sköts nu av setupGlobalMonthSelector()
 
             drawAll('all');
 
@@ -882,17 +942,10 @@
                 // Default: helår, ingen highlight
                 preview.style.display = 'none';
                 clearHighlights();
-                // Återställ vinddiagrammets dropdown till helår
-                var windSel = document.getElementById('wind-month-select');
-                if (windSel) { windSel.value = 'all'; }
-                var wm = window._windChartMeta;
-                if (wm) {
-                    wm.currentMonth = 'all';
-                    wm.ctx.save();
-                    wm.ctx.setTransform(wm.dpr, 0, 0, wm.dpr, 0, 0);
-                    wm.drawAll('all');
-                    wm.ctx.restore();
-                }
+                // Återställ globala månadsväljaren till helår
+                var monthSel = document.getElementById('vader-month-select');
+                if (monthSel) { monthSel.value = 'all'; }
+                setMonthZoom('all');
                 return;
             }
 
@@ -944,7 +997,13 @@
             chartInstance.update('none');
         });
 
-        // Highlight vindrastret
+        // Auto-zooma alla diagram till månaden
+        var targetMonth = from.substring(0, 7); // t.ex. '2026-02'
+        var monthSel = document.getElementById('vader-month-select');
+        if (monthSel) monthSel.value = targetMonth;
+        setMonthZoom(targetMonth);
+
+        // Highlight vindrastret med extra highlight-markeringar
         var wm = window._windChartMeta;
         if (wm) {
             var fromDate = new Date(from);
@@ -952,15 +1011,6 @@
             var jan1 = new Date(fromDate.getFullYear(), 0, 1);
             var fromIdx = Math.floor((fromDate - jan1) / 86400000);
             var toIdx = Math.floor((toDate - jan1) / 86400000);
-
-            // Auto-zooma till månaden för 'from' datumet
-            var targetMonth = from.substring(0, 7); // t.ex. '2026-02'
-            wm.currentMonth = targetMonth;
-
-            // Uppdatera vinddiagrammets dropdown visuellt
-            var windSel = document.getElementById('wind-month-select');
-            if (windSel) windSel.value = targetMonth;
-
             wm.ctx.save();
             wm.ctx.setTransform(wm.dpr, 0, 0, wm.dpr, 0, 0);
             wm.drawAll(targetMonth, fromIdx, toIdx);

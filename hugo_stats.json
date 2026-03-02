@@ -311,7 +311,9 @@
       "vader-chart-source",
       "vader-container",
       "vader-intro",
+      "vader-month-bar",
       "vader-page",
+      "vader-smooth-label",
       "vader-title",
       "vader-triptych",
       "video-embed"
@@ -386,7 +388,11 @@
       "trail-timeline",
       "vader-blog-preview",
       "vader-blog-select",
-      "wind-chart"
+      "vader-month-bar",
+      "vader-month-select",
+      "wind-chart",
+      "wind-smooth-label",
+      "wind-smooth-toggle"
     ]
   }
 }

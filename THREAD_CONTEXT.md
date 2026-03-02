@@ -14,3 +14,18 @@
 - `Fåglar/Artportalen/observations-registry-2026.json` (lagt in 5 fler fåglar)
 
 ---
+
+### 2026-03-02 — d46b5fe8
+
+**Ursprung:** Termometer-progressbar på artkalendersidan
+**Typ:** Framsteg | Buggfix
+
+> Bytte progressbaren på `/artguide/` från tunn 8px-slider till startsidans termometer-stil (20px tjock bar med dynamisk hue-färg, skalmarkeringar 0/50/100/150, kort-container med skugga, slider-puck). Fixade även trasig Go-templatesyntax i `vader.html` (blogPosts-arrayen hade felformaterade `{{ }}`-taggar med mellanslag och saknade punkter) som förhindrade Hugo-bygget. Deployade till astorpsfaglar.se.
+
+**Relaterade filer:**
+- `layouts/artguide/single.html` (ny HTML-struktur för progressbaren)
+- `assets/css/style.css` (termometer-CSS: 20px bar, gradient, puck)
+- `assets/js/artguide.js` (dynamisk hue-färg, "Senast kryssad" med plats)
+- `layouts/_default/vader.html` (fix Go-templatesyntax i blogPosts-arrayen)
+
+---

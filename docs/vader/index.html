@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="sv">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="En fågelårsbok för Åstorps kommun — observationer, bilder och krysslista">
@@ -17,7 +17,7 @@
 
     
     
-    <link rel="stylesheet" href="/css/style.5fc87315b1a0563dad0875f5ea74a0d060102983b7b381d7e0adc8dfde42ee01.css">
+    <link rel="stylesheet" href="/css/style.41f2bc2fda4f42ff6ae178e906cdb99fa5bf3867561348732e3308bef366b390.css">
 
     
     
@@ -28,7 +28,7 @@
 
     <header class="site-header">
     <div class="header-container">
-        <a href="https://astorpsfaglar.se/" class="site-logo">
+        <a href="http://localhost:1313/" class="site-logo">
             <span class="site-title">Fågelåret i Åstorp</span>
         </a>
 
@@ -144,6 +144,28 @@
         </div>
 
         
+        <div class="vader-month-bar" id="vader-month-bar">
+            <select id="vader-month-select">
+                <option value="all">Hela året</option>
+                <option value="2026-01">Januari</option>
+                <option value="2026-02">Februari</option>
+                <option value="2026-03">Mars</option>
+                <option value="2026-04">April</option>
+                <option value="2026-05">Maj</option>
+                <option value="2026-06">Juni</option>
+                <option value="2026-07">Juli</option>
+                <option value="2026-08">Augusti</option>
+                <option value="2026-09">September</option>
+                <option value="2026-10">Oktober</option>
+                <option value="2026-11">November</option>
+                <option value="2026-12">December</option>
+            </select>
+            <label class="vader-smooth-label" id="wind-smooth-label">
+                <input type="checkbox" id="wind-smooth-toggle" checked> Jämna ut vinddata
+            </label>
+        </div>
+
+        
         <div class="vader-triptych">
             
             <div class="vader-chart-box">
@@ -159,11 +181,13 @@
             
             <div class="vader-chart-box">
                 <canvas id="temp-chart"></canvas>
+                <div class="vader-chart-source">SMHI, Helsingborg A</div>
             </div>
 
             
             <div class="vader-chart-box">
                 <canvas id="precip-chart"></canvas>
+                <div class="vader-chart-source">SMHI, Åstorp</div>
             </div>
 
             
@@ -304,7 +328,7 @@
     
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script>window.siteBaseURL = "https:\/\/astorpsfaglar.se\/";</script>
+    <script>window.siteBaseURL = "http:\/\/localhost:1313\/";</script>
     <script src="/js/location-popup.js"></script>
 
     
@@ -795,6 +819,7 @@
                 buildTempChart();
                 buildPrecipChart();
                 buildFlowChart();
+                setupGlobalMonthSelector();
             };
             document.head.appendChild(s2);
         };
@@ -804,29 +829,81 @@
     
     
     
+    function setMonthZoom(month) {
+        
+        var xMin, xMax;
+        if (month === 'all') {
+            xMin = '2026-01-01';
+            xMax = '2026-12-31';
+        } else {
+            var year = parseInt(month.substring(0, 4));
+            var mon = parseInt(month.substring(5, 7));
+            xMin = month + '-01';
+            var lastDay = new Date(year, mon, 0).getDate();
+            xMax = month + '-' + (lastDay < 10 ? '0' + lastDay : lastDay);
+        }
+
+        
+        var chartIds = ['progress-chart', 'temp-chart', 'precip-chart', 'flow-chart'];
+        chartIds.forEach(function (id) {
+            var el = document.getElementById(id);
+            if (!el) return;
+            var chartInstance = Chart.getChart(el);
+            if (!chartInstance) return;
+
+            chartInstance.options.scales.x.min = xMin;
+            chartInstance.options.scales.x.max = xMax;
+            chartInstance.update();
+        });
+
+        
+        var wm = window._windChartMeta;
+        if (wm) {
+            wm.currentMonth = month;
+            wm.ctx.save();
+            wm.ctx.setTransform(wm.dpr, 0, 0, wm.dpr, 0, 0);
+            wm.drawAll(month);
+            wm.ctx.restore();
+        }
+
+        
+        var smoothLabel = document.getElementById('wind-smooth-label');
+        if (smoothLabel) {
+            smoothLabel.style.display = (month === 'all') ? 'inline-flex' : 'none';
+        }
+    }
+
+    function setupGlobalMonthSelector() {
+        var sel = document.getElementById('vader-month-select');
+        if (sel) {
+            sel.onchange = function () {
+                setMonthZoom(sel.value);
+            };
+        }
+
+        var chk = document.getElementById('wind-smooth-toggle');
+        if (chk) {
+            chk.onchange = function () {
+                var wm = window._windChartMeta;
+                var m = wm ? wm.currentMonth : 'all';
+                if (wm) {
+                    wm.ctx.save();
+                    wm.ctx.setTransform(wm.dpr, 0, 0, wm.dpr, 0, 0);
+                    wm.drawAll(m);
+                    wm.ctx.restore();
+                }
+            };
+        }
+    }
+
+    
+    
+    
     function buildWindChart() {
         var canvas = document.getElementById('wind-chart');
         if (!canvas) return;
 
         
-        var container = canvas.parentElement;
-        if (!document.getElementById('wind-month-select')) {
-            var selectHtml = '<div style="display:flex; justify-content:flex-end; align-items:center; gap:12px; margin-bottom:8px;">' +
-                '<label style="font-family:Inter,sans-serif; font-size:11px; color:#555; cursor:pointer;" id="wind-smooth-label">' +
-                '<input type="checkbox" id="wind-smooth-toggle" checked style="margin-right:4px; vertical-align:middle;"> Jämna ut data (7 dagar)' +
-                '</label>' +
-                '<select id="wind-month-select" style="font-family:Inter,sans-serif; font-size:12px; padding:2px 8px; border-radius:4px; border:1px solid #ccc;">' +
-                '<option value="all">Hela året</option>';
-            var mNames = ['Januari', 'Februari', 'Mars', 'April', 'Maj', 'Juni', 'Juli', 'Augusti', 'September', 'Oktober', 'November', 'December'];
-            for (var m = 1; m <= 12; m++) {
-                var mStr = m < 10 ? '0' + m : m;
-                selectHtml += '<option value="2026-' + mStr + '">' + mNames[m - 1] + '</option>';
-            }
-            selectHtml += '</select></div>';
-
-            
-            container.insertAdjacentHTML('afterbegin', selectHtml);
-        }
 
         var urlDir = 'https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/3/station/' + STATION_TEMP + '/period/latest-months/data.json';
         var urlSpd = 'https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/4/station/' + STATION_TEMP + '/period/latest-months/data.json';
@@ -1131,23 +1208,6 @@
             };
 
             
-            var sel = document.getElementById('wind-month-select');
-            if (sel) {
-                
-                sel.onchange = function (e) {
-                    
-                    if (window._windChartMeta) window._windChartMeta.currentMonth = e.target.value;
-                    drawAll(e.target.value);
-                };
-            }
-
-            var chk = document.getElementById('wind-smooth-toggle');
-            if (chk) {
-                chk.onchange = function () {
-                    var m = window._windChartMeta ? window._windChartMeta.currentMonth : 'all';
-                    drawAll(m);
-                };
-            }
 
             drawAll('all');
 
@@ -1192,16 +1252,9 @@
                 preview.style.display = 'none';
                 clearHighlights();
                 
-                var windSel = document.getElementById('wind-month-select');
-                if (windSel) { windSel.value = 'all'; }
-                var wm = window._windChartMeta;
-                if (wm) {
-                    wm.currentMonth = 'all';
-                    wm.ctx.save();
-                    wm.ctx.setTransform(wm.dpr, 0, 0, wm.dpr, 0, 0);
-                    wm.drawAll('all');
-                    wm.ctx.restore();
-                }
+                var monthSel = document.getElementById('vader-month-select');
+                if (monthSel) { monthSel.value = 'all'; }
+                setMonthZoom('all');
                 return;
             }
 
@@ -1254,6 +1307,12 @@
         });
 
         
+        var targetMonth = from.substring(0, 7); 
+        var monthSel = document.getElementById('vader-month-select');
+        if (monthSel) monthSel.value = targetMonth;
+        setMonthZoom(targetMonth);
+
+        
         var wm = window._windChartMeta;
         if (wm) {
             var fromDate = new Date(from);
@@ -1261,15 +1320,6 @@
             var jan1 = new Date(fromDate.getFullYear(), 0, 1);
             var fromIdx = Math.floor((fromDate - jan1) / 86400000);
             var toIdx = Math.floor((toDate - jan1) / 86400000);
-
-            
-            var targetMonth = from.substring(0, 7); 
-            wm.currentMonth = targetMonth;
-
-            
-            var windSel = document.getElementById('wind-month-select');
-            if (windSel) windSel.value = targetMonth;
-
             wm.ctx.save();
             wm.ctx.setTransform(wm.dpr, 0, 0, wm.dpr, 0, 0);
             wm.drawAll(targetMonth, fromIdx, toIdx);

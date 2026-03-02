@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Bläsand on Fågelåret i Åstorp</title>
-    <link>https://astorpsfaglar.se/species/bl%C3%A4sand/</link>
+    <link>http://localhost:1313/species/bl%C3%A4sand/</link>
     <description>Recent content in Bläsand on Fågelåret i Åstorp</description>
     <generator>Hugo</generator>
     <language>sv</language>
     <lastBuildDate>Sun, 01 Mar 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="https://astorpsfaglar.se/species/bl%C3%A4sand/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="http://localhost:1313/species/bl%C3%A4sand/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Årets första trana vid en ny våtmark</title>
-      <link>https://astorpsfaglar.se/posts/2026/03/%C3%A5rets-f%C3%B6rsta-trana-vid-en-ny-v%C3%A5tmark/</link>
+      <link>http://localhost:1313/posts/2026/03/%C3%A5rets-f%C3%B6rsta-trana-vid-en-ny-v%C3%A5tmark/</link>
       <pubDate>Sun, 01 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>https://astorpsfaglar.se/posts/2026/03/%C3%A5rets-f%C3%B6rsta-trana-vid-en-ny-v%C3%A5tmark/</guid>
-      <description>&lt;a href=&#34;https://astorpsfaglar.se/images/posts/2026-03-01-korslattabacken/korslattabackens_vatmarker.jpg&#34; class=&#34;lightbox-link&#34;&gt;&#xA;  &lt;img src=&#34;https://astorpsfaglar.se/images/posts/2026-03-01-korslattabacken/korslattabackens_vatmarker.jpg&#34; alt=&#34;Körslättabäckens våtmarker med tunn is&#34; style=&#34;width: 100%; border-radius: 8px; margin-bottom: 2rem;&#34;&gt;&#xA;&lt;/a&gt;&#xA;&lt;p&gt;Redan vid första spanet över våtmarken avslöjar rörelse på fälten fyra dubbetrastar, som väl maskerade mot den gråbruna jorden blir nästan omöjliga att se när de står still. En yngre havsörn kretsar över skogen.&lt;/p&gt;&#xA;&lt;p&gt;Målet är att ta mig över bäcken mellan kärret och våtmarken, längre in ligger skog som jag tror kan hysa tre av mina målarter: tofsmes, talltita och svartmes. Jag misstänker att de kan bli en utmaning på årslistan. Normalt sett borde det inte vara några problem att ta sig fram här, men vattenståndet är högt och jag inser att jag borde ha tagit stövlar istället för kängor. Jag tvingas vända och får göra ett nytt försök senare. En trana ropar på håll och det dröjer inte länge förrän den passerar över mig.&lt;/p&gt;</description>
+      <guid>http://localhost:1313/posts/2026/03/%C3%A5rets-f%C3%B6rsta-trana-vid-en-ny-v%C3%A5tmark/</guid>
+      <description>&lt;a href=&#34;http://localhost:1313/images/posts/2026-03-01-korslattabacken/korslattabackens_vatmarker.jpg&#34; class=&#34;lightbox-link&#34;&gt;&#xA;  &lt;img src=&#34;http://localhost:1313/images/posts/2026-03-01-korslattabacken/korslattabackens_vatmarker.jpg&#34; alt=&#34;Körslättabäckens våtmarker med tunn is&#34; style=&#34;width: 100%; border-radius: 8px; margin-bottom: 2rem;&#34;&gt;&#xA;&lt;/a&gt;&#xA;&lt;p&gt;Redan vid första spanet över våtmarken avslöjar rörelse på fälten fyra dubbetrastar, som väl maskerade mot den gråbruna jorden blir nästan omöjliga att se när de står still. En yngre havsörn kretsar över skogen.&lt;/p&gt;&#xA;&lt;p&gt;Målet är att ta mig över bäcken mellan kärret och våtmarken, längre in ligger skog som jag tror kan hysa tre av mina målarter: tofsmes, talltita och svartmes. Jag misstänker att de kan bli en utmaning på årslistan. Normalt sett borde det inte vara några problem att ta sig fram här, men vattenståndet är högt och jag inser att jag borde ha tagit stövlar istället för kängor. Jag tvingas vända och får göra ett nytt försök senare. En trana ropar på håll och det dröjer inte länge förrän den passerar över mig.&lt;/p&gt;</description>
     </item>
     <item>
       <title>Våren rullar in</title>
-      <link>https://astorpsfaglar.se/posts/2026/02/v%C3%A5ren-rullar-in/</link>
+      <link>http://localhost:1313/posts/2026/02/v%C3%A5ren-rullar-in/</link>
       <pubDate>Fri, 27 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>https://astorpsfaglar.se/posts/2026/02/v%C3%A5ren-rullar-in/</guid>
+      <guid>http://localhost:1313/posts/2026/02/v%C3%A5ren-rullar-in/</guid>
       <description>&lt;p&gt;Idag rullade våren in över markerna. Den kom med lärkkvitter och gåskackel. Plog efter annan med kanadagäss och grågäss. Överallt sånglärkor. Sjungande, sträckande, rastande. Där det nyss varit tomt och tyst fylldes de översvämmade maderna av tofsvipor. Bläsänder, krickor, två par snatteränder simmade fram och tillbaka på vattenspeglarna vid Kölebäcken. Två gravänder.&lt;/p&gt;&#xA;&lt;p&gt;Nere vid Tomarps Ene fortsatte sånglärkorna. Men örnarna tog över. Två havsörnar kretsade över maderna, och när jag följde en av dem i tubkikaren gled en kungsörn in i synfältet. En ung fågel, 3K, inne på sitt tredje kalenderår, fortfarande med stora vita fält i vingarna.&lt;/p&gt;</description>
     </item>
     <item>
       <title>50 arter!</title>
-      <link>https://astorpsfaglar.se/posts/2026/02/50-arter/</link>
+      <link>http://localhost:1313/posts/2026/02/50-arter/</link>
       <pubDate>Mon, 16 Feb 2026 00:00:00 +0000</pubDate>
-      <guid>https://astorpsfaglar.se/posts/2026/02/50-arter/</guid>
+      <guid>http://localhost:1313/posts/2026/02/50-arter/</guid>
       <description>&lt;p&gt;Snön gör parkeringarna kring Rönneå otillgängliga. Jag fick passera över bron in i Klippans kommun och gå tillbaka på Åstorpssidan, mot Tomarp.&lt;/p&gt;&#xA;&lt;p&gt;Strax norr om landsvägsbron står fjolårets växtlighet kvar över snön i det område jag kallar Vångarna. Några fåglar flög ner mot marken. Den första en bofink. De andra två rörde sig mer rastlöst och höll ihop tätt. Vinterhämplingar. Troligen fåglar från norska kustlandskapet. Artens historiska rötter finns på den tibetanska högplatån. Därifrån följde de den tillbakadragande isen västerut, ända till de brittiska öarna. Vinterhämplingar är ofta oskygga. Jag hann ta en snabb bild genom kikaren.&lt;/p&gt;</description>
     </item>
   </channel>
