@@ -8,8 +8,13 @@
             {{ .Content }}
         </div>
 
-        <!-- Notiser -->
-        <div class="vader-notiser" id="vader-notiser"></div>
+        <!-- Fältrapport-väljare -->
+        <div class="vader-blog-picker">
+            <select id="vader-blog-select" class="vader-blog-select">
+                <option value="">Visa fältrapport i diagrammen…</option>
+            </select>
+            <div id="vader-blog-preview" class="vader-blog-preview" style="display:none;"></div>
+        </div>
 
         <!-- Kvintett: fem diagram vertikalt -->
         <div class="vader-triptych">
@@ -53,6 +58,15 @@
 
     // Observationsdata (inbäddad vid byggtid)
     var data = {{ index .Site.Data "checklist-2026" | jsonify | safeJS }};
+
+    // Bloggposter (inbäddad vid byggtid)
+    var blogPosts = [
+        {{ range $i, $p := (where .Site.RegularPages "Section" "posts") }}
+        {{ if not .Draft }}
+        { date: "{{ .Date.Format "2006-01-02" }}", title: {{ .Title | jsonify }}, url: "{{ .RelPermalink }}", excerpt: {{ .Plain | truncate 200 | jsonify }} },
+        {{ end }}
+        {{ end }}
+    ];
 
     // SMHI-stationer
     var STATION_TEMP = 62040;   // Helsingborg A (param 19 & 20)
@@ -840,51 +854,61 @@
     }
 
     // ================================================================
-    // NOTIS-SYSTEM: Interaktiva notiser med datummarkering
+    // FÄLT­RAPPORT-VÄLJARE: Dropdown + excerpt med datummarkering
     // ================================================================
-    var notiser = [
-        {
-            from: '2026-02-27',
-            to: '2026-02-28',
-            title: 'Bläsänderna intar maderna',
-            text: 'Vattnet steg snabbt på maderna. Stora flockar bläsänder, många tiotals, på både Kälebäckens mader och Kungsgårdsmaderna vid Tomarp.'
-        }
-    ];
+    function buildBlogDropdown() {
+        var sel = document.getElementById('vader-blog-select');
+        var preview = document.getElementById('vader-blog-preview');
+        if (!sel || !blogPosts || blogPosts.length === 0) return;
 
-    function buildNotiser() {
-        var container = document.getElementById('vader-notiser');
-        if (!container || notiser.length === 0) return;
-
-        notiser.forEach(function (n, i) {
-            var card = document.createElement('div');
-            card.className = 'vader-notis-card';
-            card.setAttribute('data-from', n.from);
-            card.setAttribute('data-to', n.to);
-            card.innerHTML = '<span class="vader-notis-date">' + formatNotisDate(n.from, n.to) + '</span>' +
-                '<strong>' + n.title + '</strong><br>' +
-                '<span class="vader-notis-text">' + n.text + '</span>';
-            card.addEventListener('click', function () {
-                var isActive = card.classList.contains('active');
-                // Ta bort alla aktiva
-                document.querySelectorAll('.vader-notis-card.active').forEach(function (c) { c.classList.remove('active'); });
-                if (!isActive) {
-                    card.classList.add('active');
-                    highlightDateRange(n.from, n.to);
-                } else {
-                    clearHighlights();
-                }
-            });
-            container.appendChild(card);
+        // Sortera nyast först
+        var sorted = blogPosts.slice().sort(function (a, b) {
+            return a.date > b.date ? -1 : a.date < b.date ? 1 : 0;
         });
-    }
 
-    function formatNotisDate(from, to) {
         var months = ['jan', 'feb', 'mar', 'apr', 'maj', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
-        var f = new Date(from);
-        var t = new Date(to);
-        if (from === to) return f.getDate() + ' ' + months[f.getMonth()];
-        if (f.getMonth() === t.getMonth()) return f.getDate() + '–' + t.getDate() + ' ' + months[f.getMonth()];
-        return f.getDate() + ' ' + months[f.getMonth()] + ' – ' + t.getDate() + ' ' + months[t.getMonth()];
+
+        sorted.forEach(function (p, i) {
+            var d = new Date(p.date);
+            var label = d.getDate() + ' ' + months[d.getMonth()] + ' — ' + p.title;
+            var opt = document.createElement('option');
+            opt.value = i;
+            opt.textContent = label;
+            sel.appendChild(opt);
+        });
+
+        sel.addEventListener('change', function () {
+            if (sel.value === '') {
+                // Default: helår, ingen highlight
+                preview.style.display = 'none';
+                clearHighlights();
+                // Återställ vinddiagrammets dropdown till helår
+                var windSel = document.getElementById('wind-month-select');
+                if (windSel) { windSel.value = 'all'; }
+                var wm = window._windChartMeta;
+                if (wm) {
+                    wm.currentMonth = 'all';
+                    wm.ctx.save();
+                    wm.ctx.setTransform(wm.dpr, 0, 0, wm.dpr, 0, 0);
+                    wm.drawAll('all');
+                    wm.ctx.restore();
+                }
+                return;
+            }
+
+            var post = sorted[parseInt(sel.value)];
+            if (!post) return;
+
+            // Visa excerpt
+            preview.innerHTML =
+                '<strong>' + post.title + '</strong>' +
+                '<p class="vader-blog-excerpt">' + post.excerpt + '</p>' +
+                '<a href="' + post.url + '" class="vader-blog-link">Läs hela fältrapporten →</a>';
+            preview.style.display = 'block';
+
+            // Highlighta datumet i alla diagram
+            highlightDateRange(post.date, post.date);
+        });
     }
 
     // Alla Chart.js-instanser sparas för highlighting
@@ -929,13 +953,13 @@
             var fromIdx = Math.floor((fromDate - jan1) / 86400000);
             var toIdx = Math.floor((toDate - jan1) / 86400000);
 
-            // Auto-zooma till månaden för 'from' datumet om ui-delen kräver det
+            // Auto-zooma till månaden för 'from' datumet
             var targetMonth = from.substring(0, 7); // t.ex. '2026-02'
             wm.currentMonth = targetMonth;
 
-            // Uppdatera dropdownen rent visuellt
-            var sel = document.getElementById('wind-month-select');
-            if (sel) sel.value = targetMonth;
+            // Uppdatera vinddiagrammets dropdown visuellt
+            var windSel = document.getElementById('wind-month-select');
+            if (windSel) windSel.value = targetMonth;
 
             wm.ctx.save();
             wm.ctx.setTransform(wm.dpr, 0, 0, wm.dpr, 0, 0);
@@ -964,14 +988,13 @@
         if (wm) {
             wm.ctx.save();
             wm.ctx.setTransform(wm.dpr, 0, 0, wm.dpr, 0, 0);
-            // Återrita samma månad som den just nu är inställd på
             wm.drawAll(wm.currentMonth);
             wm.ctx.restore();
         }
     }
 
-    // Bygg notiser efter DOM är redo
-    buildNotiser();
+    // Bygg dropdown efter DOM är redo
+    buildBlogDropdown();
 
 </script>
 {{ end }}

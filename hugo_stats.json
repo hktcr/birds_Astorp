@@ -304,11 +304,13 @@
       "trail-timeline",
       "trail-title",
       "vader-beta-notice",
+      "vader-blog-picker",
+      "vader-blog-preview",
+      "vader-blog-select",
       "vader-chart-box",
       "vader-chart-source",
       "vader-container",
       "vader-intro",
-      "vader-notiser",
       "vader-page",
       "vader-title",
       "vader-triptych",
@@ -382,7 +384,8 @@
       "tooltip-date",
       "total-species",
       "trail-timeline",
-      "vader-notiser",
+      "vader-blog-preview",
+      "vader-blog-select",
       "wind-chart"
     ]
   }
