@@ -85,11 +85,11 @@
 
     // Bloggposter (inbäddad vid byggtid)
     var blogPosts = [
-        {{ range $i, $p := (where .Site.RegularPages "Section" "posts") }}
-        {{ if not .Draft }}
-        { date: "{{ .Date.Format "2006-01-02" }}", title: {{ .Title | jsonify }}, url: "{{ .RelPermalink }}", excerpt: {{ .Plain | truncate 200 | jsonify }} },
-        {{ end }}
-        {{ end }}
+        {{ range $i, $p:= (where.Site.RegularPages "Section" "posts") }}
+    { { if not.Draft } }
+    { date: "{{ .Date.Format "2006-01-02" }}", title: { { .Title | jsonify } }, url: "{{ .RelPermalink }}", excerpt: { { .Plain | truncate 200 | jsonify } } },
+    { { end } }
+    { { end } }
     ];
 
     // SMHI-stationer
@@ -151,14 +151,14 @@
                 datasets: [{
                     label: 'Antal arter',
                     data: cumulative,
-                    borderColor: '#C0392B',
+                    borderColor: '#2B6A4F',
                     backgroundColor: function (ctx) {
                         var chart = ctx.chart;
                         var area = chart.chartArea;
-                        if (!area) return 'rgba(192, 57, 43, 0.08)';
+                        if (!area) return 'rgba(43, 106, 79, 0.08)';
                         var gradient = chart.ctx.createLinearGradient(0, area.top, 0, area.bottom);
-                        gradient.addColorStop(0, 'rgba(192, 57, 43, 0.15)');
-                        gradient.addColorStop(1, 'rgba(192, 57, 43, 0.01)');
+                        gradient.addColorStop(0, 'rgba(43, 106, 79, 0.12)');
+                        gradient.addColorStop(1, 'rgba(43, 106, 79, 0.01)');
                         return gradient;
                     },
                     borderWidth: 2.5,
@@ -201,14 +201,14 @@
                                 type: 'line',
                                 yMin: YEAR_GOAL,
                                 yMax: YEAR_GOAL,
-                                borderColor: 'rgba(192, 57, 43, 0.4)',
+                                borderColor: 'rgba(43, 106, 79, 0.35)',
                                 borderWidth: 1.5,
                                 borderDash: [6, 4],
                                 label: {
                                     display: true,
                                     content: 'Mål: ' + YEAR_GOAL + ' arter',
                                     position: 'end',
-                                    backgroundColor: 'rgba(192, 57, 43, 0.8)',
+                                    backgroundColor: 'rgba(43, 106, 79, 0.8)',
                                     color: '#fff',
                                     font: { family: 'Inter', size: 11, weight: '500' },
                                     padding: { top: 3, bottom: 3, left: 6, right: 6 },
@@ -220,7 +220,7 @@
                                 xValue: startDate,
                                 yValue: 1,
                                 radius: 5,
-                                backgroundColor: '#C0392B',
+                                backgroundColor: '#2B6A4F',
                                 borderColor: '#fff',
                                 borderWidth: 2
                             }
@@ -264,7 +264,7 @@
                         {
                             label: 'Dag (max)',
                             data: maxPoints,
-                            borderColor: '#E67E22',
+                            borderColor: '#C67B4F',
                             backgroundColor: 'rgba(230, 126, 34, 0.06)',
                             borderWidth: 2,
                             fill: false,
@@ -275,7 +275,7 @@
                         {
                             label: 'Natt (min)',
                             data: minPoints,
-                            borderColor: '#2C3E82',
+                            borderColor: '#3D4F7C',
                             backgroundColor: 'rgba(44, 62, 130, 0.06)',
                             borderWidth: 2,
                             fill: false,
@@ -370,8 +370,8 @@
                     datasets: [{
                         label: 'Nederbörd',
                         data: points,
-                        backgroundColor: 'rgba(52, 152, 219, 0.6)',
-                        borderColor: 'rgba(52, 152, 219, 0.9)',
+                        backgroundColor: 'rgba(91, 155, 213, 0.6)',
+                        borderColor: 'rgba(91, 155, 213, 0.85)',
                         borderWidth: 1,
                         borderRadius: 2,
                         barPercentage: 0.9,
@@ -451,8 +451,8 @@
                     datasets: [{
                         label: 'Vattenföring',
                         data: points,
-                        borderColor: '#3B82C4',
-                        backgroundColor: '#3B82C4',
+                        borderColor: '#2A7B8F',
+                        backgroundColor: '#2A7B8F',
                         borderWidth: 2,
                         fill: true,
                         tension: 0.3,
@@ -836,13 +836,13 @@
                 if (!shouldSmooth) {
                     drawExactBars(ns_raw, base1, true, 70, 130, 180, sIdx, eIdx); // Nord (Blå)
                     drawExactBars(ns_raw, base1, false, 205, 92, 92, sIdx, eIdx);  // Syd (Röd)
-                    drawExactBars(ew_raw, base2, true, 148, 0, 211, sIdx, eIdx);  // Öst (Lila)
-                    drawExactBars(ew_raw, base2, false, 238, 175, 40, sIdx, eIdx); // Väst (Gul)
+                    drawExactBars(ew_raw, base2, true, 123, 104, 174, sIdx, eIdx);  // Öst (Mjuk lila)
+                    drawExactBars(ew_raw, base2, false, 212, 160, 48, sIdx, eIdx); // Väst (Guld)
                 } else {
                     drawAreaStream(ns_smooth, base1, true, 70, 130, 180, sIdx, eIdx); // Nord (Blå)
                     drawAreaStream(ns_smooth, base1, false, 205, 92, 92, sIdx, eIdx);  // Syd (Röd)
-                    drawAreaStream(ew_smooth, base2, true, 148, 0, 211, sIdx, eIdx);  // Öst (Lila)
-                    drawAreaStream(ew_smooth, base2, false, 238, 175, 40, sIdx, eIdx); // Väst (Gul)
+                    drawAreaStream(ew_smooth, base2, true, 123, 104, 174, sIdx, eIdx);  // Öst (Mjuk lila)
+                    drawAreaStream(ew_smooth, base2, false, 212, 160, 48, sIdx, eIdx); // Väst (Guld)
                 }
 
                 // Etiketter vid axlarnas startpunkt
@@ -894,8 +894,8 @@
                 ctx.font = '9px Inter, sans-serif';
                 ctx.fillStyle = '#4682B4'; ctx.fillText('Nord: Blå', legX, legY);
                 ctx.fillStyle = '#CD5C5C'; ctx.fillText('Syd: Röd', legX + 45, legY);
-                ctx.fillStyle = '#9400D3'; ctx.fillText('Öst: Lila', legX + 90, legY);
-                ctx.fillStyle = '#EEAF28'; ctx.fillText('Väst: Gul', legX + 135, legY);
+                ctx.fillStyle = '#7B68AE'; ctx.fillText('Öst: Lila', legX + 90, legY);
+                ctx.fillStyle = '#D4A030'; ctx.fillText('Väst: Guld', legX + 135, legY);
             };
 
             // Event-bindning sköts nu av setupGlobalMonthSelector()
