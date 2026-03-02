@@ -114,6 +114,8 @@ def process_tsv_files():
                 
                 if artnamn.lower() in ("sädgås", "ob. skogsgås/tundragås"):
                     artnamn = "Skogsgås"
+                if artnamn.lower() == "tamduva":
+                    artnamn = "Klippduva (tamduva)"
                 
                 try:
                     # Parse date Assuming format YYYY-MM-DD
