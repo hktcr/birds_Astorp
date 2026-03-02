@@ -20,18 +20,18 @@
         <div class="vader-month-bar" id="vader-month-bar">
             <select id="vader-month-select">
                 <option value="all">Hela året</option>
-                <option value="2026-01">Januari</option>
-                <option value="2026-02">Februari</option>
-                <option value="2026-03">Mars</option>
-                <option value="2026-04">April</option>
-                <option value="2026-05">Maj</option>
-                <option value="2026-06">Juni</option>
-                <option value="2026-07">Juli</option>
-                <option value="2026-08">Augusti</option>
-                <option value="2026-09">September</option>
-                <option value="2026-10">Oktober</option>
-                <option value="2026-11">November</option>
-                <option value="2026-12">December</option>
+                <option value="2026-01">Januari 2026</option>
+                <option value="2026-02">Februari 2026</option>
+                <option value="2026-03">Mars 2026</option>
+                <option value="2026-04">April 2026</option>
+                <option value="2026-05">Maj 2026</option>
+                <option value="2026-06">Juni 2026</option>
+                <option value="2026-07">Juli 2026</option>
+                <option value="2026-08">Augusti 2026</option>
+                <option value="2026-09">September 2026</option>
+                <option value="2026-10">Oktober 2026</option>
+                <option value="2026-11">November 2026</option>
+                <option value="2026-12">December 2026</option>
             </select>
             <label class="vader-smooth-label" id="wind-smooth-label">
                 <input type="checkbox" id="wind-smooth-toggle" checked> Jämna ut vinddata
@@ -85,11 +85,11 @@
 
     // Bloggposter (inbäddad vid byggtid)
     var blogPosts = [
-        {{ range $i, $p:= (where.Site.RegularPages "Section" "posts") }}
-    { { if not.Draft } }
-    { date: "{{ .Date.Format "2006-01-02" }}", title: { { .Title | jsonify } }, url: "{{ .RelPermalink }}", excerpt: { { .Plain | truncate 200 | jsonify } } },
-    { { end } }
-    { { end } }
+        {{ range $i, $p := (where .Site.RegularPages "Section" "posts") }}
+        {{ if not .Draft }}
+        { date: "{{ .Date.Format "2006-01-02" }}", title: {{ .Title | jsonify }}, url: "{{ .RelPermalink }}", excerpt: {{ .Plain | truncate 200 | jsonify }} },
+        {{ end }}
+        {{ end }}
     ];
 
     // SMHI-stationer
@@ -773,6 +773,29 @@
                     if (mIdxs.length > 0) {
                         sIdx = mIdxs[0];
                         eIdx = mIdxs[mIdxs.length - 1];
+                    } else {
+                        // Ingen data för denna månad (framtid) — rita tomt diagram
+                        ctx.fillStyle = '#fff';
+                        ctx.fillRect(0, 0, w, h);
+                        cellW = chartW / timeframeDays;
+                        ctx.fillStyle = 'rgba(0,0,0,0.015)';
+                        ctx.fillRect(labelW, 0, chartW, rowH * 2);
+                        ctx.fillRect(labelW, rowH * 2 + gap, chartW, rowH * 2);
+                        ctx.strokeStyle = 'rgba(0,0,0,0.15)';
+                        ctx.lineWidth = 1;
+                        ctx.beginPath(); ctx.moveTo(labelW, base1); ctx.lineTo(w, base1); ctx.stroke();
+                        ctx.beginPath(); ctx.moveTo(labelW, base2); ctx.lineTo(w, base2); ctx.stroke();
+                        ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+                        ctx.font = 'bold 11px Inter, sans-serif'; ctx.fillStyle = '#333';
+                        ctx.fillText('N', labelW - 6, base1 - rowH / 2);
+                        ctx.fillText('S', labelW - 6, base1 + rowH / 2);
+                        ctx.fillText('Ö', labelW - 6, base2 - rowH / 2);
+                        ctx.fillText('V', labelW - 6, base2 + rowH / 2);
+                        // Visa "Ingen data" centrerat
+                        ctx.textAlign = 'center'; ctx.font = '12px Inter, sans-serif';
+                        ctx.fillStyle = '#999';
+                        ctx.fillText('Ingen vinddata för denna period', w / 2, h / 2);
+                        return;
                     }
                     // Månader är runt 30 dagar. Vi uppdaterar draw-skalan
                     timeframeDays = new Date(zoomMonth.substring(0, 4), parseInt(zoomMonth.substring(5, 7)), 0).getDate();
