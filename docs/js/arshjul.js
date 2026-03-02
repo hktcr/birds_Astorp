@@ -305,12 +305,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
 
-            const allSpecies = Object.keys(data).sort((a, b) => {
-                const idxA = taxaIndex[a] ?? 99999;
-                const idxB = taxaIndex[b] ?? 99999;
-                if (idxA !== idxB) return idxA - idxB;
-                return a.localeCompare(b);
-            });
+            const allSpecies = Object.keys(data)
+                .filter(name => name in categoryMap) // Only show curated species from guide
+                .sort((a, b) => {
+                    const idxA = taxaIndex[a] ?? 99999;
+                    const idxB = taxaIndex[b] ?? 99999;
+                    if (idxA !== idxB) return idxA - idxB;
+                    return a.localeCompare(b);
+                });
 
             // Intersection Observer for Lazy Loading
             // Render when Card is within 200px of Viewport
