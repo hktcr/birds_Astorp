@@ -29,3 +29,18 @@
 - `layouts/_default/vader.html` (fix Go-templatesyntax i blogPosts-arrayen)
 
 ---
+
+### 2026-03-03 — 9064e410
+
+**Ursprung:** Audit fågelnamn + latinnamn i årshjulet
+**Typ:** Buggfix | Insikt | Framsteg
+
+> Full namnaudit mot NL20-officiella-namn-2025.xlsx avslöjade att Entita hade fel latinnamn (`Poecile montanus` istället för `Poecile palustris`) i `checklist-2026.json` och `observations-registry-2026.json`. Rättat. VEP-panel rekommenderade att visa vetenskapligt namn i kursiv på årshjulskort och modaldialoger — implementerat och deployat. Alla 77 observationer och 197 arter validerade mot NL20.
+
+**Relaterade filer:**
+- `data/checklist-2026.json` (fixat latin för Entita)
+- `Artportalen/observations-registry-2026.json` (fixat latin för Entita)
+- `static/js/arshjul.js` (latinnamn på kort + modal)
+- `data/species_guide.json` (redan korrekt)
+
+---
