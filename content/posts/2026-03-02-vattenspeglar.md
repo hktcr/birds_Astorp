@@ -34,7 +34,7 @@ locations:
   - name: "Fåraböke"
     lat: 56.07789001813259
     lng: 13.067594119415102
-  - name: "Körslättabäckens mader"
+  - name: "Körslättabäckens våtmarker"
     lat: 56.093059657874605
     lng: 13.065669791540584
 images:
