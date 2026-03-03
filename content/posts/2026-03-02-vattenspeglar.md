@@ -52,18 +52,16 @@ Med väderskiftet kom de första skrattmåsarna. Än så länge vitspräckliga. 
 
 I kvällens mörker ropade kattugglorna från åsen vid Fåraböke. Och på den leriga åkern nedanför Körslättabäcken skickade ett par morkulleögon tillbaka ficklampans sken.
 
-<div class="gallery" style="display: flex; gap: 12px; margin: 2rem 0; justify-content: center; align-items: flex-start;">
-  <figure style="flex: 1; margin: 0;">
-    <video controls width="100%" style="border-radius: 8px;">
+<div style="display: flex; gap: 12px; margin: 2rem 0; align-items: stretch;">
+  <div style="flex: 2; min-width: 0;">
+    <video controls width="100%" style="border-radius: 8px; height: 100%; object-fit: cover;">
       <source src="/videos/posts/2026-03-02-vattenspeglar/kungsgardsmaderna_panorama.mp4" type="video/mp4">
       Din webbläsare stödjer inte videouppspelning.
     </video>
-  </figure>
-  <figure style="flex: 0 0 auto; margin: 0;">
-    <a href="/images/posts/2026-03-02-vattenspeglar/snodroppar_20260302.jpg" class="lightbox-link">
-      <img src="/images/posts/2026-03-02-vattenspeglar/snodroppar_20260302.jpg" alt="Snödroppar i mars" style="height: 240px; width: auto; object-fit: cover; border-radius: 8px;">
-    </a>
-  </figure>
+  </div>
+  <a href="/images/posts/2026-03-02-vattenspeglar/snodroppar_20260302.jpg" class="lightbox-link" style="flex: 1; min-width: 0;">
+    <img src="/images/posts/2026-03-02-vattenspeglar/snodroppar_20260302.jpg" alt="Snödroppar i mars" style="width: 100%; height: 100%; object-fit: cover; border-radius: 8px;">
+  </a>
 </div>
 <p style="text-align: center; font-style: italic; font-size: 0.9em; color: #666;">Panorama över Kungsgårdsmaderna · Snödroppar</p>
 
