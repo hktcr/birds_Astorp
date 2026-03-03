@@ -16,6 +16,9 @@ document.addEventListener("DOMContentLoaded", () => {
     const modalTooltip = document.getElementById("arshjul-modal-tooltip");
     const modalTooltipCount = document.getElementById("arshjul-modal-tooltip-count");
 
+    // Latin name lookup — populated by .then() callback, used by openModal
+    let latinMap = {};
+
     // Pre-calculate Calendar Data (leap year, 366 days)
     const isLeapYear = true;
     const daysInMonths = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
@@ -253,6 +256,16 @@ document.addEventListener("DOMContentLoaded", () => {
     function openModal(speciesName, slug, speciesData, checkDate) {
         modalTitle.textContent = speciesName;
 
+        // Show latin name below title
+        let modalLatin = document.getElementById("arshjul-modal-latin");
+        if (!modalLatin) {
+            modalLatin = document.createElement("p");
+            modalLatin.id = "arshjul-modal-latin";
+            modalLatin.style.cssText = "font-style:italic; color:#94a3b8; font-size:1rem; margin:0.15rem 0 0 0;";
+            modalTitle.insertAdjacentElement("afterend", modalLatin);
+        }
+        modalLatin.textContent = latinMap[speciesName] || "";
+
         // Clear previous SVG
         const oldSvg = modalSvgContainer.querySelector("svg");
         if (oldSvg) oldSvg.remove();
@@ -301,11 +314,12 @@ document.addEventListener("DOMContentLoaded", () => {
         .then(([data, guideData, checklistData]) => {
             if (loadingEl) loadingEl.remove();
 
-            // Build category lookup from species-guide.json
+            // Build category + latin lookup from species-guide.json
             const categoryMap = {};
             if (guideData && guideData.species) {
                 guideData.species.forEach(sp => {
                     categoryMap[sp.name] = sp.category || "regular";
+                    if (sp.latin) latinMap[sp.name] = sp.latin;
                 });
             }
 
@@ -399,6 +413,14 @@ document.addEventListener("DOMContentLoaded", () => {
                 const header = document.createElement("h3");
                 header.textContent = species;
                 card.appendChild(header);
+
+                // Latin name below species name
+                if (latinMap[species]) {
+                    const latin = document.createElement("p");
+                    latin.textContent = latinMap[species];
+                    latin.style.cssText = "font-style:italic; color:#94a3b8; font-size:0.75rem; margin:0 0 0.25rem 0; line-height:1;";
+                    card.appendChild(latin);
+                }
 
                 const svgWrapper = document.createElement("div");
                 svgWrapper.className = "arshjul-card-svg-wrapper";
