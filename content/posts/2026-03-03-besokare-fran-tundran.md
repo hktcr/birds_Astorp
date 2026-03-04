@@ -30,6 +30,6 @@ Den som beger sig ner till Tomarp nu, eller varför inte till Kölebäckens made
 <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; margin: 2rem 0; border-radius: 8px;">
   <iframe src="https://www.youtube.com/embed/gfC_6KapZz0" style="position: absolute; top: 0; left: 0; width: 100%; height: 100%; border: 0; border-radius: 8px;" allowfullscreen></iframe>
 </div>
-<p style="text-align: center; font-style: italic; font-size: 0.9em; color: #666;">Bläsgäss vid Madkärr, Tomarp.</p>
+<p style="text-align: center; font-style: italic; font-size: 0.9em; color: #666;">Bläsgäss och grågäss vid Madkärr, Tomarp.</p>
 
 *Fågelåret i Åstorp, 78/150*
