@@ -625,6 +625,14 @@
             "location": "Körslätta mosse",
             "lat": 56.09124965751413,
             "lng": 13.058212865484588
+        },
+        {
+            "species": "Fiskmås",
+            "latin": "Larus canus",
+            "date": "2026-03-04",
+            "location": "Björnekullaskolan",
+            "lat": 56.13677,
+            "lng": 12.95158
         }
     ]
 }
