@@ -625,6 +625,14 @@
             "location": "Körslätta mosse",
             "lat": 56.09124965751413,
             "lng": 13.058212865484588
+        },
+        {
+            "species": "Gråkråka",
+            "latin": "Corvus cornix",
+            "date": "2026-03-03",
+            "location": "Åstorps kommun",
+            "lat": 56.1327,
+            "lng": 13.0835
         }
     ]
 }
