@@ -3,6 +3,7 @@ title: "Besökare från tundran"
 date: 2026-03-03T12:00:00+01:00
 draft: false
 location: "Madkärr, Tomarp · Kölebäckens mader, V Broby"
+image: "/images/posts/2026-03-03-besokare-fran-tundran/blasgass_vid_madkarr_20260303.png"
 species:
   - Bläsgås
   - Grågås
