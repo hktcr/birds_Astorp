@@ -31,11 +31,19 @@ images:
       - Kulturlandskap
 ---
 
-<div style="float: right; width: 35%; margin-left: 2rem; margin-bottom: 1rem; display: flex; flex-direction: column; gap: 12px;">
-  <a href="/images/posts/2026-03-05-kungsgardsmaderna/PXL_20260305_151646113.webp" class="lightbox-link" style="aspect-ratio: 4/3; border-radius: 8px; overflow: hidden; display: block;">
-    <img src="/images/posts/2026-03-05-kungsgardsmaderna/PXL_20260305_151646113.webp" alt="Vy över Kungsgårdsmaderna 1" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
-  </a>
-  
+Ankomst till Tomarp från Klippansidan. Hängbron över Rönne å ledde in i Åstorps kommun. Planen var att runda maden. Stövlarna behövdes. 
+
+<a href="/images/posts/2026-03-05-kungsgardsmaderna/PXL_20260305_151646113.webp" class="lightbox-link" style="display: block; margin: 1.5rem 0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);">
+  <img src="/images/posts/2026-03-05-kungsgardsmaderna/PXL_20260305_151646113.webp" alt="Vy över Kungsgårdsmaderna 1" style="width: 100%; height: auto; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">
+</a>
+
+Inte långt ut längs vattnet lyfte en enkelbeckasin. Årets första. Den kastade ett par gånger i luften och fällde sedan längre bort. Jag vek av från rutten. Fågeln fick ligga kvar.
+
+Vid Kungsgårdsmaderna stod tre ägretthägrar. De stora vattenspeglarna krymper nu i takt med att vattenståndet sjunker undan. Snett ovanför flög drygt 200 bläsgäss. De försvann bort mot horisonten, men slog troligen ner i närheten. 
+
+I byn satt en turkduva på ett hustak längs Östra Storgatan. Ett årskryss till listan. Den har haft några tuffa år i kommunen. Vi får se hur det går i vår.
+
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 12px; margin: 2rem 0;">
   <a href="/images/posts/2026-03-05-kungsgardsmaderna/PXL_20260305_152035742.webp" class="lightbox-link" style="aspect-ratio: 4/3; border-radius: 8px; overflow: hidden; display: block;">
     <img src="/images/posts/2026-03-05-kungsgardsmaderna/PXL_20260305_152035742.webp" alt="Vy över Kungsgårdsmaderna 2" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
   </a>
@@ -52,14 +60,6 @@ images:
     <img src="/images/posts/2026-03-05-kungsgardsmaderna/PXL_20260305_155217496.webp" alt="Vy över Tomarps Ene" style="width: 100%; height: 100%; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.05)'" onmouseout="this.style.transform='scale(1)'">
   </a>
 </div>
-
-Ankomst till Tomarp från Klippansidan. Hängbron över Rönne å ledde in i Åstorps kommun. Planen var att runda maden. Stövlarna behövdes. 
-
-Inte långt ut längs vattnet lyfte en enkelbeckasin. Årets första. Den kastade ett par gånger i luften och fällde sedan längre bort. Jag vek av från rutten. Fågeln fick ligga kvar.
-
-Vid Kungsgårdsmaderna stod tre ägretthägrar. De stora vattenspeglarna krymper nu i takt med att vattenståndet sjunker undan. Snett ovanför flög drygt 200 bläsgäss. De försvann bort mot horisonten, men slog troligen ner i närheten. 
-
-I byn satt en turkduva på ett hustak längs Östra Storgatan. Ett årskryss till listan. Den har haft några tuffa år i kommunen. Vi får se hur det går i vår.
 
 <div style="margin: 2rem 0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1); clear: both;">
   <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;">
