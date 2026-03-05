@@ -1,13 +1,14 @@
 ---
-title: "Ägretthägar och Krympande Vattenspeglar"
+title: "Ägretthägrar och krympande vattenspeglar"
 date: 2026-03-05
 draft: false
-location: "Kungsgårdsmaderna · Tomarps Ene"
+location: "Kungsgårdsmaderna · Tomarps Ene · Kvidinge"
 image: "/images/posts/2026-03-05-kungsgardsmaderna/PXL_20260305_153920340.webp"
 species:
   - Ägretthäger
   - Enkelbeckasin
   - Bläsgås
+  - Turkduva
 tags:
   - Fältrapport
   - vår
@@ -20,16 +21,21 @@ locations:
   - name: "Tomarps Ene"
     lat: 56.1487
     lng: 13.07359
+  - name: "Kvidinge by"
+    lat: 56.13885
+    lng: 12.95484
 images:
   - url: "/images/posts/2026-03-05-kungsgardsmaderna/PXL_20260305_153920340.webp"
-    alt: "Ägretthägar vid Kungsgårdsmaderna"
+    alt: "Ägretthägrar vid Kungsgårdsmaderna"
     categories:
       - Kulturlandskap
 ---
 
 Nere vid **Kungsgårdsmaderna** fanns under eftermiddagen idag tre stycken ägretthägrar. De stora vattenspeglarna krymper nu i takt med att vattenståndet sjunker på maderna. 
 
-En enkelbeckasin lyfte — troligen en nyanländ fågel, och därmed ett nytt årskryss. Strax därefter flög drygt 200 bläsgäss över. De försvann bort mot horisonten men finns förmodligen kvar i området. I byn (Östra Storgatan) bockades även turkduvan av för året.
+En enkelbeckasin lyfte — troligen en nyanländ fågel, och därmed ett nytt årskryss. Strax därefter flög drygt 200 bläsgäss över. De försvann bort mot horisonten, men slog troligen ner någonstans i närheten.
+
+Årslistan fylldes även på med en turkduva som satt på ett hustak inne i byn längs Östra Storgatan. Turkduvorna verkar ha haft några tuffa år och det ska bli mycket intressant att se hur många par som kommer att orka hävda revir inom kommunen i år.
 
 <div style="margin: 2rem 0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);">
   <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;">
