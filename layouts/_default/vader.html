@@ -45,29 +45,36 @@
         <div class="vader-triptych">
             <!-- 1. Artlista (Progress) -->
             <div class="vader-chart-box">
+                <div class="vader-chart-label">🐦 Artframsteg</div>
                 <canvas id="progress-chart"></canvas>
             </div>
 
             <!-- 2. Vindkomponenter -->
             <div class="vader-chart-box">
+                <div class="vader-chart-label">🌬️ Vindkomponenter</div>
                 <canvas id="wind-chart"></canvas>
+                <p class="vader-chart-hint">Staplar uppåt = vind från norr/öst. Staplar nedåt = vind från söder/väst.
+                    Högre stapel = starkare vind från den riktningen.</p>
                 <div class="vader-chart-source">SMHI, Helsingborg A</div>
             </div>
 
             <!-- 3. Temperatur -->
             <div class="vader-chart-box">
+                <div class="vader-chart-label">🌡️ Temperatur</div>
                 <canvas id="temp-chart"></canvas>
                 <div class="vader-chart-source">SMHI, Helsingborg A</div>
             </div>
 
             <!-- 4. Nederbörd -->
             <div class="vader-chart-box">
+                <div class="vader-chart-label">🌧️ Nederbörd</div>
                 <canvas id="precip-chart"></canvas>
                 <div class="vader-chart-source">SMHI, Åstorp</div>
             </div>
 
             <!-- 5. Vattenföring -->
             <div class="vader-chart-box">
+                <div class="vader-chart-label">🌊 Vattenföring</div>
                 <canvas id="flow-chart"></canvas>
                 <div class="vader-chart-source">SMHI, Forsmöllan (Rönne å)</div>
             </div>
@@ -896,6 +903,13 @@
                         ctx.beginPath(); ctx.moveTo(mx, 0); ctx.lineTo(mx, h - bottomPad); ctx.stroke();
                         // Månadsetiketter vid botten
                         ctx.fillText(monthNames[m], mx + (m < 11 ? (monthStarts[m + 1] - monthStarts[m]) : 31) * cellW / 2, h - 10);
+                    }
+                    // Dimma framtida perioder
+                    var todayDayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 1)) / 86400000);
+                    var futureX = labelW + (todayDayOfYear + 1) * cellW;
+                    if (futureX < w) {
+                        ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+                        ctx.fillRect(futureX, 0, w - futureX, h - bottomPad);
                     }
                 } else {
                     // Rita individuella dagsmarkeringar med datumtext

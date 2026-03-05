@@ -308,6 +308,8 @@
       "vader-blog-preview",
       "vader-blog-select",
       "vader-chart-box",
+      "vader-chart-hint",
+      "vader-chart-label",
       "vader-chart-source",
       "vader-container",
       "vader-intro",

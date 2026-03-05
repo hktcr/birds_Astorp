@@ -17,7 +17,7 @@
 
     
     
-    <link rel="stylesheet" href="/css/style.4b71194061cef19f1b1cb6351a122f03159a23ff18e7a76ff5bbca1a22215752.css">
+    <link rel="stylesheet" href="/css/style.c554868bcc8d6df66ad7cf38458d5bf6412c7cd5331b5da4898ddb07df3d94aa.css">
 
     
     
@@ -130,8 +130,8 @@
             <div class="vader-beta-notice">
 🚧 Den här sidan är under utveckling.
 </div>
-<p>Fågelåret formas av vädret. Nederbörden fyller våtmarkerna, temperaturen styr insekternas kläckning. De första vårdagarna lockar fram flyttfåglarna. Här utvecklas fågelåret i Åstorp, art för art, mot bakgrund av temperatur, nederbörd och vattenflöde.</p>
-<p>Temperaturdata kommer från SMHI:s station <strong>Helsingborg A</strong>, 16 km sydväst om Åstorp. Nederbördsdata mäts vid <strong>Åstorps egen station</strong>, bara 4 km bort. Vattenföringen, det vill säga hur mycket vatten som rinner genom ån per sekund (mätt i kubikmeter), registreras vid <strong>Forsmöllan</strong> längs Rönne å, 15 km öster om Åstorp. Vinddata hämtas från <strong>Helsingborg A</strong>. Ingen station ligger exakt i Åstorp, men sammantaget ger de en god bild av väderförutsättningarna i kommunen.</p>
+<p>Varje dag rapporterar fyra mätstationer in sina data — och tillsammans berättar de historien om hur vädret i Åstorp formar fågelåret. Nederbörden fyller våtmarkerna, temperaturen styr insekternas kläckning, vindarna avgör vilka flyttfåglar som hittar hit. Här kan du följa utvecklingen, art för art, dag för dag.</p>
+<p>Temperaturdata kommer från SMHI:s station <strong>Helsingborg A</strong>, 16 km sydväst om Åstorp. Nederbördsdata mäts vid <strong>Åstorps egen station</strong>, bara 4 km bort. Vattenföringen registreras vid <strong>Forsmöllan</strong> längs Rönne å, 15 km öster om Åstorp. Vinddata hämtas från <strong>Helsingborg A</strong>. Ingen station ligger exakt i Åstorp, men sammantaget ger de en god bild av väderförutsättningarna i kommunen.</p>
 
         </div>
 
@@ -172,29 +172,36 @@
         <div class="vader-triptych">
             
             <div class="vader-chart-box">
+                <div class="vader-chart-label">🐦 Artframsteg</div>
                 <canvas id="progress-chart"></canvas>
             </div>
 
             
             <div class="vader-chart-box">
+                <div class="vader-chart-label">🌬️ Vindkomponenter</div>
                 <canvas id="wind-chart"></canvas>
+                <p class="vader-chart-hint">Staplar uppåt = vind från norr/öst. Staplar nedåt = vind från söder/väst.
+                    Högre stapel = starkare vind från den riktningen.</p>
                 <div class="vader-chart-source">SMHI, Helsingborg A</div>
             </div>
 
             
             <div class="vader-chart-box">
+                <div class="vader-chart-label">🌡️ Temperatur</div>
                 <canvas id="temp-chart"></canvas>
                 <div class="vader-chart-source">SMHI, Helsingborg A</div>
             </div>
 
             
             <div class="vader-chart-box">
+                <div class="vader-chart-label">🌧️ Nederbörd</div>
                 <canvas id="precip-chart"></canvas>
                 <div class="vader-chart-source">SMHI, Åstorp</div>
             </div>
 
             
             <div class="vader-chart-box">
+                <div class="vader-chart-label">🌊 Vattenföring</div>
                 <canvas id="flow-chart"></canvas>
                 <div class="vader-chart-source">SMHI, Forsmöllan (Rönne å)</div>
             </div>
@@ -1217,6 +1224,13 @@
                         ctx.beginPath(); ctx.moveTo(mx, 0); ctx.lineTo(mx, h - bottomPad); ctx.stroke();
                         
                         ctx.fillText(monthNames[m], mx + (m < 11 ? (monthStarts[m + 1] - monthStarts[m]) : 31) * cellW / 2, h - 10);
+                    }
+                    
+                    var todayDayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 1)) / 86400000);
+                    var futureX = labelW + (todayDayOfYear + 1) * cellW;
+                    if (futureX < w) {
+                        ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+                        ctx.fillRect(futureX, 0, w - futureX, h - bottomPad);
                     }
                 } else {
                     
