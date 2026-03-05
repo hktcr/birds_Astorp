@@ -51,16 +51,21 @@
             <!-- 2. Vindkomponenter -->
             <div class="vader-chart-box">
                 <canvas id="wind-chart"></canvas>
-                <div class="vader-wind-gradients">
-                    <div class="vader-wind-gradient-row">
-                        <span class="vader-wind-gradient-label">N</span>
-                        <div class="vader-wind-gradient-bar vader-wind-gradient-ns"></div>
-                        <span class="vader-wind-gradient-label">S</span>
+                <div class="vader-wind-compass">
+                    <div class="vader-wind-compass-labels-top">
+                        <span class="vader-wind-compass-corner">NÖ</span>
+                        <span class="vader-wind-compass-edge">N</span>
+                        <span class="vader-wind-compass-corner">NV</span>
                     </div>
-                    <div class="vader-wind-gradient-row">
-                        <span class="vader-wind-gradient-label">Ö</span>
-                        <div class="vader-wind-gradient-bar vader-wind-gradient-ew"></div>
-                        <span class="vader-wind-gradient-label">V</span>
+                    <div class="vader-wind-compass-row">
+                        <span class="vader-wind-compass-edge">Ö</span>
+                        <div class="vader-wind-compass-field"></div>
+                        <span class="vader-wind-compass-edge">V</span>
+                    </div>
+                    <div class="vader-wind-compass-labels-bottom">
+                        <span class="vader-wind-compass-corner">SÖ</span>
+                        <span class="vader-wind-compass-edge">S</span>
+                        <span class="vader-wind-compass-corner">SV</span>
                     </div>
                 </div>
                 <div class="vader-chart-source">SMHI, Helsingborg A</div>
