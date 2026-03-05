@@ -16,26 +16,29 @@
             <div id="vader-blog-preview" class="vader-blog-preview" style="display:none;"></div>
         </div>
 
-        <!-- Global månadsväljare -->
-        <div class="vader-month-bar" id="vader-month-bar">
-            <select id="vader-month-select">
-                <option value="all">Hela året</option>
-                <option value="2026-01">Januari 2026</option>
-                <option value="2026-02">Februari 2026</option>
-                <option value="2026-03">Mars 2026</option>
-                <option value="2026-04">April 2026</option>
-                <option value="2026-05">Maj 2026</option>
-                <option value="2026-06">Juni 2026</option>
-                <option value="2026-07">Juli 2026</option>
-                <option value="2026-08">Augusti 2026</option>
-                <option value="2026-09">September 2026</option>
-                <option value="2026-10">Oktober 2026</option>
-                <option value="2026-11">November 2026</option>
-                <option value="2026-12">December 2026</option>
-            </select>
-            <label class="vader-smooth-label" id="wind-smooth-label">
-                <input type="checkbox" id="wind-smooth-toggle" checked> Jämna ut vinddata
-            </label>
+        <!-- Tidsperiod-väljare (segmented control) -->
+        <div class="vader-time-bar" id="vader-time-bar">
+            <div class="vader-time-segments">
+                <button class="vader-time-btn active" data-mode="14d">14 dagar</button>
+                <div class="vader-time-month-group">
+                    <button class="vader-time-btn" data-mode="month">Månad ▾</button>
+                    <select id="vader-month-select" class="vader-month-dropdown" style="display:none;">
+                        <option value="2026-01">Januari</option>
+                        <option value="2026-02">Februari</option>
+                        <option value="2026-03">Mars</option>
+                        <option value="2026-04">April</option>
+                        <option value="2026-05">Maj</option>
+                        <option value="2026-06">Juni</option>
+                        <option value="2026-07">Juli</option>
+                        <option value="2026-08">Augusti</option>
+                        <option value="2026-09">September</option>
+                        <option value="2026-10">Oktober</option>
+                        <option value="2026-11">November</option>
+                        <option value="2026-12">December</option>
+                    </select>
+                </div>
+                <button class="vader-time-btn" data-mode="all">Hela året</button>
+            </div>
         </div>
 
         <!-- Kvintett: fem diagram vertikalt -->
@@ -48,6 +51,18 @@
             <!-- 2. Vindkomponenter -->
             <div class="vader-chart-box">
                 <canvas id="wind-chart"></canvas>
+                <div class="vader-wind-gradients">
+                    <div class="vader-wind-gradient-row">
+                        <span class="vader-wind-gradient-label">N</span>
+                        <div class="vader-wind-gradient-bar vader-wind-gradient-ns"></div>
+                        <span class="vader-wind-gradient-label">S</span>
+                    </div>
+                    <div class="vader-wind-gradient-row">
+                        <span class="vader-wind-gradient-label">Ö</span>
+                        <div class="vader-wind-gradient-bar vader-wind-gradient-ew"></div>
+                        <span class="vader-wind-gradient-label">V</span>
+                    </div>
+                </div>
                 <div class="vader-chart-source">SMHI, Helsingborg A</div>
             </div>
 
@@ -86,10 +101,10 @@
     // Bloggposter (inbäddad vid byggtid)
     var blogPosts = [
         {{ range $i, $p := (where .Site.RegularPages "Section" "posts") }}
-        {{ if not .Draft }}
-        { date: "{{ .Date.Format "2006-01-02" }}", title: {{ .Title | jsonify }}, url: "{{ .RelPermalink }}", excerpt: {{ .Plain | truncate 200 | jsonify }} },
-        {{ end }}
-        {{ end }}
+    {{ if not .Draft }}
+    { date: "{{ .Date.Format "2006-01-02" }}", title: {{ .Title | jsonify }}, url: "{{ .RelPermalink }}", excerpt: {{ .Plain | truncate 200 | jsonify }} },
+    {{ end }}
+    {{ end }}
     ];
 
     // SMHI-stationer
@@ -510,7 +525,9 @@
                 buildTempChart();
                 buildPrecipChart();
                 buildFlowChart();
-                setupGlobalMonthSelector();
+                setupTimeRangeSelector();
+                // Default: senaste 14 dagar
+                setTimeRange('14d');
             };
             document.head.appendChild(s2);
         };
@@ -518,23 +535,47 @@
     })();
 
     // ================================================================
-    // GLOBAL MÅNADSVÄLJARE — Synkroniserar alla fem diagram
+    // GLOBAL TIDSPERIOD-VÄLJARE — Synkroniserar alla fem diagram
     // ================================================================
-    function setMonthZoom(month) {
-        // 1. Beräkna datumgränser för Chart.js
+    // Aktuellt läge sparas globalt
+    var _currentTimeMode = '14d';
+    var _currentTimeFrom = null;
+    var _currentTimeTo = null;
+
+    function setTimeRange(mode, monthValue) {
         var xMin, xMax;
-        if (month === 'all') {
+        var today = new Date();
+        var todayStr = today.toISOString().slice(0, 10);
+
+        if (mode === '14d') {
+            var from = new Date(today);
+            from.setDate(from.getDate() - 13);
+            xMin = from.toISOString().slice(0, 10);
+            xMax = todayStr;
+            _currentTimeMode = '14d';
+        } else if (mode === 'month') {
+            var mv = monthValue || '2026-01';
+            var year = parseInt(mv.substring(0, 4));
+            var mon = parseInt(mv.substring(5, 7));
+            xMin = mv + '-01';
+            var lastDay = new Date(year, mon, 0).getDate();
+            xMax = mv + '-' + (lastDay < 10 ? '0' + lastDay : lastDay);
+            _currentTimeMode = 'month';
+        } else if (mode === 'range') {
+            // Custom range (t.ex. fältrapport ±7 dagar)
+            xMin = monthValue.from;
+            xMax = monthValue.to;
+            _currentTimeMode = 'range';
+        } else {
             xMin = '2026-01-01';
             xMax = '2026-12-31';
-        } else {
-            var year = parseInt(month.substring(0, 4));
-            var mon = parseInt(month.substring(5, 7));
-            xMin = month + '-01';
-            var lastDay = new Date(year, mon, 0).getDate();
-            xMax = month + '-' + (lastDay < 10 ? '0' + lastDay : lastDay);
+            _currentTimeMode = 'all';
         }
 
-        // 2. Uppdatera alla Chart.js-instanser
+        _currentTimeFrom = xMin;
+        _currentTimeTo = xMax;
+
+        // 1. Uppdatera alla Chart.js-instanser
         var chartIds = ['progress-chart', 'temp-chart', 'precip-chart', 'flow-chart'];
         chartIds.forEach(function (id) {
             var el = document.getElementById(id);
@@ -547,43 +588,53 @@
             chartInstance.update();
         });
 
-        // 3. Uppdatera vinddiagrammet
+        // 2. Uppdatera vinddiagrammet
         var wm = window._windChartMeta;
         if (wm) {
-            wm.currentMonth = month;
+            wm.currentFrom = xMin;
+            wm.currentTo = xMax;
             wm.ctx.save();
             wm.ctx.setTransform(wm.dpr, 0, 0, wm.dpr, 0, 0);
-            wm.drawAll(month);
+            wm.drawAll(xMin, xMax);
             wm.ctx.restore();
-        }
-
-        // 4. Hantera synlighet för smooth-toggle (bara relevant i helårsvy)
-        var smoothLabel = document.getElementById('wind-smooth-label');
-        if (smoothLabel) {
-            smoothLabel.style.display = (month === 'all') ? 'inline-flex' : 'none';
         }
     }
 
-    function setupGlobalMonthSelector() {
-        var sel = document.getElementById('vader-month-select');
-        if (sel) {
-            sel.onchange = function () {
-                setMonthZoom(sel.value);
-            };
-        }
+    function setupTimeRangeSelector() {
+        var btns = document.querySelectorAll('.vader-time-btn');
+        var monthDropdown = document.getElementById('vader-month-select');
 
-        var chk = document.getElementById('wind-smooth-toggle');
-        if (chk) {
-            chk.onchange = function () {
-                var wm = window._windChartMeta;
-                var m = wm ? wm.currentMonth : 'all';
-                if (wm) {
-                    wm.ctx.save();
-                    wm.ctx.setTransform(wm.dpr, 0, 0, wm.dpr, 0, 0);
-                    wm.drawAll(m);
-                    wm.ctx.restore();
+        btns.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var mode = btn.getAttribute('data-mode');
+
+                // Uppdatera aktiv-state
+                btns.forEach(function (b) { b.classList.remove('active'); });
+                btn.classList.add('active');
+
+                if (mode === 'month') {
+                    // Visa/dölj dropdown
+                    if (monthDropdown.style.display === 'none') {
+                        monthDropdown.style.display = 'block';
+                        // Sätt till aktuell månad som default
+                        var now = new Date();
+                        var curMonth = '2026-' + (now.getMonth() + 1 < 10 ? '0' : '') + (now.getMonth() + 1);
+                        monthDropdown.value = curMonth;
+                        setTimeRange('month', curMonth);
+                    } else {
+                        monthDropdown.style.display = 'none';
+                    }
+                } else {
+                    monthDropdown.style.display = 'none';
+                    setTimeRange(mode);
                 }
-            };
+            });
+        });
+
+        if (monthDropdown) {
+            monthDropdown.addEventListener('change', function () {
+                setTimeRange('month', monthDropdown.value);
+            });
         }
     }
 
@@ -593,8 +644,6 @@
     function buildWindChart() {
         var canvas = document.getElementById('wind-chart');
         if (!canvas) return;
-
-        // Vinddiagrammet använder nu den globala månadsväljaren #vader-month-select
 
         var urlDir = 'https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/3/station/' + STATION_TEMP + '/period/latest-months/data.json';
         var urlSpd = 'https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/4/station/' + STATION_TEMP + '/period/latest-months/data.json';
@@ -640,26 +689,9 @@
                 ew_raw.push(dd.count > 0 ? dd.ew_net / dd.count : 0);
             });
 
-            // Utför en 7-dagars glidande medelvärdes-utjämning (smoothing) för böljande flod-effekt.
-            function smooth(arr) {
-                var res = [];
-                for (var i = 0; i < arr.length; i++) {
-                    var sum = 0, cnt = 0;
-                    for (var j = Math.max(0, i - 3); j <= Math.min(arr.length - 1, i + 3); j++) {
-                        sum += arr[j];
-                        cnt++;
-                    }
-                    res.push(sum / cnt);
-                }
-                return res;
-            }
-
-            var ns_smooth = smooth(ns_raw);
-            var ew_smooth = smooth(ew_raw);
-
             var maxMag = 1;
-            ns_smooth.forEach(function (v) { if (Math.abs(v) > maxMag) maxMag = Math.abs(v); });
-            ew_smooth.forEach(function (v) { if (Math.abs(v) > maxMag) maxMag = Math.abs(v); });
+            ns_raw.forEach(function (v) { if (Math.abs(v) > maxMag) maxMag = Math.abs(v); });
+            ew_raw.forEach(function (v) { if (Math.abs(v) > maxMag) maxMag = Math.abs(v); });
 
             var dayIndices = days.map(function (d) {
                 var dt = new Date(d);
@@ -755,68 +787,55 @@
                 }
             }
 
-            // Ritar hela diagrammet (återanvänds vid redraw, highlights, och månad-zoom)
-            // 'zoomMonth' är en sträng t.ex. '2026-05' eller 'all'
-            var drawAll = function (zoomMonth, hlStartIdx, hlEndIdx) {
-                zoomMonth = zoomMonth || 'all';
+            // Ritar hela diagrammet (återanvänds vid redraw, highlights, och tidsperiod-zoom)
+            // 'fromDate' och 'toDate' är datumsträngar t.ex. '2026-02-19' och '2026-03-05'
+            var drawAll = function (fromDate, toDate, hlStartIdx, hlEndIdx) {
+                fromDate = fromDate || '2026-01-01';
+                toDate = toDate || '2026-12-31';
+
+                var isFullYear = (fromDate === '2026-01-01' && toDate === '2026-12-31');
 
                 // Hitta start- och slutindex för den valda perioden
                 var sIdx = 0, eIdx = days.length - 1;
-                var timeframeDays = 365;
 
-                if (zoomMonth !== 'all') {
-                    // Filtrera fram första och sista index för månaden
-                    var mIdxs = [];
-                    for (var i = 0; i < days.length; i++) {
-                        if (days[i].startsWith(zoomMonth)) mIdxs.push(i);
-                    }
-                    if (mIdxs.length > 0) {
-                        sIdx = mIdxs[0];
-                        eIdx = mIdxs[mIdxs.length - 1];
-                    } else {
-                        // Ingen data för denna månad (framtid) — rita tomt diagram
-                        ctx.fillStyle = '#fff';
-                        ctx.fillRect(0, 0, w, h);
-                        cellW = chartW / timeframeDays;
-                        ctx.fillStyle = 'rgba(0,0,0,0.015)';
-                        ctx.fillRect(labelW, 0, chartW, rowH * 2);
-                        ctx.fillRect(labelW, rowH * 2 + gap, chartW, rowH * 2);
-                        ctx.strokeStyle = 'rgba(0,0,0,0.15)';
-                        ctx.lineWidth = 1;
-                        ctx.beginPath(); ctx.moveTo(labelW, base1); ctx.lineTo(w, base1); ctx.stroke();
-                        ctx.beginPath(); ctx.moveTo(labelW, base2); ctx.lineTo(w, base2); ctx.stroke();
-                        ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
-                        ctx.font = 'bold 11px Inter, sans-serif'; ctx.fillStyle = '#333';
-                        ctx.fillText('N', labelW - 6, base1 - rowH / 2);
-                        ctx.fillText('S', labelW - 6, base1 + rowH / 2);
-                        ctx.fillText('Ö', labelW - 6, base2 - rowH / 2);
-                        ctx.fillText('V', labelW - 6, base2 + rowH / 2);
-                        // Visa "Ingen data" centrerat
-                        ctx.textAlign = 'center'; ctx.font = '12px Inter, sans-serif';
-                        ctx.fillStyle = '#999';
-                        ctx.fillText('Ingen vinddata för denna period', w / 2, h / 2);
-                        return;
-                    }
-                    // Månader är runt 30 dagar. Vi uppdaterar draw-skalan
-                    timeframeDays = new Date(zoomMonth.substring(0, 4), parseInt(zoomMonth.substring(5, 7)), 0).getDate();
+                // Filtrera till datumintervallet
+                var filteredIdxs = [];
+                for (var i = 0; i < days.length; i++) {
+                    if (days[i] >= fromDate && days[i] <= toDate) filteredIdxs.push(i);
+                }
+                if (filteredIdxs.length > 0) {
+                    sIdx = filteredIdxs[0];
+                    eIdx = filteredIdxs[filteredIdxs.length - 1];
+                } else {
+                    // Ingen data för denna period — rita tomt diagram
+                    ctx.fillStyle = '#fff';
+                    ctx.fillRect(0, 0, w, h);
+                    var emptyDays = Math.max(1, Math.round((new Date(toDate) - new Date(fromDate)) / 86400000));
+                    cellW = chartW / emptyDays;
+                    ctx.fillStyle = 'rgba(0,0,0,0.015)';
+                    ctx.fillRect(labelW, 0, chartW, rowH * 2);
+                    ctx.fillRect(labelW, rowH * 2 + gap, chartW, rowH * 2);
+                    ctx.strokeStyle = 'rgba(0,0,0,0.15)';
+                    ctx.lineWidth = 1;
+                    ctx.beginPath(); ctx.moveTo(labelW, base1); ctx.lineTo(w, base1); ctx.stroke();
+                    ctx.beginPath(); ctx.moveTo(labelW, base2); ctx.lineTo(w, base2); ctx.stroke();
+                    ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+                    ctx.font = 'bold 11px Inter, sans-serif'; ctx.fillStyle = '#333';
+                    ctx.fillText('N', labelW - 6, base1 - rowH / 2);
+                    ctx.fillText('S', labelW - 6, base1 + rowH / 2);
+                    ctx.fillText('Ö', labelW - 6, base2 - rowH / 2);
+                    ctx.fillText('V', labelW - 6, base2 + rowH / 2);
+                    ctx.textAlign = 'center'; ctx.font = '12px Inter, sans-serif';
+                    ctx.fillStyle = '#999';
+                    ctx.fillText('Ingen vinddata för denna period', w / 2, h / 2);
+                    return;
                 }
 
-                // Uppdatera cellW temporärt baserat på inzoomningen
+                // Beräkna tidsfönstrets längd i dagar
+                var timeframeDays = Math.max(1, Math.round((new Date(toDate) - new Date(fromDate)) / 86400000)) + 1;
+
+                // Uppdatera cellW baserat på perioden
                 cellW = chartW / timeframeDays;
-
-                // Läs state från knappen
-                var smoothCheckbox = document.getElementById('wind-smooth-toggle');
-                var isSmoothChecked = smoothCheckbox ? smoothCheckbox.checked : true;
-
-                // Hantera synlighet för "Jämna ut data" etiketten
-                var smoothLabel = document.getElementById('wind-smooth-label');
-                if (smoothLabel) {
-                    if (zoomMonth === 'all') {
-                        smoothLabel.style.display = 'inline-flex';
-                    } else {
-                        smoothLabel.style.display = 'none';
-                    }
-                }
 
                 ctx.fillStyle = '#fff';
                 ctx.fillRect(0, 0, w, h);
@@ -826,7 +845,6 @@
                     var hx1 = labelW + (hlStartIdx - dayIndices[sIdx]) * cellW;
                     var hx2 = labelW + (hlEndIdx - dayIndices[sIdx] + 1) * cellW;
 
-                    // Klipp highlighten så den inte ritar utanför grafen om den går över månadsskiftet
                     hx1 = Math.max(labelW, Math.min(w, hx1));
                     hx2 = Math.max(labelW, Math.min(w, hx2));
 
@@ -847,87 +865,82 @@
                 // Baslinjer för axlarna = 0 markeringarna
                 ctx.strokeStyle = 'rgba(0,0,0,0.15)';
                 ctx.lineWidth = 1;
-
                 ctx.beginPath(); ctx.moveTo(labelW, base1); ctx.lineTo(w, base1); ctx.stroke();
                 ctx.beginPath(); ctx.moveTo(labelW, base2); ctx.lineTo(w, base2); ctx.stroke();
 
-                // Hybrid Render Logic
-                // Om vi tittar på en kortare period (t.ex. < 90 dagar / en månad), ELLER om smoothing är avstängt, rita exakta staplar.
-                // Annars: Rita Flowing Stream (medelvärdeskurvan).
-                var shouldSmooth = (timeframeDays >= 90) && isSmoothChecked;
-
-                if (!shouldSmooth) {
-                    drawExactBars(ns_raw, base1, true, 70, 130, 180, sIdx, eIdx); // Nord (Blå)
-                    drawExactBars(ns_raw, base1, false, 205, 92, 92, sIdx, eIdx);  // Syd (Röd)
-                    drawExactBars(ew_raw, base2, true, 123, 104, 174, sIdx, eIdx);  // Öst (Mjuk lila)
-                    drawExactBars(ew_raw, base2, false, 212, 160, 48, sIdx, eIdx); // Väst (Guld)
+                // Render Logic: Staplar för korta perioder, area-streams för helårsvy
+                if (timeframeDays < 90) {
+                    drawExactBars(ns_raw, base1, true, 74, 144, 217, sIdx, eIdx);   // Nord (Blå)
+                    drawExactBars(ns_raw, base1, false, 217, 74, 74, sIdx, eIdx);   // Syd (Röd)
+                    drawExactBars(ew_raw, base2, true, 61, 170, 109, sIdx, eIdx);   // Öst (Grön)
+                    drawExactBars(ew_raw, base2, false, 217, 168, 74, sIdx, eIdx);  // Väst (Gul)
                 } else {
-                    drawAreaStream(ns_smooth, base1, true, 70, 130, 180, sIdx, eIdx); // Nord (Blå)
-                    drawAreaStream(ns_smooth, base1, false, 205, 92, 92, sIdx, eIdx);  // Syd (Röd)
-                    drawAreaStream(ew_smooth, base2, true, 123, 104, 174, sIdx, eIdx);  // Öst (Mjuk lila)
-                    drawAreaStream(ew_smooth, base2, false, 212, 160, 48, sIdx, eIdx); // Väst (Guld)
+                    drawAreaStream(ns_raw, base1, true, 74, 144, 217, sIdx, eIdx);  // Nord (Blå)
+                    drawAreaStream(ns_raw, base1, false, 217, 74, 74, sIdx, eIdx);  // Syd (Röd)
+                    drawAreaStream(ew_raw, base2, true, 61, 170, 109, sIdx, eIdx);  // Öst (Grön)
+                    drawAreaStream(ew_raw, base2, false, 217, 168, 74, sIdx, eIdx); // Väst (Gul)
                 }
 
                 // Etiketter vid axlarnas startpunkt
                 ctx.textAlign = 'right';
                 ctx.textBaseline = 'middle';
                 ctx.font = 'bold 11px Inter, sans-serif';
-                ctx.fillStyle = '#333';
 
-                // Axel 1
+                // Axel 1 — N/S med matchande färger
+                ctx.fillStyle = '#4A90D9';
                 ctx.fillText('N', labelW - 6, base1 - rowH / 2);
+                ctx.fillStyle = '#D94A4A';
                 ctx.fillText('S', labelW - 6, base1 + rowH / 2);
 
-                // Axel 2
+                // Axel 2 — Ö/V med matchande färger
+                ctx.fillStyle = '#3DAA6D';
                 ctx.fillText('Ö', labelW - 6, base2 - rowH / 2);
+                ctx.fillStyle = '#D9A84A';
                 ctx.fillText('V', labelW - 6, base2 + rowH / 2);
 
-                // Månadslinjer / Dagslinjer
+                // Tidslinje — grid och datummarkeringar
                 ctx.strokeStyle = 'rgba(0,0,0,0.05)';
                 ctx.lineWidth = 0.5;
                 ctx.textAlign = 'center';
                 ctx.font = '9px Inter, sans-serif';
                 ctx.fillStyle = '#999';
 
-                if (zoomMonth === 'all') {
+                if (isFullYear) {
                     var monthStarts = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
+                    var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'];
                     for (var m = 0; m < 12; m++) {
                         var mx = labelW + monthStarts[m] * cellW;
                         ctx.beginPath(); ctx.moveTo(mx, 0); ctx.lineTo(mx, h - bottomPad); ctx.stroke();
+                        // Månadsetiketter vid botten
+                        ctx.fillText(monthNames[m], mx + (m < 11 ? (monthStarts[m + 1] - monthStarts[m]) : 31) * cellW / 2, h - 10);
                     }
                 } else {
-                    // Rita ut dagslinjer för inzoomad månad var femte dag
+                    // Rita individuella dagsmarkeringar med datumtext
+                    var fromMs = new Date(fromDate).getTime();
+                    var tickInterval = timeframeDays <= 14 ? 1 : (timeframeDays <= 31 ? 5 : 7);
                     for (var d = 0; d < timeframeDays; d++) {
-                        if (d % 5 === 0 || d === timeframeDays - 1) {
+                        if (d % tickInterval === 0 || d === timeframeDays - 1) {
                             var mx = labelW + d * cellW;
                             ctx.beginPath(); ctx.moveTo(mx, 0); ctx.lineTo(mx, h - bottomPad); ctx.stroke();
-                            ctx.fillText((d + 1) + '', mx, h - 10);
+                            // Visa datum som "5 mar" format
+                            var tickDate = new Date(fromMs + d * 86400000);
+                            var monthAbbr = ['jan', 'feb', 'mar', 'apr', 'maj', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
+                            var label = tickDate.getDate() + ' ' + monthAbbr[tickDate.getMonth()];
+                            ctx.fillText(label, mx, h - 10);
                         }
                     }
                 }
-
-                // Legend minimalistsk design
-                var legX = labelW + 10;
-                var legY = 6;
-                ctx.fillStyle = 'rgba(255,255,255,0.7)';
-                ctx.fillRect(legX - 4, legY - 4, 150, 18);
-
-                ctx.textAlign = 'left';
-                ctx.textBaseline = 'top';
-                ctx.font = '9px Inter, sans-serif';
-                ctx.fillStyle = '#4682B4'; ctx.fillText('Nord: Blå', legX, legY);
-                ctx.fillStyle = '#CD5C5C'; ctx.fillText('Syd: Röd', legX + 45, legY);
-                ctx.fillStyle = '#7B68AE'; ctx.fillText('Öst: Lila', legX + 90, legY);
-                ctx.fillStyle = '#D4A030'; ctx.fillText('Väst: Guld', legX + 135, legY);
             };
 
             // Event-bindning sköts nu av setupGlobalMonthSelector()
 
-            drawAll('all');
+            // Initial draw sker via setTimeRange('14d') i loaddaren
+            drawAll('2026-01-01', '2026-12-31');
 
             window._windChartMeta = {
                 canvas: canvas, ctx: ctx, dpr: dpr, w: w, h: h,
-                drawAll: drawAll, dayIndices: dayIndices, currentMonth: 'all'
+                drawAll: drawAll, dayIndices: dayIndices, days: days,
+                currentFrom: '2026-01-01', currentTo: '2026-12-31'
             };
         }).catch(function (error) {
             console.error('Error fetching wind data:', error);
@@ -962,13 +975,17 @@
 
         sel.addEventListener('change', function () {
             if (sel.value === '') {
-                // Default: helår, ingen highlight
+                // Default: 14 dagar, ingen highlight
                 preview.style.display = 'none';
                 clearHighlights();
-                // Återställ globala månadsväljaren till helår
-                var monthSel = document.getElementById('vader-month-select');
-                if (monthSel) { monthSel.value = 'all'; }
-                setMonthZoom('all');
+                // Återställ till 14-dagars vy
+                var btns = document.querySelectorAll('.vader-time-btn');
+                btns.forEach(function (b) { b.classList.remove('active'); });
+                var firstBtn = document.querySelector('.vader-time-btn[data-mode="14d"]');
+                if (firstBtn) firstBtn.classList.add('active');
+                var monthDropdown = document.getElementById('vader-month-select');
+                if (monthDropdown) monthDropdown.style.display = 'none';
+                setTimeRange('14d');
                 return;
             }
 
@@ -1007,7 +1024,6 @@
             var chartInstance = Chart.getChart(el);
             if (!chartInstance) return;
 
-            // Lägg till highlight-annotation
             chartInstance.options.plugins.annotation.annotations.highlight = {
                 type: 'box',
                 xMin: from,
@@ -1020,23 +1036,33 @@
             chartInstance.update('none');
         });
 
-        // Auto-zooma alla diagram till månaden
-        var targetMonth = from.substring(0, 7); // t.ex. '2026-02'
-        var monthSel = document.getElementById('vader-month-select');
-        if (monthSel) monthSel.value = targetMonth;
-        setMonthZoom(targetMonth);
+        // Auto-zooma alla diagram till ±7 dagar kring fältrapporten
+        var fromDate = new Date(from);
+        var toDate = new Date(to);
+        var rangeFrom = new Date(fromDate);
+        rangeFrom.setDate(rangeFrom.getDate() - 7);
+        var rangeTo = new Date(toDate);
+        rangeTo.setDate(rangeTo.getDate() + 7);
+        var rangeFromStr = rangeFrom.toISOString().slice(0, 10);
+        var rangeToStr = rangeTo.toISOString().slice(0, 10);
+
+        // Uppdatera segmented control state
+        var btns = document.querySelectorAll('.vader-time-btn');
+        btns.forEach(function (b) { b.classList.remove('active'); });
+        var monthDropdown = document.getElementById('vader-month-select');
+        if (monthDropdown) monthDropdown.style.display = 'none';
+
+        setTimeRange('range', { from: rangeFromStr, to: rangeToStr });
 
         // Highlight vindrastret med extra highlight-markeringar
         var wm = window._windChartMeta;
         if (wm) {
-            var fromDate = new Date(from);
-            var toDate = new Date(to);
             var jan1 = new Date(fromDate.getFullYear(), 0, 1);
             var fromIdx = Math.floor((fromDate - jan1) / 86400000);
             var toIdx = Math.floor((toDate - jan1) / 86400000);
             wm.ctx.save();
             wm.ctx.setTransform(wm.dpr, 0, 0, wm.dpr, 0, 0);
-            wm.drawAll(targetMonth, fromIdx, toIdx);
+            wm.drawAll(rangeFromStr, rangeToStr, fromIdx, toIdx);
             wm.ctx.restore();
         }
 
@@ -1061,7 +1087,7 @@
         if (wm) {
             wm.ctx.save();
             wm.ctx.setTransform(wm.dpr, 0, 0, wm.dpr, 0, 0);
-            wm.drawAll(wm.currentMonth);
+            wm.drawAll(wm.currentFrom, wm.currentTo);
             wm.ctx.restore();
         }
     }
