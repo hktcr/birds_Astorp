@@ -68,6 +68,17 @@
                 <div class="vader-chart-source">SMHI, Helsingborg A</div>
             </div>
 
+            <!-- ΔW vindskifte — kopplingsremsa -->
+            <div class="vader-chart-box vader-delta-strip" id="chart-wind-delta">
+                <canvas id="wind-delta-chart"></canvas>
+                <div class="vader-chart-hint" style="text-align:center; margin-top:2px;">
+                    Vindskifte (ΔW = dag-till-dag vektorskillnad)<br>
+                    <span style="color:#64a0dc;">■</span> stabilt ·
+                    <span style="color:#f0e0b4;">■</span> medel ·
+                    <span style="color:#e07832;">■</span> abrupt skifte — fågelrastindikator
+                </div>
+            </div>
+
             <!-- 3a. Dagtemperatur (max) -->
             <div class="vader-chart-box" id="chart-temp-day">
                 <div class="vader-chart-label">🌡️ Dagtemperatur (högsta)</div>
@@ -779,7 +790,7 @@
         }
 
         // 3. Uppdatera temperaturdiagrammen (Canvas, dag + natt)
-        ['_tempDayMeta', '_tempNightMeta', '_tempDeltaMeta'].forEach(function (key) {
+        ['_tempDayMeta', '_tempNightMeta', '_tempDeltaMeta', '_windDeltaMeta'].forEach(function (key) {
             var tm = window[key];
             if (tm) {
                 tm.currentFrom = xMin;
@@ -1139,11 +1150,108 @@
                 drawAll: drawAll, dayIndices: dayIndices, days: days,
                 currentFrom: '2026-01-01', currentTo: '2026-12-31'
             };
+
+            // Bygg ΔW vindskifte-remsa (VEP-beslut: dag-till-dag vektorskillnad)
+            buildWindDeltaStrip(days, ns_raw, ew_raw);
         }).catch(function (error) {
             console.error('Error fetching wind data:', error);
             var el = document.getElementById('wind-chart');
             if (el) el.parentElement.innerHTML = '<p class="vader-chart-error">Vinddata kunde inte laddas</p>';
         });
+    }
+
+    // ================================================================
+    // CHART 5b: ΔW Vindskifte-remsa (dag-till-dag vektorskillnad)
+    // ================================================================
+    function buildWindDeltaStrip(days, ns_raw, ew_raw) {
+        var canvas = document.getElementById('wind-delta-chart');
+        if (!canvas || days.length < 2) return;
+
+        // Beräkna ΔW per dag: √[(u₂−u₁)² + (v₂−v₁)²]
+        var deltaW = {};
+        var maxDelta = 0;
+        for (var i = 1; i < days.length; i++) {
+            var du = ew_raw[i] - ew_raw[i - 1];  // Zonal skillnad
+            var dv = ns_raw[i] - ns_raw[i - 1];  // Meridional skillnad
+            var dw = Math.sqrt(du * du + dv * dv);
+            deltaW[days[i]] = dw;
+            if (dw > maxDelta) maxDelta = dw;
+        }
+        maxDelta = Math.max(maxDelta, 1);
+
+        var allDates = Object.keys(deltaW).sort();
+
+        var box = canvas.parentElement;
+        var dpr = window.devicePixelRatio || 1;
+        var w = box.clientWidth;
+        var labelW = 24;
+        var chartW = w - labelW;
+        var h = 20;
+
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        canvas.style.width = w + 'px';
+        canvas.style.height = h + 'px';
+        var ctx = canvas.getContext('2d');
+        ctx.scale(dpr, dpr);
+
+        function drawDelta(fromDate, toDate) {
+            fromDate = fromDate || '2026-01-01';
+            toDate = toDate || '2026-12-31';
+            var isFullYear = (fromDate === '2026-01-01' && toDate === '2026-12-31');
+
+            ctx.fillStyle = '#fff';
+            ctx.fillRect(0, 0, w, h);
+
+            var timeframeDays = Math.max(1, Math.round((new Date(toDate) - new Date(fromDate)) / 86400000)) + 1;
+            var cellW = chartW / timeframeDays;
+            var fromMs = new Date(fromDate).getTime();
+
+            allDates.forEach(function (d) {
+                if (d < fromDate || d > toDate) return;
+                var dayMs = new Date(d).getTime();
+                var dayOffset = Math.round((dayMs - fromMs) / 86400000);
+                var x = labelW + dayOffset * cellW;
+                var barW = Math.max(Math.ceil(cellW), 2);
+                var dw = deltaW[d];
+                var ratio = Math.min(dw / maxDelta, 1);
+
+                // Blå (stabilt) → vit (medel) → orange (abrupt skifte)
+                var r, g, b;
+                if (ratio < 0.5) {
+                    var t = ratio * 2;
+                    r = Math.round(100 + t * 155);
+                    g = Math.round(160 + t * 80);
+                    b = Math.round(220 - t * 40);
+                } else {
+                    var t = (ratio - 0.5) * 2;
+                    r = Math.round(255 - t * 30);
+                    g = Math.round(240 - t * 120);
+                    b = Math.round(180 - t * 130);
+                }
+                ctx.fillStyle = 'rgb(' + r + ',' + g + ',' + b + ')';
+                ctx.fillRect(x, 0, barW, h);
+            });
+
+            // Dimma framtida perioder i helårsvy
+            if (isFullYear) {
+                var todayDOY = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 1)) / 86400000);
+                var futX = labelW + (todayDOY + 1) * cellW;
+                if (futX < w) {
+                    ctx.fillStyle = 'rgba(255,255,255,0.7)';
+                    ctx.fillRect(futX, 0, w - futX, h);
+                }
+            }
+        }
+
+        var initFrom = _currentTimeFrom || '2026-01-01';
+        var initTo = _currentTimeTo || '2026-12-31';
+        drawDelta(initFrom, initTo);
+
+        window._windDeltaMeta = {
+            canvas: canvas, ctx: ctx, dpr: dpr, w: w, h: h,
+            drawAll: drawDelta, currentFrom: initFrom, currentTo: initTo
+        };
     }
 
     // ================================================================

@@ -355,6 +355,7 @@
       "chart-temp-delta",
       "chart-temp-night",
       "chart-wind",
+      "chart-wind-delta",
       "dagens-skörd",
       "empty-msg",
       "fenology-chart",
@@ -408,7 +409,8 @@
       "vader-chart-nav",
       "vader-month-select",
       "vader-time-bar",
-      "wind-chart"
+      "wind-chart",
+      "wind-delta-chart"
     ]
   }
 }
