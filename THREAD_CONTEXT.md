@@ -44,3 +44,16 @@
 - `data/species_guide.json` (redan korrekt)
 
 ---
+
+### 2026-03-05 — b72b616d
+
+**Ursprung:** Utökad rapportering i krysslista-workflows
+**Typ:** Beslut | Framsteg
+
+> Håkan efterfrågade detaljerad ändringsrapport efter `/krysslista`- och `/KrysslistaIn`-körningar. Uppdaterat båda workflows med §20-kompatibelt rapportsteg som inkluderar: nya årskryss med latinska namn, årshjuls-diff per art (snapshot före/efter omkompilering av `species_days_historic.json`), och deploy-bekräftelse.
+
+**Relaterade filer:**
+- `.agent/workflows/KrysslistaIn.md` (Steg 5 snapshot + Steg 8 detaljerad rapport)
+- `.agent/workflows/krysslista.md` (Steg 4 snapshot + nytt Steg 5 rapport)
+
+---

@@ -20,7 +20,7 @@ OUTPUT_STATIC_FILE = os.path.join(ASTORP_ROOT, "static", "data", "species_days_h
 
 # Locations that count as "Åstorp" for the Årshjul
 ASTORP_LOCATIONS = {
-    "åstorp", "tomarp", "kvidinge", "kundinge", "sönnarslöv",
+    "åstorp", "åstorps kommun", "tomarp", "kvidinge", "kundinge", "sönnarslöv",
     "kölslätta", "körslättaravinen", "kungsgårdsmaderna", "tranarpsbron",
     "hyllinge", "maglaby", "rörspjäll", "tomarps ene",
 }
