@@ -17,7 +17,7 @@
 
     
     
-    <link rel="stylesheet" href="/css/style.c554868bcc8d6df66ad7cf38458d5bf6412c7cd5331b5da4898ddb07df3d94aa.css">
+    <link rel="stylesheet" href="/css/style.f24d5d0a57b4a653bc93263e51c9dd807876abf5f647de44b218a561f5d819d8.css">
 
     
     
@@ -169,15 +169,24 @@
         </div>
 
         
+        <div class="vader-chart-nav" id="vader-chart-nav">
+            <a href="#chart-progress" class="vader-chart-nav-link">🐦 Arter</a>
+            <a href="#chart-wind" class="vader-chart-nav-link">🌬️ Vind</a>
+            <a href="#chart-temp" class="vader-chart-nav-link">🌡️ Temp</a>
+            <a href="#chart-precip" class="vader-chart-nav-link">🌧️ Nederbörd</a>
+            <a href="#chart-flow" class="vader-chart-nav-link">🌊 Flöde</a>
+        </div>
+
+        
         <div class="vader-triptych">
             
-            <div class="vader-chart-box">
+            <div class="vader-chart-box" id="chart-progress">
                 <div class="vader-chart-label">🐦 Artframsteg</div>
                 <canvas id="progress-chart"></canvas>
             </div>
 
             
-            <div class="vader-chart-box">
+            <div class="vader-chart-box" id="chart-wind">
                 <div class="vader-chart-label">🌬️ Vindkomponenter</div>
                 <canvas id="wind-chart"></canvas>
                 <p class="vader-chart-hint">Staplar uppåt = vind från norr/öst. Staplar nedåt = vind från söder/väst.
@@ -186,21 +195,21 @@
             </div>
 
             
-            <div class="vader-chart-box">
+            <div class="vader-chart-box" id="chart-temp">
                 <div class="vader-chart-label">🌡️ Temperatur</div>
                 <canvas id="temp-chart"></canvas>
                 <div class="vader-chart-source">SMHI, Helsingborg A</div>
             </div>
 
             
-            <div class="vader-chart-box">
+            <div class="vader-chart-box" id="chart-precip">
                 <div class="vader-chart-label">🌧️ Nederbörd</div>
                 <canvas id="precip-chart"></canvas>
                 <div class="vader-chart-source">SMHI, Åstorp</div>
             </div>
 
             
-            <div class="vader-chart-box">
+            <div class="vader-chart-box" id="chart-flow">
                 <div class="vader-chart-label">🌊 Vattenföring</div>
                 <canvas id="flow-chart"></canvas>
                 <div class="vader-chart-source">SMHI, Forsmöllan (Rönne å)</div>
@@ -579,103 +588,185 @@
             var minData = results[0].value || [];
             var maxData = results[1].value || [];
 
-            var minPoints = [];
-            var maxPoints = [];
+            
+            var dayMap = {};
             minData.forEach(function (v) {
-                if (v.ref >= '2026-01-01') minPoints.push({ x: v.ref, y: parseFloat(v.value) });
+                if (v.ref >= '2026-01-01') dayMap[v.ref] = { min: parseFloat(v.value) };
             });
             maxData.forEach(function (v) {
-                if (v.ref >= '2026-01-01') maxPoints.push({ x: v.ref, y: parseFloat(v.value) });
+                if (v.ref >= '2026-01-01') {
+                    if (!dayMap[v.ref]) dayMap[v.ref] = {};
+                    dayMap[v.ref].max = parseFloat(v.value);
+                }
             });
 
-            new Chart(canvas, {
-                type: 'line',
-                data: {
-                    datasets: [
-                        {
-                            label: 'Dag (max)',
-                            data: maxPoints,
-                            borderColor: '#C67B4F',
-                            backgroundColor: 'rgba(230, 126, 34, 0.06)',
-                            borderWidth: 2,
-                            fill: false,
-                            tension: 0.3,
-                            pointRadius: 0,
-                            pointHitRadius: 8
-                        },
-                        {
-                            label: 'Natt (min)',
-                            data: minPoints,
-                            borderColor: '#3D4F7C',
-                            backgroundColor: 'rgba(44, 62, 130, 0.06)',
-                            borderWidth: 2,
-                            fill: false,
-                            tension: 0.3,
-                            pointRadius: 0,
-                            pointHitRadius: 8
-                        }
-                    ]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: true,
-                    aspectRatio: window.innerWidth < 600 ? 1.4 : 2.0,
-                    scales: {
-                        x: JSON.parse(JSON.stringify(timeScaleConfig)),
-                        y: {
-                            grid: {
-                                color: function (ctx) {
-                                    return ctx.tick.value === 0 ? 'rgba(0,0,0,0.15)' : 'rgba(0,0,0,0.04)';
-                                },
-                                drawTicks: false
-                            },
-                            ticks: {
-                                callback: function (v) { return v + '°'; },
-                                font: { family: 'Inter', size: 11 },
-                                color: '#666'
-                            }
-                        }
-                    },
-                    plugins: {
-                        legend: {
-                            display: true,
-                            position: 'top',
-                            align: 'end',
-                            labels: {
-                                usePointStyle: true,
-                                pointStyle: 'line',
-                                font: { family: 'Inter', size: 11 },
-                                color: '#555',
-                                padding: 12
-                            }
-                        },
-                        tooltip: {
-                            backgroundColor: 'rgba(30,66,32,0.9)',
-                            titleFont: { family: 'Inter' },
-                            bodyFont: { family: 'Inter' },
-                            callbacks: {
-                                label: function (ctx) {
-                                    return ctx.dataset.label + ': ' + ctx.parsed.y.toFixed(1) + '°C';
-                                }
-                            }
-                        },
-                        annotation: {
-                            annotations: {
-                                zeroLine: {
-                                    type: 'line',
-                                    yMin: 0, yMax: 0,
-                                    borderColor: 'rgba(0,0,0,0.15)',
-                                    borderWidth: 1,
-                                    borderDash: [3, 3]
-                                }
-                            }
+            var days = Object.keys(dayMap).sort();
+            var maxVals = days.map(function (d) { return dayMap[d].max || 0; });
+            var minVals = days.map(function (d) { return dayMap[d].min || 0; });
+
+            
+            var absMax = 0;
+            maxVals.forEach(function (v) { if (Math.abs(v) > absMax) absMax = Math.abs(v); });
+            minVals.forEach(function (v) { if (Math.abs(v) > absMax) absMax = Math.abs(v); });
+            absMax = Math.max(absMax, 5); 
+
+            
+            var box = canvas.parentElement;
+            var dpr = window.devicePixelRatio || 1;
+            var w = box.clientWidth;
+            var labelW = 36;
+            var chartW = w - labelW;
+            var rowH = 65;
+            var gap = 6;
+            var bottomPad = 24;
+            var base = rowH; 
+            var h = (rowH * 2) + bottomPad;
+
+            canvas.width = w * dpr;
+            canvas.height = h * dpr;
+            canvas.style.width = w + 'px';
+            canvas.style.height = h + 'px';
+            var ctx = canvas.getContext('2d');
+            ctx.scale(dpr, dpr);
+
+            
+            function drawTempBars(fromDate, toDate) {
+                fromDate = fromDate || '2026-01-01';
+                toDate = toDate || '2026-12-31';
+                var isFullYear = (fromDate === '2026-01-01' && toDate === '2026-12-31');
+
+                
+                var fDays = [], fMax = [], fMin = [];
+                for (var i = 0; i < days.length; i++) {
+                    if (days[i] >= fromDate && days[i] <= toDate) {
+                        fDays.push(days[i]);
+                        fMax.push(maxVals[i]);
+                        fMin.push(minVals[i]);
+                    }
+                }
+
+                var timeframeDays = Math.max(1, Math.round((new Date(toDate) - new Date(fromDate)) / 86400000)) + 1;
+                var cellW = chartW / timeframeDays;
+                var fromMs = new Date(fromDate).getTime();
+
+                
+                ctx.fillStyle = '#fff';
+                ctx.fillRect(0, 0, w, h);
+
+                
+                ctx.fillStyle = 'rgba(0,0,0,0.015)';
+                ctx.fillRect(labelW, 0, chartW, rowH);
+                ctx.fillRect(labelW, rowH, chartW, rowH);
+
+                
+                ctx.strokeStyle = 'rgba(0,0,0,0.2)';
+                ctx.lineWidth = 1;
+                ctx.beginPath(); ctx.moveTo(labelW, base); ctx.lineTo(w, base); ctx.stroke();
+
+                
+                for (var i = 0; i < fDays.length; i++) {
+                    var dayMs = new Date(fDays[i]).getTime();
+                    var dayOffset = Math.round((dayMs - fromMs) / 86400000);
+                    var x = labelW + dayOffset * cellW;
+                    var barW = Math.max(Math.ceil(cellW) - 1, 2);
+
+                    
+                    var maxVal = fMax[i];
+                    var maxH = (Math.abs(maxVal) / absMax) * (rowH - 4);
+                    if (maxVal >= 0) {
+                        ctx.fillStyle = 'rgba(198, 123, 79, 0.85)';
+                        ctx.fillRect(x, base - maxH, barW, maxH);
+                    } else {
+                        ctx.fillStyle = 'rgba(198, 123, 79, 0.5)';
+                        ctx.fillRect(x, base, barW, maxH);
+                    }
+
+                    
+                    var minVal = fMin[i];
+                    var minH = (Math.abs(minVal) / absMax) * (rowH - 4);
+                    if (minVal <= 0) {
+                        ctx.fillStyle = 'rgba(61, 79, 124, 0.85)';
+                        ctx.fillRect(x, base, barW, minH);
+                    } else {
+                        ctx.fillStyle = 'rgba(61, 79, 124, 0.5)';
+                        ctx.fillRect(x, base - minH, barW, minH);
+                    }
+                }
+
+                
+                ctx.textAlign = 'right';
+                ctx.textBaseline = 'middle';
+                ctx.font = 'bold 11px Inter, sans-serif';
+                ctx.fillStyle = '#C67B4F';
+                ctx.fillText('Dag', labelW - 6, base - rowH / 2);
+                ctx.fillStyle = '#3D4F7C';
+                ctx.fillText('Natt', labelW - 6, base + rowH / 2);
+
+                
+                ctx.font = '9px Inter, sans-serif';
+                ctx.fillStyle = '#999';
+                ctx.textAlign = 'left';
+                var tickStep = absMax > 15 ? 10 : 5;
+                for (var t = tickStep; t <= absMax; t += tickStep) {
+                    
+                    var yUp = base - (t / absMax) * (rowH - 4);
+                    ctx.fillText('+' + t + '°', 2, yUp);
+                    ctx.strokeStyle = 'rgba(0,0,0,0.04)'; ctx.lineWidth = 0.5;
+                    ctx.beginPath(); ctx.moveTo(labelW, yUp); ctx.lineTo(w, yUp); ctx.stroke();
+                    
+                    var yDn = base + (t / absMax) * (rowH - 4);
+                    ctx.fillText('-' + t + '°', 2, yDn);
+                    ctx.beginPath(); ctx.moveTo(labelW, yDn); ctx.lineTo(w, yDn); ctx.stroke();
+                }
+
+                
+                ctx.strokeStyle = 'rgba(0,0,0,0.05)';
+                ctx.lineWidth = 0.5;
+                ctx.textAlign = 'center';
+                ctx.font = '9px Inter, sans-serif';
+                ctx.fillStyle = '#999';
+
+                if (isFullYear) {
+                    var monthStarts = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
+                    var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'];
+                    for (var m = 0; m < 12; m++) {
+                        var mx = labelW + monthStarts[m] * cellW;
+                        ctx.beginPath(); ctx.moveTo(mx, 0); ctx.lineTo(mx, h - bottomPad); ctx.stroke();
+                        ctx.fillText(monthNames[m], mx + (m < 11 ? (monthStarts[m + 1] - monthStarts[m]) : 31) * cellW / 2, h - 10);
+                    }
+                    
+                    var todayDOY = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 1)) / 86400000);
+                    var futX = labelW + (todayDOY + 1) * cellW;
+                    if (futX < w) {
+                        ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+                        ctx.fillRect(futX, 0, w - futX, h - bottomPad);
+                    }
+                } else {
+                    var tickInterval = timeframeDays <= 14 ? 1 : (timeframeDays <= 31 ? 5 : 7);
+                    var monthAbbr = ['jan', 'feb', 'mar', 'apr', 'maj', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
+                    for (var d = 0; d < timeframeDays; d++) {
+                        if (d % tickInterval === 0 || d === timeframeDays - 1) {
+                            var mx = labelW + d * cellW;
+                            ctx.beginPath(); ctx.moveTo(mx, 0); ctx.lineTo(mx, h - bottomPad); ctx.stroke();
+                            var tickDate = new Date(fromMs + d * 86400000);
+                            ctx.fillText(tickDate.getDate() + ' ' + monthAbbr[tickDate.getMonth()], mx, h - 10);
                         }
                     }
                 }
-            });
+            }
+
+            
+            drawTempBars('2026-01-01', '2026-12-31');
+
+            
+            window._tempChartMeta = {
+                canvas: canvas, ctx: ctx, dpr: dpr, w: w, h: h,
+                drawAll: drawTempBars,
+                currentFrom: '2026-01-01', currentTo: '2026-12-31'
+            };
         }).catch(function (err) {
             console.warn('Kunde inte hämta temperaturdata:', err);
-            canvas.parentElement.innerHTML = '<p class="vader-chart-error">Temperaturdata kunde inte laddas</p>';
+            canvas.parentElement.innerHTML = '<div class="vader-chart-label">🌡️ Temperatur</div><p class="vader-chart-error">Temperaturdata kunde inte laddas</p>';
         });
     }
 
@@ -892,7 +983,7 @@
         _currentTimeTo = xMax;
 
         
-        var chartIds = ['progress-chart', 'temp-chart', 'precip-chart', 'flow-chart'];
+        var chartIds = ['progress-chart', 'precip-chart', 'flow-chart'];
         chartIds.forEach(function (id) {
             var el = document.getElementById(id);
             if (!el) return;
@@ -913,6 +1004,17 @@
             wm.ctx.setTransform(wm.dpr, 0, 0, wm.dpr, 0, 0);
             wm.drawAll(xMin, xMax);
             wm.ctx.restore();
+        }
+
+        
+        var tm = window._tempChartMeta;
+        if (tm) {
+            tm.currentFrom = xMin;
+            tm.currentTo = xMax;
+            tm.ctx.save();
+            tm.ctx.setTransform(tm.dpr, 0, 0, tm.dpr, 0, 0);
+            tm.drawAll(xMin, xMax);
+            tm.ctx.restore();
         }
     }
 
