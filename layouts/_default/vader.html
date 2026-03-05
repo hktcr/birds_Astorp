@@ -51,23 +51,6 @@
             <!-- 2. Vindkomponenter -->
             <div class="vader-chart-box">
                 <canvas id="wind-chart"></canvas>
-                <div class="vader-wind-compass">
-                    <div class="vader-wind-compass-labels-top">
-                        <span class="vader-wind-compass-corner">NÖ</span>
-                        <span class="vader-wind-compass-edge">N</span>
-                        <span class="vader-wind-compass-corner">NV</span>
-                    </div>
-                    <div class="vader-wind-compass-row">
-                        <span class="vader-wind-compass-edge">Ö</span>
-                        <div class="vader-wind-compass-field"></div>
-                        <span class="vader-wind-compass-edge">V</span>
-                    </div>
-                    <div class="vader-wind-compass-labels-bottom">
-                        <span class="vader-wind-compass-corner">SÖ</span>
-                        <span class="vader-wind-compass-edge">S</span>
-                        <span class="vader-wind-compass-corner">SV</span>
-                    </div>
-                </div>
                 <div class="vader-chart-source">SMHI, Helsingborg A</div>
             </div>
 
@@ -770,11 +753,12 @@
                 ctx.stroke();
             }
 
-            // Hjälpfunktion för att rita exakta daggstaplar (För Månadsvy)
-            function drawExactBars(dataArr, baseY, isPos, r, g, b, startIdx, endIdx) {
+            // Hjälpfunktion för att rita exakta dagstaplar
+            function drawExactBars(dataArr, baseY, isPos, r, g, b, startIdx, endIdx, periodFromDate) {
                 if (dataArr.length === 0) return;
                 var sIdx = startIdx !== undefined ? startIdx : 0;
                 var eIdx = endIdx !== undefined ? endIdx : dataArr.length - 1;
+                var fromMs = periodFromDate ? new Date(periodFromDate).getTime() : new Date(days[sIdx]).getTime();
 
                 ctx.fillStyle = 'rgba(' + r + ',' + g + ',' + b + ',0.85)';
                 for (var i = sIdx; i <= eIdx; i++) {
@@ -782,13 +766,14 @@
                     var drawVal = isPos ? Math.max(0, val) : Math.max(0, -val);
                     if (drawVal < 0.1) continue;
 
-                    var localX = dayIndices[i] - dayIndices[sIdx];
-                    var x = labelW + localX * cellW;
+                    // Positionera baserat på datum relativt periodens start (inte dayIndices)
+                    var dayMs = new Date(days[i]).getTime();
+                    var dayOffset = Math.round((dayMs - fromMs) / 86400000);
+                    var x = labelW + dayOffset * cellW;
                     var barH = (drawVal / maxMag) * (rowH - 4);
 
-                    // Om det är en negativ (neråt) stapel drar vi den från baseY, annars uppåt från baseY
                     var rectY = isPos ? baseY - barH : baseY;
-                    ctx.fillRect(x, rectY, Math.ceil(cellW) + 0.5, barH);
+                    ctx.fillRect(x, rectY, Math.max(Math.ceil(cellW) - 1, 2), barH);
                 }
             }
 
@@ -873,18 +858,11 @@
                 ctx.beginPath(); ctx.moveTo(labelW, base1); ctx.lineTo(w, base1); ctx.stroke();
                 ctx.beginPath(); ctx.moveTo(labelW, base2); ctx.lineTo(w, base2); ctx.stroke();
 
-                // Render Logic: Staplar för korta perioder, area-streams för helårsvy
-                if (timeframeDays < 90) {
-                    drawExactBars(ns_raw, base1, true, 74, 144, 217, sIdx, eIdx);   // Nord (Blå)
-                    drawExactBars(ns_raw, base1, false, 217, 74, 74, sIdx, eIdx);   // Syd (Röd)
-                    drawExactBars(ew_raw, base2, true, 61, 170, 109, sIdx, eIdx);   // Öst (Grön)
-                    drawExactBars(ew_raw, base2, false, 217, 168, 74, sIdx, eIdx);  // Väst (Gul)
-                } else {
-                    drawAreaStream(ns_raw, base1, true, 74, 144, 217, sIdx, eIdx);  // Nord (Blå)
-                    drawAreaStream(ns_raw, base1, false, 217, 74, 74, sIdx, eIdx);  // Syd (Röd)
-                    drawAreaStream(ew_raw, base2, true, 61, 170, 109, sIdx, eIdx);  // Öst (Grön)
-                    drawAreaStream(ew_raw, base2, false, 217, 168, 74, sIdx, eIdx); // Väst (Gul)
-                }
+                // Alltid staplar — ingen smoothning, visar rådata oavsett period
+                drawExactBars(ns_raw, base1, true, 74, 144, 217, sIdx, eIdx, fromDate);   // Nord (Blå)
+                drawExactBars(ns_raw, base1, false, 217, 74, 74, sIdx, eIdx, fromDate);   // Syd (Röd)
+                drawExactBars(ew_raw, base2, true, 61, 170, 109, sIdx, eIdx, fromDate);   // Öst (Grön)
+                drawExactBars(ew_raw, base2, false, 217, 168, 74, sIdx, eIdx, fromDate);  // Väst (Gul)
 
                 // Etiketter vid axlarnas startpunkt
                 ctx.textAlign = 'right';

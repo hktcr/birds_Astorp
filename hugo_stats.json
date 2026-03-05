@@ -319,13 +319,6 @@
       "vader-time-segments",
       "vader-title",
       "vader-triptych",
-      "vader-wind-compass",
-      "vader-wind-compass-corner",
-      "vader-wind-compass-edge",
-      "vader-wind-compass-field",
-      "vader-wind-compass-labels-bottom",
-      "vader-wind-compass-labels-top",
-      "vader-wind-compass-row",
       "video-embed"
     ],
     "ids": [

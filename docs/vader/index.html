@@ -178,23 +178,6 @@
             
             <div class="vader-chart-box">
                 <canvas id="wind-chart"></canvas>
-                <div class="vader-wind-compass">
-                    <div class="vader-wind-compass-labels-top">
-                        <span class="vader-wind-compass-corner">NÖ</span>
-                        <span class="vader-wind-compass-edge">N</span>
-                        <span class="vader-wind-compass-corner">NV</span>
-                    </div>
-                    <div class="vader-wind-compass-row">
-                        <span class="vader-wind-compass-edge">Ö</span>
-                        <div class="vader-wind-compass-field"></div>
-                        <span class="vader-wind-compass-edge">V</span>
-                    </div>
-                    <div class="vader-wind-compass-labels-bottom">
-                        <span class="vader-wind-compass-corner">SÖ</span>
-                        <span class="vader-wind-compass-edge">S</span>
-                        <span class="vader-wind-compass-corner">SV</span>
-                    </div>
-                </div>
                 <div class="vader-chart-source">SMHI, Helsingborg A</div>
             </div>
 
@@ -1092,10 +1075,11 @@
             }
 
             
-            function drawExactBars(dataArr, baseY, isPos, r, g, b, startIdx, endIdx) {
+            function drawExactBars(dataArr, baseY, isPos, r, g, b, startIdx, endIdx, periodFromDate) {
                 if (dataArr.length === 0) return;
                 var sIdx = startIdx !== undefined ? startIdx : 0;
                 var eIdx = endIdx !== undefined ? endIdx : dataArr.length - 1;
+                var fromMs = periodFromDate ? new Date(periodFromDate).getTime() : new Date(days[sIdx]).getTime();
 
                 ctx.fillStyle = 'rgba(' + r + ',' + g + ',' + b + ',0.85)';
                 for (var i = sIdx; i <= eIdx; i++) {
@@ -1103,13 +1087,14 @@
                     var drawVal = isPos ? Math.max(0, val) : Math.max(0, -val);
                     if (drawVal < 0.1) continue;
 
-                    var localX = dayIndices[i] - dayIndices[sIdx];
-                    var x = labelW + localX * cellW;
+                    
+                    var dayMs = new Date(days[i]).getTime();
+                    var dayOffset = Math.round((dayMs - fromMs) / 86400000);
+                    var x = labelW + dayOffset * cellW;
                     var barH = (drawVal / maxMag) * (rowH - 4);
 
-                    
                     var rectY = isPos ? baseY - barH : baseY;
-                    ctx.fillRect(x, rectY, Math.ceil(cellW) + 0.5, barH);
+                    ctx.fillRect(x, rectY, Math.max(Math.ceil(cellW) - 1, 2), barH);
                 }
             }
 
@@ -1195,17 +1180,10 @@
                 ctx.beginPath(); ctx.moveTo(labelW, base2); ctx.lineTo(w, base2); ctx.stroke();
 
                 
-                if (timeframeDays < 90) {
-                    drawExactBars(ns_raw, base1, true, 74, 144, 217, sIdx, eIdx);   
-                    drawExactBars(ns_raw, base1, false, 217, 74, 74, sIdx, eIdx);   
-                    drawExactBars(ew_raw, base2, true, 61, 170, 109, sIdx, eIdx);   
-                    drawExactBars(ew_raw, base2, false, 217, 168, 74, sIdx, eIdx);  
-                } else {
-                    drawAreaStream(ns_raw, base1, true, 74, 144, 217, sIdx, eIdx);  
-                    drawAreaStream(ns_raw, base1, false, 217, 74, 74, sIdx, eIdx);  
-                    drawAreaStream(ew_raw, base2, true, 61, 170, 109, sIdx, eIdx);  
-                    drawAreaStream(ew_raw, base2, false, 217, 168, 74, sIdx, eIdx); 
-                }
+                drawExactBars(ns_raw, base1, true, 74, 144, 217, sIdx, eIdx, fromDate);   
+                drawExactBars(ns_raw, base1, false, 217, 74, 74, sIdx, eIdx, fromDate);   
+                drawExactBars(ew_raw, base2, true, 61, 170, 109, sIdx, eIdx, fromDate);   
+                drawExactBars(ew_raw, base2, false, 217, 168, 74, sIdx, eIdx, fromDate);  
 
                 
                 ctx.textAlign = 'right';
