@@ -756,7 +756,10 @@
             }
 
             
-            drawTempBars('2026-01-01', '2026-12-31');
+            
+            var initFrom = _currentTimeFrom || '2026-01-01';
+            var initTo = _currentTimeTo || '2026-12-31';
+            drawTempBars(initFrom, initTo);
 
             
             window._tempChartMeta = {
@@ -1355,7 +1358,10 @@
             
 
             
-            drawAll('2026-01-01', '2026-12-31');
+            
+            var initFrom = _currentTimeFrom || '2026-01-01';
+            var initTo = _currentTimeTo || '2026-12-31';
+            drawAll(initFrom, initTo);
 
             window._windChartMeta = {
                 canvas: canvas, ctx: ctx, dpr: dpr, w: w, h: h,

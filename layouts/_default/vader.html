@@ -435,7 +435,10 @@
             }
 
             // Initial draw
-            drawTempBars('2026-01-01', '2026-12-31');
+            // Hämta aktuell tidsperiod (sätts av setTimeRange innan API-data anlänt)
+            var initFrom = _currentTimeFrom || '2026-01-01';
+            var initTo = _currentTimeTo || '2026-12-31';
+            drawTempBars(initFrom, initTo);
 
             // Spara metadata för tidsbyten
             window._tempChartMeta = {
@@ -1034,7 +1037,10 @@
             // Event-bindning sköts nu av setupGlobalMonthSelector()
 
             // Initial draw sker via setTimeRange('14d') i loaddaren
-            drawAll('2026-01-01', '2026-12-31');
+            // Hämta aktuell tidsperiod (sätts av setTimeRange innan API-data anlänt)
+            var initFrom = _currentTimeFrom || '2026-01-01';
+            var initTo = _currentTimeTo || '2026-12-31';
+            drawAll(initFrom, initTo);
 
             window._windChartMeta = {
                 canvas: canvas, ctx: ctx, dpr: dpr, w: w, h: h,
