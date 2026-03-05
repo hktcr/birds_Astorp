@@ -77,6 +77,13 @@
                 <div class="vader-chart-source">SMHI, Helsingborg A</div>
             </div>
 
+            <!-- ΔT dygnssvängning — kopplingsremsa -->
+            <div class="vader-chart-box vader-delta-strip" id="chart-temp-delta">
+                <canvas id="temp-delta-chart"></canvas>
+                <div class="vader-chart-hint" style="text-align:center; margin-top:2px;">Dygnssvängning (ΔT) — stor
+                    svängning = stark biologisk signal</div>
+            </div>
+
             <!-- 3b. Natttemperatur (min) -->
             <div class="vader-chart-box" id="chart-temp-night">
                 <div class="vader-chart-label">🌙 Natttemperatur (lägsta)</div>
@@ -278,28 +285,46 @@
 
             var dayPoints = [];
             var nightPoints = [];
+            var dayMap = {};
+            var nightMap = {};
             maxData.forEach(function (v) {
-                if (v.ref >= '2026-01-01') dayPoints.push({ date: v.ref, value: parseFloat(v.value) });
+                if (v.ref >= '2026-01-01') {
+                    var val = parseFloat(v.value);
+                    dayPoints.push({ date: v.ref, value: val });
+                    dayMap[v.ref] = val;
+                }
             });
             minData.forEach(function (v) {
-                if (v.ref >= '2026-01-01') nightPoints.push({ date: v.ref, value: parseFloat(v.value) });
+                if (v.ref >= '2026-01-01') {
+                    var val = parseFloat(v.value);
+                    nightPoints.push({ date: v.ref, value: val });
+                    nightMap[v.ref] = val;
+                }
             });
 
-            buildSingleTempCanvas('temp-day-chart', '_tempDayMeta', dayPoints, '#C67B4F');
-            buildSingleTempCanvas('temp-night-chart', '_tempNightMeta', nightPoints, '#3D4F7C');
+            // Gemensam y-skala (VEP Förslag A)
+            var allVals = dayPoints.map(function (d) { return Math.abs(d.value); })
+                .concat(nightPoints.map(function (d) { return Math.abs(d.value); }));
+            var sharedAbsMax = Math.max(5, Math.max.apply(null, allVals));
+
+            buildSingleTempCanvas('temp-day-chart', '_tempDayMeta', dayPoints, '#C67B4F', sharedAbsMax);
+            buildSingleTempCanvas('temp-night-chart', '_tempNightMeta', nightPoints, '#3D4F7C', sharedAbsMax);
+
+            // ΔT dygnssvängning-remsa (VEP Förslag B)
+            buildDeltaTStrip(dayMap, nightMap);
         }).catch(function (err) {
             console.warn('Kunde inte hämta temperaturdata:', err);
         });
     }
 
     // Generisk Canvas-tempdiagram (en dataset åt gången)
-    function buildSingleTempCanvas(canvasId, metaKey, dataValues, color) {
+    function buildSingleTempCanvas(canvasId, metaKey, dataValues, color, sharedAbsMax) {
         var canvas = document.getElementById(canvasId);
         if (!canvas || dataValues.length === 0) return;
 
         var days = dataValues.map(function (d) { return d.date; });
         var vals = dataValues.map(function (d) { return d.value; });
-        var absMax = Math.max(5, Math.max.apply(null, vals.map(Math.abs)));
+        var absMax = sharedAbsMax || Math.max(5, Math.max.apply(null, vals.map(Math.abs)));
 
         var box = canvas.parentElement;
         var dpr = window.devicePixelRatio || 1;
@@ -339,6 +364,8 @@
             ctx.fillRect(0, 0, w, h);
             ctx.fillStyle = 'rgba(0,0,0,0.015)';
             ctx.fillRect(labelW, 0, chartW, rowH);
+            // Frostzon — ljusblå under 0° (VEP Förslag E)
+            ctx.fillStyle = 'rgba(180,210,235,0.12)';
             ctx.fillRect(labelW, rowH, chartW, rowH);
 
             ctx.strokeStyle = 'rgba(0,0,0,0.2)';
@@ -422,6 +449,94 @@
         };
     }
 
+    // ΔT dygnssvängnings-remsa (VEP Förslag B)
+    function buildDeltaTStrip(dayMap, nightMap) {
+        var canvas = document.getElementById('temp-delta-chart');
+        if (!canvas) return;
+
+        // Beräkna ΔT per dag
+        var allDates = Object.keys(dayMap).filter(function (d) { return nightMap[d] !== undefined; }).sort();
+        var deltas = {};
+        var maxDelta = 0;
+        allDates.forEach(function (d) {
+            var dt = dayMap[d] - nightMap[d];
+            deltas[d] = dt;
+            if (dt > maxDelta) maxDelta = dt;
+        });
+        maxDelta = Math.max(maxDelta, 5);
+
+        var box = canvas.parentElement;
+        var dpr = window.devicePixelRatio || 1;
+        var w = box.clientWidth;
+        var labelW = 30;
+        var chartW = w - labelW;
+        var h = 20;
+
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        canvas.style.width = w + 'px';
+        canvas.style.height = h + 'px';
+        var ctx = canvas.getContext('2d');
+        ctx.scale(dpr, dpr);
+
+        function drawDelta(fromDate, toDate) {
+            fromDate = fromDate || '2026-01-01';
+            toDate = toDate || '2026-12-31';
+            var isFullYear = (fromDate === '2026-01-01' && toDate === '2026-12-31');
+
+            ctx.fillStyle = '#fff';
+            ctx.fillRect(0, 0, w, h);
+
+            var timeframeDays = Math.max(1, Math.round((new Date(toDate) - new Date(fromDate)) / 86400000)) + 1;
+            var cellW = chartW / timeframeDays;
+            var fromMs = new Date(fromDate).getTime();
+
+            allDates.forEach(function (d) {
+                if (d < fromDate || d > toDate) return;
+                var dayMs = new Date(d).getTime();
+                var dayOffset = Math.round((dayMs - fromMs) / 86400000);
+                var x = labelW + dayOffset * cellW;
+                var barW = Math.max(Math.ceil(cellW), 2);
+                var dt = deltas[d];
+                var ratio = Math.min(dt / maxDelta, 1);
+
+                // Blå (liten ΔT) → vit (medel) → orange (stor ΔT)
+                var r, g, b;
+                if (ratio < 0.5) {
+                    var t = ratio * 2;
+                    r = Math.round(100 + t * 155);
+                    g = Math.round(160 + t * 80);
+                    b = Math.round(220 - t * 40);
+                } else {
+                    var t = (ratio - 0.5) * 2;
+                    r = Math.round(255 - t * 30);
+                    g = Math.round(240 - t * 120);
+                    b = Math.round(180 - t * 130);
+                }
+                ctx.fillStyle = 'rgb(' + r + ',' + g + ',' + b + ')';
+                ctx.fillRect(x, 0, barW, h);
+            });
+
+            // Dimma framtida perioder i helårsvy
+            if (isFullYear) {
+                var todayDOY = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 1)) / 86400000);
+                var futX = labelW + (todayDOY + 1) * cellW;
+                if (futX < w) {
+                    ctx.fillStyle = 'rgba(255,255,255,0.7)';
+                    ctx.fillRect(futX, 0, w - futX, h);
+                }
+            }
+        }
+
+        var initFrom = _currentTimeFrom || '2026-01-01';
+        var initTo = _currentTimeTo || '2026-12-31';
+        drawDelta(initFrom, initTo);
+
+        window._tempDeltaMeta = {
+            canvas: canvas, ctx: ctx, dpr: dpr, w: w, h: h,
+            drawAll: drawDelta, currentFrom: initFrom, currentTo: initTo
+        };
+    }
 
     // ================================================================
     // CHART 3: Nederbörd — blå staplar per dag
@@ -660,7 +775,7 @@
         }
 
         // 3. Uppdatera temperaturdiagrammen (Canvas, dag + natt)
-        ['_tempDayMeta', '_tempNightMeta'].forEach(function (key) {
+        ['_tempDayMeta', '_tempNightMeta', '_tempDeltaMeta'].forEach(function (key) {
             var tm = window[key];
             if (tm) {
                 tm.currentFrom = xMin;
