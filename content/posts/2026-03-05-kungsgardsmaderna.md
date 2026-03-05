@@ -31,11 +31,13 @@ images:
       - Kulturlandskap
 ---
 
-Nere vid **Kungsgårdsmaderna** fanns under eftermiddagen idag tre stycken ägretthägrar. De stora vattenspeglarna krymper nu i takt med att vattenståndet sjunker på maderna. 
+Ankomst till Tomarp från Klippansidan. Hängbron över Rönne å ledde in i Åstorps kommun. Planen var att runda maden. Stövlarna behövdes. 
 
-En enkelbeckasin lyfte — troligen en nyanländ fågel, och därmed ett nytt årskryss. Strax därefter flög drygt 200 bläsgäss över. De försvann bort mot horisonten, men slog troligen ner någonstans i närheten.
+Inte långt ut längs vattnet lyfte en enkelbeckasin. Årets första. Den kastade ett par gånger i luften och fällde sedan längre bort. Jag vek av från rutten. Fågeln fick ligga kvar.
 
-Årslistan fylldes även på med en turkduva som satt på ett hustak inne i byn längs Östra Storgatan. Turkduvorna verkar ha haft några tuffa år och det ska bli mycket intressant att se hur många par som kommer att orka hävda revir inom kommunen i år.
+Vid Kungsgårdsmaderna stod tre ägretthägrar. De stora vattenspeglarna krymper nu i takt med att vattenståndet sjunker undan. Snett ovanför flög drygt 200 bläsgäss. De försvann bort mot horisonten, men slog troligen ner i närheten. 
+
+I byn satt en turkduva på ett hustak längs Östra Storgatan. Ett årskryss till listan. Den har haft några tuffa år i kommunen. Vi får se hur det går i vår.
 
 <div style="margin: 2rem 0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);">
   <div style="position: relative; padding-bottom: 56.25%; height: 0; overflow: hidden; background: #000;">
