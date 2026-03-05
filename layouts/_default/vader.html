@@ -1393,28 +1393,28 @@
         metaKeys.forEach(function (key) {
             var m = window[key];
             if (!m) return;
-            var chartW = labelW || 30);
-        var cellW = chartW / timeframeDays;
-        var fromMs = new Date(viewFrom).getTime();
+            var chartW = m.w - (m.labelW || 30);
+            var cellW = chartW / timeframeDays;
+            var fromMs = new Date(viewFrom).getTime();
 
-        var hlFromMs = new Date(hlFrom).getTime();
-        var hlToMs = new Date(hlTo).getTime();
-        var x1 = (m.labelW || 30) + Math.round((hlFromMs - fromMs) / 86400000) * cellW;
-        var x2 = (m.labelW || 30) + (Math.round((hlToMs - fromMs) / 86400000) + 1) * cellW;
+            var hlFromMs = new Date(hlFrom).getTime();
+            var hlToMs = new Date(hlTo).getTime();
+            var x1 = (m.labelW || 30) + Math.round((hlFromMs - fromMs) / 86400000) * cellW;
+            var x2 = (m.labelW || 30) + (Math.round((hlToMs - fromMs) / 86400000) + 1) * cellW;
 
-        x1 = Math.max(m.labelW || 30, x1);
-        x2 = Math.min(m.w, x2);
-        if (x2 <= x1) return;
+            x1 = Math.max(m.labelW || 30, x1);
+            x2 = Math.min(m.w, x2);
+            if (x2 <= x1) return;
 
-        m.ctx.save();
-        m.ctx.setTransform(m.dpr, 0, 0, m.dpr, 0, 0);
-        m.ctx.fillStyle = 'rgba(255, 235, 59, 0.25)';
-        m.ctx.fillRect(x1, 0, x2 - x1, m.h);
-        m.ctx.strokeStyle = 'rgba(255, 193, 7, 0.6)';
-        m.ctx.lineWidth = 1;
-        m.ctx.strokeRect(x1, 0, x2 - x1, m.h);
-        m.ctx.restore();
-    });
+            m.ctx.save();
+            m.ctx.setTransform(m.dpr, 0, 0, m.dpr, 0, 0);
+            m.ctx.fillStyle = 'rgba(255, 235, 59, 0.25)';
+            m.ctx.fillRect(x1, 0, x2 - x1, m.h);
+            m.ctx.strokeStyle = 'rgba(255, 193, 7, 0.6)';
+            m.ctx.lineWidth = 1;
+            m.ctx.strokeRect(x1, 0, x2 - x1, m.h);
+            m.ctx.restore();
+        });
     }
 
     function clearHighlights() {
