@@ -138,11 +138,11 @@
 
     // Bloggposter (inbäddad vid byggtid)
     var blogPosts = [
-        {{ range $i, $p:= (where.Site.RegularPages "Section" "posts") }}
-    { { if not.Draft } }
-    { date: "{{ .Date.Format "2006-01-02" }}", title: { { .Title | jsonify } }, url: "{{ .RelPermalink }}", excerpt: { { .Plain | truncate 200 | jsonify } } },
-    { { end } }
-    { { end } }
+        {{ range $i, $p := (where .Site.RegularPages "Section" "posts") }}
+    {{ if not .Draft }}
+    { date: "{{ .Date.Format "2006-01-02" }}", title: {{ .Title | jsonify }}, url: "{{ .RelPermalink }}", excerpt: {{ .Plain | truncate 200 | jsonify }} },
+    {{ end }}
+    {{ end }}
     ];
 
     // SMHI-stationer

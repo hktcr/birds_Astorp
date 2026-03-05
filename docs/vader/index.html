@@ -667,7 +667,7 @@
         var w = box.clientWidth;
         var labelW = 30;
         var chartW = w - labelW;
-        var rowH = 50;
+        var rowH = window.innerWidth < 600 ? 55 : 80;
         var bottomPad = 24;
         var base = rowH;
         var h = (rowH * 2) + bottomPad;
