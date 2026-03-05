@@ -780,7 +780,7 @@
         drawBars(initFrom, initTo);
 
         window[metaKey] = {
-            canvas: canvas, ctx: ctx, dpr: dpr, w: w, h: h,
+            canvas: canvas, ctx: ctx, dpr: dpr, w: w, h: h, labelW: labelW,
             drawAll: drawBars, currentFrom: initFrom, currentTo: initTo
         };
     }
@@ -869,7 +869,7 @@
         drawDelta(initFrom, initTo);
 
         window._tempDeltaMeta = {
-            canvas: canvas, ctx: ctx, dpr: dpr, w: w, h: h,
+            canvas: canvas, ctx: ctx, dpr: dpr, w: w, h: h, labelW: labelW,
             drawAll: drawDelta, currentFrom: initFrom, currentTo: initTo
         };
     }
@@ -1052,6 +1052,8 @@
     var _currentTimeMode = '14d';
     var _currentTimeFrom = null;
     var _currentTimeTo = null;
+    var _highlightFrom = null;
+    var _highlightTo = null;
 
     function setTimeRange(mode, monthValue) {
         var xMin, xMax;
@@ -1467,7 +1469,7 @@
             drawAll(initFrom, initTo);
 
             window._windChartMeta = {
-                canvas: canvas, ctx: ctx, dpr: dpr, w: w, h: h,
+                canvas: canvas, ctx: ctx, dpr: dpr, w: w, h: h, labelW: labelW,
                 drawAll: drawAll, dayIndices: dayIndices, days: days,
                 currentFrom: '2026-01-01', currentTo: '2026-12-31'
             };
@@ -1570,7 +1572,7 @@
         drawDelta(initFrom, initTo);
 
         window._windDeltaMeta = {
-            canvas: canvas, ctx: ctx, dpr: dpr, w: w, h: h,
+            canvas: canvas, ctx: ctx, dpr: dpr, w: w, h: h, labelW: labelW,
             drawAll: drawDelta, currentFrom: initFrom, currentTo: initTo
         };
     }
@@ -1681,6 +1683,10 @@
         setTimeRange('range', { from: rangeFromStr, to: rangeToStr });
 
         
+        _highlightFrom = from;
+        _highlightTo = to;
+
+        
         var wm = window._windChartMeta;
         if (wm) {
             var jan1 = new Date(fromDate.getFullYear(), 0, 1);
@@ -1693,11 +1699,49 @@
         }
 
         
+        overlayCanvasHighlight(from, to, rangeFromStr, rangeToStr);
+
+        
         var triptych = document.querySelector('.vader-triptych');
         if (triptych) triptych.scrollIntoView({ behavior: 'smooth', block: 'start' });
     }
 
+    
+    function overlayCanvasHighlight(hlFrom, hlTo, viewFrom, viewTo) {
+        var metaKeys = ['_tempDayMeta', '_tempNightMeta', '_tempDeltaMeta', '_windDeltaMeta'];
+        var timeframeDays = Math.max(1, Math.round((new Date(viewTo) - new Date(viewFrom)) / 86400000)) + 1;
+
+        metaKeys.forEach(function (key) {
+            var m = window[key];
+            if (!m) return;
+            var chartW = labelW || 30);
+        var cellW = chartW / timeframeDays;
+        var fromMs = new Date(viewFrom).getTime();
+
+        var hlFromMs = new Date(hlFrom).getTime();
+        var hlToMs = new Date(hlTo).getTime();
+        var x1 = (m.labelW || 30) + Math.round((hlFromMs - fromMs) / 86400000) * cellW;
+        var x2 = (m.labelW || 30) + (Math.round((hlToMs - fromMs) / 86400000) + 1) * cellW;
+
+        x1 = Math.max(m.labelW || 30, x1);
+        x2 = Math.min(m.w, x2);
+        if (x2 <= x1) return;
+
+        m.ctx.save();
+        m.ctx.setTransform(m.dpr, 0, 0, m.dpr, 0, 0);
+        m.ctx.fillStyle = 'rgba(255, 235, 59, 0.25)';
+        m.ctx.fillRect(x1, 0, x2 - x1, m.h);
+        m.ctx.strokeStyle = 'rgba(255, 193, 7, 0.6)';
+        m.ctx.lineWidth = 1;
+        m.ctx.strokeRect(x1, 0, x2 - x1, m.h);
+        m.ctx.restore();
+    });
+    }
+
     function clearHighlights() {
+        _highlightFrom = null;
+        _highlightTo = null;
+
         var chartCanvases = ['progress-chart', 'temp-chart', 'precip-chart', 'flow-chart'];
         chartCanvases.forEach(function (id) {
             var el = document.getElementById(id);
@@ -1716,6 +1760,16 @@
             wm.drawAll(wm.currentFrom, wm.currentTo);
             wm.ctx.restore();
         }
+
+        
+        ['_tempDayMeta', '_tempNightMeta', '_tempDeltaMeta', '_windDeltaMeta'].forEach(function (key) {
+            var m = window[key];
+            if (!m) return;
+            m.ctx.save();
+            m.ctx.setTransform(m.dpr, 0, 0, m.dpr, 0, 0);
+            m.drawAll(m.currentFrom, m.currentTo);
+            m.ctx.restore();
+        });
     }
 
     
