@@ -633,6 +633,22 @@
             "location": "Björnekullaskolan",
             "lat": 56.13677,
             "lng": 12.95158
+        },
+        {
+            "species": "Turkduva",
+            "latin": "Streptopelia decaocto",
+            "date": "2026-03-05",
+            "location": "Östra Storgatan",
+            "lat": 56.13885,
+            "lng": 12.95484
+        },
+        {
+            "species": "Enkelbeckasin",
+            "latin": "Gallinago gallinago",
+            "date": "2026-03-05",
+            "location": "Kungsgårdsmaderna",
+            "lat": 56.15343,
+            "lng": 13.06878
         }
     ]
 }
