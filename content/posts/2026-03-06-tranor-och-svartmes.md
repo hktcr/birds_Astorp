@@ -1,13 +1,12 @@
 ---
-title: "Tranor och svartmes: En fråga om skala"
+title: "Kraftmätning på fältet"
 date: 2026-03-06
 draft: false
-location: "Fåraböke · Kungsgårdsmaderna"
+location: "Fåraböke"
 image: "/images/posts/2026-03-06-tranor-och-svartmes/tranpar_20260306.jpg"
 species:
   - Svartmes
   - Trana
-  - Ängspiplärka
 tags:
   - Fältrapport
   - årskryss
@@ -16,9 +15,6 @@ locations:
   - name: "Fåraböke"
     lat: 56.07789001813259
     lng: 13.067594119415102
-  - name: "Kungsgårdsmaderna"
-    lat: 56.15343
-    lng: 13.06878
 images:
   - url: "/images/posts/2026-03-06-tranor-och-svartmes/tranpar_20260306.jpg"
     alt: "Ett tranpar på fältet"
