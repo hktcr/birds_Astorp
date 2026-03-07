@@ -88,6 +88,15 @@
                 <div class="vader-chart-source">SMHI, Helsingborg A</div>
             </div>
 
+            <!-- 3b. Natttemperatur (min) -->
+            <div class="vader-chart-box" id="chart-temp-night">
+                <div class="vader-chart-label">🌙 Natttemperatur (lägsta)</div>
+                <canvas id="temp-night-chart"></canvas>
+                <p class="vader-chart-hint">Nattens uppmätta mintemperatur. Staplar uppåt = plusgrader, nedåt =
+                    minusgrader.</p>
+                <div class="vader-chart-source">SMHI, Helsingborg A</div>
+            </div>
+
             <!-- ΔT dygnssvängning — kopplingsremsa -->
             <div class="vader-chart-box vader-delta-strip" id="chart-temp-delta">
                 <canvas id="temp-delta-chart"></canvas>
@@ -97,15 +106,6 @@
                     <span style="color:#f0e0b4;">■</span> medel ·
                     <span style="color:#e07832;">■</span> stor svängning — stark biologisk signal
                 </div>
-            </div>
-
-            <!-- 3b. Natttemperatur (min) -->
-            <div class="vader-chart-box" id="chart-temp-night">
-                <div class="vader-chart-label">🌙 Natttemperatur (lägsta)</div>
-                <canvas id="temp-night-chart"></canvas>
-                <p class="vader-chart-hint">Nattens uppmätta mintemperatur. Staplar uppåt = plusgrader, nedåt =
-                    minusgrader.</p>
-                <div class="vader-chart-source">SMHI, Helsingborg A</div>
             </div>
 
             <!-- 4. Nederbörd -->
@@ -138,11 +138,11 @@
 
     // Bloggposter (inbäddad vid byggtid)
     var blogPosts = [
-        {{ range $i, $p := (where .Site.RegularPages "Section" "posts") }}
-    {{ if not .Draft }}
-    { date: "{{ .Date.Format "2006-01-02" }}", title: {{ .Title | jsonify }}, url: "{{ .RelPermalink }}", excerpt: {{ .Plain | truncate 200 | jsonify }} },
-    {{ end }}
-    {{ end }}
+        {{ range $i, $p:= (where .Site.RegularPages "Section" "posts") }}
+        {{ if not .Draft }}
+        { date: "{{ .Date.Format "2006-01-02" }}", title: "{{ .Title }}", url: "{{ .RelPermalink }}", excerpt: {{ .Plain | truncate 200 | jsonify }} },
+        {{ end }}
+        {{ end }}
     ];
 
     // SMHI-stationer
