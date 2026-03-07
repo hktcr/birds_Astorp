@@ -638,14 +638,30 @@
             "species": "Turkduva",
             "latin": "Streptopelia decaocto",
             "date": "2026-03-05",
-            "location": "Östra Storgatan",
-            "lat": 56.13885,
-            "lng": 12.95484
+            "location": "Östra Storgatan i Kvidinge",
+            "lat": 56.133298631450046,
+            "lng": 13.054133737368847
         },
         {
             "species": "Enkelbeckasin",
             "latin": "Gallinago gallinago",
             "date": "2026-03-05",
+            "location": "Kungsgårdsmaderna",
+            "lat": 56.15343,
+            "lng": 13.06878
+        },
+        {
+            "species": "Svartmes",
+            "latin": "Periparus ater",
+            "date": "2026-03-06",
+            "location": "Fåraböke",
+            "lat": 56.07789001813259,
+            "lng": 13.067594119415102
+        },
+        {
+            "species": "Ängspiplärka",
+            "latin": "Anthus pratensis",
+            "date": "2026-03-06",
             "location": "Kungsgårdsmaderna",
             "lat": 56.15343,
             "lng": 13.06878
