@@ -57,3 +57,18 @@
 - `.agent/workflows/krysslista.md` (Steg 4 snapshot + nytt Steg 5 rapport)
 
 ---
+### 2026-03-07 — b8c0d8d9
+
+**Ursprung:** Åstorp-2026 Krysslista & Naturprosa-kalibrering
+**Typ:** Framsteg
+
+> Hanterade krysslista för 2026-03-06 (Åstorp). Uppdaterade checklist-2026.json med Svartmes och Ängspiplärka (totalt 83 arter). Skapade blogginlägget 'Kraftmätning på fältet' med ny mediehantering (uppladdad video+poster). Omskapade /redaktörs-workflowen till att använda diff-block för bättre läsbarhet, och finjusterade Naturprosa-stilregistret för att tillåta mer berättande rytm.
+
+**Relaterade filer:**
+- data/checklist-2026.json
+- content/posts/2026-03-06-tranor-och-svartmes.md
+- .agent/workflows/redaktör.md
+- gAIa_OBSIDIAN/gAIa/Skrivarstugan/Sakprosa/Naturprosa_Stilregister.md
+
+---
+
