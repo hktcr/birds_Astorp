@@ -77,12 +77,27 @@ document.addEventListener("DOMContentLoaded", () => {
 
         const intensity = Math.min(1, count / GLOBAL_MAX_YEARS);
 
-        // En enhetlig snygg orange färgton för hela året
-        // Hue 28 är klassisk orange. Lightness går från 90% (blek/ljus) till 50% (mättad)
-        const hue = 28;
-        const lightness = 95 - (45 * intensity); // Blekare start (86% vid 1) till djup (50% vid 5)
-
-        return `hsl(${hue}, 100%, ${lightness}%)`;
+        if (month >= 3 && month <= 5) {
+            // Spring (Mar-May): Green
+            const hue = 140;
+            const lightness = 95 - (45 * intensity);
+            return `hsl(${hue}, 60%, ${lightness}%)`;
+        } else if (month >= 6 && month <= 8) {
+            // Summer (Jun-Aug): Yellow
+            const hue = 45;
+            const lightness = 95 - (45 * intensity);
+            return `hsl(${hue}, 100%, ${lightness}%)`;
+        } else if (month >= 9 && month <= 11) {
+            // Autumn (Sep-Nov): Orange/Red
+            const hue = 15;
+            const lightness = 95 - (45 * intensity);
+            return `hsl(${hue}, 80%, ${lightness}%)`;
+        } else {
+            // Winter (Dec-Feb): Blue
+            const hue = 210;
+            const lightness = 95 - (45 * intensity);
+            return `hsl(${hue}, 80%, ${lightness}%)`;
+        }
     }
 
     /**
