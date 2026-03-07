@@ -72,3 +72,17 @@
 
 ---
 
+### 2026-03-07 — b8c0d8d9 (del 2)
+
+**Ursprung:** Åstorp-2026 Krysslista & Naturprosa-kalibrering
+**Typ:** Insikt | Framsteg | Buggfix | Röd tråd
+
+> Slutförde resterna av `/fågel`-pipelinen. Sökte upprutade `/observationer` och genererade TSV-exportfil för Artportalen med exakt filtrering (`artportalen: true`). Genomförde en `/astorpsfaglar` hälsokontroll och åtgärdade falskt positiva bash-script (`grep -qL`-bugg på macOS) samt en python-bugg som felaktigt tolkade fotokategorier som arter. Upptäckte att `/krysslista` saknade handover till `/fågel` och lade till en explicit uppmaning i slutet av det flödet (Steg 6) för att bygga en robustare brygga mellan inmatning och registrering.
+
+**Relaterade filer:**
+- `Artportalen/observations-registry-2026.json` (registrerade 31 nya obs, markerade 29 som skip)
+- `.agent/workflows/astorpsfaglar.md` (rättat bash+python)
+- `.agent/workflows/krysslista.md` (nytt Steg 6 handover)
+- `data/species_portraits.json` (lagt till 4 saknade porträtt)
+
+---

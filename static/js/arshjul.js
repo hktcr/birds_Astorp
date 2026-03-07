@@ -70,7 +70,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Global fixed scale: 1 year = light, GLOBAL_MAX_YEARS+ = full saturation.
     // This ensures that rare species with 1 obs year don't appear at max intensity.
-    const GLOBAL_MAX_YEARS = 8;
+    const GLOBAL_MAX_YEARS = 5;
 
     function getColor(month, count) {
         if (count === 0) return "none";
@@ -78,11 +78,11 @@ document.addEventListener("DOMContentLoaded", () => {
         const intensity = Math.min(1, count / GLOBAL_MAX_YEARS);
 
         if (isSummer) {
-            const hue = 50 - (20 * intensity);
-            const lightness = 65 - (15 * intensity);
+            const hue = 60 - (30 * intensity);
+            const lightness = 100 - (50 * intensity);
             return `hsl(${hue}, 100%, ${lightness}%)`;
         } else {
-            const lightness = 80 - (40 * intensity);
+            const lightness = 100 - (50 * intensity);
             return `hsl(210, 90%, ${lightness}%)`;
         }
     }
