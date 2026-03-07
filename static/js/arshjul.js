@@ -74,17 +74,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function getColor(month, count) {
         if (count === 0) return "none";
-        const isSummer = (month >= 5 && month <= 9);
+
         const intensity = Math.min(1, count / GLOBAL_MAX_YEARS);
 
-        if (isSummer) {
-            const hue = 60 - (30 * intensity);
-            const lightness = 100 - (50 * intensity);
-            return `hsl(${hue}, 100%, ${lightness}%)`;
-        } else {
-            const lightness = 100 - (50 * intensity);
-            return `hsl(210, 90%, ${lightness}%)`;
-        }
+        // En enhetlig snygg orange färgton för hela året
+        // Hue 28 är klassisk orange. Lightness går från 90% (blek/ljus) till 50% (mättad)
+        const hue = 28;
+        const lightness = 95 - (45 * intensity); // Blekare start (86% vid 1) till djup (50% vid 5)
+
+        return `hsl(${hue}, 100%, ${lightness}%)`;
     }
 
     /**
