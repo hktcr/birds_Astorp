@@ -22,7 +22,7 @@ images:
       - Trana
 ---
 
-En svartmes, tio gram lätt, sjunger intensivt bland granarna. Nere på fältet tre tranor. De ropar, mäter sin styrka mot varandra, i alla fall de två hanarna. Honan bredvid är mer avvaktande. Om svartmesen har en partner i närheten kan jag inte se.
+En svartmes, tio gram lätt och tjugo centimeter mellan vingspetsarna, sjunger intensivt bland granarna. Nere på fältet tre tranor, sex kilo tunga och med ett vingspann på nästan två och en halv meter. De ropar, mäter sin styrka mot varandra, i alla fall de två hanarna. Honan bredvid är mer avvaktande. Om svartmesen har en partner i närheten kan jag inte se.
 
 För dessa fåglar, likt så många andra, har nu året gått in i en ny fas. Nu gäller det att säkerställa sin plats i världen, en partner, en plats att bygga sitt bo.
 
