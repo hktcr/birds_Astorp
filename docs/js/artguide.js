@@ -1,7 +1,6 @@
 /**
- * Fågelåret i Åstorp — Artkalender
- * Interactive species guide with monthly navigation,
- * rarity color coding, and checklist integration.
+ * Fågelåret i Åstorp — Artkalender (Fält-guide läge)
+ * Interaktiv artkalender som visar arter för angiven månad.
  */
 (function () {
     'use strict';
@@ -10,10 +9,8 @@
     let speciesData = [];
     let checklistData = [];
     let currentMonth = new Date().getMonth(); // 0-indexed
-    let currentView = 'month';
     let currentFilter = 'all';
     let currentSort = 'likely';
-    let expandedCard = null;
 
     const MONTH_NAMES = [
         'Januari', 'Februari', 'Mars', 'April', 'Maj', 'Juni',
@@ -102,32 +99,7 @@
             btn.addEventListener('click', () => {
                 const month = parseInt(btn.dataset.month);
                 setActiveMonth(month);
-                if (currentView === 'month') {
-                    renderMonthView(month);
-                }
-            });
-        });
-
-        // View toggle
-        document.querySelectorAll('.artguide-view-toggle__btn').forEach(btn => {
-            btn.addEventListener('click', () => {
-                document.querySelectorAll('.artguide-view-toggle__btn').forEach(b => {
-                    b.classList.remove('artguide-view-toggle__btn--active');
-                    b.setAttribute('aria-selected', 'false');
-                });
-                btn.classList.add('artguide-view-toggle__btn--active');
-                btn.setAttribute('aria-selected', 'true');
-                currentView = btn.dataset.view;
-
-                // Hide month nav in year view
-                const monthNav = document.querySelector('.artguide-months');
-                if (monthNav) monthNav.style.display = currentView === 'year' ? 'none' : '';
-
-                if (currentView === 'month') {
-                    renderMonthView(currentMonth);
-                } else {
-                    renderYearView();
-                }
+                renderMonthView(month);
             });
         });
 
@@ -137,11 +109,7 @@
                 document.querySelectorAll('.artguide-filter').forEach(b => b.classList.remove('artguide-filter--active'));
                 btn.classList.add('artguide-filter--active');
                 currentFilter = btn.dataset.filter;
-                if (currentView === 'month') {
-                    renderMonthView(currentMonth);
-                } else {
-                    renderYearView();
-                }
+                renderMonthView(currentMonth);
             });
         });
 
@@ -151,11 +119,7 @@
                 document.querySelectorAll('.artguide-sort__btn').forEach(b => b.classList.remove('artguide-sort__btn--active'));
                 btn.classList.add('artguide-sort__btn--active');
                 currentSort = btn.dataset.sort;
-                if (currentView === 'month') {
-                    renderMonthView(currentMonth);
-                } else {
-                    renderYearView();
-                }
+                renderMonthView(currentMonth);
             });
         });
     }
@@ -292,13 +256,21 @@
         container.innerHTML = monthSpecies.map(sp => renderCard(sp, month)).join('');
         updateLegendCounts(monthSpecies);
 
-        // Add click handlers for expansion
+        // Add click handlers: Open Årshjul modal if arshjul.js function exists, else expand basic detail
         container.querySelectorAll('.artguide-card').forEach(card => {
-            card.addEventListener('click', () => toggleCardExpansion(card));
+            card.addEventListener('click', () => {
+                if (typeof window.openArshjulModalForSpecies === 'function') {
+                    // Try to use the modern Modal
+                    window.openArshjulModalForSpecies(card.dataset.species, card.dataset.checked === 'true' ? card.dataset.checkdate : null);
+                } else {
+                    // Fallback to inline expansion
+                    toggleCardExpansion(card);
+                }
+            });
             card.addEventListener('keydown', e => {
                 if (e.key === 'Enter' || e.key === ' ') {
                     e.preventDefault();
-                    toggleCardExpansion(card);
+                    card.click();
                 }
             });
         });
@@ -328,7 +300,9 @@
         return `
         <div class="artguide-card artguide-card--${sp.category}${checkedClass}"
              tabindex="0" role="button" aria-label="${ariaLabel}"
-             data-species="${sp.name}">
+             data-species="${sp.name}"
+             data-checked="${sp.checked}"
+             data-checkdate="${sp.checkDate || ''}">
             <div class="artguide-card__header">
                 <div class="artguide-card__names">
                     <span class="artguide-card__name">${sp.name}${checkMark} ${icon}</span>
@@ -416,63 +390,6 @@
             if (sparkline) sparkline.style.display = 'none';
             card.classList.add('artguide-card--expanded');
         }
-    }
-
-    // --- Year/heatmap view ---
-    function renderYearView() {
-        const container = document.getElementById('artguide-species');
-        if (!container) return;
-
-        // Show year heading
-        const monthHeading = document.querySelector('.artguide-month-heading');
-        if (monthHeading) {
-            monthHeading.style.display = '';
-            const title = monthHeading.querySelector('.artguide-month-heading__title');
-            const subtitle = monthHeading.querySelector('.artguide-month-heading__subtitle');
-            const filtered0 = filterSpecies(speciesData);
-            const checkedTotal = filtered0.filter(s => s.checked).length;
-            if (title) title.textContent = 'Helårsöversikt';
-            if (subtitle) subtitle.textContent = `${filtered0.length} arter historiskt observerade · ${checkedTotal} kryssade`;
-        }
-
-        let filtered = filterSpecies(speciesData);
-        if (currentSort === 'chronological') {
-            filtered = sortChronological(filtered);
-        } else {
-            filtered = sortSpecies(filtered, undefined);
-        }
-
-        container.className = 'artguide-species artguide-species--heatmap';
-
-        let html = '<div class="artguide-heatmap-wrap"><table class="artguide-heatmap">';
-        html += '<thead><tr><th class="artguide-heatmap__name-col">Art</th>';
-        for (let i = 0; i < 12; i++) {
-            const cls = i === currentMonth ? ' class="artguide-heatmap__active-month"' : '';
-            html += `<th${cls}>${MONTH_NAMES[i].substring(0, 3)}</th>`;
-        }
-        html += '<th>Tot</th></tr></thead><tbody>';
-
-        for (const sp of filtered) {
-            const max = Math.max(...sp.months, 1);
-            const checkedMark = sp.checked ? ' ✓' : '';
-            const rowClass = sp.checked ? 'artguide-heatmap__row--checked' : '';
-
-            html += `<tr class="artguide-heatmap__row artguide-heatmap__row--${sp.category} ${rowClass}">`;
-            html += `<td class="artguide-heatmap__name">${sp.name}${sp.checked ? ' <span class="artguide-heatmap__checkmark">✓</span>' : ''} <span class="artguide-heatmap__latin">${sp.latin}</span></td>`;
-
-            for (let i = 0; i < 12; i++) {
-                const val = sp.months[i];
-                const intensity = val > 0 ? Math.max(0.15, val / max) : 0;
-                const activeClass = i === currentMonth ? ' artguide-heatmap__cell--active' : '';
-                html += `<td class="artguide-heatmap__cell artguide-heatmap__cell--${sp.category}${activeClass}" style="--intensity:${intensity.toFixed(2)}" title="${val} obs i ${MONTH_NAMES[i]}">${val > 0 ? val : ''}</td>`;
-            }
-            html += `<td class="artguide-heatmap__total">${sp.total}</td>`;
-            html += '</tr>';
-        }
-
-        html += '</tbody></table></div>';
-        container.innerHTML = html;
-        updateLegendCounts(filtered);
     }
 
     // --- Helpers ---

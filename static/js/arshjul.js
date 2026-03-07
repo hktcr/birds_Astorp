@@ -324,7 +324,8 @@ document.addEventListener("DOMContentLoaded", () => {
         fetch(guideUrl).then(r => r.json()).catch(() => null),
         fetch(checklistUrl).then(r => r.json()).catch(() => null)
     ])
-        .then(([data, guideData, checklistData]) => {
+        .then((window._arshjulData = data; 
+            [data, guideData, checklistData]) => {
             if (loadingEl) loadingEl.remove();
 
             // Build category + latin lookup from species-guide.json
@@ -518,3 +519,14 @@ document.addEventListener("DOMContentLoaded", () => {
 
 });
 
+
+// Expose openModal to global scope for artguide.js
+window.openArshjulModalForSpecies = function(speciesName, checkDate) {
+    if (window._arshjulData && window._arshjulData[speciesName]) {
+        // We recreate slug logic here
+        const slug = speciesName.toLowerCase().replace(/å/g, "a").replace(/ä/g, "a").replace(/ö/g, "o").replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+        openModal(speciesName, slug, window._arshjulData[speciesName], checkDate);
+    } else {
+        console.warn("No data for species", speciesName);
+    }
+};

@@ -1,41 +1,61 @@
 {{ define "main" }}
 <div class="artguide">
 
-    <!-- ══════════ TOP-LEVEL TAB SWITCHER ══════════ -->
-    <div class="artguide-tabs" role="tablist" aria-label="Växla mellan Artkalender och Årshjul">
-        <button class="artguide-tabs__btn artguide-tabs__btn--active" data-tab="kalender" role="tab"
-            aria-selected="true" aria-controls="panel-kalender" id="tab-kalender">
-            Kalender
-        </button>
-        <button class="artguide-tabs__btn" data-tab="arshjul" role="tab" aria-selected="false"
-            aria-controls="panel-arshjul" id="tab-arshjul">
-            Årshjul
+    <!-- ══════════ PROGRESS BAR (GLOBAL) ══════════ -->
+    <div class="artguide-progress" role="progressbar" aria-valuemin="0" aria-valuemax="150" aria-valuenow="0"
+        aria-label="Årslista framsteg" style="margin-bottom: 2rem;">
+        <div class="artguide-progress__header">
+            <span class="artguide-progress__label">Årslista</span>
+            <span class="artguide-progress__count">0/150 arter</span>
+        </div>
+        <div class="artguide-progress__thermometer">
+            <div class="artguide-progress__scale">
+                <span class="artguide-progress__scale-mark" style="left: 0%">0</span>
+                <span class="artguide-progress__scale-mark" style="left: 33.3%">50</span>
+                <span class="artguide-progress__scale-mark" style="left: 66.6%">100</span>
+                <span class="artguide-progress__scale-mark" style="left: 100%">150</span>
+            </div>
+            <div class="artguide-progress__bar">
+                <div class="artguide-progress__fill"></div>
+            </div>
+        </div>
+        <div class="artguide-progress__latest"></div>
+    </div>
+
+    <!-- ══════════ FÄLT-GUIDE KNAPP ══════════ -->
+    <div style="text-align: center; margin-bottom: 2rem;">
+        <button id="btn-toggle-kalender" style="
+            background-color: #2d5016; 
+            color: white; 
+            border: none; 
+            border-radius: 9999px; 
+            padding: 0.75rem 1.5rem; 
+            font-size: 1rem; 
+            font-weight: 600; 
+            cursor: pointer; 
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1); 
+            display: inline-flex; 
+            align-items: center; 
+            gap: 0.5rem; 
+            transition: all 0.2s ease;">
+            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+            Ute i fält? Visa Artkalendern för just nu
         </button>
     </div>
 
-    <!-- ══════════ PANEL: KALENDER (Artguide) ══════════ -->
-    <div id="panel-kalender" class="artguide-panel artguide-panel--active" role="tabpanel"
-        aria-labelledby="tab-kalender">
+    <!-- ══════════ PANEL: KALENDER (Artguide för fält) ══════════ -->
+    <div id="panel-kalender" class="artguide-panel"
+        style="display: none; padding: 1.5rem; background: #f8fafc; border-radius: 1rem; border: 1px solid #e2e8f0; margin-bottom: 3rem;">
 
-        <!-- Progress bar (termometer-stil som startsidan) -->
-        <div class="artguide-progress" role="progressbar" aria-valuemin="0" aria-valuemax="150" aria-valuenow="0"
-            aria-label="Årslista framsteg">
-            <div class="artguide-progress__header">
-                <span class="artguide-progress__label">Årslista</span>
-                <span class="artguide-progress__count">0/150 arter</span>
-            </div>
-            <div class="artguide-progress__thermometer">
-                <div class="artguide-progress__scale">
-                    <span class="artguide-progress__scale-mark" style="left: 0%">0</span>
-                    <span class="artguide-progress__scale-mark" style="left: 33.3%">50</span>
-                    <span class="artguide-progress__scale-mark" style="left: 66.6%">100</span>
-                    <span class="artguide-progress__scale-mark" style="left: 100%">150</span>
-                </div>
-                <div class="artguide-progress__bar">
-                    <div class="artguide-progress__fill"></div>
-                </div>
-            </div>
-            <div class="artguide-progress__latest"></div>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1rem;">
+            <h3 style="margin: 0; font-size: 1.25rem; color: #1e293b;">Månadsguide</h3>
+            <button id="btn-close-kalender"
+                style="background: none; border: none; font-size: 1.5rem; color: #64748b; cursor: pointer;"
+                aria-label="Stäng kalender">×</button>
         </div>
 
         <!-- Month navigation -->
@@ -54,14 +74,8 @@
             <button class="artguide-months__btn" data-month="11">Dec</button>
         </nav>
 
-        <!-- View toggle + filters -->
+        <!-- Sort and filters -->
         <div class="artguide-controls">
-            <div class="artguide-view-toggle" role="tablist" aria-label="Växla vy">
-                <button class="artguide-view-toggle__btn" data-view="month" role="tab"
-                    aria-selected="false">Månadsvy</button>
-                <button class="artguide-view-toggle__btn artguide-view-toggle__btn--active" data-view="year" role="tab"
-                    aria-selected="true">Helårsöversikt</button>
-            </div>
             <div class="artguide-sort-toggle" aria-label="Sortering">
                 <button class="artguide-sort__btn artguide-sort__btn--active" data-sort="likely">Troligast</button>
                 <button class="artguide-sort__btn" data-sort="chronological">Kronologisk</button>
@@ -122,23 +136,15 @@
         <!-- Species container (filled by JS) -->
         <div class="artguide-species" id="artguide-species"></div>
 
-        <!-- Footer -->
-        <footer class="artguide-footer">
-            <p>Data: <a href="https://www.artportalen.se" target="_blank" rel="noopener">Artportalen</a> — samtliga
-                fågelobservationer i Åstorps kommun, alla observatörer, alla år.</p>
-            <p class="artguide-footer__date"></p>
-        </footer>
-
     </div>
 
     <!-- ══════════ PANEL: ÅRSHJUL ══════════ -->
-    <div id="panel-arshjul" class="artguide-panel" role="tabpanel" aria-labelledby="tab-arshjul" hidden>
+    <div id="panel-arshjul" class="artguide-panel" style="display: block;">
 
         <div class="arshjul-page" style="max-width: 1200px; margin: 0 auto; padding: 1rem 0;">
 
-            {{/* ── HEADER ── */}}
+            <!-- Header and descriptive text -->
             <div class="arshjul-header" style="text-align: center; margin-bottom: 2rem;">
-                <h2 style="font-size: 2rem; font-weight: 800; margin-bottom: 0.5rem; color: #1e293b;">Årshjul</h2>
                 <p style="color: #64748b; font-size: 1.05rem; max-width: 640px; margin: 0 auto; line-height: 1.6;">
                     Varje segment i hjulet motsvarar en dag på året. En färgad markering betyder att arten
                     har observerats i Åstorps kommun den dagen minst ett år. Ju starkare färg, desto fler
@@ -180,7 +186,7 @@
                 </div>
             </div>
 
-            {{/* ── FILTER BUTTONS ── */}}
+            <!-- Filter Buttons -->
             <div id="arshjul-filters"
                 style="display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem;">
                 <button class="arshjul-filter-btn arshjul-filter-btn--active" data-filter="alla"
@@ -200,7 +206,7 @@
                     style="padding: 0.4rem 1rem; border-radius: 999px; border: 1px solid #d1d5db; background: white; color: #374151; cursor: pointer; font-size: 0.85rem; transition: all 0.2s;">Saknade</button>
             </div>
 
-            {{/* ── SÖKRUTA ── */}}
+            <!-- Sök -->
             <div id="arshjul-search-container" style="display: flex; justify-content: center; margin-bottom: 2rem;">
                 <div style="position: relative; width: 100%; max-width: 400px;">
                     <input type="text" id="arshjul-search" placeholder="Sök art..."
@@ -216,17 +222,16 @@
                 </div>
             </div>
 
-            {{/* ── GRID CONTAINER ── */}}
+            <!-- Grid -->
             <div id="arshjul-grid"
                 style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem;">
-                <!-- JS will populate cards here -->
                 <p id="arshjul-loading"
                     style="text-align: center; grid-column: 1 / -1; color: #94a3b8; padding: 3rem 0;">
                     Laddar fenologidata...
                 </p>
             </div>
 
-            {{/* ── MODAL ── */}}
+            <!-- Modal -->
             <dialog id="arshjul-modal"
                 style="padding: 0; border: none; border-radius: 1.5rem; background: transparent; outline: none; margin: auto;">
                 <div class="modal-content"
@@ -235,8 +240,7 @@
                         style="position: absolute; top: 1.5rem; right: 1.5rem; background: #f1f5f9; border: none; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #64748b; font-weight: bold; font-size: 1.25rem;">✕</button>
                     <h2 id="arshjul-modal-title"
                         style="text-align: center; margin-top: 0; margin-bottom: 1rem; font-size: clamp(1.5rem, 4vw, 2.5rem); color: #1e293b;">
-                        Art
-                    </h2>
+                        Art</h2>
 
                     <div id="arshjul-modal-svg-container"
                         style="position: relative; flex-grow: 1; width: 100%; display:flex; justify-content:center; align-items:center; overflow: hidden; min-height: 0;">
@@ -247,7 +251,6 @@
                                 style="font-weight: bold; font-size: 1rem;"></span><br>
                             <span id="arshjul-modal-tooltip-count" style="font-weight: normal; color: #cbd5e1;"></span>
                         </div>
-                        <!-- SVG goes here -->
                     </div>
                     <div
                         style="text-align: center; margin-top: 1rem; color: #64748b; font-size: 0.9rem; max-width: 600px; line-height: 1.5;">
@@ -255,22 +258,9 @@
                             Färgerna indikerar under hur många olika år arten har observerats.<br>
                             Färgtonen visar årstiden: <span style="color: #4ade80;">Vår</span>, <span
                                 style="color: #facc15;">Sommar</span>, <span style="color: #fb923c;">Höst</span>, <span
-                                style="color: #60a5fa;">Vinter</span>. Färgen blir mättad och mörkare ju fler år.<br>
+                                style="color: #60a5fa;">Vinter</span>.<br>
                             Siffrorna i mitten visar totalt antal <strong>unika observationsdagar</strong> under året.
                         </p>
-                        <div
-                            style="display: flex; justify-content: center; gap: 1.2rem; margin-top: 0.5rem; font-size: 0.8rem;">
-                            <span style="display: flex; align-items: center; gap: 0.3rem;">
-                                <span
-                                    style="display: inline-block; width: 8px; height: 2px; background: #dc2626; border-radius: 1px;"></span>
-                                Idag
-                            </span>
-                            <span style="display: flex; align-items: center; gap: 0.3rem;">
-                                <span
-                                    style="display: inline-block; width: 8px; height: 2.5px; background: #22c55e; border-radius: 1px;"></span>
-                                Kryssad 2026
-                            </span>
-                        </div>
                     </div>
                 </div>
             </dialog>
@@ -279,9 +269,15 @@
 
     </div>
 
+    <!-- Footer -->
+    <footer class="artguide-footer">
+        <p>Data: <a href="https://www.artportalen.se" target="_blank" rel="noopener">Artportalen</a> — samtliga
+            fågelobservationer i Åstorps kommun, alla observatörer, alla år.</p>
+        <p class="artguide-footer__date"></p>
+    </footer>
+
 </div>
 
-{{/* ── Årshjul card styles (inline, same as original) ── */}}
 <style>
     /* Reset dialog styles natively */
     dialog::backdrop {
@@ -339,54 +335,6 @@
     .arshjul-card-svg-wrapper.loaded {
         opacity: 1;
     }
-
-    /* ── Tab Switcher ── */
-    .artguide-tabs {
-        display: flex;
-        gap: 0;
-        margin-bottom: var(--space-xl, 2rem);
-        border: 1px solid var(--color-border, #e2e8f0);
-        border-radius: var(--radius-md, 12px);
-        overflow: hidden;
-        max-width: 360px;
-    }
-
-    .artguide-tabs__btn {
-        flex: 1;
-        padding: var(--space-sm, 0.5rem) var(--space-lg, 1.5rem);
-        border: none;
-        background: var(--color-bg, #fff);
-        cursor: pointer;
-        font-family: var(--font-heading, 'Inter', sans-serif);
-        font-size: var(--text-base, 1rem);
-        font-weight: 500;
-        color: var(--color-text-muted, #64748b);
-        transition: all 0.2s ease;
-    }
-
-    .artguide-tabs__btn+.artguide-tabs__btn {
-        border-left: 1px solid var(--color-border, #e2e8f0);
-    }
-
-    .artguide-tabs__btn--active {
-        background: var(--color-primary, #2B5A2B);
-        color: white;
-        font-weight: 600;
-    }
-
-    .artguide-tabs__btn:hover:not(.artguide-tabs__btn--active) {
-        background: var(--color-bg-alt, #f8f7f4);
-        color: var(--color-primary, #2B5A2B);
-    }
-
-    /* Panel visibility */
-    .artguide-panel {
-        display: none;
-    }
-
-    .artguide-panel--active {
-        display: block;
-    }
 </style>
 {{ end }}
 
@@ -397,50 +345,28 @@
         {{ $guide:= site.Data.species_guide }}
         {{ if $guide }}{{ range index $guide "species" }}"{{ .name }}", {{ end }}{{ end }}
     ];
+
+    // Toggle logic for Kalender panel
+    document.addEventListener("DOMContentLoaded", () => {
+        const btnToggle = document.getElementById("btn-toggle-kalender");
+        const btnClose = document.getElementById("btn-close-kalender");
+        const panelKalender = document.getElementById("panel-kalender");
+
+        if (btnToggle && panelKalender) {
+            btnToggle.addEventListener("click", () => {
+                const isHidden = panelKalender.style.display === "none";
+                panelKalender.style.display = isHidden ? "block" : "none";
+            });
+        }
+        if (btnClose && panelKalender) {
+            btnClose.addEventListener("click", () => {
+                panelKalender.style.display = "none";
+            });
+        }
+    });
+
 </script>
 {{ $js := resources.Get "js/artguide.js" | fingerprint }}
 <script src="{{ $js.RelPermalink }}"></script>
 <script src="/js/arshjul.js" defer></script>
-<script>
-    // ── Tab Switcher Logic ──
-    (function () {
-        const tabs = document.querySelectorAll('.artguide-tabs__btn');
-        const panels = document.querySelectorAll('.artguide-panel');
-        let arshjulInitialized = false;
-
-        function switchTab(targetTab) {
-            tabs.forEach(btn => {
-                const isActive = btn.dataset.tab === targetTab;
-                btn.classList.toggle('artguide-tabs__btn--active', isActive);
-                btn.setAttribute('aria-selected', isActive);
-            });
-            panels.forEach(panel => {
-                const isActive = panel.id === 'panel-' + targetTab;
-                panel.classList.toggle('artguide-panel--active', isActive);
-                panel.hidden = !isActive;
-            });
-
-            // Trigger arshjul rendering on first switch
-            if (targetTab === 'arshjul' && !arshjulInitialized) {
-                arshjulInitialized = true;
-                // arshjul.js uses DOMContentLoaded; if already fired, we re-trigger init
-                if (typeof window.initArshjul === 'function') {
-                    window.initArshjul();
-                }
-            }
-
-            // Update URL hash
-            history.replaceState(null, '', targetTab === 'kalender' ? location.pathname : location.pathname + '#arshjul');
-        }
-
-        tabs.forEach(btn => {
-            btn.addEventListener('click', () => switchTab(btn.dataset.tab));
-        });
-
-        // Check URL hash on load
-        if (location.hash === '#arshjul') {
-            switchTab('arshjul');
-        }
-    })();
-</script>
 {{ end }}
