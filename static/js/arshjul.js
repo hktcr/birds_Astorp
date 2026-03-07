@@ -452,11 +452,45 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // ── FILTER LOGIC ──
             const filterContainer = document.getElementById("arshjul-filters");
-            if (filterContainer) {
-                const filterBtns = filterContainer.querySelectorAll(".arshjul-filter-btn");
+            const filterBtns = filterContainer ? filterContainer.querySelectorAll(".arshjul-filter-btn") : [];
+            const searchInput = document.getElementById("arshjul-search");
+
+            function updateGrid() {
+                // Determine active category filter
+                let activeFilter = "alla";
+                const activeBtn = Array.from(filterBtns).find(b => b.classList.contains("arshjul-filter-btn--active"));
+                if (activeBtn) activeFilter = activeBtn.dataset.filter;
+
+                // Determine active text search
+                const query = searchInput ? searchInput.value.toLowerCase().trim() : "";
+
+                const cards = gridEl.querySelectorAll(".arshjul-card");
+                cards.forEach(card => {
+                    const species = card.dataset.species.toLowerCase();
+                    let showCategory = false;
+
+                    // Match category
+                    if (activeFilter === "alla") {
+                        showCategory = true;
+                    } else if (activeFilter === "checked") {
+                        showCategory = card.dataset.checked === "true";
+                    } else if (activeFilter === "missing") {
+                        showCategory = card.dataset.checked === "false";
+                    } else {
+                        showCategory = card.dataset.category === activeFilter;
+                    }
+
+                    // Match search text
+                    const showSearch = query === "" || species.includes(query);
+
+                    card.style.display = (showCategory && showSearch) ? "" : "none";
+                });
+            }
+
+            if (filterBtns.length > 0) {
                 filterBtns.forEach(btn => {
                     btn.addEventListener("click", () => {
-                        // Update active state
+                        // Update active state visually
                         filterBtns.forEach(b => {
                             b.classList.remove("arshjul-filter-btn--active");
                             b.style.background = "white";
@@ -466,23 +500,14 @@ document.addEventListener("DOMContentLoaded", () => {
                         btn.style.background = "#2d5016";
                         btn.style.color = "white";
 
-                        const filter = btn.dataset.filter;
-                        const cards = gridEl.querySelectorAll(".arshjul-card");
-                        cards.forEach(card => {
-                            let show = false;
-                            if (filter === "alla") {
-                                show = true;
-                            } else if (filter === "checked") {
-                                show = card.dataset.checked === "true";
-                            } else if (filter === "missing") {
-                                show = card.dataset.checked === "false";
-                            } else {
-                                show = card.dataset.category === filter;
-                            }
-                            card.style.display = show ? "" : "none";
-                        });
+                        // Apply filters
+                        updateGrid();
                     });
                 });
+            }
+
+            if (searchInput) {
+                searchInput.addEventListener("input", updateGrid);
             }
 
         })

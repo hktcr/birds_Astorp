@@ -200,6 +200,22 @@
                     style="padding: 0.4rem 1rem; border-radius: 999px; border: 1px solid #d1d5db; background: white; color: #374151; cursor: pointer; font-size: 0.85rem; transition: all 0.2s;">Saknade</button>
             </div>
 
+            {{/* ── SÖKRUTA ── */}}
+            <div id="arshjul-search-container" style="display: flex; justify-content: center; margin-bottom: 2rem;">
+                <div style="position: relative; width: 100%; max-width: 400px;">
+                    <input type="text" id="arshjul-search" placeholder="Sök art..."
+                        style="width: 100%; padding: 0.75rem 1.25rem 0.75rem 2.5rem; border: 1px solid #d1d5db; border-radius: 999px; font-size: 1rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);"
+                        onfocus="this.style.borderColor='#2d5016'; this.style.boxShadow='0 0 0 3px rgba(45, 80, 22, 0.2)';"
+                        onblur="this.style.borderColor='#d1d5db'; this.style.boxShadow='0 1px 2px 0 rgba(0, 0, 0, 0.05)';">
+                    <svg style="position: absolute; left: 1rem; top: 50%; transform: translateY(-50%); color: #9ca3af; pointer-events: none;"
+                        width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                </div>
+            </div>
+
             {{/* ── GRID CONTAINER ── */}}
             <div id="arshjul-grid"
                 style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem;">
