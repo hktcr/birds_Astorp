@@ -25,8 +25,24 @@ locations:
     lat: 56.1487
     lng: 13.07359
 images:
+  - url: "/images/posts/2026-03-05-kungsgardsmaderna/PXL_20260305_151646113.webp"
+    alt: "Vy över Kungsgårdsmaderna"
+    categories:
+      - Kulturlandskap
+  - url: "/images/posts/2026-03-05-kungsgardsmaderna/PXL_20260305_152035742.webp"
+    alt: "Vy över Kungsgårdsmaderna 2"
+    categories:
+      - Kulturlandskap
   - url: "/images/posts/2026-03-05-kungsgardsmaderna/PXL_20260305_153920340.webp"
     alt: "Ägretthägrar vid Kungsgårdsmaderna"
+    categories:
+      - Kulturlandskap
+  - url: "/images/posts/2026-03-05-kungsgardsmaderna/PXL_20260305_155202870.webp"
+    alt: "Vy över Kungsgårdsmaderna 4"
+    categories:
+      - Kulturlandskap
+  - url: "/images/posts/2026-03-05-kungsgardsmaderna/PXL_20260305_155217496.webp"
+    alt: "Vy över Tomarps Ene"
     categories:
       - Kulturlandskap
 ---
