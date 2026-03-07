@@ -368,5 +368,5 @@
 </script>
 {{ $js := resources.Get "js/artguide.js" | fingerprint }}
 <script src="{{ $js.RelPermalink }}"></script>
-<script src="/js/arshjul.js" defer></script>
+<script src="/js/arshjul.js?v={{ now.Unix }}" defer></script>
 {{ end }}
