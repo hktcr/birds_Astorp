@@ -665,6 +665,14 @@
             "location": "Kungsgårdsmaderna",
             "lat": 56.15343,
             "lng": 13.06878
+        },
+        {
+            "species": "Hämpling",
+            "latin": "Linaria cannabina",
+            "date": "2026-03-07",
+            "location": "Madkärr, Tomarp",
+            "lat": 56.16336146917374,
+            "lng": 13.062392835112023
         }
     ]
 }

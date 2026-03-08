@@ -86,3 +86,32 @@
 - `data/species_portraits.json` (lagt till 4 saknade porträtt)
 
 ---
+
+### 2026-03-07 — f3ab4ea4
+
+**Ursprung:** VEP Årshjul som standardvy + felsökning
+**Typ:** Beslut | Framsteg | Buggfix
+
+> VEP-panel (utvidgad med 3 extra experter + 3 virtuella användare) delibererade om Artkalender vs Årshjul. Konsensusbeslut: Årshjulet blir standardvy, Artkalendern omvandlas till infällbar "Månadsguide". Fixat tre buggar: (1) Go-template-syntax i vader.html blockerade Hugo-bygget. (2) Trasig sed-injektion i arshjul.js (Promise.then-parameterlistan) kraschade hela scriptet. (3) CDN-cache serverade gammal trasig JS — löst med `?v={{ now.Unix }}` cache-busting.
+
+**Relaterade filer:**
+- `hugo.toml` (menynavnet "Årshjul")
+- `layouts/artguide/single.html` (layout-omstrukturering + knapp)
+- `static/js/artguide.js` (rensat helårsöversikt)
+- `static/js/arshjul.js` (fixat Promise-chain)
+- `layouts/_default/vader.html` (fixat Go-template-syntax)
+- `CHANGELOG_ARSHJUL.md` (rollback-dokumentation)
+
+---
+
+### 2026-03-08 — f3ab4ea4 (del 2)
+
+**Ursprung:** /lärdomar (kedjat från /avstämning)
+**Typ:** Beslut | Insikt
+
+> Kedjad `/lärdomar`-körning identifierade 4/6 friktionspoäng (F1 backtracking, F2 misslyckade kommandon, F4 upprepning, F6 överraskande komplexitet). Implementerade 🟢-ändringar direkt: (1) Deploy-steg D3 i `/Åstorp-2026` omstrukturerat till pre-flight build-check (Hugo MÅSTE lyckas innan commit). (2) Nytt steg D4 med separerade commit/push. (3) Cache-busting TIP-ruta. (4) sed-varning CAUTION-ruta. Två 🟡-förslag kvarstår: cache-busting som _CONVENTIONS.md-paragraf och flytt av arshjul.js till assets/.
+
+**Relaterade filer:**
+- `.agent/workflows/Åstorp-2026.md` (D3/D4 omstrukturering + TIP/CAUTION)
+
+---
