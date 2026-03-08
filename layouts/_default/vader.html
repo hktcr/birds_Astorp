@@ -569,6 +569,10 @@
                 }
             });
 
+            var xCfg = JSON.parse(JSON.stringify(timeScaleConfig));
+            if (_currentTimeFrom) xCfg.min = _currentTimeFrom;
+            if (_currentTimeTo)   xCfg.max = _currentTimeTo;
+
             new Chart(canvas, {
                 type: 'bar',
                 data: {
@@ -588,7 +592,7 @@
                     maintainAspectRatio: true,
                     aspectRatio: window.innerWidth < 600 ? 1.6 : 2.5,
                     scales: {
-                        x: JSON.parse(JSON.stringify(timeScaleConfig)),
+                        x: xCfg,
                         y: {
                             min: 0,
                             grid: { color: 'rgba(0,0,0,0.04)', drawTicks: false },
@@ -650,6 +654,10 @@
                 return { x: d, y: Math.round(dayMap[d].sum / dayMap[d].count * 100) / 100 };
             });
 
+            var xCfg = JSON.parse(JSON.stringify(timeScaleConfig));
+            if (_currentTimeFrom) xCfg.min = _currentTimeFrom;
+            if (_currentTimeTo)   xCfg.max = _currentTimeTo;
+
             new Chart(canvas, {
                 type: 'line',
                 data: {
@@ -670,7 +678,7 @@
                     maintainAspectRatio: true,
                     aspectRatio: window.innerWidth < 600 ? 1.6 : 2.5,
                     scales: {
-                        x: JSON.parse(JSON.stringify(timeScaleConfig)),
+                        x: xCfg,
                         y: {
                             min: 0,
                             grid: { color: 'rgba(0,0,0,0.04)', drawTicks: false },
