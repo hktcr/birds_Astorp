@@ -133,8 +133,28 @@ def process_tsv_files():
     process_excursion_files(species_data)
 
     # Prepare final JSON data by counting the unique years
-    # Format: { "Artnamn": { "01-01": 5, "05-12": 2, ... } }
+    # Format: { "_meta": {...}, "Artnamn": { "01-01": 5, "05-12": 2, ... } }
     final_data = {}
+    
+    # ── Metadata for deduplication and traceability ──
+    ap_sources = [os.path.basename(f) for f in tsv_files + csv_files if os.path.exists(f)]
+    sc_sources = sorted([os.path.basename(f) for f in glob.glob(os.path.join(EXCURSION_DIR, "*.json"))]) if os.path.isdir(EXCURSION_DIR) else []
+    
+    # Determine latest Artportalen export date from filenames
+    ap_dates = []
+    for src in ap_sources:
+        # Try to extract date from filename like "export_2026-02-19.tsv"
+        for part in src.replace(".", "_").split("_"):
+            if len(part) == 10 and part[4] == "-" and part[7] == "-":
+                ap_dates.append(part)
+    
+    final_data["_meta"] = {
+        "generated": datetime.now().strftime("%Y-%m-%d"),
+        "artportalen_sources": ap_sources,
+        "systemc_sources": sc_sources,
+        "artportalen_export_date": max(ap_dates) if ap_dates else None
+    }
+    
     for artnamn, days in species_data.items():
         if len(days) > 0:
             final_data[artnamn] = {}
@@ -149,7 +169,7 @@ def process_tsv_files():
         json.dump(final_data, f, ensure_ascii=False, separators=(',', ':')) # minified output
         
     print(f"\nSuccessfully wrote aggregated data to {OUTPUT_STATIC_FILE}")
-    print(f"Processed {len(final_data)} unique species.")
+    print(f"Processed {len(final_data) - 1} unique species.")  # -1 for _meta
 
 if __name__ == "__main__":
     process_tsv_files()

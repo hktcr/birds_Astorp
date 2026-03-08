@@ -332,6 +332,7 @@ def main():
     output = {
         "generated": date.today().isoformat(),
         "exportDate": export_date,
+        "artportalen_export_file": basename,
         "source": "Artportalen — samtliga fågelobservationer, Åstorps kommun",
         "totalObservations": sum(sp["total"] for sp in species_list),
         "species": species_list,

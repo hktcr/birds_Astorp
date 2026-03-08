@@ -337,17 +337,26 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
 
-            // Build checklist lookup (species → earliest date)
+            // Build checklist lookup (species → earliest date + latin)
             const checkedMap = new Map();
             if (checklistData && checklistData.observations) {
                 checklistData.observations.forEach(entry => {
                     if (entry.species) {
                         const existing = checkedMap.get(entry.species);
-                        if (!existing || entry.date < existing) {
-                            checkedMap.set(entry.species, entry.date);
+                        if (!existing || entry.date < existing.date) {
+                            checkedMap.set(entry.species, { date: entry.date, latin: entry.latin || "" });
                         }
                     }
                 });
+            }
+
+            // Add checklist species NOT in species-guide to categoryMap + latinMap
+            // so they appear in the årshjul grid even without historical data
+            for (const [species, info] of checkedMap) {
+                if (!(species in categoryMap)) {
+                    categoryMap[species] = "new";
+                    if (info.latin) latinMap[species] = info.latin;
+                }
             }
 
             // Taxonomic sorting using the index passed from Hugo
@@ -358,8 +367,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
 
-            const allSpecies = Object.keys(data)
-                .filter(name => name in categoryMap) // Only show curated species from guide
+            // Include species from historic data that are in the guide OR new from checklist
+            // (skip _meta key which is metadata, not a species)
+            const speciesFromData = Object.keys(data).filter(name => name !== '_meta' && name in categoryMap);
+            // Also include checklist species that have no historic data at all
+            const checklistOnly = [...checkedMap.keys()].filter(name => !(name in data) && name in categoryMap);
+            const allSpecies = [...new Set([...speciesFromData, ...checklistOnly])]
                 .sort((a, b) => {
                     const idxA = taxaIndex[a] ?? 99999;
                     const idxB = taxaIndex[b] ?? 99999;
@@ -377,9 +390,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         const svgWrapper = card.querySelector('.arshjul-card-svg-wrapper');
 
                         if (!svgWrapper.hasChildNodes()) {
-                            // First time rendering!
+                            // First time rendering! Use empty data if species has no historic records
                             const cardCheckDate = card.dataset.checkdate || null;
-                            const svg = createSVG(data[speciesName], false, cardCheckDate);
+                            const svg = createSVG(data[speciesName] || {}, false, cardCheckDate);
                             svgWrapper.appendChild(svg);
 
                             // Let layout settle, then fade in
@@ -399,7 +412,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 const slug = species.toLowerCase().replace(/å/g, "a").replace(/ä/g, "a").replace(/ö/g, "o").replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
                 const category = categoryMap[species] || "regular";
                 const isChecked = checkedMap.has(species);
-                const checkDate = checkedMap.get(species) || null;
+                const checkInfo = checkedMap.get(species) || null;
+                const checkDate = checkInfo ? checkInfo.date : null;
 
                 const card = document.createElement("div");
                 card.className = "arshjul-card";
@@ -440,9 +454,10 @@ document.addEventListener("DOMContentLoaded", () => {
                 svgWrapper.className = "arshjul-card-svg-wrapper";
                 card.appendChild(svgWrapper);
 
-                // Add click listener for Modal
+                // Add click listener for Modal — use empty data if species has no historic records
+                const speciesData = data[species] || {};
                 card.addEventListener("click", () => {
-                    openModal(species, slug, data[species], card.dataset.checkdate || null);
+                    openModal(species, slug, speciesData, card.dataset.checkdate || null);
                 });
 
                 gridEl.appendChild(card);

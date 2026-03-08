@@ -37,6 +37,9 @@ elif [[ "$1" == "--deploy" ]]; then
     SPECIES_COUNT=$(grep -c '"species"' data/checklist-2026.json)
     echo "   Antal arter: $SPECIES_COUNT"
     
+    echo "🔄 Regenererar årshjulsdata..."
+    python3 scripts/generate_radial_data.py
+    
     echo "🏗️  Bygger Hugo-sajt..."
     hugo --minify --quiet
     echo "✅ Hugo-build klar"
@@ -52,6 +55,9 @@ else
     cp data/locations.json static/data/locations.json
     echo "✅ Synkat till static/data/"
     echo "   Antal arter: $(grep -c '"species"' data/checklist-2026.json)"
+    
+    echo "🔄 Regenererar årshjulsdata..."
+    python3 scripts/generate_radial_data.py
     
     echo "🏗️  Bygger Hugo-sajt..."
     hugo --minify --quiet
