@@ -115,3 +115,19 @@
 - `.agent/workflows/Åstorp-2026.md` (D3/D4 omstrukturering + TIP/CAUTION)
 
 ---
+
+### 2026-03-08 — 167540b4
+
+**Ursprung:** Pipeline-audit: Årshjul + Kalendervy inkrementell synk
+**Typ:** Beslut | Framsteg | Insikt
+
+> Full audit av datapipelinen identifierade att årshjul och kalendervy inte uppdaterades synkront vid ny observation. Tre luckor åtgärdade: (1) Nytt steg A3c i `/Åstorp-2026` kör `generate_radial_data.py` efter checklist-synk, med snapshot-diffing. (2) `arshjul.js` visar nu checklist-arter som saknas i species-guide med kategori `"new"`. (3) Metadata (`_meta`) i `species_days_historic.json` spårar alla AP-exporter + System C-filer för framtida dedup. `sync-data.sh` kör radialdata-regenerering automatiskt före Hugo-build. Dupliceringsskydd baseras på set-semantik (art + dag + år).
+
+**Relaterade filer:**
+- `.agent/workflows/Åstorp-2026.md` (A3c, V3, V4, uppdaterad snabbreferens)
+- `sync-data.sh` (radialdata-regenerering före build)
+- `static/js/arshjul.js` (new-species overlay, _meta-filtrering, checkedMap-fix)
+- `scripts/generate_radial_data.py` (_meta-metadata)
+- `scripts/preprocess_species_guide.py` (artportalen_export_file)
+
+---
