@@ -171,6 +171,16 @@
         }
     };
 
+    // Beräkna rätt tidsaxel-enhet beroende på datumintervall
+    function timeUnitForRange(fromDate, toDate) {
+        if (!fromDate || !toDate) return { unit: 'month', displayFormats: { month: 'MMM' } };
+        var days = Math.round((new Date(toDate) - new Date(fromDate)) / 86400000) + 1;
+        if (days <= 31) {
+            return { unit: 'day', displayFormats: { day: 'd MMM' } };
+        }
+        return { unit: 'month', displayFormats: { month: 'MMM' } };
+    }
+
     // ================================================================
     // CHART 1: Artprogress
     // ================================================================
@@ -571,7 +581,10 @@
 
             var xCfg = JSON.parse(JSON.stringify(timeScaleConfig));
             if (_currentTimeFrom) xCfg.min = _currentTimeFrom;
-            if (_currentTimeTo)   xCfg.max = _currentTimeTo;
+            if (_currentTimeTo) xCfg.max = _currentTimeTo;
+            var tu = timeUnitForRange(_currentTimeFrom, _currentTimeTo);
+            xCfg.time.unit = tu.unit;
+            xCfg.time.displayFormats = tu.displayFormats;
 
             new Chart(canvas, {
                 type: 'bar',
@@ -656,7 +669,10 @@
 
             var xCfg = JSON.parse(JSON.stringify(timeScaleConfig));
             if (_currentTimeFrom) xCfg.min = _currentTimeFrom;
-            if (_currentTimeTo)   xCfg.max = _currentTimeTo;
+            if (_currentTimeTo) xCfg.max = _currentTimeTo;
+            var tu = timeUnitForRange(_currentTimeFrom, _currentTimeTo);
+            xCfg.time.unit = tu.unit;
+            xCfg.time.displayFormats = tu.displayFormats;
 
             new Chart(canvas, {
                 type: 'line',
@@ -776,6 +792,7 @@
         _currentTimeTo = xMax;
 
         // 1. Uppdatera Chart.js-instanser (progress, precip, flow — temp är nu Canvas)
+        var tu = timeUnitForRange(xMin, xMax);
         var chartIds = ['progress-chart', 'precip-chart', 'flow-chart'];
         chartIds.forEach(function (id) {
             var el = document.getElementById(id);
@@ -785,6 +802,8 @@
 
             chartInstance.options.scales.x.min = xMin;
             chartInstance.options.scales.x.max = xMax;
+            chartInstance.options.scales.x.time.unit = tu.unit;
+            chartInstance.options.scales.x.time.displayFormats = tu.displayFormats;
             chartInstance.update();
         });
 
