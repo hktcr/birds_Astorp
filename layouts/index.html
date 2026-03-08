@@ -88,11 +88,35 @@ RATT: dubbelklammer range dubbelklammer
         var fill = document.getElementById('progress-fill');
         if (fill) {
             fill.style.width = Math.min(percentage, 100) + '%';
-            var hue = 45;
-            if (percentage > 20) {
-                hue = 45 + ((percentage - 20) / 80) * 75;
+            // 5-stegs crescendo-ramp: amber → guld → lime → grön → smaragd
+            // Färgen skiftar långsamt i början, accelererar mot målet
+            var hue, sat, light;
+            if (percentage <= 30) {
+                // Gryning → Morgon: varm amber till guld (hue 35→45)
+                var t = percentage / 30;
+                hue = 35 + t * 10;
+                sat = 85;
+                light = 55;
+            } else if (percentage <= 60) {
+                // Morgon → Dag: guld till lime (hue 45→65)
+                var t = (percentage - 30) / 30;
+                hue = 45 + t * 20;
+                sat = 85 + t * 5;
+                light = 55 - t * 5;
+            } else if (percentage <= 85) {
+                // Dag → Skymning: lime till rik grön (hue 65→100)
+                var t = (percentage - 60) / 25;
+                hue = 65 + t * 35;
+                sat = 90 - t * 10;
+                light = 50 - t * 6;
+            } else {
+                // Mål: rik grön till smaragd (hue 100→140)
+                var t = Math.min((percentage - 85) / 15, 1);
+                hue = 100 + t * 40;
+                sat = 80;
+                light = 44 - t * 6;
             }
-            fill.style.backgroundColor = 'hsl(' + hue + ', 90%, 50%)';
+            fill.style.backgroundColor = 'hsl(' + hue + ', ' + sat + '%, ' + light + '%)';
         }
 
         if (data.observations.length > 0) {
