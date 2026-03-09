@@ -522,8 +522,147 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
 
+            // ── RECOMMENDATION ENGINE ──
+            const RECOMMENDATION_MIN_YEARS = 2;
+            const RECOMMENDATION_RARE_MAX_TOTAL = 5;
+
+            const dropdown = document.getElementById("arshjul-recommendations-dropdown");
+            const recsContent = document.getElementById("arshjul-recs-content");
+            const recsLoading = document.getElementById("arshjul-recs-loading");
+
+            function generateRecommendations() {
+                if (recsContent.innerHTML !== "") return; // Already generated
+
+                const today = new Date();
+                const startOfYear = new Date(today.getFullYear(), 0, 0);
+                const todayDOY = Math.floor((today - startOfYear) / (1000 * 60 * 60 * 24)) - 1;
+
+                const possibleNow = [];
+                const arrivingSoon = [];
+                const rarities = [];
+
+                for (const species in data) {
+                    if (species === '_meta' || !categoryMap[species]) continue;
+
+                    const isChecked2026 = checkedMap.has(species);
+                    const obsData = data[species];
+                    let totalDays = 0;
+                    let maxYearsNow = 0; // [-3, +3] window
+                    let maxYearsSoon = 0; // [+4, +14] window
+                    let soonOffset = 999;
+
+                    for (let i = 0; i < dayAngles.length; i++) {
+                        const count = obsData[dayAngles[i].key] || 0;
+                        if (count > 0) {
+                            totalDays++;
+
+                            // Calculate diff from today, wrapping around 366
+                            let diff = i - todayDOY;
+                            if (diff < -183) diff += 366;
+                            if (diff > 183) diff -= 366;
+
+                            if (diff >= -3 && diff <= 3) {
+                                if (count > maxYearsNow) maxYearsNow = count;
+                            } else if (diff >= 4 && diff <= 14) {
+                                if (count > maxYearsSoon) maxYearsSoon = count;
+                                if (diff < soonOffset) soonOffset = diff;
+                            }
+                        }
+                    }
+
+                    if (totalDays === 0) continue;
+
+                    // Categorize
+                    if (totalDays <= RECOMMENDATION_RARE_MAX_TOTAL) {
+                        if (maxYearsNow > 0) {
+                            rarities.push({ name: species });
+                        }
+                    } else if (!isChecked2026) {
+                        if (maxYearsNow >= RECOMMENDATION_MIN_YEARS) {
+                            possibleNow.push({ name: species });
+                        } else if (maxYearsSoon >= RECOMMENDATION_MIN_YEARS) {
+                            arrivingSoon.push({ name: species, offset: soonOffset });
+                        }
+                    }
+                }
+
+                // Sort arriving soon by how close they are
+                arrivingSoon.sort((a, b) => a.offset - b.offset);
+
+                // Build HTML
+                let html = "";
+
+                function buildGroup(title, items, icon) {
+                    if (items.length === 0) return "";
+                    let res = `<div style="margin-bottom: 1.5rem;"><h4 style="margin:0 0 0.75rem 0; font-size:0.75rem; color:#64748b; text-transform:uppercase; letter-spacing:0.05em; font-weight:700;">${title}</h4><div style="display:flex; flex-wrap:wrap; gap:0.5rem;">`;
+                    items.slice(0, 10).forEach(item => {  // Max 10 per category to keep it clean
+                        res += `<button class="rec-chip" data-species="${item.name}" style="background:#f1f5f9; border:1px solid #e2e8f0; border-radius:999px; padding:0.4rem 0.85rem; font-size:0.9rem; color:#334155; cursor:pointer; transition:all 0.2s;" onmouseover="this.style.background='#e2e8f0'; this.style.borderColor='#cbd5e1';" onmouseout="this.style.background='#f1f5f9'; this.style.borderColor='#e2e8f0';">${icon} ${item.name}</button>`;
+                    });
+                    res += `</div></div>`;
+                    return res;
+                }
+
+                html += buildGroup("📍 Möjliga just nu", possibleNow, "");
+                html += buildGroup("⏳ I antågande", arrivingSoon, "");
+                html += buildGroup("⭐ Aktuella rariteter", rarities, "⭐");
+
+                if (html === "") {
+                    html = `<p style="text-align:center; color:#94a3b8; font-size:0.9rem; margin:1rem 0;">Inga specifika fågeltips just nu.</p>`;
+                }
+
+                recsContent.innerHTML = html;
+                recsLoading.style.display = "none";
+                recsContent.style.display = "block";
+
+                // Add click events to chips
+                const chips = recsContent.querySelectorAll('.rec-chip');
+                chips.forEach(chip => {
+                    chip.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        dropdown.style.display = "none";
+
+                        const speciesName = chip.dataset.species;
+                        const checkInfo = checkedMap.get(speciesName) || null;
+                        const checkDate = checkInfo ? checkInfo.date : null;
+                        const slug = speciesName.toLowerCase().replace(/å/g, "a").replace(/ä/g, "a").replace(/ö/g, "o").replace(/\\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+
+                        openModal(speciesName, slug, data[speciesName] || {}, checkDate);
+                    });
+                });
+            }
+
             if (searchInput) {
-                searchInput.addEventListener("input", updateGrid);
+                searchInput.addEventListener("focus", () => {
+                    if (searchInput.value.trim() === "") {
+                        dropdown.style.display = "block";
+                        generateRecommendations();
+                    }
+                });
+
+                searchInput.addEventListener("input", () => {
+                    updateGrid();
+                    if (searchInput.value.trim() !== "") {
+                        dropdown.style.display = "none";
+                    } else {
+                        dropdown.style.display = "block";
+                        generateRecommendations();
+                    }
+                });
+
+                let blurTimeout;
+                searchInput.addEventListener("blur", () => {
+                    // Small timeout to allow clicks inside the dropdown to register
+                    blurTimeout = setTimeout(() => {
+                        dropdown.style.display = "none";
+                    }, 200);
+                });
+
+                if (dropdown) {
+                    // Prevent hiding if clicking inside the dropdown
+                    dropdown.addEventListener("mousedown", (e) => {
+                        e.preventDefault();
+                    });
+                }
             }
 
         })

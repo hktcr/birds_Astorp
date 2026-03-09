@@ -251,6 +251,50 @@ images:
 
 ---
 
+## Diagram i notiser
+
+Statiska diagram (PNG) kan bäddas in i blogginlägg. Diagrammen genereras av `scripts/generate_notis_chart.py` som hämtar data från SMHI:s öppna API.
+
+### HTML-template
+
+```html
+<figure class="notis-chart">
+  <a href="/images/posts/YYYY-MM-DD-slug/diagram.png" class="lightbox-link">
+    <img src="/images/posts/YYYY-MM-DD-slug/diagram.png" 
+         alt="Beskrivande alt-text">
+  </a>
+  <figcaption>Beskrivande bildtext. Datakälla: SMHI.</figcaption>
+</figure>
+```
+
+> **OBS:** `class="notis-chart"` ger vetenskaplig figur-styling (Lora italic bildtext). `class="lightbox-link"` aktiverar klick-för-att-förstora via befintlig lightbox.
+
+### Generera diagram
+
+```bash
+python3 scripts/generate_notis_chart.py \
+  --type temp \
+  --from 2026-02-20 --to 2026-03-05 \
+  --output static/images/posts/2026-03-05-slug/temp.png
+```
+
+| Typ | Beskrivning | SMHI-station |
+|-----|-------------|-------------|
+| `temp` | Dag-max + natt-min (staplar) | Helsingborg A |
+| `precip` | Nederbördsstaplar (mm) | Åstorp |
+| `wind` | Medelvind (linje, m/s) | Helsingborg A |
+| `flow` | Vattenföring Rönne å (m³/s) | Forsmöllan |
+
+Kombinationer: `--type temp+precip` ger ett diagram med två subplots.
+
+### Stilregler för bildtext
+
+- Saklig, inte poetisk ("Dagtemperaturen..." inte "Värmen kröp...")
+- Ange alltid datakälla ("Källa: SMHI, Helsingborg A")
+- Beskriv den observation som diagrammet illustrerar
+
+---
+
 ## Stilprinciper (kortversion)
 
 - **Em-dash (—)**: Använd aldrig. Ersätt med komma, punkt eller kolon.

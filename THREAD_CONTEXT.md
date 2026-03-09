@@ -131,3 +131,32 @@
 - `scripts/preprocess_species_guide.py` (artportalen_export_file)
 
 ---
+
+### 2026-03-08 — 9196924b
+
+**Ursprung:** Fågelpipeline: 22 arter → registret + årshjul + deploy
+**Typ:** Framsteg
+
+> Fältlista med 22 arter (Mosshult, Salshult mosse, Högalidstoppen, Kvidinge) processad genom hela /fågel-pipelinen. Alla arter redan kryssade (inga nya årskryss). System C-fil sparad, 22 obs tillagda i registret (obs-2026-687→708), årshjulsdata uppdaterad med 22 nya dagspunkter på 03-08 (varav 16 arter aldrig noterats på just 8 mars innan). Deploy `ad46c8c`. Hälsokontroll 7/7 grön.
+
+**Relaterade filer:**
+- `Fåglar/Exkursioner/2026-03-08_astorp.json` (System C)
+- `Fåglar/Artportalen/observations-registry-2026.json` (+22 obs)
+- `static/data/species_days_historic.json` (+22 dagspunkter)
+
+---
+
+### 2026-03-09 — 2834ec88
+
+**Ursprung:** Diagram i notiser (astorpsfaglar.se)
+**Typ:** Beslut | Framsteg | Nytt system
+
+> VEP-panel designade och implementerade ett system för statiska diagram i blogginlägg. Designbeslut: statisk PNG (inte live Chart.js), Lora italic bildtext i vetenskaplig stil, inline-only (befintlig lightbox räcker). Tre deliverables: (1) `.notis-chart` CSS-block med Lora italic figcaption. (2) `scripts/generate_notis_chart.py` — hämtar SMHI-data (temp/precip/wind/flow) och genererar stilade PNG. (3) Ny sektion "Diagram i notiser" i `CONTRIBUTING.md`. Alla diagramtyper testade mot live SMHI. `matplotlib` installerat som nytt beroende.
+
+**Relaterade filer:**
+- `assets/css/style.css` (ny `.notis-chart`-sektion)
+- `scripts/generate_notis_chart.py` (ny fil)
+- `CONTRIBUTING.md` (ny sektion)
+
+---
+
