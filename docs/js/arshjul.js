@@ -382,31 +382,34 @@ document.addEventListener("DOMContentLoaded", () => {
 
             // Intersection Observer for Lazy Loading
             // Render when Card is within 200px of Viewport
-            const observer = new IntersectionObserver((entries, obs) => {
-                entries.forEach(entry => {
-                    if (entry.isIntersecting) {
-                        const card = entry.target;
-                        const speciesName = card.dataset.species;
-                        const svgWrapper = card.querySelector('.arshjul-card-svg-wrapper');
+            let observer = null;
+            if (gridEl) {
+                observer = new IntersectionObserver((entries, obs) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            const card = entry.target;
+                            const speciesName = card.dataset.species;
+                            const svgWrapper = card.querySelector('.arshjul-card-svg-wrapper');
 
-                        if (!svgWrapper.hasChildNodes()) {
-                            // First time rendering! Use empty data if species has no historic records
-                            const cardCheckDate = card.dataset.checkdate || null;
-                            const svg = createSVG(data[speciesName] || {}, false, cardCheckDate);
-                            svgWrapper.appendChild(svg);
+                            if (!svgWrapper.hasChildNodes()) {
+                                // First time rendering! Use empty data if species has no historic records
+                                const cardCheckDate = card.dataset.checkdate || null;
+                                const svg = createSVG(data[speciesName] || {}, false, cardCheckDate);
+                                svgWrapper.appendChild(svg);
 
-                            // Let layout settle, then fade in
-                            requestAnimationFrame(() => {
-                                svgWrapper.classList.add('loaded');
-                            });
+                                // Let layout settle, then fade in
+                                requestAnimationFrame(() => {
+                                    svgWrapper.classList.add('loaded');
+                                });
+                            }
+
+                            // We don't unobserve, because we might want to unmount SVGs if we ever run 
+                            // out of memory on huge datasets, but for ~100 SVGs it's fine.
+                            // obs.unobserve(card); 
                         }
-
-                        // We don't unobserve, because we might want to unmount SVGs if we ever run 
-                        // out of memory on huge datasets, but for ~100 SVGs it's fine.
-                        // obs.unobserve(card); 
-                    }
-                });
-            }, { rootMargin: "200px 0px" });
+                    });
+                }, { rootMargin: "200px 0px" });
+            }
 
             allSpecies.forEach(species => {
                 const slug = species.toLowerCase().replace(/å/g, "a").replace(/ä/g, "a").replace(/ö/g, "o").replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
@@ -460,10 +463,11 @@ document.addEventListener("DOMContentLoaded", () => {
                     openModal(species, slug, speciesData, card.dataset.checkdate || null);
                 });
 
-                gridEl.appendChild(card);
-
-                // Start observing
-                observer.observe(card);
+                if (gridEl) {
+                    gridEl.appendChild(card);
+                    // Start observing
+                    if (observer) observer.observe(card);
+                }
             });
 
             // ── FILTER LOGIC ──
