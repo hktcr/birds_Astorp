@@ -610,6 +610,15 @@ document.addEventListener("DOMContentLoaded", () => {
                     html = `<p style="text-align:center; color:#94a3b8; font-size:0.9rem; margin:1rem 0;">Inga specifika fågeltips just nu.</p>`;
                 }
 
+                // Add "Visa mer"-knapp leading to /aktuellt/
+                html += `
+                <div style="margin-top: 1.5rem; text-align: center;">
+                    <a href="/aktuellt/" style="display:inline-block; padding:0.6rem 1.25rem; font-size:0.9rem; font-weight:600; color:#2d5016; background:#f0fdf4; border:1px solid #bbf7d0; border-radius:999px; text-decoration:none; transition:all 0.2s;" onmouseover="this.style.background='#dcfce7'; this.style.borderColor='#86efac';" onmouseout="this.style.background='#f0fdf4'; this.style.borderColor='#bbf7d0';">
+                        + Visa alla aktuella tips & trender
+                    </a>
+                </div>
+                `;
+
                 recsContent.innerHTML = html;
                 recsLoading.style.display = "none";
                 recsContent.style.display = "block";

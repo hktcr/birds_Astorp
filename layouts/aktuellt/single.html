@@ -1,0 +1,160 @@
+{{ define "main" }}
+<div class="aktuellt-page" style="max-width: 1000px; margin: 0 auto; padding: 2rem 1.5rem;">
+
+    <header class="page-header" style="text-align: center; margin-bottom: 3rem;">
+        <h1 style="font-size: 2.5rem; color: #1e293b; margin-bottom: 0.5rem;">Aktuellt i markerna</h1>
+        <p style="color: #64748b; font-size: 1.1rem; max-width: 600px; margin: 0 auto;">
+            {{ .Content | safeHTML }}
+        </p>
+    </header>
+
+    <div id="aktuellt-app">
+        <p id="aktuellt-loading" style="text-align: center; color: #94a3b8; padding: 4rem 0;">Laddar fenologidata...</p>
+
+        <div id="aktuellt-content" style="display: none;">
+
+            <section id="section-possible" style="margin-bottom: 4rem;">
+                <h2
+                    style="font-size: 1.5rem; color: #1e293b; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                    📍 Möjliga just nu
+                </h2>
+                <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 1.5rem;">Arter som brukar ses historiskt
+                    kring det här datumet, men som ännu inte är kryssade för året.</p>
+                <!-- Grid för möjliga arter -->
+                <div id="grid-possible"
+                    style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem;">
+                </div>
+            </section>
+
+            <section id="section-arriving" style="margin-bottom: 4rem;">
+                <h2
+                    style="font-size: 1.5rem; color: #1e293b; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                    ⏳ Snart i antågande
+                </h2>
+                <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 2rem;">Väntade ankomster inom de närmsta
+                    två veckorna, baserat på historisk data.</p>
+                <!-- Timeline för ankommande arter -->
+                <div id="timeline-arriving" style="position: relative; padding-left: 2rem;">
+                    <!-- JS genererar nodes här -->
+                </div>
+            </section>
+
+            <section id="section-rarities">
+                <h2
+                    style="font-size: 1.5rem; color: #1e293b; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
+                    ⭐ Aktuella rariteter
+                </h2>
+                <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 1.5rem;">Ovanliga arter (max 5
+                    observationer totalt) som råkar ha setts exakt den här veckan förr om åren.</p>
+                <!-- Grid för rariteter -->
+                <div id="grid-rarities"
+                    style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem;">
+                </div>
+            </section>
+
+        </div>
+    </div>
+
+    <!-- Modal for showing radial chart (reused from arshjul) -->
+    <dialog id="arshjul-modal"
+        style="padding: 0; border: none; border-radius: 1.5rem; background: transparent; outline: none; margin: auto;">
+        <div class="modal-content"
+            style="background: white; border-radius: 1.5rem; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); padding: 4vmin; position: relative; width: 92vw; height: 92vh; max-width: 800px; max-height: 800px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; overflow: hidden;">
+            <button id="arshjul-modal-close"
+                style="position: absolute; top: 1.5rem; right: 1.5rem; background: #f1f5f9; border: none; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #64748b; font-weight: bold; font-size: 1.25rem;">✕</button>
+            <h2 id="arshjul-modal-title"
+                style="text-align: center; margin-top: 0; margin-bottom: 1rem; font-size: clamp(1.5rem, 4vw, 2.5rem); color: #1e293b;">
+                Art</h2>
+
+            <div id="arshjul-modal-svg-container"
+                style="position: relative; flex-grow: 1; width: 100%; display:flex; justify-content:center; align-items:center; overflow: hidden; min-height: 0;">
+                <div id="arshjul-modal-tooltip"
+                    style="position: absolute; opacity: 0; pointer-events: none; background: rgba(15, 23, 42, 0.9); color: white; padding: 10px 14px; border-radius: 8px; font-size: 0.875rem; text-align: center; transform: translate(-50%, -100%); transition: opacity 0.2s; white-space: nowrap; z-index: 10; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+                    <span id="arshjul-modal-tooltip-date" style="font-weight: bold; font-size: 1rem;"></span><br>
+                    <span id="arshjul-modal-tooltip-count" style="font-weight: normal; color: #cbd5e1;"></span>
+                </div>
+            </div>
+            <div
+                style="text-align: center; margin-top: 1rem; color: #64748b; font-size: 0.9rem; max-width: 600px; line-height: 1.5;">
+                <p style="margin: 0;">
+                    Färgerna indikerar under hur många olika år arten har observerats.<br>
+                    Färgtonen visar årstiden: <span style="color: #4ade80;">Vår</span>, <span
+                        style="color: #facc15;">Sommar</span>, <span style="color: #fb923c;">Höst</span>, <span
+                        style="color: #60a5fa;">Vinter</span>.<br>
+                    Siffrorna i mitten visar totalt antal <strong>unika observationsdagar</strong> under året.
+                </p>
+            </div>
+        </div>
+    </dialog>
+
+</div>
+
+<style>
+    /* Timeline specific styles */
+    .aktuellt-timeline-node {
+        position: relative;
+        padding-bottom: 2rem;
+    }
+
+    .aktuellt-timeline-node::before {
+        content: '';
+        position: absolute;
+        left: -2rem;
+        top: 0.5rem;
+        bottom: -0.5rem;
+        /* Extends to next node */
+        width: 2px;
+        background: #e2e8f0;
+    }
+
+    .aktuellt-timeline-node:last-child::before {
+        bottom: auto;
+        height: 100%;
+    }
+
+    .aktuellt-timeline-marker {
+        position: absolute;
+        left: -2rem;
+        top: 0.5rem;
+        transform: translateX(-50%);
+        width: 12px;
+        height: 12px;
+        border-radius: 50%;
+        background: #facc15;
+        border: 2px solid white;
+        box-shadow: 0 0 0 2px #fef08a;
+        z-index: 1;
+    }
+
+    /* Hover cards */
+    .aktuellt-card {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 0.75rem;
+        padding: 1.25rem;
+        cursor: pointer;
+        transition: all 0.2s;
+        box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+
+    .aktuellt-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+        border-color: #cbd5e1;
+    }
+
+    dialog::backdrop {
+        background: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(4px);
+    }
+</style>
+{{ end }}
+
+{{ define "scripts" }}
+<script src="/js/aktuellt.js?v={{ now.Unix }}" defer></script>
+<!-- Vi inkludera asrhjul.js för att få tillgång till createSVG rit-logiken -->
+<script src="/js/arshjul.js?v={{ now.Unix }}" defer></script>
+{{ end }}
