@@ -684,16 +684,15 @@ document.addEventListener("DOMContentLoaded", () => {
             if (loadingEl) loadingEl.textContent = "Kunde inte ladda data.";
         });
 
+    // Expose openModal to global scope for artguide.js and aktuellt.js
+    window.openArshjulModalForSpecies = function (speciesName, checkDate) {
+        if (window._arshjulData && window._arshjulData[speciesName]) {
+            // We recreate slug logic here
+            const slug = speciesName.toLowerCase().replace(/å/g, "a").replace(/ä/g, "a").replace(/ö/g, "o").replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+            openModal(speciesName, slug, window._arshjulData[speciesName], checkDate);
+        } else {
+            console.warn("No data for species", speciesName);
+        }
+    };
+
 });
-
-
-// Expose openModal to global scope for artguide.js
-window.openArshjulModalForSpecies = function (speciesName, checkDate) {
-    if (window._arshjulData && window._arshjulData[speciesName]) {
-        // We recreate slug logic here
-        const slug = speciesName.toLowerCase().replace(/å/g, "a").replace(/ä/g, "a").replace(/ö/g, "o").replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-        openModal(speciesName, slug, window._arshjulData[speciesName], checkDate);
-    } else {
-        console.warn("No data for species", speciesName);
-    }
-};
