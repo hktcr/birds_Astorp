@@ -150,13 +150,25 @@ document.addEventListener("DOMContentLoaded", () => {
                     const card = document.createElement("div");
                     card.className = "aktuellt-card";
                     card.setAttribute("onclick", item.action);
-                    const probText = item.maxYears >= 4 ? `<span style="color:#16a34a; font-weight:600; font-size:0.85rem;">Mycket hög chans (setts ${item.maxYears} år)</span>` : `<span style="color:#d97706; font-size:0.85rem;">Möjlig (setts ${item.maxYears} år)</span>`;
+
+                    // Färgkodning baserad på "förväntad" (>=4 år) vs "möjlig"
+                    const isHigh = item.maxYears >= 4;
+                    const bgCol = isHigh ? "#f0fdf4" : "#fffbeb";
+                    const borderCol = isHigh ? "#bbf7d0" : "#fde68a";
+                    const textCol = isHigh ? "#16a34a" : "#d97706";
+                    const mainTextCol = isHigh ? "#14532d" : "#78350f";
+
+                    card.style.background = bgCol;
+                    card.style.borderColor = borderCol;
+
+                    const probText = isHigh ? `<span style="color:${textCol}; font-weight:600; font-size:0.85rem;">Förväntad (setts ${item.maxYears} år)</span>` : `<span style="color:${textCol}; font-size:0.85rem;">Möjlig (setts ${item.maxYears} år)</span>`;
+
                     card.innerHTML = `
                     <div>
-                        <h3 style="margin:0 0 0.25rem 0; font-size:1.1rem; color:#1e293b;">${item.name}</h3>
+                        <h3 style="margin:0 0 0.25rem 0; font-size:1.1rem; color:${mainTextCol};">${item.name}</h3>
                         ${probText}
                     </div>
-                    <svg width="20" height="20" fill="none" stroke="#cbd5e1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    <svg width="20" height="20" fill="none" stroke="${borderCol}" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color: ${textCol}"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 `;
                     gridPossible.appendChild(card);
                 });
@@ -186,9 +198,9 @@ document.addEventListener("DOMContentLoaded", () => {
                     node.className = "aktuellt-timeline-node";
 
                     let speciesHTML = speciesArr.map(item => `
-                    <div class="aktuellt-card" style="margin-top:0.5rem; display:inline-flex; width:auto; padding:0.75rem 1.25rem; margin-right:0.5rem;" onclick="${item.action}">
+                    <div class="aktuellt-card" style="margin-top:0.5rem; display:inline-flex; width:auto; padding:0.75rem 1.25rem; margin-right:0.5rem; background:#f8fafc; border-color:#e2e8f0; color:#334155;" onclick="${item.action}">
                         <div>
-                            <span style="font-weight:600; color:#1e293b;">${item.name}</span>
+                            <span style="font-weight:600;">${item.name}</span>
                         </div>
                     </div>
                 `).join('');
@@ -214,12 +226,17 @@ document.addEventListener("DOMContentLoaded", () => {
                     const card = document.createElement("div");
                     card.className = "aktuellt-card";
                     card.setAttribute("onclick", item.action);
+
+                    // Rariteter får en mjuk röd/lila färgkodning istället för stjärna
+                    card.style.background = "#fff1f2";
+                    card.style.borderColor = "#fecdd3";
+
                     card.innerHTML = `
                     <div>
-                        <h3 style="margin:0 0 0.25rem 0; font-size:1.1rem; color:#1e293b; display:flex; align-items:center; gap:0.5rem;">${item.name} <span style="font-size:0.9rem;">⭐</span></h3>
-                        <span style="color:#64748b; font-size:0.85rem;">Historiskt obsad ${doyToString[item.bestDoy]}. (Totalt ${item.total} obs-dagar någonsin)</span>
+                        <h3 style="margin:0 0 0.25rem 0; font-size:1.1rem; color:#881337; display:flex; align-items:center; gap:0.5rem;">${item.name}</h3>
+                        <span style="color:#be123c; font-size:0.85rem;">Historiskt obsad ${doyToString[item.bestDoy]}. (Totalt ${item.total} obs-dagar någonsin)</span>
                     </div>
-                    <svg width="20" height="20" fill="none" stroke="#cbd5e1" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    <svg width="20" height="20" fill="none" stroke="#fda4af" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 `;
                     gridRarities.appendChild(card);
                 });
