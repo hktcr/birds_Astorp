@@ -551,8 +551,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     const isChecked2026 = checkedMap.has(species);
                     const obsData = data[species];
                     let totalDays = 0;
-                    let maxYearsNow = 0; // [-3, +3] window
-                    let maxYearsSoon = 0; // [+4, +14] window
+                    let sumNow = 0;
+                    let sumSoon = 0;
                     let soonOffset = 999;
 
                     for (let i = 0; i < dayAngles.length; i++) {
@@ -565,10 +565,10 @@ document.addEventListener("DOMContentLoaded", () => {
                             if (diff < -183) diff += 366;
                             if (diff > 183) diff -= 366;
 
-                            if (diff >= -3 && diff <= 3) {
-                                if (count > maxYearsNow) maxYearsNow = count;
-                            } else if (diff >= 4 && diff <= 14) {
-                                if (count > maxYearsSoon) maxYearsSoon = count;
+                            if (diff >= -7 && diff <= 7) {
+                                sumNow += count;
+                            } else if (diff >= 8 && diff <= 21) {
+                                sumSoon += count;
                                 if (diff < soonOffset) soonOffset = diff;
                             }
                         }
@@ -578,13 +578,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     // Categorize
                     if (totalDays <= RECOMMENDATION_RARE_MAX_TOTAL) {
-                        if (maxYearsNow > 0) {
+                        if (sumNow > 0) {
                             rarities.push({ name: species });
                         }
                     } else if (!isChecked2026) {
-                        if (maxYearsNow >= RECOMMENDATION_MIN_YEARS) {
+                        if (sumNow >= RECOMMENDATION_MIN_YEARS) {
                             possibleNow.push({ name: species });
-                        } else if (maxYearsSoon >= RECOMMENDATION_MIN_YEARS) {
+                        } else if (sumSoon >= RECOMMENDATION_MIN_YEARS) {
                             arrivingSoon.push({ name: species, offset: soonOffset });
                         }
                     }

@@ -87,10 +87,12 @@ document.addEventListener("DOMContentLoaded", () => {
                 const isChecked2026 = checkedMap.has(species);
                 const obsData = data[species];
                 let totalDays = 0;
-                let maxYearsNow = 0;
-                let maxYearsSoon = 0;
+
+                let sumNow = 0;
+                let sumSoon = 0;
                 let soonOffset = 999;
-                let bestNowDOY = -1; // Specific day with highest observation count in the Now window
+                let bestNowDOY = -1;
+                let maxSingleDayNow = 0; // Bara för att spara en historisk peak för rariteter
 
                 for (let i = 0; i < dayAngles.length; i++) {
                     const count = obsData[dayAngles[i].key] || 0;
@@ -101,15 +103,17 @@ document.addEventListener("DOMContentLoaded", () => {
                         if (diff < -183) diff += 366;
                         if (diff > 183) diff -= 366;
 
-                        if (diff >= -3 && diff <= 3) {
-                            if (count > maxYearsNow) {
-                                maxYearsNow = count;
+                        // Möjlig just nu: +/- 7 dagar
+                        if (diff >= -7 && diff <= 7) {
+                            sumNow += count;
+                            if (count > maxSingleDayNow) {
+                                maxSingleDayNow = count;
                                 bestNowDOY = i;
                             }
-                        } else if (diff >= 4 && diff <= 14) {
-                            if (count > maxYearsSoon) {
-                                maxYearsSoon = count;
-                            }
+                        }
+                        // I Antågande: Nästkommande två veckorna (+8 till +21 dagar)
+                        else if (diff >= 8 && diff <= 21) {
+                            sumSoon += count;
                             if (diff < soonOffset) {
                                 soonOffset = diff;
                             }
@@ -124,14 +128,15 @@ document.addEventListener("DOMContentLoaded", () => {
                 const clickHandler = `if(window.openArshjulModalForSpecies) window.openArshjulModalForSpecies('${species}')`;
 
                 if (totalDays <= RECOMMENDATION_RARE_MAX_TOTAL) {
-                    if (maxYearsNow > 0) {
+                    if (sumNow > 0) {
                         rarities.push({ name: species, total: totalDays, bestDoy: bestNowDOY, slug: slug, action: clickHandler });
                     }
                 } else if (!isChecked2026) {
-                    if (maxYearsNow >= RECOMMENDATION_MIN_YEARS) {
-                        possibleNow.push({ name: species, maxYears: maxYearsNow, slug: slug, action: clickHandler });
-                    } else if (maxYearsSoon >= RECOMMENDATION_MIN_YEARS) {
-                        arrivingSoon.push({ name: species, offset: soonOffset, maxYears: maxYearsSoon, slug: slug, action: clickHandler });
+                    // Kravet: Minst 2 historiska observationer under hela 14-dagarsfönstret
+                    if (sumNow >= RECOMMENDATION_MIN_YEARS) {
+                        possibleNow.push({ name: species, maxYears: sumNow, slug: slug, action: clickHandler });
+                    } else if (sumSoon >= RECOMMENDATION_MIN_YEARS) {
+                        arrivingSoon.push({ name: species, offset: soonOffset, maxYears: sumSoon, slug: slug, action: clickHandler });
                     }
                 }
             }
@@ -161,7 +166,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     card.style.background = bgCol;
                     card.style.borderColor = borderCol;
 
-                    const probText = isHigh ? `<span style="color:${textCol}; font-weight:600; font-size:0.85rem;">Förväntad (setts ${item.maxYears} år)</span>` : `<span style="color:${textCol}; font-size:0.85rem;">Möjlig (setts ${item.maxYears} år)</span>`;
+                    const probText = isHigh ? `<span style="color:${textCol}; font-weight:600; font-size:0.85rem;">Förväntad (setts ${item.maxYears} ggr under perioden)</span>` : `<span style="color:${textCol}; font-size:0.85rem;">Möjlig (setts ${item.maxYears} ggr under perioden)</span>`;
 
                     card.innerHTML = `
                     <div>
