@@ -197,13 +197,20 @@ document.addEventListener("DOMContentLoaded", () => {
                     const node = document.createElement("div");
                     node.className = "aktuellt-timeline-node";
 
-                    let speciesHTML = speciesArr.map(item => `
-                    <div class="aktuellt-card" style="margin-top:0.5rem; display:inline-flex; width:auto; padding:0.75rem 1.25rem; margin-right:0.5rem; background:#f8fafc; border-color:#e2e8f0; color:#334155;" onclick="${item.action}">
-                        <div>
-                            <span style="font-weight:600;">${item.name}</span>
+                    let speciesHTML = speciesArr.map(item => {
+                        const isHigh = item.maxYears >= 4;
+                        const bgCol = isHigh ? "#f0fdf4" : "#fffbeb";
+                        const borderCol = isHigh ? "#bbf7d0" : "#fde68a";
+                        const textCol = isHigh ? "#14532d" : "#78350f";
+                        const subTextCol = isHigh ? "#16a34a" : "#d97706";
+
+                        return `
+                        <div class="aktuellt-card" style="margin-top:0.5rem; display:inline-flex; flex-direction:column; width:auto; padding:0.75rem 1.25rem; margin-right:0.5rem; background:${bgCol}; border-color:${borderCol};" onclick="${item.action}">
+                            <span style="font-weight:600; color:${textCol};">${item.name}</span>
+                            <span style="font-size:0.75rem; color:${subTextCol}; margin-top:0.15rem;">${isHigh ? 'Förväntad' : 'Möjlig'}</span>
                         </div>
-                    </div>
-                `).join('');
+                        `;
+                    }).join('');
 
                     node.innerHTML = `
                     <div class="aktuellt-timeline-marker"></div>
