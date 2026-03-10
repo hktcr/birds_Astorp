@@ -160,3 +160,20 @@
 
 ---
 
+
+---
+
+### 2026-03-09 — 200148a1
+
+**Ursprung:** Åstorp-2026: Aktuellt-sida & Algoritmförbättringar
+**Typ:** Framsteg | Buggfix | Beslut
+
+> Skapade ny webbplatssektion `/aktuellt/` för utökade fågelrekommendationer (Möjliga just nu, I antågande, Rariteter). Fixade JS-bugg där avsaknad av `gridEl` blockerade klickbara kort och modaluppslag genom att refaktorera `arshjul.js`. VEP-kalibrering ledde till algoritmändring: breddad sökruta (summa för rullande 14-dagarsperiod) från deterministiska enskilda dagar, samt skapande av en "Förväntad" (grön) vs "Möjlig" (orange) UX-färgkodning som ersatte emojis.
+
+**Relaterade filer:**
+- `layouts/aktuellt/single.html` (ny layout + färgkodning)
+- `layouts/_default/arshjul.html` (länkning till "Visa mer")
+- `static/js/aktuellt.js` (algoritm med 14-dagars aggregat)
+- `static/js/arshjul.js` (refaktorisering av modal och anpassning till sum-baserad logik)
+
+---

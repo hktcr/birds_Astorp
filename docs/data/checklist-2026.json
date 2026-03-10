@@ -673,6 +673,14 @@
             "location": "Madkärr, Tomarp",
             "lat": 56.16336146917374,
             "lng": 13.062392835112023
+        },
+        {
+            "species": "Forsärla",
+            "latin": "Motacilla cinerea",
+            "date": "2026-03-09",
+            "location": "Tomarps Ene",
+            "lat": 56.1487,
+            "lng": 13.07359
         }
     ]
 }
