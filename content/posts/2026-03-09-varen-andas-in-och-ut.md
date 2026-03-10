@@ -31,18 +31,18 @@ images:
       - Kulturlandskap
 ---
 
-Det fyller fortfarande på med fåglar, även om det nu är ett litet tag sedan den senaste stora vågen. Kungsgårdsmaderna, som för bara några dagar sedan var täckta av stora vattenspeglar, har nu dragit sig tillbaka. Kvar är mindre vattensamlingar som glittrar i det milda ljuset. Våren andas in och ut, bygger upp för det stora skiftet.
+Det fyller fortfarande på med fåglar, även om det nu är ett litet tag sedan den senaste stora vågen. De stora vattenspeglar som täckte Kungsgårdsmaderna för bara några dagar sedan har nu dragit sig tillbaka. Kvar är vattensamlingar som glittrar i det milda ljuset. Våren andas in och ut, bygger upp för det stora skiftet.
 
-Det är intressant att titta på vindarna just nu. Det senaste större inflödet av sånglärkor, vipor och änder skedde i direkt anslutning till det senaste skiftet till ihållande sydvästliga vindar, med stadiga 4-6 m/s som blåste in över landskapet. Fåglarna rider på dessa strömmar, en osynlig motorväg rakt in i Rönneådalen.
+Det senaste större inflödet av sånglärkor, vipor och änder skedde när vinden slog om till ihållande sydvästlig, med stadiga 4-6 m/s in över landskapet. Fåglarna rider på dessa strömmar, en osynlig motorväg rakt in i Rönneådalen.
 
 <figure class="notis-chart">
   <a href="/images/posts/2026-03-09-varen-andas-in-och-ut/wind-flow-mar10.png" class="lightbox-link">
-    <img src="/images/posts/2026-03-09-varen-andas-in-och-ut/wind-flow-mar10.png" alt="Vindkomponenter och vattenföring">
+    <img src="/images/posts/2026-03-09-varen-andas-in-och-ut/wind-flow-mar10.png" alt="Vindkomponenter, vindskifte och vattenföring">
   </a>
-  <figcaption>Vindkomponenter, vindskifte och vattenföring, 25 feb - 10 mar (SMHI)</figcaption>
+  <figcaption>Vindkomponenter (N/S och Ö/V), vindskifte och vattenföring, 25 feb – 10 mar. De två översta panelerna visar vindkomponenterna uppdelade i nord/syd (blått/rött) och öst/väst (grönt/gult) — staplar nedåt innebär sydlig respektive västlig vind. Remsan i mitten visar vindskiftet (ΔW): orange toner markerar dagar med abrupt skifte i vindriktning, vilket ofta sammanfaller med nya fågelrörelser. Längst ned vattenföringen vid Forsmöllan i Rönne å — en indikator för vattenläget på maderna i kommunen. Källa: SMHI.</figcaption>
 </figure>
 
-Vid Tomarps Ene kastar sig en forsärla, årets första, längs med strandbrinken. Den letar insekter bland rötterna innan den försvinner iväg med sitt typiska skarpa lockläte. Vid grustagen i Kvidinge är det lugnare, men säsongen har bara börjat.
+Nere vid bäcken visar sig ett annat vårtecken. Vid Tomarps Ene kastar sig en forsärla längs strandbrinken — årets första, ett nytt årskryss. Den letar insekter bland rötterna innan den försvinner iväg med sitt typiska skarpa lockläte. En förväntad nykomling, men en som bekräftar att våren rör sig framåt. Vid grustagen i Kvidinge ännu tyst. Men säsongen har bara börjat.
 
 <a href="/images/posts/2026-03-09-varen-andas-in-och-ut/kungsgardsmaderna_20260309.jpg" class="lightbox-link" style="display: block; margin: 1.5rem 0; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 6px -1px rgb(0 0 0 / 0.1), 0 2px 4px -2px rgb(0 0 0 / 0.1);">
   <img src="/images/posts/2026-03-09-varen-andas-in-och-ut/kungsgardsmaderna_20260309.jpg" alt="Vy över Kungsgårdsmaderna" style="width: 100%; height: auto; object-fit: cover; transition: transform 0.3s ease;" onmouseover="this.style.transform='scale(1.02)'" onmouseout="this.style.transform='scale(1)'">

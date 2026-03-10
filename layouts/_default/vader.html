@@ -4,8 +4,84 @@
 
         <h1 class="vader-title">{{ .Title }}</h1>
 
-        <div class="vader-intro">
-            {{ .Content }}
+        <div class="vader-intro-grid">
+            <div class="vader-intro">
+                {{ .Content }}
+            </div>
+
+            <!-- Realtidsvind-widget (högerkolumn) -->
+            <div class="vader-wind-now" id="vader-wind-now">
+                <div class="vader-wind-now-header">
+                    <span class="vader-wind-now-label">Just nu</span>
+                    <span class="vader-wind-now-station">Helsingborg A</span>
+                </div>
+
+                <div class="vader-wind-now-main">
+                    <!-- SVG vindpil -->
+                    <div class="vader-wind-now-arrow-wrap">
+                        <svg id="wind-arrow" class="vader-wind-now-arrow" viewBox="0 0 80 80" width="64" height="64">
+                            <circle cx="40" cy="40" r="38" fill="none" stroke="rgba(0,0,0,0.06)" stroke-width="1"/>
+                            <!-- Kompassmarkeringar -->
+                            <text x="40" y="10" text-anchor="middle" font-size="8" fill="#999" font-family="Inter, sans-serif" font-weight="600">N</text>
+                            <text x="40" y="76" text-anchor="middle" font-size="8" fill="#999" font-family="Inter, sans-serif">S</text>
+                            <text x="8" y="43" text-anchor="middle" font-size="8" fill="#999" font-family="Inter, sans-serif">V</text>
+                            <text x="72" y="43" text-anchor="middle" font-size="8" fill="#999" font-family="Inter, sans-serif">Ö</text>
+                            <!-- Vindpil — pekar dit vinden blåser -->
+                            <g id="wind-arrow-group" transform="rotate(0, 40, 40)">
+                                <line x1="40" y1="58" x2="40" y2="18" stroke="#2B5A2B" stroke-width="2.5" stroke-linecap="round"/>
+                                <polygon points="40,16 34,28 46,28" fill="#2B5A2B"/>
+                            </g>
+                        </svg>
+                    </div>
+
+                    <!-- Hastighet -->
+                    <div class="vader-wind-now-speed">
+                        <span id="wind-speed-value" class="vader-wind-now-speed-val">—</span>
+                        <span class="vader-wind-now-speed-unit">m/s</span>
+                    </div>
+
+                    <!-- Beaufort -->
+                    <div id="wind-beaufort" class="vader-wind-now-beaufort">Laddar…</div>
+
+                    <!-- Riktningstext -->
+                    <div id="wind-dir-text" class="vader-wind-now-dir-text"></div>
+                </div>
+
+                <!-- Komponentstaplar N/S/Ö/V -->
+                <div class="vader-wind-now-comp-title">Vindkomponenter</div>
+                <div class="vader-wind-now-components">
+                    <div class="vader-wind-now-comp-row">
+                        <span class="vader-wind-now-comp-label" style="color:#4A90D9;">N</span>
+                        <div class="vader-wind-now-comp-track">
+                            <div id="wind-comp-n" class="vader-wind-now-comp-bar" style="background:#4A90D9;width:0%"></div>
+                        </div>
+                        <span id="wind-comp-n-val" class="vader-wind-now-comp-val">0</span>
+                    </div>
+                    <div class="vader-wind-now-comp-row">
+                        <span class="vader-wind-now-comp-label" style="color:#D94A4A;">S</span>
+                        <div class="vader-wind-now-comp-track">
+                            <div id="wind-comp-s" class="vader-wind-now-comp-bar" style="background:#D94A4A;width:0%"></div>
+                        </div>
+                        <span id="wind-comp-s-val" class="vader-wind-now-comp-val">0</span>
+                    </div>
+                    <div class="vader-wind-now-comp-row">
+                        <span class="vader-wind-now-comp-label" style="color:#3DAA6D;">Ö</span>
+                        <div class="vader-wind-now-comp-track">
+                            <div id="wind-comp-e" class="vader-wind-now-comp-bar" style="background:#3DAA6D;width:0%"></div>
+                        </div>
+                        <span id="wind-comp-e-val" class="vader-wind-now-comp-val">0</span>
+                    </div>
+                    <div class="vader-wind-now-comp-row">
+                        <span class="vader-wind-now-comp-label" style="color:#D9A84A;">V</span>
+                        <div class="vader-wind-now-comp-track">
+                            <div id="wind-comp-w" class="vader-wind-now-comp-bar" style="background:#D9A84A;width:0%"></div>
+                        </div>
+                        <span id="wind-comp-w-val" class="vader-wind-now-comp-val">0</span>
+                    </div>
+                </div>
+
+                <div id="wind-timestamp" class="vader-wind-now-timestamp">—</div>
+            </div>
         </div>
 
         <!-- Fältrapport-väljare -->
@@ -65,7 +141,7 @@
                 <canvas id="wind-chart"></canvas>
                 <p class="vader-chart-hint">Staplar uppåt = vind från norr/öst. Staplar nedåt = vind från söder/väst.
                     Högre stapel = starkare vind från den riktningen.</p>
-                <div class="vader-chart-source">SMHI, Helsingborg A</div>
+                <div class="vader-chart-source">SMHI, Helsingborg A (16 km sydväst om Åstorp)</div>
             </div>
 
             <!-- ΔW vindskifte — kopplingsremsa -->
@@ -85,7 +161,7 @@
                 <canvas id="temp-day-chart"></canvas>
                 <p class="vader-chart-hint">Dagens uppmätta maxtemperatur. Staplar uppåt = plusgrader, nedåt =
                     minusgrader.</p>
-                <div class="vader-chart-source">SMHI, Helsingborg A</div>
+                <div class="vader-chart-source">SMHI, Helsingborg A (16 km sydväst om Åstorp)</div>
             </div>
 
             <!-- 3b. Natttemperatur (min) -->
@@ -94,7 +170,7 @@
                 <canvas id="temp-night-chart"></canvas>
                 <p class="vader-chart-hint">Nattens uppmätta mintemperatur. Staplar uppåt = plusgrader, nedåt =
                     minusgrader.</p>
-                <div class="vader-chart-source">SMHI, Helsingborg A</div>
+                <div class="vader-chart-source">SMHI, Helsingborg A (16 km sydväst om Åstorp)</div>
             </div>
 
             <!-- ΔT dygnssvängning — kopplingsremsa -->
@@ -112,7 +188,7 @@
             <div class="vader-chart-box" id="chart-precip">
                 <div class="vader-chart-label">🌧️ Nederbörd</div>
                 <canvas id="precip-chart"></canvas>
-                <div class="vader-chart-source">SMHI, Åstorp</div>
+                <div class="vader-chart-source">SMHI, Åstorps station (4 km)</div>
             </div>
 
             <!-- 5. Vattenföring -->
@@ -120,7 +196,7 @@
                 <div class="vader-chart-label">🌊 Vattenföring</div>
                 <canvas id="flow-chart"></canvas>
                 <p class="vader-chart-hint">Diagrammet visar vattenföringen (m³/s) vid Forsmöllan i Rönne å. Det visar inte det exakta vattenflödet, eller vattenståndet på maderna, i Åstorps kommun men fungerar förmodligen väl som en indikator för vattenläget eftersom hela åsystemet reagerar på liknande nederbörds- och flödesmönster.</p>
-                <div class="vader-chart-source">SMHI, Forsmöllan (Rönne å)</div>
+                <div class="vader-chart-source">SMHI, Forsmöllan, Rönne å (15 km öster om Åstorp)</div>
             </div>
         </div>
 
@@ -729,6 +805,128 @@
         });
     }
 
+    // ================================================================
+    // WIDGET: "Just nu" — Realtidsvind från SMHI latest-hour
+    // ================================================================
+    function buildWindNowWidget() {
+        var widget = document.getElementById('vader-wind-now');
+        if (!widget) return;
+
+        var urlDir = 'https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/3/station/' + STATION_TEMP + '/period/latest-hour/data.json';
+        var urlSpd = 'https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/4/station/' + STATION_TEMP + '/period/latest-hour/data.json';
+
+        Promise.all([
+            fetch(urlDir).then(function (r) { return r.json(); }),
+            fetch(urlSpd).then(function (r) { return r.json(); })
+        ]).then(function (results) {
+            var dirData = results[0];
+            var spdData = results[1];
+
+            // Hämta senaste värde
+            var dirVals = dirData.value || [];
+            var spdVals = spdData.value || [];
+            if (dirVals.length === 0 || spdVals.length === 0) {
+                document.getElementById('wind-beaufort').textContent = 'Ingen data';
+                return;
+            }
+
+            var latestDir = dirVals[dirVals.length - 1];
+            var latestSpd = spdVals[spdVals.length - 1];
+
+            var deg = parseFloat(latestDir.value);
+            var spd = parseFloat(latestSpd.value);
+            var timestamp = latestSpd.date;
+
+            // Vindpil — SMHI anger varifrån vinden blåser.
+            // Pilen ska peka dit vinden blåser, dvs rotera 180° ytterligare.
+            var arrowDeg = (deg + 180) % 360;
+            var arrowEl = document.getElementById('wind-arrow-group');
+            if (arrowEl) {
+                arrowEl.setAttribute('transform', 'rotate(' + arrowDeg + ', 40, 40)');
+            }
+
+            // Hastighet
+            document.getElementById('wind-speed-value').textContent = spd.toFixed(1);
+
+            // Beaufort-skala
+            var beaufort = getBeaufortText(spd);
+            document.getElementById('wind-beaufort').textContent = beaufort;
+
+            // Riktningstext
+            var dirText = getWindDirectionText(deg);
+            document.getElementById('wind-dir-text').textContent = dirText;
+
+            // N/S + Ö/V komponenter
+            var rad = deg * Math.PI / 180;
+            // deg är varifrån vinden blåser — cos(0)=1 (nordlig), sin(90)=1 (östlig)
+            var ns = Math.cos(rad) * spd;  // Positivt = från norr
+            var ew = Math.sin(rad) * spd;  // Positivt = från öst
+
+            var compN = Math.max(0, ns);   // Nordlig komponent
+            var compS = Math.max(0, -ns);  // Sydlig komponent
+            var compE = Math.max(0, ew);   // Östlig komponent
+            var compW = Math.max(0, -ew);  // Västlig komponent
+
+            var maxComp = Math.max(compN, compS, compE, compW, 0.1);
+
+            // Uppdatera komponentstaplar (proportionell bredd + värde)
+            setCompBar('wind-comp-n', 'wind-comp-n-val', compN, maxComp);
+            setCompBar('wind-comp-s', 'wind-comp-s-val', compS, maxComp);
+            setCompBar('wind-comp-e', 'wind-comp-e-val', compE, maxComp);
+            setCompBar('wind-comp-w', 'wind-comp-w-val', compW, maxComp);
+
+            // Tidstämpel
+            if (timestamp) {
+                var d = new Date(timestamp);
+                var hh = d.getHours();
+                var mm = d.getMinutes();
+                var timeStr = (hh < 10 ? '0' : '') + hh + ':' + (mm < 10 ? '0' : '') + mm;
+                document.getElementById('wind-timestamp').textContent = 'Uppdaterad kl ' + timeStr;
+            }
+
+            // Visa widgeten
+            widget.classList.add('vader-wind-now-loaded');
+        }).catch(function (err) {
+            console.warn('Kunde inte hämta realtidsvinddata:', err);
+            var bf = document.getElementById('wind-beaufort');
+            if (bf) bf.textContent = 'Data ej tillgänglig';
+        });
+    }
+
+    function setCompBar(barId, valId, value, maxVal) {
+        var bar = document.getElementById(barId);
+        var valEl = document.getElementById(valId);
+        if (!bar || !valEl) return;
+        var pct = maxVal > 0 ? Math.round((value / maxVal) * 100) : 0;
+        bar.style.width = pct + '%';
+        valEl.textContent = value.toFixed(1);
+    }
+
+    function getBeaufortText(spd) {
+        if (spd < 0.3) return 'Stiltje';
+        if (spd < 1.6) return 'Nästan stiltje';
+        if (spd < 3.4) return 'Svag vind';
+        if (spd < 5.5) return 'Lätt bris';
+        if (spd < 8.0) return 'Måttlig bris';
+        if (spd < 10.8) return 'Frisk bris';
+        if (spd < 13.9) return 'Hård bris';
+        if (spd < 17.2) return 'Styv kuling';
+        if (spd < 20.8) return 'Hård kuling';
+        if (spd < 24.5) return 'Halv storm';
+        if (spd < 28.5) return 'Storm';
+        if (spd < 32.7) return 'Svår storm';
+        return 'Orkan';
+    }
+
+    function getWindDirectionText(deg) {
+        var sectors = ['nordlig', 'nord-nordostlig', 'nordostlig', 'ost-nordostlig',
+            'ostlig', 'ost-sydostlig', 'sydostlig', 'syd-sydostlig',
+            'sydlig', 'syd-sydvästlig', 'sydvästlig', 'väst-sydvästlig',
+            'västlig', 'väst-nordvästlig', 'nordvästlig', 'nord-nordvästlig'];
+        var idx = Math.round(deg / 22.5) % 16;
+        return sectors[idx] + ' vind';
+    }
+
     // Ladda Luxon time adapter, sedan bygg alla diagram
     (function () {
         var s1 = document.createElement('script');
@@ -750,6 +948,9 @@
         };
         document.head.appendChild(s1);
     })();
+
+    // Vindwidgeten behöver inte Chart.js/Luxon — starta direkt
+    buildWindNowWidget();
 
     // ================================================================
     // GLOBAL TIDSPERIOD-VÄLJARE — Synkroniserar alla fem diagram

@@ -7,9 +7,24 @@
 | Fil | Syfte |
 |-----|-------|
 | `content/vader.md` | Introtext + beta-notis. Layout: `vader` |
-| `layouts/_default/vader.html` | All diagram-HTML + Chart.js-logik |
-| `assets/css/style.css` | CSS `.vader-*` (rad ~2440–2500) |
+| `layouts/_default/vader.html` | All diagram-HTML + Chart.js-logik + vindwidget |
+| `assets/css/style.css` | CSS `.vader-*` (rad ~2440–2960) |
 | `hugo.toml` | Menypt "Väder" (weight 27) |
+
+## Widget: "Just nu" (Realtidsvind)
+
+- **Typ:** Kompakt sidopanel (float right), ej Chart.js
+- **API:** `opendata-download-metobs.smhi.se` param 3 (riktning) + 4 (hastighet)
+- **Station:** 62040 (Helsingborg A, 16 km)
+- **Period:** `latest-hour` (senaste 10-min medelvärde, uppdateras varje timme)
+- **Innehåll:**
+  - SVG kompasspil (roterad dit vinden blåser)
+  - Vindhastighet (m/s) + Beaufort-text
+  - Riktningstext (16 sektorer)
+  - N/S/Ö/V komponentstaplar (cos/sin-dekomponerad)
+  - Tidstämpel
+- **Responsivt:** Float right desktop, full bredd mobil (<600px)
+- **CSS-prefix:** `.vader-wind-now-*`
 
 ## Diagram (4 st)
 

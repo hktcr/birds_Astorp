@@ -177,3 +177,17 @@
 - `static/js/arshjul.js` (refaktorisering av modal och anpassning till sum-baserad logik)
 
 ---
+
+### 2026-03-10 — 9b101376
+
+**Ursprung:** Verifiering av vädersidan + axelfix + deploy-incident
+**Typ:** Framsteg | Buggfix | Insikt
+
+> Verifierade att alla SMHI-datakällor på `/vader/` returnerar korrekt 2026-data (temperatur param 19/20 från Helsingborg A, nederbörd param 5 från Åstorp, vattenföring station 2372, vind param 3/4). Fixade x-axel-alignment i alla diagram: Custom Canvas (vind, temp) fick `centerX = labelW + d * cellW + (cellW / 2)`, Chart.js (precip, flow, progress) fick `offset: true` vid dagsenhet. **Deploy-incident:** `deploy.sh` kör `git add -A` vilket fångade ofärdig notis (`2026-03-09-varen-andas-in-och-ut.md`, `draft: false`). Hugo byggde in den i `docs/`. Hotfix: satt `draft: true` + manuell borttagning av genererade filer i `docs/`. Lärdom: `deploy.sh` bör köra `hugo --minify --cleanDestinationDir` för att rensa orphan-filer.
+
+**Relaterade filer:**
+- `layouts/_default/vader.html` (centerX-fix + Chart.js offset)
+- `content/posts/2026-03-09-varen-andas-in-och-ut.md` (satt draft: true)
+- `deploy.sh` (identifierat förbättringsbehov: --cleanDestinationDir)
+
+---
