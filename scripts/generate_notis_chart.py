@@ -355,16 +355,22 @@ def build_wind_ew(ax, date_from, date_to):
             bbox=dict(facecolor="white", edgecolor="none", alpha=0.7, pad=0.3))
     setup_axes(ax, date_from, date_to)
 
+# Diagramtyper som ska renderas som tunna remsor (heatmap)
+STRIP_TYPES = {"wind_delta"}
+
 def build_wind_delta(ax, date_from, date_to):
-    """Vindskifte ΔW (dag-till-dag vektorskillnad). Remsa."""
+    """Vindskifte ΔW — tunn heatmap-remsa (som på vädersidan)."""
+    import numpy as np
+    from matplotlib.colors import LinearSegmentedColormap
+    
     date_from_prev = (datetime.strptime(date_from, "%Y-%m-%d") - timedelta(days=2)).strftime("%Y-%m-%d")
     comp = fetch_wind_components(date_from_prev, date_to)
     
-    days = sorted(comp.keys())
+    all_days = sorted(comp.keys())
     deltas = {}
-    for i in range(1, len(days)):
-        d = days[i]
-        d_prev = days[i-1]
+    for i in range(1, len(all_days)):
+        d = all_days[i]
+        d_prev = all_days[i-1]
         
         date_curr = datetime.strptime(d, "%Y-%m-%d")
         date_p = datetime.strptime(d_prev, "%Y-%m-%d")
@@ -373,56 +379,51 @@ def build_wind_delta(ax, date_from, date_to):
             dv = comp[d]["ns"] - comp[d_prev]["ns"]
             dw = math.sqrt(du*du + dv*dv)
             deltas[d] = dw
-            
-    filtered_dates = [d for d in days if date_from <= d <= date_to and d in deltas]
     
-    if not filtered_dates:
+    # Bygg en komplett dagsarray för hela perioden
+    d_from = datetime.strptime(date_from, "%Y-%m-%d")
+    d_to = datetime.strptime(date_to, "%Y-%m-%d")
+    n_days = (d_to - d_from).days + 1
+    
+    day_vals = []
+    for i in range(n_days):
+        d = (d_from + timedelta(days=i)).strftime("%Y-%m-%d")
+        day_vals.append(deltas.get(d, 0.0))
+    
+    if not day_vals or max(day_vals) == 0:
         ax.text(0.5, 0.5, "Inga delta-data", transform=ax.transAxes, ha="center", color=COLORS["text"], fontsize=11)
         return
-        
-    dates = [datetime.strptime(d, "%Y-%m-%d") for d in filtered_dates]
-    vals = [deltas[d] for d in filtered_dates]
     
-    max_val = max(max(vals), 1.0)
+    max_val = max(max(day_vals), 1.0)
     
-    colors = []
-    for v in vals:
-        ratio = min(v / max_val, 1.0)
-        if ratio < 0.5:
-            t = ratio * 2
-            # #64a0dc -> #f0e0b4
-            r = int(100 + t * 155) / 255.0
-            g = int(160 + t * 80) / 255.0
-            b = int(220 - t * 40) / 255.0
-        else:
-            t = (ratio - 0.5) * 2
-            # #f0e0b4 -> #e07832
-            r = int(255 - t * 30) / 255.0
-            g = int(240 - t * 120) / 255.0
-            b = int(180 - t * 130) / 255.0
-        colors.append((r, g, b))
-        
-    ax.bar(dates, vals, color=colors, width=1.0, edgecolor="none", zorder=3)
-    ax.set_ylabel("ΔW", fontsize=9, color=COLORS["text"])
+    # Skapa en custom colormap: blå (#64a0dc) → beige (#f0e0b4) → orange (#e07832)
+    cmap = LinearSegmentedColormap.from_list("dw", [
+        (100/255, 160/255, 220/255),   # #64a0dc — stabilt
+        (240/255, 224/255, 180/255),   # #f0e0b4 — medel
+        (224/255, 120/255,  50/255),   # #e07832 — abrupt
+    ])
     
-    # Custom legend for the delta gradient
-    ax.text(0.01, 0.5, "Vindskifte (ΔW)", transform=ax.transAxes, va="center", ha="left", color="#333", fontsize=8, fontweight="bold")
+    # Rendera som en 1-pixel-hög imshow-bild, sträckt i y-led
+    data_2d = np.array([day_vals])
+    ax.imshow(data_2d, aspect="auto", cmap=cmap, vmin=0, vmax=max_val,
+              extent=[0, n_days, 0, 1], interpolation="nearest")
     
-    # Legend colors
-    l_box_y = 0.5
-    ax.text(0.35, l_box_y, "■", transform=ax.transAxes, color="#64a0dc", va="center", ha="left", fontsize=9)
-    ax.text(0.38, l_box_y, "stabilt  ·", transform=ax.transAxes, color="#333", va="center", ha="left", fontsize=8)
+    # Ta bort alla axlar — rendera legend istället
+    ax.set_xlim(0, n_days)
+    ax.set_ylim(0, 1)
+    ax.set_xticks([])
+    ax.set_yticks([])
+    for spine in ax.spines.values():
+        spine.set_visible(False)
     
-    ax.text(0.53, l_box_y, "■", transform=ax.transAxes, color="#f0e0b4", va="center", ha="left", fontsize=9)
-    ax.text(0.56, l_box_y, "medel  ·", transform=ax.transAxes, color="#333", va="center", ha="left", fontsize=8)
-    
-    ax.text(0.68, l_box_y, "■", transform=ax.transAxes, color="#e07832", va="center", ha="left", fontsize=9)
-    ax.text(0.71, l_box_y, "abrupt skifte", transform=ax.transAxes, color="#333", va="center", ha="left", fontsize=8)
-
-    setup_axes(ax, date_from, date_to)
-    ax.get_yaxis().set_visible(False)
-    ax.spines['left'].set_visible(False)
-    ax.spines['right'].set_visible(False)
+    # Legend-text under remsan
+    ax.text(0.0, -0.6, "Vindskifte (ΔW)", transform=ax.transAxes, va="top", ha="left", color="#333", fontsize=7.5, fontweight="bold")
+    ax.text(0.28, -0.6, "■", transform=ax.transAxes, color="#64a0dc", va="top", ha="left", fontsize=8)
+    ax.text(0.31, -0.6, "stabilt  ·", transform=ax.transAxes, color="#333", va="top", ha="left", fontsize=7.5)
+    ax.text(0.46, -0.6, "■", transform=ax.transAxes, color="#f0e0b4", va="top", ha="left", fontsize=8)
+    ax.text(0.49, -0.6, "medel  ·", transform=ax.transAxes, color="#333", va="top", ha="left", fontsize=7.5)
+    ax.text(0.62, -0.6, "■", transform=ax.transAxes, color="#e07832", va="top", ha="left", fontsize=8)
+    ax.text(0.65, -0.6, "abrupt skifte — kan sätta arter i rörelse", transform=ax.transAxes, color="#333", va="top", ha="left", fontsize=7.5)
 
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -476,10 +477,22 @@ def main():
         print("❌ Datumformat måste vara YYYY-MM-DD")
         sys.exit(1)
 
-    # ─── Skapa figur ───
+    # ─── Skapa figur med anpassade höjder ───
     n_charts = len(chart_types)
-    fig_height = 4 * n_charts + (0.6 if args.title else 0)
-    fig, axes = plt.subplots(n_charts, 1, figsize=(10, fig_height),
+    # Remsor (wind_delta) får liten höjd, övriga full höjd
+    height_ratios = []
+    total_height = 0
+    for ct in chart_types:
+        if ct in STRIP_TYPES:
+            height_ratios.append(0.4)  # tunn remsa
+            total_height += 1.6
+        else:
+            height_ratios.append(1.0)  # vanlig panel
+            total_height += 4
+    total_height += (0.6 if args.title else 0)
+    
+    fig, axes = plt.subplots(n_charts, 1, figsize=(10, total_height),
+                             gridspec_kw={"height_ratios": height_ratios},
                              squeeze=False)
     fig.patch.set_facecolor(COLORS["bg"])
 
