@@ -2808,34 +2808,25 @@ a.archive-tag:hover {
     }
 }
 
-/* Tvåkolumnslayout: introtext + vindwidget */
-.vader-intro-grid {
-    display: grid;
-    grid-template-columns: 1fr 220px;
-    gap: var(--space-xl);
-    align-items: start;
-    margin-bottom: var(--space-2xl);
-}
-
-/* "Just nu" realtidsvind-widget */
-.vader-wind-now {
-    width: 100%;
+/* ============================================================
+   HERO: "Just nu" — full bredd under titeln
+   ============================================================ */
+.vader-now-hero {
     background: white;
     border: 1px solid var(--color-border);
     border-radius: var(--radius-lg);
-    padding: var(--space-md);
+    padding: var(--space-md) var(--space-lg);
     box-shadow: 0 2px 12px rgba(0, 0, 0, 0.06);
+    margin-bottom: var(--space-xl);
     opacity: 0.4;
     transition: opacity 0.5s ease;
-    position: sticky;
-    top: 90px;
 }
 
-.vader-wind-now.vader-wind-now-loaded {
+.vader-now-hero.vader-now-hero-loaded {
     opacity: 1;
 }
 
-.vader-wind-now-header {
+.vader-now-hero-header {
     display: flex;
     justify-content: space-between;
     align-items: baseline;
@@ -2844,7 +2835,7 @@ a.archive-tag:hover {
     border-bottom: 1px solid var(--color-border);
 }
 
-.vader-wind-now-label {
+.vader-now-hero-label {
     font-family: var(--font-heading);
     font-size: var(--text-xs);
     font-weight: 700;
@@ -2853,11 +2844,45 @@ a.archive-tag:hover {
     color: var(--color-primary);
 }
 
-.vader-wind-now-station {
+.vader-now-hero-station {
     font-size: 10px;
     color: var(--color-text-muted);
 }
 
+.vader-now-hero-cards {
+    display: flex;
+    gap: var(--space-lg);
+    align-items: flex-start;
+}
+
+.vader-now-card {
+    flex: 1;
+    min-width: 0;
+}
+
+.vader-now-card-title {
+    font-family: var(--font-heading);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-sm);
+    padding-bottom: 4px;
+    border-bottom: 1px solid rgba(0,0,0,0.06);
+}
+
+.vader-now-hero-timestamp {
+    font-size: 9px;
+    color: var(--color-text-muted);
+    text-align: center;
+    opacity: 0.7;
+    margin-top: var(--space-sm);
+    padding-top: var(--space-xs);
+    border-top: 1px solid rgba(0,0,0,0.04);
+}
+
+/* Vind-kort (inuti hero) */
 .vader-wind-now-main {
     display: flex;
     flex-direction: column;
@@ -2972,11 +2997,181 @@ a.archive-tag:hover {
     opacity: 0.6;
 }
 
-.vader-wind-now-timestamp {
+/* Temperatur-kort */
+.vader-temp-now-main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: var(--space-sm);
+}
+
+.vader-temp-now-current {
+    display: flex;
+    align-items: baseline;
+    gap: 2px;
+    justify-content: center;
+}
+
+.vader-temp-now-val {
+    font-family: var(--font-heading);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--color-primary-dark);
+    line-height: 1;
+}
+
+.vader-temp-now-unit {
+    font-family: var(--font-heading);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    font-weight: 500;
+}
+
+.vader-temp-now-range {
+    display: flex;
+    gap: var(--space-lg);
+    justify-content: center;
+}
+
+.vader-temp-now-range-item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.vader-temp-now-range-label {
     font-size: 9px;
     color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+}
+
+.vader-temp-now-range-val {
+    font-family: var(--font-heading);
+    font-size: var(--text-sm);
+    font-weight: 600;
+}
+
+.vader-temp-warm {
+    color: #c0392b;
+}
+
+.vader-temp-cool {
+    color: #2980b9;
+}
+
+/* Dagsljus-sektion */
+.vader-daylight {
+    margin-top: var(--space-md);
+    padding-top: var(--space-sm);
+    border-top: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.vader-daylight-title {
+    font-family: var(--font-heading);
+    font-size: 11px;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-xs);
+}
+
+.vader-daylight-bar {
+    margin-bottom: var(--space-sm);
+}
+
+.vader-dl-bar {
+    display: flex;
+    height: 10px;
+    border-radius: 5px;
+    overflow: hidden;
+    position: relative;
+    background: #0d1b2a;
+}
+
+.vader-dl-seg {
+    height: 100%;
+    flex-shrink: 0;
+}
+
+.vader-dl-night { background: #0d1b2a; }
+.vader-dl-astro { background: #1b2838; }
+.vader-dl-naut  { background: #2d4a6f; }
+.vader-dl-civil { background: #5b89b5; }
+.vader-dl-day   { background: #fdd835; }
+
+.vader-dl-now {
+    position: absolute;
+    top: -2px;
+    width: 2px;
+    height: 14px;
+    background: #c0392b;
+    border-radius: 1px;
+    transform: translateX(-1px);
+}
+
+.vader-daylight-times {
     text-align: center;
-    opacity: 0.7;
+    margin-bottom: var(--space-xs);
+}
+
+.vader-daylight-time-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 6px;
+    margin-bottom: 2px;
+}
+
+.vader-daylight-icon {
+    font-size: 12px;
+}
+
+.vader-daylight-val {
+    font-family: var(--font-heading);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--color-primary-dark);
+}
+
+.vader-daylight-sep {
+    font-size: 10px;
+    color: var(--color-text-muted);
+}
+
+.vader-daylight-hours {
+    font-size: 10px;
+    color: var(--color-text-muted);
+    font-weight: 500;
+}
+
+.vader-daylight-twilights {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    margin-top: var(--space-xs);
+}
+
+.vader-twilight-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.vader-twilight-label {
+    font-size: 9px;
+    color: var(--color-text-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+}
+
+.vader-twilight-val {
+    font-family: var(--font-heading);
+    font-size: 9px;
+    color: var(--color-text);
+    font-weight: 500;
 }
 
 .vader-wind-wrap {
@@ -2992,35 +3187,11 @@ a.archive-tag:hover {
         padding: var(--space-md);
     }
 
-    .vader-wind-now {
-        position: static;
+    .vader-now-hero-cards {
+        flex-direction: column;
     }
 
-    .vader-intro-grid {
-        grid-template-columns: 1fr;
-        gap: var(--space-md);
-    }
-
-    .vader-wind-now-header {
-        width: 100%;
-        margin-bottom: 0;
-    }
-
-    .vader-wind-now-main {
-        flex-direction: row;
-        align-items: center;
-        gap: var(--space-md);
-        margin-bottom: 0;
-        flex: 1;
-    }
-
-    .vader-wind-now-components {
-        flex: 1;
-        min-width: 120px;
-        margin-bottom: 0;
-    }
-
-    .vader-wind-now-timestamp {
+    .vader-now-card {
         width: 100%;
     }
 }
