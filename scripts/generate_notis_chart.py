@@ -31,6 +31,7 @@ Beroenden: matplotlib, requests
 import argparse
 import os
 import sys
+import math
 from datetime import datetime, timedelta
 
 import matplotlib
@@ -205,8 +206,33 @@ def build_precip(ax, date_from, date_to):
 
 
 def build_wind(ax, date_from, date_to):
-    """Medelvind (m/s) linjediagram."""
-    data = filter_range(fetch_smhi_metobs(4, STATIONS["wind"]), date_from, date_to)
+    """Medelvind (m/s) linjediagram (aggregerat per dag)."""
+    raw_data = fetch_smhi_metobs(4, STATIONS["wind"])
+    
+    # Aggregera till dygnsmedel
+    day_map = {}
+    for v in raw_data:
+        if "date" in v:
+            d = datetime.fromtimestamp(v["date"] / 1000, tz=__import__('datetime').timezone.utc).strftime("%Y-%m-%d")
+        else:
+            d = v.get("ref", "")
+            
+        if not d: continue
+        
+        if d not in day_map:
+            day_map[d] = {"sum": 0.0, "count": 0}
+        try:
+            day_map[d]["sum"] += float(v["value"])
+            day_map[d]["count"] += 1
+        except (ValueError, TypeError):
+            pass
+            
+    agg_data = [
+        {"ref": d, "value": round(day_map[d]["sum"] / day_map[d]["count"], 1)}
+        for d in sorted(day_map) if day_map[d]["count"] > 0
+    ]
+    
+    data = filter_range(agg_data, date_from, date_to)
 
     if not data:
         ax.text(0.5, 0.5, "Inga vinddata tillgängliga",
@@ -241,8 +267,162 @@ def build_flow(ax, date_from, date_to):
     ax.fill_between(dates, vals, alpha=0.2, color=COLORS["flow"], zorder=2)
     ax.plot(dates, vals, color=COLORS["flow"], linewidth=2, zorder=3)
     ax.set_ylabel("m³/s", fontsize=9, color=COLORS["text"])
+    ax.text(0.01, 0.95, "SMHI, Forsmöllan, Rönne å (fungerar som indikator för vattenläget på maderna i Åstorps kommun)", transform=ax.transAxes,
+            fontsize=7, color=COLORS["text"], va="top", ha="left",
+            bbox=dict(facecolor="white", edgecolor="none", alpha=0.7, pad=0.3))
     setup_axes(ax, date_from, date_to)
     add_source(ax, STATION_NAMES["flow"])
+
+
+def fetch_wind_components(date_from, date_to):
+    """Hjälpfunktion för att hämta och omvandla vind till N/S och Ö/V-komponenter."""
+    dir_data = fetch_smhi_metobs(3, STATIONS["wind"])
+    spd_data = fetch_smhi_metobs(4, STATIONS["wind"])
+    
+    spd_map = {v["date"]: float(v["value"]) for v in spd_data if "date" in v}
+    day_map = {}
+    
+    for v in dir_data:
+        if "date" not in v: continue
+        ts = v["date"]
+        if ts not in spd_map: continue
+        spd = spd_map[ts]
+        try:
+            deg = float(v["value"])
+        except ValueError:
+            continue
+            
+        d = datetime.fromtimestamp(ts / 1000, tz=__import__('datetime').timezone.utc).strftime("%Y-%m-%d")
+        if d not in day_map:
+            day_map[d] = {"ns": 0.0, "ew": 0.0, "count": 0}
+        
+        rad = deg * math.pi / 180
+        # Positivt för Nord/Öst, Negativt för Syd/Väst
+        day_map[d]["ns"] += math.cos(rad) * spd
+        day_map[d]["ew"] += math.sin(rad) * spd
+        day_map[d]["count"] += 1
+        
+    res = {}
+    for d, val in day_map.items():
+        if val["count"] > 0:
+            res[d] = {
+                "ns": val["ns"] / val["count"],
+                "ew": val["ew"] / val["count"]
+            }
+    return res
+
+def build_wind_ns(ax, date_from, date_to):
+    """Vindkomponent N/S (Nord är positiv, Syd är negativ)."""
+    comp = fetch_wind_components(date_from, date_to)
+    filtered_dates = [d for d in sorted(comp.keys()) if date_from <= d <= date_to]
+    
+    if not filtered_dates:
+        ax.text(0.5, 0.5, "Inga vinddata", transform=ax.transAxes, ha="center", color=COLORS["text"], fontsize=11)
+        return
+        
+    dates = [datetime.strptime(d, "%Y-%m-%d") for d in filtered_dates]
+    vals = [comp[d]["ns"] for d in filtered_dates]
+    
+    # Nord = Blå (#4A90D9), Syd = Röd (#D94A4A)
+    colors = ["#4A90D9" if v >= 0 else "#D94A4A" for v in vals]
+    bars = ax.bar(dates, vals, color=colors, width=0.8, zorder=3)
+    ax.axhline(0, color="#999", linewidth=0.8, zorder=2)
+    ax.set_ylabel("N/S (m/s)", fontsize=9, color=COLORS["text"])
+    ax.text(0.01, 0.95, "Staplar uppåt = vind från norr\nStaplar nedåt = vind från söder", transform=ax.transAxes,
+            fontsize=7, color=COLORS["text"], va="top", ha="left",
+            bbox=dict(facecolor="white", edgecolor="none", alpha=0.7, pad=0.3))
+    setup_axes(ax, date_from, date_to)
+
+def build_wind_ew(ax, date_from, date_to):
+    """Vindkomponent Ö/V (Öst är positiv, Väst är negativ)."""
+    comp = fetch_wind_components(date_from, date_to)
+    filtered_dates = [d for d in sorted(comp.keys()) if date_from <= d <= date_to]
+    
+    if not filtered_dates:
+        ax.text(0.5, 0.5, "Inga vinddata", transform=ax.transAxes, ha="center", color=COLORS["text"], fontsize=11)
+        return
+        
+    dates = [datetime.strptime(d, "%Y-%m-%d") for d in filtered_dates]
+    vals = [comp[d]["ew"] for d in filtered_dates]
+    
+    # Öst = Grön (#3DAA6D), Väst = Gul (#D9A84A)
+    colors = ["#3DAA6D" if v >= 0 else "#D9A84A" for v in vals]
+    bars = ax.bar(dates, vals, color=colors, width=0.8, zorder=3)
+    ax.axhline(0, color="#999", linewidth=0.8, zorder=2)
+    ax.set_ylabel("Ö/V (m/s)", fontsize=9, color=COLORS["text"])
+    ax.text(0.01, 0.95, "Staplar uppåt = vind från öster\nStaplar nedåt = vind från väster", transform=ax.transAxes,
+            fontsize=7, color=COLORS["text"], va="top", ha="left",
+            bbox=dict(facecolor="white", edgecolor="none", alpha=0.7, pad=0.3))
+    setup_axes(ax, date_from, date_to)
+
+def build_wind_delta(ax, date_from, date_to):
+    """Vindskifte ΔW (dag-till-dag vektorskillnad). Remsa."""
+    date_from_prev = (datetime.strptime(date_from, "%Y-%m-%d") - timedelta(days=2)).strftime("%Y-%m-%d")
+    comp = fetch_wind_components(date_from_prev, date_to)
+    
+    days = sorted(comp.keys())
+    deltas = {}
+    for i in range(1, len(days)):
+        d = days[i]
+        d_prev = days[i-1]
+        
+        date_curr = datetime.strptime(d, "%Y-%m-%d")
+        date_p = datetime.strptime(d_prev, "%Y-%m-%d")
+        if (date_curr - date_p).days == 1:
+            du = comp[d]["ew"] - comp[d_prev]["ew"]
+            dv = comp[d]["ns"] - comp[d_prev]["ns"]
+            dw = math.sqrt(du*du + dv*dv)
+            deltas[d] = dw
+            
+    filtered_dates = [d for d in days if date_from <= d <= date_to and d in deltas]
+    
+    if not filtered_dates:
+        ax.text(0.5, 0.5, "Inga delta-data", transform=ax.transAxes, ha="center", color=COLORS["text"], fontsize=11)
+        return
+        
+    dates = [datetime.strptime(d, "%Y-%m-%d") for d in filtered_dates]
+    vals = [deltas[d] for d in filtered_dates]
+    
+    max_val = max(max(vals), 1.0)
+    
+    colors = []
+    for v in vals:
+        ratio = min(v / max_val, 1.0)
+        if ratio < 0.5:
+            t = ratio * 2
+            # #64a0dc -> #f0e0b4
+            r = int(100 + t * 155) / 255.0
+            g = int(160 + t * 80) / 255.0
+            b = int(220 - t * 40) / 255.0
+        else:
+            t = (ratio - 0.5) * 2
+            # #f0e0b4 -> #e07832
+            r = int(255 - t * 30) / 255.0
+            g = int(240 - t * 120) / 255.0
+            b = int(180 - t * 130) / 255.0
+        colors.append((r, g, b))
+        
+    ax.bar(dates, vals, color=colors, width=1.0, edgecolor="none", zorder=3)
+    ax.set_ylabel("ΔW", fontsize=9, color=COLORS["text"])
+    
+    # Custom legend for the delta gradient
+    ax.text(0.01, 0.5, "Vindskifte (ΔW)", transform=ax.transAxes, va="center", ha="left", color="#333", fontsize=8, fontweight="bold")
+    
+    # Legend colors
+    l_box_y = 0.5
+    ax.text(0.35, l_box_y, "■", transform=ax.transAxes, color="#64a0dc", va="center", ha="left", fontsize=9)
+    ax.text(0.38, l_box_y, "stabilt  ·", transform=ax.transAxes, color="#333", va="center", ha="left", fontsize=8)
+    
+    ax.text(0.53, l_box_y, "■", transform=ax.transAxes, color="#f0e0b4", va="center", ha="left", fontsize=9)
+    ax.text(0.56, l_box_y, "medel  ·", transform=ax.transAxes, color="#333", va="center", ha="left", fontsize=8)
+    
+    ax.text(0.68, l_box_y, "■", transform=ax.transAxes, color="#e07832", va="center", ha="left", fontsize=9)
+    ax.text(0.71, l_box_y, "abrupt skifte", transform=ax.transAxes, color="#333", va="center", ha="left", fontsize=8)
+
+    setup_axes(ax, date_from, date_to)
+    ax.get_yaxis().set_visible(False)
+    ax.spines['left'].set_visible(False)
+    ax.spines['right'].set_visible(False)
 
 
 # ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -253,6 +433,9 @@ CHART_BUILDERS = {
     "temp": build_temp,
     "precip": build_precip,
     "wind": build_wind,
+    "wind_ns": build_wind_ns,
+    "wind_ew": build_wind_ew,
+    "wind_delta": build_wind_delta,
     "flow": build_flow,
 }
 

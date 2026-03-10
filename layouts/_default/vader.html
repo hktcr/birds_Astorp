@@ -456,10 +456,10 @@
                 var monthAbbr = ['jan', 'feb', 'mar', 'apr', 'maj', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
                 for (var d = 0; d < timeframeDays; d++) {
                     if (d % tickInterval === 0 || d === timeframeDays - 1) {
-                        var mx = labelW + d * cellW;
-                        ctx.beginPath(); ctx.moveTo(mx, 0); ctx.lineTo(mx, h - bottomPad); ctx.stroke();
+                        var centerX = labelW + d * cellW + (cellW / 2);
+                        ctx.beginPath(); ctx.moveTo(centerX, 0); ctx.lineTo(centerX, h - bottomPad); ctx.stroke();
                         var tickDate = new Date(fromMs + d * 86400000);
-                        ctx.fillText(tickDate.getDate() + ' ' + monthAbbr[tickDate.getMonth()], mx, h - 10);
+                        ctx.fillText(tickDate.getDate() + ' ' + monthAbbr[tickDate.getMonth()], centerX, h - 10);
                     }
                 }
             }
@@ -586,6 +586,7 @@
             var tu = timeUnitForRange(_currentTimeFrom, _currentTimeTo);
             xCfg.time.unit = tu.unit;
             xCfg.time.displayFormats = tu.displayFormats;
+            xCfg.offset = (tu.unit === 'day');
 
             new Chart(canvas, {
                 type: 'bar',
@@ -674,6 +675,7 @@
             var tu = timeUnitForRange(_currentTimeFrom, _currentTimeTo);
             xCfg.time.unit = tu.unit;
             xCfg.time.displayFormats = tu.displayFormats;
+            xCfg.offset = (tu.unit === 'day');
 
             new Chart(canvas, {
                 type: 'line',
@@ -805,6 +807,7 @@
             chartInstance.options.scales.x.max = xMax;
             chartInstance.options.scales.x.time.unit = tu.unit;
             chartInstance.options.scales.x.time.displayFormats = tu.displayFormats;
+            chartInstance.options.scales.x.offset = (tu.unit === 'day');
             chartInstance.update();
         });
 
@@ -1155,13 +1158,13 @@
                     var tickInterval = timeframeDays <= 14 ? 1 : (timeframeDays <= 31 ? 5 : 7);
                     for (var d = 0; d < timeframeDays; d++) {
                         if (d % tickInterval === 0 || d === timeframeDays - 1) {
-                            var mx = labelW + d * cellW;
-                            ctx.beginPath(); ctx.moveTo(mx, 0); ctx.lineTo(mx, h - bottomPad); ctx.stroke();
+                            var centerX = labelW + d * cellW + (cellW / 2);
+                            ctx.beginPath(); ctx.moveTo(centerX, 0); ctx.lineTo(centerX, h - bottomPad); ctx.stroke();
                             // Visa datum som "5 mar" format
                             var tickDate = new Date(fromMs + d * 86400000);
                             var monthAbbr = ['jan', 'feb', 'mar', 'apr', 'maj', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
                             var label = tickDate.getDate() + ' ' + monthAbbr[tickDate.getMonth()];
-                            ctx.fillText(label, mx, h - 10);
+                            ctx.fillText(label, centerX, h - 10);
                         }
                     }
                 }
