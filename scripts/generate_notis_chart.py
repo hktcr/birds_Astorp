@@ -267,6 +267,8 @@ def build_flow(ax, date_from, date_to):
     ax.fill_between(dates, vals, alpha=0.2, color=COLORS["flow"], zorder=2)
     ax.plot(dates, vals, color=COLORS["flow"], linewidth=2, zorder=3)
     ax.set_ylabel("m³/s", fontsize=9, color=COLORS["text"])
+    # Ge y-axeln luft ovanför maxvärdet
+    ax.set_ylim(0, max(vals) * 1.15)
     ax.text(0.01, 0.95, "SMHI, Forsmöllan, Rönne å (fungerar som indikator för vattenläget på maderna i Åstorps kommun)", transform=ax.transAxes,
             fontsize=7, color=COLORS["text"], va="top", ha="left",
             bbox=dict(facecolor="white", edgecolor="none", alpha=0.7, pad=0.3))
@@ -396,11 +398,11 @@ def build_wind_delta(ax, date_from, date_to):
     
     max_val = max(max(day_vals), 1.0)
     
-    # Skapa en custom colormap: blå (#64a0dc) → beige (#f0e0b4) → orange (#e07832)
+    # Skapa en custom colormap: grön (#4CAF50) → gul (#FFA032) → röd (#DC3232)
     cmap = LinearSegmentedColormap.from_list("dw", [
-        (100/255, 160/255, 220/255),   # #64a0dc — stabilt
-        (240/255, 224/255, 180/255),   # #f0e0b4 — medel
-        (224/255, 120/255,  50/255),   # #e07832 — abrupt
+        ( 76/255, 175/255,  80/255),   # #4CAF50 — stabilt (grön)
+        (255/255, 160/255,  50/255),   # #FFA032 — medel (gul/gulorange)
+        (220/255,  50/255,  40/255),   # #DC3228 — abrupt (röd)
     ])
     
     # Rendera som en 1-pixel-hög imshow-bild, sträckt i y-led
@@ -418,11 +420,11 @@ def build_wind_delta(ax, date_from, date_to):
     
     # Legend-text under remsan
     ax.text(0.0, -0.6, "Vindskifte (ΔW)", transform=ax.transAxes, va="top", ha="left", color="#333", fontsize=7.5, fontweight="bold")
-    ax.text(0.28, -0.6, "■", transform=ax.transAxes, color="#64a0dc", va="top", ha="left", fontsize=8)
+    ax.text(0.28, -0.6, "■", transform=ax.transAxes, color="#4CAF50", va="top", ha="left", fontsize=8)
     ax.text(0.31, -0.6, "stabilt  ·", transform=ax.transAxes, color="#333", va="top", ha="left", fontsize=7.5)
-    ax.text(0.46, -0.6, "■", transform=ax.transAxes, color="#f0e0b4", va="top", ha="left", fontsize=8)
+    ax.text(0.46, -0.6, "■", transform=ax.transAxes, color="#FFA032", va="top", ha="left", fontsize=8)
     ax.text(0.49, -0.6, "medel  ·", transform=ax.transAxes, color="#333", va="top", ha="left", fontsize=7.5)
-    ax.text(0.62, -0.6, "■", transform=ax.transAxes, color="#e07832", va="top", ha="left", fontsize=8)
+    ax.text(0.62, -0.6, "■", transform=ax.transAxes, color="#DC3228", va="top", ha="left", fontsize=8)
     ax.text(0.65, -0.6, "abrupt skifte — kan sätta arter i rörelse", transform=ax.transAxes, color="#333", va="top", ha="left", fontsize=7.5)
 
 
