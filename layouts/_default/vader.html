@@ -186,7 +186,7 @@
             <div class="vader-chart-box vader-delta-strip" id="chart-wind-delta">
                 <canvas id="wind-delta-chart"></canvas>
                 <div class="vader-chart-hint" style="text-align:center; margin-top:2px;">
-                    Vindskifte (ΔW = dag-till-dag vektorskillnad, skala 0–12 m/s)<br>
+                    Vindskifte (ΔW = |ΔN↔S| + |ΔÖ↔V|, skala 0–12 m/s)<br>
                     <span style="color:#e0e0e0;">■</span> stabilt (<3) ·
                     <span style="color:#FFB830;">■</span> frontal aktivitet (3–8) ·
                     <span style="color:#DC3228;">■</span> abrupt skifte (>8) — kan sätta arter i rörelse
@@ -1985,13 +1985,14 @@
         // Fast maxskala: 12 m/s (VEP-konsensus)
         var DELTA_W_MAX = 12;
 
-        // Beräkna ΔW per dag: √[(u₂−u₁)² + (v₂−v₁)²]
+        // Beräkna ΔW per dag: |ΔNS| + |ΔEW| (Manhattan-distans, VEP-beslut)
+        // Manhattan-distans ger starkare signal vid frontpassager där båda
+        // komponenterna svänger — mer biologiskt relevant än euklidisk distans.
         var deltaW = {};
         for (var i = 1; i < days.length; i++) {
-            var du = ew_raw[i] - ew_raw[i - 1];  // Zonal skillnad
-            var dv = ns_raw[i] - ns_raw[i - 1];  // Meridional skillnad
-            var dw = Math.sqrt(du * du + dv * dv);
-            deltaW[days[i]] = dw;
+            var du = Math.abs(ew_raw[i] - ew_raw[i - 1]);  // Zonal skillnad
+            var dv = Math.abs(ns_raw[i] - ns_raw[i - 1]);  // Meridional skillnad
+            deltaW[days[i]] = du + dv;
         }
 
         var allDates = Object.keys(deltaW).sort();
