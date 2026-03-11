@@ -3112,6 +3112,20 @@ a.archive-tag:hover {
     transform: translateX(-1px);
 }
 
+.vader-dl-now::after {
+    content: 'Nu';
+    position: absolute;
+    top: -14px;
+    left: 50%;
+    transform: translateX(-50%);
+    font-family: var(--font-heading);
+    font-size: 8px;
+    font-weight: 700;
+    color: #c0392b;
+    white-space: nowrap;
+    letter-spacing: 0.03em;
+}
+
 .vader-daylight-times {
     text-align: center;
     margin-bottom: var(--space-xs);
