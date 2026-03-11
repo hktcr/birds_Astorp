@@ -15,12 +15,19 @@
 
             <section id="section-possible" style="margin-bottom: 4rem;">
                 <h2
-                    style="font-size: 1.5rem; color: #1e293b; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; margin-bottom: 1.5rem; display: flex; align-items: center; gap: 0.5rem;">
-                    Möjliga just nu
+                    style="font-size: 1.5rem; color: #1e293b; border-bottom: 2px solid #e2e8f0; padding-bottom: 0.5rem; margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;">
+                    Aktuella arter
                 </h2>
-                <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 1.5rem;">Arter som brukar ses historiskt
-                    kring det här datumet, men som ännu inte är kryssade för året.</p>
-                <!-- Grid för möjliga arter -->
+                <p style="color: #64748b; font-size: 0.95rem; margin-bottom: 0.75rem;">Arter som historiskt brukar ses
+                    kring det här datumet och som ännu inte är kryssade i år. Varje kort visar artens
+                    <em>tidsaktuellitet</em> (hur stark den historiska signalen är just nu) och dess
+                    <em>årliga tillförlitlighet</em> (hur vanlig arten är i Åstorp generellt).
+                </p>
+                <div style="display: flex; gap: 1.5rem; flex-wrap: wrap; margin-bottom: 1.75rem; font-size: 0.85rem; color: #64748b;">
+                    <span><span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:#bbf7d0; border:1px solid #16a34a; margin-right:4px;"></span>Förväntad / Aktuell — aktiv period</span>
+                    <span><span style="display:inline-block; width:10px; height:10px; border-radius:50%; background:#fde68a; border:1px solid #d97706; margin-right:4px;"></span>Tidig ankomst / Kan dyka upp — svag tidssignal</span>
+                </div>
+                <!-- Grid för aktuella arter -->
                 <div id="grid-possible"
                     style="display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 1rem;">
                 </div>

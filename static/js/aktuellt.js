@@ -132,22 +132,46 @@ document.addEventListener("DOMContentLoaded", () => {
                         rarities.push({ name: species, total: totalDays, bestDoy: bestNowDOY, slug: slug, action: clickHandler });
                     }
                 } else if (!isChecked2026) {
+                    const cat = categoryMap[species] || 'regular';
                     // Kravet: Minst 2 historiska observationer under hela 14-dagarsfönstret
                     if (sumNow >= RECOMMENDATION_MIN_YEARS) {
-                        possibleNow.push({ name: species, maxYears: sumNow, slug: slug, action: clickHandler });
+                        possibleNow.push({ name: species, sumNow: sumNow, category: cat, totalDays: totalDays, slug: slug, action: clickHandler });
                     } else if (sumSoon >= RECOMMENDATION_MIN_YEARS) {
-                        arrivingSoon.push({ name: species, offset: soonOffset, maxYears: sumSoon, slug: slug, action: clickHandler });
+                        arrivingSoon.push({ name: species, offset: soonOffset, sumNow: sumSoon, category: cat, totalDays: totalDays, slug: slug, action: clickHandler });
                     }
                 }
             }
 
-            // Sorting
-            possibleNow.sort((a, b) => b.maxYears - a.maxYears); // Sort by highest frequency
-            arrivingSoon.sort((a, b) => a.offset - b.offset); // Sort by soonest arrival
+            // --- Klassificeringslogik (2×2: category × tidssignal) ---
+            function getClassification(category, sumNow) {
+                const strong = sumNow >= 4;
+                if (category === 'abundant') {
+                    return strong
+                        ? { label: 'Förväntad',     sublabel: 'Vanlig art — aktiv period',         bgCol: '#f0fdf4', borderCol: '#bbf7d0', textCol: '#16a34a', mainCol: '#14532d' }
+                        : { label: 'Tidig ankomst',  sublabel: 'Vanlig art — tidig säsong',         bgCol: '#fffbeb', borderCol: '#fde68a', textCol: '#d97706', mainCol: '#78350f' };
+                } else if (category === 'regular') {
+                    return strong
+                        ? { label: 'Aktuell',        sublabel: 'Regelbunden art — aktiv period',    bgCol: '#f0fdf4', borderCol: '#bbf7d0', textCol: '#16a34a', mainCol: '#14532d' }
+                        : { label: 'Kan dyka upp',   sublabel: 'Regelbunden art — tidig säsong',    bgCol: '#fffbeb', borderCol: '#fde68a', textCol: '#d97706', mainCol: '#78350f' };
+                } else {
+                    // uncommon
+                    return     { label: 'Möjlig',        sublabel: 'Ovanlig art i Åstorp',              bgCol: '#fffbeb', borderCol: '#fde68a', textCol: '#d97706', mainCol: '#78350f' };
+                }
+            }
+
+            // Sorting: abundant först, sedan fallande tidssignal
+            const catOrder = { abundant: 0, regular: 1, uncommon: 2 };
+            possibleNow.sort((a, b) => {
+                const ca = catOrder[a.category] !== undefined ? catOrder[a.category] : 2;
+                const cb = catOrder[b.category] !== undefined ? catOrder[b.category] : 2;
+                if (ca !== cb) return ca - cb;
+                return b.sumNow - a.sumNow;
+            });
+            arrivingSoon.sort((a, b) => a.offset - b.offset);
 
             // --- Render UI ---
 
-            // 1. Render Possible Now (Cards)
+            // 1. Render Aktuella arter (Cards)
             if (possibleNow.length === 0) {
                 gridPossible.innerHTML = `<p style="color:#64748b; margin-top:0;">Wow, du verkar ha kryssat alla vanliga arter för den här perioden!</p>`;
             } else {
@@ -156,24 +180,18 @@ document.addEventListener("DOMContentLoaded", () => {
                     card.className = "aktuellt-card";
                     card.setAttribute("onclick", item.action);
 
-                    // Färgkodning baserad på "förväntad" (>=4 år) vs "möjlig"
-                    const isHigh = item.maxYears >= 4;
-                    const bgCol = isHigh ? "#f0fdf4" : "#fffbeb";
-                    const borderCol = isHigh ? "#bbf7d0" : "#fde68a";
-                    const textCol = isHigh ? "#16a34a" : "#d97706";
-                    const mainTextCol = isHigh ? "#14532d" : "#78350f";
+                    const cls = getClassification(item.category, item.sumNow);
 
-                    card.style.background = bgCol;
-                    card.style.borderColor = borderCol;
-
-                    const probText = isHigh ? `<span style="color:${textCol}; font-weight:600; font-size:0.85rem;">Förväntad (setts ${item.maxYears} ggr under perioden)</span>` : `<span style="color:${textCol}; font-size:0.85rem;">Möjlig (setts ${item.maxYears} ggr under perioden)</span>`;
+                    card.style.background = cls.bgCol;
+                    card.style.borderColor = cls.borderCol;
 
                     card.innerHTML = `
                     <div>
-                        <h3 style="margin:0 0 0.25rem 0; font-size:1.1rem; color:${mainTextCol};">${item.name}</h3>
-                        ${probText}
+                        <h3 style="margin:0 0 0.25rem 0; font-size:1.1rem; color:${cls.mainCol};">${item.name}</h3>
+                        <span style="color:${cls.textCol}; font-weight:600; font-size:0.85rem;">${cls.label}</span>
+                        <span style="color:#94a3b8; font-size:0.8rem; margin-left:0.25rem;">— ${cls.sublabel}</span>
                     </div>
-                    <svg width="20" height="20" fill="none" stroke="${borderCol}" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color: ${textCol}"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
+                    <svg width="20" height="20" fill="none" stroke="${cls.borderCol}" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color: ${cls.textCol}"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 `;
                     gridPossible.appendChild(card);
                 });
@@ -203,16 +221,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     node.className = "aktuellt-timeline-node";
 
                     let speciesHTML = speciesArr.map(item => {
-                        const isHigh = item.maxYears >= 4;
-                        const bgCol = isHigh ? "#f0fdf4" : "#fffbeb";
-                        const borderCol = isHigh ? "#bbf7d0" : "#fde68a";
-                        const textCol = isHigh ? "#14532d" : "#78350f";
-                        const subTextCol = isHigh ? "#16a34a" : "#d97706";
+                        const cls = getClassification(item.category, item.sumNow);
 
                         return `
-                        <div class="aktuellt-card" style="margin-top:0.5rem; display:inline-flex; flex-direction:column; width:auto; padding:0.75rem 1.25rem; margin-right:0.5rem; background:${bgCol}; border-color:${borderCol};" onclick="${item.action}">
-                            <span style="font-weight:600; color:${textCol};">${item.name}</span>
-                            <span style="font-size:0.75rem; color:${subTextCol}; margin-top:0.15rem;">${isHigh ? 'Förväntad' : 'Möjlig'}</span>
+                        <div class="aktuellt-card" style="margin-top:0.5rem; display:inline-flex; flex-direction:column; width:auto; padding:0.75rem 1.25rem; margin-right:0.5rem; background:${cls.bgCol}; border-color:${cls.borderCol};" onclick="${item.action}">
+                            <span style="font-weight:600; color:${cls.mainCol};">${item.name}</span>
+                            <span style="font-size:0.75rem; color:${cls.textCol}; margin-top:0.15rem;">${cls.label}</span>
                         </div>
                         `;
                     }).join('');
