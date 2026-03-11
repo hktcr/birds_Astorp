@@ -681,6 +681,22 @@
             "location": "Tomarps Ene",
             "lat": 56.1487,
             "lng": 13.07359
+        },
+        {
+            "species": "Björktrast",
+            "latin": "Turdus pilaris",
+            "date": "2026-03-10",
+            "location": "Körslättabäckens våtmarker",
+            "lat": 56.093059657874605,
+            "lng": 13.065669791540584
+        },
+        {
+            "species": "Rödvingetrast",
+            "latin": "Turdus iliacus",
+            "date": "2026-03-10",
+            "location": "Körslättabäckens våtmarker",
+            "lat": 56.093059657874605,
+            "lng": 13.065669791540584
         }
     ]
 }
