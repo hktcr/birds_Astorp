@@ -16,7 +16,7 @@
             <div class="vader-now-hero-cards">
                 <!-- VIND-KORT -->
                 <div class="vader-now-card">
-                    <div class="vader-now-card-title">🌬️ Vind</div>
+                    <div class="vader-now-card-title">Vind</div>
                     <div class="vader-wind-now-main">
                         <!-- SVG vindpil -->
                         <div class="vader-wind-now-arrow-wrap">
@@ -76,7 +76,7 @@
 
                 <!-- TEMPERATUR-KORT -->
                 <div class="vader-now-card">
-                    <div class="vader-now-card-title">🌡️ Temperatur</div>
+                    <div class="vader-now-card-title">Temperatur</div>
                     <div class="vader-temp-now-main">
                         <div class="vader-temp-now-current">
                             <span id="temp-now-value" class="vader-temp-now-val">—</span>
@@ -84,26 +84,26 @@
                         </div>
                         <div class="vader-temp-now-range">
                             <div class="vader-temp-now-range-item">
-                                <span class="vader-temp-now-range-label">Dygnets max</span>
+                                <span class="vader-temp-now-range-label">Idag max</span>
                                 <span id="temp-now-max" class="vader-temp-now-range-val vader-temp-warm">—</span>
                             </div>
                             <div class="vader-temp-now-range-item">
-                                <span class="vader-temp-now-range-label">Dygnets min</span>
+                                <span class="vader-temp-now-range-label">Idag min</span>
                                 <span id="temp-now-min" class="vader-temp-now-range-val vader-temp-cool">—</span>
                             </div>
                         </div>
 
                         <!-- Dagsljus -->
                         <div class="vader-daylight">
-                            <div class="vader-daylight-title">☀️ Dagsljus</div>
+                            <div class="vader-daylight-title">Dagsljus</div>
                             <div class="vader-daylight-bar" id="daylight-bar"></div>
                             <div class="vader-daylight-times">
                                 <div class="vader-daylight-time-row">
-                                    <span class="vader-daylight-icon">🌅</span>
+                                    <span class="vader-daylight-icon">↑</span>
                                     <span id="daylight-sunrise" class="vader-daylight-val">—</span>
                                     <span class="vader-daylight-sep">→</span>
                                     <span id="daylight-sunset" class="vader-daylight-val">—</span>
-                                    <span class="vader-daylight-icon">🌇</span>
+                                    <span class="vader-daylight-icon">↓</span>
                                 </div>
                                 <div id="daylight-hours" class="vader-daylight-hours">—</div>
                             </div>
@@ -157,25 +157,25 @@
 
         <!-- Mini-nav för snabb scroll -->
         <div class="vader-chart-nav" id="vader-chart-nav">
-            <a href="#chart-progress" class="vader-chart-nav-link">🐦 Arter</a>
-            <a href="#chart-wind" class="vader-chart-nav-link">🌬️ Vind</a>
-            <a href="#chart-temp-day" class="vader-chart-nav-link">🌡️ Dag</a>
-            <a href="#chart-temp-night" class="vader-chart-nav-link">🌙 Natt</a>
-            <a href="#chart-precip" class="vader-chart-nav-link">🌧️ Nederbörd</a>
-            <a href="#chart-flow" class="vader-chart-nav-link">🌊 Flöde</a>
+            <a href="#chart-progress" class="vader-chart-nav-link">Arter</a>
+            <a href="#chart-wind" class="vader-chart-nav-link">Vind</a>
+            <a href="#chart-temp-day" class="vader-chart-nav-link">Dag</a>
+            <a href="#chart-temp-night" class="vader-chart-nav-link">Natt</a>
+            <a href="#chart-precip" class="vader-chart-nav-link">Nederbörd</a>
+            <a href="#chart-flow" class="vader-chart-nav-link">Flöde</a>
         </div>
 
         <!-- Kvintett: fem diagram vertikalt -->
         <div class="vader-triptych">
             <!-- 1. Artlista (Progress) -->
             <div class="vader-chart-box" id="chart-progress">
-                <div class="vader-chart-label">🐦 Artframsteg</div>
+                <div class="vader-chart-label">Artframsteg</div>
                 <canvas id="progress-chart"></canvas>
             </div>
 
             <!-- 2. Vindkomponenter -->
             <div class="vader-chart-box" id="chart-wind">
-                <div class="vader-chart-label">🌬️ Vindkomponenter</div>
+                <div class="vader-chart-label">Vindkomponenter</div>
                 <canvas id="wind-chart"></canvas>
                 <p class="vader-chart-hint">Staplar uppåt = vind från norr/öst. Staplar nedåt = vind från söder/väst.
                     Högre stapel = starkare vind från den riktningen.</p>
@@ -195,7 +195,7 @@
 
             <!-- 3a. Dagtemperatur (max) -->
             <div class="vader-chart-box" id="chart-temp-day">
-                <div class="vader-chart-label">🌡️ Dagtemperatur (högsta)</div>
+                <div class="vader-chart-label">Dagtemperatur (högsta)</div>
                 <canvas id="temp-day-chart"></canvas>
                 <p class="vader-chart-hint">Dagens uppmätta maxtemperatur. Staplar uppåt = plusgrader, nedåt =
                     minusgrader.</p>
@@ -204,7 +204,7 @@
 
             <!-- 3b. Natttemperatur (min) -->
             <div class="vader-chart-box" id="chart-temp-night">
-                <div class="vader-chart-label">🌙 Natttemperatur (lägsta)</div>
+                <div class="vader-chart-label">Natttemperatur (lägsta)</div>
                 <canvas id="temp-night-chart"></canvas>
                 <p class="vader-chart-hint">Nattens uppmätta mintemperatur. Staplar uppåt = plusgrader, nedåt =
                     minusgrader.</p>
@@ -224,14 +224,14 @@
 
             <!-- 4. Nederbörd -->
             <div class="vader-chart-box" id="chart-precip">
-                <div class="vader-chart-label">🌧️ Nederbörd</div>
+                <div class="vader-chart-label">Nederbörd</div>
                 <canvas id="precip-chart"></canvas>
                 <div class="vader-chart-source">SMHI, Åstorps station (4 km)</div>
             </div>
 
             <!-- 5. Vattenföring -->
             <div class="vader-chart-box" id="chart-flow">
-                <div class="vader-chart-label">🌊 Vattenföring</div>
+                <div class="vader-chart-label">Vattenföring</div>
                 <canvas id="flow-chart"></canvas>
                 <p class="vader-chart-hint">Diagrammet visar vattenföringen (m³/s) vid Forsmöllan i Rönne å. Det visar inte det exakta vattenflödet, eller vattenståndet på maderna, i Åstorps kommun men fungerar förmodligen väl som en indikator för vattenläget eftersom hela åsystemet reagerar på liknande nederbörds- och flödesmönster.</p>
                 <div class="vader-chart-source">SMHI, Forsmöllan, Rönne å (15 km öster om Åstorp)</div>
@@ -1009,15 +1009,25 @@
                 if (el) el.textContent = current.toFixed(1);
             }
 
-            // Dygnets min/max
+            // Dygnets min/max — filtrerat till aktuellt kalenderdygn (från midnatt)
             if (dayVals.length > 0) {
-                var temps = dayVals.map(function (v) { return parseFloat(v.value); }).filter(function (t) { return !isNaN(t); });
-                var maxTemp = Math.max.apply(null, temps);
-                var minTemp = Math.min.apply(null, temps);
-                var elMax = document.getElementById('temp-now-max');
-                var elMin = document.getElementById('temp-now-min');
-                if (elMax) elMax.textContent = maxTemp.toFixed(1) + '°';
-                if (elMin) elMin.textContent = minTemp.toFixed(1) + '°';
+                var todayStart = new Date();
+                todayStart.setHours(0, 0, 0, 0);
+                var todayMs = todayStart.getTime();
+
+                var todayTemps = dayVals
+                    .filter(function (v) { return v.date >= todayMs; })
+                    .map(function (v) { return parseFloat(v.value); })
+                    .filter(function (t) { return !isNaN(t); });
+
+                if (todayTemps.length > 0) {
+                    var maxTemp = Math.max.apply(null, todayTemps);
+                    var minTemp = Math.min.apply(null, todayTemps);
+                    var elMax = document.getElementById('temp-now-max');
+                    var elMin = document.getElementById('temp-now-min');
+                    if (elMax) elMax.textContent = maxTemp.toFixed(1) + '°';
+                    if (elMin) elMin.textContent = minTemp.toFixed(1) + '°';
+                }
             }
         }).catch(function (err) {
             console.warn('Kunde inte hämta temperaturdata:', err);
@@ -1310,22 +1320,29 @@
         if (!_24hContainer) {
             _24hContainer = document.createElement('div');
             _24hContainer.id = 'vader-24h-container';
-            _24hContainer.className = 'vader-24h-container';
+            _24hContainer.className = 'vader-triptych';
             _24hContainer.innerHTML =
-                '<div class="vader-chart-card" id="chart-24h-temp">' +
-                    '<h3 class="vader-chart-title">🌡️ Temperatur — senaste 24 h</h3>' +
+                '<div class="vader-chart-box" id="chart-24h-temp">' +
+                    '<div class="vader-chart-label">Temperatur — senaste 24 h</div>' +
                     '<canvas id="chart-24h-temp-canvas"></canvas>' +
-                    '<p class="vader-chart-source">Källa: SMHI, Helsingborg A (16 km sydväst om Åstorp) · Timvärden</p>' +
+                    '<div class="vader-chart-source">SMHI, Helsingborg A (16 km sydväst om Åstorp) · Timvärden</div>' +
                 '</div>' +
-                '<div class="vader-chart-card" id="chart-24h-wind">' +
-                    '<h3 class="vader-chart-title">🌬️ Vindkomponenter — senaste 24 h</h3>' +
-                    '<canvas id="chart-24h-wind-canvas"></canvas>' +
-                    '<p class="vader-chart-source">Källa: SMHI, Helsingborg A · Timmedelvärden</p>' +
+                '<div class="vader-chart-box" id="chart-24h-wind-ns">' +
+                    '<div class="vader-chart-label">Vind N ↔ S — senaste 24 h</div>' +
+                    '<canvas id="chart-24h-wind-ns-canvas"></canvas>' +
+                    '<p class="vader-chart-hint">Staplar uppåt = nordlig vind. Staplar nedåt = sydlig vind.</p>' +
+                    '<div class="vader-chart-source">SMHI, Helsingborg A · Timmedelvärden</div>' +
                 '</div>' +
-                '<div class="vader-chart-card" id="chart-24h-precip">' +
-                    '<h3 class="vader-chart-title">🌧️ Nederbörd — senaste 24 h</h3>' +
+                '<div class="vader-chart-box" id="chart-24h-wind-ew">' +
+                    '<div class="vader-chart-label">Vind Ö ↔ V — senaste 24 h</div>' +
+                    '<canvas id="chart-24h-wind-ew-canvas"></canvas>' +
+                    '<p class="vader-chart-hint">Staplar uppåt = östlig vind. Staplar nedåt = västlig vind.</p>' +
+                    '<div class="vader-chart-source">SMHI, Helsingborg A · Timmedelvärden</div>' +
+                '</div>' +
+                '<div class="vader-chart-box" id="chart-24h-precip">' +
+                    '<div class="vader-chart-label">Nederbörd — senaste 24 h</div>' +
                     '<canvas id="chart-24h-precip-canvas"></canvas>' +
-                    '<p class="vader-chart-source">Källa: SMHI, Helsingborg A · Timnederbörd (param 7)</p>' +
+                    '<div class="vader-chart-source">SMHI, Helsingborg A · Timnederbörd (param 7)</div>' +
                 '</div>';
 
             // Infoga efter tidsväljaren
@@ -1371,7 +1388,8 @@
             var precData = results[3].value || [];
 
             build24hTempChart(tempData);
-            build24hWindChart(dirData, spdData);
+            build24hWindNSChart(dirData, spdData);
+            build24hWindEWChart(dirData, spdData);
             build24hPrecipChart(precData);
         }).catch(function (err) {
             console.warn('Kunde inte hämta 24h-data:', err);
@@ -1430,66 +1448,57 @@
         });
     }
 
-    function build24hWindChart(dirData, spdData) {
-        var canvas = document.getElementById('chart-24h-wind-canvas');
+    function _parse24hWindData(dirData, spdData) {
+        var spdMap = {};
+        spdData.forEach(function (v) { spdMap[v.date] = parseFloat(v.value) || 0; });
+
+        var nsData = [], ewData = [], labels = [];
+        dirData.forEach(function (v) {
+            var deg = parseFloat(v.value);
+            var spd = spdMap[v.date] || 0;
+            var rad = deg * Math.PI / 180;
+            var ns = Math.cos(rad) * spd;
+            var ew = Math.sin(rad) * spd;
+            labels.push(new Date(v.date));
+            nsData.push(ns);
+            ewData.push(ew);
+        });
+        return { labels: labels, nsData: nsData, ewData: ewData };
+    }
+
+    function _build24hWindSingleChart(canvasId, data, labels, posLabel, negLabel, posColor, negColor) {
+        var canvas = document.getElementById(canvasId);
         if (!canvas) return;
 
         var existing = Chart.getChart(canvas);
         if (existing) existing.destroy();
 
-        // Matcha riktning + hastighet per tidpunkt
-        var spdMap = {};
-        spdData.forEach(function (v) { spdMap[v.date] = parseFloat(v.value) || 0; });
-
-        // Beräkna N–S och Ö–V netto-komponenter (samma logik som befintligt diagram)
-        var nsData = [], ewData = [], labels = [];
-
-        dirData.forEach(function (v) {
-            var deg = parseFloat(v.value);
-            var spd = spdMap[v.date] || 0;
-            var rad = deg * Math.PI / 180;
-            // Positivt = nordlig/östlig, negativt = sydlig/västlig
-            var ns = Math.cos(rad) * spd;
-            var ew = Math.sin(rad) * spd;
-
-            labels.push(new Date(v.date));
-            nsData.push(ns);   // + = N, - = S
-            ewData.push(ew);   // + = Ö, - = V
-        });
+        // Gemensam y-skala baserad på maxvärde
+        var absMax = Math.max.apply(null, data.map(function (v) { return Math.abs(v); }));
+        var yLimit = Math.max(absMax * 1.1, 1);
 
         new Chart(canvas, {
             type: 'bar',
             data: {
                 labels: labels,
-                datasets: [
-                    {
-                        label: 'N ↔ S',
-                        data: nsData,
-                        backgroundColor: nsData.map(function (v) {
-                            return v >= 0 ? 'rgba(74, 144, 217, 0.7)' : 'rgba(217, 74, 74, 0.7)';
-                        }),
-                        borderColor: nsData.map(function (v) {
-                            return v >= 0 ? '#4A90D9' : '#D94A4A';
-                        }),
-                        borderWidth: 1
-                    },
-                    {
-                        label: 'Ö ↔ V',
-                        data: ewData,
-                        backgroundColor: ewData.map(function (v) {
-                            return v >= 0 ? 'rgba(61, 170, 109, 0.7)' : 'rgba(217, 168, 74, 0.7)';
-                        }),
-                        borderColor: ewData.map(function (v) {
-                            return v >= 0 ? '#3DAA6D' : '#D9A84A';
-                        }),
-                        borderWidth: 1
-                    }
-                ]
+                datasets: [{
+                    label: posLabel + ' ↔ ' + negLabel,
+                    data: data,
+                    backgroundColor: data.map(function (v) {
+                        return v >= 0 ? posColor.bg : negColor.bg;
+                    }),
+                    borderColor: data.map(function (v) {
+                        return v >= 0 ? posColor.border : negColor.border;
+                    }),
+                    borderWidth: 1,
+                    barPercentage: 0.9,
+                    categoryPercentage: 0.9
+                }]
             },
             options: {
                 responsive: true,
                 maintainAspectRatio: true,
-                aspectRatio: window.innerWidth < 600 ? 1.6 : 2.5,
+                aspectRatio: window.innerWidth < 600 ? 2.0 : 3.0,
                 scales: {
                     x: {
                         type: 'time',
@@ -1498,24 +1507,23 @@
                         ticks: { font: { family: 'Inter', size: 11 }, color: '#666' }
                     },
                     y: {
+                        min: -yLimit,
+                        max: yLimit,
                         grid: { color: 'rgba(0,0,0,0.04)' },
-                        ticks: { font: { family: 'Inter', size: 11 }, color: '#666', callback: function(v) { return v.toFixed(1); } },
+                        ticks: {
+                            font: { family: 'Inter', size: 11 }, color: '#666',
+                            callback: function(v) { return v.toFixed(1); }
+                        },
                         title: { display: true, text: 'm/s', font: { family: 'Inter', size: 11 } }
                     }
                 },
                 plugins: {
-                    legend: {
-                        display: true,
-                        position: 'top',
-                        labels: { font: { family: 'Inter', size: 11 }, boxWidth: 12 }
-                    },
+                    legend: { display: false },
                     tooltip: {
                         callbacks: {
                             label: function (c) {
                                 var val = c.parsed.y;
-                                var dir = '';
-                                if (c.datasetIndex === 0) { dir = val >= 0 ? 'N' : 'S'; }
-                                else { dir = val >= 0 ? 'Ö' : 'V'; }
+                                var dir = val >= 0 ? posLabel : negLabel;
                                 return dir + ': ' + Math.abs(val).toFixed(1) + ' m/s';
                             }
                         }
@@ -1523,6 +1531,30 @@
                 }
             }
         });
+    }
+
+    function build24hWindNSChart(dirData, spdData) {
+        var parsed = _parse24hWindData(dirData, spdData);
+        _build24hWindSingleChart(
+            'chart-24h-wind-ns-canvas',
+            parsed.nsData,
+            parsed.labels,
+            'N', 'S',
+            { bg: 'rgba(74, 144, 217, 0.7)', border: '#4A90D9' },
+            { bg: 'rgba(217, 74, 74, 0.7)', border: '#D94A4A' }
+        );
+    }
+
+    function build24hWindEWChart(dirData, spdData) {
+        var parsed = _parse24hWindData(dirData, spdData);
+        _build24hWindSingleChart(
+            'chart-24h-wind-ew-canvas',
+            parsed.ewData,
+            parsed.labels,
+            'Ö', 'V',
+            { bg: 'rgba(61, 170, 109, 0.7)', border: '#3DAA6D' },
+            { bg: 'rgba(217, 168, 74, 0.7)', border: '#D9A84A' }
+        );
     }
 
     function build24hPrecipChart(data) {

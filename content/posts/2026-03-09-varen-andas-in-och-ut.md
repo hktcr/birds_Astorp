@@ -31,9 +31,9 @@ images:
       - Kulturlandskap
 ---
 
-Det fyller fortfarande på med fåglar, även om det nu är ett litet tag sedan den senaste stora vågen. De stora vattenspeglar som täckte Kungsgårdsmaderna för bara några dagar sedan har nu dragit sig tillbaka. Kvar är vattensamlingar. Våren andas in och ut, bygger upp för det stora skiftet.
+Det fyller fortfarande på med fåglar, även om det nu är ett litet tag sedan den senaste stora vågen. De stora vattenspeglar som täckte Kungsgårdsmaderna för bara några dagar sedan har nu dragit sig tillbaka. Kvar är mindre vattensamlingar. Våren andas in och ut, bygger upp för det stora skiftet.
 
-Det senaste större inflödet av sånglärkor, vipor och änder skedde när vinden slog om till ihållande sydvästlig, med stadiga 4-6 m/s in över landskapet. Fåglarna rider på dessa strömmar, en osynlig motorväg rakt in i Rönneådalen. De senaste dagarna har vinden slagit om till sydostlig och mattats av. Fåglarna väntar.
+Det senaste större inflödet av sånglärkor, vipor och änder skedde kring månadsskiftet, när vinden slog om till ihållande sydvästlig med stadiga 4–6 m/s in över landskapet. Fåglarna rider på dessa strömmar, en osynlig motorväg rakt in i Rönneådalen. De senaste dagarna har vinden slagit om till sydostlig och mattats av. Fåglarna väntar.
 
 <figure class="notis-chart">
   <a href="/images/posts/2026-03-09-varen-andas-in-och-ut/wind-flow-mar10.png" class="lightbox-link">

@@ -191,3 +191,16 @@
 - `deploy.sh` (identifierat förbättringsbehov: --cleanDestinationDir)
 
 ---
+
+### 2026-03-10 — ebee3001
+
+**Ursprung:** Hero widget + 24h-vy + dagsljuswidget för vädersidan
+**Typ:** Framsteg | Nytt system
+
+> Tre stora tillägg till `/vader/`: (1) Full-bredd "Just nu"-herowidget med vind-kort (kompass, Beaufort, vindkomponenter) + temperatur-kort (nutemp, dygnets max/min) + dagsljus-sektion (soluppgång/solnedgång, visuell 24h-remsa med borgerlig/nautisk/astronomisk skymning, beräknad med Jean Meeus-algoritm för Åstorp 56.08°N). (2) Ny "24 h"-tidsvy i diagramväljaren som hämtar SMHI `latest-day` timdata och bygger tre Chart.js-diagram (temp linje, vind grupperade staplar, nederbörd staplar). (3) Introtext omplacerad under widgeten. Deployat som commit `e05bacd`.
+
+**Relaterade filer:**
+- `layouts/_default/vader.html` (hero HTML + `buildTempNowWidget()` + `buildDaylightWidget()` + `show24hView()` med tre 24h-diagram)
+- `assets/css/style.css` (`.vader-now-hero`, `.vader-now-card`, `.vader-daylight`, `.vader-dl-*` dagsljusremsa)
+
+---
