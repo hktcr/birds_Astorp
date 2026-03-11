@@ -28,7 +28,7 @@ images:
       - Kulturlandskap
 ---
 
-De stora vattenspeglar som täckte Kungsgårdsmaderna för bara några dagar sedan har dragit sig tillbaka. Kvar är mindre vattensamlingar. Våren andas in och ut.
+De stora vattenspeglar som täckte Kungsgårdsmaderna för bara några dagar sedan har dragit sig tillbaka. Kvar är mindre vattensamlingar. Våren andas in och ut, bygger upp för det stora skiftet.
 
 Inflödet av sånglärkor, vipor och änder skedde kring månadsskiftet, när sydvästvinden höll i sig med stadiga 4–6 m/s. Regnet fyllde maderna, vinden förde fåglarna in i Rönneådalen. Nu har vinden slagit om till sydostlig och mattats av. Fåglarna väntar.
 
