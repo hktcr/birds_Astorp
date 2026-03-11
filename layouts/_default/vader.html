@@ -186,10 +186,10 @@
             <div class="vader-chart-box vader-delta-strip" id="chart-wind-delta">
                 <canvas id="wind-delta-chart"></canvas>
                 <div class="vader-chart-hint" style="text-align:center; margin-top:2px;">
-                    Vindskifte (ΔW = dag-till-dag vektorskillnad)<br>
-                    <span style="color:#4CAF50;">■</span> stabilt ·
-                    <span style="color:#FFA032;">■</span> medel ·
-                    <span style="color:#DC3228;">■</span> abrupt skifte — kan sätta arter i rörelse
+                    Vindskifte (ΔW = dag-till-dag vektorskillnad, skala 0–12 m/s)<br>
+                    <span style="color:#e0e0e0;">■</span> stabilt (<3) ·
+                    <span style="color:#FFB830;">■</span> frontal aktivitet (3–8) ·
+                    <span style="color:#DC3228;">■</span> abrupt skifte (>8) — kan sätta arter i rörelse
                 </div>
             </div>
 
@@ -215,10 +215,10 @@
             <div class="vader-chart-box vader-delta-strip" id="chart-temp-delta">
                 <canvas id="temp-delta-chart"></canvas>
                 <div class="vader-chart-hint" style="text-align:center; margin-top:2px;">
-                    Dygnssvängning (ΔT = dag max − natt min)<br>
-                    <span style="color:#4CAF50;">■</span> liten svängning ·
-                    <span style="color:#FFA032;">■</span> medel ·
-                    <span style="color:#DC3228;">■</span> stor svängning — stark biologisk signal
+                    Dygnssvängning (ΔT = dag max − natt min, skala 0–20°C)<br>
+                    <span style="color:#e0e0e0;">■</span> liten (<5°) ·
+                    <span style="color:#FFB830;">■</span> märkbar (5–12°) ·
+                    <span style="color:#DC3228;">■</span> dramatisk (>12°) — termik, möjlig artrörelse
                 </div>
             </div>
 
@@ -264,6 +264,33 @@
     var STATION_TEMP = 62040;   // Helsingborg A (param 19 & 20)
     var STATION_PRECIP = 62060; // Åstorp (param 5)
     var STATION_FLOW = 2372;    // Forsmöllans KRV, Rönne å (vattenföring)
+
+    // ================================================================
+    // Gemensam färgfunktion för gradientremsor (ΔT och ΔW)
+    // Vit → Cream → Gul → Orange → Röd
+    // ================================================================
+    function deltaColor(ratio) {
+        // 4-stegs interpolation med mjuka övergångar
+        var stops = [
+            { at: 0.00, r: 255, g: 255, b: 255 },  // Vit
+            { at: 0.25, r: 255, g: 248, b: 220 },  // Cream / ljusgul
+            { at: 0.50, r: 255, g: 200, b:  50 },  // Gul
+            { at: 0.75, r: 255, g: 130, b:  30 },  // Orange
+            { at: 1.00, r: 220, g:  50, b:  40 }   // Röd
+        ];
+        ratio = Math.max(0, Math.min(1, ratio));
+        var i = 0;
+        for (var s = 1; s < stops.length; s++) {
+            if (ratio <= stops[s].at) { i = s - 1; break; }
+        }
+        if (ratio >= 1) i = stops.length - 2;
+        var a = stops[i], b2 = stops[i + 1];
+        var t = (ratio - a.at) / (b2.at - a.at);
+        var r = Math.round(a.r + t * (b2.r - a.r));
+        var g = Math.round(a.g + t * (b2.g - a.g));
+        var bv = Math.round(a.b + t * (b2.b - a.b));
+        return 'rgb(' + r + ',' + g + ',' + bv + ')';
+    }
 
     // Gemensam x-axelkonfiguration
     var timeScaleConfig = {
@@ -594,16 +621,15 @@
         var canvas = document.getElementById('temp-delta-chart');
         if (!canvas) return;
 
+        // Fast maxskala: 20°C (VEP-konsensus)
+        var DELTA_T_MAX = 20;
+
         // Beräkna ΔT per dag
         var allDates = Object.keys(dayMap).filter(function (d) { return nightMap[d] !== undefined; }).sort();
         var deltas = {};
-        var maxDelta = 0;
         allDates.forEach(function (d) {
-            var dt = dayMap[d] - nightMap[d];
-            deltas[d] = dt;
-            if (dt > maxDelta) maxDelta = dt;
+            deltas[d] = Math.max(0, dayMap[d] - nightMap[d]);
         });
-        maxDelta = Math.max(maxDelta, 5);
 
         var box = canvas.parentElement;
         var dpr = window.devicePixelRatio || 1;
@@ -638,22 +664,9 @@
                 var x = labelW + dayOffset * cellW;
                 var barW = Math.max(Math.ceil(cellW), 2);
                 var dt = deltas[d];
-                var ratio = Math.min(dt / maxDelta, 1);
+                var ratio = Math.min(dt / DELTA_T_MAX, 1);
 
-                // Grön (stabilt) → Gul (viss förändring) → Röd (drastisk)
-                var r, g, b;
-                if (ratio < 0.5) {
-                    var t = ratio * 2;
-                    r = Math.round(76 + t * 179);    // 76 → 255
-                    g = Math.round(175 - t * 15);    // 175 → 160
-                    b = Math.round(80 - t * 30);     // 80 → 50
-                } else {
-                    var t = (ratio - 0.5) * 2;
-                    r = Math.round(255 - t * 35);    // 255 → 220
-                    g = Math.round(160 - t * 110);   // 160 → 50
-                    b = Math.round(50 - t * 10);     // 50 → 40
-                }
-                ctx.fillStyle = 'rgb(' + r + ',' + g + ',' + b + ')';
+                ctx.fillStyle = deltaColor(ratio);
                 ctx.fillRect(x, 0, barW, h);
             });
 
@@ -1969,17 +1982,17 @@
         var canvas = document.getElementById('wind-delta-chart');
         if (!canvas || days.length < 2) return;
 
+        // Fast maxskala: 12 m/s (VEP-konsensus)
+        var DELTA_W_MAX = 12;
+
         // Beräkna ΔW per dag: √[(u₂−u₁)² + (v₂−v₁)²]
         var deltaW = {};
-        var maxDelta = 0;
         for (var i = 1; i < days.length; i++) {
             var du = ew_raw[i] - ew_raw[i - 1];  // Zonal skillnad
             var dv = ns_raw[i] - ns_raw[i - 1];  // Meridional skillnad
             var dw = Math.sqrt(du * du + dv * dv);
             deltaW[days[i]] = dw;
-            if (dw > maxDelta) maxDelta = dw;
         }
-        maxDelta = Math.max(maxDelta, 1);
 
         var allDates = Object.keys(deltaW).sort();
 
@@ -2016,22 +2029,9 @@
                 var x = labelW + dayOffset * cellW;
                 var barW = Math.max(Math.ceil(cellW), 2);
                 var dw = deltaW[d];
-                var ratio = Math.min(dw / maxDelta, 1);
+                var ratio = Math.min(dw / DELTA_W_MAX, 1);
 
-                // Grön (stabilt) → Gul (viss förändring) → Röd (drastisk)
-                var r, g, b;
-                if (ratio < 0.5) {
-                    var t = ratio * 2;
-                    r = Math.round(76 + t * 179);    // 76 → 255
-                    g = Math.round(175 - t * 15);    // 175 → 160
-                    b = Math.round(80 - t * 30);     // 80 → 50
-                } else {
-                    var t = (ratio - 0.5) * 2;
-                    r = Math.round(255 - t * 35);    // 255 → 220
-                    g = Math.round(160 - t * 110);   // 160 → 50
-                    b = Math.round(50 - t * 10);     // 50 → 40
-                }
-                ctx.fillStyle = 'rgb(' + r + ',' + g + ',' + b + ')';
+                ctx.fillStyle = deltaColor(ratio);
                 ctx.fillRect(x, 0, barW, h);
             });
 
