@@ -6,7 +6,7 @@ location: "Kvidinge · Kungsgårdsmaderna · Tomarps Ene"
 image: "/images/posts/2026-03-09-varen-andas-in-och-ut/kungsgardsmaderna_20260309.jpg"
 species:
   - Sånglärka
-  - Vipa
+  - Tofsvipa
 tags:
   - Fältrapport
   - vindmönster
@@ -30,7 +30,7 @@ images:
 
 De stora vattenspeglar som täckte Kungsgårdsmaderna för bara några dagar sedan har dragit sig tillbaka. Kvar är mindre vattensamlingar. Våren andas in och ut, bygger upp för det stora skiftet.
 
-Inflödet av sånglärkor, vipor och änder skedde kring månadsskiftet, när sydvästvinden höll i sig med stadiga 4–6 m/s. Regnet fyllde maderna, vinden förde fåglarna in i Rönneådalen. Nu har vinden slagit om till sydostlig och mattats av. Fåglarna väntar.
+Inflödet av sånglärkor, tofsvipor och änder skedde kring månadsskiftet, när sydvästvinden höll i sig med stadiga 4–6 m/s. Regnet fyllde maderna, vinden förde fåglarna in i Rönneådalen. Nu har vinden slagit om till sydostlig och mattats av. Fåglarna väntar.
 
 <figure class="notis-chart">
   <img src="/images/posts/2026-03-09-varen-andas-in-och-ut/wind-compass.svg" alt="Vindkompass, 25 feb – 9 mar" style="width: 100%; max-width: 690px;">
