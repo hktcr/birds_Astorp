@@ -204,3 +204,16 @@
 - `assets/css/style.css` (`.vader-now-hero`, `.vader-now-card`, `.vader-daylight`, `.vader-dl-*` dagsljusremsa)
 
 ---
+
+### 2026-03-11 — 890efc49
+
+**Ursprung:** Aktuellt i markerna: 2×2-klassificering
+**Typ:** Beslut | Framsteg | Buggfix
+
+> Omklassificering av arter på `/aktuellt/`-sidan. Tidigare använde koden en enda variabel (`sumNow`) för att bestämma om en art var "Förväntad" eller "Möjlig", vilket blandade ihop artens årsförväntan med tidssignalen. Nu separeras de två dimensionerna: artens `category` (abundant/regular/uncommon från species-guide) och `sumNow` (obs-dagar i ±7-dagarsfönstret). Ny `getClassification()`-funktion returnerar etiketter: Förväntad, Tidig ankomst, Aktuell, Kan dyka upp, Möjlig. Fixade JS-bugg: `catOrder[abundant]=0` var falsy, vilket förstörde sorteringen. Lagt till färglegend och ny förklaringstext. Deployat som commit `1c1d7ce`.
+
+**Relaterade filer:**
+- `static/js/aktuellt.js` (ny `getClassification()`, fixad sortering, uppdaterad rendering)
+- `layouts/aktuellt/single.html` (rubrik "Aktuella arter", förklaringstext, färglegend)
+
+---
