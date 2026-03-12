@@ -27,6 +27,10 @@
                 <div class="archive-thumb">
                     <img src="{{ .Params.image | relURL }}" alt="{{ .Title }}" loading="lazy">
                 </div>
+                {{ else if .Params.images }}
+                <div class="archive-thumb">
+                    <img src="{{ (index .Params.images 0).url | relURL }}" alt="{{ .Title }}" loading="lazy">
+                </div>
                 {{ else }}
                 <div class="archive-thumb archive-thumb--fallback">
                     <span class="archive-thumb__date">{{ .Date.Format "2 Jan" }}</span>
