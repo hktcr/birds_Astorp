@@ -240,6 +240,20 @@ def main():
     fig.savefig(args.output, dpi=200, bbox_inches="tight", facecolor=COLORS["bg"])
     plt.close(fig)
     print(f"Sparade till {args.output}")
+    
+    # ---------------------------------------------------------
+    # Generate standalone thumbnail for 02:00
+    # ---------------------------------------------------------
+    fig_thumb = plt.figure(figsize=(4, 4))
+    fig_thumb.patch.set_facecolor(COLORS["bg"])
+    ax_thumb = fig_thumb.add_subplot(111, polar=True)
+    
+    draw_compass(ax_thumb, pt_02, "Vind inatt (02:00)")
+    
+    thumb_output = args.output.replace(".png", "-thumb.png")
+    fig_thumb.savefig(thumb_output, dpi=150, bbox_inches="tight", facecolor=COLORS["bg"])
+    plt.close(fig_thumb)
+    print(f"Sparade thumbnail till {thumb_output}")
 
 if __name__ == "__main__":
     main()

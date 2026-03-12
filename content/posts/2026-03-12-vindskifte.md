@@ -8,7 +8,7 @@ tags:
   - Väder
   - Migration
 images:
-  - url: "/images/posts/2026-03-12-vindskifte/wind-components.png"
+  - url: "/images/posts/2026-03-12-vindskifte/wind-components-thumb.png"
     alt: "Diagram över N/S och V/Ö vindkomponenter som visar omslaget till medvind"
     categories:
       - Väderdiagram
