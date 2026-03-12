@@ -12,39 +12,29 @@
             <!-- Gallery CSS Masonry Grid & Filters -->
             <style>
                 .gallery-grid {
-                    column-count: 2;
-                    column-gap: 1rem;
-                }
-
-                @media (min-width: 576px) {
-                    .gallery-grid {
-                        column-count: 3;
-                        column-gap: 1.5rem;
-                    }
-                }
-
-                @media (min-width: 992px) {
-                    .gallery-grid {
-                        column-count: 4;
-                    }
+                    position: relative;
+                    width: 100%;
+                    /* Height set dynamically by JS */
                 }
 
                 .gallery-item {
-                    break-inside: avoid;
-                    margin-bottom: 1.5rem;
-                    display: block;
+                    position: absolute;
                     border-radius: 8px;
                     overflow: hidden;
                     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-                    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
-                    position: relative;
+                    transition: transform 0.3s ease, box-shadow 0.2s ease-in-out, opacity 0.3s ease;
                     background: #fcfbf9;
                     cursor: pointer;
+                    opacity: 0; /* Hidden until JS places them */
+                }
+
+                .gallery-item.placed {
+                    opacity: 1;
                 }
 
                 .gallery-item:hover {
-                    transform: translateY(-5px);
                     box-shadow: 0 8px 15px rgba(0, 0, 0, 0.15);
+                    z-index: 2;
                 }
 
                 .gallery-item img {
@@ -446,53 +436,92 @@
             });
         });
 
-        // --- Row-chronological reorder for CSS column masonry ---
-        // CSS column-count fills items column-by-column (top→bottom, left→right).
-        // We transpose the DOM order so each visual row contains chronologically
-        // adjacent items (newest row at top).
-        function reorderForColumns() {
+        // --- JS Masonry: row-by-row placement into shortest column ---
+        // Places each image (in DOM order = chronological desc) into the
+        // shortest column, with left-to-right tiebreaking. This guarantees
+        // that each visual row contains chronologically adjacent images,
+        // while still producing a masonry look with variable heights.
+        const GAP = 16; // px gap between items
+
+        function getColumnCount() {
+            const w = grid.offsetWidth;
+            if (w >= 992) return 4;
+            if (w >= 576) return 3;
+            return 2;
+        }
+
+        function layoutMasonry() {
             const visibleItems = Array.from(grid.querySelectorAll('.gallery-item'))
                 .filter(i => i.style.display !== 'none');
 
-            const cols = parseInt(getComputedStyle(grid).columnCount) || 1;
-            if (cols <= 1 || visibleItems.length <= cols) return;
+            const cols = getColumnCount();
+            const gridWidth = grid.offsetWidth;
+            const colWidth = (gridWidth - GAP * (cols - 1)) / cols;
+            const colHeights = new Array(cols).fill(0);
 
-            const n = visibleItems.length;
-            const baseRows = Math.floor(n / cols);
-            const extraCols = n % cols; // first extraCols columns get one extra item
-
-            // Build column-major order: for each column c, pick the items
-            // that should land in that column to produce chronological rows.
-            const reordered = [];
-            for (let c = 0; c < cols; c++) {
-                const colSize = c < extraCols ? baseRows + 1 : baseRows;
-                for (let r = 0; r < colSize; r++) {
-                    const chronIdx = r * cols + c;
-                    if (chronIdx < n) {
-                        reordered.push(visibleItems[chronIdx]);
+            visibleItems.forEach(item => {
+                // Find shortest column (left-to-right tiebreak)
+                let minH = colHeights[0], minCol = 0;
+                for (let c = 1; c < cols; c++) {
+                    if (colHeights[c] < minH) {
+                        minH = colHeights[c];
+                        minCol = c;
                     }
                 }
-            }
 
-            // Re-append in transposed order
-            reordered.forEach(item => grid.appendChild(item));
+                const x = minCol * (colWidth + GAP);
+                const y = colHeights[minCol];
+
+                item.style.width = colWidth + 'px';
+                item.style.left = x + 'px';
+                item.style.top = y + 'px';
+                item.classList.add('placed');
+
+                // Measure actual rendered height
+                const h = item.offsetHeight;
+                colHeights[minCol] += h + GAP;
+            });
+
+            // Set container height to tallest column
+            grid.style.height = Math.max(...colHeights) + 'px';
+        }
+
+        // Wait for all images to load before laying out
+        function layoutWhenReady() {
+            const imgs = grid.querySelectorAll('img');
+            let loaded = 0;
+            const total = imgs.length;
+            if (total === 0) { layoutMasonry(); return; }
+
+            function checkDone() {
+                loaded++;
+                if (loaded >= total) layoutMasonry();
+            }
+            imgs.forEach(img => {
+                if (img.complete) { checkDone(); }
+                else {
+                    img.addEventListener('load', checkDone);
+                    img.addEventListener('error', checkDone);
+                }
+            });
         }
 
         let resizeTimer;
         window.addEventListener('resize', () => {
             clearTimeout(resizeTimer);
-            resizeTimer = setTimeout(() => { reorderForColumns(); }, 150);
+            resizeTimer = setTimeout(layoutMasonry, 150);
         });
 
-        // Wrap applyFilters to also reorder after filtering
+        // Wrap applyFilters to also re-layout after filtering
         const origApplyFilters = applyFilters;
         applyFilters = function() {
             origApplyFilters();
-            reorderForColumns();
+            layoutMasonry();
         };
 
         // Run once on init
         applyFilters();
+        layoutWhenReady();
     });
 </script>
 {{ end }}
