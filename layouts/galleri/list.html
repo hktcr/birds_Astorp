@@ -305,7 +305,7 @@
 
                 <div class="gallery-grid" id="gallery-grid">
                     {{/* Render collected unique images */}}
-                    {{ range sort ($globalImages.Get "images") "post.Date" "desc" }}
+                    {{ range sort ($globalImages.Get "images") "post.Date" "asc" }}
                     {{ $url := .url }}
                     {{ $alt := .alt }}
                     {{ $post := .post }}
