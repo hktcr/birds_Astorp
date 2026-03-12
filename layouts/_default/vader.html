@@ -1401,8 +1401,15 @@
             var precData = results[3].value || [];
 
             build24hTempChart(tempData);
-            build24hWindNSChart(dirData, spdData);
-            build24hWindEWChart(dirData, spdData);
+
+            // Beräkna gemensam maxskala för 24h vinddiagrammen
+            var parsedWind = _parse24hWindData(dirData, spdData);
+            var maxNs = Math.max.apply(null, parsedWind.nsData.map(Math.abs));
+            var maxEw = Math.max.apply(null, parsedWind.ewData.map(Math.abs));
+            var sharedWindMax = Math.max(maxNs, maxEw);
+
+            build24hWindNSChart(dirData, spdData, sharedWindMax);
+            build24hWindEWChart(dirData, spdData, sharedWindMax);
             build24hPrecipChart(precData);
         }).catch(function (err) {
             console.warn('Kunde inte hämta 24h-data:', err);
@@ -1479,15 +1486,15 @@
         return { labels: labels, nsData: nsData, ewData: ewData };
     }
 
-    function _build24hWindSingleChart(canvasId, data, labels, posLabel, negLabel, posColor, negColor) {
+    function _build24hWindSingleChart(canvasId, data, labels, posLabel, negLabel, posColor, negColor, sharedMax) {
         var canvas = document.getElementById(canvasId);
         if (!canvas) return;
 
         var existing = Chart.getChart(canvas);
         if (existing) existing.destroy();
 
-        // Gemensam y-skala baserad på maxvärde
-        var absMax = Math.max.apply(null, data.map(function (v) { return Math.abs(v); }));
+        // Gemensam y-skala baserad på skickat maxvärde (eller lokalt om inget angavs)
+        var absMax = sharedMax !== undefined ? sharedMax : Math.max.apply(null, data.map(function (v) { return Math.abs(v); }));
         var yLimit = Math.max(absMax * 1.1, 1);
 
         new Chart(canvas, {
@@ -1527,7 +1534,7 @@
                             font: { family: 'Inter', size: 11 }, color: '#666',
                             callback: function(v) { return v.toFixed(1); }
                         },
-                        title: { display: true, text: 'm/s', font: { family: 'Inter', size: 11 } }
+                        title: { display: true, text: posLabel + '/' + negLabel + ' (m/s)', font: { family: 'Inter', size: 11 } }
                     }
                 },
                 plugins: {
@@ -1546,7 +1553,7 @@
         });
     }
 
-    function build24hWindNSChart(dirData, spdData) {
+    function build24hWindNSChart(dirData, spdData, sharedMax) {
         var parsed = _parse24hWindData(dirData, spdData);
         _build24hWindSingleChart(
             'chart-24h-wind-ns-canvas',
@@ -1554,11 +1561,12 @@
             parsed.labels,
             'N', 'S',
             { bg: 'rgba(74, 144, 217, 0.7)', border: '#4A90D9' },
-            { bg: 'rgba(217, 74, 74, 0.7)', border: '#D94A4A' }
+            { bg: 'rgba(217, 74, 74, 0.7)', border: '#D94A4A' },
+            sharedMax
         );
     }
 
-    function build24hWindEWChart(dirData, spdData) {
+    function build24hWindEWChart(dirData, spdData, sharedMax) {
         var parsed = _parse24hWindData(dirData, spdData);
         _build24hWindSingleChart(
             'chart-24h-wind-ew-canvas',
@@ -1566,7 +1574,8 @@
             parsed.labels,
             'Ö', 'V',
             { bg: 'rgba(61, 170, 109, 0.7)', border: '#3DAA6D' },
-            { bg: 'rgba(217, 168, 74, 0.7)', border: '#D9A84A' }
+            { bg: 'rgba(217, 168, 74, 0.7)', border: '#D9A84A' },
+            sharedMax
         );
     }
 
@@ -1841,10 +1850,26 @@
                     ctx.beginPath(); ctx.moveTo(labelW, base2); ctx.lineTo(w, base2); ctx.stroke();
                     ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
                     ctx.font = 'bold 11px Inter, sans-serif'; ctx.fillStyle = '#333';
-                    ctx.fillText('N', labelW - 6, base1 - rowH / 2);
-                    ctx.fillText('S', labelW - 6, base1 + rowH / 2);
-                    ctx.fillText('Ö', labelW - 6, base2 - rowH / 2);
-                    ctx.fillText('V', labelW - 6, base2 + rowH / 2);
+                    ctx.fillText('Nord', labelW - 6, base1 - rowH / 2);
+                    ctx.fillText('Syd', labelW - 6, base1 + rowH / 2);
+                    ctx.fillText('Öst', labelW - 6, base2 - rowH / 2);
+                    ctx.fillText('Väst', labelW - 6, base2 + rowH / 2);
+                    
+                    // Rotated axis labels
+                    ctx.save();
+                    ctx.translate(labelW - 25, base1);
+                    ctx.rotate(-Math.PI / 2);
+                    ctx.fillStyle = '#666'; ctx.font = '9px Inter, sans-serif'; ctx.textAlign = 'center';
+                    ctx.fillText('N/S (m/s)', 0, 0);
+                    ctx.restore();
+                    
+                    ctx.save();
+                    ctx.translate(labelW - 25, base2);
+                    ctx.rotate(-Math.PI / 2);
+                    ctx.fillStyle = '#666'; ctx.font = '9px Inter, sans-serif'; ctx.textAlign = 'center';
+                    ctx.fillText('V/Ö (m/s)', 0, 0);
+                    ctx.restore();
+                    
                     ctx.textAlign = 'center'; ctx.font = '12px Inter, sans-serif';
                     ctx.fillStyle = '#999';
                     ctx.fillText('Ingen vinddata för denna period', w / 2, h / 2);
@@ -1901,15 +1926,30 @@
 
                 // Axel 1 — N/S med matchande färger
                 ctx.fillStyle = '#4A90D9';
-                ctx.fillText('N', labelW - 6, base1 - rowH / 2);
+                ctx.fillText('Nord', labelW - 6, base1 - rowH / 2);
                 ctx.fillStyle = '#D94A4A';
-                ctx.fillText('S', labelW - 6, base1 + rowH / 2);
+                ctx.fillText('Syd', labelW - 6, base1 + rowH / 2);
 
                 // Axel 2 — Ö/V med matchande färger
                 ctx.fillStyle = '#3DAA6D';
-                ctx.fillText('Ö', labelW - 6, base2 - rowH / 2);
+                ctx.fillText('Öst', labelW - 6, base2 - rowH / 2);
                 ctx.fillStyle = '#D9A84A';
-                ctx.fillText('V', labelW - 6, base2 + rowH / 2);
+                ctx.fillText('Väst', labelW - 6, base2 + rowH / 2);
+                
+                // Axel labels N/S och V/Ö
+                ctx.save();
+                ctx.translate(labelW - 25, base1);
+                ctx.rotate(-Math.PI / 2);
+                ctx.fillStyle = '#666'; ctx.font = '9px Inter, sans-serif'; ctx.textAlign = 'center';
+                ctx.fillText('N/S (m/s)', 0, 0);
+                ctx.restore();
+                
+                ctx.save();
+                ctx.translate(labelW - 25, base2);
+                ctx.rotate(-Math.PI / 2);
+                ctx.fillStyle = '#666'; ctx.font = '9px Inter, sans-serif'; ctx.textAlign = 'center';
+                ctx.fillText('V/Ö (m/s)', 0, 0);
+                ctx.restore();
 
                 // Tidslinje — grid och datummarkeringar
                 ctx.strokeStyle = 'rgba(0,0,0,0.05)';
