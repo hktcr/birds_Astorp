@@ -235,7 +235,7 @@
                 {{ range ($postImages.Get "list") }}
                 {{ $cleanUrl := replaceRE `^(\.\.\/)+` "/" .url }}
 
-                {{ if not (in $cleanUrl "hitta-hit") }}
+                {{ if and (not (in $cleanUrl "hitta-hit")) (not (in $cleanUrl "-thumb")) }}
                 {{ if not (isset ($globalImages.Get "urls") $cleanUrl) }}
                 {{ $globalImages.SetInMap "urls" $cleanUrl true }}
 
