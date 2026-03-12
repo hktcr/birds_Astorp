@@ -544,6 +544,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const possibleNow = [];
                 const arrivingSoon = [];
                 const rarities = [];
+                const leavingSoon = []; // Ny kategori för vintergäster som drar
 
                 for (const species in data) {
                     if (species === '_meta' || !categoryMap[species]) continue;
@@ -554,11 +555,23 @@ document.addEventListener("DOMContentLoaded", () => {
                     let sumNow = 0;
                     let sumSoon = 0;
                     let soonOffset = 999;
+                    
+                    // Ny variabler för distribution (vinter vs sommar)
+                    let winterDays = 0; // okt-mars (månad 10,11,12,1,2,3)
+                    let summerDays = 0; // april-sept (månad 4,5,6,7,8,9)
 
                     for (let i = 0; i < dayAngles.length; i++) {
                         const count = obsData[dayAngles[i].key] || 0;
                         if (count > 0) {
                             totalDays++;
+                            
+                            // Räkna vinter vs sommar
+                            const month = dayAngles[i].month;
+                            if (month >= 4 && month <= 9) {
+                                summerDays++;
+                            } else {
+                                winterDays++;
+                            }
 
                             // Calculate diff from today, wrapping around 366
                             let diff = i - todayDOY;
@@ -575,6 +588,19 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
 
                     if (totalDays === 0) continue;
+                    
+                    // Bestäm gäst-typ utifrån distribution
+                    // Om mer än 75% av obsdagar är vinter, anta vintergäst
+                    let isWinterGuest = false;
+                    let isSummerGuest = false;
+                    
+                    if (totalDays >= 5) { // Kräver lite data för att avgöra
+                        if (winterDays / totalDays > 0.75) {
+                            isWinterGuest = true;
+                        } else if (summerDays / totalDays > 0.75) {
+                            isSummerGuest = true;
+                        }
+                    }
 
                     // Categorize
                     if (totalDays <= RECOMMENDATION_RARE_MAX_TOTAL) {
@@ -583,9 +609,24 @@ document.addEventListener("DOMContentLoaded", () => {
                         }
                     } else if (!isChecked2026) {
                         if (sumNow >= RECOMMENDATION_MIN_YEARS) {
-                            possibleNow.push({ name: species });
+                            // Vi är i ett bra fönster nu
+                            // Är det en vintergäst och vi befinner oss på våren (feb-maj)? Då är de på väg bort.
+                            const currentMonth = today.getMonth() + 1; // 1-12
+                            if (isWinterGuest && currentMonth >= 2 && currentMonth <= 5) {
+                                leavingSoon.push({ name: species });
+                            } else {
+                                possibleNow.push({ name: species });
+                            }
                         } else if (sumSoon >= RECOMMENDATION_MIN_YEARS) {
-                            arrivingSoon.push({ name: species, offset: soonOffset });
+                            // Antågande framöver
+                             const currentMonth = today.getMonth() + 1;
+                             if (isWinterGuest && currentMonth >= 2 && currentMonth <= 5) {
+                                // Om det är en vintergäst som har ett antågande fönster om 2 veckor mitt i våren, är de troligtvis
+                                // också snart borta. Men vi kan lägga dem här för att vara konsekventa.
+                                leavingSoon.push({ name: species });
+                             } else {
+                                arrivingSoon.push({ name: species, offset: soonOffset });
+                             }
                         }
                     }
                 }
@@ -608,6 +649,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 html += buildGroup("📍 Möjliga just nu", possibleNow, "");
                 html += buildGroup("⏳ I antågande", arrivingSoon, "");
+                html += buildGroup("❄️ Snart borta (Vintergäster)", leavingSoon, "");
                 html += buildGroup("⭐ Aktuella rariteter", rarities, "⭐");
 
                 if (html === "") {
