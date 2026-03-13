@@ -526,16 +526,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 });
             }
 
-            // ── RECOMMENDATION ENGINE ──
+            // ── TIPS & AKTUELLT PANEL (inline årshjul) ──
             const RECOMMENDATION_MIN_YEARS = 2;
             const RECOMMENDATION_RARE_MAX_TOTAL = 5;
 
-            const dropdown = document.getElementById("arshjul-recommendations-dropdown");
-            const recsContent = document.getElementById("arshjul-recs-content");
-            const recsLoading = document.getElementById("arshjul-recs-loading");
+            function renderTipsPanel() {
+                const panelTips = document.getElementById("panel-tips");
+                if (!panelTips) return;
 
-            function generateRecommendations() {
-                if (recsContent.innerHTML !== "") return; // Already generated
+                // Check if already rendered
+                if (panelTips.dataset.rendered === "true") return;
+                panelTips.dataset.rendered = "true";
 
                 const today = new Date();
                 const startOfYear = new Date(today.getFullYear(), 0, 0);
@@ -544,28 +545,26 @@ document.addEventListener("DOMContentLoaded", () => {
                 const possibleNow = [];
                 const arrivingSoon = [];
                 const rarities = [];
-                const leavingSoon = []; // Ny kategori för vintergäster som drar
+                const leavingSoon = [];
 
                 for (const species in data) {
                     if (species === '_meta' || !categoryMap[species]) continue;
 
                     const isChecked2026 = checkedMap.has(species);
                     const obsData = data[species];
-                    let totalDays = 0;
+                    let totalDaysCount = 0;
                     let sumNow = 0;
                     let sumSoon = 0;
                     let soonOffset = 999;
-                    
-                    // Ny variabler för distribution (vinter vs sommar)
-                    let winterDays = 0; // okt-mars (månad 10,11,12,1,2,3)
-                    let summerDays = 0; // april-sept (månad 4,5,6,7,8,9)
+
+                    let winterDays = 0;
+                    let summerDays = 0;
 
                     for (let i = 0; i < dayAngles.length; i++) {
                         const count = obsData[dayAngles[i].key] || 0;
                         if (count > 0) {
-                            totalDays++;
-                            
-                            // Räkna vinter vs sommar
+                            totalDaysCount++;
+
                             const month = dayAngles[i].month;
                             if (month >= 4 && month <= 9) {
                                 summerDays++;
@@ -573,7 +572,6 @@ document.addEventListener("DOMContentLoaded", () => {
                                 winterDays++;
                             }
 
-                            // Calculate diff from today, wrapping around 366
                             let diff = i - todayDOY;
                             if (diff < -183) diff += 366;
                             if (diff > 183) diff -= 366;
@@ -587,137 +585,112 @@ document.addEventListener("DOMContentLoaded", () => {
                         }
                     }
 
-                    if (totalDays === 0) continue;
-                    
-                    // Bestäm gäst-typ utifrån distribution
-                    // Om mer än 75% av obsdagar är vinter, anta vintergäst
+                    if (totalDaysCount === 0) continue;
+
                     let isWinterGuest = false;
-                    let isSummerGuest = false;
-                    
-                    if (totalDays >= 5) { // Kräver lite data för att avgöra
-                        if (winterDays / totalDays > 0.75) {
-                            isWinterGuest = true;
-                        } else if (summerDays / totalDays > 0.75) {
-                            isSummerGuest = true;
-                        }
+                    if (totalDaysCount >= 5 && winterDays / totalDaysCount > 0.75) {
+                        isWinterGuest = true;
                     }
 
-                    // Categorize
-                    if (totalDays <= RECOMMENDATION_RARE_MAX_TOTAL) {
+                    if (totalDaysCount <= RECOMMENDATION_RARE_MAX_TOTAL) {
                         if (sumNow > 0) {
-                            rarities.push({ name: species });
+                            rarities.push(species);
                         }
                     } else if (!isChecked2026) {
+                        const currentMonth = today.getMonth() + 1;
                         if (sumNow >= RECOMMENDATION_MIN_YEARS) {
-                            // Vi är i ett bra fönster nu
-                            // Är det en vintergäst och vi befinner oss på våren (feb-maj)? Då är de på väg bort.
-                            const currentMonth = today.getMonth() + 1; // 1-12
                             if (isWinterGuest && currentMonth >= 2 && currentMonth <= 5) {
-                                leavingSoon.push({ name: species });
+                                leavingSoon.push(species);
                             } else {
-                                possibleNow.push({ name: species });
+                                possibleNow.push(species);
                             }
                         } else if (sumSoon >= RECOMMENDATION_MIN_YEARS) {
-                            // Antågande framöver
-                             const currentMonth = today.getMonth() + 1;
-                             if (isWinterGuest && currentMonth >= 2 && currentMonth <= 5) {
-                                // Om det är en vintergäst som har ett antågande fönster om 2 veckor mitt i våren, är de troligtvis
-                                // också snart borta. Men vi kan lägga dem här för att vara konsekventa.
-                                leavingSoon.push({ name: species });
-                             } else {
+                            if (isWinterGuest && currentMonth >= 2 && currentMonth <= 5) {
+                                leavingSoon.push(species);
+                            } else {
                                 arrivingSoon.push({ name: species, offset: soonOffset });
-                             }
+                            }
                         }
                     }
                 }
 
-                // Sort arriving soon by how close they are
                 arrivingSoon.sort((a, b) => a.offset - b.offset);
 
-                // Build HTML
-                let html = "";
+                // Helper: render årshjul cards into a section
+                function renderSection(sectionId, speciesList) {
+                    const section = document.getElementById(sectionId);
+                    if (!section) return;
+                    const grid = section.querySelector('.tips-grid');
+                    const emptyMsg = section.querySelector('.tips-empty');
+                    if (!grid) return;
 
-                function buildGroup(title, items, icon) {
-                    if (items.length === 0) return "";
-                    let res = `<div style="margin-bottom: 1.5rem;"><h4 style="margin:0 0 0.75rem 0; font-size:0.75rem; color:#64748b; text-transform:uppercase; letter-spacing:0.05em; font-weight:700;">${title}</h4><div style="display:flex; flex-wrap:wrap; gap:0.5rem;">`;
-                    items.slice(0, 10).forEach(item => {  // Max 10 per category to keep it clean
-                        res += `<button class="rec-chip" data-species="${item.name}" style="background:#f1f5f9; border:1px solid #e2e8f0; border-radius:999px; padding:0.4rem 0.85rem; font-size:0.9rem; color:#334155; cursor:pointer; transition:all 0.2s;" onmouseover="this.style.background='#e2e8f0'; this.style.borderColor='#cbd5e1';" onmouseout="this.style.background='#f1f5f9'; this.style.borderColor='#e2e8f0';">${icon} ${item.name}</button>`;
-                    });
-                    res += `</div></div>`;
-                    return res;
-                }
+                    const names = Array.isArray(speciesList) ?
+                        speciesList.map(s => typeof s === 'string' ? s : s.name) : [];
 
-                html += buildGroup("📍 Möjliga just nu", possibleNow, "");
-                html += buildGroup("⏳ I antågande", arrivingSoon, "");
-                html += buildGroup("❄️ Snart borta (Vintergäster)", leavingSoon, "");
-                html += buildGroup("⭐ Aktuella rariteter", rarities, "⭐");
+                    if (names.length === 0) {
+                        grid.style.display = 'none';
+                        if (emptyMsg) emptyMsg.style.display = 'block';
+                        return;
+                    }
 
-                if (html === "") {
-                    html = `<p style="text-align:center; color:#94a3b8; font-size:0.9rem; margin:1rem 0;">Inga specifika fågeltips just nu.</p>`;
-                }
-
-                // Add "Visa mer"-knapp leading to /aktuellt/
-                html += `
-                <div style="margin-top: 1.5rem; text-align: center;">
-                    <a href="/aktuellt/" style="display:inline-block; padding:0.6rem 1.25rem; font-size:0.9rem; font-weight:600; color:#2d5016; background:#f0fdf4; border:1px solid #bbf7d0; border-radius:999px; text-decoration:none; transition:all 0.2s;" onmouseover="this.style.background='#dcfce7'; this.style.borderColor='#86efac';" onmouseout="this.style.background='#f0fdf4'; this.style.borderColor='#bbf7d0';">
-                        + Visa alla aktuella tips & trender
-                    </a>
-                </div>
-                `;
-
-                recsContent.innerHTML = html;
-                recsLoading.style.display = "none";
-                recsContent.style.display = "block";
-
-                // Add click events to chips
-                const chips = recsContent.querySelectorAll('.rec-chip');
-                chips.forEach(chip => {
-                    chip.addEventListener('click', (e) => {
-                        e.preventDefault();
-                        dropdown.style.display = "none";
-
-                        const speciesName = chip.dataset.species;
-                        const checkInfo = checkedMap.get(speciesName) || null;
+                    names.slice(0, 12).forEach(species => {
+                        const checkInfo = checkedMap.get(species) || null;
                         const checkDate = checkInfo ? checkInfo.date : null;
-                        const slug = speciesName.toLowerCase().replace(/å/g, "a").replace(/ä/g, "a").replace(/ö/g, "o").replace(/\\s+/g, '-').replace(/[^a-z0-9-]/g, '');
 
-                        openModal(speciesName, slug, data[speciesName] || {}, checkDate);
+                        const card = document.createElement("div");
+                        card.className = "arshjul-card";
+                        card.style.cssText = "padding: 1rem;";
+
+                        const header = document.createElement("h3");
+                        header.textContent = species;
+                        header.style.cssText = "margin: 0 0 0.5rem 0; font-size: 1rem;";
+                        card.appendChild(header);
+
+                        if (latinMap[species]) {
+                            const latin = document.createElement("p");
+                            latin.textContent = latinMap[species];
+                            latin.style.cssText = "font-style:italic; color:#94a3b8; font-size:0.7rem; margin:0 0 0.25rem 0; line-height:1;";
+                            card.appendChild(latin);
+                        }
+
+                        const svgWrapper = document.createElement("div");
+                        svgWrapper.className = "arshjul-card-svg-wrapper loaded";
+                        const svg = createSVG(data[species] || {}, false, checkDate);
+                        svgWrapper.appendChild(svg);
+                        card.appendChild(svgWrapper);
+
+                        card.addEventListener("click", () => {
+                            const slug = species.toLowerCase().replace(/å/g, "a").replace(/ä/g, "a").replace(/ö/g, "o").replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
+                            openModal(species, slug, data[species] || {}, checkDate);
+                        });
+
+                        grid.appendChild(card);
                     });
-                });
+                }
+
+                renderSection("tips-possible", possibleNow);
+                renderSection("tips-arriving", arrivingSoon);
+                renderSection("tips-leaving", leavingSoon);
+                renderSection("tips-rarities", rarities);
             }
 
-            if (searchInput) {
-                searchInput.addEventListener("focus", () => {
-                    if (searchInput.value.trim() === "") {
-                        dropdown.style.display = "block";
-                        generateRecommendations();
+            // Render tips panel on first toggle open (lazy)
+            // Listen for panel-tips becoming visible
+            const tipsPanelEl = document.getElementById("panel-tips");
+            if (tipsPanelEl) {
+                const tipsObserver = new MutationObserver(() => {
+                    if (tipsPanelEl.style.display !== "none") {
+                        renderTipsPanel();
                     }
                 });
+                tipsObserver.observe(tipsPanelEl, { attributes: true, attributeFilter: ["style"] });
+            }
 
+            // Search input — simple filtering only (no dropdown)
+            if (searchInput) {
                 searchInput.addEventListener("input", () => {
                     updateGrid();
-                    if (searchInput.value.trim() !== "") {
-                        dropdown.style.display = "none";
-                    } else {
-                        dropdown.style.display = "block";
-                        generateRecommendations();
-                    }
                 });
-
-                let blurTimeout;
-                searchInput.addEventListener("blur", () => {
-                    // Small timeout to allow clicks inside the dropdown to register
-                    blurTimeout = setTimeout(() => {
-                        dropdown.style.display = "none";
-                    }, 200);
-                });
-
-                if (dropdown) {
-                    // Prevent hiding if clicking inside the dropdown
-                    dropdown.addEventListener("mousedown", (e) => {
-                        e.preventDefault();
-                    });
-                }
             }
 
         })
