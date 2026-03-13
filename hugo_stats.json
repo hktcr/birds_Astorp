@@ -470,6 +470,7 @@
       "temp-now-value",
       "timeline-arriving",
       "tips-arriving",
+      "tips-inarea",
       "tips-leaving",
       "tips-possible",
       "tips-rarities",

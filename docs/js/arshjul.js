@@ -546,6 +546,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const arrivingSoon = [];
                 const rarities = [];
                 const leavingSoon = [];
+                const inTheArea = [];
 
                 for (const species in data) {
                     if (species === '_meta' || !categoryMap[species]) continue;
@@ -559,6 +560,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     let winterDays = 0;
                     let summerDays = 0;
+                    const activeMonthsSet = new Set();
 
                     for (let i = 0; i < dayAngles.length; i++) {
                         const count = obsData[dayAngles[i].key] || 0;
@@ -566,6 +568,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             totalDaysCount++;
 
                             const month = dayAngles[i].month;
+                            activeMonthsSet.add(month);
                             if (month >= 4 && month <= 9) {
                                 summerDays++;
                             } else {
@@ -587,14 +590,17 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     if (totalDaysCount === 0) continue;
 
+                    const activeMonths = activeMonthsSet.size;
                     let isWinterGuest = false;
                     if (totalDaysCount >= 5 && winterDays / totalDaysCount > 0.75) {
                         isWinterGuest = true;
                     }
 
+                    let categorized = false;
                     if (totalDaysCount <= RECOMMENDATION_RARE_MAX_TOTAL) {
                         if (sumNow > 0) {
                             rarities.push(species);
+                            categorized = true;
                         }
                     } else if (!isChecked2026) {
                         const currentMonth = today.getMonth() + 1;
@@ -604,17 +610,25 @@ document.addEventListener("DOMContentLoaded", () => {
                             } else {
                                 possibleNow.push(species);
                             }
+                            categorized = true;
                         } else if (sumSoon >= RECOMMENDATION_MIN_YEARS) {
                             if (isWinterGuest && currentMonth >= 2 && currentMonth <= 5) {
                                 leavingSoon.push(species);
                             } else {
                                 arrivingSoon.push({ name: species, offset: soonOffset });
                             }
+                            categorized = true;
+                        }
+
+                        // Ny: helårsarter som inte fångades av ovan
+                        if (!categorized && totalDaysCount >= 15 && activeMonths >= 8) {
+                            inTheArea.push({ name: species, activeMonths, totalDaysCount });
                         }
                     }
                 }
 
                 arrivingSoon.sort((a, b) => a.offset - b.offset);
+                inTheArea.sort((a, b) => b.activeMonths - a.activeMonths || b.totalDaysCount - a.totalDaysCount);
 
                 // Helper: render årshjul cards into a section
                 function renderSection(sectionId, speciesList) {
@@ -671,6 +685,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 renderSection("tips-possible", possibleNow);
                 renderSection("tips-arriving", arrivingSoon);
                 renderSection("tips-leaving", leavingSoon);
+                renderSection("tips-inarea", inTheArea.slice(0, 6));
                 renderSection("tips-rarities", rarities);
             }
 
