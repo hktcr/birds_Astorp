@@ -10,6 +10,11 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Modal Elements
     const modal = document.getElementById("arshjul-modal");
+    // Ensure modal is outside any toggled panel (robust against CDN caching)
+    if (modal && modal.closest('#panel-arshjul')) {
+        const artguide = document.querySelector('.artguide');
+        if (artguide) artguide.appendChild(modal);
+    }
     const modalClose = document.getElementById("arshjul-modal-close");
     const modalTitle = document.getElementById("arshjul-modal-title");
     const modalSvgContainer = document.getElementById("arshjul-modal-svg-container");
