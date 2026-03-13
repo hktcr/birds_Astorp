@@ -230,3 +230,16 @@
 - `layouts/artguide/single.html` (Tips-panel HTML med fem sektioner, trevägs-toggle)
 
 ---
+
+### 2026-03-13 — 4d8f1358 (del 2)
+
+**Ursprung:** Modalfix, toggle kryssade, algoritmbugg varfågel
+**Typ:** Buggfix | Framsteg | Beslut
+
+> Tre förbättringar: (1) Modal-overlay-bugg: `<dialog id="arshjul-modal">` låg inuti `#panel-arshjul` som döljs vid panelväxling. Fix: flytt i HTML + JS-baserad fallback (`modal.closest('#panel-arshjul')` → `appendChild`) som skyddar mot CDN-cache. (2) Ny toggle "Visa även redan kryssade" i Tips-panelen: alla arter kategoriseras nu oavsett kryss-status, filtrering sker vid rendering. Badge visar antal dolda. Kryssade kort renderas med ✓-prefix, grönt namn och sänkt opacitet. (3) Varfågel-bugg: vintergäster (>75% vinterdagar) hamnade felaktigt i "Finns i området" via fallback `isResident`-check. Fix: `!isWinterGuest && !isSummerGuest` tillagt i fallback-villkoret.
+
+**Relaterade filer:**
+- `static/js/arshjul.js` (modal-flytt, renderTipsPanel() refaktorerad, isWinterGuest-fix)
+- `layouts/artguide/single.html` (modal-position, introtext, checkbox-toggle)
+
+---
