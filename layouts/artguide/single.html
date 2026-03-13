@@ -166,10 +166,17 @@
                 aria-label="Stäng tips">×</button>
         </div>
 
-        <p style="color: #64748b; font-size: 0.95rem; line-height: 1.6; margin: 0 0 2rem 0;">
+        <p style="color: #64748b; font-size: 0.95rem; line-height: 1.6; margin: 0 0 1rem 0;">
             Baserat på historiska observationsdata för Åstorps kommun: vilka arter kan du se just nu,
-            vilka är på väg, och vilka vintergäster bör du passa på att se innan de drar?
+            vilka är på väg, och vilka bör du passa på att se innan de drar?
+            Visar arter du inte kryssat i år.
         </p>
+
+        <label id="tips-show-all-label" style="display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; color: #64748b; cursor: pointer; margin-bottom: 1.5rem; user-select: none;">
+            <input type="checkbox" id="tips-show-all" style="accent-color: #2d5016; width: 16px; height: 16px; cursor: pointer;">
+            Visa även redan kryssade
+            <span id="tips-checked-count" style="color: #94a3b8; font-size: 0.8rem;"></span>
+        </label>
 
         <!-- Möjliga just nu -->
         <div id="tips-possible" style="margin-bottom: 2rem;">
@@ -195,7 +202,7 @@
                 👋 Lämnar snart: arter som snart drar vidare
             </h4>
             <div class="tips-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;"></div>
-            <p class="tips-empty" style="display: none; color: #94a3b8; font-size: 0.9rem; font-style: italic;">Inga vintergäster att flagga just nu.</p>
+            <p class="tips-empty" style="display: none; color: #94a3b8; font-size: 0.9rem; font-style: italic;">Inga arter att flagga just nu.</p>
         </div>
 
         <!-- Finns i området -->

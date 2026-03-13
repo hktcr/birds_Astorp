@@ -539,9 +539,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const panelTips = document.getElementById("panel-tips");
                 if (!panelTips) return;
 
-                // Check if already rendered
-                if (panelTips.dataset.rendered === "true") return;
-                panelTips.dataset.rendered = "true";
+                const showAll = document.getElementById("tips-show-all")?.checked || false;
 
                 const today = new Date();
                 const startOfYear = new Date(today.getFullYear(), 0, 0);
@@ -552,6 +550,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 const rarities = [];
                 const leavingSoon = [];
                 const inTheArea = [];
+                let hiddenCheckedCount = 0;
 
                 for (const species in data) {
                     if (species === '_meta' || !categoryMap[species]) continue;
@@ -600,8 +599,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (totalDaysCount === 0) continue;
 
                     const activeMonths = activeMonthsSet.size;
-                    // Stannare = observerad under djupvintern (dec-feb):
-                    // minst 4 dagar, ELLER minst 2 dagar och >= 10% av total
                     const isResident = deepWinterDays >= 4 ||
                         (deepWinterDays >= 2 && deepWinterDays / totalDaysCount >= 0.10);
                     let isWinterGuest = false;
@@ -613,47 +610,59 @@ document.addEventListener("DOMContentLoaded", () => {
                         isSummerGuest = true;
                     }
 
+                    // Kategorisera alla arter, men markera om kryssade
                     let categorized = false;
                     if (totalDaysCount <= RECOMMENDATION_RARE_MAX_TOTAL) {
                         if (sumNow > 0) {
-                            rarities.push(species);
+                            rarities.push({ name: species, checked: isChecked2026 });
                             categorized = true;
                         }
-                    } else if (!isChecked2026) {
+                    } else {
                         const currentMonth = today.getMonth() + 1;
                         if (sumNow >= RECOMMENDATION_MIN_YEARS) {
                             if (isWinterGuest && currentMonth >= 2 && currentMonth <= 5) {
-                                leavingSoon.push(species);
+                                leavingSoon.push({ name: species, checked: isChecked2026 });
                             } else if (isSummerGuest && currentMonth >= 8 && currentMonth <= 10) {
-                                leavingSoon.push(species);
+                                leavingSoon.push({ name: species, checked: isChecked2026 });
                             } else {
-                                possibleNow.push(species);
+                                possibleNow.push({ name: species, checked: isChecked2026 });
                             }
                             categorized = true;
                         } else if (sumSoon >= RECOMMENDATION_MIN_YEARS) {
                             if (isWinterGuest && currentMonth >= 2 && currentMonth <= 5) {
-                                leavingSoon.push(species);
+                                leavingSoon.push({ name: species, checked: isChecked2026 });
                             } else if (isSummerGuest && currentMonth >= 8 && currentMonth <= 10) {
-                                leavingSoon.push(species);
+                                leavingSoon.push({ name: species, checked: isChecked2026 });
                             } else if (isResident) {
-                                // Stannare: inte "i antågande"
-                                // utan "finns i området" (tillfällig dipp i obs)
-                                inTheArea.push({ name: species, activeMonths, totalDaysCount });
+                                inTheArea.push({ name: species, activeMonths, totalDaysCount, checked: isChecked2026 });
                             } else {
-                                arrivingSoon.push({ name: species, offset: soonOffset });
+                                arrivingSoon.push({ name: species, offset: soonOffset, checked: isChecked2026 });
                             }
                             categorized = true;
                         }
 
                         // Stannare som inte fångades av någon kategori alls
                         if (!categorized && isResident && totalDaysCount >= 10) {
-                            inTheArea.push({ name: species, activeMonths, totalDaysCount });
+                            inTheArea.push({ name: species, activeMonths, totalDaysCount, checked: isChecked2026 });
                         }
                     }
                 }
 
                 arrivingSoon.sort((a, b) => a.offset - b.offset);
                 inTheArea.sort((a, b) => b.activeMonths - a.activeMonths || b.totalDaysCount - a.totalDaysCount);
+
+                // Count hidden checked species across all categories
+                [possibleNow, arrivingSoon, leavingSoon, inTheArea, rarities].forEach(list => {
+                    list.forEach(item => { if (item.checked) hiddenCheckedCount++; });
+                });
+
+                // Update badge
+                const countBadge = document.getElementById("tips-checked-count");
+                if (countBadge) {
+                    countBadge.textContent = hiddenCheckedCount > 0 && !showAll
+                        ? `(${hiddenCheckedCount} kryssade döljs)`
+                        : "";
+                }
 
                 // Helper: render årshjul cards into a section
                 function renderSection(sectionId, speciesList) {
@@ -662,9 +671,14 @@ document.addEventListener("DOMContentLoaded", () => {
                     const grid = section.querySelector('.tips-grid');
                     const emptyMsg = section.querySelector('.tips-empty');
                     if (!grid) return;
+                    grid.innerHTML = '';
 
-                    const names = Array.isArray(speciesList) ?
-                        speciesList.map(s => typeof s === 'string' ? s : s.name) : [];
+                    // Filter based on showAll
+                    const filtered = showAll
+                        ? speciesList
+                        : speciesList.filter(item => !item.checked);
+
+                    const names = filtered.map(item => typeof item === 'string' ? item : item.name);
 
                     if (names.length === 0) {
                         grid.style.display = 'none';
@@ -672,17 +686,21 @@ document.addEventListener("DOMContentLoaded", () => {
                         return;
                     }
 
-                    names.slice(0, 12).forEach(species => {
+                    grid.style.display = '';
+                    if (emptyMsg) emptyMsg.style.display = 'none';
+
+                    names.forEach(species => {
                         const checkInfo = checkedMap.get(species) || null;
                         const checkDate = checkInfo ? checkInfo.date : null;
+                        const isChecked = checkedMap.has(species);
 
                         const card = document.createElement("div");
                         card.className = "arshjul-card";
-                        card.style.cssText = "padding: 1rem;";
+                        card.style.cssText = "padding: 1rem;" + (isChecked ? " opacity: 0.6; border-color: #86efac;" : "");
 
                         const header = document.createElement("h3");
-                        header.textContent = species;
-                        header.style.cssText = "margin: 0 0 0.5rem 0; font-size: 1rem;";
+                        header.textContent = (isChecked ? "✓ " : "") + species;
+                        header.style.cssText = "margin: 0 0 0.5rem 0; font-size: 1rem;" + (isChecked ? " color: #16a34a;" : "");
                         card.appendChild(header);
 
                         if (latinMap[species]) {
@@ -710,7 +728,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 renderSection("tips-possible", possibleNow);
                 renderSection("tips-arriving", arrivingSoon);
                 renderSection("tips-leaving", leavingSoon);
-                renderSection("tips-inarea", inTheArea.slice(0, 6));
+                renderSection("tips-inarea", inTheArea.slice(0, showAll ? 12 : 6));
                 renderSection("tips-rarities", rarities);
             }
 
@@ -724,6 +742,12 @@ document.addEventListener("DOMContentLoaded", () => {
                     }
                 });
                 tipsObserver.observe(tipsPanelEl, { attributes: true, attributeFilter: ["style"] });
+            }
+
+            // Toggle: visa/dölj kryssade arter
+            const showAllCheckbox = document.getElementById("tips-show-all");
+            if (showAllCheckbox) {
+                showAllCheckbox.addEventListener("change", () => renderTipsPanel());
             }
 
             // Search input — simple filtering only (no dropdown)
