@@ -614,13 +614,18 @@ document.addEventListener("DOMContentLoaded", () => {
                         } else if (sumSoon >= RECOMMENDATION_MIN_YEARS) {
                             if (isWinterGuest && currentMonth >= 2 && currentMonth <= 5) {
                                 leavingSoon.push(species);
+                            } else if (activeMonths >= 8) {
+                                // Helårsart med obs i ≥8 månader: inte "i antågande"
+                                // utan "finns i området" (den är redan här,
+                                // bara en tillfällig dipp i obs)
+                                inTheArea.push({ name: species, activeMonths, totalDaysCount });
                             } else {
                                 arrivingSoon.push({ name: species, offset: soonOffset });
                             }
                             categorized = true;
                         }
 
-                        // Ny: helårsarter som inte fångades av ovan
+                        // Helårsarter som inte fångades av någon kategori alls
                         if (!categorized && totalDaysCount >= 15 && activeMonths >= 8) {
                             inTheArea.push({ name: species, activeMonths, totalDaysCount });
                         }
