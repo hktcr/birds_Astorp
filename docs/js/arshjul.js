@@ -584,9 +584,9 @@ document.addEventListener("DOMContentLoaded", () => {
                             if (diff > 183) diff -= 366;
 
                             if (diff >= -7 && diff <= 7) {
-                                sumNow += count;
+                                sumNow++;
                             } else if (diff >= 8 && diff <= 21) {
-                                sumSoon += count;
+                                sumSoon++;
                                 if (diff < soonOffset) soonOffset = diff;
                             }
                         }
@@ -595,11 +595,17 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (totalDaysCount === 0) continue;
 
                     const activeMonths = activeMonthsSet.size;
-                    // Stannare = observerad minst 4 dagar under djupvintern (dec-feb)
-                    const isResident = deepWinterDays >= 4;
+                    // Stannare = observerad under djupvintern (dec-feb):
+                    // minst 4 dagar, ELLER minst 2 dagar och >= 10% av total
+                    const isResident = deepWinterDays >= 4 ||
+                        (deepWinterDays >= 2 && deepWinterDays / totalDaysCount >= 0.10);
                     let isWinterGuest = false;
                     if (totalDaysCount >= 5 && winterDays / totalDaysCount > 0.75) {
                         isWinterGuest = true;
+                    }
+                    let isSummerGuest = false;
+                    if (totalDaysCount >= 5 && summerDays / totalDaysCount > 0.75) {
+                        isSummerGuest = true;
                     }
 
                     let categorized = false;
@@ -613,6 +619,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         if (sumNow >= RECOMMENDATION_MIN_YEARS) {
                             if (isWinterGuest && currentMonth >= 2 && currentMonth <= 5) {
                                 leavingSoon.push(species);
+                            } else if (isSummerGuest && currentMonth >= 8 && currentMonth <= 10) {
+                                leavingSoon.push(species);
                             } else {
                                 possibleNow.push(species);
                             }
@@ -620,10 +628,11 @@ document.addEventListener("DOMContentLoaded", () => {
                         } else if (sumSoon >= RECOMMENDATION_MIN_YEARS) {
                             if (isWinterGuest && currentMonth >= 2 && currentMonth <= 5) {
                                 leavingSoon.push(species);
+                            } else if (isSummerGuest && currentMonth >= 8 && currentMonth <= 10) {
+                                leavingSoon.push(species);
                             } else if (isResident) {
-                                // Stannare med >=4 djupvinter-obs: inte "i antågande"
-                                // utan "finns i området" (den stannar här,
-                                // bara en tillfällig dipp i obs)
+                                // Stannare: inte "i antågande"
+                                // utan "finns i området" (tillfällig dipp i obs)
                                 inTheArea.push({ name: species, activeMonths, totalDaysCount });
                             } else {
                                 arrivingSoon.push({ name: species, offset: soonOffset });
