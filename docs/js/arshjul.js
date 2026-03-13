@@ -642,7 +642,8 @@ document.addEventListener("DOMContentLoaded", () => {
                         }
 
                         // Stannare som inte fångades av någon kategori alls
-                        if (!categorized && isResident && totalDaysCount >= 10) {
+                        // (exkludera vinter/sommargäster — de är inte stannare)
+                        if (!categorized && isResident && !isWinterGuest && !isSummerGuest && totalDaysCount >= 10) {
                             inTheArea.push({ name: species, activeMonths, totalDaysCount, checked: isChecked2026 });
                         }
                     }
