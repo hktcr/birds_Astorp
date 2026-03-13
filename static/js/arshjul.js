@@ -686,7 +686,7 @@ document.addEventListener("DOMContentLoaded", () => {
                         return;
                     }
 
-                    grid.style.display = '';
+                    grid.style.display = 'grid';
                     if (emptyMsg) emptyMsg.style.display = 'none';
 
                     names.forEach(species => {
