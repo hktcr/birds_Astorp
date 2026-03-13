@@ -217,3 +217,16 @@
 - `layouts/aktuellt/single.html` (rubrik "Aktuella arter", förklaringstext, färglegend)
 
 ---
+
+### 2026-03-13 — 4d8f1358
+
+**Ursprung:** Tips & aktuellt: ny rekommendationsvy med stabil kategoriseringsalgoritm
+**Typ:** Framsteg | Beslut | Buggfix
+
+> Helt ombyggd rekommendationsvy: dropdown i sökfältet ersatt med dedikerad "Tips & aktuellt"-panel med fem kategorier (Aktuella arter, I antågande, Lämnar snart, Finns i området, Rariteter) och inline-årshjul. Två VEP-deliberationer genomförda: (1) ny kategori "Finns i området" för helårsarter med tillfällig obsdipp, (2) algoritmstabilisering med tre fixes: sumNow/sumSoon räknar dagar istf count, symmetrisk lämnar-logik för sommargäster aug-okt, och kombinerad djupvintertröskel (≥4 dagar ELLER ≥2 med ≥10% av total). Djupvintertröskeln skiljer stannare (Vit stork 39d, Kungsfågel 13d) från flyttfåglar (Gransångare 0d, Brun kärrhök 0d) korrekt.
+
+**Relaterade filer:**
+- `static/js/arshjul.js` (`renderTipsPanel()` med fem kategorier, isResident, isSummerGuest)
+- `layouts/artguide/single.html` (Tips-panel HTML med fem sektioner, trevägs-toggle)
+
+---

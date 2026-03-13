@@ -312,41 +312,41 @@
                 </p>
             </div>
 
-            <!-- Modal -->
-            <dialog id="arshjul-modal"
-                style="padding: 0; border: none; border-radius: 1.5rem; background: transparent; outline: none; margin: auto;">
-                <div class="modal-content"
-                    style="background: white; border-radius: 1.5rem; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); padding: 4vmin; position: relative; width: 92vw; height: 92vh; max-width: 800px; max-height: 800px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; overflow: hidden;">
-                    <button id="arshjul-modal-close"
-                        style="position: absolute; top: 1.5rem; right: 1.5rem; background: #f1f5f9; border: none; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #64748b; font-weight: bold; font-size: 1.25rem;">✕</button>
-                    <h2 id="arshjul-modal-title"
-                        style="text-align: center; margin-top: 0; margin-bottom: 1rem; font-size: clamp(1.5rem, 4vw, 2.5rem); color: #1e293b;">
-                        Art</h2>
-
-                    <div id="arshjul-modal-svg-container"
-                        style="position: relative; flex-grow: 1; width: 100%; display:flex; justify-content:center; align-items:center; overflow: hidden; min-height: 0;">
-                        <!-- Tooltip Overlay -->
-                        <div id="arshjul-modal-tooltip"
-                            style="position: absolute; opacity: 0; pointer-events: none; background: rgba(15, 23, 42, 0.9); color: white; padding: 10px 14px; border-radius: 8px; font-size: 0.875rem; text-align: center; transform: translate(-50%, -100%); transition: opacity 0.2s; white-space: nowrap; z-index: 10; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
-                            <span id="arshjul-modal-tooltip-date"
-                                style="font-weight: bold; font-size: 1rem;"></span><br>
-                            <span id="arshjul-modal-tooltip-count" style="font-weight: normal; color: #cbd5e1;"></span>
-                        </div>
-                    </div>
-                    <div
-                        style="text-align: center; margin-top: 1rem; color: #64748b; font-size: 0.9rem; max-width: 600px; line-height: 1.5;">
-                        <p style="margin: 0;">
-                            Färgerna indikerar under hur många olika år arten har observerats.<br>
-                            Färgtonen visar årstiden: <span style="color: #4ade80;">Vår</span>, <span
-                                style="color: #facc15;">Sommar</span>, <span style="color: #fb923c;">Höst</span>, <span
-                                style="color: #60a5fa;">Vinter</span>.<br>
-                            Siffrorna i mitten visar totalt antal <strong>unika observationsdagar</strong> under året.
-                        </p>
-                    </div>
-                </div>
-            </dialog>
-
         </div>
+
+    <!-- Modal (utanför panelerna så den visas oavsett aktiv panel) -->
+    <dialog id="arshjul-modal"
+        style="padding: 0; border: none; border-radius: 1.5rem; background: transparent; outline: none; margin: auto;">
+        <div class="modal-content"
+            style="background: white; border-radius: 1.5rem; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); padding: 4vmin; position: relative; width: 92vw; height: 92vh; max-width: 800px; max-height: 800px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; overflow: hidden;">
+            <button id="arshjul-modal-close"
+                style="position: absolute; top: 1.5rem; right: 1.5rem; background: #f1f5f9; border: none; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #64748b; font-weight: bold; font-size: 1.25rem;">✕</button>
+            <h2 id="arshjul-modal-title"
+                style="text-align: center; margin-top: 0; margin-bottom: 1rem; font-size: clamp(1.5rem, 4vw, 2.5rem); color: #1e293b;">
+                Art</h2>
+
+            <div id="arshjul-modal-svg-container"
+                style="position: relative; flex-grow: 1; width: 100%; display:flex; justify-content:center; align-items:center; overflow: hidden; min-height: 0;">
+                <!-- Tooltip Overlay -->
+                <div id="arshjul-modal-tooltip"
+                    style="position: absolute; opacity: 0; pointer-events: none; background: rgba(15, 23, 42, 0.9); color: white; padding: 10px 14px; border-radius: 8px; font-size: 0.875rem; text-align: center; transform: translate(-50%, -100%); transition: opacity 0.2s; white-space: nowrap; z-index: 10; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+                    <span id="arshjul-modal-tooltip-date"
+                        style="font-weight: bold; font-size: 1rem;"></span><br>
+                    <span id="arshjul-modal-tooltip-count" style="font-weight: normal; color: #cbd5e1;"></span>
+                </div>
+            </div>
+            <div
+                style="text-align: center; margin-top: 1rem; color: #64748b; font-size: 0.9rem; max-width: 600px; line-height: 1.5;">
+                <p style="margin: 0;">
+                    Färgerna indikerar under hur många olika år arten har observerats.<br>
+                    Färgtonen visar årstiden: <span style="color: #4ade80;">Vår</span>, <span
+                        style="color: #facc15;">Sommar</span>, <span style="color: #fb923c;">Höst</span>, <span
+                        style="color: #60a5fa;">Vinter</span>.<br>
+                    Siffrorna i mitten visar totalt antal <strong>unika observationsdagar</strong> under året.
+                </p>
+            </div>
+        </div>
+    </dialog>
 
     </div>
 
