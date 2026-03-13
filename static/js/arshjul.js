@@ -560,6 +560,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                     let winterDays = 0;
                     let summerDays = 0;
+                    let deepWinterDays = 0; // dec + jan + feb
                     const activeMonthsSet = new Set();
 
                     for (let i = 0; i < dayAngles.length; i++) {
@@ -573,6 +574,9 @@ document.addEventListener("DOMContentLoaded", () => {
                                 summerDays++;
                             } else {
                                 winterDays++;
+                            }
+                            if (month === 12 || month === 1 || month === 2) {
+                                deepWinterDays++;
                             }
 
                             let diff = i - todayDOY;
@@ -591,6 +595,8 @@ document.addEventListener("DOMContentLoaded", () => {
                     if (totalDaysCount === 0) continue;
 
                     const activeMonths = activeMonthsSet.size;
+                    // Stannare = observerad minst 4 dagar under djupvintern (dec-feb)
+                    const isResident = deepWinterDays >= 4;
                     let isWinterGuest = false;
                     if (totalDaysCount >= 5 && winterDays / totalDaysCount > 0.75) {
                         isWinterGuest = true;
@@ -614,9 +620,9 @@ document.addEventListener("DOMContentLoaded", () => {
                         } else if (sumSoon >= RECOMMENDATION_MIN_YEARS) {
                             if (isWinterGuest && currentMonth >= 2 && currentMonth <= 5) {
                                 leavingSoon.push(species);
-                            } else if (activeMonths >= 8) {
-                                // Helårsart med obs i ≥8 månader: inte "i antågande"
-                                // utan "finns i området" (den är redan här,
+                            } else if (isResident) {
+                                // Stannare med >=4 djupvinter-obs: inte "i antågande"
+                                // utan "finns i området" (den stannar här,
                                 // bara en tillfällig dipp i obs)
                                 inTheArea.push({ name: species, activeMonths, totalDaysCount });
                             } else {
@@ -625,8 +631,8 @@ document.addEventListener("DOMContentLoaded", () => {
                             categorized = true;
                         }
 
-                        // Helårsarter som inte fångades av någon kategori alls
-                        if (!categorized && totalDaysCount >= 15 && activeMonths >= 8) {
+                        // Stannare som inte fångades av någon kategori alls
+                        if (!categorized && isResident && totalDaysCount >= 10) {
                             inTheArea.push({ name: species, activeMonths, totalDaysCount });
                         }
                     }
