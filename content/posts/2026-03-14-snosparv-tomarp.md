@@ -28,7 +28,7 @@ Snösparv är ingen enkel art att få in på årslistan i Åstorps kommun, men n
     </a>
     <p style="font-size: 0.7rem; color: #94a3b8; text-align: center; margin: 0.3rem 0 0 0; line-height: 1.3;">Ögonblicksbild vid publicering. <a href="/arshjul/" style="color: #64748b;">Levande årshjul →</a></p>
   </div>
-  <div style="flex: 1; border-radius: 8px; overflow: hidden; background: #000;">
+  <div style="flex: 1; min-width: 320px; border-radius: 8px; overflow: hidden; background: #000;">
     <video controls poster="/images/posts/2026-03-14-snosparv-tomarp/snosparv-tomarp.jpg" width="100%" style="width: 100%; height: 100%; object-fit: contain;">
       <source src="/videos/posts/2026-03-14-snosparv-tomarp/snosparv-tomarp.mp4" type="video/mp4">
     </video>
