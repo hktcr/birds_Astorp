@@ -3,6 +3,10 @@ title: "Heads-up, bokstavligt och bildligt"
 date: 2026-03-12
 draft: false
 location: "Åstorps kommun"
+locations:
+  - name: "Åstorps kommun"
+    lat: 56.170
+    lng: 12.944
 species: []
 tags:
   - Väder
