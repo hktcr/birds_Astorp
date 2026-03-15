@@ -25,4 +25,6 @@ Vindarna har slagit om till sydväst. Nu kommer förmodligen nästa våg av vår
 
 Som diagrammen visar har ostvinden under dygnet vridit över till väst. I kombination med den stabila sydvinden ger detta oss klassiska sydvästvindar. Den här tiden på året betyder det goda chanser för ett märkbart inflöde av flyttfåglar.
 
+**Uppdatering:** *Resultatet blev ganska stora antal sträckande tranor, rejält inflöde av ringduvor och bofinkar.*
+
 *Fågelåret i Åstorp, 87/150*
