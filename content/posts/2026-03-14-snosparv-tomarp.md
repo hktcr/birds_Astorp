@@ -21,7 +21,7 @@ images:
 
 Snösparv är ingen enkel art att få in på årslistan i Åstorps kommun, men nu är rätt tid. Tittar man på artens årshjul ser man att det är rätt läge att stöta på arten just nu.
 
-<div style="display: flex; gap: 1rem; align-items: stretch; margin: 2rem 0;">
+<div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: stretch; margin: 2rem 0; justify-content: center;">
   <div style="flex: 0 0 200px; display: flex; flex-direction: column; align-items: center; justify-content: center;">
     <a href="/images/posts/2026-03-14-snosparv-tomarp/arshjul-snosparv.svg" class="lightbox-link" style="display: block; width: 100%;">
       <img src="/images/posts/2026-03-14-snosparv-tomarp/arshjul-snosparv.svg" alt="Årshjul för snösparv i Åstorps kommun" style="width: 100%; height: auto; cursor: zoom-in;">
