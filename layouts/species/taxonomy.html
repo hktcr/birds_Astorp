@@ -59,6 +59,9 @@
     <div class="atlas-search-bar">
         <span class="atlas-icon atlas-icon--search"></span>
         <input type="text" id="atlas-search" class="atlas-search-input" placeholder="Sök art..." autocomplete="off">
+        <span class="atlas-search-hint" title="Tryck R för att söka, Escape för att stänga">
+            <kbd>R</kbd> sök
+        </span>
     </div>
 
     {{/* ── SECTION: Kryssade arter ── */}}
@@ -141,7 +144,8 @@
             card.classList.add('atlas-card--animate');
         });
 
-        search.addEventListener('input', () => {
+        // Filter cards on search input
+        function filterCards() {
             const q = search.value.toLowerCase().trim();
             cards.forEach(card => {
                 const name = card.getAttribute('data-name');
@@ -156,6 +160,31 @@
                     h.style.display = visible.length ? '' : 'none';
                 }
             });
+        }
+
+        search.addEventListener('input', filterCards);
+
+        // ── KEYBOARD SHORTCUTS ──
+        // R = clear + focus search (quick report mode)
+        // Escape = blur search and reset
+        document.addEventListener('keydown', (e) => {
+            // Don't intercept if user is typing in another input/textarea
+            const active = document.activeElement;
+            const isTyping = active && (active.tagName === 'INPUT' || active.tagName === 'TEXTAREA' || active.isContentEditable);
+
+            if (e.key === 'Escape') {
+                search.value = '';
+                search.blur();
+                filterCards();
+                return;
+            }
+
+            if ((e.key === 'r' || e.key === 'R') && !isTyping && !e.ctrlKey && !e.metaKey && !e.altKey) {
+                e.preventDefault();
+                search.value = '';
+                search.focus();
+                filterCards();
+            }
         });
     });
 </script>
