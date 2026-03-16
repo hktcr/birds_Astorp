@@ -216,7 +216,7 @@
                 <canvas id="temp-delta-chart"></canvas>
                 <div class="vader-chart-hint" style="text-align:center; margin-top:2px;">
                     Fenologisk temperatur — ekologisk karaktär per dygn<br>
-                    <span style="color:#1a5276;">■</span> isdag (max &lt; 0°) ·
+                    <span style="color:#1a5276;">■</span> isdag (max ≤ 0°) ·
                     <span style="color:#5dade2;">■</span> frostdygn (min &lt; 0°) ·
                     <span style="color:#ddd;">■</span> svalt (0–10°) ·
                     <span style="color:#f4d03f;">■</span> insekter aktiva (max ≥ 10°) ·
@@ -622,7 +622,7 @@
     // Prioritet: frost trumfar insektsaktivitet (en nattfrostnatt begränsar
     // insektstillgången även om det blir varmt på dagen)
     function phenologyColor(dayMax, nightMin) {
-        if (dayMax < 0)    return '#1a5276';    // Isdag — allt fruset
+        if (dayMax <= 0)   return '#1a5276';    // Isdag — max nådde aldrig plusgrader (hanterar även -0.0)
         if (nightMin >= 20) return '#e74c3c';   // Tropisk natt — extrem värme
         if (dayMax >= 20)  return '#e67e22';    // Sommardag — full insektsaktivitet
         if (nightMin < 0)  return '#5dade2';    // Frostdygn — nattfrost, begränsad insektsaktivitet
