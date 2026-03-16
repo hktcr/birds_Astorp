@@ -272,3 +272,16 @@
 - `static/js/arshjul.js` (dynamisk skottårsberäkning)
 
 ---
+
+### 2026-03-16 — 7b6e4513
+
+**Ursprung:** Fenologisk temperaturremsa v2 — VEP-designad ekologisk klassificering
+**Typ:** Beslut | Framsteg | Buggfix | Nytt system
+
+> Ersatte ΔT-dygnssvängningsremsan i `/vader/` med en fenologisk temperaturremsa som klassificerar varje dygn efter ekologisk karaktär. Itererat genom extended VEP-deliberation (6-expertpanel) till slutgiltig v2 med 8 kategorier: isdag (max ≤ 0°), tropisk natt, varmfrost (diagonal split), sommardag, frostdygn, insektströskeln (≥ 10°), bio. nollpunkt (5-10°), dvala (0-5°). Tre buggar fixade: (1) frost-prioritetbugg (insektströskeln trumfade nattfrost felaktigt), (2) JS `-0.0`-bugg (`-0 < 0` → false, fixat med `<= 0`), (3) varmfrost-anomali (sommardag + frost) saknade visuell distinktion. VEP-designbeslut: rent temperaturstyrd modell utan datumgränser — biologisk tolkning i säsongskontext delegeras till text (notiser/blogginlägg).
+
+**Relaterade filer:**
+- `layouts/_default/vader.html` (phenologyColor v2, drawSplitCell, legend)
+- `VADER_DIAGRAM.md` (uppdaterad dokumentation)
+
+---
