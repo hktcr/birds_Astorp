@@ -619,15 +619,15 @@
     }
 
     // Fenologisk temperaturremsa — ekologisk karaktär per dygn
-    // Ersätter ΔT dygnssvängning med biologiskt relevanta trösklar:
-    //   Isdag (max<0) → Frostdygn (min<0) → Svalt (0–10) → Insekter (≥10) → Sommar (≥20) → Tropisk natt (min≥20)
+    // Prioritet: frost trumfar insektsaktivitet (en nattfrostnatt begränsar
+    // insektstillgången även om det blir varmt på dagen)
     function phenologyColor(dayMax, nightMin) {
+        if (dayMax < 0)    return '#1a5276';    // Isdag — allt fruset
         if (nightMin >= 20) return '#e74c3c';   // Tropisk natt — extrem värme
         if (dayMax >= 20)  return '#e67e22';    // Sommardag — full insektsaktivitet
-        if (dayMax >= 10)  return '#f4d03f';    // Insektströskeln — insekter aktiva
-        if (nightMin >= 0) return '#e8e8e8';    // Svalt — övergångszon
-        if (dayMax >= 0)   return '#5dade2';    // Frostdygn — nattfrost
-        return '#1a5276';                       // Isdag — allt fruset
+        if (nightMin < 0)  return '#5dade2';    // Frostdygn — nattfrost, begränsad insektsaktivitet
+        if (dayMax >= 10)  return '#f4d03f';    // Insektströskeln — insekter aktiva, frostfritt
+        return '#e8e8e8';                       // Svalt — frostfritt men under 10°C
     }
 
     function buildPhenologyStrip(dayMap, nightMap) {

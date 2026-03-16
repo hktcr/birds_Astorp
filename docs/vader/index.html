@@ -962,12 +962,12 @@
     
     
     function phenologyColor(dayMax, nightMin) {
+        if (dayMax < 0)    return '#1a5276';    
         if (nightMin >= 20) return '#e74c3c';   
         if (dayMax >= 20)  return '#e67e22';    
+        if (nightMin < 0)  return '#5dade2';    
         if (dayMax >= 10)  return '#f4d03f';    
-        if (nightMin >= 0) return '#e8e8e8';    
-        if (dayMax >= 0)   return '#5dade2';    
-        return '#1a5276';                       
+        return '#e8e8e8';                       
     }
 
     function buildPhenologyStrip(dayMap, nightMap) {

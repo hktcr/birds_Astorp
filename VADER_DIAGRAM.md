@@ -35,13 +35,19 @@
 - **Annoteringar:** Mållinje 150 arter, startprick jan 22
 - **Canvas-ID:** `progress-chart`
 
-### 2. Temperatur
-- **Typ:** Linjediagram (orange max, blå min)
+### 2. Temperatur (dag + natt + fenologisk remsa)
+- **Typ:** Två separata stapeldiagram (dag max / natt min) + fenologisk kopplingsremsa
 - **API:** `opendata-download-metobs.smhi.se` param 19 (min) + 20 (max)
 - **Station:** 62040 (Helsingborg A, 16 km)
 - **Period:** `latest-months`
-- **Aspekt:** 2.0 (högre än övriga, 2.5)
-- **Canvas-ID:** `temp-chart`
+- **Canvas-ID:** `temp-day-chart`, `temp-night-chart`, `temp-delta-chart`
+- **Fenologisk remsa:** Klassificerar varje dygn efter ekologisk karaktär:
+  - Isdag (djupblå `#1a5276`): max < 0°C — allt fruset
+  - Frostdygn (ljusblå `#5dade2`): min < 0°C — nattfrost
+  - Svalt (ljusgrå `#e8e8e8`): 0–10°C — övergångszon
+  - Insektströskeln (gul `#f4d03f`): max ≥ 10°C — insekter aktiva
+  - Sommardag (orange `#e67e22`): max ≥ 20°C — full insektsaktivitet
+  - Tropisk natt (röd `#e74c3c`): min ≥ 20°C — extrem värme
 
 ### 3. Nederbörd
 - **Typ:** Stapeldiagram (blå)
