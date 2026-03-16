@@ -216,13 +216,7 @@
                 <canvas id="temp-delta-chart"></canvas>
                 <div class="vader-chart-hint" style="text-align:center; margin-top:2px;">
                     Fenologisk temperatur — ekologisk karaktär per dygn<br>
-                    <span style="color:#1a5276;">■</span> isdag (max ≤ 0°) ·
-                    <span style="color:#5dade2;">■</span> frostdygn (min &lt; 0°) ·
-                    <span style="color:#bbb;">■</span> kyligt (0–5°) ·
-                    <span style="color:#ddd;">■</span> svalt (5–10°) ·
-                    <span style="color:#f4d03f;">■</span> insekter aktiva (max ≥ 10°) ·
-                    <span style="color:#e67e22;">■</span> sommardag (≥ 20°) ·
-                    <span style="display:inline-block;width:12px;height:12px;vertical-align:middle;background:linear-gradient(135deg,#e67e22 50%,#5dade2 50%);border-radius:1px;"></span> varmfrost (≥ 20° + frost)
+                    <span id="phenology-legend"></span>
                 </div>
             </div>
 
@@ -681,6 +675,7 @@
 
             ctx.fillStyle = '#fff';
             ctx.fillRect(0, 0, w, h);
+            var usedColors = {};
 
             var timeframeDays = Math.max(1, Math.round((new Date(toDate) - new Date(fromDate)) / 86400000)) + 1;
             var cellW = chartW / timeframeDays;
@@ -694,6 +689,7 @@
                 var barW = Math.max(Math.ceil(cellW), 2);
 
                 var color = phenologyColor(dayMap[d], nightMap[d]);
+                usedColors[color] = true;
                 if (color === 'SPLIT') {
                     drawSplitCell(ctx, x, 0, barW, h);
                 } else {
@@ -710,6 +706,31 @@
                     ctx.fillStyle = 'rgba(255,255,255,0.7)';
                     ctx.fillRect(futX, 0, w - futX, h);
                 }
+            }
+
+            // Dynamisk legend — visa bara kategorier som finns i datan
+            var legendDefs = [
+                { color: '#1a5276', label: 'isdag (max ≤ 0°)', type: 'solid' },
+                { color: '#5dade2', label: 'frostdygn (min < 0°)', type: 'solid' },
+                { color: '#bbbbbb', label: 'kyligt (0–5°)', type: 'solid' },
+                { color: '#e8e8e8', label: 'svalt (5–10°)', type: 'solid' },
+                { color: '#f4d03f', label: 'insekter aktiva (≥ 10°)', type: 'solid' },
+                { color: '#e67e22', label: 'sommardag (≥ 20°)', type: 'solid' },
+                { color: '#e74c3c', label: 'tropisk natt (min ≥ 20°)', type: 'solid' },
+                { color: 'SPLIT', label: 'varmfrost (≥ 20° + frost)', type: 'split' }
+            ];
+            var legendEl = document.getElementById('phenology-legend');
+            if (legendEl) {
+                var parts = [];
+                legendDefs.forEach(function (d) {
+                    if (!usedColors[d.color]) return;
+                    if (d.type === 'split') {
+                        parts.push('<span style="display:inline-block;width:12px;height:12px;vertical-align:middle;background:linear-gradient(135deg,#e67e22 50%,#5dade2 50%);border-radius:1px;"></span> ' + d.label);
+                    } else {
+                        parts.push('<span style="color:' + d.color + '">■</span> ' + d.label);
+                    }
+                });
+                legendEl.innerHTML = parts.join(' · ');
             }
         }
 
