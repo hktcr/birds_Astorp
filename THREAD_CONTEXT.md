@@ -243,3 +243,18 @@
 - `layouts/artguide/single.html` (modal-position, introtext, checkbox-toggle)
 
 ---
+
+### 2026-03-15 — ccf0ec1b
+
+**Ursprung:** Varfågelobservation + årshjulsdata-fix
+**Typ:** Framsteg | Buggfix
+
+> Registrerade varfågel (1 ex) vid Kommungränsen, SV Mosshult (ny lokal, `new_pending`) i obs-registret (obs-2026-741). Arten redan kryssad sedan 2026-03-01 — inget årskryss. Upptäckte att årshjulsdata (`species_days_historic.json`) inte uppdaterades vid enskild observation via `/observationer`-workflowen. Manuellt lagt till `"03-15": 1` för Varfågel + synkat `static/data/` → `docs/data/`. Identifierat gap: `/observationer` saknar steg för årshjulsuppdatering vid enstaka obs utan System C-fil.
+
+**Relaterade filer:**
+- `Fåglar/Artportalen/observations-registry-2026.json` (+1 obs)
+- `Fåglar/Artportalen/artportalen-sites.json` (+1 ny lokal)
+- `gAIa_OBSIDIAN/gAIa/03 🪵 Growth Rings/Fenologi/03-15.md` (fenologipost)
+- `static/data/species_days_historic.json` (+1 obsdag varfågel)
+
+---

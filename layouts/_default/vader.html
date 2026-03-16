@@ -211,14 +211,16 @@
                 <div class="vader-chart-source">SMHI, Helsingborg A (16 km sydväst om Åstorp)</div>
             </div>
 
-            <!-- ΔT dygnssvängning — kopplingsremsa -->
+            <!-- Fenologisk temperaturremsa — kopplingsremsa -->
             <div class="vader-chart-box vader-delta-strip" id="chart-temp-delta">
                 <canvas id="temp-delta-chart"></canvas>
                 <div class="vader-chart-hint" style="text-align:center; margin-top:2px;">
-                    Dygnssvängning (ΔT = dag max − natt min, skala 0–20°C)<br>
-                    <span style="color:#e0e0e0;">■</span> liten (<5°) ·
-                    <span style="color:#FFB830;">■</span> märkbar (5–12°) ·
-                    <span style="color:#DC3228;">■</span> dramatisk (>12°) — termik, möjlig artrörelse
+                    Fenologisk temperatur — ekologisk karaktär per dygn<br>
+                    <span style="color:#1a5276;">■</span> isdag (max &lt; 0°) ·
+                    <span style="color:#5dade2;">■</span> frostdygn (min &lt; 0°) ·
+                    <span style="color:#ddd;">■</span> svalt (0–10°) ·
+                    <span style="color:#f4d03f;">■</span> insekter aktiva (max ≥ 10°) ·
+                    <span style="color:#e67e22;">■</span> sommardag (≥ 20°)
                 </div>
             </div>
 
@@ -477,8 +479,8 @@
             buildSingleTempCanvas('temp-day-chart', '_tempDayMeta', dayPoints, '#C67B4F', sharedAbsMax);
             buildSingleTempCanvas('temp-night-chart', '_tempNightMeta', nightPoints, '#3D4F7C', sharedAbsMax);
 
-            // ΔT dygnssvängning-remsa (VEP Förslag B)
-            buildDeltaTStrip(dayMap, nightMap);
+            // Fenologisk temperaturremsa (ersätter ΔT dygnssvängning)
+            buildPhenologyStrip(dayMap, nightMap);
         }).catch(function (err) {
             console.warn('Kunde inte hämta temperaturdata:', err);
         });
@@ -616,20 +618,23 @@
         };
     }
 
-    // ΔT dygnssvängnings-remsa (VEP Förslag B)
-    function buildDeltaTStrip(dayMap, nightMap) {
+    // Fenologisk temperaturremsa — ekologisk karaktär per dygn
+    // Ersätter ΔT dygnssvängning med biologiskt relevanta trösklar:
+    //   Isdag (max<0) → Frostdygn (min<0) → Svalt (0–10) → Insekter (≥10) → Sommar (≥20) → Tropisk natt (min≥20)
+    function phenologyColor(dayMax, nightMin) {
+        if (nightMin >= 20) return '#e74c3c';   // Tropisk natt — extrem värme
+        if (dayMax >= 20)  return '#e67e22';    // Sommardag — full insektsaktivitet
+        if (dayMax >= 10)  return '#f4d03f';    // Insektströskeln — insekter aktiva
+        if (nightMin >= 0) return '#e8e8e8';    // Svalt — övergångszon
+        if (dayMax >= 0)   return '#5dade2';    // Frostdygn — nattfrost
+        return '#1a5276';                       // Isdag — allt fruset
+    }
+
+    function buildPhenologyStrip(dayMap, nightMap) {
         var canvas = document.getElementById('temp-delta-chart');
         if (!canvas) return;
 
-        // Fast maxskala: 20°C (VEP-konsensus)
-        var DELTA_T_MAX = 20;
-
-        // Beräkna ΔT per dag
         var allDates = Object.keys(dayMap).filter(function (d) { return nightMap[d] !== undefined; }).sort();
-        var deltas = {};
-        allDates.forEach(function (d) {
-            deltas[d] = Math.max(0, dayMap[d] - nightMap[d]);
-        });
 
         var box = canvas.parentElement;
         var dpr = window.devicePixelRatio || 1;
@@ -645,7 +650,7 @@
         var ctx = canvas.getContext('2d');
         ctx.scale(dpr, dpr);
 
-        function drawDelta(fromDate, toDate) {
+        function drawPhenology(fromDate, toDate) {
             fromDate = fromDate || '2026-01-01';
             toDate = toDate || '2026-12-31';
             var isFullYear = (fromDate === '2026-01-01' && toDate === '2026-12-31');
@@ -663,10 +668,8 @@
                 var dayOffset = Math.round((dayMs - fromMs) / 86400000);
                 var x = labelW + dayOffset * cellW;
                 var barW = Math.max(Math.ceil(cellW), 2);
-                var dt = deltas[d];
-                var ratio = Math.min(dt / DELTA_T_MAX, 1);
 
-                ctx.fillStyle = deltaColor(ratio);
+                ctx.fillStyle = phenologyColor(dayMap[d], nightMap[d]);
                 ctx.fillRect(x, 0, barW, h);
             });
 
@@ -683,11 +686,11 @@
 
         var initFrom = _currentTimeFrom || '2026-01-01';
         var initTo = _currentTimeTo || '2026-12-31';
-        drawDelta(initFrom, initTo);
+        drawPhenology(initFrom, initTo);
 
         window._tempDeltaMeta = {
             canvas: canvas, ctx: ctx, dpr: dpr, w: w, h: h, labelW: labelW,
-            drawAll: drawDelta, currentFrom: initFrom, currentTo: initTo
+            drawAll: drawPhenology, currentFrom: initFrom, currentTo: initTo
         };
     }
 
