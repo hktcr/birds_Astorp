@@ -344,7 +344,8 @@
                     Fenologisk temperatur — ekologisk karaktär per dygn<br>
                     <span style="color:#1a5276;">■</span> isdag (max ≤ 0°) ·
                     <span style="color:#5dade2;">■</span> frostdygn (min &lt; 0°) ·
-                    <span style="color:#ddd;">■</span> svalt (0–10°) ·
+                    <span style="color:#bbb;">■</span> dvala (0–5°) ·
+                    <span style="color:#ddd;">■</span> bio. nollpunkt (5–10°) ·
                     <span style="color:#f4d03f;">■</span> insekter aktiva (max ≥ 10°) ·
                     <span style="color:#e67e22;">■</span> sommardag (≥ 20°) ·
                     <span style="display:inline-block;width:12px;height:12px;vertical-align:middle;background:linear-gradient(135deg,#e67e22 50%,#5dade2 50%);border-radius:1px;"></span> varmfrost (≥ 20° + frost)
@@ -962,7 +963,6 @@
     
     
     
-    
     function phenologyColor(dayMax, nightMin) {
         if (dayMax <= 0)   return '#1a5276';    
         if (nightMin >= 20) return '#e74c3c';   
@@ -970,7 +970,8 @@
         if (dayMax >= 20)  return '#e67e22';    
         if (nightMin < 0)  return '#5dade2';    
         if (dayMax >= 10)  return '#f4d03f';    
-        return '#e8e8e8';                       
+        if (dayMax >= 5)   return '#e8e8e8';    
+        return '#bbbbbb';                       
     }
 
     

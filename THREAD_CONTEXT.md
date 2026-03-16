@@ -258,3 +258,17 @@
 - `static/data/species_days_historic.json` (+1 obsdag varfågel)
 
 ---
+
+### 2026-03-16 — ccf0ec1b (del 2)
+
+**Ursprung:** /lärdomar + skottårsbuggfix
+**Typ:** Beslut | Buggfix
+
+> Kedjad `/lärdomar` identifierade F3+F5 friktioner: `/observationer` saknade steg för årshjulsuppdatering vid enstaka obs. Implementerade nytt steg 3b i `observationer.md` (inline årshjulspatch vid Åstorp-obs) + NOTE i `Åstorp-2026.md` A3c. Separat bugg upptäckt: `arshjul.js` hade hårdkodad `isLeapYear = true` / `totalDays = 366`, vilket gav 1 dags förskjutning i alla datumpositioner fr.o.m. mars i icke-skottår. Fixat till dynamisk beräkning. Deployat som `05bc4fe6`.
+
+**Relaterade filer:**
+- `.agent/workflows/observationer.md` (nytt steg 3b)
+- `.agent/workflows/Åstorp-2026.md` (NOTE i A3c)
+- `static/js/arshjul.js` (dynamisk skottårsberäkning)
+
+---
