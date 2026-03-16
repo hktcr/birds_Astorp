@@ -24,11 +24,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // Latin name lookup — populated by .then() callback, used by openModal
     let latinMap = {};
 
-    // Pre-calculate Calendar Data (leap year, 366 days)
-    const isLeapYear = true;
-    const daysInMonths = [31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
+    // Pre-calculate Calendar Data (dynamic leap year detection)
+    const currentYear = new Date().getFullYear();
+    const isLeapYear = (currentYear % 4 === 0 && currentYear % 100 !== 0) || (currentYear % 400 === 0);
+    const daysInMonths = [31, isLeapYear ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "Maj", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"];
-    const totalDays = 366;
+    const totalDays = isLeapYear ? 366 : 365;
     const dayAngles = [];
     let currentDayOfYear = 0;
 
