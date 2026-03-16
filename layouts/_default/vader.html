@@ -214,11 +214,11 @@
             <!-- Fenologisk temperaturremsa — kopplingsremsa -->
             <div class="vader-chart-box vader-delta-strip" id="chart-temp-delta">
                 <canvas id="temp-delta-chart"></canvas>
-                <canvas id="temp-milestones" style="display:none;"></canvas>
                 <div class="vader-chart-hint" style="text-align:center; margin-top:2px;">
                     Fenologisk temperatur — ekologisk karaktär per dygn<br>
                     <span id="phenology-legend"></span>
                 </div>
+                <div id="phenology-milestones" style="display:none; margin-top:6px;"></div>
             </div>
 
             <!-- 4. Nederbörd -->
@@ -733,27 +733,17 @@
                 });
                 legendEl.innerHTML = parts.join(' · ');
             }
-            // Milstolpe-pekare (bara i helårsvy)
-            var msCanvas = document.getElementById('temp-milestones');
-            if (msCanvas && isFullYear) {
-                msCanvas.style.display = 'block';
-                var msH = 18;
-                msCanvas.width = w * dpr;
-                msCanvas.height = msH * dpr;
-                msCanvas.style.width = w + 'px';
-                msCanvas.style.height = msH + 'px';
-                var msCtx = msCanvas.getContext('2d');
-                msCtx.scale(dpr, dpr);
-                msCtx.clearRect(0, 0, w, msH);
-
-                // Beräkna dygnsmedel för sekvensanalys
+            // Milstolpe-tabell (bara i helårsvy)
+            var msDiv = document.getElementById('phenology-milestones');
+            if (msDiv && isFullYear) {
+                // Beräkna dygnsmedel
                 var means = {};
                 allDates.forEach(function (d) {
                     means[d] = (dayMap[d] + nightMap[d]) / 2;
                 });
                 var sorted = allDates.slice().sort();
 
-                // 1. Meteorologisk vår: första dag efter 1 feb där dygnsmedel >0 i 7 dagar
+                // 1. Meteorologisk vår: dygnsmedel >0°C i 7 dagar (efter 1 feb)
                 var metVarDate = null;
                 var streak = 0;
                 for (var i = 0; i < sorted.length; i++) {
@@ -764,7 +754,7 @@
                     } else { streak = 0; }
                 }
 
-                // 2. Sista frostnatt: sista min < 0 före 1 jul
+                // 2. Senaste frostnatt: sista min < 0 före 1 jul
                 var sistaFrost = null;
                 for (var j = 0; j < sorted.length; j++) {
                     if (sorted[j] >= '2026-07-01') break;
@@ -778,48 +768,36 @@
                     if (nightMap[sorted[k]] < 0) { forstaFrost = sorted[k]; break; }
                 }
 
-                var yearStart = new Date('2026-01-01').getTime();
-                var totalDays = 365;
-                var msCellW = chartW / totalDays;
+                var today = new Date().toISOString().slice(0, 10);
+                var provisional = today < '2026-07-01';
 
-                function drawMarker(dateStr, color, label, provisional) {
-                    if (!dateStr) return;
-                    var doy = Math.round((new Date(dateStr).getTime() - yearStart) / 86400000);
-                    var mx = labelW + doy * msCellW + msCellW / 2;
-                    // Triangel \u25bc
-                    msCtx.fillStyle = color;
-                    msCtx.beginPath();
-                    msCtx.moveTo(mx - 4, 0);
-                    msCtx.lineTo(mx + 4, 0);
-                    msCtx.lineTo(mx, 7);
-                    msCtx.closePath();
-                    msCtx.fill();
-                    // Provisorisk: streckad ring
-                    if (provisional) {
-                        msCtx.setLineDash([2, 2]);
-                        msCtx.strokeStyle = color;
-                        msCtx.lineWidth = 1;
-                        msCtx.beginPath();
-                        msCtx.arc(mx, 4, 6, 0, Math.PI * 2);
-                        msCtx.stroke();
-                        msCtx.setLineDash([]);
-                    }
-                    // Label
-                    msCtx.fillStyle = color;
-                    msCtx.font = '9px sans-serif';
-                    msCtx.textAlign = 'center';
-                    msCtx.fillText(label, mx, 16);
+                function fmtDate(d) {
+                    if (!d) return null;
+                    var parts = d.split('-');
+                    var months = ['jan','feb','mar','apr','maj','jun','jul','aug','sep','okt','nov','dec'];
+                    return parseInt(parts[2]) + ' ' + months[parseInt(parts[1]) - 1];
                 }
 
-                // Är sista frostnatten provisorisk? (vi är före 1 juli)
-                var today = new Date().toISOString().slice(0, 10);
-                var frostProvisional = today < '2026-07-01';
+                var rows = [];
+                if (metVarDate) {
+                    rows.push('<tr><td style="padding:1px 8px;">🌱</td><td style="padding:1px 8px;">Meteorologisk vår</td><td style="padding:1px 8px;">' + fmtDate(metVarDate) + '</td></tr>');
+                }
+                if (sistaFrost) {
+                    var note = provisional ? ' <span style="color:#999;font-size:0.85em;">(hittills)</span>' : '';
+                    rows.push('<tr><td style="padding:1px 8px;">❄️</td><td style="padding:1px 8px;">Senaste frostnatt</td><td style="padding:1px 8px;">' + fmtDate(sistaFrost) + note + '</td></tr>');
+                }
+                if (forstaFrost) {
+                    rows.push('<tr><td style="padding:1px 8px;">🍂</td><td style="padding:1px 8px;">Första höstfrost</td><td style="padding:1px 8px;">' + fmtDate(forstaFrost) + '</td></tr>');
+                }
 
-                drawMarker(metVarDate, '#27ae60', 'vår', false);
-                drawMarker(sistaFrost, '#3498db', 'sista frost', frostProvisional);
-                drawMarker(forstaFrost, '#e67e22', 'första frost', false);
-            } else if (msCanvas) {
-                msCanvas.style.display = 'none';
+                if (rows.length > 0) {
+                    msDiv.style.display = 'block';
+                    msDiv.innerHTML = '<table style="margin:0 auto;font-size:0.85em;border-collapse:collapse;">' + rows.join('') + '</table>';
+                } else {
+                    msDiv.style.display = 'none';
+                }
+            } else if (msDiv) {
+                msDiv.style.display = 'none';
             }
         }
 

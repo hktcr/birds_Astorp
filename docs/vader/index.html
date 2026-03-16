@@ -340,11 +340,11 @@
             
             <div class="vader-chart-box vader-delta-strip" id="chart-temp-delta">
                 <canvas id="temp-delta-chart"></canvas>
-                <canvas id="temp-milestones" style="display:none;"></canvas>
                 <div class="vader-chart-hint" style="text-align:center; margin-top:2px;">
                     Fenologisk temperatur — ekologisk karaktär per dygn<br>
                     <span id="phenology-legend"></span>
                 </div>
+                <div id="phenology-milestones" style="display:none; margin-top:6px;"></div>
             </div>
 
             
@@ -1074,18 +1074,8 @@
                 legendEl.innerHTML = parts.join(' · ');
             }
             
-            var msCanvas = document.getElementById('temp-milestones');
-            if (msCanvas && isFullYear) {
-                msCanvas.style.display = 'block';
-                var msH = 18;
-                msCanvas.width = w * dpr;
-                msCanvas.height = msH * dpr;
-                msCanvas.style.width = w + 'px';
-                msCanvas.style.height = msH + 'px';
-                var msCtx = msCanvas.getContext('2d');
-                msCtx.scale(dpr, dpr);
-                msCtx.clearRect(0, 0, w, msH);
-
+            var msDiv = document.getElementById('phenology-milestones');
+            if (msDiv && isFullYear) {
                 
                 var means = {};
                 allDates.forEach(function (d) {
@@ -1118,48 +1108,36 @@
                     if (nightMap[sorted[k]] < 0) { forstaFrost = sorted[k]; break; }
                 }
 
-                var yearStart = new Date('2026-01-01').getTime();
-                var totalDays = 365;
-                var msCellW = chartW / totalDays;
+                var today = new Date().toISOString().slice(0, 10);
+                var provisional = today < '2026-07-01';
 
-                function drawMarker(dateStr, color, label, provisional) {
-                    if (!dateStr) return;
-                    var doy = Math.round((new Date(dateStr).getTime() - yearStart) / 86400000);
-                    var mx = labelW + doy * msCellW + msCellW / 2;
-                    
-                    msCtx.fillStyle = color;
-                    msCtx.beginPath();
-                    msCtx.moveTo(mx - 4, 0);
-                    msCtx.lineTo(mx + 4, 0);
-                    msCtx.lineTo(mx, 7);
-                    msCtx.closePath();
-                    msCtx.fill();
-                    
-                    if (provisional) {
-                        msCtx.setLineDash([2, 2]);
-                        msCtx.strokeStyle = color;
-                        msCtx.lineWidth = 1;
-                        msCtx.beginPath();
-                        msCtx.arc(mx, 4, 6, 0, Math.PI * 2);
-                        msCtx.stroke();
-                        msCtx.setLineDash([]);
-                    }
-                    
-                    msCtx.fillStyle = color;
-                    msCtx.font = '9px sans-serif';
-                    msCtx.textAlign = 'center';
-                    msCtx.fillText(label, mx, 16);
+                function fmtDate(d) {
+                    if (!d) return null;
+                    var parts = d.split('-');
+                    var months = ['jan','feb','mar','apr','maj','jun','jul','aug','sep','okt','nov','dec'];
+                    return parseInt(parts[2]) + ' ' + months[parseInt(parts[1]) - 1];
                 }
 
-                
-                var today = new Date().toISOString().slice(0, 10);
-                var frostProvisional = today < '2026-07-01';
+                var rows = [];
+                if (metVarDate) {
+                    rows.push('<tr><td style="padding:1px 8px;">🌱</td><td style="padding:1px 8px;">Meteorologisk vår</td><td style="padding:1px 8px;">' + fmtDate(metVarDate) + '</td></tr>');
+                }
+                if (sistaFrost) {
+                    var note = provisional ? ' <span style="color:#999;font-size:0.85em;">(hittills)</span>' : '';
+                    rows.push('<tr><td style="padding:1px 8px;">❄️</td><td style="padding:1px 8px;">Senaste frostnatt</td><td style="padding:1px 8px;">' + fmtDate(sistaFrost) + note + '</td></tr>');
+                }
+                if (forstaFrost) {
+                    rows.push('<tr><td style="padding:1px 8px;">🍂</td><td style="padding:1px 8px;">Första höstfrost</td><td style="padding:1px 8px;">' + fmtDate(forstaFrost) + '</td></tr>');
+                }
 
-                drawMarker(metVarDate, '#27ae60', 'vår', false);
-                drawMarker(sistaFrost, '#3498db', 'sista frost', frostProvisional);
-                drawMarker(forstaFrost, '#e67e22', 'första frost', false);
-            } else if (msCanvas) {
-                msCanvas.style.display = 'none';
+                if (rows.length > 0) {
+                    msDiv.style.display = 'block';
+                    msDiv.innerHTML = '<table style="margin:0 auto;font-size:0.85em;border-collapse:collapse;">' + rows.join('') + '</table>';
+                } else {
+                    msDiv.style.display = 'none';
+                }
+            } else if (msDiv) {
+                msDiv.style.display = 'none';
             }
         }
 
