@@ -361,6 +361,22 @@
                 <p class="vader-chart-hint">Diagrammet visar vattenföringen (m³/s) vid Forsmöllan i Rönne å. Det visar inte det exakta vattenflödet, eller vattenståndet på maderna, i Åstorps kommun men fungerar förmodligen väl som en indikator för vattenläget eftersom hela åsystemet reagerar på liknande nederbörds- och flödesmönster.</p>
                 <div class="vader-chart-source">SMHI, Forsmöllan, Rönne å (15 km öster om Åstorp)</div>
             </div>
+
+            
+            <div class="vader-chart-box" id="meadow-indicator" style="display:none;">
+                <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+                    <div class="vader-chart-label" style="margin:0;">🌊 Förväntad vattennivå — Kungsgårdsmaderna</div>
+                    <span style="background:rgba(120,80,200,0.12); color:#7850c8; font-size:0.7em; font-weight:600; padding:2px 8px; border-radius:10px; letter-spacing:0.03em;">⚗️ Experiment</span>
+                </div>
+                <div id="meadow-level-box" style="border-radius:10px; padding:16px 20px; display:flex; align-items:center; gap:14px; transition: background 0.5s ease;">
+                    <div style="display:flex; flex-direction:column; gap:2px;">
+                        <span id="meadow-level-label" style="font-size:1.2em; font-weight:700; color:#fff; text-shadow:0 1px 3px rgba(0,0,0,0.3);">Laddar…</span>
+                        <span id="meadow-level-detail" style="font-size:0.85em; color:rgba(255,255,255,0.85);"></span>
+                    </div>
+                    <span id="meadow-trend-arrow" style="font-size:1.6em; margin-left:auto; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.2));"></span>
+                </div>
+                <p class="vader-chart-hint" style="margin-top:8px; font-style:italic;">Experimentell uppskattning baserad på 3-dagars glidande medelvärde av vattenföringen vid Forsmöllan. Korrelationen med den faktiska vattennivån på maderna är ännu okalibrerad — ta resultatet med en nypa salt och rapportera gärna avvikelser!</p>
+            </div>
         </div>
 
     </div>
@@ -1339,10 +1355,76 @@
                     }
                 }
             });
+
+            
+            buildMeadowIndicator(points);
         }).catch(function (err) {
             console.warn('Kunde inte hämta vattenföringsdata:', err);
             canvas.parentElement.innerHTML = '<p class="vader-chart-error">Vattenföringsdata kunde inte laddas</p>';
         });
+    }
+
+    
+    
+    
+    
+    
+    
+    function buildMeadowIndicator(flowPoints) {
+        var container = document.getElementById('meadow-indicator');
+        if (!container || !flowPoints || flowPoints.length < 2) return;
+
+        
+        var sorted = flowPoints.slice().sort(function (a, b) {
+            return a.x < b.x ? -1 : a.x > b.x ? 1 : 0;
+        });
+
+        
+        var recent = sorted.slice(-3);
+        var avg3d = recent.reduce(function (s, p) { return s + p.y; }, 0) / recent.length;
+
+        
+        var trend = 0;
+        if (sorted.length >= 2) {
+            var last = sorted[sorted.length - 1].y;
+            var prev = sorted[sorted.length - 2].y;
+            trend = last - prev;
+        }
+
+        
+        var levels = [
+            { max: 4,    label: 'Torrt',               color: '#c4a96a', emoji: '🟤', detail: 'Maderna är torra eller nästan torra' },
+            { max: 6,    label: 'Fuktigt',              color: '#8fbc8f', emoji: '🟢', detail: 'Fuktig mark, enstaka pölar' },
+            { max: 9,    label: 'Vattenspeglar',         color: '#5dade2', emoji: '🔵', detail: 'Mindre vattenspeglar på maderna' },
+            { max: 14,   label: 'Stora vattenspeglar',   color: '#2980b9', emoji: '🌊', detail: 'Stora vattenspeglar, bra för änder och vadare' },
+            { max: 9999, label: 'Översvämmat',           color: '#1a5276', emoji: '🌊', detail: 'Maderna i stort sett helt under vatten' }
+        ];
+
+        var level = levels[0];
+        for (var i = 0; i < levels.length; i++) {
+            if (avg3d < levels[i].max) {
+                level = levels[i];
+                break;
+            }
+        }
+
+        
+        var trendArrow = '→';
+        if (trend > 0.5) trendArrow = '↑';
+        else if (trend < -0.5) trendArrow = '↓';
+
+        
+        var box = document.getElementById('meadow-level-box');
+        var labelEl = document.getElementById('meadow-level-label');
+        var detailEl = document.getElementById('meadow-level-detail');
+        var arrowEl = document.getElementById('meadow-trend-arrow');
+
+        if (box) box.style.background = 'linear-gradient(135deg, ' + level.color + ', ' + level.color + 'cc)';
+        if (labelEl) labelEl.textContent = level.emoji + ' ' + level.label;
+        if (detailEl) detailEl.textContent = level.detail + ' (snitt ' + avg3d.toFixed(1) + ' m³/s)';
+        if (arrowEl) arrowEl.textContent = trendArrow;
+
+        container.style.display = 'block';
     }
 
     
