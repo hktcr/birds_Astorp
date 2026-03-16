@@ -965,7 +965,7 @@
         if (dayMax >= 20)  return '#e67e22';    
         if (nightMin < 0)  return '#5dade2';    
         if (dayMax >= 10)  return '#f4d03f';    
-        if (dayMax >= 5)   return '#e8e8e8';    
+        if (dayMax >= 5)   return '#cce5df';    
         return '#bbbbbb';                       
     }
 
@@ -1054,7 +1054,7 @@
                 { color: '#1a5276', label: 'isdag (max ≤ 0°)', type: 'solid' },
                 { color: '#5dade2', label: 'frostnatt (min < 0°)', type: 'solid' },
                 { color: '#bbbbbb', label: 'kyligt (0–5°)', type: 'solid' },
-                { color: '#e8e8e8', label: 'svalt (5–10°)', type: 'solid' },
+                { color: '#cce5df', label: 'svalt (5–10°)', type: 'solid' },
                 { color: '#f4d03f', label: 'vårdag (≥ 10°)', type: 'solid' },
                 { color: '#e67e22', label: 'sommardag (≥ 20°)', type: 'solid' },
                 { color: '#e74c3c', label: 'tropisk natt (min ≥ 20°)', type: 'solid' },
@@ -1088,7 +1088,8 @@
                 var streak = 0;
                 for (var i = 0; i < sorted.length; i++) {
                     if (sorted[i] < '2026-02-01') continue;
-                    if (means[sorted[i]] > 0) {
+                    var m = means[sorted[i]];
+                    if (m > 0 && m < 10) {
                         streak++;
                         if (streak >= 7) { metVarDate = sorted[i - 6]; break; }
                     } else { streak = 0; }
@@ -1106,6 +1107,28 @@
                 for (var k = 0; k < sorted.length; k++) {
                     if (sorted[k] < '2026-07-01') continue;
                     if (nightMap[sorted[k]] < 0) { forstaFrost = sorted[k]; break; }
+                }
+
+                
+                var metSomDate = null;
+                streak = 0;
+                for (var s = 0; s < sorted.length; s++) {
+                    if (sorted[s] < '2026-03-01') continue;
+                    if (means[sorted[s]] > 10) {
+                        streak++;
+                        if (streak >= 5) { metSomDate = sorted[s - 4]; break; }
+                    } else { streak = 0; }
+                }
+
+                
+                var metHostDate = null;
+                streak = 0;
+                for (var a = 0; a < sorted.length; a++) {
+                    if (sorted[a] < '2026-07-01') continue;
+                    if (means[sorted[a]] < 10) {
+                        streak++;
+                        if (streak >= 5) { metHostDate = sorted[a - 4]; break; }
+                    } else { streak = 0; }
                 }
 
                 var today = new Date().toISOString().slice(0, 10);
@@ -1128,6 +1151,12 @@
                 }
                 if (forstaFrost) {
                     rows.push('<tr><td style="padding:1px 8px;">🍂</td><td style="padding:1px 8px;">Första höstfrost</td><td style="padding:1px 8px;">' + fmtDate(forstaFrost) + '</td></tr>');
+                }
+                if (metSomDate) {
+                    rows.push('<tr><td style="padding:1px 8px;">☀️</td><td style="padding:1px 8px;">Meteorologisk sommar</td><td style="padding:1px 8px;">' + fmtDate(metSomDate) + '</td></tr>');
+                }
+                if (metHostDate) {
+                    rows.push('<tr><td style="padding:1px 8px;">🍃</td><td style="padding:1px 8px;">Meteorologisk höst</td><td style="padding:1px 8px;">' + fmtDate(metHostDate) + '</td></tr>');
                 }
 
                 if (rows.length > 0) {
