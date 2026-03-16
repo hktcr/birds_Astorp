@@ -2,13 +2,28 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>https://astorpsfaglar.se/tags/%C3%A5rskryss/</loc>
-    <lastmod>2026-03-14T00:00:00+00:00</lastmod>
-  </url><url>
     <loc>https://astorpsfaglar.se/</loc>
-    <lastmod>2026-03-14T00:00:00+00:00</lastmod>
+    <lastmod>2026-03-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://astorpsfaglar.se/species/g%C3%A4rdsmyg/</loc>
+    <lastmod>2026-03-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://astorpsfaglar.se/tags/g%C3%A4rdsmyg/</loc>
+    <lastmod>2026-03-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://astorpsfaglar.se/posts/2026/03/g%C3%A4rdsmygens-vinter/</loc>
+    <lastmod>2026-03-16T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://astorpsfaglar.se/posts/</loc>
+    <lastmod>2026-03-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://astorpsfaglar.se/tags/</loc>
+    <lastmod>2026-03-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://astorpsfaglar.se/tags/vinterd%C3%B6dlighet/</loc>
+    <lastmod>2026-03-16T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://astorpsfaglar.se/tags/%C3%A5rskryss/</loc>
     <lastmod>2026-03-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://astorpsfaglar.se/tags/rariteter/</loc>
@@ -18,9 +33,6 @@
     <lastmod>2026-03-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://astorpsfaglar.se/posts/2026/03/sn%C3%B6sparv-vid-tomarp/</loc>
-    <lastmod>2026-03-14T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://astorpsfaglar.se/tags/</loc>
     <lastmod>2026-03-14T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://astorpsfaglar.se/posts/2026/03/heads-up-bokstavligt-och-bildligt/</loc>
@@ -423,9 +435,6 @@
     <lastmod>2026-01-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://astorpsfaglar.se/species/fors%C3%A4rla/</loc>
-    <lastmod>2026-01-01T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://astorpsfaglar.se/species/g%C3%A4rdsmyg/</loc>
     <lastmod>2026-01-01T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://astorpsfaglar.se/species/gluttsn%C3%A4ppa/</loc>

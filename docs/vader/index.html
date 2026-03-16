@@ -526,6 +526,10 @@
     var blogPosts = [
         
         
+        { date: "2026-03-16", title: "Gärdsmygens vinter", url: "\/posts\/2026\/03\/g%C3%A4rdsmygens-vinter\/", excerpt: "\"Enligt Artportalens siffror kan upp mot 90 procent av de övervintrande gärdsmygarna ha strukit med under vintern. P4 Kristianstad ringde och ville veta mer.\\n🎙️ P4 Kristianstad\\nIntervju om …\"" },
+        
+        
+        
         { date: "2026-03-14", title: "Snösparv vid Tomarp", url: "\/posts\/2026\/03\/sn%C3%B6sparv-vid-tomarp\/", excerpt: "\"Snösparv är ingen enkel art att få in på årslistan i Åstorps kommun, men nu är rätt tid. Tittar man på artens årshjul ser man att det är rätt läge att stöta på arten just nu.\\nÖgonblicksbild vid …\"" },
         
         
@@ -1421,7 +1425,7 @@
 
         if (box) box.style.background = 'linear-gradient(135deg, ' + level.color + ', ' + level.color + 'cc)';
         if (labelEl) labelEl.textContent = level.emoji + ' ' + level.label;
-        if (detailEl) detailEl.textContent = level.detail + ' (snitt ' + avg3d.toFixed(1) + ' m³/s)';
+        if (detailEl) detailEl.textContent = level.detail;
         if (arrowEl) arrowEl.textContent = trendArrow;
 
         container.style.display = 'block';

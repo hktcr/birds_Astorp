@@ -6,8 +6,15 @@
     <description>Recent content in Fågelatlasen on Fågelåret i Åstorp</description>
     <generator>Hugo</generator>
     <language>sv</language>
-    <lastBuildDate>Sat, 14 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 16 Mar 2026 00:00:00 +0000</lastBuildDate>
     <atom:link href="https://astorpsfaglar.se/species/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Gärdsmyg</title>
+      <link>https://astorpsfaglar.se/species/g%C3%A4rdsmyg/</link>
+      <pubDate>Mon, 16 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://astorpsfaglar.se/species/g%C3%A4rdsmyg/</guid>
+      <description></description>
+    </item>
     <item>
       <title>Snösparv</title>
       <link>https://astorpsfaglar.se/species/sn%C3%B6sparv/</link>
@@ -643,13 +650,6 @@
       <link>https://astorpsfaglar.se/species/fors%C3%A4rla/</link>
       <pubDate>Thu, 01 Jan 2026 00:00:00 +0000</pubDate>
       <guid>https://astorpsfaglar.se/species/fors%C3%A4rla/</guid>
-      <description></description>
-    </item>
-    <item>
-      <title>Gärdsmyg</title>
-      <link>https://astorpsfaglar.se/species/g%C3%A4rdsmyg/</link>
-      <pubDate>Thu, 01 Jan 2026 00:00:00 +0000</pubDate>
-      <guid>https://astorpsfaglar.se/species/g%C3%A4rdsmyg/</guid>
       <description></description>
     </item>
     <item>
