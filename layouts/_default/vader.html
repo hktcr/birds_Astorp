@@ -214,6 +214,7 @@
             <!-- Fenologisk temperaturremsa — kopplingsremsa -->
             <div class="vader-chart-box vader-delta-strip" id="chart-temp-delta">
                 <canvas id="temp-delta-chart"></canvas>
+                <canvas id="temp-milestones" style="display:none;"></canvas>
                 <div class="vader-chart-hint" style="text-align:center; margin-top:2px;">
                     Fenologisk temperatur — ekologisk karaktär per dygn<br>
                     <span id="phenology-legend"></span>
@@ -711,10 +712,10 @@
             // Dynamisk legend — visa bara kategorier som finns i datan
             var legendDefs = [
                 { color: '#1a5276', label: 'isdag (max ≤ 0°)', type: 'solid' },
-                { color: '#5dade2', label: 'frostdygn (min < 0°)', type: 'solid' },
+                { color: '#5dade2', label: 'frostnatt (min < 0°)', type: 'solid' },
                 { color: '#bbbbbb', label: 'kyligt (0–5°)', type: 'solid' },
                 { color: '#e8e8e8', label: 'svalt (5–10°)', type: 'solid' },
-                { color: '#f4d03f', label: 'insekter aktiva (≥ 10°)', type: 'solid' },
+                { color: '#f4d03f', label: 'vårdag (≥ 10°)', type: 'solid' },
                 { color: '#e67e22', label: 'sommardag (≥ 20°)', type: 'solid' },
                 { color: '#e74c3c', label: 'tropisk natt (min ≥ 20°)', type: 'solid' },
                 { color: 'SPLIT', label: 'varmfrost (≥ 20° + frost)', type: 'split' }
@@ -731,6 +732,94 @@
                     }
                 });
                 legendEl.innerHTML = parts.join(' · ');
+            }
+            // Milstolpe-pekare (bara i helårsvy)
+            var msCanvas = document.getElementById('temp-milestones');
+            if (msCanvas && isFullYear) {
+                msCanvas.style.display = 'block';
+                var msH = 18;
+                msCanvas.width = w * dpr;
+                msCanvas.height = msH * dpr;
+                msCanvas.style.width = w + 'px';
+                msCanvas.style.height = msH + 'px';
+                var msCtx = msCanvas.getContext('2d');
+                msCtx.scale(dpr, dpr);
+                msCtx.clearRect(0, 0, w, msH);
+
+                // Beräkna dygnsmedel för sekvensanalys
+                var means = {};
+                allDates.forEach(function (d) {
+                    means[d] = (dayMap[d] + nightMap[d]) / 2;
+                });
+                var sorted = allDates.slice().sort();
+
+                // 1. Meteorologisk vår: första dag efter 1 feb där dygnsmedel >0 i 7 dagar
+                var metVarDate = null;
+                var streak = 0;
+                for (var i = 0; i < sorted.length; i++) {
+                    if (sorted[i] < '2026-02-01') continue;
+                    if (means[sorted[i]] > 0) {
+                        streak++;
+                        if (streak >= 7) { metVarDate = sorted[i - 6]; break; }
+                    } else { streak = 0; }
+                }
+
+                // 2. Sista frostnatt: sista min < 0 före 1 jul
+                var sistaFrost = null;
+                for (var j = 0; j < sorted.length; j++) {
+                    if (sorted[j] >= '2026-07-01') break;
+                    if (nightMap[sorted[j]] < 0) sistaFrost = sorted[j];
+                }
+
+                // 3. Första frostnatt: första min < 0 efter 1 jul
+                var forstaFrost = null;
+                for (var k = 0; k < sorted.length; k++) {
+                    if (sorted[k] < '2026-07-01') continue;
+                    if (nightMap[sorted[k]] < 0) { forstaFrost = sorted[k]; break; }
+                }
+
+                var yearStart = new Date('2026-01-01').getTime();
+                var totalDays = 365;
+                var msCellW = chartW / totalDays;
+
+                function drawMarker(dateStr, color, label, provisional) {
+                    if (!dateStr) return;
+                    var doy = Math.round((new Date(dateStr).getTime() - yearStart) / 86400000);
+                    var mx = labelW + doy * msCellW + msCellW / 2;
+                    // Triangel \u25bc
+                    msCtx.fillStyle = color;
+                    msCtx.beginPath();
+                    msCtx.moveTo(mx - 4, 0);
+                    msCtx.lineTo(mx + 4, 0);
+                    msCtx.lineTo(mx, 7);
+                    msCtx.closePath();
+                    msCtx.fill();
+                    // Provisorisk: streckad ring
+                    if (provisional) {
+                        msCtx.setLineDash([2, 2]);
+                        msCtx.strokeStyle = color;
+                        msCtx.lineWidth = 1;
+                        msCtx.beginPath();
+                        msCtx.arc(mx, 4, 6, 0, Math.PI * 2);
+                        msCtx.stroke();
+                        msCtx.setLineDash([]);
+                    }
+                    // Label
+                    msCtx.fillStyle = color;
+                    msCtx.font = '9px sans-serif';
+                    msCtx.textAlign = 'center';
+                    msCtx.fillText(label, mx, 16);
+                }
+
+                // Är sista frostnatten provisorisk? (vi är före 1 juli)
+                var today = new Date().toISOString().slice(0, 10);
+                var frostProvisional = today < '2026-07-01';
+
+                drawMarker(metVarDate, '#27ae60', 'vår', false);
+                drawMarker(sistaFrost, '#3498db', 'sista frost', frostProvisional);
+                drawMarker(forstaFrost, '#e67e22', 'första frost', false);
+            } else if (msCanvas) {
+                msCanvas.style.display = 'none';
             }
         }
 
