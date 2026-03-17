@@ -29,9 +29,7 @@
 
         <div class="checklist-search-wrapper">
             <input type="text" id="checklist-search" class="checklist-search-input" placeholder="Sök art..." autocomplete="off">
-            <span class="checklist-search-hint" title="Tryck R för att söka, Escape för att stänga">
-                <kbd>R</kbd> sök
-            </span>
+            <button type="button" id="checklist-search-clear" class="checklist-search-clear" title="Rensa sökning" aria-label="Rensa sökning">✕</button>
         </div>
 
         <div class="checklist-sort">
@@ -56,13 +54,21 @@
 </script>
 <script src="{{ "js/checklist.js" | relURL }}?v={{ now.Unix }}"></script>
 <script>
-    // Inline keyboard shortcut — works regardless of checklist.js cache state
+    // Inline search + clear button + keyboard shortcuts
     (function() {
         var search = document.getElementById('checklist-search');
+        var clearBtn = document.getElementById('checklist-search-clear');
         if (!search) return;
 
-        // Search filtering (also in checklist.js, but duplicated here for cache safety)
-        search.addEventListener('input', function() {
+        // Show/hide clear button based on input content
+        function updateClearBtn() {
+            if (clearBtn) {
+                clearBtn.style.display = search.value.length > 0 ? 'flex' : 'none';
+            }
+        }
+
+        // Filter species cards by search text
+        function filterCards() {
             var q = search.value.toLowerCase().trim();
             var cards = document.querySelectorAll('.species-card');
             cards.forEach(function(card) {
@@ -70,15 +76,36 @@
                 var latin = card.querySelector('.species-latin');
                 var nameText = name ? name.textContent.toLowerCase() : '';
                 var latinText = latin ? latin.textContent.toLowerCase() : '';
-                if (!q || nameText.includes(q) || latinText.includes(q)) {
-                    card.style.display = '';
-                } else {
-                    card.style.display = 'none';
-                }
+                card.style.display = (!q || nameText.includes(q) || latinText.includes(q)) ? '' : 'none';
             });
+        }
+
+        // Clear and refocus
+        function clearAndFocus() {
+            search.value = '';
+            search.focus();
+            filterCards();
+            updateClearBtn();
+        }
+
+        // Initialize clear button state
+        updateClearBtn();
+
+        // Search input events
+        search.addEventListener('input', function() {
+            filterCards();
+            updateClearBtn();
         });
 
-        // R = clear + focus search, Escape = blur + reset
+        // Click clear button → clear + refocus
+        if (clearBtn) {
+            clearBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                clearAndFocus();
+            });
+        }
+
+        // Keyboard shortcuts: R = clear + focus, Escape = clear + blur
         document.addEventListener('keydown', function(e) {
             var active = document.activeElement;
             var isTyping = active && (
@@ -91,15 +118,14 @@
             if (e.key === 'Escape') {
                 search.value = '';
                 search.blur();
-                search.dispatchEvent(new Event('input'));
+                filterCards();
+                updateClearBtn();
                 return;
             }
 
             if ((e.key === 'r' || e.key === 'R') && !isTyping && !e.ctrlKey && !e.metaKey && !e.altKey) {
                 e.preventDefault();
-                search.value = '';
-                search.focus();
-                search.dispatchEvent(new Event('input'));
+                clearAndFocus();
             }
         });
     })();

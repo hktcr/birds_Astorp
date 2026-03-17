@@ -1089,6 +1089,59 @@ a.archive-tag:hover {
     color: var(--color-text-light);
 }
 
+/* Search input in checklist */
+.checklist-search-wrapper {
+    position: relative;
+    flex: 1;
+    min-width: 180px;
+    max-width: 320px;
+}
+
+.checklist-search-input {
+    width: 100%;
+    padding: var(--space-sm) var(--space-md);
+    padding-right: 60px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    font-family: var(--font-body);
+    font-size: var(--text-sm);
+    background: var(--color-bg);
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.checklist-search-input:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: 0 0 0 3px rgba(43, 90, 43, 0.1);
+}
+
+/* Clear button in checklist search */
+.checklist-search-clear {
+    position: absolute;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 28px;
+    height: 28px;
+    padding: 0;
+    border: none;
+    border-radius: 50%;
+    background: var(--color-border);
+    color: var(--color-text-muted);
+    font-size: 0.85rem;
+    line-height: 1;
+    cursor: pointer;
+    transition: background var(--transition-fast), color var(--transition-fast);
+}
+
+.checklist-search-clear:hover {
+    background: var(--color-primary);
+    color: white;
+}
+
 .checklist-grid {
     display: flex;
     flex-direction: column;
