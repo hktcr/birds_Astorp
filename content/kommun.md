@@ -1,11 +1,11 @@
 ---
 title: "Kommunens fågelår"
 layout: kommun
-description: "Vilka fåglar rapporteras i Åstorps kommun av andra observatörer? Livedata från Artportalen."
+description: "Vilka observatörer rapporterar fåglar i Åstorps kommun? Livedata från Artportalen."
 ---
 
 <div class="kommun-beta-notice">
 🚧 Den här sidan är under utveckling.
 </div>
 
-Alla fågelarter som rapporterats av andra observatörer i Åstorps kommun under 2026, hämtade direkt från Artportalen via SLU Artdatabankens API. Mina egna observationer är borträknade.
+Vilka andra observatörer rapporterar fåglar i Åstorps kommun under 2026, och hur många arter har de sett? Livedata direkt från Artportalen via SLU Artdatabankens API — mina egna observationer är borträknade.

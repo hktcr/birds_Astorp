@@ -39,5 +39,7 @@ Vid Dynget gick årets första brushane. På eftermiddagen passerade stora mäng
   </a>
 </div>
 
+<p style="text-align: center; font-style: italic; color: #666; margin-top: 0.5rem;">Dagens brandkronade kungsfågel vid Fåraböke</p>
+
 *Fågelåret i Åstorp, 92/150*
 
