@@ -1,6 +1,6 @@
 /**
  * Fågelåret i Åstorp — Årskrysslista
- * Interaktiv artlista med filter och sortering
+ * Interaktiv artlista med filter, sökning och sortering
  * 
  * Läser artdata från species-guide.json (samma källa som Artkalendern)
  * och kryssdata från checklist-2026.json.
@@ -13,6 +13,7 @@
     let observations = [];
     let currentFilter = 'all';
     let currentSort = 'taxonomic';
+    let currentSearch = '';
 
     const TARGET = 150;
 
@@ -100,6 +101,41 @@
                 render();
             });
         }
+
+        // Search input
+        const searchInput = document.getElementById('checklist-search');
+        if (searchInput) {
+            searchInput.addEventListener('input', () => {
+                currentSearch = searchInput.value.toLowerCase().trim();
+                render();
+            });
+
+            // Keyboard shortcuts: R = focus/clear search, Escape = reset
+            document.addEventListener('keydown', (e) => {
+                const active = document.activeElement;
+                const isTyping = active && (
+                    active.tagName === 'INPUT' ||
+                    active.tagName === 'TEXTAREA' ||
+                    active.isContentEditable
+                );
+
+                if (e.key === 'Escape') {
+                    searchInput.value = '';
+                    currentSearch = '';
+                    searchInput.blur();
+                    render();
+                    return;
+                }
+
+                if ((e.key === 'r' || e.key === 'R') && !isTyping && !e.ctrlKey && !e.metaKey && !e.altKey) {
+                    e.preventDefault();
+                    searchInput.value = '';
+                    currentSearch = '';
+                    searchInput.focus();
+                    render();
+                }
+            });
+        }
     }
 
     /**
@@ -120,6 +156,14 @@
 
         // Get filtered and sorted species
         let species = [...speciesList];
+
+        // Apply text search filter
+        if (currentSearch) {
+            species = species.filter(s =>
+                s.name.toLowerCase().includes(currentSearch) ||
+                s.latin.toLowerCase().includes(currentSearch)
+            );
+        }
 
         // Apply filter
         if (currentFilter === 'observed') {

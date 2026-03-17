@@ -285,3 +285,15 @@
 - `VADER_DIAGRAM.md` (uppdaterad dokumentation)
 
 ---
+
+### 2026-03-17 — 52cf6798
+
+**Ursprung:** Fågelobservationer & Avstämning
+**Typ:** Insikt | Röd tråd
+
+> Upptäckte under morgonbriefingen att "Varfågel"-observationerna från 1 mars (Madkärr, Tomarp) och 15 mars (Kommungränsen, SV Mosshult) skiljer sig åt med hela 9.0 km avstånd. Detta betyder att det rör sig om två separata övervintrande/rastande individer i kommunen, inte samma individ som antogs i fenologireflektionen.
+
+**Relaterade filer:**
+- `Fåglar/Artportalen/observations-registry-2026.json` (avståndsanalys)
+
+---
