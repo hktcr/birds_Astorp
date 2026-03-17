@@ -55,4 +55,53 @@
     window.siteBaseURL = '{{ .Site.BaseURL }}';
 </script>
 <script src="{{ "js/checklist.js" | relURL }}?v={{ now.Unix }}"></script>
+<script>
+    // Inline keyboard shortcut — works regardless of checklist.js cache state
+    (function() {
+        var search = document.getElementById('checklist-search');
+        if (!search) return;
+
+        // Search filtering (also in checklist.js, but duplicated here for cache safety)
+        search.addEventListener('input', function() {
+            var q = search.value.toLowerCase().trim();
+            var cards = document.querySelectorAll('.species-card');
+            cards.forEach(function(card) {
+                var name = card.querySelector('.species-name');
+                var latin = card.querySelector('.species-latin');
+                var nameText = name ? name.textContent.toLowerCase() : '';
+                var latinText = latin ? latin.textContent.toLowerCase() : '';
+                if (!q || nameText.includes(q) || latinText.includes(q)) {
+                    card.style.display = '';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+
+        // R = clear + focus search, Escape = blur + reset
+        document.addEventListener('keydown', function(e) {
+            var active = document.activeElement;
+            var isTyping = active && (
+                active.tagName === 'INPUT' ||
+                active.tagName === 'TEXTAREA' ||
+                active.tagName === 'SELECT' ||
+                active.isContentEditable
+            );
+
+            if (e.key === 'Escape') {
+                search.value = '';
+                search.blur();
+                search.dispatchEvent(new Event('input'));
+                return;
+            }
+
+            if ((e.key === 'r' || e.key === 'R') && !isTyping && !e.ctrlKey && !e.metaKey && !e.altKey) {
+                e.preventDefault();
+                search.value = '';
+                search.focus();
+                search.dispatchEvent(new Event('input'));
+            }
+        });
+    })();
+</script>
 {{ end }}
