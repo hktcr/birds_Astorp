@@ -1655,9 +1655,22 @@
         var existing = Chart.getChart(canvas);
         if (existing) existing.destroy();
 
+        var WARM = '#c0392b';   // Röd — plusgrader
+        var COLD = '#3498db';   // Blå — minusgrader
+
         var points = data.map(function (v) {
             return { x: new Date(v.date), y: parseFloat(v.value) };
         });
+
+        // Hjälpfunktion: interpolera färg baserat på om linjens ändpunkter är över/under noll
+        function segmentColor(ctx) {
+            var p0 = ctx.p0.parsed.y;
+            var p1 = ctx.p1.parsed.y;
+            if (p0 < 0 && p1 < 0) return COLD;
+            if (p0 >= 0 && p1 >= 0) return WARM;
+            // Blandat segment — använd den dominerande sidan
+            return (p0 + p1) / 2 < 0 ? COLD : WARM;
+        }
 
         new Chart(canvas, {
             type: 'line',
@@ -1665,14 +1678,24 @@
                 datasets: [{
                     label: 'Temperatur °C',
                     data: points,
-                    borderColor: '#c0392b',
+                    borderColor: WARM,
                     backgroundColor: 'rgba(192, 57, 43, 0.08)',
                     borderWidth: 2,
-                    fill: true,
+                    fill: false,
                     tension: 0.3,
                     pointRadius: 3,
-                    pointBackgroundColor: '#c0392b',
-                    pointHitRadius: 10
+                    pointBackgroundColor: function (ctx) {
+                        if (!ctx.parsed) return WARM;
+                        return ctx.parsed.y < 0 ? COLD : WARM;
+                    },
+                    pointBorderColor: function (ctx) {
+                        if (!ctx.parsed) return WARM;
+                        return ctx.parsed.y < 0 ? COLD : WARM;
+                    },
+                    pointHitRadius: 10,
+                    segment: {
+                        borderColor: function (ctx) { return segmentColor(ctx); }
+                    }
                 }]
             },
             options: {
@@ -1687,13 +1710,28 @@
                         ticks: { font: { family: 'Inter', size: 11 }, color: '#666' }
                     },
                     y: {
+                        // Säkerställ att y-axeln alltid inkluderar 0
+                        suggestedMin: 0,
+                        suggestedMax: 0,
                         grid: { color: 'rgba(0,0,0,0.04)' },
                         ticks: { font: { family: 'Inter', size: 11 }, color: '#666', callback: function(v) { return v + '°'; } }
                     }
                 },
                 plugins: {
                     legend: { display: false },
-                    tooltip: { callbacks: { label: function (c) { return c.parsed.y.toFixed(1) + ' °C'; } } }
+                    tooltip: { callbacks: { label: function (c) { return c.parsed.y.toFixed(1) + ' °C'; } } },
+                    annotation: {
+                        annotations: {
+                            zeroLine: {
+                                type: 'line',
+                                yMin: 0,
+                                yMax: 0,
+                                borderColor: 'rgba(0,0,0,0.25)',
+                                borderWidth: 1,
+                                borderDash: [4, 3]
+                            }
+                        }
+                    }
                 }
             }
         });
