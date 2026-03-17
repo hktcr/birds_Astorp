@@ -11,7 +11,7 @@
         {
             "name": "Kvidinge",
             "lat": 56.13675,
-            "lng": 13.04310,
+            "lng": 13.0431,
             "description": "Tätorten Kvidinge"
         },
         {
@@ -28,7 +28,7 @@
         },
         {
             "name": "Tomarps Ene",
-            "lat": 56.14870,
+            "lat": 56.1487,
             "lng": 13.07359,
             "description": "Naturområde med gamla ekar vid Rönneå"
         },
@@ -46,20 +46,20 @@
         },
         {
             "name": "Kungsgårdsmaderna, norra",
-            "lat": 56.16260,
+            "lat": 56.1626,
             "lng": 13.05597,
             "description": "Norra delen av Kungsgårdsmaderna"
         },
         {
             "name": "Fält vid Tomarp",
-            "lat": 56.14630,
-            "lng": 13.05720,
+            "lat": 56.1463,
+            "lng": 13.0572,
             "description": "Åkermark vid Tomarp"
         },
         {
             "name": "Fält vid järnvägen, Kvidinge",
-            "lat": 56.13970,
-            "lng": 13.06710,
+            "lat": 56.1397,
+            "lng": 13.0671,
             "description": "Fält intill järnvägen vid Kvidinge"
         },
         {
@@ -67,6 +67,12 @@
             "lat": 56.16532231534232,
             "lng": 12.984207625328134,
             "description": "Fält vid Floarna, NV om Tranarp"
+        },
+        {
+            "name": "Dynget",
+            "lat": 56.183486839903935,
+            "lng": 13.013507219597335,
+            "description": "Våtmark norr om Kungsgårdsmaderna vid Rönneå"
         }
     ]
 }

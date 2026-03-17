@@ -1,0 +1,349 @@
+{{ define "main" }}
+<section class="kommun-page">
+    <div class="kommun-container">
+
+        <h1 class="kommun-title">{{ .Title }}</h1>
+
+        <!-- Introtext -->
+        <div class="kommun-intro">
+            {{ .Content }}
+        </div>
+
+        <!-- Hero-statistik -->
+        <div class="kommun-hero" id="kommun-hero">
+            <div class="kommun-hero-cards">
+                <div class="kommun-stat-card">
+                    <span class="kommun-stat-value" id="stat-species">—</span>
+                    <span class="kommun-stat-label">arter</span>
+                </div>
+                <div class="kommun-stat-card">
+                    <span class="kommun-stat-value" id="stat-observers">—</span>
+                    <span class="kommun-stat-label">observatörer</span>
+                </div>
+                <div class="kommun-stat-card">
+                    <span class="kommun-stat-value" id="stat-observations">—</span>
+                    <span class="kommun-stat-label">rapporter</span>
+                </div>
+            </div>
+            <div class="kommun-hero-timestamp" id="kommun-timestamp">Hämtar data från Artportalen…</div>
+        </div>
+
+        <!-- Sök/filter -->
+        <div class="kommun-filter-bar" id="kommun-filter-bar" style="display:none;">
+            <input type="text" id="kommun-search" class="kommun-search-input" placeholder="Sök art…" autocomplete="off">
+            <div class="kommun-sort-controls">
+                <button class="kommun-sort-btn active" data-sort="name">Art ↕</button>
+                <button class="kommun-sort-btn" data-sort="count">Antal ↕</button>
+                <button class="kommun-sort-btn" data-sort="date">Datum ↕</button>
+                <button class="kommun-sort-btn" data-sort="observers">Observatörer ↕</button>
+            </div>
+        </div>
+
+        <!-- Laddningsindikator -->
+        <div class="kommun-loading" id="kommun-loading">
+            <div class="kommun-spinner"></div>
+            <span>Hämtar observationer från Artportalen…</span>
+        </div>
+
+        <!-- Felmeddelande -->
+        <div class="kommun-error" id="kommun-error" style="display:none;">
+            <span>⚠️ Kunde inte hämta data från Artportalen. Försök ladda om sidan.</span>
+        </div>
+
+        <!-- Artlista -->
+        <div class="kommun-species-list" id="kommun-species-list" style="display:none;">
+            <table class="kommun-table" id="kommun-table">
+                <thead>
+                    <tr>
+                        <th class="kommun-th-num">#</th>
+                        <th class="kommun-th-name">Art</th>
+                        <th class="kommun-th-count">Obs</th>
+                        <th class="kommun-th-observers">Observatörer</th>
+                        <th class="kommun-th-date">Senast</th>
+                    </tr>
+                </thead>
+                <tbody id="kommun-tbody">
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Datakälla -->
+        <div class="kommun-source" id="kommun-source" style="display:none;">
+            Data: <a href="https://www.artportalen.se" target="_blank" rel="noopener">Artportalen</a> via
+            <a href="https://api-portal.artdatabanken.se" target="_blank" rel="noopener">SLU Artdatabankens SOS API</a>.
+            Observationer rapporterade av andra i Åstorps kommun under 2026.
+        </div>
+
+    </div>
+</section>
+{{ end }}
+
+{{ define "scripts" }}
+<script>
+(function() {
+    // ── Konfiguration ──────────────────────────────────────
+    var API_BASE = 'https://api.artdatabanken.se/species-observation-system/v1';
+    var API_KEY = '328d49c810214ebe9098321dffcac80e';
+    var EXCLUDE_OBSERVER = 'Håkan Karlsson';
+    var YEAR = 2026;
+    var MUNICIPALITY_ID = '1277';
+    var TAXON_BIRDS = 4000104;
+
+    // ── State ──────────────────────────────────────────────
+    var allSpeciesData = [];
+    var currentSort = { field: 'name', asc: true };
+
+    // ── API-hämtning med paginering ────────────────────────
+    function fetchAllObservations() {
+        var allRecords = [];
+        var skip = 0;
+        var take = 1000;
+
+        function fetchPage() {
+            var body = {
+                taxon: { ids: [TAXON_BIRDS], includeUnderlyingTaxa: true },
+                geographics: { areas: [{ areaType: 'Municipality', featureId: MUNICIPALITY_ID }] },
+                date: {
+                    startDate: YEAR + '-01-01',
+                    endDate: YEAR + '-12-31',
+                    dateFilterType: 'BetweenStartDateAndEndDate'
+                },
+                output: {
+                    fieldSet: 'Minimum',
+                    fields: ['occurrence.reportedBy', 'occurrence.recordedBy', 'occurrence.url']
+                }
+            };
+
+            return fetch(API_BASE + '/Observations/Search?skip=' + skip + '&take=' + take + '&translationCultureCode=sv-SE', {
+                method: 'POST',
+                headers: {
+                    'Ocp-Apim-Subscription-Key': API_KEY,
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(body)
+            })
+            .then(function(r) {
+                if (!r.ok) throw new Error('HTTP ' + r.status);
+                return r.json();
+            })
+            .then(function(data) {
+                var records = data.records || data;
+                if (!Array.isArray(records)) records = [];
+                allRecords = allRecords.concat(records);
+                skip += records.length;
+
+                // Paginera om det finns fler
+                if (records.length === take) {
+                    return fetchPage();
+                }
+                return allRecords;
+            });
+        }
+
+        return fetchPage();
+    }
+
+    // ── Bearbeta data ──────────────────────────────────────
+    function processObservations(records) {
+        // Filtrera bort egna observationer
+        var filtered = records.filter(function(obs) {
+            var occ = obs.occurrence || {};
+            var reporter = occ.reportedBy || '';
+            var recorder = occ.recordedBy || '';
+            return reporter !== EXCLUDE_OBSERVER && recorder !== EXCLUDE_OBSERVER;
+        });
+
+        // Bygg artsammanställning
+        var speciesMap = {};
+        var observerSet = {};
+
+        filtered.forEach(function(obs) {
+            var taxon = obs.taxon || {};
+            var occ = obs.occurrence || {};
+            var event = obs.event || {};
+
+            var id = taxon.id;
+            var name = taxon.vernacularName || taxon.scientificName || '?';
+            var sciName = taxon.scientificName || '';
+            var reporter = occ.reportedBy || occ.recordedBy || 'Okänd';
+            var date = (event.plainStartDate || event.startDate || '').substring(0, 10);
+            var url = occ.url || '';
+
+            if (!id) return;
+
+            observerSet[reporter] = true;
+
+            if (!speciesMap[id]) {
+                speciesMap[id] = {
+                    id: id,
+                    name: name,
+                    sciName: sciName,
+                    count: 0,
+                    observers: {},
+                    latestDate: '',
+                    latestUrl: ''
+                };
+            }
+
+            var sp = speciesMap[id];
+            sp.count++;
+            sp.observers[reporter] = true;
+            if (date > sp.latestDate) {
+                sp.latestDate = date;
+                sp.latestUrl = url;
+            }
+        });
+
+        // Konvertera till lista
+        var speciesList = Object.keys(speciesMap).map(function(id) {
+            var sp = speciesMap[id];
+            return {
+                name: sp.name,
+                sciName: sp.sciName,
+                count: sp.count,
+                observerCount: Object.keys(sp.observers).length,
+                observers: Object.keys(sp.observers),
+                latestDate: sp.latestDate,
+                latestUrl: sp.latestUrl
+            };
+        });
+
+        // Sortera initialt alfabetiskt
+        speciesList.sort(function(a, b) {
+            return a.name.localeCompare(b.name, 'sv');
+        });
+
+        return {
+            species: speciesList,
+            totalObservations: filtered.length,
+            totalObservers: Object.keys(observerSet).length,
+            totalExcluded: records.length - filtered.length
+        };
+    }
+
+    // ── Rendera UI ─────────────────────────────────────────
+    function renderStats(data) {
+        document.getElementById('stat-species').textContent = data.species.length;
+        document.getElementById('stat-observers').textContent = data.totalObservers;
+        document.getElementById('stat-observations').textContent = data.totalObservations;
+
+        var now = new Date();
+        var timeStr = now.toLocaleDateString('sv-SE', { day: 'numeric', month: 'long' }) + ' ' +
+                      now.toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' });
+        document.getElementById('kommun-timestamp').textContent =
+            'Uppdaterad ' + timeStr + ' · ' + data.totalExcluded + ' egna rapporter borträknade';
+    }
+
+    function renderTable(speciesList) {
+        var tbody = document.getElementById('kommun-tbody');
+        var html = '';
+
+        speciesList.forEach(function(sp, i) {
+            var dateStr = '';
+            if (sp.latestDate) {
+                var d = new Date(sp.latestDate);
+                dateStr = d.getDate() + ' ' + d.toLocaleDateString('sv-SE', { month: 'short' });
+            }
+
+            var observerNames = sp.observers.join(', ');
+
+            html += '<tr class="kommun-row">';
+            html += '<td class="kommun-td-num">' + (i + 1) + '</td>';
+            html += '<td class="kommun-td-name">';
+            html += '<span class="kommun-species-name">' + sp.name + '</span>';
+            html += '<span class="kommun-species-sci">' + sp.sciName + '</span>';
+            html += '</td>';
+            html += '<td class="kommun-td-count">' + sp.count + '</td>';
+            html += '<td class="kommun-td-observers" title="' + observerNames + '">' + sp.observerCount + '</td>';
+            html += '<td class="kommun-td-date">';
+            if (sp.latestUrl) {
+                html += '<a href="' + sp.latestUrl + '" target="_blank" rel="noopener" class="kommun-date-link">' + dateStr + ' ↗</a>';
+            } else {
+                html += dateStr;
+            }
+            html += '</td>';
+            html += '</tr>';
+        });
+
+        tbody.innerHTML = html;
+    }
+
+    // ── Sortering ──────────────────────────────────────────
+    function sortSpecies(field) {
+        if (currentSort.field === field) {
+            currentSort.asc = !currentSort.asc;
+        } else {
+            currentSort.field = field;
+            currentSort.asc = true;
+        }
+
+        var sorted = allSpeciesData.slice();
+        sorted.sort(function(a, b) {
+            var va, vb;
+            switch (field) {
+                case 'name':      va = a.name; vb = b.name; return currentSort.asc ? va.localeCompare(vb, 'sv') : vb.localeCompare(va, 'sv');
+                case 'count':     va = a.count; vb = b.count; break;
+                case 'date':      va = a.latestDate; vb = b.latestDate; return currentSort.asc ? va.localeCompare(vb) : vb.localeCompare(va);
+                case 'observers': va = a.observerCount; vb = b.observerCount; break;
+                default:          return 0;
+            }
+            return currentSort.asc ? va - vb : vb - va;
+        });
+
+        renderTable(sorted);
+
+        // Uppdatera aktiv knapp
+        document.querySelectorAll('.kommun-sort-btn').forEach(function(btn) {
+            btn.classList.toggle('active', btn.getAttribute('data-sort') === field);
+        });
+    }
+
+    // ── Sökfilter ──────────────────────────────────────────
+    function filterSpecies(query) {
+        var q = query.toLowerCase().trim();
+        var filtered = allSpeciesData.filter(function(sp) {
+            return !q || sp.name.toLowerCase().indexOf(q) !== -1 || sp.sciName.toLowerCase().indexOf(q) !== -1;
+        });
+        renderTable(filtered);
+    }
+
+    // ── Init ───────────────────────────────────────────────
+    function init() {
+        fetchAllObservations()
+            .then(function(records) {
+                var data = processObservations(records);
+                allSpeciesData = data.species;
+
+                // Göm laddning, visa data
+                document.getElementById('kommun-loading').style.display = 'none';
+                document.getElementById('kommun-species-list').style.display = 'block';
+                document.getElementById('kommun-filter-bar').style.display = 'flex';
+                document.getElementById('kommun-source').style.display = 'block';
+
+                renderStats(data);
+                renderTable(allSpeciesData);
+
+                // Sorteringsknappar
+                document.querySelectorAll('.kommun-sort-btn').forEach(function(btn) {
+                    btn.addEventListener('click', function() {
+                        sortSpecies(btn.getAttribute('data-sort'));
+                    });
+                });
+
+                // Sökfält
+                document.getElementById('kommun-search').addEventListener('input', function(e) {
+                    filterSpecies(e.target.value);
+                });
+            })
+            .catch(function(err) {
+                console.error('Kommun-data kunde inte hämtas:', err);
+                document.getElementById('kommun-loading').style.display = 'none';
+                document.getElementById('kommun-error').style.display = 'block';
+            });
+    }
+
+    init();
+})();
+</script>
+{{ end }}

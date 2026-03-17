@@ -5326,3 +5326,318 @@ a.archive-tag:hover {
     color: var(--color-primary-dark);
     text-decoration: underline;
 }
+
+/* --------------------------------------------------------------------------
+   Kommun-sida — Artlista från Artportalen
+   -------------------------------------------------------------------------- */
+.kommun-page {
+    max-width: var(--max-width);
+    margin: 0 auto;
+    padding: var(--space-2xl) var(--space-lg);
+}
+
+.kommun-container {
+    max-width: var(--content-width);
+    margin: 0 auto;
+}
+
+.kommun-title {
+    font-size: var(--text-3xl);
+    margin-bottom: var(--space-md);
+}
+
+.kommun-intro {
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-xl);
+    font-size: var(--text-sm);
+    line-height: 1.6;
+}
+
+.kommun-beta-notice {
+    background: rgba(43, 90, 43, 0.06);
+    border: 1px solid rgba(43, 90, 43, 0.15);
+    border-radius: var(--radius-sm);
+    padding: var(--space-sm) var(--space-md);
+    font-size: var(--text-sm);
+    color: var(--color-text-muted);
+    margin-bottom: var(--space-md);
+}
+
+/* Hero-statistik */
+.kommun-hero {
+    background: linear-gradient(135deg, var(--color-primary) 0%, var(--color-primary-dark) 100%);
+    border-radius: var(--radius-lg);
+    padding: var(--space-xl);
+    margin-bottom: var(--space-xl);
+    color: var(--color-text-light);
+}
+
+.kommun-hero-cards {
+    display: flex;
+    justify-content: center;
+    gap: var(--space-2xl);
+    flex-wrap: wrap;
+}
+
+.kommun-stat-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 2px;
+}
+
+.kommun-stat-value {
+    font-family: var(--font-heading);
+    font-size: var(--text-3xl);
+    font-weight: 700;
+    color: #fff;
+    line-height: 1.1;
+}
+
+.kommun-stat-label {
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    opacity: 0.8;
+}
+
+.kommun-hero-timestamp {
+    text-align: center;
+    font-size: var(--text-xs);
+    opacity: 0.7;
+    margin-top: var(--space-md);
+}
+
+/* Sök & sortera */
+.kommun-filter-bar {
+    display: flex;
+    gap: var(--space-md);
+    align-items: center;
+    flex-wrap: wrap;
+    margin-bottom: var(--space-lg);
+}
+
+.kommun-search-input {
+    flex: 1;
+    min-width: 180px;
+    padding: var(--space-sm) var(--space-md);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    font-size: var(--text-sm);
+    outline: none;
+    transition: border-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.kommun-search-input:focus {
+    border-color: var(--color-primary-light);
+    box-shadow: 0 0 0 3px rgba(43, 90, 43, 0.1);
+}
+
+.kommun-sort-controls {
+    display: flex;
+    gap: var(--space-xs);
+    flex-wrap: wrap;
+}
+
+.kommun-sort-btn {
+    padding: 4px 12px;
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-full);
+    background: var(--color-bg);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    cursor: pointer;
+    transition: all var(--transition-fast);
+    white-space: nowrap;
+}
+
+.kommun-sort-btn:hover {
+    border-color: var(--color-primary-light);
+    color: var(--color-primary);
+}
+
+.kommun-sort-btn.active {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #fff;
+}
+
+/* Laddning */
+.kommun-loading {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-md);
+    padding: var(--space-3xl);
+    color: var(--color-text-muted);
+    font-size: var(--text-sm);
+}
+
+.kommun-spinner {
+    width: 24px;
+    height: 24px;
+    border: 3px solid var(--color-border);
+    border-top-color: var(--color-primary);
+    border-radius: 50%;
+    animation: kommun-spin 0.8s linear infinite;
+}
+
+@keyframes kommun-spin {
+    to { transform: rotate(360deg); }
+}
+
+/* Felmeddelande */
+.kommun-error {
+    background: rgba(196, 91, 40, 0.06);
+    border: 1px solid rgba(196, 91, 40, 0.2);
+    border-radius: var(--radius-md);
+    padding: var(--space-lg);
+    text-align: center;
+    color: var(--color-accent);
+    font-size: var(--text-sm);
+}
+
+/* Tabell */
+.kommun-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: var(--text-sm);
+}
+
+.kommun-table thead {
+    position: sticky;
+    top: 60px;
+    background: var(--color-bg);
+    z-index: 5;
+}
+
+.kommun-table th {
+    font-family: var(--font-heading);
+    font-weight: 600;
+    font-size: var(--text-xs);
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: var(--color-text-muted);
+    padding: var(--space-sm) var(--space-sm);
+    text-align: left;
+    border-bottom: 2px solid var(--color-border);
+}
+
+.kommun-th-num {
+    width: 36px;
+    text-align: center !important;
+}
+
+.kommun-th-count,
+.kommun-th-observers {
+    width: 60px;
+    text-align: center !important;
+}
+
+.kommun-th-date {
+    width: 100px;
+}
+
+.kommun-row {
+    transition: background var(--transition-fast);
+}
+
+.kommun-row:hover {
+    background: rgba(43, 90, 43, 0.03);
+}
+
+.kommun-row td {
+    padding: var(--space-sm);
+    border-bottom: 1px solid rgba(0, 0, 0, 0.04);
+    vertical-align: top;
+}
+
+.kommun-td-num {
+    text-align: center;
+    color: var(--color-text-muted);
+    font-size: var(--text-xs);
+    font-weight: 500;
+}
+
+.kommun-td-name {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+}
+
+.kommun-species-name {
+    font-weight: 500;
+    color: var(--color-text);
+}
+
+.kommun-species-sci {
+    font-size: var(--text-xs);
+    font-style: italic;
+    color: var(--color-text-muted);
+    opacity: 0.7;
+}
+
+.kommun-td-count,
+.kommun-td-observers {
+    text-align: center;
+    font-family: var(--font-heading);
+    font-weight: 500;
+}
+
+.kommun-td-date {
+    font-size: var(--text-xs);
+    white-space: nowrap;
+}
+
+.kommun-date-link {
+    color: var(--color-primary);
+    text-decoration: none;
+    font-weight: 500;
+}
+
+.kommun-date-link:hover {
+    text-decoration: underline;
+}
+
+/* Datakälla */
+.kommun-source {
+    margin-top: var(--space-xl);
+    padding-top: var(--space-md);
+    border-top: 1px solid var(--color-border);
+    font-size: var(--text-xs);
+    color: var(--color-text-muted);
+    text-align: center;
+}
+
+.kommun-source a {
+    color: var(--color-primary);
+}
+
+/* Responsivt */
+@media (max-width: 600px) {
+    .kommun-hero-cards {
+        gap: var(--space-lg);
+    }
+
+    .kommun-stat-value {
+        font-size: var(--text-2xl);
+    }
+
+    .kommun-filter-bar {
+        flex-direction: column;
+        align-items: stretch;
+    }
+
+    .kommun-sort-controls {
+        justify-content: center;
+    }
+
+    .kommun-th-observers,
+    .kommun-td-observers {
+        display: none;
+    }
+
+    .kommun-species-sci {
+        display: none;
+    }
+}

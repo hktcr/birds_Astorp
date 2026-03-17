@@ -713,6 +713,30 @@
             "location": "Tomarps kungsgård",
             "lat": 56.149612,
             "lng": 13.0625373
+        },
+        {
+            "species": "Brushane",
+            "latin": "Calidris pugnax",
+            "date": "2026-03-17",
+            "location": "Dynget",
+            "lat": 56.183486839903935,
+            "lng": 13.013507219597335
+        },
+        {
+            "species": "Brandkronad kungsfågel",
+            "latin": "Regulus ignicapilla",
+            "date": "2026-03-17",
+            "location": "Fåraböke",
+            "lat": 56.07789001813259,
+            "lng": 13.067594119415102
+        },
+        {
+            "species": "Kungsfågel",
+            "latin": "Regulus regulus",
+            "date": "2026-03-17",
+            "location": "Fåraböke",
+            "lat": 56.07789001813259,
+            "lng": 13.067594119415102
         }
     ]
 }
