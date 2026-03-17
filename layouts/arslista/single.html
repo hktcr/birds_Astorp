@@ -29,7 +29,7 @@
 
         <div class="checklist-search-wrapper">
             <input type="text" id="checklist-search" class="checklist-search-input" placeholder="Sök art..." autocomplete="off">
-            <button type="button" id="checklist-search-clear" class="checklist-search-clear" title="Rensa sökning" aria-label="Rensa sökning">✕</button>
+            <button type="button" id="checklist-search-clear" class="checklist-search-clear" title="Rensa och sök igen" aria-label="Rensa och sök igen">🔄</button>
         </div>
 
         <div class="checklist-sort">
@@ -60,13 +60,6 @@
         var clearBtn = document.getElementById('checklist-search-clear');
         if (!search) return;
 
-        // Show/hide clear button based on input content
-        function updateClearBtn() {
-            if (clearBtn) {
-                clearBtn.style.display = search.value.length > 0 ? 'flex' : 'none';
-            }
-        }
-
         // Filter species cards by search text
         function filterCards() {
             var q = search.value.toLowerCase().trim();
@@ -85,16 +78,11 @@
             search.value = '';
             search.focus();
             filterCards();
-            updateClearBtn();
         }
-
-        // Initialize clear button state
-        updateClearBtn();
 
         // Search input events
         search.addEventListener('input', function() {
             filterCards();
-            updateClearBtn();
         });
 
         // Click clear button → clear + refocus
@@ -119,7 +107,6 @@
                 search.value = '';
                 search.blur();
                 filterCards();
-                updateClearBtn();
                 return;
             }
 

@@ -297,3 +297,18 @@
 - `Fåglar/Artportalen/observations-registry-2026.json` (avståndsanalys)
 
 ---
+
+### 2026-03-17 — 5d614550
+
+**Ursprung:** Fågelpipeline: 29 arter registrerade 2026-03-16
+**Typ:** Framsteg
+
+> Fältlista med 29 arter (Åstorps kommun, 2026-03-16) processad genom /fågel-pipelinen. Alla arter redan kryssade (89 arter i checklistan, inga nya årskryss). System C-fil sparad. 2 Artportalen-obs registrerade: Rapphöna (obs-2026-742, 2 ex, Tomarps kungsgård) och Storspov (obs-2026-743, 2 ex, Dynget). Ny fyndplats Dynget (56.1835, 13.0135) tillagd i artportalen-sites.json (123 lokaler). Årshjulsdata regenererad via generate_radial_data.py: 28 arter fick +1 dag på 03-16, varav 12 arter fick sin allra första observationsdag den 16 mars.
+
+**Relaterade filer:**
+- `Fåglar/Exkursioner/2026-03-16_astorp.json` (System C)
+- `Fåglar/Artportalen/observations-registry-2026.json` (+2 obs: 742, 743)
+- `Fåglar/Artportalen/artportalen-sites.json` (+1 ny lokal: Dynget)
+- `static/data/species_days_historic.json` (+28 dagspunkter)
+
+---
