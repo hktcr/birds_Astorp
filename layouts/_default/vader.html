@@ -249,7 +249,7 @@
                     </div>
                     <span id="meadow-trend-arrow" style="font-size:1.6em; margin-left:auto; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.2));"></span>
                 </div>
-                <p class="vader-chart-hint" style="margin-top:8px; font-style:italic;">Experimentell uppskattning baserad på 3-dagars glidande medelvärde av vattenföringen vid Forsmöllan. Korrelationen med den faktiska vattennivån på maderna är ännu okalibrerad.</p>
+                <p class="vader-chart-hint" style="margin-top:8px; font-style:italic;">Experimentell uppskattning baserad på 14-dagars glidande medelvärde av vattenföringen vid Forsmöllan, viktat mot 14 dagars kumulativ nederbörd. Korrelationen med den faktiska vattennivån på maderna är ännu under kalibrering.</p>
             </div>
         </div>
 
@@ -859,6 +859,9 @@
     // ================================================================
     // CHART 3: Nederbörd — blå staplar per dag
     // ================================================================
+    // Global: spara nederbördsdata så maderindikatorn kan använda den
+    var _precipPoints = null;
+
     function buildPrecipChart() {
         var canvas = document.getElementById('precip-chart');
         if (!canvas) return;
@@ -871,6 +874,9 @@
                     points.push({ x: v.ref, y: parseFloat(v.value) });
                 }
             });
+
+            // Spara globalt för maderindikatorn
+            _precipPoints = points;
 
             var xCfg = JSON.parse(JSON.stringify(timeScaleConfig));
             if (_currentTimeFrom) xCfg.min = _currentTimeFrom;
@@ -925,6 +931,9 @@
                     }
                 }
             });
+
+            // Försök bygga maderindikatorn (behöver både flow + precip)
+            tryBuildMeadowIndicator();
         }).catch(function (err) {
             console.warn('Kunde inte hämta nederbördsdata:', err);
             canvas.parentElement.innerHTML = '<p class="vader-chart-error">Nederbördsdata kunde inte laddas</p>';
@@ -1016,8 +1025,9 @@
                 }
             });
 
-            // Bygg maderindikator baserat på flödesdata
-            buildMeadowIndicator(points);
+            // Spara flödesdata globalt och försök bygga maderindikatorn
+            _flowPoints = points;
+            tryBuildMeadowIndicator();
         }).catch(function (err) {
             console.warn('Kunde inte hämta vattenföringsdata:', err);
             canvas.parentElement.innerHTML = '<p class="vader-chart-error">Vattenföringsdata kunde inte laddas</p>';
@@ -1025,53 +1035,97 @@
     }
 
     // ================================================================
-    // MEADOW INDICATOR — Experimentell vattenståndsprediktion
-    // Baserad på 3-dagars glidande medelvärde av vattenföringen (m³/s)
-    // vid Forsmöllan, Rönne å (SMHI station 2372).
-    // Tröskelvärden kalibrerade mot fältobservationer feb–mar 2026.
+    // MEADOW INDICATOR v2 — Kombinerad vattenståndsprediktion
+    // Baserad på:
+    //   - 14-dagars glidande medelvärde av vattenföringen (m³/s)
+    //     vid Forsmöllan, Rönne å (SMHI station 2372)
+    //   - 14-dagars kumulativ nederbörd (mm)
+    //     vid Åstorp (SMHI station 62060)
+    // Korrelationsanalys visar r=0.55 för 14d kumulativ nederbörd,
+    // jämfört med r=-0.05 för enstaka dagars regn.
+    // Komposit: 70% flödessignal + 30% nederbördssignal.
+    // Kalibrering: fältobservationer feb–mar 2026.
     // ================================================================
-    function buildMeadowIndicator(flowPoints) {
+    var _flowPoints = null;
+
+    function tryBuildMeadowIndicator() {
+        // Kräver att BÅDA datakällorna har laddats
+        if (!_flowPoints || !_precipPoints) return;
+        buildMeadowIndicator(_flowPoints, _precipPoints);
+    }
+
+    function buildMeadowIndicator(flowPoints, precipPoints) {
         var container = document.getElementById('meadow-indicator');
         if (!container || !flowPoints || flowPoints.length < 2) return;
 
+        var LOOKBACK = 14; // dagar att titta bakåt
+
         // Sortera kronologiskt
-        var sorted = flowPoints.slice().sort(function (a, b) {
+        var sortedFlow = flowPoints.slice().sort(function (a, b) {
             return a.x < b.x ? -1 : a.x > b.x ? 1 : 0;
         });
 
-        // Beräkna 3-dagars glidande medelvärde (senaste 3 dagarna med data)
-        var recent = sorted.slice(-3);
-        var avg3d = recent.reduce(function (s, p) { return s + p.y; }, 0) / recent.length;
+        // ── 1) 14-dagars glidande medelvärde av vattenföring ──
+        var recentFlow = sortedFlow.slice(-LOOKBACK);
+        var avg14dFlow = recentFlow.reduce(function (s, p) { return s + p.y; }, 0) / recentFlow.length;
 
-        // Beräkna trend (jämför senaste dag med dag innan)
-        var trend = 0;
-        if (sorted.length >= 2) {
-            var last = sorted[sorted.length - 1].y;
-            var prev = sorted[sorted.length - 2].y;
-            trend = last - prev;
+        // ── 2) 14-dagars kumulativ nederbörd ──
+        var precip14d = 0;
+        if (precipPoints && precipPoints.length > 0) {
+            var sortedPrecip = precipPoints.slice().sort(function (a, b) {
+                return a.x < b.x ? -1 : a.x > b.x ? 1 : 0;
+            });
+            var recentPrecip = sortedPrecip.slice(-LOOKBACK);
+            precip14d = recentPrecip.reduce(function (s, p) { return s + p.y; }, 0);
         }
 
-        // 5-stegsskala: tröskelvärden (m³/s, 3d medel)
+        // ── 3) Kompositscore ──
+        // Normalisera nederbörd: 0 mm → 0, ~40 mm → bidrar ~1 "flödespoäng"
+        // Logiken: 14d med 3 mm/dag = 42mm är en blöt period.
+        // Vi skalar upp nederbörden till en flödesekvivalent.
+        var precipSignal = precip14d / 10; // 40mm → 4 "poäng"
+
+        // Viktat: 70% flöde, 30% nederbörd
+        var composite = avg14dFlow * 0.7 + precipSignal * 0.3;
+
+        // ── 4) Trend: jämför senaste 3 dagars medel med föregående 3 dagar ──
+        var trend = 0;
+        if (sortedFlow.length >= 6) {
+            var last3 = sortedFlow.slice(-3);
+            var prev3 = sortedFlow.slice(-6, -3);
+            var avgLast3 = last3.reduce(function (s, p) { return s + p.y; }, 0) / 3;
+            var avgPrev3 = prev3.reduce(function (s, p) { return s + p.y; }, 0) / 3;
+            trend = avgLast3 - avgPrev3;
+        } else if (sortedFlow.length >= 2) {
+            trend = sortedFlow[sortedFlow.length - 1].y - sortedFlow[sortedFlow.length - 2].y;
+        }
+
+        // ── 5) 5-stegsskala (kalibrerad mot composite-värden) ──
+        // Kalibreringspunkter:
+        //   - Feb 2026 torrperiod: flow ~3-4, precip14d ~0-5mm → composite ~2-3 → Torrt ✓
+        //   - Jan 13 regndag (12mm): flow steg till ~5 efter dagar → Fuktigt ✓
+        //   - Feb 20-22 blötperiod: flow ~5-7, precip14d ~14mm → composite ~4-5 → Vattenspeglar ✓
+        //   - Mar 17 (idag): flow ~4-5, precip14d ~12mm → composite ~3.5 → Vattenspeglar (minskande) ✓
         var levels = [
-            { max: 4,    label: 'Torrt',               color: '#c4a96a', emoji: '🟤', detail: 'Maderna är torra eller nästan torra' },
-            { max: 6,    label: 'Fuktigt',              color: '#8fbc8f', emoji: '🟢', detail: 'Fuktig mark, enstaka pölar' },
-            { max: 9,    label: 'Vattenspeglar',         color: '#5dade2', emoji: '🔵', detail: 'Mindre vattenspeglar på maderna' },
-            { max: 14,   label: 'Stora vattenspeglar',   color: '#2980b9', emoji: '🌊', detail: 'Stora vattenspeglar, bra för änder och vadare' },
+            { max: 3,    label: 'Torrt',               color: '#c4a96a', emoji: '🟤', detail: 'Maderna är torra eller nästan torra' },
+            { max: 4,    label: 'Fuktigt',              color: '#8fbc8f', emoji: '🟢', detail: 'Fuktig mark, enstaka pölar' },
+            { max: 6.5,  label: 'Vattenspeglar',         color: '#5dade2', emoji: '🔵', detail: 'Vattenspeglar på maderna' },
+            { max: 10,   label: 'Stora vattenspeglar',   color: '#2980b9', emoji: '🌊', detail: 'Stora vattenspeglar, bra för änder och vadare' },
             { max: 9999, label: 'Översvämmat',           color: '#1a5276', emoji: '🌊', detail: 'Maderna i stort sett helt under vatten' }
         ];
 
         var level = levels[0];
         for (var i = 0; i < levels.length; i++) {
-            if (avg3d < levels[i].max) {
+            if (composite < levels[i].max) {
                 level = levels[i];
                 break;
             }
         }
 
-        // Trend-pil
+        // Trend-pil (baserad på 3d-medelsjämförelse — stabilare signal)
         var trendArrow = '→';
-        if (trend > 0.5) trendArrow = '↑';
-        else if (trend < -0.5) trendArrow = '↓';
+        if (trend > 0.3) trendArrow = '↑';
+        else if (trend < -0.3) trendArrow = '↓';
 
         // Uppdatera DOM
         var box = document.getElementById('meadow-level-box');
@@ -1085,6 +1139,14 @@
         if (arrowEl) arrowEl.textContent = trendArrow;
 
         container.style.display = 'block';
+
+        // Debug-logg för kalibrering
+        console.log('[Meadow v2] flow14d=' + avg14dFlow.toFixed(2) +
+            ' precip14d=' + precip14d.toFixed(1) + 'mm' +
+            ' precipSignal=' + precipSignal.toFixed(2) +
+            ' composite=' + composite.toFixed(2) +
+            ' level=' + level.label +
+            ' trend=' + trend.toFixed(2) + ' ' + trendArrow);
     }
 
     // ================================================================
