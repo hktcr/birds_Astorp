@@ -1104,13 +1104,15 @@
         // Kalibreringspunkter:
         //   - Feb 2026 torrperiod: flow ~3-4, precip14d ~0-5mm → composite ~2-3 → Torrt ✓
         //   - Jan 13 regndag (12mm): flow steg till ~5 efter dagar → Fuktigt ✓
-        //   - Feb 20-22 blötperiod: flow ~5-7, precip14d ~14mm → composite ~4-5 → Vattenspeglar ✓
-        //   - Mar 17 (idag): flow ~4-5, precip14d ~12mm → composite ~3.5 → Vattenspeglar (minskande) ✓
+        //   - Feb 20-22 blötperiod: flow ~5-7, precip14d ~14mm → composite ~4-5 → Fuktigt/Vattenspeglar ✓
+        //   - Mar 17: flow14d ~7.2, precip14d ~12mm → composite ~5.4 → Fuktigt (minskande vattenspeglar) ✓
+        //   - Mar 18: Fältobs bekräftar "Fuktigt" — fuktig mark, enstaka pölar, mycket små speglar
+        //   - Feb 27-Mar 1 flödestoppp (13-15 m³/s) → composite ~10-11 → Stora vattenspeglar
         var levels = [
-            { max: 3,    label: 'Torrt',               color: '#c4a96a', emoji: '🟤', detail: 'Maderna är torra eller nästan torra' },
-            { max: 4,    label: 'Fuktigt',              color: '#8fbc8f', emoji: '🟢', detail: 'Fuktig mark, enstaka pölar' },
-            { max: 6.5,  label: 'Vattenspeglar',         color: '#5dade2', emoji: '🔵', detail: 'Mindre vattenspeglar på maderna' },
-            { max: 10,   label: 'Stora vattenspeglar',   color: '#2980b9', emoji: '🌊', detail: 'Stora vattenspeglar, bra för änder och vadare' },
+            { max: 3.5,  label: 'Torrt',               color: '#c4a96a', emoji: '🟤', detail: 'Maderna är torra eller nästan torra' },
+            { max: 6,    label: 'Fuktigt',              color: '#8fbc8f', emoji: '🟢', detail: 'Fuktig mark, enstaka pölar' },
+            { max: 9,    label: 'Vattenspeglar',         color: '#5dade2', emoji: '🔵', detail: 'Mindre vattenspeglar på maderna' },
+            { max: 14,   label: 'Stora vattenspeglar',   color: '#2980b9', emoji: '🌊', detail: 'Stora vattenspeglar, bra för änder och vadare' },
             { max: 9999, label: 'Översvämmat',           color: '#1a5276', emoji: '🌊', detail: 'Maderna i stort sett helt under vatten' }
         ];
 

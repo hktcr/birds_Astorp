@@ -37,13 +37,13 @@ publishDir = 'docs'
     pageRef = '/galleri/'
     weight = 28
   [[menus.main]]
-    name = 'Kommunen'
-    pageRef = '/kommun/'
+    name = 'Aktuella observationer'
+    pageRef = '/faltpulsen/'
     weight = 29
   [[menus.main]]
-    name = 'Karta'
+    name = 'Krysskarta'
     pageRef = '/karta/'
-    weight = 30
+    weight = 20
   [[menus.main]]
     name = 'Om'
     pageRef = '/om/'

@@ -2,30 +2,15 @@
 <section class="kommun-page">
     <div class="kommun-container">
 
-        <h1 class="kommun-title">{{ .Title }}</h1>
-
-        <!-- Introtext -->
-        <div class="kommun-intro">
-            {{ .Content }}
-        </div>
-
-        <!-- Hero-statistik -->
-        <div class="kommun-hero" id="kommun-hero">
-            <div class="kommun-hero-cards">
-                <div class="kommun-stat-card">
-                    <span class="kommun-stat-value" id="stat-observers">—</span>
-                    <span class="kommun-stat-label">observatörer</span>
-                </div>
-                <div class="kommun-stat-card">
-                    <span class="kommun-stat-value" id="stat-species">—</span>
-                    <span class="kommun-stat-label">arter totalt</span>
-                </div>
-                <div class="kommun-stat-card">
-                    <span class="kommun-stat-value" id="stat-observations">—</span>
-                    <span class="kommun-stat-label">rapporter</span>
-                </div>
+        <!-- Rubrik + intro (lätt stil som startsidan) -->
+        <div class="kommun-header">
+            <h1 class="kommun-title">{{ .Title }}</h1>
+            <div class="kommun-intro">{{ .Content }}</div>
+            <div class="kommun-stats-row" id="kommun-stats-row">
+                <span class="kommun-stat-pill"><strong id="stat-observers">—</strong> observatörer</span>
+                <span class="kommun-stat-pill"><strong id="stat-species">—</strong> arter</span>
+                <span class="kommun-stat-pill"><strong id="stat-observations">—</strong> rapporter</span>
             </div>
-            <div class="kommun-hero-timestamp" id="kommun-timestamp">Hämtar data från Artportalen…</div>
         </div>
 
         <!-- Sök/filter -->
@@ -42,49 +27,51 @@
         <!-- Laddningsindikator -->
         <div class="kommun-loading" id="kommun-loading">
             <div class="kommun-spinner"></div>
-            <span>Hämtar observationer från Artportalen…</span>
+            <span>Hämtar observationer…</span>
         </div>
 
         <!-- Felmeddelande -->
         <div class="kommun-error" id="kommun-error" style="display:none;">
-            <span>⚠️ Kunde inte hämta data från Artportalen. Försök ladda om sidan.</span>
+            <span>⚠️ Kunde inte hämta data. Försök ladda om sidan.</span>
         </div>
 
         <!-- Observatörslista -->
-        <div class="kommun-species-list" id="kommun-observer-list" style="display:none;">
-            <table class="kommun-table" id="kommun-table">
-                <thead>
-                    <tr>
-                        <th class="kommun-th-num">#</th>
-                        <th class="kommun-th-name">Observatör</th>
-                        <th class="kommun-th-count">Arter</th>
-                        <th class="kommun-th-count">Rapporter</th>
-                        <th class="kommun-th-date">Senast</th>
-                    </tr>
-                </thead>
-                <tbody id="kommun-tbody">
-                </tbody>
-            </table>
+        <div id="kommun-observer-list" style="display:none;">
+            <div id="kommun-cards"></div>
         </div>
 
         <!-- Datakälla -->
         <div class="kommun-source" id="kommun-source" style="display:none;">
             Data: <a href="https://www.artportalen.se" target="_blank" rel="noopener">Artportalen</a> via
-            <a href="https://api-portal.artdatabanken.se" target="_blank" rel="noopener">SLU Artdatabankens SOS API</a>.
-            Fågelobservationer rapporterade i Åstorps kommun under 2026 (exkl. mina egna).
+            <a href="https://api-portal.artdatabanken.se" target="_blank" rel="noopener">SLU Artdatabankens API</a>
+            · <span id="kommun-timestamp"></span>
         </div>
 
     </div>
 </section>
+
+<!-- Krysslista-modal -->
+<div class="kommun-modal-overlay" id="kommun-modal" style="display:none;">
+    <div class="kommun-modal">
+        <button class="kommun-modal-close" id="kommun-modal-close">&times;</button>
+        <h2 class="kommun-modal-title" id="kommun-modal-title"></h2>
+        <p class="kommun-modal-subtitle" id="kommun-modal-subtitle"></p>
+        <div class="kommun-modal-sort">
+            <button class="kommun-modal-sort-btn active" data-modal-sort="date">Kronologisk</button>
+            <button class="kommun-modal-sort-btn" data-modal-sort="taxonomy">Taxonomisk</button>
+        </div>
+        <div class="kommun-modal-list" id="kommun-modal-list"></div>
+    </div>
+</div>
 {{ end }}
 
 {{ define "scripts" }}
 <script>
 (function() {
-    // ── Konfiguration ──────────────────────────────────────
+    // ── Config ─────────────────────────────────────────────
     var API_BASE = 'https://api.artdatabanken.se/species-observation-system/v1';
     var API_KEY = '328d49c810214ebe9098321dffcac80e';
-    var EXCLUDE_OBSERVER = 'Håkan Karlsson';
+    var MY_NAME = 'Håkan Karlsson';
     var YEAR = 2026;
     var MUNICIPALITY_ID = '1277';
     var TAXON_BIRDS = 4000104;
@@ -93,7 +80,7 @@
     var allObserverData = [];
     var currentSort = { field: 'species', asc: false };
 
-    // ── API-hämtning med paginering ────────────────────────
+    // ── API-hämtning ───────────────────────────────────────
     function fetchAllObservations() {
         var allRecords = [];
         var skip = 0;
@@ -132,28 +119,26 @@
                 if (!Array.isArray(records)) records = [];
                 allRecords = allRecords.concat(records);
                 skip += records.length;
-
-                if (records.length === take) {
-                    return fetchPage();
-                }
+                if (records.length === take) return fetchPage();
                 return allRecords;
             });
         }
-
         return fetchPage();
     }
 
-    // ── Bearbeta data — gruppera per observatör ─────────────
-    function processObservations(records) {
-        // Filtrera bort egna observationer
+    function fetchMyChecklist() {
+        return fetch('/data/checklist-' + YEAR + '.json')
+            .then(function(r) { return r.json(); })
+            .then(function(data) { return data.observations || []; });
+    }
+
+    // ── Bearbetning ────────────────────────────────────────
+    function processObservations(records, myObs) {
         var filtered = records.filter(function(obs) {
             var occ = obs.occurrence || {};
-            var reporter = occ.reportedBy || '';
-            var recorder = occ.recordedBy || '';
-            return reporter !== EXCLUDE_OBSERVER && recorder !== EXCLUDE_OBSERVER;
+            return (occ.reportedBy || '') !== MY_NAME && (occ.recordedBy || '') !== MY_NAME;
         });
 
-        // Bygg observatörssammanställning
         var observerMap = {};
         var allSpeciesSet = {};
 
@@ -161,101 +146,227 @@
             var taxon = obs.taxon || {};
             var occ = obs.occurrence || {};
             var event = obs.event || {};
-
-            var taxonId = taxon.id;
+            var speciesName = taxon.vernacularName || taxon.scientificName || '?';
             var reporter = occ.reportedBy || occ.recordedBy || 'Okänd';
             var date = (event.plainStartDate || event.startDate || '').substring(0, 10);
-
-            if (!taxonId) return;
-
-            allSpeciesSet[taxonId] = true;
+            if (!taxon.id) return;
+            allSpeciesSet[speciesName] = true;
 
             if (!observerMap[reporter]) {
-                observerMap[reporter] = {
-                    name: reporter,
-                    species: {},
-                    count: 0,
-                    latestDate: ''
-                };
+                observerMap[reporter] = { name: reporter, species: {}, count: 0, latestDate: '', isMe: false };
             }
-
             var ob = observerMap[reporter];
-            ob.species[taxonId] = true;
-            ob.count++;
-            if (date > ob.latestDate) {
-                ob.latestDate = date;
+            if (!ob.species[speciesName]) {
+                ob.species[speciesName] = { name: speciesName, firstDate: date };
+            } else if (date < ob.species[speciesName].firstDate) {
+                ob.species[speciesName].firstDate = date;
             }
+            ob.count++;
+            if (date > ob.latestDate) ob.latestDate = date;
         });
 
-        // Konvertera till lista
+        // Håkan from local checklist
+        var myEntry = { name: MY_NAME, species: {}, count: 0, latestDate: '', isMe: true };
+        myObs.forEach(function(obs) {
+            var sp = obs.species, date = obs.date || '';
+            if (!myEntry.species[sp]) {
+                myEntry.species[sp] = { name: sp, firstDate: date };
+            } else if (date < myEntry.species[sp].firstDate) {
+                myEntry.species[sp].firstDate = date;
+            }
+            myEntry.count++;
+            if (date > myEntry.latestDate) myEntry.latestDate = date;
+        });
+        observerMap[MY_NAME] = myEntry;
+
+        // Build sorted species lists
+        Object.keys(observerMap).forEach(function(name) {
+            var ob = observerMap[name];
+            ob.speciesList = Object.keys(ob.species).map(function(sp) { return ob.species[sp]; });
+            ob.speciesList.sort(function(a, b) { return a.firstDate.localeCompare(b.firstDate); });
+        });
+
         var observerList = Object.keys(observerMap).map(function(name) {
             var ob = observerMap[name];
             return {
                 name: ob.name,
-                speciesCount: Object.keys(ob.species).length,
+                speciesCount: ob.speciesList.length,
                 count: ob.count,
-                latestDate: ob.latestDate
+                latestDate: ob.latestDate,
+                speciesList: ob.speciesList,
+                isMe: ob.isMe
             };
         });
+        observerList.sort(function(a, b) { return b.speciesCount - a.speciesCount; });
 
-        // Sortera initialt: flest arter först
-        observerList.sort(function(a, b) {
-            return b.speciesCount - a.speciesCount;
-        });
+        myObs.forEach(function(obs) { allSpeciesSet[obs.species] = true; });
 
         return {
             observers: observerList,
             totalSpecies: Object.keys(allSpeciesSet).length,
-            totalObservations: filtered.length,
-            totalExcluded: records.length - filtered.length
+            totalObservations: filtered.length + myObs.length
         };
     }
 
-    // ── Rendera UI ─────────────────────────────────────────
+    // ── Datum ──────────────────────────────────────────────
+    var MONTHS = ['jan', 'feb', 'mars', 'apr', 'maj', 'juni', 'juli', 'aug', 'sep', 'okt', 'nov', 'dec'];
+    function fmtDate(dateStr) {
+        if (!dateStr) return '';
+        var d = new Date(dateStr);
+        return d.getDate() + ' ' + MONTHS[d.getMonth()];
+    }
+
+    // ── Render ─────────────────────────────────────────────
     function renderStats(data) {
         document.getElementById('stat-observers').textContent = data.observers.length;
         document.getElementById('stat-species').textContent = data.totalSpecies;
         document.getElementById('stat-observations').textContent = data.totalObservations;
-
         var now = new Date();
-        var timeStr = now.toLocaleDateString('sv-SE', { day: 'numeric', month: 'long' }) + ' ' +
-                      now.toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' });
         document.getElementById('kommun-timestamp').textContent =
-            'Uppdaterad ' + timeStr + ' · ' + data.totalExcluded + ' egna rapporter borträknade';
+            'uppdaterad ' + now.toLocaleDateString('sv-SE', { day: 'numeric', month: 'long' }) + ' ' +
+            now.toLocaleTimeString('sv-SE', { hour: '2-digit', minute: '2-digit' });
     }
 
-    function renderTable(observerList) {
-        var tbody = document.getElementById('kommun-tbody');
+    function renderCards(observerList) {
+        var container = document.getElementById('kommun-cards');
         var html = '';
 
         observerList.forEach(function(ob, i) {
-            var dateStr = '';
-            if (ob.latestDate) {
-                var d = new Date(ob.latestDate);
-                dateStr = d.getDate() + ' ' + d.toLocaleDateString('sv-SE', { month: 'short' });
-            }
+            var rank = i + 1;
+            var rankStr = rank + '';
 
-            html += '<tr class="kommun-row">';
-            html += '<td class="kommun-td-num">' + (i + 1) + '</td>';
-            html += '<td class="kommun-td-name">';
-            html += '<span class="kommun-species-name">' + ob.name + '</span>';
-            html += '</td>';
-            html += '<td class="kommun-td-count">' + ob.speciesCount + '</td>';
-            html += '<td class="kommun-td-count">' + ob.count + '</td>';
-            html += '<td class="kommun-td-date">' + dateStr + '</td>';
-            html += '</tr>';
+            html += '<div class="kommun-card" data-observer="' + ob.name + '">';
+            html += '<div class="kommun-card-header">';
+            html += '<span class="kommun-card-rank">' + rankStr + '</span>';
+            html += '<div class="kommun-card-info">';
+            html += '<span class="kommun-card-name">' + ob.name + '</span>';
+            html += '<span class="kommun-card-meta">' + ob.count + ' rapporter · senast ' + fmtDate(ob.latestDate) + '</span>';
+            html += '</div>';
+            html += '<div class="kommun-card-badge">';
+            html += '<span class="kommun-card-badge-num">' + ob.speciesCount + '</span>';
+            html += '<span class="kommun-card-badge-label">arter</span>';
+            html += '</div>';
+            html += '</div></div>';
         });
 
-        tbody.innerHTML = html;
+        container.innerHTML = html;
+
+        // Bind clicks → timeline modal
+        container.querySelectorAll('.kommun-card-header').forEach(function(header) {
+            header.addEventListener('click', function() {
+                var card = header.closest('.kommun-card');
+                var name = card.getAttribute('data-observer');
+                var ob = allObserverData.find(function(o) { return o.name === name; });
+                if (ob) openSpeciesList(ob);
+            });
+        });
     }
 
-    // ── Sortering ──────────────────────────────────────────
+    // ── Species guide för taxonomisk ordning + kategori-färger ──
+    var speciesGuide = {};
+    var CATEGORY_COLORS = {
+        abundant: '#0e7490',
+        regular: '#7c3aed',
+        uncommon: '#e09f3e',
+        rare: '#c1121f',
+        new: '#00897b'
+    };
+    function fetchSpeciesGuide() {
+        return fetch('/data/species-guide.json')
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                (data.species || []).forEach(function(sp, i) {
+                    speciesGuide[sp.name.toLowerCase()] = {
+                        order: i,
+                        category: sp.category || 'regular'
+                    };
+                });
+            })
+            .catch(function() {});
+    }
+
+    // ── Krysslista-modal ───────────────────────────────────
+    var currentModalOb = null;
+    var currentModalSort = 'date';
+
+    function openSpeciesList(ob) {
+        currentModalOb = ob;
+        currentModalSort = 'date';
+
+        var modal = document.getElementById('kommun-modal');
+        document.getElementById('kommun-modal-title').textContent = ob.name;
+        document.getElementById('kommun-modal-subtitle').textContent = ob.speciesCount + ' arter · ' + ob.count + ' rapporter';
+
+        // Reset sort buttons
+        document.querySelectorAll('.kommun-modal-sort-btn').forEach(function(b) {
+            b.classList.toggle('active', b.getAttribute('data-modal-sort') === 'date');
+        });
+
+        renderModalList('date');
+        modal.style.display = 'flex';
+        document.body.style.overflow = 'hidden';
+    }
+
+    function renderModalList(sortType) {
+        if (!currentModalOb) return;
+        var list = currentModalOb.speciesList.slice();
+
+        if (sortType === 'taxonomy') {
+            list.sort(function(a, b) {
+                var ga = speciesGuide[a.name.toLowerCase()] || {};
+                var gb = speciesGuide[b.name.toLowerCase()] || {};
+                var oa = ga.order !== undefined ? ga.order : 9999;
+                var ob2 = gb.order !== undefined ? gb.order : 9999;
+                return oa - ob2;
+            });
+        }
+        // date sort is already the default from speciesList
+
+        var html = '';
+        list.forEach(function(sp, i) {
+            var guide = speciesGuide[sp.name.toLowerCase()] || {};
+            var cat = guide.category || 'regular';
+            var dotColor = CATEGORY_COLORS[cat] || CATEGORY_COLORS.regular;
+            html += '<div class="kl-row">';
+            html += '<span class="kl-num">' + (i + 1) + '</span>';
+            html += '<span class="kl-dot" style="background:' + dotColor + '" title="' + cat + '"></span>';
+            html += '<span class="kl-species">' + sp.name + '</span>';
+            html += '<span class="kl-date">' + fmtDate(sp.firstDate) + '</span>';
+            html += '</div>';
+        });
+
+        document.getElementById('kommun-modal-list').innerHTML = html;
+    }
+
+    // Sort buttons in modal
+    document.querySelectorAll('.kommun-modal-sort-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.kommun-modal-sort-btn').forEach(function(b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+            currentModalSort = btn.getAttribute('data-modal-sort');
+            renderModalList(currentModalSort);
+        });
+    });
+
+    function closeModal() {
+        document.getElementById('kommun-modal').style.display = 'none';
+        document.body.style.overflow = '';
+    }
+
+    document.getElementById('kommun-modal-close').addEventListener('click', closeModal);
+    document.getElementById('kommun-modal').addEventListener('click', function(e) {
+        if (e.target === this) closeModal();
+    });
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape') closeModal();
+    });
+
+    // ── Sortering & Sök ────────────────────────────────────
     function sortObservers(field) {
         if (currentSort.field === field) {
             currentSort.asc = !currentSort.asc;
         } else {
             currentSort.field = field;
-            // Standard: fallande för siffror, stigande för namn
             currentSort.asc = field === 'name';
         }
 
@@ -263,67 +374,56 @@
         sorted.sort(function(a, b) {
             var va, vb;
             switch (field) {
-                case 'name':    va = a.name; vb = b.name; return currentSort.asc ? va.localeCompare(vb, 'sv') : vb.localeCompare(va, 'sv');
+                case 'name':    return currentSort.asc ? a.name.localeCompare(b.name, 'sv') : b.name.localeCompare(a.name, 'sv');
                 case 'species': va = a.speciesCount; vb = b.speciesCount; break;
                 case 'count':   va = a.count; vb = b.count; break;
-                case 'date':    va = a.latestDate; vb = b.latestDate; return currentSort.asc ? va.localeCompare(vb) : vb.localeCompare(va);
-                default:        return 0;
+                case 'date':    return currentSort.asc ? a.latestDate.localeCompare(b.latestDate) : b.latestDate.localeCompare(a.latestDate);
+                default: return 0;
             }
             return currentSort.asc ? va - vb : vb - va;
         });
 
-        renderTable(sorted);
-
+        allObserverData = sorted;
+        renderCards(allObserverData);
         document.querySelectorAll('.kommun-sort-btn').forEach(function(btn) {
             btn.classList.toggle('active', btn.getAttribute('data-sort') === field);
         });
     }
 
-    // ── Sökfilter ──────────────────────────────────────────
     function filterObservers(query) {
         var q = query.toLowerCase().trim();
-        var filtered = allObserverData.filter(function(ob) {
-            return !q || ob.name.toLowerCase().indexOf(q) !== -1;
-        });
-        renderTable(filtered);
+        if (!q) { renderCards(allObserverData); return; }
+        renderCards(allObserverData.filter(function(ob) {
+            return ob.name.toLowerCase().indexOf(q) !== -1;
+        }));
     }
 
     // ── Init ───────────────────────────────────────────────
-    function init() {
-        fetchAllObservations()
-            .then(function(records) {
-                var data = processObservations(records);
-                allObserverData = data.observers;
+    Promise.all([fetchAllObservations(), fetchMyChecklist(), fetchSpeciesGuide()])
+        .then(function(results) {
+            var data = processObservations(results[0], results[1]);
+            allObserverData = data.observers;
 
-                // Göm laddning, visa data
-                document.getElementById('kommun-loading').style.display = 'none';
-                document.getElementById('kommun-observer-list').style.display = 'block';
-                document.getElementById('kommun-filter-bar').style.display = 'flex';
-                document.getElementById('kommun-source').style.display = 'block';
+            document.getElementById('kommun-loading').style.display = 'none';
+            document.getElementById('kommun-observer-list').style.display = 'block';
+            document.getElementById('kommun-filter-bar').style.display = 'flex';
+            document.getElementById('kommun-source').style.display = 'block';
 
-                renderStats(data);
-                renderTable(allObserverData);
+            renderStats(data);
+            renderCards(allObserverData);
 
-                // Sorteringsknappar
-                document.querySelectorAll('.kommun-sort-btn').forEach(function(btn) {
-                    btn.addEventListener('click', function() {
-                        sortObservers(btn.getAttribute('data-sort'));
-                    });
-                });
-
-                // Sökfält
-                document.getElementById('kommun-search').addEventListener('input', function(e) {
-                    filterObservers(e.target.value);
-                });
-            })
-            .catch(function(err) {
-                console.error('Kommun-data kunde inte hämtas:', err);
-                document.getElementById('kommun-loading').style.display = 'none';
-                document.getElementById('kommun-error').style.display = 'block';
+            document.querySelectorAll('.kommun-sort-btn').forEach(function(btn) {
+                btn.addEventListener('click', function() { sortObservers(btn.getAttribute('data-sort')); });
             });
-    }
-
-    init();
+            document.getElementById('kommun-search').addEventListener('input', function(e) {
+                filterObservers(e.target.value);
+            });
+        })
+        .catch(function(err) {
+            console.error('Fältligan:', err);
+            document.getElementById('kommun-loading').style.display = 'none';
+            document.getElementById('kommun-error').style.display = 'block';
+        });
 })();
 </script>
 {{ end }}

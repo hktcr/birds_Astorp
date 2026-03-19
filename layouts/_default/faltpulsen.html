@@ -1,0 +1,483 @@
+{{ define "main" }}
+<div class="fp-page">
+    <div class="fp-container">
+
+        <!-- Rubrik -->
+        <div class="fp-header">
+            <h1 class="page-title">{{ .Title }}</h1>
+            <p class="fp-intro" id="fp-dynamic-intro"></p>
+            <div class="fp-intro" id="fp-static-intro">{{ .Content }}</div>
+        </div>
+
+        <!-- Karta (full bredd) -->
+        <div class="fp-map-wrap">
+            <div class="fp-time-pills" id="fp-time-pills">
+                <button class="fp-pill active" data-days="3">Senaste 3 dagarna</button>
+                <button class="fp-pill" data-days="7">Senaste veckan</button>
+                <button class="fp-pill" data-days="30">Senaste månaden</button>
+            </div>
+
+            <div id="fp-map" class="observation-map" style="min-height: 400px; height: 50vh;"></div>
+        </div>
+
+        <!-- Statistikpiller -->
+        <div class="fp-stats-row" id="fp-stats-row" style="display:none;">
+            <div class="fp-stat-pill">
+                <strong id="fp-stat-obs">0</strong> observationer
+            </div>
+            <div class="fp-stat-pill">
+                <strong id="fp-stat-species">0</strong> arter
+            </div>
+            <div class="fp-stat-pill">
+                <strong id="fp-stat-observers">0</strong> observatörer
+            </div>
+        </div>
+
+        <!-- Sortering -->
+        <div class="fp-sort-row" id="fp-sort-bar" style="display:none;">
+            <button class="fp-sort-btn active" data-sort="date">Datum ↓</button>
+            <button class="fp-sort-btn" data-sort="taxonomy">Taxonomi ↓</button>
+            <button class="fp-sort-btn" data-sort="rarity">Sällsynthet ↓</button>
+        </div>
+
+        <!-- Laddning -->
+        <div class="kommun-loading" id="fp-loading" style="margin-top:2rem;">
+            <div class="kommun-spinner"></div>
+            <span>Hämtar observationer…</span>
+        </div>
+
+        <!-- Felmeddelande -->
+        <div class="kommun-error" id="fp-error" style="display:none; margin-top:2rem;">
+            <span>⚠️ Kunde inte hämta data. Försök ladda om sidan.</span>
+        </div>
+
+        <!-- Lista -->
+        <div id="fp-list" class="fp-compact-list" style="display:none;"></div>
+
+        <div class="kommun-source" id="fp-source" style="display:none; margin-top:2rem; text-align:right;">
+            Data: <a href="https://www.artportalen.se" target="_blank" rel="noopener">Artportalen</a> via
+            <a href="https://api-portal.artdatabanken.se" target="_blank" rel="noopener">SLU Artdatabankens API</a>
+        </div>
+    </div>
+</div>
+
+<!-- Leaflet -->
+<link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+<script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+{{ end }}
+
+{{ define "scripts" }}
+<script>
+(function() {
+    // ── Config ─────────────────────────────────────────────
+    var API_BASE = 'https://api.artdatabanken.se/species-observation-system/v1';
+    var API_KEY = '328d49c810214ebe9098321dffcac80e';
+    var MUNICIPALITY_ID = '1277';
+    var TAXON_BIRDS = 4000104;
+    var ASTORP_CENTER = [56.14, 13.05];
+
+    // ── State ──────────────────────────────────────────────
+    var allRecords = [];
+    var speciesGuide = {};
+    var currentDays = 3;
+    var currentSort = 'date';
+    var map = null;
+    var markerGroup = null;
+    var CATEGORY_COLORS = {
+        abundant: '#0e7490',
+        regular: '#7c3aed',
+        uncommon: '#e09f3e',
+        rare: '#c1121f',
+        new: '#00897b'
+    };
+    var DAYS_LABEL = { 3: 'senaste 3 dagarna', 7: 'senaste veckan', 30: 'senaste månaden' };
+    var currentLocationFilter = null;  // null = visa alla
+
+    // ── Init karta ─────────────────────────────────────────
+    function initMap() {
+        map = L.map('fp-map', {
+            center: ASTORP_CENTER,
+            zoom: 11,
+            scrollWheelZoom: false,
+            zoomControl: false,
+            attributionControl: false,
+            dragging: false
+        });
+        L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+            attribution: '&copy; OpenTopoMap',
+            maxZoom: 17
+        }).addTo(map);
+
+        // Kommunavgränsning (Samma som karta/single.html)
+        var baseURL = window.siteBaseURL || '/';
+        fetch(baseURL + 'data/astorp-kommun.geojson')
+            .then(function(r) { return r.json(); })
+            .then(function(geojson) {
+                var coords = geojson.features[0].geometry.coordinates[0].map(function(c) { return [c[1], c[0]]; });
+                var worldBounds = [[-90,-180],[-90,180],[90,180],[90,-180],[-90,-180]];
+                L.polygon([worldBounds, coords], {
+                    color: 'transparent', fillColor: '#4b5563', fillOpacity: 0.35, interactive: false
+                }).addTo(map);
+                L.polygon(coords, {
+                    color: '#2B5A2B', weight: 2, fill: false, opacity: 0.5
+                }).addTo(map);
+                map.fitBounds(L.latLngBounds(coords), { padding: [10, 10] });
+            })
+            .catch(function() {});
+
+        markerGroup = L.layerGroup().addTo(map);
+    }
+
+    function updateMapMarkers(records) {
+        markerGroup.clearLayers();
+        var locMap = {};
+        records.forEach(function(obs) {
+            var loc = obs.location || {};
+            var name = (loc.locality || '').trim();
+            if (!name) return;
+            var pt = loc.decimalLatitude || (loc.pointLocation && loc.pointLocation.coordinates ? loc.pointLocation.coordinates[1] : null);
+            var pn = loc.decimalLongitude || (loc.pointLocation && loc.pointLocation.coordinates ? loc.pointLocation.coordinates[0] : null);
+            if (!pt || !pn) return;
+            if (!locMap[name]) locMap[name] = { lat: pt, lng: pn, count: 0 };
+            locMap[name].count++;
+        });
+
+        Object.keys(locMap).forEach(function(name) {
+            var loc = locMap[name];
+            var size = 10 + Math.min(loc.count * 2, 20);
+
+            var pulseIcon = L.divIcon({
+                className: 'fp-pulse-dot',
+                iconSize: [size, size],
+                iconAnchor: [size / 2, size / 2],
+                html: '<span class="fp-dot-inner" style="width:' + size + 'px;height:' + size + 'px;"></span>'
+            });
+
+            var marker = L.marker([loc.lat, loc.lng], { icon: pulseIcon })
+                .addTo(markerGroup);
+
+            // Klick på markern filtrerar listan
+            marker.on('click', function() {
+                currentLocationFilter = name;
+                renderList(allRecords);
+                // Scrolla ner till listan
+                document.getElementById('fp-list').scrollIntoView({ behavior: 'smooth', block: 'start' });
+            });
+
+            marker.bindPopup('<strong>' + name + '</strong><br>' + loc.count + ' obs. — <em>klicka för att filtrera</em>');
+        });
+    }
+
+    // ── API-hämtning ───────────────────────────────────────
+    function fetchObservations(days) {
+        var endDate = new Date();
+        var startDate = new Date();
+        startDate.setDate(startDate.getDate() - days);
+        var fmt = function(d) {
+            return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
+        };
+
+        var body = {
+            taxon: { ids: [TAXON_BIRDS], includeUnderlyingTaxa: true },
+            geographics: { areas: [{ areaType: 'Municipality', featureId: MUNICIPALITY_ID }] },
+            date: {
+                startDate: fmt(startDate),
+                endDate: fmt(endDate),
+                dateFilterType: 'BetweenStartDateAndEndDate'
+            },
+            output: {
+                fieldSet: 'Minimum',
+                fields: ['occurrence.reportedBy', 'occurrence.recordedBy', 'location.locality',
+                         'location.decimalLatitude', 'location.decimalLongitude']
+            }
+        };
+
+        var allRec = [];
+        var skip = 0;
+        var take = 1000;
+
+        function page() {
+            return fetch(API_BASE + '/Observations/Search?skip=' + skip + '&take=' + take + '&translationCultureCode=sv-SE', {
+                method: 'POST',
+                headers: {
+                    'Ocp-Apim-Subscription-Key': API_KEY,
+                    'Content-Type': 'application/json',
+                    'Accept': 'application/json'
+                },
+                body: JSON.stringify(body)
+            })
+            .then(function(r) {
+                if (!r.ok) throw new Error('HTTP ' + r.status);
+                return r.json();
+            })
+            .then(function(data) {
+                var recs = data.records || data;
+                if (!Array.isArray(recs)) recs = [];
+                allRec = allRec.concat(recs);
+                skip += recs.length;
+                if (recs.length === take) return page();
+                return allRec;
+            });
+        }
+        return page();
+    }
+
+    function fetchSpeciesGuide() {
+        var baseURL = window.siteBaseURL || '/';
+        return fetch(baseURL + 'data/species-guide.json')
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                var guide = {};
+                (data.species || []).forEach(function(sp, i) {
+                    guide[sp.name.toLowerCase()] = {
+                        total: sp.total || 0,
+                        category: sp.category || 'common',
+                        order: i  // taxonomisk ordning
+                    };
+                });
+                return guide;
+            })
+            .catch(function() { return {}; });
+    }
+
+    // ── Render ─────────────────────────────────────────────
+    var MONTHS = ['jan','feb','mar','apr','maj','jun','jul','aug','sep','okt','nov','dec'];
+    function fmtDate(dateStr) {
+        if (!dateStr) return '';
+        var d = new Date(dateStr);
+        return d.getDate() + ' ' + MONTHS[d.getMonth()];
+    }
+
+    function sortRecords(records, sortType) {
+        var sorted = records.slice();
+        switch(sortType) {
+            case 'date':
+                sorted.sort(function(a, b) {
+                    var da = (a.event || {}).startDate || '';
+                    var db = (b.event || {}).startDate || '';
+                    return db.localeCompare(da);
+                });
+                break;
+            case 'taxonomy':
+                sorted.sort(function(a, b) {
+                    var nameA = ((a.taxon || {}).vernacularName || '').toLowerCase();
+                    var nameB = ((b.taxon || {}).vernacularName || '').toLowerCase();
+                    var ga = speciesGuide[nameA] || {};
+                    var gb = speciesGuide[nameB] || {};
+                    var oa = ga.order !== undefined ? ga.order : 9999;
+                    var ob = gb.order !== undefined ? gb.order : 9999;
+                    return oa - ob;
+                });
+                break;
+            case 'rarity':
+                sorted.sort(function(a, b) {
+                    var nameA = ((a.taxon || {}).vernacularName || '').toLowerCase();
+                    var nameB = ((b.taxon || {}).vernacularName || '').toLowerCase();
+                    var ga = speciesGuide[nameA] || {};
+                    var gb = speciesGuide[nameB] || {};
+                    return (ga.total || 9999) - (gb.total || 9999);
+                });
+                break;
+        }
+        return sorted;
+    }
+
+    function renderList(records) {
+        var container = document.getElementById('fp-list');
+        var sorted = sortRecords(records, currentSort);
+
+        // Filtrera på plats om aktiv
+        if (currentLocationFilter) {
+            sorted = sorted.filter(function(obs) {
+                return ((obs.location || {}).locality || '').trim() === currentLocationFilter;
+            });
+        }
+
+        // Robust unique species counting (case-insensitive, trimmed)
+        var speciesSet = {};
+        var observerSet = {};
+        sorted.forEach(function(obs) {
+            var t = obs.taxon || {};
+            var o = obs.occurrence || {};
+            var sName = (t.vernacularName || t.scientificName || '?').trim().toLowerCase();
+            speciesSet[sName] = true;
+            observerSet[(o.reportedBy || o.recordedBy || '?').trim()] = true;
+        });
+
+        var nObs = sorted.length;
+        var nSpecies = Object.keys(speciesSet).length;
+        var nObservers = Object.keys(observerSet).length;
+
+        document.getElementById('fp-stat-obs').textContent = nObs;
+        document.getElementById('fp-stat-species').textContent = nSpecies;
+        document.getElementById('fp-stat-observers').textContent = nObservers;
+
+        // Dynamic ingress
+        var introEl = document.getElementById('fp-dynamic-intro');
+        if (introEl) {
+            var label = DAYS_LABEL[currentDays] || 'den valda perioden';
+            if (currentLocationFilter) {
+                introEl.innerHTML = '<em>' + nSpecies + ' arter</em> observerade vid <em>' + currentLocationFilter + '</em> under ' + label + '.';
+            } else {
+                introEl.innerHTML = '<em>' + nObservers + ' skådare</em> har rapporterat <em>' + nSpecies + ' arter</em> i Åstorps kommun under ' + label + '.';
+            }
+            // Hide static intro
+            var staticIntro = document.getElementById('fp-static-intro');
+            if (staticIntro) staticIntro.style.display = 'none';
+        }
+
+        var html = '';
+
+        // Platsfilter-banner
+        if (currentLocationFilter) {
+            html += '<div class="fp-filter-banner">';
+            html += '<span>📍 Visar observationer från <strong>' + currentLocationFilter + '</strong></span>';
+            html += '<button class="fp-filter-clear" onclick="window._fpClearFilter()">Visa alla ×</button>';
+            html += '</div>';
+        }
+
+        var lastDateStr = '';
+        sorted.forEach(function(obs, idx) {
+            var taxon = obs.taxon || {};
+            var occ = obs.occurrence || {};
+            var event = obs.event || {};
+            var loc = obs.location || {};
+
+            var speciesName = taxon.vernacularName || taxon.scientificName || '?';
+            var sciName = taxon.scientificName || '';
+            var reporter = occ.reportedBy || occ.recordedBy || 'Okänd';
+            
+            var dateStr = event.plainStartDate || (event.startDate || '').substring(0, 10);
+            var place = loc.locality || '';
+            var quantity = occ.quantity || occ.individualCount || '';
+            var activity = occ.activity ? occ.activity.value || '' : '';
+
+            // Date separator (only in date sort)
+            if (currentSort === 'date' && dateStr !== lastDateStr) {
+                var d = new Date(dateStr);
+                var dayNames = ['söndag','måndag','tisdag','onsdag','torsdag','fredag','lördag'];
+                var longDate = dayNames[d.getDay()] + ' ' + d.getDate() + ' ' + MONTHS[d.getMonth()];
+                html += '<div class="fp-date-sep">' + longDate + '</div>';
+                lastDateStr = dateStr;
+            }
+
+            var nameKey = speciesName.toLowerCase();
+            var guide = speciesGuide[nameKey] || {};
+            var cat = guide.category || 'regular';
+            var dotColor = CATEGORY_COLORS[cat] || CATEGORY_COLORS.regular;
+            
+            var badgeHtml = '';
+            if (cat === 'rare') badgeHtml = '<span class="fp-badge fp-badge--rare">Sällsynt</span>';
+            else if (cat === 'scarce') badgeHtml = '<span class="fp-badge fp-badge--scarce">Ovanlig</span>';
+            else if (cat === 'uncommon') badgeHtml = '<span class="fp-badge fp-badge--uncommon">Ovanlig</span>';
+
+            html += '<div class="fp-obs-row" data-idx="' + idx + '">';
+            if (currentSort !== 'date') {
+                html += '<div class="fp-obs-col-date">' + fmtDate(dateStr) + '</div>';
+            }
+            html += '<div class="fp-obs-col-dot" style="background:' + dotColor + '" title="' + cat + '"></div>';
+            html += '<div class="fp-obs-col-species">' + speciesName + (quantity ? ' <span class="fp-obs-qty">(' + quantity + ')</span>' : '') + '</div>';
+            html += '<div class="fp-obs-col-place">📍 ' + place + '</div>';
+            html += '<div class="fp-obs-col-reporter">👤 ' + reporter + '</div>';
+            html += '<div class="fp-obs-col-rarity">' + badgeHtml + '</div>';
+            html += '<div class="fp-obs-col-expand">▸</div>';
+            html += '</div>';
+
+            // Expanderbar detaljpanel (dold som default)
+            html += '<div class="fp-obs-detail" id="fp-detail-' + idx + '" style="display:none;">';
+            html += '<div class="fp-detail-grid">';
+            if (sciName) html += '<div class="fp-detail-item"><span class="fp-detail-label">Vetenskapligt namn</span><em>' + sciName + '</em></div>';
+            html += '<div class="fp-detail-item"><span class="fp-detail-label">Datum</span>' + dateStr + '</div>';
+            if (quantity) html += '<div class="fp-detail-item"><span class="fp-detail-label">Antal</span>' + quantity + ' individer</div>';
+            html += '<div class="fp-detail-item"><span class="fp-detail-label">Plats</span>' + place + '</div>';
+            html += '<div class="fp-detail-item"><span class="fp-detail-label">Rapportör</span>' + reporter + '</div>';
+            if (activity) html += '<div class="fp-detail-item"><span class="fp-detail-label">Aktivitet</span>' + activity + '</div>';
+            html += '</div></div>';
+        });
+
+        container.innerHTML = html || '<p style="text-align:center;color:var(--color-text-muted);padding:var(--space-xl);">Inga observationer hittades för denna period.</p>';
+        
+        // Expandera/kollapsa vid klick på rad
+        container.querySelectorAll('.fp-obs-row').forEach(function(row) {
+            row.addEventListener('click', function() {
+                var idx = row.getAttribute('data-idx');
+                var detail = document.getElementById('fp-detail-' + idx);
+                var arrow = row.querySelector('.fp-obs-col-expand');
+                if (detail) {
+                    var isOpen = detail.style.display !== 'none';
+                    detail.style.display = isOpen ? 'none' : 'block';
+                    if (arrow) arrow.textContent = isOpen ? '▸' : '▾';
+                    row.classList.toggle('fp-obs-row--expanded', !isOpen);
+                }
+            });
+        });
+
+        // Fade in
+        container.classList.remove('fp-fade-in');
+        void container.offsetWidth;
+        container.classList.add('fp-fade-in');
+    }
+
+    // Platsfilter-rensa (global för onclick)
+    window._fpClearFilter = function() {
+        currentLocationFilter = null;
+        renderList(allRecords);
+    };
+
+    // ── Ladda data ─────────────────────────────────────────
+    function loadData(days) {
+        currentDays = days;
+        document.getElementById('fp-loading').style.display = 'flex';
+        document.getElementById('fp-list').style.display = 'none';
+        document.getElementById('fp-error').style.display = 'none';
+        document.getElementById('fp-sort-bar').style.display = 'none';
+        document.getElementById('fp-stats-row').style.display = 'none';
+
+        fetchObservations(days)
+            .then(function(records) {
+                allRecords = records;
+                document.getElementById('fp-loading').style.display = 'none';
+                document.getElementById('fp-list').style.display = 'flex';
+                document.getElementById('fp-sort-bar').style.display = 'flex';
+                document.getElementById('fp-stats-row').style.display = 'flex';
+                document.getElementById('fp-source').style.display = 'block';
+
+                renderList(records);
+                updateMapMarkers(records);
+            })
+            .catch(function(err) {
+                console.error('Aktuella observationer:', err);
+                document.getElementById('fp-loading').style.display = 'none';
+                document.getElementById('fp-error').style.display = 'block';
+            });
+    }
+
+    // ── Events ─────────────────────────────────────────────
+    document.querySelectorAll('.fp-pill').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.fp-pill').forEach(function(b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+            loadData(parseInt(btn.getAttribute('data-days')));
+        });
+    });
+
+    document.querySelectorAll('.fp-sort-btn').forEach(function(btn) {
+        btn.addEventListener('click', function() {
+            document.querySelectorAll('.fp-sort-btn').forEach(function(b) { b.classList.remove('active'); });
+            btn.classList.add('active');
+            currentSort = btn.getAttribute('data-sort');
+            currentLocationFilter = null;  // rensa platsfilter vid sorteringsändring
+            renderList(allRecords);
+        });
+    });
+
+    // ── Init ───────────────────────────────────────────────
+    window.siteBaseURL = '{{ .Site.BaseURL }}';
+    initMap();
+    fetchSpeciesGuide().then(function(guide) {
+        speciesGuide = guide;
+        loadData(3);
+    });
+})();
+</script>
+{{ end }}
