@@ -737,6 +737,22 @@
             "location": "Fåraböke",
             "lat": 56.07789001813259,
             "lng": 13.067594119415102
+        },
+        {
+            "species": "Strandskata",
+            "latin": "Haematopus ostralegus",
+            "date": "2026-03-20",
+            "location": "Hyllinge SV",
+            "lat": 56.100735,
+            "lng": 12.856615
+        },
+        {
+            "species": "Sädesärla",
+            "latin": "Motacilla alba",
+            "date": "2026-03-20",
+            "location": "Tomarps kungsgård",
+            "lat": 56.148,
+            "lng": 13.061
         }
     ]
 }
