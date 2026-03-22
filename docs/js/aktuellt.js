@@ -189,7 +189,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <div>
                         <h3 style="margin:0 0 0.25rem 0; font-size:1.1rem; color:${cls.mainCol};">${item.name}</h3>
                         <span style="color:${cls.textCol}; font-weight:600; font-size:0.85rem;">${cls.label}</span>
-                        <span style="color:#94a3b8; font-size:0.8rem; margin-left:0.25rem;">— ${cls.sublabel}</span>
+                        <span style="color:#94a3b8; font-size:0.8rem; margin-left:0.25rem;">· ${cls.sublabel}</span>
                     </div>
                     <svg width="20" height="20" fill="none" stroke="${cls.borderCol}" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" style="color: ${cls.textCol}"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"></path></svg>
                 `;
