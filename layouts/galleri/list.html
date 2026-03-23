@@ -327,8 +327,13 @@
                     {{ $post := .post }}
                     {{ $speciesTags := .species }}
 
-                    {{/* Generate thumbnail URL: /path/image.jpg → /path/image-thumb.jpg */}}
-                    {{ $thumbUrl := replaceRE `\.(jpg|jpeg|png|webp)$` "-thumb.jpg" $url }}
+                    {{/* Generate thumbnail URL with urlize to handle Swedish chars */}}
+                    {{/* Split URL into dir + filename, urlize filename for ASCII-safe thumb */}}
+                    {{ $urlNoExt := replaceRE `\.(jpg|jpeg|png|webp)$` "" $url }}
+                    {{ $parts := split $urlNoExt "/" }}
+                    {{ $filename := index $parts (sub (len $parts) 1) }}
+                    {{ $dir := strings.TrimSuffix $filename $urlNoExt }}
+                    {{ $thumbUrl := printf "%s%s-thumb.jpg" $dir (urlize $filename) }}
 
                     {{/* Setup data attributes for JavaScript filtering */}}
                     {{ $speciesData := "" }}

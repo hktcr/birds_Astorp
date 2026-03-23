@@ -1,6 +1,7 @@
 #!/bin/bash
 # generate-thumbnails.sh — Skapa galleri-thumbnails (800px bredd)
 # Använder macOS sips. Kör före hugo build.
+# OBS: Filnamnen lowercasas för att matcha Hugo urlize-beteende.
 set -e
 
 STATIC_DIR="$(cd "$(dirname "$0")/.." && pwd)/static/images"
@@ -19,10 +20,16 @@ find "$STATIC_DIR" -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -
         continue
     fi
 
-    # Build thumbnail path: image.jpg → image-thumb.jpg
-    ext="${src##*.}"
-    base="${src%.*}"
-    thumb="${base}-thumb.jpg"
+    # Get directory and filename
+    dir=$(dirname "$src")
+    basename=$(basename "$src")
+    
+    # Remove extension, lowercase the name (match Hugo urlize behavior)
+    name_no_ext="${basename%.*}"
+    name_lower=$(echo "$name_no_ext" | tr '[:upper:]' '[:lower:]')
+    
+    # Build thumbnail path with lowercased name
+    thumb="${dir}/${name_lower}-thumb.jpg"
 
     # Skip if thumbnail already exists and is newer than source
     if [ -f "$thumb" ] && [ "$thumb" -nt "$src" ]; then
