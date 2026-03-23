@@ -73,6 +73,198 @@
             "lat": 56.183486839903935,
             "lng": 13.013507219597335,
             "description": "Våtmark norr om Kungsgårdsmaderna vid Rönneå"
+        },
+        {
+            "name": "Bron mot Klippan",
+            "lat": 56.13312,
+            "lng": 13.09428,
+            "description": ""
+        },
+        {
+            "name": "Gamla Tranarpsbron",
+            "lat": 56.17858,
+            "lng": 13.02111,
+            "description": ""
+        },
+        {
+            "name": "Rörspjäll",
+            "lat": 56.13477,
+            "lng": 13.01199,
+            "description": ""
+        },
+        {
+            "name": "Killåkravägen",
+            "lat": 56.16593,
+            "lng": 13.01946,
+            "description": ""
+        },
+        {
+            "name": "Högalid",
+            "lat": 56.09711,
+            "lng": 13.06836,
+            "description": ""
+        },
+        {
+            "name": "Körslättaravinen",
+            "lat": 56.09874,
+            "lng": 13.07474,
+            "description": ""
+        },
+        {
+            "name": "Grustagen, Maglaby",
+            "lat": 56.11749,
+            "lng": 13.06674,
+            "description": ""
+        },
+        {
+            "name": "Prästamarken",
+            "lat": 56.14148,
+            "lng": 13.04893,
+            "description": ""
+        },
+        {
+            "name": "Vändplats, V Maglabyväg",
+            "lat": 56.11793,
+            "lng": 12.99447,
+            "description": ""
+        },
+        {
+            "name": "Hermanssons stuga",
+            "lat": 56.12383,
+            "lng": 12.98772,
+            "description": ""
+        },
+        {
+            "name": "Björnekullaskolan",
+            "lat": 56.13677,
+            "lng": 12.95158,
+            "description": ""
+        },
+        {
+            "name": "Flodarna",
+            "lat": 56.16532231534232,
+            "lng": 12.984207625328134,
+            "description": ""
+        },
+        {
+            "name": "Tomarps mader",
+            "lat": 56.15596454204231,
+            "lng": 13.0706159722571,
+            "description": ""
+        },
+        {
+            "name": "Målarkalk, Hyllinge",
+            "lat": 56.101169833958345,
+            "lng": 12.871921799623898,
+            "description": ""
+        },
+        {
+            "name": "Tomarps kungsgård",
+            "lat": 56.148,
+            "lng": 13.061,
+            "description": ""
+        },
+        {
+            "name": "Vångarna",
+            "lat": 56.13335909031484,
+            "lng": 13.085150154227945,
+            "description": ""
+        },
+        {
+            "name": "Utloppet av Röda-diket",
+            "lat": 56.14244190869201,
+            "lng": 13.077277080127024,
+            "description": ""
+        },
+        {
+            "name": "NV Mosshult",
+            "lat": 56.09095485579307,
+            "lng": 13.050526620868753,
+            "description": ""
+        },
+        {
+            "name": "Röda smedja, Kvidinge",
+            "lat": 56.14176,
+            "lng": 13.059863,
+            "description": ""
+        },
+        {
+            "name": "Stora fältet - Sånna/Egnahem/Tomarp",
+            "lat": 56.150295674056615,
+            "lng": 13.051556814010734,
+            "description": ""
+        },
+        {
+            "name": "Rönne å, Kungsgårdsmaderna",
+            "lat": 56.156655789969676,
+            "lng": 13.069328770839913,
+            "description": ""
+        },
+        {
+            "name": "Klövaravinen",
+            "lat": 56.09126322298655,
+            "lng": 13.102010171371758,
+            "description": ""
+        },
+        {
+            "name": "Björkenäs mosse",
+            "lat": 56.14072103796272,
+            "lng": 13.031572672305218,
+            "description": ""
+        },
+        {
+            "name": "Kölebäckens mader, V Broby",
+            "lat": 56.12774509697216,
+            "lng": 12.868473108581973,
+            "description": ""
+        },
+        {
+            "name": "Körslättabäckens våtmarker",
+            "lat": 56.093059657874605,
+            "lng": 13.065669791540584,
+            "description": ""
+        },
+        {
+            "name": "Madkärr, Tomarp",
+            "lat": 56.16336146917374,
+            "lng": 13.062392835112023,
+            "description": ""
+        },
+        {
+            "name": "Backadal, Kärrarp",
+            "lat": 56.141628953503115,
+            "lng": 13.01111255477116,
+            "description": ""
+        },
+        {
+            "name": "Fåraböke",
+            "lat": 56.07789001813259,
+            "lng": 13.067594119415102,
+            "description": ""
+        },
+        {
+            "name": "Körslätta mosse",
+            "lat": 56.09124965751413,
+            "lng": 13.058212865484588,
+            "description": ""
+        },
+        {
+            "name": "Östra Storgatan i Kvidinge",
+            "lat": 56.133298631450046,
+            "lng": 13.054133737368847,
+            "description": ""
+        },
+        {
+            "name": "Hyllinge SV",
+            "lat": 56.100735,
+            "lng": 12.856615,
+            "description": ""
+        },
+        {
+            "name": "Högalidshöjden",
+            "lat": 56.09903738445198,
+            "lng": 13.062423259770256,
+            "description": ""
         }
     ]
 }
