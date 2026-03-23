@@ -350,7 +350,7 @@
                     <a href="{{ $post.RelPermalink }}" class="gallery-item" data-species="{{ $speciesData }}"
                         data-month="{{ $monthData }}" data-image-src="{{ $url }}" data-image-alt="{{ $alt }}"
                         title="Läs mer: {{ $post.Title }}">
-                        <img src="{{ $thumbUrl }}" alt="{{ $alt }}" loading="lazy" decoding="async">
+                        <img src="{{ $thumbUrl }}" alt="{{ $alt }}" decoding="async">
                         <div class="gallery-overlay">
                             <span class="gallery-title">{{ $post.Title }}</span>
                             <span class="gallery-date">{{ $post.Date.Format "2 Jan, 2006" }}</span>
@@ -573,13 +573,7 @@
         applyFilters();
         layoutProgressive();
 
-        // After initial render, eagerly preload ALL images in background
-        // so that filter changes are instant (no network wait)
-        setTimeout(() => {
-            grid.querySelectorAll('img[loading="lazy"]').forEach(img => {
-                img.removeAttribute('loading');
-            });
-        }, 1000);
+        // Remove the lazy loading override since we've disabled lazy loading natively
     });
 </script>
 {{ end }}
