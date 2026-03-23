@@ -42,6 +42,13 @@
                     height: auto;
                     display: block;
                     margin: 0;
+                    aspect-ratio: 4 / 3;
+                    object-fit: cover;
+                }
+
+                .gallery-item img.loaded {
+                    aspect-ratio: auto;
+                    object-fit: unset;
                 }
 
                 .gallery-overlay {
@@ -152,6 +159,26 @@
                     padding: 40px;
                     font-style: italic;
                     color: #666;
+                }
+
+                /* Mobilresponsiv filterrad */
+                @media (max-width: 576px) {
+                    .gallery-filter-bar {
+                        flex-direction: column;
+                        align-items: stretch;
+                        gap: 10px;
+                        padding: 12px 14px;
+                    }
+                    .gallery-filter-group {
+                        flex-direction: column;
+                        gap: 8px;
+                    }
+                    .gallery-filter-group label {
+                        margin-left: 0 !important;
+                    }
+                    .gallery-filter-select {
+                        width: 100%;
+                    }
                 }
             </style>
 
@@ -310,7 +337,7 @@
                     <a href="{{ $post.RelPermalink }}" class="gallery-item" data-species="{{ $speciesData }}"
                         data-month="{{ $monthData }}" data-image-src="{{ $url }}" data-image-alt="{{ $alt }}"
                         title="Läs mer: {{ $post.Title }}">
-                        <img src="{{ $url }}" alt="{{ $alt }}" loading="lazy">
+                        <img src="{{ $url }}" alt="{{ $alt }}" loading="lazy" decoding="async">
                         <div class="gallery-overlay">
                             <span class="gallery-title">{{ $post.Title }}</span>
                             <span class="gallery-date">{{ $post.Date.Format "2 Jan, 2006" }}</span>
@@ -486,22 +513,32 @@
             grid.style.height = Math.max(...colHeights) + 'px';
         }
 
-        // Wait for all images to load before laying out
-        function layoutWhenReady() {
+        // Progressive layout: show immediately, refine as images load
+        function layoutProgressive() {
             const imgs = grid.querySelectorAll('img');
             let loaded = 0;
             const total = imgs.length;
-            if (total === 0) { layoutMasonry(); return; }
 
-            function checkDone() {
+            // Initial layout with aspect-ratio fallback
+            layoutMasonry();
+
+            if (total === 0) return;
+
+            function onImageReady(img) {
                 loaded++;
-                if (loaded >= total) layoutMasonry();
+                img.classList.add('loaded');
+                // Re-layout periodically (every 4 images) and on last
+                if (loaded >= total || loaded % 4 === 0) {
+                    layoutMasonry();
+                }
             }
+
             imgs.forEach(img => {
-                if (img.complete) { checkDone(); }
-                else {
-                    img.addEventListener('load', checkDone);
-                    img.addEventListener('error', checkDone);
+                if (img.complete && img.naturalHeight > 0) {
+                    onImageReady(img);
+                } else {
+                    img.addEventListener('load', () => onImageReady(img));
+                    img.addEventListener('error', () => onImageReady(img));
                 }
             });
         }
@@ -521,7 +558,7 @@
 
         // Run once on init
         applyFilters();
-        layoutWhenReady();
+        layoutProgressive();
     });
 </script>
 {{ end }}

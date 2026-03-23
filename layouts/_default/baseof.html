@@ -19,6 +19,9 @@
     {{ $css := resources.Get "css/style.css" | fingerprint }}
     <link rel="stylesheet" href="{{ $css.RelPermalink }}">
 
+    <!-- Prefetch galleri för snabbare laddning vid navigering -->
+    <link rel="prefetch" href="/galleri/" as="document">
+
     <!-- RSS -->
     {{ with .OutputFormats.Get "rss" -}}
     {{ printf `
