@@ -327,6 +327,9 @@
                     {{ $post := .post }}
                     {{ $speciesTags := .species }}
 
+                    {{/* Generate thumbnail URL: /path/image.jpg → /path/image-thumb.jpg */}}
+                    {{ $thumbUrl := replaceRE `\.(jpg|jpeg|png|webp)$` "-thumb.jpg" $url }}
+
                     {{/* Setup data attributes for JavaScript filtering */}}
                     {{ $speciesData := "" }}
                     {{ with $speciesTags }}
@@ -337,7 +340,7 @@
                     <a href="{{ $post.RelPermalink }}" class="gallery-item" data-species="{{ $speciesData }}"
                         data-month="{{ $monthData }}" data-image-src="{{ $url }}" data-image-alt="{{ $alt }}"
                         title="Läs mer: {{ $post.Title }}">
-                        <img src="{{ $url }}" alt="{{ $alt }}" loading="lazy" decoding="async">
+                        <img src="{{ $thumbUrl }}" alt="{{ $alt }}" loading="lazy" decoding="async">
                         <div class="gallery-overlay">
                             <span class="gallery-title">{{ $post.Title }}</span>
                             <span class="gallery-date">{{ $post.Date.Format "2 Jan, 2006" }}</span>
