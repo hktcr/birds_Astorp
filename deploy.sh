@@ -5,7 +5,7 @@
 set -e
 
 echo "🔨 Building Hugo..."
-hugo --minify --cleanDestinationDir
+hugo --minify
 
 echo "📋 Syncing data → docs/data..."
 mkdir -p docs/data
