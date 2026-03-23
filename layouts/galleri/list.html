@@ -559,6 +559,14 @@
         // Run once on init
         applyFilters();
         layoutProgressive();
+
+        // After initial render, eagerly preload ALL images in background
+        // so that filter changes are instant (no network wait)
+        setTimeout(() => {
+            grid.querySelectorAll('img[loading="lazy"]').forEach(img => {
+                img.removeAttribute('loading');
+            });
+        }, 1000);
     });
 </script>
 {{ end }}
