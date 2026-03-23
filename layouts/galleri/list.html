@@ -327,13 +327,18 @@
                     {{ $post := .post }}
                     {{ $speciesTags := .species }}
 
-                    {{/* Generate thumbnail URL with urlize to handle Swedish chars */}}
-                    {{/* Split URL into dir + filename, urlize filename for ASCII-safe thumb */}}
+                    {{/* Generate robust thumbnail URL via base64url encoding of filename */}}
                     {{ $urlNoExt := replaceRE `\.(jpg|jpeg|png|webp)$` "" $url }}
                     {{ $parts := split $urlNoExt "/" }}
                     {{ $filename := index $parts (sub (len $parts) 1) }}
                     {{ $dir := strings.TrimSuffix $filename $urlNoExt }}
-                    {{ $thumbUrl := printf "%s%s-thumb.jpg" $dir (urlize $filename) }}
+                    {{/* Add original extension back before encoding */}}
+                    {{ $extension := replaceRE `.*(\.(jpg|jpeg|png|webp))$` "$1" $url }}
+                    {{ $origFilename := printf "%s%s" $filename $extension }}
+                    
+                    {{/* Base64 encode and make URL-safe (replace + with -, / with _, remove =) */}}
+                    {{ $b64:= $origFilename | base64Encode | replaceRE `\+` "-" | replaceRE `/` "_" | replaceRE `=` "" }}
+                    {{ $thumbUrl := printf "%s%s-thumb-b64.jpg" $dir $b64 }}
 
                     {{/* Setup data attributes for JavaScript filtering */}}
                     {{ $speciesData := "" }}

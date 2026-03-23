@@ -1,7 +1,8 @@
 #!/bin/bash
 # generate-thumbnails.sh — Skapa galleri-thumbnails (800px bredd)
 # Använder macOS sips. Kör före hugo build.
-# OBS: Filnamnen lowercasas för att matcha Hugo urlize-beteende.
+# Filnamn baseras på base64-encodning av originalfilnamnet för att 
+# helt undvika URL-encoding-problem på GitHub Pages med åäö.
 set -e
 
 STATIC_DIR="$(cd "$(dirname "$0")/.." && pwd)/static/images"
@@ -13,23 +14,26 @@ echo "🖼️  Genererar thumbnails (${THUMB_WIDTH}px bredd)..."
 count=0
 skipped=0
 
+# Clean old -thumb files first to ensure we don't leave orphans
+find "$STATIC_DIR" -type f -name "*-thumb-b64.jpg" -delete
+
 # Process all image files in static/images
 find "$STATIC_DIR" -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -o -name "*.webp" \) | while read -r src; do
-    # Skip files that are already thumbnails
-    if [[ "$src" == *"-thumb."* ]]; then
+    # Skip files that are already thumbnails (just in case)
+    if [[ "$src" == *"-thumb-"* ]]; then
         continue
     fi
 
-    # Get directory and filename
     dir=$(dirname "$src")
     basename=$(basename "$src")
     
-    # Remove extension, lowercase the name (match Hugo urlize behavior)
-    name_no_ext="${basename%.*}"
-    name_lower=$(echo "$name_no_ext" | tr '[:upper:]' '[:lower:]')
+    # Base64 encode the filename (URL-safe base64: replace + with -, / with _, remove =)
+    # This guarantees a perfectly ASCII-safe filename that Hugo can match
+    # Note: printf preserves exact string, no newline
+    b64_name=$(printf "%s" "$basename" | base64 | tr '+/' '-_' | tr -d '=' | tr -d '\n')
     
-    # Build thumbnail path with lowercased name
-    thumb="${dir}/${name_lower}-thumb.jpg"
+    # Build new thumbnail path
+    thumb="${dir}/${b64_name}-thumb-b64.jpg"
 
     # Skip if thumbnail already exists and is newer than source
     if [ -f "$thumb" ] && [ "$thumb" -nt "$src" ]; then
@@ -37,7 +41,7 @@ find "$STATIC_DIR" -type f \( -name "*.jpg" -o -name "*.jpeg" -o -name "*.png" -
         continue
     fi
 
-    echo "  → $(basename "$thumb")"
+    echo "  → ${basename} as ${b64_name}-thumb-b64.jpg"
     
     # Copy original, resize with sips, convert to JPEG
     cp "$src" "$thumb"
