@@ -50,6 +50,7 @@ Skriptet kör:
 3. `git add -A && git commit && git push`
 
 **Kör aldrig** `hugo` och `git push` separat — det skapar risk för skew mellan byggtid-data (startsidan) och klient-data (artlista/karta).
+**Pusha heller aldrig** ändringar i `layouts/`, `static/`, eller `content/` rakt upp med vanliga git-kommandon, eftersom GitHub Pages serveras från `docs/`-mappen på main-branchen. Om du inte kör `deploy.sh` så kommer ändringarna finnas i källkoden, men den statiska produktsajten (`docs/`) uppdateras aldrig och visar fortsättningsvis gammal bruten kod!
 
 ---
 
