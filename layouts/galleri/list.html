@@ -419,6 +419,11 @@
             } else {
                 indicator.style.display = 'none';
             }
+
+            // Always call layout after filters apply to reposition elements
+            if (typeof layoutMasonry === 'function') {
+                layoutMasonry();
+            }
         }
 
         speciesSelect.addEventListener('change', applyFilters);
@@ -561,13 +566,6 @@
             clearTimeout(resizeTimer);
             resizeTimer = setTimeout(layoutMasonry, 150);
         });
-
-        // Wrap applyFilters to also re-layout after filtering
-        const origApplyFilters = applyFilters;
-        applyFilters = function() {
-            origApplyFilters();
-            layoutMasonry();
-        };
 
         // Run once on init
         applyFilters();
