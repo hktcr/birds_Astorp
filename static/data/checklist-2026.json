@@ -777,6 +777,14 @@
       "location": "Körslättabäckens våtmarker",
       "lat": 56.093059657874605,
       "lng": 13.065669791540584
+    },
+    {
+      "species": "Skogssnäppa",
+      "latin": "Tringa ochropus",
+      "date": "2026-03-27",
+      "location": "Madkärr, Tomarp",
+      "lat": 56.16336,
+      "lng": 13.06239
     }
   ]
 }
