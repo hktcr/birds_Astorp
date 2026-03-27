@@ -21,4 +21,6 @@ images:
 
 Mindre vattensamlingar ligger kvar på maderna, men på många ställen där det tidigare stod vatten lyser nu tussilagon. Tre skogssnäppor rastade vid Madkärr i dag, vilket innebar årets första för mig i Åstorp.
 
+![Tussilago blommar på maderna](/images/posts/2026-03-27-skogssnappor-vid-madkarr/Madkärr_20260327.jpg)
+
 *Fågelåret i Åstorp, 98/150*
