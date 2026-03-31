@@ -785,6 +785,14 @@
       "location": "Madkärr, Tomarp",
       "lat": 56.16336,
       "lng": 13.06239
+    },
+    {
+      "species": "Rörhöna",
+      "latin": "Gallinula chloropus",
+      "date": "2026-03-30",
+      "location": "Rönnetorpsdammen",
+      "lat": 56.18170,
+      "lng": 13.01696
     }
   ]
 }
