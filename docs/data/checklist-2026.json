@@ -793,6 +793,14 @@
       "location": "Rönnetorpsdammen",
       "lat": 56.18170,
       "lng": 13.01696
+    },
+    {
+      "species": "Järnsparv",
+      "latin": "Prunella modularis",
+      "date": "2026-04-01",
+      "location": "Körslätta mosse",
+      "lat": 56.09125,
+      "lng": 13.05821
     }
   ]
 }

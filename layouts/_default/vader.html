@@ -3,6 +3,17 @@
     <div class="vader-container">
 
         <h1 class="vader-title">{{ .Title }}</h1>
+        <p class="vader-subtitle">Ljus, väder och fältförhållanden</p>
+
+        <!-- ============================================================ -->
+        <!-- DYGNSHJULET — Cirkulär ljusvisualisering -->
+        <!-- ============================================================ -->
+        <div class="dygn-widget">
+            <div class="dygn-wheel-wrap">
+                <canvas id="dygn-canvas"></canvas>
+            </div>
+            <div id="dygn-timetable"></div>
+        </div>
 
         <!-- ============================================================ -->
         <!-- HERO: "Just nu" — full bredd med vind + temperatur -->
@@ -93,21 +104,9 @@
                             </div>
                         </div>
 
-                        <!-- Dagsljus -->
-                        <div class="vader-daylight">
-                            <div class="vader-daylight-title">Dagsljus</div>
-                            <div class="vader-daylight-bar" id="daylight-bar"></div>
-                            <div class="vader-daylight-times">
-                                <div class="vader-daylight-time-row">
-                                    <span class="vader-daylight-icon">↑</span>
-                                    <span id="daylight-sunrise" class="vader-daylight-val">—</span>
-                                    <span class="vader-daylight-sep">→</span>
-                                    <span id="daylight-sunset" class="vader-daylight-val">—</span>
-                                    <span class="vader-daylight-icon">↓</span>
-                                </div>
-                                <div id="daylight-hours" class="vader-daylight-hours">—</div>
-                            </div>
-                            <div class="vader-daylight-twilights" id="daylight-twilights"></div>
+                        </div>
+                        <div class="vader-temp-now-curve-wrap" style="margin-top:var(--space-md); padding-top:var(--space-md); border-top: 1px solid rgba(0,0,0,0.06);">
+                            <canvas id="temp-now-curve" width="300" height="80" style="width:100%; height:80px; display:block;"></canvas>
                         </div>
                     </div>
                 </div>
@@ -239,8 +238,8 @@
             <!-- 6. Maderindikator — experimentell vattenståndsprediktion -->
             <div class="vader-chart-box" id="meadow-indicator" style="display:none;">
                 <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
-                    <div class="vader-chart-label" style="margin:0;">🌊 Förväntad vattennivå — Kungsgårdsmaderna</div>
-                    <span style="background:rgba(120,80,200,0.12); color:#7850c8; font-size:0.7em; font-weight:600; padding:2px 8px; border-radius:10px; letter-spacing:0.03em;">⚗️ Experiment</span>
+                    <div class="vader-chart-label" style="margin:0;">Förväntad vattennivå — Kungsgårdsmaderna</div>
+                    <span style="background:rgba(120,80,200,0.12); color:#7850c8; font-size:0.7em; font-weight:600; padding:2px 8px; border-radius:10px; letter-spacing:0.03em;">Experiment</span>
                 </div>
                 <div id="meadow-level-box" style="border-radius:10px; padding:16px 20px; display:flex; align-items:center; gap:14px; transition: background 0.5s ease;">
                     <div style="display:flex; flex-direction:column; gap:2px;">
@@ -819,20 +818,20 @@
 
                 var rows = [];
                 if (metVarDate) {
-                    rows.push('<tr><td style="padding:1px 8px;">🌱</td><td style="padding:1px 8px;">Meteorologisk vår</td><td style="padding:1px 8px;">' + fmtDate(metVarDate) + '</td></tr>');
+                    rows.push('<tr><td style="padding:1px 8px;color:#8fbc8f;">—</td><td style="padding:1px 8px;">Meteorologisk vår</td><td style="padding:1px 8px;">' + fmtDate(metVarDate) + '</td></tr>');
                 }
                 if (sistaFrost) {
                     var note = provisional ? ' <span style="color:#999;font-size:0.85em;">(hittills)</span>' : '';
-                    rows.push('<tr><td style="padding:1px 8px;">❄️</td><td style="padding:1px 8px;">Senaste frostnatt</td><td style="padding:1px 8px;">' + fmtDate(sistaFrost) + note + '</td></tr>');
+                    rows.push('<tr><td style="padding:1px 8px;color:#5dade2;">—</td><td style="padding:1px 8px;">Senaste frostnatt</td><td style="padding:1px 8px;">' + fmtDate(sistaFrost) + note + '</td></tr>');
                 }
                 if (forstaFrost) {
-                    rows.push('<tr><td style="padding:1px 8px;">🍂</td><td style="padding:1px 8px;">Första höstfrost</td><td style="padding:1px 8px;">' + fmtDate(forstaFrost) + '</td></tr>');
+                    rows.push('<tr><td style="padding:1px 8px;color:#c4a96a;">—</td><td style="padding:1px 8px;">Första höstfrost</td><td style="padding:1px 8px;">' + fmtDate(forstaFrost) + '</td></tr>');
                 }
                 if (metSomDate) {
-                    rows.push('<tr><td style="padding:1px 8px;">☀️</td><td style="padding:1px 8px;">Meteorologisk sommar</td><td style="padding:1px 8px;">' + fmtDate(metSomDate) + '</td></tr>');
+                    rows.push('<tr><td style="padding:1px 8px;color:#f39c12;">—</td><td style="padding:1px 8px;">Meteorologisk sommar</td><td style="padding:1px 8px;">' + fmtDate(metSomDate) + '</td></tr>');
                 }
                 if (metHostDate) {
-                    rows.push('<tr><td style="padding:1px 8px;">🍃</td><td style="padding:1px 8px;">Meteorologisk höst</td><td style="padding:1px 8px;">' + fmtDate(metHostDate) + '</td></tr>');
+                    rows.push('<tr><td style="padding:1px 8px;color:#a0522d;">—</td><td style="padding:1px 8px;">Meteorologisk höst</td><td style="padding:1px 8px;">' + fmtDate(metHostDate) + '</td></tr>');
                 }
 
                 if (rows.length > 0) {
@@ -1109,11 +1108,11 @@
         //   - Mar 18: Fältobs bekräftar "Fuktigt" — fuktig mark, enstaka pölar, mycket små speglar
         //   - Feb 27-Mar 1 flödestoppp (13-15 m³/s) → composite ~10-11 → Stora vattenspeglar
         var levels = [
-            { max: 3.5,  label: 'Torrt',               color: '#c4a96a', emoji: '🟤', detail: 'Maderna är torra eller nästan torra' },
-            { max: 6,    label: 'Fuktigt',              color: '#8fbc8f', emoji: '🟢', detail: 'Fuktig mark, enstaka pölar' },
-            { max: 9,    label: 'Vattenspeglar',         color: '#5dade2', emoji: '🔵', detail: 'Mindre vattenspeglar på maderna' },
-            { max: 14,   label: 'Stora vattenspeglar',   color: '#2980b9', emoji: '🌊', detail: 'Stora vattenspeglar, bra för änder och vadare' },
-            { max: 9999, label: 'Översvämmat',           color: '#1a5276', emoji: '🌊', detail: 'Maderna i stort sett helt under vatten' }
+            { max: 3.5,  label: 'Torrt',               color: '#c4a96a', detail: 'Maderna är torra eller nästan torra' },
+            { max: 6,    label: 'Fuktigt',              color: '#8fbc8f', detail: 'Fuktig mark, enstaka pölar' },
+            { max: 9,    label: 'Vattenspeglar',         color: '#5dade2', detail: 'Mindre vattenspeglar på maderna' },
+            { max: 14,   label: 'Stora vattenspeglar',   color: '#2980b9', detail: 'Stora vattenspeglar, bra för änder och vadare' },
+            { max: 9999, label: 'Översvämmat',           color: '#1a5276', detail: 'Maderna i stort sett helt under vatten' }
         ];
 
         var level = levels[0];
@@ -1136,7 +1135,7 @@
         var arrowEl = document.getElementById('meadow-trend-arrow');
 
         if (box) box.style.background = 'linear-gradient(135deg, ' + level.color + ', ' + level.color + 'cc)';
-        if (labelEl) labelEl.textContent = level.emoji + ' ' + level.label;
+        if (labelEl) labelEl.textContent = level.label;
         if (detailEl) detailEl.textContent = level.detail;
         if (arrowEl) arrowEl.textContent = trendArrow;
 
@@ -1336,6 +1335,12 @@
                     if (elMax) elMax.textContent = maxTemp.toFixed(1) + '°';
                     if (elMin) elMin.textContent = minTemp.toFixed(1) + '°';
                 }
+
+                // Rita dygns-kurva (senaste 24h)
+                var last24h = dayVals
+                    .map(function(v) { return parseFloat(v.value); })
+                    .filter(function(t) { return !isNaN(t); });
+                drawTempSparkline('temp-now-curve', last24h);
             }
         }).catch(function (err) {
             console.warn('Kunde inte hämta temperaturdata:', err);
@@ -1343,6 +1348,122 @@
 
         // Beräkna dagsljus (behöver inga API-anrop)
         buildDaylightWidget();
+    }
+
+    function drawTempSparkline(canvasId, vals) {
+        var canvas = document.getElementById(canvasId);
+        if (!canvas || vals.length === 0) return;
+        var ctx = canvas.getContext('2d');
+        var dpr = window.devicePixelRatio || 1;
+        var rect = canvas.parentElement.getBoundingClientRect();
+        var w = rect.width || 300;
+        var h = 80;
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        canvas.style.width = w + 'px';
+        canvas.style.height = h + 'px';
+        ctx.scale(dpr, dpr);
+
+        var padL = 26; // Plats för textetiketter (skala)
+        var padT = 10;
+        var padB = 10;
+        var chartW = w - padL - 6; // Högermarginal för punkt
+        var chartH = h - padT - padB;
+
+        var min = Math.min.apply(null, vals);
+        var max = Math.max.apply(null, vals);
+        
+        // Avrunda skalan för snyggare nätverk (inkludera nollan snyggt)
+        min = Math.floor(min) - 1;
+        max = Math.ceil(max) + 1;
+        
+        var range = max - min;
+        if (range === 0) range = 1;
+
+        // Rita hjälplinjer och skalor (y-axel)
+        ctx.textAlign = 'right';
+        ctx.textBaseline = 'middle';
+        ctx.font = '10px Inter, sans-serif';
+        
+        // Definiera lagom tick-intervall (ex 5 grader)
+        var stepTick = range > 15 ? 10 : 5;
+        if (range <= 8) stepTick = 2; // Extra upplösning för låg dygnsamplitud
+        
+        var startTick = Math.floor(min / stepTick) * stepTick;
+        for(var t = startTick; t <= max; t += stepTick) {
+            var y = padT + chartH - ((t - min) / range) * chartH;
+            
+            // Hjälplinje (grid)
+            ctx.beginPath();
+            ctx.moveTo(padL, y);
+            ctx.lineTo(w - 6, y);
+            if (t === 0) {
+                // Den magiska noll-linjen
+                ctx.strokeStyle = 'rgba(52, 152, 219, 0.4)';
+                ctx.lineWidth = 1;
+                ctx.setLineDash([]);
+            } else {
+                ctx.strokeStyle = 'rgba(0,0,0,0.06)';
+                ctx.lineWidth = 1;
+                ctx.setLineDash([4, 4]);
+            }
+            ctx.stroke();
+            ctx.setLineDash([]); // Återställ linjedash
+            
+            // Textetikett
+            ctx.fillStyle = '#999';
+            var prefix = t > 0 ? '+' : '';
+            ctx.fillText(prefix + t + '°', padL - 4, y);
+        }
+
+        var step = chartW / Math.max(1, vals.length - 1);
+        var points = vals.map(function(v, i) {
+            return {
+                x: padL + i * step,
+                y: padT + chartH - ((v - min) / range) * chartH
+            };
+        });
+        
+        ctx.beginPath();
+        // Rita en mjuk spline/bezier-kurva istället för raka linjer
+        ctx.moveTo(points[0].x, points[0].y);
+        for (var i = 0; i < points.length - 1; i++) {
+            var curr = points[i];
+            var next = points[i + 1];
+            var xc = (curr.x + next.x) / 2;
+            var yc = (curr.y + next.y) / 2;
+            ctx.quadraticCurveTo(curr.x, curr.y, xc, yc);
+        }
+        // Rita ut till sista punkten
+        var last = points[points.length - 1];
+        ctx.quadraticCurveTo(points[points.length - 2].x, points[points.length - 2].y, last.x, last.y);
+        
+        ctx.strokeStyle = '#D9A84A'; // Varm orange
+        ctx.lineWidth = 2;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.stroke();
+
+        // Skapa övertoning (fyllning under kurvan)
+        var gradient = ctx.createLinearGradient(0, padT, 0, padT + chartH);
+        gradient.addColorStop(0, 'rgba(217, 168, 74, 0.25)');
+        gradient.addColorStop(1, 'rgba(217, 168, 74, 0.0)');
+        
+        // Fyll ytan under kurvan ner till grafens botten
+        ctx.lineTo(last.x, padT + chartH);
+        ctx.lineTo(points[0].x, padT + chartH);
+        ctx.closePath();
+        ctx.fillStyle = gradient;
+        ctx.fill();
+
+        // Rita ändpunkten (aktuellt värde "nu")
+        ctx.beginPath();
+        ctx.fillStyle = '#D9A84A';
+        ctx.arc(last.x, last.y, 4.5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.lineWidth = 1.5;
+        ctx.strokeStyle = '#fff';
+        ctx.stroke();
     }
 
     // ================================================================
@@ -2629,4 +2750,5 @@
     buildBlogDropdown();
 
 </script>
+<script src="/js/twilight.js?v={{ now.Unix }}" defer></script>
 {{ end }}

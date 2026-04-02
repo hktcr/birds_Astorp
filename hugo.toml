@@ -29,7 +29,7 @@ publishDir = 'docs'
     pageRef = '/artguide/'
     weight = 25
   [[menus.main]]
-    name = 'Väder'
+    name = 'Horisonten'
     pageRef = '/vader/'
     weight = 27
   [[menus.main]]
