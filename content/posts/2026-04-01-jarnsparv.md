@@ -19,9 +19,9 @@ images:
       - Landskap
 ---
 
-Ljudmattan ute i markerna blir tätare för varje dag nu. Mesarna har sjungit länge, kungsfåglarna trappar upp, och nu fyller trastarna skogen med sång: koltrast, rödvingetrast, taltrast och dubbeltrast stämmer in. Jag visste att de första järnsparvarna borde finnas på plats och lyssnade medvetet efter dem. Aprils första dag gav utdelning. I en kort paus mellan trastarnas kraftfulla sång hördes den plötsligt på lite håll: järnsparvens fina, snabba spelfras gick fram klart och tydligt. Art nummer hundra för året var därmed i hamn.
+Ljudmattan ute i markerna blir tätare för varje dag nu. Mesarna har sjungit länge, kungsfåglarna trappar upp, och nu fyller trastarna skogen med sång: koltrast, rödvingetrast, taltrast och dubbeltrast stämmer in. Jag visste att de första järnsparvarna borde finnas på plats och lyssnade medvetet efter dem. Aprils första dag gav utdelning. I en kort paus mellan trastarnas kraftfulla sång hördes den på lite håll: järnsparvens fina, snabba spelfras gick fram klart och tydligt. Art nummer hundra för året var därmed i hamn.
 
-Jag bestämde mig för att gena tvärs över Körslätta mosse. Med bra stövlar går det oftast, men det krävde ändå försiktiga steg då vattendjupet utmanade skafthöjden på flera ställen. Plötsligt fick stegen bli ännu försiktigare. Åkergrodorna var redan i full färd med sin lek, och stora samlingar av nylagd grodrom låg guppande i vattnet bland tuvorna.
+Jag bestämde mig för att gena tvärs över Körslätta mosse. Med bra stövlar går det oftast, men det krävde ändå försiktiga steg då vattendjupet utmanade skafthöjden på flera ställen. Snart fick stegen bli ännu försiktigare. Åkergrodorna var redan i full färd med sin lek, och stora samlingar av nylagd grodrom låg guppande i vattnet bland tuvorna.
 
 ![Grodrom på Körslätta mosse, 1 april 2026](/images/posts/2026-04-01-jarnsparv/korslatta_mosse_20260401.jpg)
 
