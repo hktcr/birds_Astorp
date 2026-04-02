@@ -393,8 +393,7 @@
         var dayMs = (times.sunset && times.sunrise) ? times.sunset - times.sunrise : 0;
         var dayH = Math.floor(dayMs / 3600000);
         var dayM = Math.floor((dayMs % 3600000) / 60000);
-        
-        html += '<div class="dygn-day-summary" style="display:flex; justify-content:space-between; align-items:baseline; border-bottom: 1px solid rgba(0,0,0,0.06); margin-bottom:var(--space-md); padding-bottom:8px;">';
+        html += '<div class="dygn-day-summary" style="width:100%; display:flex; flex-wrap:wrap; gap:var(--space-sm); justify-content:space-between; align-items:baseline; border-bottom: 1px solid rgba(0,0,0,0.06); margin-bottom:var(--space-md); padding-bottom:8px;">';
         html += '<div style="font-family:var(--font-heading); font-size:var(--text-lg); font-weight:700; color:var(--color-primary-dark);">' + dayH + 'h ' + dayM + 'm <span style="font-size:var(--text-xs); color:var(--color-text-muted); font-weight:600; text-transform:uppercase; letter-spacing:0.04em;">dagsljus</span></div>';
         if (times.solarNoon) {
             html += '<div style="font-family:var(--font-heading); font-size:var(--text-xs); font-weight:600; color:var(--color-text-muted); text-transform:uppercase; letter-spacing:0.04em;">Solen högst: <span style="color:var(--color-text); font-size:var(--text-sm);">' + fmtTime(times.solarNoon) + '</span></div>';
@@ -402,7 +401,7 @@
         html += '</div>';
 
         // 2-kolumn layout för Gryning och Skymning
-        html += '<div class="dygn-twilight-cols" style="display:grid; grid-template-columns:1fr 1fr; gap:var(--space-md); margin-bottom:var(--space-md);">';
+        html += '<div class="dygn-twilight-cols" style="display:grid; grid-template-columns:1fr 1fr; gap:var(--space-lg); margin-bottom:var(--space-md); width:100%;">';
 
         // Vänsterkolumn: Gryning
         html += '<div class="dygn-section" style="margin-bottom:0;">';
@@ -431,21 +430,20 @@
         html += '<span class="dygn-location">' + currentName;
         html += ' <span class="dygn-coords">(' + currentLat.toFixed(2) + ' N, ' + currentLng.toFixed(2) + ' E)</span>';
         html += '</span>';
+        
+        html += '<div style="display:flex; gap:8px; margin-top:8px;">';
         html += '<button id="dygn-gps-btn" class="dygn-gps-btn">Uppdatera plats</button>';
-        if (currentName !== DEFAULT_NAME) {
-            html += '<button id="dygn-reset-btn" class="dygn-reset-btn">Aterstall</button>';
-        }
         html += '<button id="dygn-info-btn" class="dygn-reset-btn" style="color:var(--color-primary); border-color:var(--color-primary-light); background:rgba(43,90,43,0.02);">F\u00f6rklaring</button>';
         html += '</div>';
 
+        html += '</div>';
+        
         html += '</div>';
         container.innerHTML = html;
 
         // Binda knappar
         var gpsBtn = document.getElementById('dygn-gps-btn');
         if (gpsBtn) gpsBtn.addEventListener('click', requestGPS);
-        var resetBtn = document.getElementById('dygn-reset-btn');
-        if (resetBtn) resetBtn.addEventListener('click', resetToDefault);
         var infoBtn = document.getElementById('dygn-info-btn');
         if (infoBtn) infoBtn.addEventListener('click', toggleInfoModal);
     }
