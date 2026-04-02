@@ -88,26 +88,29 @@
                 <!-- TEMPERATUR-KORT -->
                 <div class="vader-now-card">
                     <div class="vader-now-card-title">Temperatur</div>
-                    <div class="vader-temp-now-main">
-                        <div class="vader-temp-now-current">
-                            <span id="temp-now-value" class="vader-temp-now-val">—</span>
-                            <span class="vader-temp-now-unit">°C</span>
-                        </div>
-                        <div class="vader-temp-now-range">
-                            <div class="vader-temp-now-range-item">
-                                <span class="vader-temp-now-range-label">Idag max</span>
-                                <span id="temp-now-max" class="vader-temp-now-range-val vader-temp-warm">—</span>
+                    <div class="vader-temp-now-main" style="display:flex; flex-direction:row; align-items:flex-end; justify-content:space-between; width:100%; gap:var(--space-lg);">
+                        
+                        <div class="vader-temp-now-left" style="display:flex; flex-direction:column; align-items:flex-start; gap:4px; padding-bottom:8px;">
+                            <div class="vader-temp-now-current">
+                                <span id="temp-now-value" class="vader-temp-now-val">—</span>
+                                <span class="vader-temp-now-unit">°C</span>
                             </div>
-                            <div class="vader-temp-now-range-item">
-                                <span class="vader-temp-now-range-label">Idag min</span>
-                                <span id="temp-now-min" class="vader-temp-now-range-val vader-temp-cool">—</span>
+                            <div class="vader-temp-now-range" style="justify-content:flex-start; margin-top:2px;">
+                                <div class="vader-temp-now-range-item">
+                                    <span class="vader-temp-now-range-label">Idag max</span>
+                                    <span id="temp-now-max" class="vader-temp-now-range-val vader-temp-warm">—</span>
+                                </div>
+                                <div class="vader-temp-now-range-item">
+                                    <span class="vader-temp-now-range-label">Idag min</span>
+                                    <span id="temp-now-min" class="vader-temp-now-range-val vader-temp-cool">—</span>
+                                </div>
                             </div>
                         </div>
 
-                        </div>
-                        <div class="vader-temp-now-curve-wrap" style="margin-top:var(--space-md); padding-top:var(--space-md); border-top: 1px solid rgba(0,0,0,0.06);">
+                        <div class="vader-temp-now-curve-wrap" style="flex:1; min-width:0;">
                             <canvas id="temp-now-curve" width="300" height="80" style="width:100%; height:80px; display:block;"></canvas>
                         </div>
+
                     </div>
                 </div>
             </div>

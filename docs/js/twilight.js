@@ -389,31 +389,42 @@
 
         var html = '<div class="dygn-timetable">';
 
-        // Gryning-sektion
-        html += '<div class="dygn-section">';
-        html += '<div class="dygn-section-label">Gryning</div>';
-        for (var i = 0; i < 4; i++) {
-            html += renderRow(rows[i], now);
-        }
-        html += '</div>';
-
-        // Dag-sektion
-        html += '<div class="dygn-section">';
-        html += '<div class="dygn-section-label">Dag</div>';
-        html += renderRow(rows[4], now);
+        // Dag-information (Dagsljuslängd & Zenithöjd)
         var dayMs = (times.sunset && times.sunrise) ? times.sunset - times.sunrise : 0;
         var dayH = Math.floor(dayMs / 3600000);
         var dayM = Math.floor((dayMs % 3600000) / 60000);
-        html += '<div class="dygn-daylight-total">' + dayH + ' h ' + dayM + ' min dagsljus</div>';
-        html += '</div>';
-
-        // Skymning-sektion
-        html += '<div class="dygn-section">';
-        html += '<div class="dygn-section-label">Skymning</div>';
-        for (var j = 5; j < 9; j++) {
-            html += renderRow(rows[j], now);
+        
+        html += '<div class="dygn-day-summary" style="display:flex; justify-content:space-between; align-items:baseline; border-bottom: 1px solid rgba(0,0,0,0.06); margin-bottom:var(--space-md); padding-bottom:8px;">';
+        html += '<div style="font-family:var(--font-heading); font-size:var(--text-lg); font-weight:700; color:var(--color-primary-dark);">' + dayH + 'h ' + dayM + 'm <span style="font-size:var(--text-xs); color:var(--color-text-muted); font-weight:600; text-transform:uppercase; letter-spacing:0.04em;">dagsljus</span></div>';
+        if (times.solarNoon) {
+            html += '<div style="font-family:var(--font-heading); font-size:var(--text-xs); font-weight:600; color:var(--color-text-muted); text-transform:uppercase; letter-spacing:0.04em;">Solen högst: <span style="color:var(--color-text); font-size:var(--text-sm);">' + fmtTime(times.solarNoon) + '</span></div>';
         }
         html += '</div>';
+
+        // 2-kolumn layout för Gryning och Skymning
+        html += '<div class="dygn-twilight-cols" style="display:grid; grid-template-columns:1fr 1fr; gap:var(--space-md); margin-bottom:var(--space-md);">';
+
+        // Vänsterkolumn: Gryning
+        html += '<div class="dygn-section" style="margin-bottom:0;">';
+        html += '<div class="dygn-section-label">Gryning</div>';
+        for (var i = 0; i <= 3; i++) {
+            var rowData = Object.assign({}, rows[i]);
+            rowData.label = rowData.label.replace(' gryning', '');
+            html += renderRow(rowData, now);
+        }
+        html += '</div>';
+
+        // Högerkolumn: Skymning
+        html += '<div class="dygn-section" style="margin-bottom:0;">';
+        html += '<div class="dygn-section-label">Skymning</div>';
+        for (var j = 5; j <= 8; j++) {
+            var rowData = Object.assign({}, rows[j]);
+            rowData.label = rowData.label.replace(' skymning', '');
+            html += renderRow(rowData, now);
+        }
+        html += '</div>';
+
+        html += '</div>'; // End cols
 
         // Plats + GPS
         html += '<div class="dygn-footer">';
@@ -469,25 +480,25 @@
             content.style.boxShadow = '0 10px 40px rgba(0,0,0,0.2)';
             
             content.innerHTML = 
-                '<h3 style="margin-top:0; margin-bottom:var(--space-md); color:var(--color-primary-dark); font-family:var(--font-heading); font-size:1.4rem;">Fältförhållanden & Ljus</h3>' +
-                '<p style="font-size:15px; line-height:1.6; color:var(--color-text); margin-bottom:var(--space-lg);">Ljuset styr fåglarnas beteende mer än klockan. Här är vad de olika gränserna innebär i fält:</p>' +
+                '<h3 style="margin-top:0; margin-bottom:var(--space-md); color:var(--color-primary-dark); font-family:var(--font-heading); font-size:1.4rem;">Definition av ljusfaser</h3>' +
+                '<p style="font-size:15px; line-height:1.6; color:var(--color-text); margin-bottom:var(--space-lg);">De formella atmosfäriska och astronomiska definitionerna för solens depression under horisonten och dess ekologiska gränsvärden.</p>' +
                 
                 '<div style="margin-bottom:var(--space-md);">' +
                 '<span style="display:inline-block; width:12px; height:12px; background:#e8a87c; border-radius:50%; margin-right:8px; transform:translateY(1px);"></span>' +
-                '<strong style="color:var(--color-text);">Borgerlig skymning/gryning</strong> (Solvinkel 0° till -6°)<br>' +
-                '<span style="font-size:14px; color:var(--color-text-muted); display:inline-block; margin-top:4px; line-height:1.5;">Ljuset räcker för att läsa och man kan skåda utan tub. Färger syns bra. Detta är den magiska timmen där småfåglarnas morgonkör ("dawn chorus") är som intensivast.</span>' +
+                '<strong style="color:var(--color-text);">Borgerlig skymning/gryning</strong> (0° till -6°)<br>' +
+                '<span style="font-size:14px; color:var(--color-text-muted); display:inline-block; margin-top:4px; line-height:1.5;">Solens geometriska medelpunkt befinner sig från 0° till -6° under horisonten. Atmosfärisk diffusion (främst Rayleigh-spridning) resulterar i en markbelysning som överstiger ~3 lux, vilket möjliggör fullt färgseende hos ögat. Utgör den fototaktiska tröskeln för aktivering av dagsaktiva tättingar ("dawn chorus").</span>' +
                 '</div>' +
                 
                 '<div style="margin-bottom:var(--space-md);">' +
                 '<span style="display:inline-block; width:12px; height:12px; background:#4a6fa5; border-radius:50%; margin-right:8px; transform:translateY(1px);"></span>' +
-                '<strong style="color:var(--color-text);">Nautisk skymning/gryning</strong> (Solvinkel -6° till -12°)<br>' +
-                '<span style="font-size:14px; color:var(--color-text-muted); display:inline-block; margin-top:4px; line-height:1.5;">Horisonten kan anas men landskapet är mörkt. Färgseendet slutar fungera. Bästa tiden för nattaktiva arter: ugglor ropar aktivt, morkullor drar och nattskärror spelas in.</span>' +
+                '<strong style="color:var(--color-text);">Nautisk skymning/gryning</strong> (-6° till -12°)<br>' +
+                '<span style="font-size:14px; color:var(--color-text-muted); display:inline-block; margin-top:4px; line-height:1.5;">Solens medelpunkt befinner sig mellan -6° och -12° under horisonten. Geometrin gör att horisontlinjen precis kan urskiljas mot himlen, medan markbelysningen sjunker till intervallen 0.01 – 3 lux. Detta skapar strikt monokromatisk belysning där färgseende upphör. Utgör övergångszonen för skymningsaktiva arter.</span>' +
                 '</div>' +
                 
                 '<div style="margin-bottom:var(--space-lg);">' +
                 '<span style="display:inline-block; width:12px; height:12px; background:#2d3561; border-radius:50%; margin-right:8px; transform:translateY(1px);"></span>' +
-                '<strong style="color:var(--color-text);">Astronomisk skymning/gryning</strong> (Solvinkel -12° till -18°)<br>' +
-                '<span style="font-size:14px; color:var(--color-text-muted); display:inline-block; margin-top:4px; line-height:1.5;">Biologiskt mörker ("natt"). Inget störtljus från solen vid horisonten. Nattsträck av fågel kan höras som lockläten i skyn. De allra mest mörkeraktiva ugglorna kan roppa, men gryningsaktiviteten ligger vilande.</span>' +
+                '<strong style="color:var(--color-text);">Astronomisk skymning/gryning</strong> (-12° till -18°)<br>' +
+                '<span style="font-size:14px; color:var(--color-text-muted); display:inline-block; margin-top:4px; line-height:1.5;">Solvinkel mellan -12° och -18°. Endast de allra högsta atmosfärskikten nås av solens strålar, och markbelysningen understiger 0.01 lux. Utgör gränsen för fullständigt himmelsmörker. Ekologiskt representerar detta den absoluta dvalan för dagsaktiva system.</span>' +
                 '</div>' +
                 
                 '<button id="dygn-info-close" style="padding:10px 20px; font-weight:600; background:var(--color-primary); color:#fff; border:none; border-radius:var(--radius-full); font-family:var(--font-heading); cursor:pointer; width:100%;">Stäng</button>';
