@@ -45,14 +45,6 @@ publishDir = 'docs'
     pageRef = '/karta/'
     weight = 20
   [[menus.main]]
-    name = 'Råkor'
-    pageRef = '/rakor/'
-    weight = 35
-  [[menus.main]]
-    name = 'Råkor (Admin)'
-    pageRef = '/rakor-admin/'
-    weight = 36
-  [[menus.main]]
     name = 'Om'
     pageRef = '/om/'
     weight = 40
