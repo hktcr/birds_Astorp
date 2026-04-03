@@ -1,0 +1,2612 @@
+{{ define "main" }}
+<section class="vader-page">
+    <div class="vader-container">
+
+        <h1 class="vader-title">{{ .Title }}</h1>
+        <p class="vader-subtitle">Ljus, väder och fältförhållanden</p>
+
+
+
+        <!-- Introtext (under hero) -->
+        <div class="vader-intro">
+            {{ .Content }}
+        </div>
+
+
+
+        <!-- Tidsperiod-väljare (segmented control) -->
+        <div class="vader-time-bar" id="vader-time-bar">
+            <div class="vader-time-segments">
+                <button class="vader-time-btn" data-mode="24h">24 h</button>
+                <button class="vader-time-btn active" data-mode="14d">14 dagar</button>
+                <div class="vader-time-month-group">
+                    <button class="vader-time-btn" data-mode="month">Månad ▾</button>
+                    <select id="vader-month-select" class="vader-month-dropdown" style="display:none;">
+                        <option value="2026-01">Januari</option>
+                        <option value="2026-02">Februari</option>
+                        <option value="2026-03">Mars</option>
+                        <option value="2026-04">April</option>
+                        <option value="2026-05">Maj</option>
+                        <option value="2026-06">Juni</option>
+                        <option value="2026-07">Juli</option>
+                        <option value="2026-08">Augusti</option>
+                        <option value="2026-09">September</option>
+                        <option value="2026-10">Oktober</option>
+                        <option value="2026-11">November</option>
+                        <option value="2026-12">December</option>
+                    </select>
+                </div>
+                <button class="vader-time-btn" data-mode="all">Hela året</button>
+            </div>
+        </div>
+
+        <!-- Mini-nav för snabb scroll -->
+        <div class="vader-chart-nav" id="vader-chart-nav">
+            <a href="#chart-wind" class="vader-chart-nav-link">Komponenter</a>
+            <a href="#chart-temp-delta" class="vader-chart-nav-link">ΔT Temp</a>
+            <a href="#chart-wind-delta" class="vader-chart-nav-link">ΔW Vind</a>
+            <a href="#meadow-indicator" class="vader-chart-nav-link">Maderna</a>
+        </div>
+
+        <!-- Kvintett: fem diagram vertikalt -->
+        <div class="vader-triptych">
+
+            <!-- 2. Vindkomponenter -->
+            <div class="vader-chart-box" id="chart-wind">
+                <div class="vader-chart-label">Vindkomponenter</div>
+                <canvas id="wind-chart"></canvas>
+                <p class="vader-chart-hint">Staplar uppåt = vind från norr/öst. Staplar nedåt = vind från söder/väst.
+                    Högre stapel = starkare vind från den riktningen.</p>
+                <div class="vader-chart-source">SMHI, Helsingborg A (16 km sydväst om Åstorp)</div>
+            </div>
+
+            <!-- ΔW vindskifte — kopplingsremsa -->
+            <div class="vader-chart-box vader-delta-strip" id="chart-wind-delta">
+                <canvas id="wind-delta-chart"></canvas>
+                <div class="vader-chart-hint" style="text-align:center; margin-top:2px;">
+                    Vindskifte (ΔW = |ΔN↔S| + |ΔÖ↔V|, skala 0–12 m/s)<br>
+                    <span style="color:#e0e0e0;">■</span> stabilt (<3) ·
+                    <span style="color:#FFB830;">■</span> frontal aktivitet (3–8) ·
+                    <span style="color:#DC3228;">■</span> abrupt skifte (>8) — kan sätta arter i rörelse
+                </div>
+            </div>
+
+
+
+            <!-- Fenologisk temperaturremsa — kopplingsremsa -->
+            <div class="vader-chart-box vader-delta-strip" id="chart-temp-delta">
+                <canvas id="temp-delta-chart"></canvas>
+                <div class="vader-chart-hint" style="text-align:center; margin-top:2px;">
+                    Fenologisk temperatur — ekologisk karaktär per dygn<br>
+                    <span id="phenology-legend"></span>
+                </div>
+                <div id="phenology-milestones" style="display:none; margin-top:6px;"></div>
+            </div>
+
+
+
+            <!-- 5. Vattenföring -->
+            <div class="vader-chart-box" id="chart-flow">
+                <div class="vader-chart-label">Vattenföring</div>
+                <canvas id="flow-chart"></canvas>
+                <p class="vader-chart-hint">Diagrammet visar vattenföringen (m³/s) vid Forsmöllan i Rönne å. Det visar inte det exakta vattenflödet, eller vattenståndet på maderna, i Åstorps kommun men fungerar förmodligen väl som en indikator för vattenläget eftersom hela åsystemet reagerar på liknande nederbörds- och flödesmönster.</p>
+                <div class="vader-chart-source">SMHI, Forsmöllan, Rönne å (15 km öster om Åstorp)</div>
+            </div>
+
+            <!-- 6. Maderindikator — experimentell vattenståndsprediktion -->
+            <div class="vader-chart-box" id="meadow-indicator" style="display:none;">
+                <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+                    <div class="vader-chart-label" style="margin:0;">Förväntad vattennivå — Kungsgårdsmaderna</div>
+                    <span style="background:rgba(120,80,200,0.12); color:#7850c8; font-size:0.7em; font-weight:600; padding:2px 8px; border-radius:10px; letter-spacing:0.03em;">Experiment</span>
+                </div>
+                <div id="meadow-level-box" style="border-radius:10px; padding:16px 20px; display:flex; align-items:center; gap:14px; transition: background 0.5s ease;">
+                    <div style="display:flex; flex-direction:column; gap:2px;">
+                        <span id="meadow-level-label" style="font-size:1.2em; font-weight:700; color:#fff; text-shadow:0 1px 3px rgba(0,0,0,0.3);">Laddar…</span>
+                        <span id="meadow-level-detail" style="font-size:0.85em; color:rgba(255,255,255,0.85);"></span>
+                    </div>
+                    <span id="meadow-trend-arrow" style="font-size:1.6em; margin-left:auto; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.2));"></span>
+                </div>
+                <p class="vader-chart-hint" style="margin-top:8px; font-style:italic;">Experimentell uppskattning baserad på 14-dagars glidande medelvärde av vattenföringen vid Forsmöllan, viktat mot 14 dagars kumulativ nederbörd. Korrelationen med den faktiska vattennivån på maderna är ännu under kalibrering.</p>
+            </div>
+        </div>
+
+    </div>
+</section>
+{{ end }}
+
+{{ define "scripts" }}
+<script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
+<script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3"></script>
+<script>
+    var YEAR_GOAL = 150;
+
+    // Observationsdata (inbäddad vid byggtid)
+    var data = {{ index .Site.Data "checklist-2026" | jsonify | safeJS }};
+
+    // Bloggposter (inbäddad vid byggtid)
+    var blogPosts = [
+        {{ range $i, $p:= (where .Site.RegularPages "Section" "posts") }}
+        {{ if not .Draft }}
+        { date: "{{ .Date.Format "2006-01-02" }}", title: "{{ .Title }}", url: "{{ .RelPermalink }}", excerpt: {{ .Plain | truncate 200 | jsonify }} },
+        {{ end }}
+        {{ end }}
+    ];
+
+    // SMHI-stationer
+    var STATION_TEMP = 62040;   // Helsingborg A (param 19 & 20)
+    var STATION_PRECIP = 62060; // Åstorp (param 5)
+    var STATION_FLOW = 2372;    // Forsmöllans KRV, Rönne å (vattenföring)
+
+    // ================================================================
+    // Gemensam färgfunktion för gradientremsor (ΔT och ΔW)
+    // Vit → Cream → Gul → Orange → Röd
+    // ================================================================
+    function deltaColor(ratio) {
+        // 4-stegs interpolation med mjuka övergångar
+        var stops = [
+            { at: 0.00, r: 255, g: 255, b: 255 },  // Vit
+            { at: 0.25, r: 255, g: 248, b: 220 },  // Cream / ljusgul
+            { at: 0.50, r: 255, g: 200, b:  50 },  // Gul
+            { at: 0.75, r: 255, g: 130, b:  30 },  // Orange
+            { at: 1.00, r: 220, g:  50, b:  40 }   // Röd
+        ];
+        ratio = Math.max(0, Math.min(1, ratio));
+        var i = 0;
+        for (var s = 1; s < stops.length; s++) {
+            if (ratio <= stops[s].at) { i = s - 1; break; }
+        }
+        if (ratio >= 1) i = stops.length - 2;
+        var a = stops[i], b2 = stops[i + 1];
+        var t = (ratio - a.at) / (b2.at - a.at);
+        var r = Math.round(a.r + t * (b2.r - a.r));
+        var g = Math.round(a.g + t * (b2.g - a.g));
+        var bv = Math.round(a.b + t * (b2.b - a.b));
+        return 'rgb(' + r + ',' + g + ',' + bv + ')';
+    }
+
+    // Gemensam x-axelkonfiguration
+    var timeScaleConfig = {
+        type: 'time',
+        time: {
+            unit: 'month',
+            displayFormats: { month: 'MMM' },
+            tooltipFormat: 'd MMM yyyy'
+        },
+        min: '2026-01-01',
+        max: '2026-12-31',
+        grid: {
+            color: 'rgba(0,0,0,0.06)',
+            drawTicks: false
+        },
+        border: { dash: [4, 4] },
+        ticks: {
+            font: { family: 'Inter', size: 11 },
+            color: '#666'
+        }
+    };
+
+    // Beräkna rätt tidsaxel-enhet beroende på datumintervall
+    function timeUnitForRange(fromDate, toDate) {
+        if (!fromDate || !toDate) return { unit: 'month', displayFormats: { month: 'MMM' } };
+        var days = Math.round((new Date(toDate) - new Date(fromDate)) / 86400000) + 1;
+        if (days <= 31) {
+            return { unit: 'day', displayFormats: { day: 'd MMM' } };
+        }
+        return { unit: 'month', displayFormats: { month: 'MMM' } };
+    }
+
+    // ================================================================
+    // CHART 1: Artprogress
+    // ================================================================
+    function buildProgressChart() {
+        var canvas = document.getElementById('progress-chart');
+        if (!canvas || !data || !data.observations) return;
+
+        var seen = {};
+        var cumulative = [];
+        var sorted = data.observations.slice().sort(function (a, b) {
+            return a.date < b.date ? -1 : a.date > b.date ? 1 : 0;
+        });
+        sorted.forEach(function (obs) {
+            if (!seen[obs.species]) {
+                seen[obs.species] = true;
+                cumulative.push({ x: obs.date, y: Object.keys(seen).length });
+            }
+        });
+
+        // Förläng linjen till idag
+        var today = new Date().toISOString().slice(0, 10);
+        if (cumulative.length > 0 && cumulative[cumulative.length - 1].x < today) {
+            cumulative.push({ x: today, y: cumulative[cumulative.length - 1].y });
+        }
+
+        var startDate = cumulative.length > 0 ? cumulative[0].x : '2026-01-22';
+
+        new Chart(canvas, {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: 'Antal arter',
+                    data: cumulative,
+                    borderColor: '#2B6A4F',
+                    backgroundColor: function (ctx) {
+                        var chart = ctx.chart;
+                        var area = chart.chartArea;
+                        if (!area) return 'rgba(43, 106, 79, 0.08)';
+                        var gradient = chart.ctx.createLinearGradient(0, area.top, 0, area.bottom);
+                        gradient.addColorStop(0, 'rgba(43, 106, 79, 0.12)');
+                        gradient.addColorStop(1, 'rgba(43, 106, 79, 0.01)');
+                        return gradient;
+                    },
+                    borderWidth: 2.5,
+                    fill: true,
+                    tension: 0.3,
+                    pointRadius: 0,
+                    pointHitRadius: 10
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                aspectRatio: window.innerWidth < 600 ? 1.6 : 2.5,
+                scales: {
+                    x: JSON.parse(JSON.stringify(timeScaleConfig)),
+                    y: {
+                        min: 0,
+                        max: 170,
+                        grid: { color: 'rgba(0,0,0,0.04)', drawTicks: false },
+                        ticks: {
+                            stepSize: 25,
+                            font: { family: 'Inter', size: 11 },
+                            color: '#666'
+                        }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        backgroundColor: 'rgba(30,66,32,0.9)',
+                        titleFont: { family: 'Inter' },
+                        bodyFont: { family: 'Inter' },
+                        callbacks: {
+                            label: function (ctx) { return ctx.parsed.y + ' arter'; }
+                        }
+                    },
+                    annotation: {
+                        annotations: {
+                            goalLine: {
+                                type: 'line',
+                                yMin: YEAR_GOAL,
+                                yMax: YEAR_GOAL,
+                                borderColor: 'rgba(43, 106, 79, 0.35)',
+                                borderWidth: 1.5,
+                                borderDash: [6, 4],
+                                label: {
+                                    display: true,
+                                    content: 'Mål: ' + YEAR_GOAL + ' arter',
+                                    position: 'end',
+                                    backgroundColor: 'rgba(43, 106, 79, 0.8)',
+                                    color: '#fff',
+                                    font: { family: 'Inter', size: 11, weight: '500' },
+                                    padding: { top: 3, bottom: 3, left: 6, right: 6 },
+                                    borderRadius: 4
+                                }
+                            },
+                            startPoint: {
+                                type: 'point',
+                                xValue: startDate,
+                                yValue: 1,
+                                radius: 5,
+                                backgroundColor: '#2B6A4F',
+                                borderColor: '#fff',
+                                borderWidth: 2
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    // ================================================================
+    // CHART 2: Temperatur — dag-max (orange) & natt-min (blå)
+    // ================================================================
+    function fetchSMHI(param, station) {
+        var url = 'https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/' +
+            param + '/station/' + station + '/period/latest-months/data.json';
+        return fetch(url).then(function (r) { return r.json(); });
+    }
+
+    function buildTempChart() {
+        Promise.all([fetchSMHI(19, STATION_TEMP), fetchSMHI(20, STATION_TEMP)]).then(function (results) {
+            var minData = results[0].value || [];
+            var maxData = results[1].value || [];
+
+            var dayPoints = [];
+            var nightPoints = [];
+            var dayMap = {};
+            var nightMap = {};
+            maxData.forEach(function (v) {
+                if (v.ref >= '2026-01-01') {
+                    var val = parseFloat(v.value);
+                    dayPoints.push({ date: v.ref, value: val });
+                    dayMap[v.ref] = val;
+                }
+            });
+            minData.forEach(function (v) {
+                if (v.ref >= '2026-01-01') {
+                    var val = parseFloat(v.value);
+                    nightPoints.push({ date: v.ref, value: val });
+                    nightMap[v.ref] = val;
+                }
+            });
+
+            // Gemensam y-skala (VEP Förslag A)
+            var allVals = dayPoints.map(function (d) { return Math.abs(d.value); })
+                .concat(nightPoints.map(function (d) { return Math.abs(d.value); }));
+            var sharedAbsMax = Math.max(5, Math.max.apply(null, allVals));
+
+            buildSingleTempCanvas('temp-day-chart', '_tempDayMeta', dayPoints, '#C67B4F', sharedAbsMax);
+            buildSingleTempCanvas('temp-night-chart', '_tempNightMeta', nightPoints, '#3D4F7C', sharedAbsMax);
+
+            // Fenologisk temperaturremsa (ersätter ΔT dygnssvängning)
+            buildPhenologyStrip(dayMap, nightMap);
+        }).catch(function (err) {
+            console.warn('Kunde inte hämta temperaturdata:', err);
+        });
+    }
+
+    // Generisk Canvas-tempdiagram (en dataset åt gången)
+    function buildSingleTempCanvas(canvasId, metaKey, dataValues, color, sharedAbsMax) {
+        var canvas = document.getElementById(canvasId);
+        if (!canvas || dataValues.length === 0) return;
+
+        var days = dataValues.map(function (d) { return d.date; });
+        var vals = dataValues.map(function (d) { return d.value; });
+        var absMax = sharedAbsMax || Math.max(5, Math.max.apply(null, vals.map(Math.abs)));
+
+        var box = canvas.parentElement;
+        var dpr = window.devicePixelRatio || 1;
+        var w = box.clientWidth;
+        var labelW = 30;
+        var chartW = w - labelW;
+        var rowH = window.innerWidth < 600 ? 55 : 80;
+        var bottomPad = 24;
+        var base = rowH;
+        var h = (rowH * 2) + bottomPad;
+
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        canvas.style.width = w + 'px';
+        canvas.style.height = h + 'px';
+        var ctx = canvas.getContext('2d');
+        ctx.scale(dpr, dpr);
+
+        function drawBars(fromDate, toDate) {
+            fromDate = fromDate || '2026-01-01';
+            toDate = toDate || '2026-12-31';
+            var isFullYear = (fromDate === '2026-01-01' && toDate === '2026-12-31');
+
+            var fDays = [], fVals = [];
+            for (var i = 0; i < days.length; i++) {
+                if (days[i] >= fromDate && days[i] <= toDate) {
+                    fDays.push(days[i]);
+                    fVals.push(vals[i]);
+                }
+            }
+
+            var timeframeDays = Math.max(1, Math.round((new Date(toDate) - new Date(fromDate)) / 86400000)) + 1;
+            var cellW = chartW / timeframeDays;
+            var fromMs = new Date(fromDate).getTime();
+
+            ctx.fillStyle = '#fff';
+            ctx.fillRect(0, 0, w, h);
+            ctx.fillStyle = 'rgba(0,0,0,0.015)';
+            ctx.fillRect(labelW, 0, chartW, rowH);
+            // Frostzon — ljusblå under 0° (VEP Förslag E)
+            ctx.fillStyle = 'rgba(180,210,235,0.12)';
+            ctx.fillRect(labelW, rowH, chartW, rowH);
+
+            ctx.strokeStyle = 'rgba(0,0,0,0.2)';
+            ctx.lineWidth = 1;
+            ctx.beginPath(); ctx.moveTo(labelW, base); ctx.lineTo(w, base); ctx.stroke();
+
+            var r = parseInt(color.slice(1, 3), 16);
+            var g = parseInt(color.slice(3, 5), 16);
+            var b = parseInt(color.slice(5, 7), 16);
+            for (var i = 0; i < fDays.length; i++) {
+                var dayMs = new Date(fDays[i]).getTime();
+                var dayOffset = Math.round((dayMs - fromMs) / 86400000);
+                var x = labelW + dayOffset * cellW;
+                var barW = Math.max(Math.ceil(cellW) - 1, 2);
+                var val = fVals[i];
+                var barH = (Math.abs(val) / absMax) * (rowH - 4);
+
+                if (val >= 0) {
+                    ctx.fillStyle = 'rgba(' + r + ',' + g + ',' + b + ',0.85)';
+                    ctx.fillRect(x, base - barH, barW, barH);
+                } else {
+                    ctx.fillStyle = 'rgba(' + r + ',' + g + ',' + b + ',0.55)';
+                    ctx.fillRect(x, base, barW, barH);
+                }
+            }
+
+            ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+            ctx.font = 'bold 10px Inter, sans-serif';
+            ctx.fillStyle = '#999';
+            ctx.fillText('+°', labelW - 6, base - rowH / 2);
+            ctx.fillText('−°', labelW - 6, base + rowH / 2);
+
+            ctx.font = '9px Inter, sans-serif';
+            ctx.fillStyle = '#999'; ctx.textAlign = 'left';
+            var tickStep = absMax > 15 ? 10 : 5;
+            for (var t = tickStep; t <= absMax; t += tickStep) {
+                var yUp = base - (t / absMax) * (rowH - 4);
+                ctx.fillText('+' + t + '°', 2, yUp);
+                ctx.strokeStyle = 'rgba(0,0,0,0.04)'; ctx.lineWidth = 0.5;
+                ctx.beginPath(); ctx.moveTo(labelW, yUp); ctx.lineTo(w, yUp); ctx.stroke();
+                var yDn = base + (t / absMax) * (rowH - 4);
+                ctx.fillText('-' + t + '°', 2, yDn);
+                ctx.beginPath(); ctx.moveTo(labelW, yDn); ctx.lineTo(w, yDn); ctx.stroke();
+            }
+
+            ctx.strokeStyle = 'rgba(0,0,0,0.05)'; ctx.lineWidth = 0.5;
+            ctx.textAlign = 'center'; ctx.font = '9px Inter, sans-serif'; ctx.fillStyle = '#999';
+
+            if (isFullYear) {
+                var monthStarts = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
+                var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'];
+                for (var m = 0; m < 12; m++) {
+                    var mx = labelW + monthStarts[m] * cellW;
+                    ctx.beginPath(); ctx.moveTo(mx, 0); ctx.lineTo(mx, h - bottomPad); ctx.stroke();
+                    ctx.fillText(monthNames[m], mx + (m < 11 ? (monthStarts[m + 1] - monthStarts[m]) : 31) * cellW / 2, h - 10);
+                }
+                var todayDOY = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 1)) / 86400000);
+                var futX = labelW + (todayDOY + 1) * cellW;
+                if (futX < w) { ctx.fillStyle = 'rgba(255,255,255,0.6)'; ctx.fillRect(futX, 0, w - futX, h - bottomPad); }
+            } else {
+                var tickInterval = timeframeDays <= 14 ? 1 : (timeframeDays <= 31 ? 5 : 7);
+                var monthAbbr = ['jan', 'feb', 'mar', 'apr', 'maj', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
+                for (var d = 0; d < timeframeDays; d++) {
+                    if (d % tickInterval === 0 || d === timeframeDays - 1) {
+                        var centerX = labelW + d * cellW + (cellW / 2);
+                        ctx.beginPath(); ctx.moveTo(centerX, 0); ctx.lineTo(centerX, h - bottomPad); ctx.stroke();
+                        var tickDate = new Date(fromMs + d * 86400000);
+                        ctx.fillText(tickDate.getDate() + ' ' + monthAbbr[tickDate.getMonth()], centerX, h - 10);
+                    }
+                }
+            }
+        }
+
+        var initFrom = _currentTimeFrom || '2026-01-01';
+        var initTo = _currentTimeTo || '2026-12-31';
+        drawBars(initFrom, initTo);
+
+        window[metaKey] = {
+            canvas: canvas, ctx: ctx, dpr: dpr, w: w, h: h, labelW: labelW,
+            drawAll: drawBars, currentFrom: initFrom, currentTo: initTo
+        };
+    }
+
+    // Fenologisk temperaturremsa v2 — ekologisk karaktär per dygn
+    // Rent temperaturstyrd, inga datumgränser. Biologisk tolkning i kontext sker i text.
+    // Specialfall: sommardag + frost = 'SPLIT' → diagonal orange/blå
+    function phenologyColor(dayMax, nightMin) {
+        if (dayMax <= 0)   return '#1a5276';    // Isdag — max nådde aldrig plusgrader (hanterar även -0.0)
+        if (nightMin >= 20) return '#e74c3c';   // Tropisk natt — extrem värme
+        if (dayMax >= 20 && nightMin < 0) return 'SPLIT'; // Varmfrost! Anomali — sommardag + nattfrost
+        if (dayMax >= 20)  return '#e67e22';    // Sommardag — full insektsaktivitet
+        if (nightMin < 0)  return '#5dade2';    // Frostdygn — nattfrost, begränsad insektsaktivitet
+        if (dayMax >= 10)  return '#f4d03f';    // Insektströskeln — insekter aktiva, frostfritt
+        if (dayMax >= 5)   return '#cce5df';    // Svalt — vegetation vaknar, humlor
+        return '#bbbbbb';                       // Dvala — under biologisk nollpunkt, vila
+    }
+
+    // Rita en diagonal split-cell (orange/blå) för varmfrost-anomali
+    function drawSplitCell(ctx, x, y, w, h) {
+        // Övre-vänstra triangeln: orange (sommardag)
+        ctx.fillStyle = '#e67e22';
+        ctx.beginPath();
+        ctx.moveTo(x, y);
+        ctx.lineTo(x + w, y);
+        ctx.lineTo(x, y + h);
+        ctx.closePath();
+        ctx.fill();
+        // Undre-högra triangeln: ljusblå (frostdygn)
+        ctx.fillStyle = '#5dade2';
+        ctx.beginPath();
+        ctx.moveTo(x + w, y);
+        ctx.lineTo(x + w, y + h);
+        ctx.lineTo(x, y + h);
+        ctx.closePath();
+        ctx.fill();
+    }
+
+    function buildPhenologyStrip(dayMap, nightMap) {
+        var canvas = document.getElementById('temp-delta-chart');
+        if (!canvas) return;
+
+        var allDates = Object.keys(dayMap).filter(function (d) { return nightMap[d] !== undefined; }).sort();
+
+        var box = canvas.parentElement;
+        var dpr = window.devicePixelRatio || 1;
+        var w = box.clientWidth;
+        var labelW = 30;
+        var chartW = w - labelW;
+        var h = 20;
+
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        canvas.style.width = w + 'px';
+        canvas.style.height = h + 'px';
+        var ctx = canvas.getContext('2d');
+        ctx.scale(dpr, dpr);
+
+        function drawPhenology(fromDate, toDate) {
+            fromDate = fromDate || '2026-01-01';
+            toDate = toDate || '2026-12-31';
+            var isFullYear = (fromDate === '2026-01-01' && toDate === '2026-12-31');
+
+            ctx.fillStyle = '#fff';
+            ctx.fillRect(0, 0, w, h);
+            var usedColors = {};
+
+            var timeframeDays = Math.max(1, Math.round((new Date(toDate) - new Date(fromDate)) / 86400000)) + 1;
+            var cellW = chartW / timeframeDays;
+            var fromMs = new Date(fromDate).getTime();
+
+            allDates.forEach(function (d) {
+                if (d < fromDate || d > toDate) return;
+                var dayMs = new Date(d).getTime();
+                var dayOffset = Math.round((dayMs - fromMs) / 86400000);
+                var x = labelW + dayOffset * cellW;
+                var barW = Math.max(Math.ceil(cellW), 2);
+
+                var color = phenologyColor(dayMap[d], nightMap[d]);
+                usedColors[color] = true;
+                if (color === 'SPLIT') {
+                    drawSplitCell(ctx, x, 0, barW, h);
+                } else {
+                    ctx.fillStyle = color;
+                    ctx.fillRect(x, 0, barW, h);
+                }
+            });
+
+            // Dimma framtida perioder i helårsvy
+            if (isFullYear) {
+                var todayDOY = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 1)) / 86400000);
+                var futX = labelW + (todayDOY + 1) * cellW;
+                if (futX < w) {
+                    ctx.fillStyle = 'rgba(255,255,255,0.7)';
+                    ctx.fillRect(futX, 0, w - futX, h);
+                }
+            }
+
+            // Dynamisk legend — visa bara kategorier som finns i datan
+            var legendDefs = [
+                { color: '#1a5276', label: 'isdag (max ≤ 0°)', type: 'solid' },
+                { color: '#5dade2', label: 'frostnatt (min < 0°)', type: 'solid' },
+                { color: '#bbbbbb', label: 'kyligt (0–5°)', type: 'solid' },
+                { color: '#cce5df', label: 'svalt (5–10°)', type: 'solid' },
+                { color: '#f4d03f', label: 'vårdag (≥ 10°)', type: 'solid' },
+                { color: '#e67e22', label: 'sommardag (≥ 20°)', type: 'solid' },
+                { color: '#e74c3c', label: 'tropisk natt (min ≥ 20°)', type: 'solid' },
+                { color: 'SPLIT', label: 'varmfrost (≥ 20° + frost)', type: 'split' }
+            ];
+            var legendEl = document.getElementById('phenology-legend');
+            if (legendEl) {
+                var parts = [];
+                legendDefs.forEach(function (d) {
+                    if (!usedColors[d.color]) return;
+                    if (d.type === 'split') {
+                        parts.push('<span style="display:inline-block;width:12px;height:12px;vertical-align:middle;background:linear-gradient(135deg,#e67e22 50%,#5dade2 50%);border-radius:1px;"></span> ' + d.label);
+                    } else {
+                        parts.push('<span style="color:' + d.color + '">■</span> ' + d.label);
+                    }
+                });
+                legendEl.innerHTML = parts.join(' · ');
+            }
+            // Milstolpe-tabell (bara i helårsvy)
+            var msDiv = document.getElementById('phenology-milestones');
+            if (msDiv && isFullYear) {
+                // Beräkna dygnsmedel
+                var means = {};
+                allDates.forEach(function (d) {
+                    means[d] = (dayMap[d] + nightMap[d]) / 2;
+                });
+                var sorted = allDates.slice().sort();
+
+                // 1. Meteorologisk vår: dygnsmedel >0°C och <10°C i 7 dagar (efter 1 feb)
+                var metVarDate = null;
+                var streak = 0;
+                for (var i = 0; i < sorted.length; i++) {
+                    if (sorted[i] < '2026-02-01') continue;
+                    var m = means[sorted[i]];
+                    if (m > 0 && m < 10) {
+                        streak++;
+                        if (streak >= 7) { metVarDate = sorted[i - 6]; break; }
+                    } else { streak = 0; }
+                }
+
+                // 2. Senaste frostnatt: sista min < 0 före 1 jul
+                var sistaFrost = null;
+                for (var j = 0; j < sorted.length; j++) {
+                    if (sorted[j] >= '2026-07-01') break;
+                    if (nightMap[sorted[j]] < 0) sistaFrost = sorted[j];
+                }
+
+                // 3. Första frostnatt: första min < 0 efter 1 jul
+                var forstaFrost = null;
+                for (var k = 0; k < sorted.length; k++) {
+                    if (sorted[k] < '2026-07-01') continue;
+                    if (nightMap[sorted[k]] < 0) { forstaFrost = sorted[k]; break; }
+                }
+
+                // 4. Meteorologisk sommar: dygnsmedel >10°C i 5 dagar
+                var metSomDate = null;
+                streak = 0;
+                for (var s = 0; s < sorted.length; s++) {
+                    if (sorted[s] < '2026-03-01') continue;
+                    if (means[sorted[s]] > 10) {
+                        streak++;
+                        if (streak >= 5) { metSomDate = sorted[s - 4]; break; }
+                    } else { streak = 0; }
+                }
+
+                // 5. Meteorologisk höst: dygnsmedel <10°C i 5 dagar (efter 1 jul)
+                var metHostDate = null;
+                streak = 0;
+                for (var a = 0; a < sorted.length; a++) {
+                    if (sorted[a] < '2026-07-01') continue;
+                    if (means[sorted[a]] < 10) {
+                        streak++;
+                        if (streak >= 5) { metHostDate = sorted[a - 4]; break; }
+                    } else { streak = 0; }
+                }
+
+                var today = new Date().toISOString().slice(0, 10);
+                var provisional = today < '2026-07-01';
+
+                function fmtDate(d) {
+                    if (!d) return null;
+                    var parts = d.split('-');
+                    var months = ['jan','feb','mar','apr','maj','jun','jul','aug','sep','okt','nov','dec'];
+                    return parseInt(parts[2]) + ' ' + months[parseInt(parts[1]) - 1];
+                }
+
+                var rows = [];
+                if (metVarDate) {
+                    rows.push('<tr><td style="padding:1px 8px;color:#8fbc8f;">—</td><td style="padding:1px 8px;">Meteorologisk vår</td><td style="padding:1px 8px;">' + fmtDate(metVarDate) + '</td></tr>');
+                }
+                if (sistaFrost) {
+                    var note = provisional ? ' <span style="color:#999;font-size:0.85em;">(hittills)</span>' : '';
+                    rows.push('<tr><td style="padding:1px 8px;color:#5dade2;">—</td><td style="padding:1px 8px;">Senaste frostnatt</td><td style="padding:1px 8px;">' + fmtDate(sistaFrost) + note + '</td></tr>');
+                }
+                if (forstaFrost) {
+                    rows.push('<tr><td style="padding:1px 8px;color:#c4a96a;">—</td><td style="padding:1px 8px;">Första höstfrost</td><td style="padding:1px 8px;">' + fmtDate(forstaFrost) + '</td></tr>');
+                }
+                if (metSomDate) {
+                    rows.push('<tr><td style="padding:1px 8px;color:#f39c12;">—</td><td style="padding:1px 8px;">Meteorologisk sommar</td><td style="padding:1px 8px;">' + fmtDate(metSomDate) + '</td></tr>');
+                }
+                if (metHostDate) {
+                    rows.push('<tr><td style="padding:1px 8px;color:#a0522d;">—</td><td style="padding:1px 8px;">Meteorologisk höst</td><td style="padding:1px 8px;">' + fmtDate(metHostDate) + '</td></tr>');
+                }
+
+                if (rows.length > 0) {
+                    msDiv.style.display = 'block';
+                    msDiv.innerHTML = '<table style="margin:0 auto;font-size:0.85em;border-collapse:collapse;">' + rows.join('') + '</table>';
+                } else {
+                    msDiv.style.display = 'none';
+                }
+            } else if (msDiv) {
+                msDiv.style.display = 'none';
+            }
+        }
+
+        var initFrom = _currentTimeFrom || '2026-01-01';
+        var initTo = _currentTimeTo || '2026-12-31';
+        drawPhenology(initFrom, initTo);
+
+        window._tempDeltaMeta = {
+            canvas: canvas, ctx: ctx, dpr: dpr, w: w, h: h, labelW: labelW,
+            drawAll: drawPhenology, currentFrom: initFrom, currentTo: initTo
+        };
+    }
+
+    // ================================================================
+    // CHART 3: Nederbörd — blå staplar per dag
+    // ================================================================
+    // Global: spara nederbördsdata så maderindikatorn kan använda den
+    var _precipPoints = null;
+
+    function buildPrecipChart() {
+        var canvas = document.getElementById('precip-chart');
+        if (!canvas) return;
+
+        fetchSMHI(5, STATION_PRECIP).then(function (result) {
+            var vals = result.value || [];
+            var points = [];
+            vals.forEach(function (v) {
+                if (v.ref >= '2026-01-01') {
+                    points.push({ x: v.ref, y: parseFloat(v.value) });
+                }
+            });
+
+            // Spara globalt för maderindikatorn
+            _precipPoints = points;
+
+            var xCfg = JSON.parse(JSON.stringify(timeScaleConfig));
+            if (_currentTimeFrom) xCfg.min = _currentTimeFrom;
+            if (_currentTimeTo) xCfg.max = _currentTimeTo;
+            var tu = timeUnitForRange(_currentTimeFrom, _currentTimeTo);
+            xCfg.time.unit = tu.unit;
+            xCfg.time.displayFormats = tu.displayFormats;
+            xCfg.offset = (tu.unit === 'day');
+
+            new Chart(canvas, {
+                type: 'bar',
+                data: {
+                    datasets: [{
+                        label: 'Nederbörd',
+                        data: points,
+                        backgroundColor: 'rgba(91, 155, 213, 0.6)',
+                        borderColor: 'rgba(91, 155, 213, 0.85)',
+                        borderWidth: 1,
+                        borderRadius: 2,
+                        barPercentage: 0.9,
+                        categoryPercentage: 0.9
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    aspectRatio: window.innerWidth < 600 ? 1.6 : 2.5,
+                    scales: {
+                        x: xCfg,
+                        y: {
+                            min: 0,
+                            grid: { color: 'rgba(0,0,0,0.04)', drawTicks: false },
+                            ticks: {
+                                callback: function (v) { return v + ' mm'; },
+                                font: { family: 'Inter', size: 11 },
+                                color: '#666'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: 'rgba(30,66,32,0.9)',
+                            titleFont: { family: 'Inter' },
+                            bodyFont: { family: 'Inter' },
+                            callbacks: {
+                                label: function (ctx) {
+                                    return ctx.parsed.y.toFixed(1) + ' mm';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Försök bygga maderindikatorn (behöver både flow + precip)
+            tryBuildMeadowIndicator();
+        }).catch(function (err) {
+            console.warn('Kunde inte hämta nederbördsdata:', err);
+            canvas.parentElement.innerHTML = '<p class="vader-chart-error">Nederbördsdata kunde inte laddas</p>';
+        });
+    }
+
+    // ================================================================
+    // CHART 4: Vattenföring — linjediagram (m³/s)
+    // ================================================================
+    function buildFlowChart() {
+        var canvas = document.getElementById('flow-chart');
+        if (!canvas) return;
+
+
+        var url = 'https://opendata-download-hydroobs.smhi.se/api/version/latest/parameter/1/station/' +
+            STATION_FLOW + '/period/corrected-archive/data.json';
+
+        fetch(url).then(function (r) { return r.json(); }).then(function (result) {
+            var vals = result.value || [];
+            var startMs = new Date('2026-01-01').getTime();
+
+            // Aggregera till dagsvärden (medel per dag)
+            var dayMap = {};
+            vals.forEach(function (v) {
+                if (v.date >= startMs) {
+                    var d = new Date(v.date).toISOString().slice(0, 10);
+                    if (!dayMap[d]) dayMap[d] = { sum: 0, count: 0 };
+                    dayMap[d].sum += v.value;
+                    dayMap[d].count++;
+                }
+            });
+
+            var points = Object.keys(dayMap).sort().map(function (d) {
+                return { x: d, y: Math.round(dayMap[d].sum / dayMap[d].count * 100) / 100 };
+            });
+
+            var xCfg = JSON.parse(JSON.stringify(timeScaleConfig));
+            if (_currentTimeFrom) xCfg.min = _currentTimeFrom;
+            if (_currentTimeTo) xCfg.max = _currentTimeTo;
+            var tu = timeUnitForRange(_currentTimeFrom, _currentTimeTo);
+            xCfg.time.unit = tu.unit;
+            xCfg.time.displayFormats = tu.displayFormats;
+            xCfg.offset = (tu.unit === 'day');
+
+            new Chart(canvas, {
+                type: 'line',
+                data: {
+                    datasets: [{
+                        label: 'Vattenföring',
+                        data: points,
+                        borderColor: '#2A7B8F',
+                        backgroundColor: '#2A7B8F',
+                        borderWidth: 2,
+                        fill: true,
+                        tension: 0.3,
+                        pointRadius: 0,
+                        pointHitRadius: 8
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: true,
+                    aspectRatio: window.innerWidth < 600 ? 1.6 : 2.5,
+                    scales: {
+                        x: xCfg,
+                        y: {
+                            min: 0,
+                            grid: { color: 'rgba(0,0,0,0.04)', drawTicks: false },
+                            ticks: {
+                                callback: function (v) { return v + ' m\u00B3/s'; },
+                                font: { family: 'Inter', size: 11 },
+                                color: '#666'
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: { display: false },
+                        tooltip: {
+                            backgroundColor: 'rgba(30,66,32,0.9)',
+                            titleFont: { family: 'Inter' },
+                            bodyFont: { family: 'Inter' },
+                            callbacks: {
+                                label: function (ctx) {
+                                    return ctx.parsed.y.toFixed(2) + ' m\u00B3/s';
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+
+            // Spara flödesdata globalt och försök bygga maderindikatorn
+            _flowPoints = points;
+            tryBuildMeadowIndicator();
+        }).catch(function (err) {
+            console.warn('Kunde inte hämta vattenföringsdata:', err);
+            canvas.parentElement.innerHTML = '<p class="vader-chart-error">Vattenföringsdata kunde inte laddas</p>';
+        });
+    }
+
+    // ================================================================
+    // MEADOW INDICATOR v2 — Kombinerad vattenståndsprediktion
+    // Baserad på:
+    //   - 14-dagars glidande medelvärde av vattenföringen (m³/s)
+    //     vid Forsmöllan, Rönne å (SMHI station 2372)
+    //   - 14-dagars kumulativ nederbörd (mm)
+    //     vid Åstorp (SMHI station 62060)
+    // Korrelationsanalys visar r=0.55 för 14d kumulativ nederbörd,
+    // jämfört med r=-0.05 för enstaka dagars regn.
+    // Komposit: 70% flödessignal + 30% nederbördssignal.
+    // Kalibrering: fältobservationer feb–mar 2026.
+    // ================================================================
+    var _flowPoints = null;
+
+    function tryBuildMeadowIndicator() {
+        // Kräver att BÅDA datakällorna har laddats
+        if (!_flowPoints || !_precipPoints) return;
+        buildMeadowIndicator(_flowPoints, _precipPoints);
+    }
+
+    function buildMeadowIndicator(flowPoints, precipPoints) {
+        var container = document.getElementById('meadow-indicator');
+        if (!container || !flowPoints || flowPoints.length < 2) return;
+
+        var LOOKBACK = 14; // dagar att titta bakåt
+
+        // Sortera kronologiskt
+        var sortedFlow = flowPoints.slice().sort(function (a, b) {
+            return a.x < b.x ? -1 : a.x > b.x ? 1 : 0;
+        });
+
+        // ── 1) 14-dagars glidande medelvärde av vattenföring ──
+        var recentFlow = sortedFlow.slice(-LOOKBACK);
+        var avg14dFlow = recentFlow.reduce(function (s, p) { return s + p.y; }, 0) / recentFlow.length;
+
+        // ── 2) 14-dagars kumulativ nederbörd ──
+        var precip14d = 0;
+        if (precipPoints && precipPoints.length > 0) {
+            var sortedPrecip = precipPoints.slice().sort(function (a, b) {
+                return a.x < b.x ? -1 : a.x > b.x ? 1 : 0;
+            });
+            var recentPrecip = sortedPrecip.slice(-LOOKBACK);
+            precip14d = recentPrecip.reduce(function (s, p) { return s + p.y; }, 0);
+        }
+
+        // ── 3) Kompositscore ──
+        // Normalisera nederbörd: 0 mm → 0, ~40 mm → bidrar ~1 "flödespoäng"
+        // Logiken: 14d med 3 mm/dag = 42mm är en blöt period.
+        // Vi skalar upp nederbörden till en flödesekvivalent.
+        var precipSignal = precip14d / 10; // 40mm → 4 "poäng"
+
+        // Viktat: 70% flöde, 30% nederbörd
+        var composite = avg14dFlow * 0.7 + precipSignal * 0.3;
+
+        // ── 4) Trend: jämför senaste 3 dagars medel med föregående 3 dagar ──
+        var trend = 0;
+        if (sortedFlow.length >= 6) {
+            var last3 = sortedFlow.slice(-3);
+            var prev3 = sortedFlow.slice(-6, -3);
+            var avgLast3 = last3.reduce(function (s, p) { return s + p.y; }, 0) / 3;
+            var avgPrev3 = prev3.reduce(function (s, p) { return s + p.y; }, 0) / 3;
+            trend = avgLast3 - avgPrev3;
+        } else if (sortedFlow.length >= 2) {
+            trend = sortedFlow[sortedFlow.length - 1].y - sortedFlow[sortedFlow.length - 2].y;
+        }
+
+        // ── 5) 5-stegsskala (kalibrerad mot composite-värden) ──
+        // Kalibreringspunkter:
+        //   - Feb 2026 torrperiod: flow ~3-4, precip14d ~0-5mm → composite ~2-3 → Torrt ✓
+        //   - Jan 13 regndag (12mm): flow steg till ~5 efter dagar → Fuktigt ✓
+        //   - Feb 20-22 blötperiod: flow ~5-7, precip14d ~14mm → composite ~4-5 → Fuktigt/Vattenspeglar ✓
+        //   - Mar 17: flow14d ~7.2, precip14d ~12mm → composite ~5.4 → Fuktigt (minskande vattenspeglar) ✓
+        //   - Mar 18: Fältobs bekräftar "Fuktigt" — fuktig mark, enstaka pölar, mycket små speglar
+        //   - Feb 27-Mar 1 flödestoppp (13-15 m³/s) → composite ~10-11 → Stora vattenspeglar
+        var levels = [
+            { max: 3.5,  label: 'Torrt',               color: '#c4a96a', detail: 'Maderna är torra eller nästan torra' },
+            { max: 6,    label: 'Fuktigt',              color: '#8fbc8f', detail: 'Fuktig mark, enstaka pölar' },
+            { max: 9,    label: 'Vattenspeglar',         color: '#5dade2', detail: 'Mindre vattenspeglar på maderna' },
+            { max: 14,   label: 'Stora vattenspeglar',   color: '#2980b9', detail: 'Stora vattenspeglar, bra för änder och vadare' },
+            { max: 9999, label: 'Översvämmat',           color: '#1a5276', detail: 'Maderna i stort sett helt under vatten' }
+        ];
+
+        var level = levels[0];
+        for (var i = 0; i < levels.length; i++) {
+            if (composite < levels[i].max) {
+                level = levels[i];
+                break;
+            }
+        }
+
+        // Trend-pil (baserad på 3d-medelsjämförelse — stabilare signal)
+        var trendArrow = '→';
+        if (trend > 0.3) trendArrow = '↑';
+        else if (trend < -0.3) trendArrow = '↓';
+
+        // Uppdatera DOM
+        var box = document.getElementById('meadow-level-box');
+        var labelEl = document.getElementById('meadow-level-label');
+        var detailEl = document.getElementById('meadow-level-detail');
+        var arrowEl = document.getElementById('meadow-trend-arrow');
+
+        if (box) box.style.background = 'linear-gradient(135deg, ' + level.color + ', ' + level.color + 'cc)';
+        if (labelEl) labelEl.textContent = level.label;
+        if (detailEl) detailEl.textContent = level.detail;
+        if (arrowEl) arrowEl.textContent = trendArrow;
+
+        container.style.display = 'block';
+
+        // Debug-logg för kalibrering
+        console.log('[Meadow v2] flow14d=' + avg14dFlow.toFixed(2) +
+            ' precip14d=' + precip14d.toFixed(1) + 'mm' +
+            ' precipSignal=' + precipSignal.toFixed(2) +
+            ' composite=' + composite.toFixed(2) +
+            ' level=' + level.label +
+            ' trend=' + trend.toFixed(2) + ' ' + trendArrow);
+    }
+
+    // ================================================================
+    // WIDGET: "Just nu" — Realtidsvind från SMHI latest-hour
+    // ================================================================
+    function buildWindNowWidget() {
+        var hero = document.getElementById('vader-now-hero');
+        if (!hero) return;
+
+        var urlDir = 'https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/3/station/' + STATION_TEMP + '/period/latest-hour/data.json';
+        var urlSpd = 'https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/4/station/' + STATION_TEMP + '/period/latest-hour/data.json';
+
+        Promise.all([
+            fetch(urlDir).then(function (r) { return r.json(); }),
+            fetch(urlSpd).then(function (r) { return r.json(); })
+        ]).then(function (results) {
+            var dirData = results[0];
+            var spdData = results[1];
+
+            // Hämta senaste värde
+            var dirVals = dirData.value || [];
+            var spdVals = spdData.value || [];
+            if (dirVals.length === 0 || spdVals.length === 0) {
+                document.getElementById('wind-beaufort').textContent = 'Ingen data';
+                return;
+            }
+
+            var latestDir = dirVals[dirVals.length - 1];
+            var latestSpd = spdVals[spdVals.length - 1];
+
+            var deg = parseFloat(latestDir.value);
+            var spd = parseFloat(latestSpd.value);
+            var timestamp = latestSpd.date;
+
+            // Vindpil — SMHI anger varifrån vinden blåser.
+            // Pilen ska peka dit vinden blåser, dvs rotera 180° ytterligare.
+            var arrowDeg = (deg + 180) % 360;
+            var arrowEl = document.getElementById('wind-arrow-group');
+            if (arrowEl) {
+                arrowEl.setAttribute('transform', 'rotate(' + arrowDeg + ', 40, 40)');
+            }
+
+            // Hastighet
+            document.getElementById('wind-speed-value').textContent = spd.toFixed(1);
+
+            // Beaufort-skala
+            var beaufort = getBeaufortText(spd);
+            document.getElementById('wind-beaufort').textContent = beaufort;
+
+            // Riktningstext
+            var dirText = getWindDirectionText(deg);
+            document.getElementById('wind-dir-text').textContent = dirText;
+
+            // N/S + Ö/V komponenter
+            var rad = deg * Math.PI / 180;
+            // deg är varifrån vinden blåser — cos(0)=1 (nordlig), sin(90)=1 (östlig)
+            var ns = Math.cos(rad) * spd;  // Positivt = från norr
+            var ew = Math.sin(rad) * spd;  // Positivt = från öst
+
+            var compN = Math.max(0, ns);   // Nordlig komponent
+            var compS = Math.max(0, -ns);  // Sydlig komponent
+            var compE = Math.max(0, ew);   // Östlig komponent
+            var compW = Math.max(0, -ew);  // Västlig komponent
+
+            var maxComp = Math.max(compN, compS, compE, compW, 0.1);
+
+            // Uppdatera komponentstaplar (proportionell bredd + värde)
+            setCompBar('wind-comp-n', 'wind-comp-n-val', compN, maxComp);
+            setCompBar('wind-comp-s', 'wind-comp-s-val', compS, maxComp);
+            setCompBar('wind-comp-e', 'wind-comp-e-val', compE, maxComp);
+            setCompBar('wind-comp-w', 'wind-comp-w-val', compW, maxComp);
+
+            // Tidstämpel
+            if (timestamp) {
+                var d = new Date(timestamp);
+                var hh = d.getHours();
+                var mm = d.getMinutes();
+                var timeStr = (hh < 10 ? '0' : '') + hh + ':' + (mm < 10 ? '0' : '') + mm;
+                document.getElementById('wind-timestamp').textContent = 'Uppdaterad kl ' + timeStr;
+            }
+
+            // Visa hero
+            hero.classList.add('vader-now-hero-loaded');
+        }).catch(function (err) {
+            console.warn('Kunde inte hämta realtidsvinddata:', err);
+            var bf = document.getElementById('wind-beaufort');
+            if (bf) bf.textContent = 'Data ej tillgänglig';
+        });
+    }
+
+    function setCompBar(barId, valId, value, maxVal) {
+        var bar = document.getElementById(barId);
+        var valEl = document.getElementById(valId);
+        if (!bar || !valEl) return;
+        var pct = maxVal > 0 ? Math.round((value / maxVal) * 100) : 0;
+        bar.style.width = pct + '%';
+        valEl.textContent = value.toFixed(1);
+    }
+
+    function getBeaufortText(spd) {
+        if (spd < 0.3) return 'Stiltje';
+        if (spd < 1.6) return 'Nästan stiltje';
+        if (spd < 3.4) return 'Svag vind';
+        if (spd < 5.5) return 'Lätt bris';
+        if (spd < 8.0) return 'Måttlig bris';
+        if (spd < 10.8) return 'Frisk bris';
+        if (spd < 13.9) return 'Hård bris';
+        if (spd < 17.2) return 'Styv kuling';
+        if (spd < 20.8) return 'Hård kuling';
+        if (spd < 24.5) return 'Halv storm';
+        if (spd < 28.5) return 'Storm';
+        if (spd < 32.7) return 'Svår storm';
+        return 'Orkan';
+    }
+
+    function getWindDirectionText(deg) {
+        var sectors = ['nordlig', 'nord-nordostlig', 'nordostlig', 'ost-nordostlig',
+            'ostlig', 'ost-sydostlig', 'sydostlig', 'syd-sydostlig',
+            'sydlig', 'syd-sydvästlig', 'sydvästlig', 'väst-sydvästlig',
+            'västlig', 'väst-nordvästlig', 'nordvästlig', 'nord-nordvästlig'];
+        var idx = Math.round(deg / 22.5) % 16;
+        return sectors[idx] + ' vind';
+    }
+
+    // Ladda Luxon time adapter, sedan bygg alla diagram
+    (function () {
+        var s1 = document.createElement('script');
+        s1.src = 'https://cdn.jsdelivr.net/npm/luxon@3/build/global/luxon.min.js';
+        s1.onload = function () {
+            var s2 = document.createElement('script');
+            s2.src = 'https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1';
+            s2.onload = function () {
+                buildProgressChart();
+                buildWindChart();
+                buildTempChart();
+                buildPrecipChart();
+                buildFlowChart();
+                setupTimeRangeSelector();
+                // Default: senaste 14 dagar
+                setTimeRange('14d');
+            };
+            document.head.appendChild(s2);
+        };
+        document.head.appendChild(s1);
+    })();
+
+    // Vindwidgeten och temperaturwidgeten behöver inte Chart.js/Luxon — starta direkt
+    buildWindNowWidget();
+    buildTempNowWidget();
+
+    function buildTempNowWidget() {
+        var urlHour = 'https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/1/station/' + STATION_TEMP + '/period/latest-hour/data.json';
+        var urlDay  = 'https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/1/station/' + STATION_TEMP + '/period/latest-day/data.json';
+
+        Promise.all([
+            fetch(urlHour).then(function (r) { return r.json(); }),
+            fetch(urlDay).then(function (r) { return r.json(); })
+        ]).then(function (results) {
+            var hourVals = results[0].value || [];
+            var dayVals  = results[1].value || [];
+
+            // Nuvarande temperatur (senaste timmen)
+            if (hourVals.length > 0) {
+                var current = parseFloat(hourVals[hourVals.length - 1].value);
+                var el = document.getElementById('temp-now-value');
+                if (el) el.textContent = current.toFixed(1);
+            }
+
+            // Dygnets min/max — filtrerat till aktuellt kalenderdygn (från midnatt)
+            if (dayVals.length > 0) {
+                var todayStart = new Date();
+                todayStart.setHours(0, 0, 0, 0);
+                var todayMs = todayStart.getTime();
+
+                var todayTemps = dayVals
+                    .filter(function (v) { return v.date >= todayMs; })
+                    .map(function (v) { return parseFloat(v.value); })
+                    .filter(function (t) { return !isNaN(t); });
+
+                if (todayTemps.length > 0) {
+                    var maxTemp = Math.max.apply(null, todayTemps);
+                    var minTemp = Math.min.apply(null, todayTemps);
+                    var elMax = document.getElementById('temp-now-max');
+                    var elMin = document.getElementById('temp-now-min');
+                    if (elMax) elMax.textContent = maxTemp.toFixed(1) + '°';
+                    if (elMin) elMin.textContent = minTemp.toFixed(1) + '°';
+                }
+
+                // Rita dygns-kurva (senaste 24h)
+                var last24h = dayVals
+                    .map(function(v) { return parseFloat(v.value); })
+                    .filter(function(t) { return !isNaN(t); });
+                drawTempSparkline('temp-now-curve', last24h);
+            }
+        }).catch(function (err) {
+            console.warn('Kunde inte hämta temperaturdata:', err);
+        });
+
+        // Beräkna dagsljus (behöver inga API-anrop)
+        buildDaylightWidget();
+    }
+
+    function drawTempSparkline(canvasId, vals) {
+        var canvas = document.getElementById(canvasId);
+        if (!canvas || vals.length === 0) return;
+        var ctx = canvas.getContext('2d');
+        var dpr = window.devicePixelRatio || 1;
+        var rect = canvas.parentElement.getBoundingClientRect();
+        var w = rect.width || 300;
+        var h = 80;
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        canvas.style.width = w + 'px';
+        canvas.style.height = h + 'px';
+        ctx.scale(dpr, dpr);
+
+        var padL = 26; // Plats för textetiketter (skala)
+        var padT = 10;
+        var padB = 10;
+        var chartW = w - padL - 6; // Högermarginal för punkt
+        var chartH = h - padT - padB;
+
+        var min = Math.min.apply(null, vals);
+        var max = Math.max.apply(null, vals);
+        
+        // Avrunda skalan för snyggare nätverk (inkludera nollan snyggt)
+        min = Math.floor(min) - 1;
+        max = Math.ceil(max) + 1;
+        
+        var range = max - min;
+        if (range === 0) range = 1;
+
+        // Rita hjälplinjer och skalor (y-axel)
+        ctx.textAlign = 'right';
+        ctx.textBaseline = 'middle';
+        ctx.font = '10px Inter, sans-serif';
+        
+        // Definiera lagom tick-intervall (ex 5 grader)
+        var stepTick = range > 15 ? 10 : 5;
+        if (range <= 8) stepTick = 2; // Extra upplösning för låg dygnsamplitud
+        
+        var startTick = Math.floor(min / stepTick) * stepTick;
+        for(var t = startTick; t <= max; t += stepTick) {
+            var y = padT + chartH - ((t - min) / range) * chartH;
+            
+            // Hjälplinje (grid)
+            ctx.beginPath();
+            ctx.moveTo(padL, y);
+            ctx.lineTo(w - 6, y);
+            if (t === 0) {
+                // Den magiska noll-linjen
+                ctx.strokeStyle = 'rgba(52, 152, 219, 0.4)';
+                ctx.lineWidth = 1;
+                ctx.setLineDash([]);
+            } else {
+                ctx.strokeStyle = 'rgba(0,0,0,0.06)';
+                ctx.lineWidth = 1;
+                ctx.setLineDash([4, 4]);
+            }
+            ctx.stroke();
+            ctx.setLineDash([]); // Återställ linjedash
+            
+            // Textetikett
+            ctx.fillStyle = '#999';
+            var prefix = t > 0 ? '+' : '';
+            ctx.fillText(prefix + t + '°', padL - 4, y);
+        }
+
+        var step = chartW / Math.max(1, vals.length - 1);
+        var points = vals.map(function(v, i) {
+            return {
+                x: padL + i * step,
+                y: padT + chartH - ((v - min) / range) * chartH
+            };
+        });
+        
+        ctx.beginPath();
+        // Rita en mjuk spline/bezier-kurva istället för raka linjer
+        ctx.moveTo(points[0].x, points[0].y);
+        for (var i = 0; i < points.length - 1; i++) {
+            var curr = points[i];
+            var next = points[i + 1];
+            var xc = (curr.x + next.x) / 2;
+            var yc = (curr.y + next.y) / 2;
+            ctx.quadraticCurveTo(curr.x, curr.y, xc, yc);
+        }
+        // Rita ut till sista punkten
+        var last = points[points.length - 1];
+        ctx.quadraticCurveTo(points[points.length - 2].x, points[points.length - 2].y, last.x, last.y);
+        
+        ctx.strokeStyle = '#D9A84A'; // Varm orange
+        ctx.lineWidth = 2;
+        ctx.lineCap = 'round';
+        ctx.lineJoin = 'round';
+        ctx.stroke();
+
+        // Skapa övertoning (fyllning under kurvan)
+        var gradient = ctx.createLinearGradient(0, padT, 0, padT + chartH);
+        gradient.addColorStop(0, 'rgba(217, 168, 74, 0.25)');
+        gradient.addColorStop(1, 'rgba(217, 168, 74, 0.0)');
+        
+        // Fyll ytan under kurvan ner till grafens botten
+        ctx.lineTo(last.x, padT + chartH);
+        ctx.lineTo(points[0].x, padT + chartH);
+        ctx.closePath();
+        ctx.fillStyle = gradient;
+        ctx.fill();
+
+        // Rita ändpunkten (aktuellt värde "nu")
+        ctx.beginPath();
+        ctx.fillStyle = '#D9A84A';
+        ctx.arc(last.x, last.y, 4.5, 0, Math.PI * 2);
+        ctx.fill();
+        ctx.lineWidth = 1.5;
+        ctx.strokeStyle = '#fff';
+        ctx.stroke();
+    }
+
+    // ================================================================
+    // DAGSLJUS — solposition beräknad för Åstorp (56.08°N, 12.95°E)
+    // ================================================================
+    function buildDaylightWidget() {
+        var LAT = 56.0833;
+        var LNG = 12.9500;
+        var now = new Date();
+
+        var times = calcSunTimes(now, LAT, LNG);
+
+        // Soluppgång & solnedgång
+        var srEl = document.getElementById('daylight-sunrise');
+        var ssEl = document.getElementById('daylight-sunset');
+        if (srEl) srEl.textContent = fmtTime(times.sunrise);
+        if (ssEl) ssEl.textContent = fmtTime(times.sunset);
+
+        // Dagsljustimmar
+        var dayMs = times.sunset - times.sunrise;
+        var dayH = Math.floor(dayMs / 3600000);
+        var dayM = Math.floor((dayMs % 3600000) / 60000);
+        var dhEl = document.getElementById('daylight-hours');
+        if (dhEl) dhEl.textContent = dayH + ' h ' + dayM + ' min dagsljus';
+
+        // Skymningstabell
+        var twEl = document.getElementById('daylight-twilights');
+        if (twEl) {
+            twEl.innerHTML =
+                '<div class="vader-twilight-row">' +
+                    '<span class="vader-twilight-label">Borgerlig</span>' +
+                    '<span class="vader-twilight-val">' + fmtTime(times.civilDawn) + ' – ' + fmtTime(times.civilDusk) + '</span>' +
+                '</div>' +
+                '<div class="vader-twilight-row">' +
+                    '<span class="vader-twilight-label">Nautisk</span>' +
+                    '<span class="vader-twilight-val">' + fmtTime(times.nauticalDawn) + ' – ' + fmtTime(times.nauticalDusk) + '</span>' +
+                '</div>' +
+                '<div class="vader-twilight-row">' +
+                    '<span class="vader-twilight-label">Astronomisk</span>' +
+                    '<span class="vader-twilight-val">' + fmtTime(times.astronomicalDawn) + ' – ' + fmtTime(times.astronomicalDusk) + '</span>' +
+                '</div>';
+        }
+
+        // Visuell remsa
+        var barEl = document.getElementById('daylight-bar');
+        if (barEl) buildDaylightBar(barEl, times);
+    }
+
+    function buildDaylightBar(container, t) {
+        var minOfDay = function (d) { return d.getHours() * 60 + d.getMinutes(); };
+        var pct = function (m) { return (m / 1440 * 100).toFixed(2) + '%'; };
+
+        var asDawn = minOfDay(t.astronomicalDawn);
+        var naDawn = minOfDay(t.nauticalDawn);
+        var ciDawn = minOfDay(t.civilDawn);
+        var sr     = minOfDay(t.sunrise);
+        var ss     = minOfDay(t.sunset);
+        var ciDusk = minOfDay(t.civilDusk);
+        var naDusk = minOfDay(t.nauticalDusk);
+        var asDusk = minOfDay(t.astronomicalDusk);
+        var nowMin = minOfDay(new Date());
+
+        container.innerHTML =
+            '<div class="vader-dl-bar">' +
+            '<div class="vader-dl-seg vader-dl-night" style="width:' + pct(asDawn) + '"></div>' +
+            '<div class="vader-dl-seg vader-dl-astro" style="width:' + pct(naDawn - asDawn) + '"></div>' +
+            '<div class="vader-dl-seg vader-dl-naut" style="width:' + pct(ciDawn - naDawn) + '"></div>' +
+            '<div class="vader-dl-seg vader-dl-civil" style="width:' + pct(sr - ciDawn) + '"></div>' +
+            '<div class="vader-dl-seg vader-dl-day" style="width:' + pct(ss - sr) + '"></div>' +
+            '<div class="vader-dl-seg vader-dl-civil" style="width:' + pct(ciDusk - ss) + '"></div>' +
+            '<div class="vader-dl-seg vader-dl-naut" style="width:' + pct(naDusk - ciDusk) + '"></div>' +
+            '<div class="vader-dl-seg vader-dl-astro" style="width:' + pct(asDusk - naDusk) + '"></div>' +
+            '<div class="vader-dl-seg vader-dl-night" style="width:' + pct(1440 - asDusk) + '"></div>' +
+            '<div class="vader-dl-now" style="left:' + pct(nowMin) + '" title="Nu"></div>' +
+            '</div>';
+    }
+
+    function fmtTime(d) {
+        if (!d) return '—';
+        var h = d.getHours();
+        var m = d.getMinutes();
+        return (h < 10 ? '0' : '') + h + ':' + (m < 10 ? '0' : '') + m;
+    }
+
+    // Solpositionsberäkning (Jean Meeus / NOAA-algoritm)
+    function calcSunTimes(date, lat, lng) {
+        var JD = getJD(date);
+        var T = (JD - 2451545.0) / 36525.0;
+
+        var L0 = (280.46646 + T * (36000.76983 + T * 0.0003032)) % 360;
+        var M  = (357.52911 + T * (35999.05029 - T * 0.0001537)) % 360;
+        var Mrad = M * Math.PI / 180;
+        var C = (1.914602 - T * (0.004817 + T * 0.000014)) * Math.sin(Mrad)
+              + (0.019993 - T * 0.000101) * Math.sin(2 * Mrad)
+              + 0.000289 * Math.sin(3 * Mrad);
+        var sunLon = L0 + C;
+        var omega = 125.04 - 1934.136 * T;
+        var lambda = sunLon - 0.00569 - 0.00478 * Math.sin(omega * Math.PI / 180);
+
+        var eps0 = 23 + (26 + (21.448 - T * (46.815 + T * (0.00059 - T * 0.001813))) / 60) / 60;
+        var eps = eps0 + 0.00256 * Math.cos(omega * Math.PI / 180);
+        var epsRad = eps * Math.PI / 180;
+
+        var sinDec = Math.sin(epsRad) * Math.sin(lambda * Math.PI / 180);
+        var dec = Math.asin(sinDec);
+
+        var y2 = Math.tan(epsRad / 2);
+        y2 = y2 * y2;
+        var L0rad = L0 * Math.PI / 180;
+        var ecc = 0.016708634 - T * (0.000042037 + T * 0.0000001267);
+        var EqT = y2 * Math.sin(2 * L0rad)
+                - 2 * ecc * Math.sin(Mrad)
+                + 4 * ecc * y2 * Math.sin(Mrad) * Math.cos(2 * L0rad)
+                - 0.5 * y2 * y2 * Math.sin(4 * L0rad)
+                - 1.25 * ecc * ecc * Math.sin(2 * Mrad);
+        var eqtMin = EqT * 180 / Math.PI * 4;
+
+        var latRad = lat * Math.PI / 180;
+
+        function timeForAngle(angle) {
+            var cosHA = (Math.sin(angle * Math.PI / 180) - Math.sin(latRad) * sinDec)
+                      / (Math.cos(latRad) * Math.cos(dec));
+            if (cosHA > 1 || cosHA < -1) return null;
+            var HA = Math.acos(cosHA) * 180 / Math.PI;
+            var solarNoon = 720 - 4 * lng - eqtMin;
+            var rise = solarNoon - HA * 4;
+            var set  = solarNoon + HA * 4;
+            var tzOff = date.getTimezoneOffset();
+            return {
+                rise: minutesToDate(date, rise - tzOff),
+                set:  minutesToDate(date, set - tzOff)
+            };
+        }
+
+        var sun  = timeForAngle(-0.833);
+        var civ  = timeForAngle(-6);
+        var naut = timeForAngle(-12);
+        var astr = timeForAngle(-18);
+
+        return {
+            sunrise: sun ? sun.rise : null,
+            sunset:  sun ? sun.set : null,
+            civilDawn: civ ? civ.rise : null,
+            civilDusk: civ ? civ.set : null,
+            nauticalDawn: naut ? naut.rise : null,
+            nauticalDusk: naut ? naut.set : null,
+            astronomicalDawn: astr ? astr.rise : null,
+            astronomicalDusk: astr ? astr.set : null
+        };
+    }
+
+    function getJD(date) {
+        var y = date.getFullYear();
+        var m = date.getMonth() + 1;
+        var d = date.getDate();
+        if (m <= 2) { y--; m += 12; }
+        var A = Math.floor(y / 100);
+        var B = 2 - A + Math.floor(A / 4);
+        return Math.floor(365.25 * (y + 4716)) + Math.floor(30.6001 * (m + 1)) + d + B - 1524.5;
+    }
+
+    function minutesToDate(baseDate, mins) {
+        var d = new Date(baseDate);
+        d.setHours(0, 0, 0, 0);
+        d.setMinutes(Math.round(mins));
+        return d;
+    }
+
+    // ================================================================
+    // GLOBAL TIDSPERIOD-VÄLJARE — Synkroniserar alla fem diagram
+    // ================================================================
+    // Aktuellt läge sparas globalt
+    var _currentTimeMode = '14d';
+    var _currentTimeFrom = null;
+    var _currentTimeTo = null;
+    var _highlightFrom = null;
+    var _highlightTo = null;
+
+    function setTimeRange(mode, monthValue) {
+        var xMin, xMax;
+        var today = new Date();
+        var todayStr = today.toISOString().slice(0, 10);
+
+        // Hantera 24h-läget separat (hämtar timdata)
+        if (mode === '24h') {
+            _currentTimeMode = '24h';
+            show24hView();
+            return;
+        }
+
+        // Återställ från 24h-läge om det var aktivt
+        restore24hView();
+
+        if (mode === '14d') {
+            var from = new Date(today);
+            from.setDate(from.getDate() - 13);
+            xMin = from.toISOString().slice(0, 10);
+            xMax = todayStr;
+            _currentTimeMode = '14d';
+        } else if (mode === 'month') {
+            var mv = monthValue || '2026-01';
+            var year = parseInt(mv.substring(0, 4));
+            var mon = parseInt(mv.substring(5, 7));
+            xMin = mv + '-01';
+            var lastDay = new Date(year, mon, 0).getDate();
+            xMax = mv + '-' + (lastDay < 10 ? '0' + lastDay : lastDay);
+            _currentTimeMode = 'month';
+        } else if (mode === 'range') {
+            xMin = monthValue.from;
+            xMax = monthValue.to;
+            _currentTimeMode = 'range';
+        } else {
+            xMin = '2026-01-01';
+            xMax = '2026-12-31';
+            _currentTimeMode = 'all';
+        }
+
+        _currentTimeFrom = xMin;
+        _currentTimeTo = xMax;
+
+        // 1. Uppdatera Chart.js-instanser (progress, precip, flow — temp är nu Canvas)
+        var tu = timeUnitForRange(xMin, xMax);
+        var chartIds = ['progress-chart', 'precip-chart', 'flow-chart'];
+        chartIds.forEach(function (id) {
+            var el = document.getElementById(id);
+            if (!el) return;
+            var chartInstance = Chart.getChart(el);
+            if (!chartInstance) return;
+
+            chartInstance.options.scales.x.min = xMin;
+            chartInstance.options.scales.x.max = xMax;
+            chartInstance.options.scales.x.time.unit = tu.unit;
+            chartInstance.options.scales.x.time.displayFormats = tu.displayFormats;
+            chartInstance.options.scales.x.offset = (tu.unit === 'day');
+            chartInstance.update();
+        });
+
+        // 2. Uppdatera vinddiagrammet (Canvas)
+        var wm = window._windChartMeta;
+        if (wm) {
+            wm.currentFrom = xMin;
+            wm.currentTo = xMax;
+            wm.ctx.save();
+            wm.ctx.setTransform(wm.dpr, 0, 0, wm.dpr, 0, 0);
+            wm.drawAll(xMin, xMax);
+            wm.ctx.restore();
+        }
+
+        // 3. Uppdatera temperaturdiagrammen (Canvas, dag + natt)
+        ['_tempDayMeta', '_tempNightMeta', '_tempDeltaMeta', '_windDeltaMeta'].forEach(function (key) {
+            var tm = window[key];
+            if (tm) {
+                tm.currentFrom = xMin;
+                tm.currentTo = xMax;
+                tm.ctx.save();
+                tm.ctx.setTransform(tm.dpr, 0, 0, tm.dpr, 0, 0);
+                tm.drawAll(xMin, xMax);
+                tm.ctx.restore();
+            }
+        });
+    }
+
+    // ================================================================
+    // 24H VIEW — Hämtar timdata och bygger dedikerade diagram
+    // ================================================================
+    var _24hContainer = null;
+
+    function show24hView() {
+        // Dölj sektioner utan timdata
+        var hideIds = ['chart-progress', 'chart-flow', 'chart-temp-delta', 'chart-wind-delta'];
+        hideIds.forEach(function (id) {
+            var el = document.getElementById(id);
+            if (el) el.style.display = 'none';
+        });
+
+        // Dölj befintliga diagram (temp, vind, precip) och visa 24h-versioner
+        ['chart-temp-day', 'chart-temp-night', 'chart-wind', 'chart-precip'].forEach(function (id) {
+            var el = document.getElementById(id);
+            if (el) el.style.display = 'none';
+        });
+
+        // Skapa/visa 24h-container
+        if (!_24hContainer) {
+            _24hContainer = document.createElement('div');
+            _24hContainer.id = 'vader-24h-container';
+            _24hContainer.className = 'vader-triptych';
+            _24hContainer.innerHTML =
+                '<div class="vader-chart-box" id="chart-24h-temp">' +
+                    '<div class="vader-chart-label">Temperatur — senaste 24 h</div>' +
+                    '<canvas id="chart-24h-temp-canvas"></canvas>' +
+                    '<div class="vader-chart-source">SMHI, Helsingborg A (16 km sydväst om Åstorp) · Timvärden</div>' +
+                '</div>' +
+                '<div class="vader-chart-box" id="chart-24h-wind-ns">' +
+                    '<div class="vader-chart-label">Vind N ↔ S — senaste 24 h</div>' +
+                    '<canvas id="chart-24h-wind-ns-canvas"></canvas>' +
+                    '<p class="vader-chart-hint">Staplar uppåt = nordlig vind. Staplar nedåt = sydlig vind.</p>' +
+                    '<div class="vader-chart-source">SMHI, Helsingborg A · Timmedelvärden</div>' +
+                '</div>' +
+                '<div class="vader-chart-box" id="chart-24h-wind-ew">' +
+                    '<div class="vader-chart-label">Vind Ö ↔ V — senaste 24 h</div>' +
+                    '<canvas id="chart-24h-wind-ew-canvas"></canvas>' +
+                    '<p class="vader-chart-hint">Staplar uppåt = östlig vind. Staplar nedåt = västlig vind.</p>' +
+                    '<div class="vader-chart-source">SMHI, Helsingborg A · Timmedelvärden</div>' +
+                '</div>' +
+                '<div class="vader-chart-box" id="chart-24h-precip">' +
+                    '<div class="vader-chart-label">Nederbörd — senaste 24 h</div>' +
+                    '<canvas id="chart-24h-precip-canvas"></canvas>' +
+                    '<div class="vader-chart-source">SMHI, Helsingborg A · Timnederbörd (param 7)</div>' +
+                '</div>';
+
+            // Infoga efter tidsväljaren
+            var timeBar = document.getElementById('vader-time-bar');
+            if (timeBar && timeBar.nextSibling) {
+                timeBar.parentNode.insertBefore(_24hContainer, timeBar.nextSibling.nextSibling);
+            }
+        }
+        _24hContainer.style.display = 'block';
+
+        // Hämta data
+        fetch24hData();
+    }
+
+    function restore24hView() {
+        // Visa tillbaka allt som doldes
+        var showIds = ['chart-progress', 'chart-flow', 'chart-temp-delta', 'chart-wind-delta',
+                       'chart-temp-day', 'chart-temp-night', 'chart-wind', 'chart-precip'];
+        showIds.forEach(function (id) {
+            var el = document.getElementById(id);
+            if (el) el.style.display = '';
+        });
+
+        // Dölj 24h-containeraren
+        if (_24hContainer) {
+            _24hContainer.style.display = 'none';
+        }
+    }
+
+    function fetch24hData() {
+        var base = 'https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/';
+        var station = STATION_TEMP;
+
+        Promise.all([
+            fetch(base + '1/station/' + station + '/period/latest-day/data.json').then(function (r) { return r.json(); }),
+            fetch(base + '3/station/' + station + '/period/latest-day/data.json').then(function (r) { return r.json(); }),
+            fetch(base + '4/station/' + station + '/period/latest-day/data.json').then(function (r) { return r.json(); }),
+            fetch(base + '7/station/' + station + '/period/latest-day/data.json').then(function (r) { return r.json(); })
+        ]).then(function (results) {
+            var tempData = results[0].value || [];
+            var dirData  = results[1].value || [];
+            var spdData  = results[2].value || [];
+            var precData = results[3].value || [];
+
+            build24hTempChart(tempData);
+
+            // Beräkna gemensam maxskala för 24h vinddiagrammen
+            var parsedWind = _parse24hWindData(dirData, spdData);
+            var maxNs = Math.max.apply(null, parsedWind.nsData.map(Math.abs));
+            var maxEw = Math.max.apply(null, parsedWind.ewData.map(Math.abs));
+            var sharedWindMax = Math.max(maxNs, maxEw);
+
+            build24hWindNSChart(dirData, spdData, sharedWindMax);
+            build24hWindEWChart(dirData, spdData, sharedWindMax);
+            build24hPrecipChart(precData);
+        }).catch(function (err) {
+            console.warn('Kunde inte hämta 24h-data:', err);
+        });
+    }
+
+    function build24hTempChart(data) {
+        var canvas = document.getElementById('chart-24h-temp-canvas');
+        if (!canvas) return;
+
+        // Förstör befintligt diagram om det finns
+        var existing = Chart.getChart(canvas);
+        if (existing) existing.destroy();
+
+        var WARM = '#c0392b';   // Röd — plusgrader
+        var COLD = '#3498db';   // Blå — minusgrader
+
+        var points = data.map(function (v) {
+            return { x: new Date(v.date), y: parseFloat(v.value) };
+        });
+
+        // Hjälpfunktion: interpolera färg baserat på om linjens ändpunkter är över/under noll
+        function segmentColor(ctx) {
+            var p0 = ctx.p0.parsed.y;
+            var p1 = ctx.p1.parsed.y;
+            if (p0 < 0 && p1 < 0) return COLD;
+            if (p0 >= 0 && p1 >= 0) return WARM;
+            // Blandat segment — använd den dominerande sidan
+            return (p0 + p1) / 2 < 0 ? COLD : WARM;
+        }
+
+        new Chart(canvas, {
+            type: 'line',
+            data: {
+                datasets: [{
+                    label: 'Temperatur °C',
+                    data: points,
+                    borderColor: WARM,
+                    backgroundColor: 'rgba(192, 57, 43, 0.08)',
+                    borderWidth: 2,
+                    fill: false,
+                    tension: 0.3,
+                    pointRadius: 3,
+                    pointBackgroundColor: function (ctx) {
+                        if (!ctx.parsed) return WARM;
+                        return ctx.parsed.y < 0 ? COLD : WARM;
+                    },
+                    pointBorderColor: function (ctx) {
+                        if (!ctx.parsed) return WARM;
+                        return ctx.parsed.y < 0 ? COLD : WARM;
+                    },
+                    pointHitRadius: 10,
+                    segment: {
+                        borderColor: function (ctx) { return segmentColor(ctx); }
+                    }
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                aspectRatio: window.innerWidth < 600 ? 1.6 : 2.5,
+                scales: {
+                    x: {
+                        type: 'time',
+                        time: { unit: 'hour', displayFormats: { hour: 'HH:mm' }, tooltipFormat: 'HH:mm' },
+                        grid: { color: 'rgba(0,0,0,0.06)' },
+                        ticks: { font: { family: 'Inter', size: 11 }, color: '#666' }
+                    },
+                    y: {
+                        // Säkerställ att y-axeln alltid inkluderar 0
+                        suggestedMin: 0,
+                        suggestedMax: 0,
+                        grid: { color: 'rgba(0,0,0,0.04)' },
+                        ticks: { font: { family: 'Inter', size: 11 }, color: '#666', callback: function(v) { return v + '°'; } }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: { callbacks: { label: function (c) { return c.parsed.y.toFixed(1) + ' °C'; } } },
+                    annotation: {
+                        annotations: {
+                            zeroLine: {
+                                type: 'line',
+                                yMin: 0,
+                                yMax: 0,
+                                borderColor: 'rgba(0,0,0,0.25)',
+                                borderWidth: 1,
+                                borderDash: [4, 3]
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    function _parse24hWindData(dirData, spdData) {
+        var spdMap = {};
+        spdData.forEach(function (v) { spdMap[v.date] = parseFloat(v.value) || 0; });
+
+        var nsData = [], ewData = [], labels = [];
+        dirData.forEach(function (v) {
+            var deg = parseFloat(v.value);
+            var spd = spdMap[v.date] || 0;
+            var rad = deg * Math.PI / 180;
+            var ns = Math.cos(rad) * spd;
+            var ew = Math.sin(rad) * spd;
+            labels.push(new Date(v.date));
+            nsData.push(ns);
+            ewData.push(ew);
+        });
+        return { labels: labels, nsData: nsData, ewData: ewData };
+    }
+
+    function _build24hWindSingleChart(canvasId, data, labels, posLabel, negLabel, posColor, negColor, sharedMax) {
+        var canvas = document.getElementById(canvasId);
+        if (!canvas) return;
+
+        var existing = Chart.getChart(canvas);
+        if (existing) existing.destroy();
+
+        // Gemensam y-skala baserad på skickat maxvärde (eller lokalt om inget angavs)
+        var absMax = sharedMax !== undefined ? sharedMax : Math.max.apply(null, data.map(function (v) { return Math.abs(v); }));
+        var yLimit = Math.max(absMax * 1.1, 1);
+
+        new Chart(canvas, {
+            type: 'bar',
+            data: {
+                labels: labels,
+                datasets: [{
+                    label: posLabel + ' ↔ ' + negLabel,
+                    data: data,
+                    backgroundColor: data.map(function (v) {
+                        return v >= 0 ? posColor.bg : negColor.bg;
+                    }),
+                    borderColor: data.map(function (v) {
+                        return v >= 0 ? posColor.border : negColor.border;
+                    }),
+                    borderWidth: 1,
+                    barPercentage: 0.9,
+                    categoryPercentage: 0.9
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                aspectRatio: window.innerWidth < 600 ? 2.0 : 3.0,
+                scales: {
+                    x: {
+                        type: 'time',
+                        time: { unit: 'hour', displayFormats: { hour: 'HH:mm' }, tooltipFormat: 'HH:mm' },
+                        grid: { color: 'rgba(0,0,0,0.06)' },
+                        ticks: { font: { family: 'Inter', size: 11 }, color: '#666' }
+                    },
+                    y: {
+                        min: -yLimit,
+                        max: yLimit,
+                        grid: { color: 'rgba(0,0,0,0.04)' },
+                        ticks: {
+                            font: { family: 'Inter', size: 11 }, color: '#666',
+                            callback: function(v) { return v.toFixed(1); }
+                        },
+                        title: { display: true, text: posLabel + '/' + negLabel + ' (m/s)', font: { family: 'Inter', size: 11 } }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: {
+                        callbacks: {
+                            label: function (c) {
+                                var val = c.parsed.y;
+                                var dir = val >= 0 ? posLabel : negLabel;
+                                return dir + ': ' + Math.abs(val).toFixed(1) + ' m/s';
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    }
+
+    function build24hWindNSChart(dirData, spdData, sharedMax) {
+        var parsed = _parse24hWindData(dirData, spdData);
+        _build24hWindSingleChart(
+            'chart-24h-wind-ns-canvas',
+            parsed.nsData,
+            parsed.labels,
+            'N', 'S',
+            { bg: 'rgba(74, 144, 217, 0.7)', border: '#4A90D9' },
+            { bg: 'rgba(217, 74, 74, 0.7)', border: '#D94A4A' },
+            sharedMax
+        );
+    }
+
+    function build24hWindEWChart(dirData, spdData, sharedMax) {
+        var parsed = _parse24hWindData(dirData, spdData);
+        _build24hWindSingleChart(
+            'chart-24h-wind-ew-canvas',
+            parsed.ewData,
+            parsed.labels,
+            'Ö', 'V',
+            { bg: 'rgba(61, 170, 109, 0.7)', border: '#3DAA6D' },
+            { bg: 'rgba(217, 168, 74, 0.7)', border: '#D9A84A' },
+            sharedMax
+        );
+    }
+
+    function build24hPrecipChart(data) {
+        var canvas = document.getElementById('chart-24h-precip-canvas');
+        if (!canvas) return;
+
+        var existing = Chart.getChart(canvas);
+        if (existing) existing.destroy();
+
+        var points = data.map(function (v) {
+            return { x: new Date(v.date), y: parseFloat(v.value) };
+        });
+
+        new Chart(canvas, {
+            type: 'bar',
+            data: {
+                datasets: [{
+                    label: 'Nederbörd mm/h',
+                    data: points,
+                    backgroundColor: 'rgba(52, 152, 219, 0.6)',
+                    borderColor: '#3498db',
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: true,
+                aspectRatio: window.innerWidth < 600 ? 1.6 : 2.5,
+                scales: {
+                    x: {
+                        type: 'time',
+                        time: { unit: 'hour', displayFormats: { hour: 'HH:mm' }, tooltipFormat: 'HH:mm' },
+                        grid: { color: 'rgba(0,0,0,0.06)' },
+                        ticks: { font: { family: 'Inter', size: 11 }, color: '#666' }
+                    },
+                    y: {
+                        min: 0,
+                        grid: { color: 'rgba(0,0,0,0.04)' },
+                        ticks: { font: { family: 'Inter', size: 11 }, color: '#666' },
+                        title: { display: true, text: 'mm', font: { family: 'Inter', size: 11 } }
+                    }
+                },
+                plugins: {
+                    legend: { display: false },
+                    tooltip: { callbacks: { label: function (c) { return c.parsed.y.toFixed(1) + ' mm'; } } }
+                }
+            }
+        });
+    }
+
+    function setupTimeRangeSelector() {
+        var btns = document.querySelectorAll('.vader-time-btn');
+        var monthDropdown = document.getElementById('vader-month-select');
+
+        btns.forEach(function (btn) {
+            btn.addEventListener('click', function () {
+                var mode = btn.getAttribute('data-mode');
+
+                // Uppdatera aktiv-state
+                btns.forEach(function (b) { b.classList.remove('active'); });
+                btn.classList.add('active');
+
+                if (mode === 'month') {
+                    // Visa/dölj dropdown
+                    if (monthDropdown.style.display === 'none') {
+                        monthDropdown.style.display = 'block';
+                        // Sätt till aktuell månad som default
+                        var now = new Date();
+                        var curMonth = '2026-' + (now.getMonth() + 1 < 10 ? '0' : '') + (now.getMonth() + 1);
+                        monthDropdown.value = curMonth;
+                        setTimeRange('month', curMonth);
+                    } else {
+                        monthDropdown.style.display = 'none';
+                    }
+                } else {
+                    monthDropdown.style.display = 'none';
+                    setTimeRange(mode);
+                }
+            });
+        });
+
+        if (monthDropdown) {
+            monthDropdown.addEventListener('change', function () {
+                setTimeRange('month', monthDropdown.value);
+            });
+        }
+    }
+
+    // ================================================================
+    // CHART 5: Vindkomponenter 4.0 — Hybrid Zoom (År = Stream, Månad = Staplar)
+    // ================================================================
+    function buildWindChart() {
+        var canvas = document.getElementById('wind-chart');
+        if (!canvas) return;
+
+        var urlDir = 'https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/3/station/' + STATION_TEMP + '/period/latest-months/data.json';
+        var urlSpd = 'https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/4/station/' + STATION_TEMP + '/period/latest-months/data.json';
+
+        Promise.all([fetch(urlDir).then(function (r) { return r.json(); }), fetch(urlSpd).then(function (r) { return r.json(); })]).then(function (results) {
+            var dirVals = results[0].value || [];
+            var spdVals = results[1].value || [];
+
+            var spdMap = {};
+            spdVals.forEach(function (v) { spdMap[v.date] = parseFloat(v.value) || 0; });
+
+            var startMs = new Date('2026-01-01').getTime();
+
+            // Samla vektor-energi per dag för N/S och V/Ö
+            var dayData = {};
+            dirVals.forEach(function (v) {
+                if (v.date < startMs) return;
+                var deg = parseFloat(v.value);
+                var spd = spdMap[v.date] || 0;
+                if (isNaN(deg) || spd === 0) return;
+
+                var d = new Date(v.date).toISOString().slice(0, 10);
+                if (!dayData[d]) dayData[d] = { ns_net: 0, ew_net: 0, count: 0 };
+
+                var rad = deg * Math.PI / 180;
+                // deg är varifrån vinden blåser. 0 = N, 90 = Ö, 180 = S, 270 = V
+
+                // Nord/Syd-vektor. cos(0)=1 (Nord), cos(180)=-1 (Syd)
+                dayData[d].ns_net += Math.cos(rad) * spd;
+                // Öst/Väst-vektor. sin(90)=1 (Öst), sin(270)=-1 (Väst)
+                dayData[d].ew_net += Math.sin(rad) * spd;
+                dayData[d].count++;
+            });
+
+            var days = Object.keys(dayData).sort();
+            var ns_raw = [];
+            var ew_raw = [];
+
+            days.forEach(function (d) {
+                var dd = dayData[d];
+                // Positivt för Nord/Öst, Negativt för Syd/Väst
+                ns_raw.push(dd.count > 0 ? dd.ns_net / dd.count : 0);
+                ew_raw.push(dd.count > 0 ? dd.ew_net / dd.count : 0);
+            });
+
+            var maxMag = 1;
+            ns_raw.forEach(function (v) { if (Math.abs(v) > maxMag) maxMag = Math.abs(v); });
+            ew_raw.forEach(function (v) { if (Math.abs(v) > maxMag) maxMag = Math.abs(v); });
+
+            var dayIndices = days.map(function (d) {
+                var dt = new Date(d);
+                var jan1 = new Date(dt.getFullYear(), 0, 1);
+                return Math.floor((dt - jan1) / 86400000);
+            });
+
+            // === Canvas setup ===
+            var dpr = window.devicePixelRatio || 1;
+            var w = canvas.parentElement.clientWidth;
+            var labelW = 24;
+            var chartW = w - labelW;
+            var cellW = chartW / 365;
+
+            // Definition av rityta med två distinkta "floder"
+            var rowH = window.innerWidth < 600 ? 55 : 90; // Höjd från mitt-axeln
+            var gap = 16;
+            var bottomPad = 24;
+
+            var base1 = rowH;
+            var base2 = (rowH * 3) + gap;
+            var h = (rowH * 4) + gap + bottomPad;
+
+            canvas.width = w * dpr;
+            canvas.height = h * dpr;
+            canvas.style.width = w + 'px';
+            canvas.style.height = h + 'px';
+            var ctx = canvas.getContext('2d');
+            ctx.scale(dpr, dpr);
+
+            // Hjälpfunktion för att rita ett mjuka area-fält med ifylld färggradient (För Helår)
+            function drawAreaStream(dataArr, baseY, isPos, r, g, b, startIdx, endIdx) {
+                if (dataArr.length === 0) return;
+                var sIdx = startIdx !== undefined ? startIdx : 0;
+                var eIdx = endIdx !== undefined ? endIdx : dataArr.length - 1;
+
+                // 1. Skapa Path för den fyllda ytan (Area)
+                ctx.beginPath();
+                ctx.moveTo(labelW + (dayIndices[sIdx] - dayIndices[sIdx]) * cellW, baseY);
+                for (var i = sIdx; i <= eIdx; i++) {
+                    var val = dataArr[i];
+                    var drawVal = isPos ? Math.max(0, val) : Math.max(0, -val);
+                    var localX = dayIndices[i] - dayIndices[sIdx];
+                    var x = labelW + localX * cellW;
+                    var y = baseY + (isPos ? -1 : 1) * (drawVal / maxMag) * (rowH - 4);
+                    ctx.lineTo(x, y);
+                }
+                ctx.lineTo(labelW + (dayIndices[eIdx] - dayIndices[sIdx]) * cellW, baseY);
+                ctx.closePath();
+
+                // Translucid Gradient-fill från toppen av vågen mot baslinjen
+                var grad = ctx.createLinearGradient(0, baseY + (isPos ? -rowH : rowH), 0, baseY);
+                grad.addColorStop(0, 'rgba(' + r + ',' + g + ',' + b + ',0.7)');
+                grad.addColorStop(1, 'rgba(' + r + ',' + g + ',' + b + ',0.1)');
+                ctx.fillStyle = grad;
+                ctx.fill();
+
+                // 2. Skapa skarpa kanten överst (Line)
+                ctx.beginPath();
+                for (var i = sIdx; i <= eIdx; i++) {
+                    var val = dataArr[i];
+                    var drawVal = isPos ? Math.max(0, val) : Math.max(0, -val);
+                    var localX = dayIndices[i] - dayIndices[sIdx];
+                    var x = labelW + localX * cellW;
+                    var y = baseY + (isPos ? -1 : 1) * (drawVal / maxMag) * (rowH - 4);
+                    if (i === sIdx) ctx.moveTo(x, y);
+                    else ctx.lineTo(x, y);
+                }
+                ctx.strokeStyle = 'rgba(' + r + ',' + g + ',' + b + ',1)';
+                ctx.lineWidth = 1.5;
+                ctx.stroke();
+            }
+
+            // Hjälpfunktion för att rita exakta dagstaplar
+            function drawExactBars(dataArr, baseY, isPos, r, g, b, startIdx, endIdx, periodFromDate) {
+                if (dataArr.length === 0) return;
+                var sIdx = startIdx !== undefined ? startIdx : 0;
+                var eIdx = endIdx !== undefined ? endIdx : dataArr.length - 1;
+                var fromMs = periodFromDate ? new Date(periodFromDate).getTime() : new Date(days[sIdx]).getTime();
+
+                ctx.fillStyle = 'rgba(' + r + ',' + g + ',' + b + ',0.85)';
+                for (var i = sIdx; i <= eIdx; i++) {
+                    var val = dataArr[i];
+                    var drawVal = isPos ? Math.max(0, val) : Math.max(0, -val);
+                    if (drawVal < 0.1) continue;
+
+                    // Positionera baserat på datum relativt periodens start (inte dayIndices)
+                    var dayMs = new Date(days[i]).getTime();
+                    var dayOffset = Math.round((dayMs - fromMs) / 86400000);
+                    var x = labelW + dayOffset * cellW;
+                    var barH = (drawVal / maxMag) * (rowH - 4);
+
+                    var rectY = isPos ? baseY - barH : baseY;
+                    ctx.fillRect(x, rectY, Math.max(Math.ceil(cellW) - 1, 2), barH);
+                }
+            }
+
+            // Ritar hela diagrammet (återanvänds vid redraw, highlights, och tidsperiod-zoom)
+            // 'fromDate' och 'toDate' är datumsträngar t.ex. '2026-02-19' och '2026-03-05'
+            var drawAll = function (fromDate, toDate, hlStartIdx, hlEndIdx) {
+                fromDate = fromDate || '2026-01-01';
+                toDate = toDate || '2026-12-31';
+
+                var isFullYear = (fromDate === '2026-01-01' && toDate === '2026-12-31');
+
+                // Hitta start- och slutindex för den valda perioden
+                var sIdx = 0, eIdx = days.length - 1;
+
+                // Filtrera till datumintervallet
+                var filteredIdxs = [];
+                for (var i = 0; i < days.length; i++) {
+                    if (days[i] >= fromDate && days[i] <= toDate) filteredIdxs.push(i);
+                }
+                if (filteredIdxs.length > 0) {
+                    sIdx = filteredIdxs[0];
+                    eIdx = filteredIdxs[filteredIdxs.length - 1];
+                } else {
+                    // Ingen data för denna period — rita tomt diagram
+                    ctx.fillStyle = '#fff';
+                    ctx.fillRect(0, 0, w, h);
+                    var emptyDays = Math.max(1, Math.round((new Date(toDate) - new Date(fromDate)) / 86400000));
+                    cellW = chartW / emptyDays;
+                    ctx.fillStyle = 'rgba(0,0,0,0.015)';
+                    ctx.fillRect(labelW, 0, chartW, rowH * 2);
+                    ctx.fillRect(labelW, rowH * 2 + gap, chartW, rowH * 2);
+                    ctx.strokeStyle = 'rgba(0,0,0,0.15)';
+                    ctx.lineWidth = 1;
+                    ctx.beginPath(); ctx.moveTo(labelW, base1); ctx.lineTo(w, base1); ctx.stroke();
+                    ctx.beginPath(); ctx.moveTo(labelW, base2); ctx.lineTo(w, base2); ctx.stroke();
+                    ctx.textAlign = 'right'; ctx.textBaseline = 'middle';
+                    ctx.font = 'bold 11px Inter, sans-serif'; ctx.fillStyle = '#333';
+                    ctx.fillText('Nord', labelW - 6, base1 - rowH / 2);
+                    ctx.fillText('Syd', labelW - 6, base1 + rowH / 2);
+                    ctx.fillText('Öst', labelW - 6, base2 - rowH / 2);
+                    ctx.fillText('Väst', labelW - 6, base2 + rowH / 2);
+                    
+                    // Rotated axis labels
+                    ctx.save();
+                    ctx.translate(labelW - 25, base1);
+                    ctx.rotate(-Math.PI / 2);
+                    ctx.fillStyle = '#666'; ctx.font = '9px Inter, sans-serif'; ctx.textAlign = 'center';
+                    ctx.fillText('N/S (m/s)', 0, 0);
+                    ctx.restore();
+                    
+                    ctx.save();
+                    ctx.translate(labelW - 25, base2);
+                    ctx.rotate(-Math.PI / 2);
+                    ctx.fillStyle = '#666'; ctx.font = '9px Inter, sans-serif'; ctx.textAlign = 'center';
+                    ctx.fillText('V/Ö (m/s)', 0, 0);
+                    ctx.restore();
+                    
+                    ctx.textAlign = 'center'; ctx.font = '12px Inter, sans-serif';
+                    ctx.fillStyle = '#999';
+                    ctx.fillText('Ingen vinddata för denna period', w / 2, h / 2);
+                    return;
+                }
+
+                // Beräkna tidsfönstrets längd i dagar
+                var timeframeDays = Math.max(1, Math.round((new Date(toDate) - new Date(fromDate)) / 86400000)) + 1;
+
+                // Uppdatera cellW baserat på perioden
+                cellW = chartW / timeframeDays;
+
+                ctx.fillStyle = '#fff';
+                ctx.fillRect(0, 0, w, h);
+
+                // Rita Gul Highlight först (om aktiv)
+                if (hlStartIdx !== undefined && hlEndIdx !== undefined) {
+                    var hx1 = labelW + (hlStartIdx - dayIndices[sIdx]) * cellW;
+                    var hx2 = labelW + (hlEndIdx - dayIndices[sIdx] + 1) * cellW;
+
+                    hx1 = Math.max(labelW, Math.min(w, hx1));
+                    hx2 = Math.max(labelW, Math.min(w, hx2));
+
+                    if (hx2 > hx1) {
+                        ctx.fillStyle = 'rgba(255, 235, 59, 0.3)';
+                        ctx.fillRect(hx1, 0, hx2 - hx1, h - bottomPad);
+                        ctx.strokeStyle = 'rgba(255, 193, 7, 0.6)';
+                        ctx.lineWidth = 1;
+                        ctx.strokeRect(hx1, 0, hx2 - hx1, h - bottomPad);
+                    }
+                }
+
+                // Bakgrunder för diagramzoner
+                ctx.fillStyle = 'rgba(0,0,0,0.015)';
+                ctx.fillRect(labelW, 0, chartW, rowH * 2);
+                ctx.fillRect(labelW, rowH * 2 + gap, chartW, rowH * 2);
+
+                // Baslinjer för axlarna = 0 markeringarna
+                ctx.strokeStyle = 'rgba(0,0,0,0.15)';
+                ctx.lineWidth = 1;
+                ctx.beginPath(); ctx.moveTo(labelW, base1); ctx.lineTo(w, base1); ctx.stroke();
+                ctx.beginPath(); ctx.moveTo(labelW, base2); ctx.lineTo(w, base2); ctx.stroke();
+
+                // Alltid staplar — ingen smoothning, visar rådata oavsett period
+                drawExactBars(ns_raw, base1, true, 74, 144, 217, sIdx, eIdx, fromDate);   // Nord (Blå)
+                drawExactBars(ns_raw, base1, false, 217, 74, 74, sIdx, eIdx, fromDate);   // Syd (Röd)
+                drawExactBars(ew_raw, base2, true, 61, 170, 109, sIdx, eIdx, fromDate);   // Öst (Grön)
+                drawExactBars(ew_raw, base2, false, 217, 168, 74, sIdx, eIdx, fromDate);  // Väst (Gul)
+
+                // Etiketter vid axlarnas startpunkt
+                ctx.textAlign = 'right';
+                ctx.textBaseline = 'middle';
+                ctx.font = 'bold 11px Inter, sans-serif';
+
+                // Axel 1 — N/S med matchande färger
+                ctx.fillStyle = '#4A90D9';
+                ctx.fillText('Nord', labelW - 6, base1 - rowH / 2);
+                ctx.fillStyle = '#D94A4A';
+                ctx.fillText('Syd', labelW - 6, base1 + rowH / 2);
+
+                // Axel 2 — Ö/V med matchande färger
+                ctx.fillStyle = '#3DAA6D';
+                ctx.fillText('Öst', labelW - 6, base2 - rowH / 2);
+                ctx.fillStyle = '#D9A84A';
+                ctx.fillText('Väst', labelW - 6, base2 + rowH / 2);
+                
+                // Axel labels N/S och V/Ö
+                ctx.save();
+                ctx.translate(labelW - 25, base1);
+                ctx.rotate(-Math.PI / 2);
+                ctx.fillStyle = '#666'; ctx.font = '9px Inter, sans-serif'; ctx.textAlign = 'center';
+                ctx.fillText('N/S (m/s)', 0, 0);
+                ctx.restore();
+                
+                ctx.save();
+                ctx.translate(labelW - 25, base2);
+                ctx.rotate(-Math.PI / 2);
+                ctx.fillStyle = '#666'; ctx.font = '9px Inter, sans-serif'; ctx.textAlign = 'center';
+                ctx.fillText('V/Ö (m/s)', 0, 0);
+                ctx.restore();
+
+                // Tidslinje — grid och datummarkeringar
+                ctx.strokeStyle = 'rgba(0,0,0,0.05)';
+                ctx.lineWidth = 0.5;
+                ctx.textAlign = 'center';
+                ctx.font = '9px Inter, sans-serif';
+                ctx.fillStyle = '#999';
+
+                if (isFullYear) {
+                    var monthStarts = [0, 31, 59, 90, 120, 151, 181, 212, 243, 273, 304, 334];
+                    var monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'Maj', 'Jun', 'Jul', 'Aug', 'Sep', 'Okt', 'Nov', 'Dec'];
+                    for (var m = 0; m < 12; m++) {
+                        var mx = labelW + monthStarts[m] * cellW;
+                        ctx.beginPath(); ctx.moveTo(mx, 0); ctx.lineTo(mx, h - bottomPad); ctx.stroke();
+                        // Månadsetiketter vid botten
+                        ctx.fillText(monthNames[m], mx + (m < 11 ? (monthStarts[m + 1] - monthStarts[m]) : 31) * cellW / 2, h - 10);
+                    }
+                    // Dimma framtida perioder
+                    var todayDayOfYear = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 1)) / 86400000);
+                    var futureX = labelW + (todayDayOfYear + 1) * cellW;
+                    if (futureX < w) {
+                        ctx.fillStyle = 'rgba(255, 255, 255, 0.6)';
+                        ctx.fillRect(futureX, 0, w - futureX, h - bottomPad);
+                    }
+                } else {
+                    // Rita individuella dagsmarkeringar med datumtext
+                    var fromMs = new Date(fromDate).getTime();
+                    var tickInterval = timeframeDays <= 14 ? 1 : (timeframeDays <= 31 ? 5 : 7);
+                    for (var d = 0; d < timeframeDays; d++) {
+                        if (d % tickInterval === 0 || d === timeframeDays - 1) {
+                            var centerX = labelW + d * cellW + (cellW / 2);
+                            ctx.beginPath(); ctx.moveTo(centerX, 0); ctx.lineTo(centerX, h - bottomPad); ctx.stroke();
+                            // Visa datum som "5 mar" format
+                            var tickDate = new Date(fromMs + d * 86400000);
+                            var monthAbbr = ['jan', 'feb', 'mar', 'apr', 'maj', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
+                            var label = tickDate.getDate() + ' ' + monthAbbr[tickDate.getMonth()];
+                            ctx.fillText(label, centerX, h - 10);
+                        }
+                    }
+                }
+            };
+
+            // Event-bindning sköts nu av setupGlobalMonthSelector()
+
+            // Initial draw sker via setTimeRange('14d') i loaddaren
+            // Hämta aktuell tidsperiod (sätts av setTimeRange innan API-data anlänt)
+            var initFrom = _currentTimeFrom || '2026-01-01';
+            var initTo = _currentTimeTo || '2026-12-31';
+            drawAll(initFrom, initTo);
+
+            window._windChartMeta = {
+                canvas: canvas, ctx: ctx, dpr: dpr, w: w, h: h, labelW: labelW,
+                drawAll: drawAll, dayIndices: dayIndices, days: days,
+                currentFrom: '2026-01-01', currentTo: '2026-12-31'
+            };
+
+            // Bygg ΔW vindskifte-remsa (VEP-beslut: dag-till-dag vektorskillnad)
+            buildWindDeltaStrip(days, ns_raw, ew_raw);
+        }).catch(function (error) {
+            console.error('Error fetching wind data:', error);
+            var el = document.getElementById('wind-chart');
+            if (el) el.parentElement.innerHTML = '<p class="vader-chart-error">Vinddata kunde inte laddas</p>';
+        });
+    }
+
+    // ================================================================
+    // CHART 5b: ΔW Vindskifte-remsa (dag-till-dag vektorskillnad)
+    // ================================================================
+    function buildWindDeltaStrip(days, ns_raw, ew_raw) {
+        var canvas = document.getElementById('wind-delta-chart');
+        if (!canvas || days.length < 2) return;
+
+        // Fast maxskala: 12 m/s (VEP-konsensus)
+        var DELTA_W_MAX = 12;
+
+        // Beräkna ΔW per dag: |ΔNS| + |ΔEW| (Manhattan-distans, VEP-beslut)
+        // Manhattan-distans ger starkare signal vid frontpassager där båda
+        // komponenterna svänger — mer biologiskt relevant än euklidisk distans.
+        var deltaW = {};
+        for (var i = 1; i < days.length; i++) {
+            var du = Math.abs(ew_raw[i] - ew_raw[i - 1]);  // Zonal skillnad
+            var dv = Math.abs(ns_raw[i] - ns_raw[i - 1]);  // Meridional skillnad
+            deltaW[days[i]] = du + dv;
+        }
+
+        var allDates = Object.keys(deltaW).sort();
+
+        var box = canvas.parentElement;
+        var dpr = window.devicePixelRatio || 1;
+        var w = box.clientWidth;
+        var labelW = 24;
+        var chartW = w - labelW;
+        var h = 20;
+
+        canvas.width = w * dpr;
+        canvas.height = h * dpr;
+        canvas.style.width = w + 'px';
+        canvas.style.height = h + 'px';
+        var ctx = canvas.getContext('2d');
+        ctx.scale(dpr, dpr);
+
+        function drawDelta(fromDate, toDate) {
+            fromDate = fromDate || '2026-01-01';
+            toDate = toDate || '2026-12-31';
+            var isFullYear = (fromDate === '2026-01-01' && toDate === '2026-12-31');
+
+            ctx.fillStyle = '#fff';
+            ctx.fillRect(0, 0, w, h);
+
+            var timeframeDays = Math.max(1, Math.round((new Date(toDate) - new Date(fromDate)) / 86400000)) + 1;
+            var cellW = chartW / timeframeDays;
+            var fromMs = new Date(fromDate).getTime();
+
+            allDates.forEach(function (d) {
+                if (d < fromDate || d > toDate) return;
+                var dayMs = new Date(d).getTime();
+                var dayOffset = Math.round((dayMs - fromMs) / 86400000);
+                var x = labelW + dayOffset * cellW;
+                var barW = Math.max(Math.ceil(cellW), 2);
+                var dw = deltaW[d];
+                var ratio = Math.min(dw / DELTA_W_MAX, 1);
+
+                ctx.fillStyle = deltaColor(ratio);
+                ctx.fillRect(x, 0, barW, h);
+            });
+
+            // Dimma framtida perioder i helårsvy
+            if (isFullYear) {
+                var todayDOY = Math.floor((new Date() - new Date(new Date().getFullYear(), 0, 1)) / 86400000);
+                var futX = labelW + (todayDOY + 1) * cellW;
+                if (futX < w) {
+                    ctx.fillStyle = 'rgba(255,255,255,0.7)';
+                    ctx.fillRect(futX, 0, w - futX, h);
+                }
+            }
+        }
+
+        var initFrom = _currentTimeFrom || '2026-01-01';
+        var initTo = _currentTimeTo || '2026-12-31';
+        drawDelta(initFrom, initTo);
+
+        window._windDeltaMeta = {
+            canvas: canvas, ctx: ctx, dpr: dpr, w: w, h: h, labelW: labelW,
+            drawAll: drawDelta, currentFrom: initFrom, currentTo: initTo
+        };
+    }
+
+    // ================================================================
+    // FÄLT­RAPPORT-VÄLJARE: Dropdown + excerpt med datummarkering
+    // ================================================================
+    function buildBlogDropdown() {
+        var sel = document.getElementById('vader-blog-select');
+        var preview = document.getElementById('vader-blog-preview');
+        if (!sel || !blogPosts || blogPosts.length === 0) return;
+
+        // Sortera nyast först
+        var sorted = blogPosts.slice().sort(function (a, b) {
+            return a.date > b.date ? -1 : a.date < b.date ? 1 : 0;
+        });
+
+        var months = ['jan', 'feb', 'mar', 'apr', 'maj', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
+
+        sorted.forEach(function (p, i) {
+            var d = new Date(p.date);
+            var label = d.getDate() + ' ' + months[d.getMonth()] + ' — ' + p.title;
+            var opt = document.createElement('option');
+            opt.value = i;
+            opt.textContent = label;
+            sel.appendChild(opt);
+        });
+
+        sel.addEventListener('change', function () {
+            if (sel.value === '') {
+                // Default: 14 dagar, ingen highlight
+                preview.style.display = 'none';
+                clearHighlights();
+                // Återställ till 14-dagars vy
+                var btns = document.querySelectorAll('.vader-time-btn');
+                btns.forEach(function (b) { b.classList.remove('active'); });
+                var firstBtn = document.querySelector('.vader-time-btn[data-mode="14d"]');
+                if (firstBtn) firstBtn.classList.add('active');
+                var monthDropdown = document.getElementById('vader-month-select');
+                if (monthDropdown) monthDropdown.style.display = 'none';
+                setTimeRange('14d');
+                return;
+            }
+
+            var post = sorted[parseInt(sel.value)];
+            if (!post) return;
+
+            // Visa excerpt
+            preview.innerHTML =
+                '<strong>' + post.title + '</strong>' +
+                '<p class="vader-blog-excerpt">' + post.excerpt + '</p>' +
+                '<a href="' + post.url + '" class="vader-blog-link">Läs hela fältrapporten →</a>';
+            preview.style.display = 'block';
+
+            // Highlighta datumet i alla diagram
+            highlightDateRange(post.date, post.date);
+        });
+    }
+
+    // Alla Chart.js-instanser sparas för highlighting
+    var _chartInstances = [];
+    var _origNewChart = Chart;
+    // Wrappa Chart-konstruktorn för att spara instanser
+    (function () {
+        var origProto = Chart.prototype;
+        var origConstructor = Chart;
+    })();
+
+    function highlightDateRange(from, to) {
+        clearHighlights();
+
+        // Hitta alla Chart.js canvases och lägg till annotation
+        var chartCanvases = ['progress-chart', 'temp-chart', 'precip-chart', 'flow-chart'];
+        chartCanvases.forEach(function (id) {
+            var el = document.getElementById(id);
+            if (!el) return;
+            var chartInstance = Chart.getChart(el);
+            if (!chartInstance) return;
+
+            chartInstance.options.plugins.annotation.annotations.highlight = {
+                type: 'box',
+                xMin: from,
+                xMax: to + 'T23:59:59',
+                backgroundColor: 'rgba(255, 235, 59, 0.25)',
+                borderColor: 'rgba(255, 193, 7, 0.5)',
+                borderWidth: 1,
+                borderRadius: 2
+            };
+            chartInstance.update('none');
+        });
+
+        // Auto-zooma alla diagram till ±7 dagar kring fältrapporten
+        var fromDate = new Date(from);
+        var toDate = new Date(to);
+        var rangeFrom = new Date(fromDate);
+        rangeFrom.setDate(rangeFrom.getDate() - 7);
+        var rangeTo = new Date(toDate);
+        rangeTo.setDate(rangeTo.getDate() + 7);
+        var rangeFromStr = rangeFrom.toISOString().slice(0, 10);
+        var rangeToStr = rangeTo.toISOString().slice(0, 10);
+
+        // Uppdatera segmented control state
+        var btns = document.querySelectorAll('.vader-time-btn');
+        btns.forEach(function (b) { b.classList.remove('active'); });
+        var monthDropdown = document.getElementById('vader-month-select');
+        if (monthDropdown) monthDropdown.style.display = 'none';
+
+        setTimeRange('range', { from: rangeFromStr, to: rangeToStr });
+
+        // Spara highlight-datum globalt
+        _highlightFrom = from;
+        _highlightTo = to;
+
+        // Highlight vindrastret med extra highlight-markeringar
+        var wm = window._windChartMeta;
+        if (wm) {
+            var jan1 = new Date(fromDate.getFullYear(), 0, 1);
+            var fromIdx = Math.floor((fromDate - jan1) / 86400000);
+            var toIdx = Math.floor((toDate - jan1) / 86400000);
+            wm.ctx.save();
+            wm.ctx.setTransform(wm.dpr, 0, 0, wm.dpr, 0, 0);
+            wm.drawAll(rangeFromStr, rangeToStr, fromIdx, toIdx);
+            wm.ctx.restore();
+        }
+
+        // Highlight canvas-baserade diagram (temp dag, temp natt, ΔT, ΔW)
+        overlayCanvasHighlight(from, to, rangeFromStr, rangeToStr);
+
+        // Scrolla mjukt till diagrammen
+        var triptych = document.querySelector('.vader-triptych');
+        if (triptych) triptych.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    // Generisk gul highlight-overlay för canvas-baserade diagram
+    function overlayCanvasHighlight(hlFrom, hlTo, viewFrom, viewTo) {
+        var metaKeys = ['_tempDayMeta', '_tempNightMeta', '_tempDeltaMeta', '_windDeltaMeta'];
+        var timeframeDays = Math.max(1, Math.round((new Date(viewTo) - new Date(viewFrom)) / 86400000)) + 1;
+
+        metaKeys.forEach(function (key) {
+            var m = window[key];
+            if (!m) return;
+            var chartW = m.w - (m.labelW || 30);
+            var cellW = chartW / timeframeDays;
+            var fromMs = new Date(viewFrom).getTime();
+
+            var hlFromMs = new Date(hlFrom).getTime();
+            var hlToMs = new Date(hlTo).getTime();
+            var x1 = (m.labelW || 30) + Math.round((hlFromMs - fromMs) / 86400000) * cellW;
+            var x2 = (m.labelW || 30) + (Math.round((hlToMs - fromMs) / 86400000) + 1) * cellW;
+
+            x1 = Math.max(m.labelW || 30, x1);
+            x2 = Math.min(m.w, x2);
+            if (x2 <= x1) return;
+
+            m.ctx.save();
+            m.ctx.setTransform(m.dpr, 0, 0, m.dpr, 0, 0);
+            m.ctx.fillStyle = 'rgba(255, 235, 59, 0.25)';
+            m.ctx.fillRect(x1, 0, x2 - x1, m.h);
+            m.ctx.strokeStyle = 'rgba(255, 193, 7, 0.6)';
+            m.ctx.lineWidth = 1;
+            m.ctx.strokeRect(x1, 0, x2 - x1, m.h);
+            m.ctx.restore();
+        });
+    }
+
+    function clearHighlights() {
+        _highlightFrom = null;
+        _highlightTo = null;
+
+        var chartCanvases = ['progress-chart', 'temp-chart', 'precip-chart', 'flow-chart'];
+        chartCanvases.forEach(function (id) {
+            var el = document.getElementById(id);
+            if (!el) return;
+            var chartInstance = Chart.getChart(el);
+            if (!chartInstance) return;
+            delete chartInstance.options.plugins.annotation.annotations.highlight;
+            chartInstance.update('none');
+        });
+
+        // Redraw vindraster utan highlight
+        var wm = window._windChartMeta;
+        if (wm) {
+            wm.ctx.save();
+            wm.ctx.setTransform(wm.dpr, 0, 0, wm.dpr, 0, 0);
+            wm.drawAll(wm.currentFrom, wm.currentTo);
+            wm.ctx.restore();
+        }
+
+        // Redraw canvas-baserade temp/delta-diagram utan highlight
+        ['_tempDayMeta', '_tempNightMeta', '_tempDeltaMeta', '_windDeltaMeta'].forEach(function (key) {
+            var m = window[key];
+            if (!m) return;
+            m.ctx.save();
+            m.ctx.setTransform(m.dpr, 0, 0, m.dpr, 0, 0);
+            m.drawAll(m.currentFrom, m.currentTo);
+            m.ctx.restore();
+        });
+    }
+
+    // Bygg dropdown efter DOM är redo
+    buildBlogDropdown();
+
+</script>
+<script src="/js/twilight.js?v={{ now.Unix }}" defer></script>
+{{ end }}

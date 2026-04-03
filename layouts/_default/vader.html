@@ -25,12 +25,11 @@
             </div>
 
             <div class="vader-now-hero-cards">
-                <!-- VIND-KORT -->
+                <!-- VIND-WIDGET -->
                 <div class="vader-now-card">
                     <div class="vader-now-card-title">Vind</div>
                     <div class="vader-wind-now-main">
-                        <!-- SVG vindpil -->
-                        <div class="vader-wind-now-arrow-wrap">
+                        <div class="vader-wind-now-arrow-wrap" style="transform: scale(1.15); margin-bottom: 8px;">
                             <svg id="wind-arrow" class="vader-wind-now-arrow" viewBox="0 0 80 80" width="64" height="64">
                                 <circle cx="40" cy="40" r="38" fill="none" stroke="rgba(0,0,0,0.06)" stroke-width="1"/>
                                 <text x="40" y="10" text-anchor="middle" font-size="8" fill="#999" font-family="Inter, sans-serif" font-weight="600">N</text>
@@ -38,71 +37,55 @@
                                 <text x="8" y="43" text-anchor="middle" font-size="8" fill="#999" font-family="Inter, sans-serif">V</text>
                                 <text x="72" y="43" text-anchor="middle" font-size="8" fill="#999" font-family="Inter, sans-serif">Ö</text>
                                 <g id="wind-arrow-group" transform="rotate(0, 40, 40)">
-                                    <line x1="40" y1="58" x2="40" y2="18" stroke="#2B5A2B" stroke-width="2.5" stroke-linecap="round"/>
-                                    <polygon points="40,16 34,28 46,28" fill="#2B5A2B"/>
+                                    <line x1="40" y1="58" x2="40" y2="18" stroke="#10b981" stroke-width="2.5" stroke-linecap="round"/>
+                                    <polygon points="40,16 34,28 46,28" fill="#10b981"/>
                                 </g>
                             </svg>
                         </div>
-
                         <div class="vader-wind-now-speed">
-                            <span id="wind-speed-value" class="vader-wind-now-speed-val">—</span>
-                            <span class="vader-wind-now-speed-unit">m/s</span>
+                            <span id="wind-speed-value" class="vader-wind-now-speed-val" style="font-weight: 800; font-size: 2.2rem; color: var(--color-primary-dark);">—</span>
+                            <span class="vader-wind-now-speed-unit" style="color: var(--color-text-muted);">m/s</span>
                         </div>
-                        <div id="wind-beaufort" class="vader-wind-now-beaufort">Laddar…</div>
-                        <div id="wind-dir-text" class="vader-wind-now-dir-text"></div>
+                        <div id="wind-beaufort" class="vader-wind-now-beaufort" style="color: var(--color-text);">Laddar…</div>
+                        <div id="wind-dir-text" class="vader-wind-now-dir-text" style="color: var(--color-text-muted);"></div>
                     </div>
+                </div>
 
-                    <div class="vader-wind-now-comp-title">Vindkomponenter</div>
-                    <div class="vader-wind-now-components">
-                        <div class="vader-wind-now-comp-row">
-                            <span class="vader-wind-now-comp-label" style="color:#4A90D9;">N</span>
-                            <div class="vader-wind-now-comp-track">
-                                <div id="wind-comp-n" class="vader-wind-now-comp-bar" style="background:#4A90D9;width:0%"></div>
-                            </div>
-                            <span id="wind-comp-n-val" class="vader-wind-now-comp-val">0</span>
+                <!-- LUFTTRYCK-WIDGET -->
+                <div class="vader-now-card">
+                    <div class="vader-now-card-title">Lufttryck</div>
+                    <div class="vader-pressure-now-main" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; min-height:120px;">
+                        <div style="display:flex; align-items:baseline; gap:4px; margin-bottom:12px;">
+                            <span id="pressure-now-value" style="font-family:var(--font-heading); font-size:2.2rem; font-weight:800; color:var(--color-primary-dark); line-height:1;">—</span>
+                            <span style="font-family:var(--font-heading); font-size:12px; color:var(--color-text-muted); font-weight:500;">hPa</span>
                         </div>
-                        <div class="vader-wind-now-comp-row">
-                            <span class="vader-wind-now-comp-label" style="color:#D94A4A;">S</span>
-                            <div class="vader-wind-now-comp-track">
-                                <div id="wind-comp-s" class="vader-wind-now-comp-bar" style="background:#D94A4A;width:0%"></div>
-                            </div>
-                            <span id="wind-comp-s-val" class="vader-wind-now-comp-val">0</span>
-                        </div>
-                        <div class="vader-wind-now-comp-row">
-                            <span class="vader-wind-now-comp-label" style="color:#3DAA6D;">Ö</span>
-                            <div class="vader-wind-now-comp-track">
-                                <div id="wind-comp-e" class="vader-wind-now-comp-bar" style="background:#3DAA6D;width:0%"></div>
-                            </div>
-                            <span id="wind-comp-e-val" class="vader-wind-now-comp-val">0</span>
-                        </div>
-                        <div class="vader-wind-now-comp-row">
-                            <span class="vader-wind-now-comp-label" style="color:#D9A84A;">V</span>
-                            <div class="vader-wind-now-comp-track">
-                                <div id="wind-comp-w" class="vader-wind-now-comp-bar" style="background:#D9A84A;width:0%"></div>
-                            </div>
-                            <span id="wind-comp-w-val" class="vader-wind-now-comp-val">0</span>
+                        <div id="pressure-now-trend" style="font-size:12px; font-weight:500; color:var(--color-text); display:flex; align-items:center; gap:6px; background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.04); padding: 4px 10px; border-radius: 12px;">
+                            <span id="pressure-trend-icon" style="display:flex; align-items:center;">
+                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg>
+                            </span>
+                            <span id="pressure-trend-text">Hämtar data...</span>
                         </div>
                     </div>
                 </div>
 
-                <!-- TEMPERATUR-KORT -->
-                <div class="vader-now-card">
+                <!-- TEMPERATUR-WIDGET -->
+                <div class="vader-now-card" style="grid-column: 1 / -1;">
                     <div class="vader-now-card-title">Temperatur</div>
                     <div class="vader-temp-now-main" style="display:flex; flex-direction:row; align-items:flex-end; justify-content:space-between; width:100%; gap:var(--space-lg);">
                         
                         <div class="vader-temp-now-left" style="display:flex; flex-direction:column; align-items:flex-start; gap:4px; padding-bottom:8px;">
                             <div class="vader-temp-now-current">
-                                <span id="temp-now-value" class="vader-temp-now-val">—</span>
-                                <span class="vader-temp-now-unit">°C</span>
+                                <span id="temp-now-value" class="vader-temp-now-val" style="color:var(--color-primary-dark); font-size: 2.2rem; font-weight:800; font-family:var(--font-heading);">—</span>
+                                <span class="vader-temp-now-unit" style="color: var(--color-text-muted); font-family:var(--font-heading); font-size:var(--text-xs); font-weight:500;">°C</span>
                             </div>
                             <div class="vader-temp-now-range" style="justify-content:flex-start; margin-top:2px;">
                                 <div class="vader-temp-now-range-item">
-                                    <span class="vader-temp-now-range-label">Idag max</span>
-                                    <span id="temp-now-max" class="vader-temp-now-range-val vader-temp-warm">—</span>
+                                    <span class="vader-temp-now-range-label" style="color: var(--color-text-muted);">Idag max</span>
+                                    <span id="temp-now-max" class="vader-temp-now-range-val" style="color:#d94a4a;">—</span>
                                 </div>
                                 <div class="vader-temp-now-range-item">
-                                    <span class="vader-temp-now-range-label">Idag min</span>
-                                    <span id="temp-now-min" class="vader-temp-now-range-val vader-temp-cool">—</span>
+                                    <span class="vader-temp-now-range-label" style="color: var(--color-text-muted);">Idag min</span>
+                                    <span id="temp-now-min" class="vader-temp-now-range-val" style="color:#4a90d9;">—</span>
                                 </div>
                             </div>
                         </div>
@@ -110,7 +93,6 @@
                         <div class="vader-temp-now-curve-wrap" style="flex:1; min-width:0;">
                             <canvas id="temp-now-curve" width="300" height="80" style="width:100%; height:80px; display:block;"></canvas>
                         </div>
-
                     </div>
                 </div>
             </div>
@@ -184,14 +166,15 @@
                 <div class="vader-chart-source">SMHI, Helsingborg A (16 km sydväst om Åstorp)</div>
             </div>
 
-            <!-- ΔW vindskifte — kopplingsremsa -->
-            <div class="vader-chart-box vader-delta-strip" id="chart-wind-delta">
-                <canvas id="wind-delta-chart"></canvas>
+            <!-- Vindintensitet (totalt) — underliggande heatmap -->
+            <div class="vader-chart-box vader-delta-strip" id="chart-wind-total">
+                <canvas id="wind-total-chart"></canvas>
                 <div class="vader-chart-hint" style="text-align:center; margin-top:2px;">
-                    Vindskifte (ΔW = |ΔN↔S| + |ΔÖ↔V|, skala 0–12 m/s)<br>
-                    <span style="color:#e0e0e0;">■</span> stabilt (<3) ·
-                    <span style="color:#FFB830;">■</span> frontal aktivitet (3–8) ·
-                    <span style="color:#DC3228;">■</span> abrupt skifte (>8) — kan sätta arter i rörelse
+                    Vindintensitet (totalt i m/s)<br>
+                    <span style="color:#dcedc8;">■</span> lugnt (<3) ·
+                    <span style="color:#aed581;">■</span> svag/måttlig (3–8) ·
+                    <span style="color:#fbc02d;">■</span> frisk (8–12) ·
+                    <span style="color:#e64a19;">■</span> kuling (>12)
                 </div>
             </div>
 
@@ -306,6 +289,28 @@
         var r = Math.round(a.r + t * (b2.r - a.r));
         var g = Math.round(a.g + t * (b2.g - a.g));
         var bv = Math.round(a.b + t * (b2.b - a.b));
+        return 'rgb(' + r + ',' + g + ',' + bv + ')';
+    }
+
+    function windSpeedColor(speed) {
+        var stops = [
+            { at: 0,  r: 220, g: 237, b: 200 }, // #dcedc8 (< 3)
+            { at: 3,  r: 174, g: 213, b: 129 }, // #aed581 (3-8)
+            { at: 8,  r: 251, g: 192, b:  45 }, // #fbc02d (8-12)
+            { at: 12, r: 230, g:  74, b:  25 }, // #e64a19 (> 12)
+            { at: 20, r: 180, g:  20, b:  20 }  // Mörkröd för storm
+        ];
+        var val = Math.max(0, Math.min(20, speed));
+        var i = 0;
+        for (var s = 1; s < stops.length; s++) {
+            if (val <= stops[s].at) { i = s - 1; break; }
+        }
+        if (val >= 20) i = stops.length - 2;
+        var a = stops[i], b2 = stops[i + 1];
+        var t = (val - a.at) / (b2.at - a.at);
+        var r = Math.round(a.r + t * (b2.r - a.r));
+        var g = Math.round(a.g + t * (b2.g - a.g));
+        var bv = Math.round(a.b + Math.max(0, t) * (b2.b - a.b));
         return 'rgb(' + r + ',' + g + ',' + bv + ')';
     }
 
@@ -1300,6 +1305,61 @@
     // Vindwidgeten och temperaturwidgeten behöver inte Chart.js/Luxon — starta direkt
     buildWindNowWidget();
     buildTempNowWidget();
+    buildPressureNowWidget();
+
+    function buildPressureNowWidget() {
+        var STATION_PRESSURE = '62040'; // Helsingborg A
+        var urlDay = 'https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/9/station/' + STATION_PRESSURE + '/period/latest-day/data.json';
+        
+        fetch(urlDay)
+            .then(function(r) { return r.json(); })
+            .then(function(data) {
+                var vals = data.value || [];
+                if (vals.length === 0) return;
+                
+                var current = parseFloat(vals[vals.length - 1].value);
+                document.getElementById('pressure-now-value').textContent = current.toFixed(1);
+                
+                // Beräkna korttidstrend (senaste ~3 timmarna)
+                var pastVal = current;
+                if (vals.length > 3) {
+                    pastVal = parseFloat(vals[vals.length - 4].value); // ca 3h tillbaka om per timme
+                }
+                
+                var diff = current - pastVal;
+                var trendTextEl = document.getElementById('pressure-trend-text');
+                var trendIconEl = document.getElementById('pressure-trend-icon');
+                
+                var iconMarkup = '';
+                var textMarkup = '';
+                var colorMarkup = 'var(--color-text)'; // Default
+                
+                if (Math.abs(diff) < 1.5) {
+                    iconMarkup = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>';
+                    textMarkup = 'Stabilt';
+                } else if (diff >= 1.5) {
+                    iconMarkup = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>';
+                    textMarkup = 'Stigande';
+                    colorMarkup = 'var(--color-primary)'; // Blått kan kännas uppåtgående/klart väder
+                } else {
+                    iconMarkup = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline><polyline points="17 18 23 18 23 12"></polyline></svg>';
+                    textMarkup = 'Sjunkande';
+                    colorMarkup = '#d94a4a'; // Rött varnar för lågtryck/regn
+                }
+                
+                trendIconEl.innerHTML = iconMarkup;
+                trendTextEl.textContent = textMarkup;
+                
+                var container = document.getElementById('pressure-now-trend');
+                if (container) {
+                    container.style.color = colorMarkup;
+                }
+            })
+            .catch(function(err) {
+                console.warn('Kunde inte hämta lufttryck:', err);
+                document.getElementById('pressure-trend-text').textContent = 'Ej tillgänglig';
+            });
+    }
 
     function buildTempNowWidget() {
         var urlHour = 'https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/1/station/' + STATION_TEMP + '/period/latest-hour/data.json';
@@ -2463,8 +2523,8 @@
                 currentFrom: '2026-01-01', currentTo: '2026-12-31'
             };
 
-            // Bygg ΔW vindskifte-remsa (VEP-beslut: dag-till-dag vektorskillnad)
-            buildWindDeltaStrip(days, ns_raw, ew_raw);
+            // Bygg total vindintensitet-remsa
+            buildWindTotalStrip(days, ns_raw, ew_raw);
         }).catch(function (error) {
             console.error('Error fetching wind data:', error);
             var el = document.getElementById('wind-chart');
@@ -2473,26 +2533,21 @@
     }
 
     // ================================================================
-    // CHART 5b: ΔW Vindskifte-remsa (dag-till-dag vektorskillnad)
+    // CHART 5b: Vindintensitet (total m/s heatmap)
     // ================================================================
-    function buildWindDeltaStrip(days, ns_raw, ew_raw) {
-        var canvas = document.getElementById('wind-delta-chart');
-        if (!canvas || days.length < 2) return;
+    function buildWindTotalStrip(days, ns_raw, ew_raw) {
+        var canvas = document.getElementById('wind-total-chart');
+        if (!canvas || days.length === 0) return;
 
-        // Fast maxskala: 12 m/s (VEP-konsensus)
-        var DELTA_W_MAX = 12;
-
-        // Beräkna ΔW per dag: |ΔNS| + |ΔEW| (Manhattan-distans, VEP-beslut)
-        // Manhattan-distans ger starkare signal vid frontpassager där båda
-        // komponenterna svänger — mer biologiskt relevant än euklidisk distans.
-        var deltaW = {};
-        for (var i = 1; i < days.length; i++) {
-            var du = Math.abs(ew_raw[i] - ew_raw[i - 1]);  // Zonal skillnad
-            var dv = Math.abs(ns_raw[i] - ns_raw[i - 1]);  // Meridional skillnad
-            deltaW[days[i]] = du + dv;
+        // Beräkna total hastighet per dag
+        var totalW = {};
+        for (var i = 0; i < days.length; i++) {
+            var ns = ns_raw[i] || 0;
+            var ew = ew_raw[i] || 0;
+            totalW[days[i]] = Math.sqrt(ns * ns + ew * ew);
         }
 
-        var allDates = Object.keys(deltaW).sort();
+        var allDates = Object.keys(totalW).sort();
 
         var box = canvas.parentElement;
         var dpr = window.devicePixelRatio || 1;
@@ -2508,7 +2563,7 @@
         var ctx = canvas.getContext('2d');
         ctx.scale(dpr, dpr);
 
-        function drawDelta(fromDate, toDate) {
+        function drawTotal(fromDate, toDate) {
             fromDate = fromDate || '2026-01-01';
             toDate = toDate || '2026-12-31';
             var isFullYear = (fromDate === '2026-01-01' && toDate === '2026-12-31');
@@ -2526,10 +2581,9 @@
                 var dayOffset = Math.round((dayMs - fromMs) / 86400000);
                 var x = labelW + dayOffset * cellW;
                 var barW = Math.max(Math.ceil(cellW), 2);
-                var dw = deltaW[d];
-                var ratio = Math.min(dw / DELTA_W_MAX, 1);
+                var speed = totalW[d];
 
-                ctx.fillStyle = deltaColor(ratio);
+                ctx.fillStyle = windSpeedColor(speed);
                 ctx.fillRect(x, 0, barW, h);
             });
 
@@ -2546,11 +2600,11 @@
 
         var initFrom = _currentTimeFrom || '2026-01-01';
         var initTo = _currentTimeTo || '2026-12-31';
-        drawDelta(initFrom, initTo);
+        drawTotal(initFrom, initTo);
 
         window._windDeltaMeta = {
             canvas: canvas, ctx: ctx, dpr: dpr, w: w, h: h, labelW: labelW,
-            drawAll: drawDelta, currentFrom: initFrom, currentTo: initTo
+            drawAll: drawTotal, currentFrom: initFrom, currentTo: initTo
         };
     }
 
