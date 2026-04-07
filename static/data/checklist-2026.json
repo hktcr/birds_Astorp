@@ -801,6 +801,14 @@
       "location": "Körslätta mosse",
       "lat": 56.09125,
       "lng": 13.05821
+    },
+    {
+      "species": "Större strandpipare",
+      "latin": "Charadrius hiaticula",
+      "date": "2026-04-07",
+      "location": "Madkärr, Tomarp",
+      "lat": 56.16336146917374,
+      "lng": 13.062392835112023
     }
   ]
 }
