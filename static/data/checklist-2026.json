@@ -817,6 +817,14 @@
       "location": "Madkärr, Tomarp",
       "lat": 56.16336146917374,
       "lng": 13.062392835112023
+    },
+    {
+      "species": "Mindre strandpipare",
+      "latin": "Thinornis dubius",
+      "date": "2026-04-10",
+      "location": "Dynget",
+      "lat": 56.183486839903935,
+      "lng": 13.013507219597335
     }
   ]
 }
