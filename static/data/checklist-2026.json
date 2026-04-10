@@ -825,6 +825,14 @@
       "location": "Dynget",
       "lat": 56.183486839903935,
       "lng": 13.013507219597335
+    },
+    {
+      "species": "Brun kärrhök",
+      "latin": "Circus aeruginosus",
+      "date": "2026-04-10",
+      "location": "Backadal, Kärrarp",
+      "lat": 56.141628953503115,
+      "lng": 13.01111255477116
     }
   ]
 }
