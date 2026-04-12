@@ -833,6 +833,14 @@
       "location": "Backadal, Kärrarp",
       "lat": 56.141628953503115,
       "lng": 13.01111255477116
+    },
+    {
+      "species": "Sothöna",
+      "latin": "Fulica atra",
+      "date": "2026-04-12",
+      "location": "Ängsgården",
+      "lat": 56.12001,
+      "lng": 12.92422
     }
   ]
 }
