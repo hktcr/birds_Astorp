@@ -841,6 +841,14 @@
       "location": "Ängsgården",
       "lat": 56.12001,
       "lng": 12.92422
+    },
+    {
+      "species": "Pilgrimsfalk",
+      "latin": "Falco peregrinus",
+      "date": "2026-04-13",
+      "location": "Åstorp",
+      "lat": 56.13420520510357,
+      "lng": 12.942173584912153
     }
   ]
 }
