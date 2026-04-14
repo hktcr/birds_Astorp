@@ -158,7 +158,7 @@
                     openLightbox(a.href, a.querySelector('img')?.alt);
                 });
             });
-            document.querySelectorAll('.gallery img').forEach(img => {
+            document.querySelectorAll('.gallery img, .post-body img').forEach(img => {
                 if (!img.closest('.lightbox-link')) {
                     img.addEventListener('click', () => openLightbox(img.src, img.alt));
                 }
