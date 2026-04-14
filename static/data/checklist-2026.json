@@ -849,6 +849,14 @@
       "location": "Åstorp",
       "lat": 56.13420520510357,
       "lng": 12.942173584912153
+    },
+    {
+      "species": "Årta",
+      "latin": "Spatula querquedula",
+      "date": "2026-04-14",
+      "location": "Rönnbacka",
+      "lat": 56.168816409838804,
+      "lng": 13.030937554082303
     }
   ]
 }
