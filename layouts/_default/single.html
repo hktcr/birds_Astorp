@@ -42,6 +42,17 @@
     </aside>
     {{ end }}
 
+    {{ with .Params.related_species }}
+    <aside class="species-list related-species-list" style="margin-top: -1.5rem; border-top: none; padding-top: 0;">
+        <h2 style="font-size: var(--text-sm); opacity: 0.8; margin-bottom: 8px;">Även omnämnda i texten</h2>
+        <div class="species-pills">
+            {{ range . }}
+            <span class="species-pill species-pill--related">{{ . }}</span>
+            {{ end }}
+        </div>
+    </aside>
+    {{ end }}
+
     <nav class="post-navigation">
         {{ with .PrevInSection }}
         <a href="{{ .Permalink }}" class="nav-prev">
