@@ -1349,10 +1349,10 @@
                 var textMarkup = '';
                 var colorMarkup = 'var(--color-text)'; // Default
                 
-                if (Math.abs(diff) < 1.5) {
+                if (Math.abs(diff) < 0.5) {
                     iconMarkup = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>';
                     textMarkup = 'Stabilt';
-                } else if (diff >= 1.5) {
+                } else if (diff >= 0.5) {
                     iconMarkup = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>';
                     textMarkup = 'Stigande';
                     colorMarkup = 'var(--color-primary)'; // Blått kan kännas uppåtgående/klart väder
