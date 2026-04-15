@@ -112,6 +112,19 @@
                 </div>
             </div>
 
+            <!-- VÄDERUTSIKT (EXPERIMENT) -->
+            <div class="vader-now-curve-section vader-now-outlook-experiment">
+                <div class="vader-now-curve-label" style="margin-bottom: 4px;">
+                    <span class="vader-now-curve-title">Väderutsikt</span>
+                    <span class="vader-now-curve-subtitle" id="vader-outlook-basis">Analyserar trender...</span>
+                </div>
+                <div id="vader-outlook-display" style="font-size: 13px; line-height: 1.5; color: var(--color-text); font-weight: 500; font-family: var(--font-body);">
+                    Väntar på data för lufttryck och fuktighet...
+                </div>
+            </div>
+
+
+
             <div id="wind-timestamp" class="vader-now-hero-timestamp">—</div>
         </div>
 
@@ -1324,72 +1337,96 @@
 
     function buildPressureNowWidget() {
         var STATION_PRESSURE = '62040'; // Helsingborg A
-        var urlDay = 'https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/9/station/' + STATION_PRESSURE + '/period/latest-day/data.json';
-        
-        fetch(urlDay)
-            .then(function(r) { return r.json(); })
-            .then(function(data) {
-                var vals = data.value || [];
-                if (vals.length === 0) return;
-                
-                var current = parseFloat(vals[vals.length - 1].value);
-                document.getElementById('pressure-now-value').textContent = current.toFixed(1);
-                
-                // Beräkna korttidstrend (senaste ~3 timmarna)
-                var pastVal = current;
-                if (vals.length > 3) {
-                    pastVal = parseFloat(vals[vals.length - 4].value); // ca 3h tillbaka om per timme
-                }
-                
-                var diff = current - pastVal;
-                var trendTextEl = document.getElementById('pressure-trend-text');
-                var trendIconEl = document.getElementById('pressure-trend-icon');
-                
-                var iconMarkup = '';
-                var textMarkup = '';
-                var colorMarkup = 'var(--color-text)'; // Default
-                
-                if (Math.abs(diff) < 0.5) {
-                    iconMarkup = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>';
-                    textMarkup = 'Stabilt';
-                } else if (diff >= 0.5) {
-                    iconMarkup = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>';
-                    textMarkup = 'Stigande';
-                    colorMarkup = 'var(--color-primary)'; // Blått kan kännas uppåtgående/klart väder
-                } else {
-                    iconMarkup = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline><polyline points="17 18 23 18 23 12"></polyline></svg>';
-                    textMarkup = 'Sjunkande';
-                    colorMarkup = '#d94a4a'; // Rött varnar för lågtryck/regn
-                }
-                
-                trendIconEl.innerHTML = iconMarkup;
-                trendTextEl.textContent = textMarkup;
-                
-                var container = document.getElementById('pressure-now-trend');
-                if (container) {
-                    container.style.color = colorMarkup;
-                }
+        var urlPressure = 'https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/9/station/' + STATION_PRESSURE + '/period/latest-day/data.json';
+        var urlHumidity = 'https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/6/station/' + STATION_PRESSURE + '/period/latest-hour/data.json';
 
-                // Rita lufttryckskurva (24h sparkline med tidsstämplar)
-                var pressurePoints = vals
-                    .map(function(v) { return { t: v.date, v: parseFloat(v.value) }; })
-                    .filter(function(p) { return !isNaN(p.v); });
-                drawPressureSparkline('pressure-now-curve', pressurePoints);
-                // Uppdatera undertitel dynamiskt
-                if (pressurePoints.length > 0) {
-                    var pfrom = new Date(pressurePoints[0].t);
-                    var phh = pfrom.getHours();
-                    var pmm = pfrom.getMinutes();
-                    var pfromStr = (phh < 10 ? '0' : '') + phh + ':' + (pmm < 10 ? '0' : '') + pmm;
-                    var pSubEl = document.querySelector('#pressure-now-curve').closest('.vader-now-curve-section').querySelector('.vader-now-curve-subtitle');
-                    if (pSubEl) pSubEl.textContent = 'från kl ' + pfromStr;
-                }
-            })
-            .catch(function(err) {
-                console.warn('Kunde inte hämta lufttryck:', err);
-                document.getElementById('pressure-trend-text').textContent = 'Ej tillgänglig';
-            });
+        Promise.all([
+            fetch(urlPressure).then(function(r) { return r.json(); }),
+            fetch(urlHumidity).then(function(r) { return r.json(); })
+        ]).then(function(results) {
+            var pData = results[0].value || [];
+            var hData = results[1].value || [];
+
+            if (pData.length === 0) return;
+
+            var currentP = parseFloat(pData[pData.length - 1].value);
+            document.getElementById('pressure-now-value').textContent = currentP.toFixed(1);
+            
+            // Beräkna korttidstrend (senaste ~3 timmarna)
+            var pastP = currentP;
+            if (pData.length > 3) {
+                pastP = parseFloat(pData[pData.length - 4].value); 
+            }
+            var diffP = currentP - pastP;
+
+            // Trend-visning i tryck-kortet
+            var trendTextEl = document.getElementById('pressure-trend-text');
+            var trendIconEl = document.getElementById('pressure-trend-icon');
+            var iconMarkup = '';
+            var textMarkup = '';
+            var colorMarkup = 'var(--color-text)';
+
+            if (Math.abs(diffP) < 0.5) {
+                iconMarkup = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line></svg>';
+                textMarkup = 'Stabilt';
+            } else if (diffP >= 0.5) {
+                iconMarkup = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 6 13.5 15.5 8.5 10.5 1 18"></polyline><polyline points="17 6 23 6 23 12"></polyline></svg>';
+                textMarkup = 'Stigande';
+                colorMarkup = 'var(--color-primary)';
+            } else {
+                iconMarkup = '<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="23 18 13.5 8.5 8.5 13.5 1 6"></polyline><polyline points="17 18 23 18 23 12"></polyline></svg>';
+                textMarkup = 'Sjunkande';
+                colorMarkup = '#d94a4a';
+            }
+            trendIconEl.innerHTML = iconMarkup;
+            trendTextEl.textContent = textMarkup;
+            if (document.getElementById('pressure-now-trend')) {
+                document.getElementById('pressure-now-trend').style.color = colorMarkup;
+            }
+
+            // Rita kurva
+            var pPoints = pData.map(function(v) { return { t: v.date, v: parseFloat(v.value) }; }).filter(function(p) { return !isNaN(p.v); });
+            drawPressureSparkline('pressure-now-curve', pPoints);
+
+            // Bygg prognos-modulen (Experiment)
+            var currentH = (hData.length > 0) ? parseFloat(hData[hData.length - 1].value) : null;
+            buildOutlookWidget(currentP, diffP, currentH);
+
+        }).catch(function(err) {
+            console.warn('Kunde inte hämta tryck/fuktighet:', err);
+        });
     }
+
+    function buildOutlookWidget(pressure, trend, humidity) {
+        var displayEl = document.getElementById('vader-outlook-display');
+        var basisEl   = document.getElementById('vader-outlook-basis');
+        if (!displayEl) return;
+
+        var trendStr = (trend >= 0 ? '+' : '') + trend.toFixed(1);
+        var humStr   = humidity !== null ? humidity.toFixed(0) + '%' : 'Ej tillgänglig';
+        
+        basisEl.textContent = 'Analys: ' + pressure.toFixed(1) + ' hPa · Trend ' + trendStr + ' hPa · Fuktighet ' + humStr;
+
+        var msg = "";
+        
+        // HEURISTISK LOGIK (Regler anpassade för Åstorp/kustnära)
+        if (trend <= -1.0 && humidity > 85) {
+            msg = "Trycket faller kraftigt · Luften är nära mättnad · Mycket hög sannolikhet för nederbörd inom 1.5 timmar.";
+        } else if (trend <= -0.6 && humidity > 75) {
+            msg = "Barometern sjunker · Luftfuktigheten stiger ([H]%) · Risk för väderomslag mot regn under dagen.".replace('[H]', humidity.toFixed(0));
+        } else if (trend > 0.5 && humidity < 70) {
+            msg = "Stigande lufttryck · Avtagande luftfuktighet · Goda chanser till uppklarning och stabilt väderläge.";
+        } else if (pressure > 1020 && trend >= 0) {
+            msg = "Etablerat högtryck · Torr luftmassa · Väntat oförändrat och stabilt väder.";
+        } else if (pressure < 1005 && trend < 0) {
+            msg = "Djupt lågtryck · Ostabil luftmassa · Risk för ihållande molnighet och regnskurar.";
+        } else {
+            msg = "Inga tydliga trendavvikelser · Aktuella parametrar pekar mot ett oförändrat väderläge de närmaste timmarna.";
+        }
+
+        displayEl.textContent = msg;
+    }
+
 
     function buildTempNowWidget() {
         var urlHour = 'https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/1/station/' + STATION_TEMP + '/period/latest-hour/data.json';
