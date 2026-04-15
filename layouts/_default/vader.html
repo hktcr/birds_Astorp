@@ -1407,21 +1407,71 @@
         
         basisEl.textContent = 'Analys: ' + pressure.toFixed(1) + ' hPa · Trend ' + trendStr + ' hPa · Fuktighet ' + humStr;
 
+        if (humidity === null) {
+            displayEl.textContent = "Data saknas för komplett utsikt.";
+            return;
+        }
+
+        // Empirisk risk-tabell ("Väktare" / Helsingborg A historik)
+        var PRECIP_RISK = {
+          "kraftigt_fallande_torr": { "risk_pct": 0.0, "avg_mm": 0.0, "n": 12 },
+          "kraftigt_fallande_medel": { "risk_pct": 2.0, "avg_mm": 0.1, "n": 51 },
+          "kraftigt_fallande_fuktig": { "risk_pct": 31.6, "avg_mm": 0.53, "n": 136 },
+          "fallande_torr": { "risk_pct": 0.0, "avg_mm": 0.0, "n": 78 },
+          "fallande_medel": { "risk_pct": 0.0, "avg_mm": 0.0, "n": 97 },
+          "fallande_fuktig": { "risk_pct": 13.9, "avg_mm": 0.6, "n": 303 },
+          "svagt_fallande_torr": { "risk_pct": 0.0, "avg_mm": 0.0, "n": 70 },
+          "svagt_fallande_medel": { "risk_pct": 0.0, "avg_mm": 0.0, "n": 101 },
+          "svagt_fallande_fuktig": { "risk_pct": 10.8, "avg_mm": 0.38, "n": 259 },
+          "stabilt_torr": { "risk_pct": 0.0, "avg_mm": 0.0, "n": 63 },
+          "stabilt_medel": { "risk_pct": 0.0, "avg_mm": 0.0, "n": 140 },
+          "stabilt_fuktig": { "risk_pct": 13.4, "avg_mm": 0.38, "n": 409 },
+          "svagt_stigande_torr": { "risk_pct": 0.0, "avg_mm": 0.0, "n": 83 },
+          "svagt_stigande_medel": { "risk_pct": 0.0, "avg_mm": 0.0, "n": 146 },
+          "svagt_stigande_fuktig": { "risk_pct": 11.0, "avg_mm": 0.44, "n": 309 },
+          "stigande_torr": { "risk_pct": 0.0, "avg_mm": 0.0, "n": 94 },
+          "stigande_medel": { "risk_pct": 0.0, "avg_mm": 0.0, "n": 154 },
+          "stigande_fuktig": { "risk_pct": 11.9, "avg_mm": 0.4, "n": 378 },
+          "kraftigt_stigande_torr": { "risk_pct": 0.0, "avg_mm": 0.0, "n": 28 },
+          "kraftigt_stigande_medel": { "risk_pct": 2.6, "avg_mm": 0.2, "n": 38 },
+          "kraftigt_stigande_fuktig": { "risk_pct": 14.3, "avg_mm": 0.33, "n": 77 }
+        };
+
+        function getTrendClass(t) {
+            if (t <= -2.0) return 'kraftigt_fallande';
+            if (t <= -0.8) return 'fallande';
+            if (t <= -0.3) return 'svagt_fallande';
+            if (t <= 0.3)  return 'stabilt';
+            if (t <= 0.8)  return 'svagt_stigande';
+            if (t <= 2.0)  return 'stigande';
+            return 'kraftigt_stigande';
+        }
+
+        function getHumClass(h) {
+            if (h < 65) return 'torr';
+            if (h < 80) return 'medel';
+            return 'fuktig';
+        }
+
+        var tClass = getTrendClass(trend);
+        var hClass = getHumClass(humidity);
+        var key = tClass + '_' + hClass;
+        var prob = PRECIP_RISK[key] || { risk_pct: 0, avg_mm: 0, n: 0 };
+
         var msg = "";
-        
-        // HEURISTISK LOGIK (Regler anpassade för Åstorp/kustnära)
-        if (trend <= -1.0 && humidity > 85) {
-            msg = "Trycket faller kraftigt · Luften är nära mättnad · Mycket hög sannolikhet för nederbörd inom 1.5 timmar.";
-        } else if (trend <= -0.6 && humidity > 75) {
-            msg = "Barometern sjunker · Luftfuktigheten stiger ([H]%) · Risk för väderomslag mot regn under dagen.".replace('[H]', humidity.toFixed(0));
-        } else if (trend > 0.5 && humidity < 70) {
-            msg = "Stigande lufttryck · Avtagande luftfuktighet · Goda chanser till uppklarning och stabilt väderläge.";
-        } else if (pressure > 1020 && trend >= 0) {
-            msg = "Etablerat högtryck · Torr luftmassa · Väntat oförändrat och stabilt väder.";
-        } else if (pressure < 1005 && trend < 0) {
-            msg = "Djupt lågtryck · Ostabil luftmassa · Risk för ihållande molnighet och regnskurar.";
+
+        // Om väldigt lite data så är statistiken osäker, men vi kör ändå.
+        if (prob.risk_pct > 25) {
+            msg = "Trycket faller · Luften är fuktig · Hög sannolikhet (~" + prob.risk_pct.toFixed(0) + "%) för nederbörd (" + prob.avg_mm.toFixed(1) + " mm/h).";
+        } else if (prob.risk_pct > 12) {
+            var tempStr = "Ostabilt tryck";
+            if (trend <= -0.8) tempStr = "Fallande tryck";
+            else if (trend >= 0.8) tempStr = "Stigande tryck";
+            msg = tempStr + " · Fuktig luftmassa · Måttlig risk (~" + prob.risk_pct.toFixed(0) + "%) för nederbörd.";
+        } else if (humidity < 65) {
+            msg = "Torr luftmassa · Nederbörd är historiskt mycket osannolik (~" + prob.risk_pct.toFixed(0) + "% risk).";
         } else {
-            msg = "Inga tydliga trendavvikelser · Aktuella parametrar pekar mot ett oförändrat väderläge de närmaste timmarna.";
+            msg = "Aktuella parametrar tenderar sällan att leda till regn (~" + prob.risk_pct.toFixed(0) + "% risk).";
         }
 
         displayEl.textContent = msg;
