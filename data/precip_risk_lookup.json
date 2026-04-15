@@ -1,115 +1,317 @@
 {
-  "station": "Helsingborg A (62040)",
-  "period": {
-    "from": "2025-12-06T03:00:00",
-    "to": "2026-04-15T11:00:00"
+  "kraftigt_fallande_torr": {
+    "n": 12,
+    "h1": {
+      "pct": 0.0,
+      "mm": 0
+    },
+    "h3": {
+      "pct": 8.3,
+      "mm": 1.1
+    },
+    "h6": {
+      "pct": 16.7,
+      "mm": 0.6
+    }
   },
-  "total_hours": 3028,
-  "lookup": {
-    "kraftigt_fallande_torr": {
-      "risk_pct": 0.0,
-      "avg_mm": 0.0,
-      "n": 12
+  "kraftigt_fallande_medel": {
+    "n": 51,
+    "h1": {
+      "pct": 9.8,
+      "mm": 0.34
     },
-    "kraftigt_fallande_medel": {
-      "risk_pct": 2.0,
-      "avg_mm": 0.1,
-      "n": 51
+    "h3": {
+      "pct": 21.6,
+      "mm": 0.42
     },
-    "kraftigt_fallande_fuktig": {
-      "risk_pct": 31.6,
-      "avg_mm": 0.53,
-      "n": 136
+    "h6": {
+      "pct": 35.3,
+      "mm": 0.81
+    }
+  },
+  "kraftigt_fallande_fuktig": {
+    "n": 138,
+    "h1": {
+      "pct": 33.3,
+      "mm": 0.53
     },
-    "fallande_torr": {
-      "risk_pct": 0.0,
-      "avg_mm": 0.0,
-      "n": 78
+    "h3": {
+      "pct": 50.0,
+      "mm": 1.16
     },
-    "fallande_medel": {
-      "risk_pct": 0.0,
-      "avg_mm": 0.0,
-      "n": 97
+    "h6": {
+      "pct": 56.5,
+      "mm": 1.88
+    }
+  },
+  "fallande_torr": {
+    "n": 78,
+    "h1": {
+      "pct": 0.0,
+      "mm": 0
     },
-    "fallande_fuktig": {
-      "risk_pct": 13.9,
-      "avg_mm": 0.6,
-      "n": 303
+    "h3": {
+      "pct": 1.3,
+      "mm": 1.1
     },
-    "svagt_fallande_torr": {
-      "risk_pct": 0.0,
-      "avg_mm": 0.0,
-      "n": 70
+    "h6": {
+      "pct": 3.8,
+      "mm": 0.83
+    }
+  },
+  "fallande_medel": {
+    "n": 106,
+    "h1": {
+      "pct": 0.9,
+      "mm": 0.6
     },
-    "svagt_fallande_medel": {
-      "risk_pct": 0.0,
-      "avg_mm": 0.0,
-      "n": 101
+    "h3": {
+      "pct": 4.7,
+      "mm": 0.78
     },
-    "svagt_fallande_fuktig": {
-      "risk_pct": 10.8,
-      "avg_mm": 0.38,
-      "n": 259
+    "h6": {
+      "pct": 15.1,
+      "mm": 1.0
+    }
+  },
+  "fallande_fuktig": {
+    "n": 315,
+    "h1": {
+      "pct": 14.3,
+      "mm": 0.61
     },
-    "stabilt_torr": {
-      "risk_pct": 0.0,
-      "avg_mm": 0.0,
-      "n": 63
+    "h3": {
+      "pct": 21.3,
+      "mm": 1.3
     },
-    "stabilt_medel": {
-      "risk_pct": 0.0,
-      "avg_mm": 0.0,
-      "n": 140
+    "h6": {
+      "pct": 28.9,
+      "mm": 1.98
+    }
+  },
+  "svagt_fallande_torr": {
+    "n": 70,
+    "h1": {
+      "pct": 0.0,
+      "mm": 0
     },
-    "stabilt_fuktig": {
-      "risk_pct": 13.4,
-      "avg_mm": 0.38,
-      "n": 409
+    "h3": {
+      "pct": 0.0,
+      "mm": 0
     },
-    "svagt_stigande_torr": {
-      "risk_pct": 0.0,
-      "avg_mm": 0.0,
-      "n": 83
+    "h6": {
+      "pct": 0.0,
+      "mm": 0
+    }
+  },
+  "svagt_fallande_medel": {
+    "n": 110,
+    "h1": {
+      "pct": 0.0,
+      "mm": 0
     },
-    "svagt_stigande_medel": {
-      "risk_pct": 0.0,
-      "avg_mm": 0.0,
-      "n": 146
+    "h3": {
+      "pct": 0.9,
+      "mm": 0.1
     },
-    "svagt_stigande_fuktig": {
-      "risk_pct": 11.0,
-      "avg_mm": 0.44,
-      "n": 309
+    "h6": {
+      "pct": 4.5,
+      "mm": 0.8
+    }
+  },
+  "svagt_fallande_fuktig": {
+    "n": 271,
+    "h1": {
+      "pct": 10.0,
+      "mm": 0.38
     },
-    "stigande_torr": {
-      "risk_pct": 0.0,
-      "avg_mm": 0.0,
-      "n": 94
+    "h3": {
+      "pct": 16.2,
+      "mm": 0.69
     },
-    "stigande_medel": {
-      "risk_pct": 0.0,
-      "avg_mm": 0.0,
-      "n": 154
+    "h6": {
+      "pct": 22.1,
+      "mm": 1.12
+    }
+  },
+  "stabilt_torr": {
+    "n": 63,
+    "h1": {
+      "pct": 0.0,
+      "mm": 0
     },
-    "stigande_fuktig": {
-      "risk_pct": 11.9,
-      "avg_mm": 0.4,
-      "n": 378
+    "h3": {
+      "pct": 0.0,
+      "mm": 0
     },
-    "kraftigt_stigande_torr": {
-      "risk_pct": 0.0,
-      "avg_mm": 0.0,
-      "n": 28
+    "h6": {
+      "pct": 0.0,
+      "mm": 0
+    }
+  },
+  "stabilt_medel": {
+    "n": 153,
+    "h1": {
+      "pct": 0.7,
+      "mm": 0.2
     },
-    "kraftigt_stigande_medel": {
-      "risk_pct": 2.6,
-      "avg_mm": 0.2,
-      "n": 38
+    "h3": {
+      "pct": 2.6,
+      "mm": 0.45
     },
-    "kraftigt_stigande_fuktig": {
-      "risk_pct": 14.3,
-      "avg_mm": 0.33,
-      "n": 77
+    "h6": {
+      "pct": 3.9,
+      "mm": 0.62
+    }
+  },
+  "stabilt_fuktig": {
+    "n": 421,
+    "h1": {
+      "pct": 11.9,
+      "mm": 0.38
+    },
+    "h3": {
+      "pct": 18.3,
+      "mm": 0.65
+    },
+    "h6": {
+      "pct": 27.6,
+      "mm": 0.9
+    }
+  },
+  "svagt_stigande_torr": {
+    "n": 83,
+    "h1": {
+      "pct": 0.0,
+      "mm": 0
+    },
+    "h3": {
+      "pct": 0.0,
+      "mm": 0
+    },
+    "h6": {
+      "pct": 0.0,
+      "mm": 0
+    }
+  },
+  "svagt_stigande_medel": {
+    "n": 151,
+    "h1": {
+      "pct": 0.0,
+      "mm": 0
+    },
+    "h3": {
+      "pct": 2.6,
+      "mm": 0.6
+    },
+    "h6": {
+      "pct": 4.0,
+      "mm": 0.82
+    }
+  },
+  "svagt_stigande_fuktig": {
+    "n": 317,
+    "h1": {
+      "pct": 11.0,
+      "mm": 0.33
+    },
+    "h3": {
+      "pct": 15.8,
+      "mm": 0.54
+    },
+    "h6": {
+      "pct": 18.9,
+      "mm": 0.76
+    }
+  },
+  "stigande_torr": {
+    "n": 94,
+    "h1": {
+      "pct": 0.0,
+      "mm": 0
+    },
+    "h3": {
+      "pct": 0.0,
+      "mm": 0
+    },
+    "h6": {
+      "pct": 0.0,
+      "mm": 0
+    }
+  },
+  "stigande_medel": {
+    "n": 154,
+    "h1": {
+      "pct": 0.6,
+      "mm": 0.1
+    },
+    "h3": {
+      "pct": 2.6,
+      "mm": 0.7
+    },
+    "h6": {
+      "pct": 5.2,
+      "mm": 0.86
+    }
+  },
+  "stigande_fuktig": {
+    "n": 388,
+    "h1": {
+      "pct": 10.1,
+      "mm": 0.47
+    },
+    "h3": {
+      "pct": 15.7,
+      "mm": 0.85
+    },
+    "h6": {
+      "pct": 21.9,
+      "mm": 1.04
+    }
+  },
+  "kraftigt_stigande_torr": {
+    "n": 28,
+    "h1": {
+      "pct": 0.0,
+      "mm": 0
+    },
+    "h3": {
+      "pct": 0.0,
+      "mm": 0
+    },
+    "h6": {
+      "pct": 3.6,
+      "mm": 1.5
+    }
+  },
+  "kraftigt_stigande_medel": {
+    "n": 38,
+    "h1": {
+      "pct": 0.0,
+      "mm": 0
+    },
+    "h3": {
+      "pct": 7.9,
+      "mm": 0.43
+    },
+    "h6": {
+      "pct": 13.2,
+      "mm": 0.96
+    }
+  },
+  "kraftigt_stigande_fuktig": {
+    "n": 85,
+    "h1": {
+      "pct": 11.8,
+      "mm": 0.26
+    },
+    "h3": {
+      "pct": 11.8,
+      "mm": 0.44
+    },
+    "h6": {
+      "pct": 14.1,
+      "mm": 0.56
     }
   }
 }
