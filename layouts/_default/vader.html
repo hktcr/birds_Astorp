@@ -1370,11 +1370,20 @@
                     container.style.color = colorMarkup;
                 }
 
-                // Rita lufttryckskurva (24h sparkline)
-                var pressureVals = vals
-                    .map(function(v) { return parseFloat(v.value); })
-                    .filter(function(p) { return !isNaN(p); });
-                drawPressureSparkline('pressure-now-curve', pressureVals);
+                // Rita lufttryckskurva (24h sparkline med tidsstämplar)
+                var pressurePoints = vals
+                    .map(function(v) { return { t: v.date, v: parseFloat(v.value) }; })
+                    .filter(function(p) { return !isNaN(p.v); });
+                drawPressureSparkline('pressure-now-curve', pressurePoints);
+                // Uppdatera undertitel dynamiskt
+                if (pressurePoints.length > 0) {
+                    var pfrom = new Date(pressurePoints[0].t);
+                    var phh = pfrom.getHours();
+                    var pmm = pfrom.getMinutes();
+                    var pfromStr = (phh < 10 ? '0' : '') + phh + ':' + (pmm < 10 ? '0' : '') + pmm;
+                    var pSubEl = document.querySelector('#pressure-now-curve').closest('.vader-now-curve-section').querySelector('.vader-now-curve-subtitle');
+                    if (pSubEl) pSubEl.textContent = 'från kl ' + pfromStr;
+                }
             })
             .catch(function(err) {
                 console.warn('Kunde inte hämta lufttryck:', err);
@@ -1420,11 +1429,20 @@
                     if (elMin) elMin.textContent = minTemp.toFixed(1) + '°';
                 }
 
-                // Rita dygns-kurva (senaste 24h)
-                var last24h = dayVals
-                    .map(function(v) { return parseFloat(v.value); })
-                    .filter(function(t) { return !isNaN(t); });
-                drawTempSparkline('temp-now-curve', last24h);
+                // Rita dygns-kurva med riktiga tidsstämplar
+                var tempPoints = dayVals
+                    .map(function(v) { return { t: v.date, v: parseFloat(v.value) }; })
+                    .filter(function(d) { return !isNaN(d.v); });
+                drawTempSparkline('temp-now-curve', tempPoints);
+                // Uppdatera undertitel dynamiskt
+                if (tempPoints.length > 0) {
+                    var fromD = new Date(tempPoints[0].t);
+                    var fromHH = fromD.getHours();
+                    var fromMM = fromD.getMinutes();
+                    var fromStr = (fromHH < 10 ? '0' : '') + fromHH + ':' + (fromMM < 10 ? '0' : '') + fromMM;
+                    var subEl = document.querySelector('#temp-now-curve').closest('.vader-now-curve-section').querySelector('.vader-now-curve-subtitle');
+                    if (subEl) subEl.textContent = 'från kl ' + fromStr;
+                }
             }
         }).catch(function (err) {
             console.warn('Kunde inte hämta temperaturdata:', err);
@@ -1434,245 +1452,201 @@
         buildDaylightWidget();
     }
 
-    function drawTempSparkline(canvasId, vals) {
+    // ================================================================
+    // GENERISK SPARKLINE-MOTOR med riktig tidsaxel
+    // dataPoints: [{t: timestampMs, v: numericValue}, ...]
+    // opts: { color, height, padL, padR, zeroLine, gradTop, gradBot,
+    //         formatY(tick), formatLabel(lastVal), stepTick }
+    // ================================================================
+    function drawSparkline(canvasId, dataPoints, opts) {
+        if (!dataPoints || dataPoints.length < 2) return;
         var canvas = document.getElementById(canvasId);
-        if (!canvas || vals.length === 0) return;
+        if (!canvas) return;
         var ctx = canvas.getContext('2d');
         var dpr = window.devicePixelRatio || 1;
         var rect = canvas.parentElement.getBoundingClientRect();
         var w = rect.width || 300;
-        var h = 120;  // Ökad höjd för tydligare kurva
-        canvas.width = w * dpr;
+        var color   = opts.color    || '#D9A84A';
+        var h       = opts.height   || 120;
+        var padL    = opts.padL     || 36;
+        var padR    = opts.padR     || 46;
+        var padT    = 10;
+        var padB    = 22; // plats för tidsaxel
+        canvas.width  = w * dpr;
         canvas.height = h * dpr;
-        canvas.style.width = w + 'px';
+        canvas.style.width  = w + 'px';
         canvas.style.height = h + 'px';
         ctx.scale(dpr, dpr);
-
-        var padL = 26; // Plats för textetiketter (skala)
-        var padT = 10;
-        var padB = 10;
-        var chartW = w - padL - 6; // Högermarginal för punkt
-        var chartH = h - padT - padB;
-
-        var min = Math.min.apply(null, vals);
-        var max = Math.max.apply(null, vals);
-        
-        // Avrunda skalan för snyggare nätverk (inkludera nollan snyggt)
-        min = Math.floor(min) - 1;
-        max = Math.ceil(max) + 1;
-        
-        var range = max - min;
-        if (range === 0) range = 1;
-
-        // Rita hjälplinjer och skalor (y-axel)
-        ctx.textAlign = 'right';
-        ctx.textBaseline = 'middle';
-        ctx.font = '10px Inter, sans-serif';
-        
-        // Definiera lagom tick-intervall (ex 5 grader)
-        var stepTick = range > 15 ? 10 : 5;
-        if (range <= 8) stepTick = 2; // Extra upplösning för låg dygnsamplitud
-        
-        var startTick = Math.floor(min / stepTick) * stepTick;
-        for(var t = startTick; t <= max; t += stepTick) {
-            var y = padT + chartH - ((t - min) / range) * chartH;
-            
-            // Hjälplinje (grid)
-            ctx.beginPath();
-            ctx.moveTo(padL, y);
-            ctx.lineTo(w - 6, y);
-            if (t === 0) {
-                // Den magiska noll-linjen
-                ctx.strokeStyle = 'rgba(52, 152, 219, 0.4)';
-                ctx.lineWidth = 1;
-                ctx.setLineDash([]);
-            } else {
-                ctx.strokeStyle = 'rgba(0,0,0,0.06)';
-                ctx.lineWidth = 1;
-                ctx.setLineDash([4, 4]);
-            }
-            ctx.stroke();
-            ctx.setLineDash([]); // Återställ linjedash
-            
-            // Textetikett
-            ctx.fillStyle = '#999';
-            var prefix = t > 0 ? '+' : '';
-            ctx.fillText(prefix + t + '°', padL - 4, y);
-        }
-
-        var step = chartW / Math.max(1, vals.length - 1);
-        var points = vals.map(function(v, i) {
-            return {
-                x: padL + i * step,
-                y: padT + chartH - ((v - min) / range) * chartH
-            };
-        });
-        
-        ctx.beginPath();
-        // Rita en mjuk spline/bezier-kurva istället för raka linjer
-        ctx.moveTo(points[0].x, points[0].y);
-        for (var i = 0; i < points.length - 1; i++) {
-            var curr = points[i];
-            var next = points[i + 1];
-            var xc = (curr.x + next.x) / 2;
-            var yc = (curr.y + next.y) / 2;
-            ctx.quadraticCurveTo(curr.x, curr.y, xc, yc);
-        }
-        // Rita ut till sista punkten
-        var last = points[points.length - 1];
-        ctx.quadraticCurveTo(points[points.length - 2].x, points[points.length - 2].y, last.x, last.y);
-        
-        ctx.strokeStyle = '#D9A84A'; // Varm orange
-        ctx.lineWidth = 2;
-        ctx.lineCap = 'round';
-        ctx.lineJoin = 'round';
-        ctx.stroke();
-
-        // Skapa övertoning (fyllning under kurvan)
-        var gradient = ctx.createLinearGradient(0, padT, 0, padT + chartH);
-        gradient.addColorStop(0, 'rgba(217, 168, 74, 0.25)');
-        gradient.addColorStop(1, 'rgba(217, 168, 74, 0.0)');
-        
-        // Fyll ytan under kurvan ner till grafens botten
-        ctx.lineTo(last.x, padT + chartH);
-        ctx.lineTo(points[0].x, padT + chartH);
-        ctx.closePath();
-        ctx.fillStyle = gradient;
-        ctx.fill();
-
-        // Rita ändpunkten (aktuellt värde "nu") + värdetext
-        ctx.beginPath();
-        ctx.fillStyle = '#D9A84A';
-        ctx.arc(last.x, last.y, 5, 0, Math.PI * 2);
-        ctx.fill();
-        ctx.lineWidth = 2;
-        ctx.strokeStyle = '#fff';
-        ctx.stroke();
-
-        // Aktuellt värde bredvid slutpunkten
-        var lastVal = vals[vals.length - 1];
-        ctx.textAlign = 'left';
-        ctx.textBaseline = 'middle';
-        ctx.font = 'bold 10px Inter, sans-serif';
-        ctx.fillStyle = '#D9A84A';
-        var labelPrefix = lastVal > 0 ? '+' : '';
-        ctx.fillText(labelPrefix + lastVal.toFixed(1) + '°', last.x + 8, last.y);
-    }
-
-    // ================================================================
-    // SPARKLINE: Lufttryck — teal linje med hPa-skala
-    // ================================================================
-    function drawPressureSparkline(canvasId, vals) {
-        var canvas = document.getElementById(canvasId);
-        if (!canvas || vals.length === 0) return;
-        var ctx = canvas.getContext('2d');
-        var dpr = window.devicePixelRatio || 1;
-        var rect = canvas.parentElement.getBoundingClientRect();
-        var w = rect.width || 300;
-        var h = 100;
-        canvas.width = w * dpr;
-        canvas.height = h * dpr;
-        canvas.style.width = w + 'px';
-        canvas.style.height = h + 'px';
-        ctx.scale(dpr, dpr);
-
-        var padL = 40; // Bredare plats för hPa-etiketter
-        var padT = 12;
-        var padB = 12;
-        var padR = 52; // Plats för värdetext till höger
         var chartW = w - padL - padR;
         var chartH = h - padT - padB;
 
-        var min = Math.min.apply(null, vals);
-        var max = Math.max.apply(null, vals);
-        // Snygg skala med 1 hPa marginal + avrundade ticks
-        var rawRange = max - min;
-        var margin = Math.max(1, Math.ceil(rawRange * 0.15));
-        min = Math.floor(min - margin);
-        max = Math.ceil(max + margin);
-        var range = max - min;
-        if (range === 0) range = 2;
+        var vals  = dataPoints.map(function(d) { return d.v; });
+        var times = dataPoints.map(function(d) { return d.t; });
+        var tMin = times[0];
+        var tMax = times[times.length - 1];
+        var tRange = Math.max(tMax - tMin, 1);
 
-        // Bakgrund
+        var dataMin = Math.min.apply(null, vals);
+        var dataMax = Math.max.apply(null, vals);
+        var rawRange = dataMax - dataMin;
+        var margin = Math.max(1, rawRange * 0.12);
+        var yMin = Math.floor(dataMin - margin);
+        var yMax = Math.ceil(dataMax + margin);
+        var yRange = Math.max(yMax - yMin, 1);
+
+        // Rensa
         ctx.fillStyle = '#fff';
         ctx.fillRect(0, 0, w, h);
 
-        // Tick-intervall anpassat till spridning
-        var stepTick = rawRange <= 4 ? 1 : (rawRange <= 10 ? 2 : 5);
-        var startTick = Math.ceil(min / stepTick) * stepTick;
-
-        ctx.textAlign = 'right';
+        // --- Y-axel: gridlinjer + etiketter ---
+        var stepTick = opts.stepTick ||
+            (yRange > 20 ? 10 : yRange > 8 ? 5 : yRange > 3 ? 2 : 1);
+        var startTick = Math.ceil(yMin / stepTick) * stepTick;
+        ctx.textAlign    = 'right';
         ctx.textBaseline = 'middle';
-        ctx.font = '9px Inter, sans-serif';
+        ctx.font         = '9px Inter, sans-serif';
 
-        for (var t = startTick; t <= max; t += stepTick) {
-            var y = padT + chartH - ((t - min) / range) * chartH;
+        for (var yt = startTick; yt <= yMax; yt += stepTick) {
+            var yPos = padT + chartH - ((yt - yMin) / yRange) * chartH;
             ctx.beginPath();
-            ctx.moveTo(padL, y);
-            ctx.lineTo(w - padR, y);
-            ctx.strokeStyle = 'rgba(0,0,0,0.06)';
+            ctx.moveTo(padL, yPos);
+            ctx.lineTo(w - padR, yPos);
+            if (opts.zeroLine && yt === 0) {
+                ctx.strokeStyle = 'rgba(52,152,219,0.35)';
+                ctx.setLineDash([]);
+            } else {
+                ctx.strokeStyle = 'rgba(0,0,0,0.06)';
+                ctx.setLineDash([3, 3]);
+            }
             ctx.lineWidth = 1;
-            ctx.setLineDash([3, 3]);
             ctx.stroke();
             ctx.setLineDash([]);
-            ctx.fillStyle = '#999';
-            ctx.fillText(t + ' hPa', padL - 4, y);
+            ctx.fillStyle = '#bbb';
+            var yLabel = opts.formatY ? opts.formatY(yt) : String(yt);
+            ctx.fillText(yLabel, padL - 4, yPos);
         }
 
-        // Bygg punkter
-        var step = chartW / Math.max(1, vals.length - 1);
-        var points = vals.map(function(v, i) {
+        // --- X-axel: timmarsmärken baserade på faktiska tidsstämplar ---
+        var spanHours = tRange / 3600000;
+        var tickHours = spanHours <= 6  ? 1 :
+                        spanHours <= 12 ? 2 :
+                        spanHours <= 18 ? 3 : 4;
+        var tickMs = tickHours * 3600000;
+        // Starta på nästa jämna tick-timme efter tMin
+        var firstTick = (Math.floor(tMin / tickMs) + 1) * tickMs;
+
+        ctx.textAlign    = 'center';
+        ctx.textBaseline = 'top';
+        ctx.font         = '9px Inter, sans-serif';
+        ctx.fillStyle    = '#ccc';
+
+        for (var tick = firstTick; tick <= tMax; tick += tickMs) {
+            var xTick = padL + ((tick - tMin) / tRange) * chartW;
+            if (xTick < padL + 8 || xTick > w - padR - 8) continue;
+            var td = new Date(tick);
+            var hh = td.getHours();
+            var tickLabel = (hh < 10 ? '0' : '') + hh;
+            ctx.fillStyle = '#ccc';
+            ctx.fillText(tickLabel, xTick, padT + chartH + 5);
+            ctx.beginPath();
+            ctx.moveTo(xTick, padT + chartH);
+            ctx.lineTo(xTick, padT + chartH + 3);
+            ctx.strokeStyle = 'rgba(0,0,0,0.1)';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+        }
+
+        // "Nu" till höger
+        ctx.textAlign = 'center';
+        ctx.font      = 'bold 9px Inter, sans-serif';
+        ctx.fillStyle = color;
+        ctx.fillText('Nu', w - padR + 2 + (padR / 2) - 10, padT + chartH + 5);
+
+        // --- Datapunkter (tidsskalade x-positioner) ---
+        var points = dataPoints.map(function(d) {
             return {
-                x: padL + i * step,
-                y: padT + chartH - ((v - min) / range) * chartH
+                x: padL + ((d.t - tMin) / tRange) * chartW,
+                y: padT + chartH - ((d.v - yMin) / yRange) * chartH
             };
         });
 
-        // Mjuk kurva
+        // Mjuk bezier-kurva
         ctx.beginPath();
         ctx.moveTo(points[0].x, points[0].y);
         for (var i = 0; i < points.length - 1; i++) {
-            var curr = points[i];
-            var next = points[i + 1];
-            var xc = (curr.x + next.x) / 2;
-            var yc = (curr.y + next.y) / 2;
-            ctx.quadraticCurveTo(curr.x, curr.y, xc, yc);
+            var xc = (points[i].x + points[i+1].x) / 2;
+            var yc = (points[i].y + points[i+1].y) / 2;
+            ctx.quadraticCurveTo(points[i].x, points[i].y, xc, yc);
         }
         var last = points[points.length - 1];
-        ctx.quadraticCurveTo(points[points.length - 2].x, points[points.length - 2].y, last.x, last.y);
-
-        ctx.strokeStyle = '#2a9d8f'; // Teal
-        ctx.lineWidth = 2;
-        ctx.lineCap = 'round';
-        ctx.lineJoin = 'round';
+        if (points.length >= 2) {
+            ctx.quadraticCurveTo(
+                points[points.length-2].x, points[points.length-2].y,
+                last.x, last.y
+            );
+        }
+        ctx.strokeStyle = color;
+        ctx.lineWidth   = 2;
+        ctx.lineCap     = 'round';
+        ctx.lineJoin    = 'round';
         ctx.stroke();
 
         // Gradient fyllning
-        var gradient = ctx.createLinearGradient(0, padT, 0, padT + chartH);
-        gradient.addColorStop(0, 'rgba(42, 157, 143, 0.18)');
-        gradient.addColorStop(1, 'rgba(42, 157, 143, 0.0)');
+        var grad = ctx.createLinearGradient(0, padT, 0, padT + chartH);
+        grad.addColorStop(0, opts.gradTop || 'rgba(217,168,74,0.22)');
+        grad.addColorStop(1, opts.gradBot || 'rgba(217,168,74,0.0)');
         ctx.lineTo(last.x, padT + chartH);
         ctx.lineTo(points[0].x, padT + chartH);
         ctx.closePath();
-        ctx.fillStyle = gradient;
+        ctx.fillStyle = grad;
         ctx.fill();
 
-        // Ändpunkt + värde
+        // Ändpunkt-cirkel
         ctx.beginPath();
-        ctx.fillStyle = '#2a9d8f';
+        ctx.fillStyle   = color;
         ctx.arc(last.x, last.y, 5, 0, Math.PI * 2);
         ctx.fill();
-        ctx.lineWidth = 2;
+        ctx.lineWidth   = 2;
         ctx.strokeStyle = '#fff';
         ctx.stroke();
 
-        // Aktuellt hPa-värde bredvid punkten
-        var lastVal = vals[vals.length - 1];
-        ctx.textAlign = 'left';
+        // Värdetext bredvid ändpunkten
+        var lastV = dataPoints[dataPoints.length - 1].v;
+        ctx.textAlign    = 'left';
         ctx.textBaseline = 'middle';
-        ctx.font = 'bold 10px Inter, sans-serif';
-        ctx.fillStyle = '#2a9d8f';
-        ctx.fillText(lastVal.toFixed(1) + ' hPa', last.x + 8, last.y);
+        ctx.font         = 'bold 10px Inter, sans-serif';
+        ctx.fillStyle    = color;
+        var endLabel = opts.formatLabel ? opts.formatLabel(lastV) :
+                       ((lastV > 0 ? '+' : '') + lastV.toFixed(1));
+        ctx.fillText(endLabel, last.x + 8, last.y);
+    }
+
+    // Wrapper-funktioner med profil-specifika inställningar
+    function drawTempSparkline(canvasId, dataPoints) {
+        drawSparkline(canvasId, dataPoints, {
+            color:       '#D9A84A',
+            height:      130,
+            padL:        32,
+            padR:        44,
+            zeroLine:    true,
+            formatY:     function(t) { return (t > 0 ? '+' : '') + t + '°'; },
+            formatLabel: function(v) { return (v > 0 ? '+' : '') + v.toFixed(1) + '°'; },
+            gradTop:     'rgba(217,168,74,0.22)',
+            gradBot:     'rgba(217,168,74,0.0)'
+        });
+    }
+
+    function drawPressureSparkline(canvasId, dataPoints) {
+        drawSparkline(canvasId, dataPoints, {
+            color:       '#2a9d8f',
+            height:      110,
+            padL:        50,  // hPa-etiketter är breda
+            padR:        58,
+            formatY:     function(t) { return t; },
+            formatLabel: function(v) { return v.toFixed(1) + ' hPa'; },
+            gradTop:     'rgba(42,157,143,0.18)',
+            gradBot:     'rgba(42,157,143,0.0)'
+        });
     }
 
     // ================================================================
