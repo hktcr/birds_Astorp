@@ -1,9 +1,533 @@
-<!doctype html><html lang=sv><head><meta name=generator content="Hugo 0.154.5"><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="En fågelårsbok för Åstorps kommun — observationer, bilder och krysslista"><meta name=author content="Håkan Karlsson"><title>Fågelåret i Åstorp</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/css/style.d23b9e00fbf2f9f103ee7da1e90eb597a17f60d15945e2d1e7d891a9233fab5f.css><link rel=prefetch href=/galleri/ as=document><link rel=alternate type=application/rss+xml href=https://astorpsfaglar.se/index.xml title="Fågelåret i Åstorp"></head><body><a href=#main-content class=skip-link>Hoppa till innehåll</a><header class=site-header><div class=header-container><a href=https://astorpsfaglar.se/ class=site-logo><span class=site-title>Fågelåret i Åstorp</span></a><nav class=main-nav aria-label=Huvudnavigation><ul class=nav-list><li class=nav-item><a href=/ class="nav-link active">Hem</a></li><li class=nav-item><a href=/posts/ class=nav-link>Notiser</a></li><li class=nav-item><a href=/karta/ class=nav-link>Krysskarta</a></li><li class=nav-item><a href=/artguide/ class=nav-link>Årshjul</a></li><li class=nav-item><a href=/vader/ class=nav-link>Horisonten</a></li><li class=nav-item><a href=/galleri/ class=nav-link>Galleri</a></li><li class=nav-item><a href=/faltpulsen/ class=nav-link>Aktuella observationer</a></li><li class=nav-item><a href=/om/ class=nav-link>Om</a></li></ul></nav><button class=mobile-menu-toggle aria-label="Öppna meny" aria-expanded=false id=mobile-menu-btn>
-<span class=hamburger></span></button></div></header><script>document.addEventListener("DOMContentLoaded",()=>{const e=document.getElementById("mobile-menu-btn"),t=document.querySelector(".main-nav");e&&t&&(e.addEventListener("click",n=>{n.preventDefault(),n.stopPropagation(),t.classList.toggle("open");const s=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",!s)}),document.addEventListener("click",n=>{t.classList.contains("open")&&!t.contains(n.target)&&!e.contains(n.target)&&(t.classList.remove("open"),e.setAttribute("aria-expanded","false"))}))})</script><main id=main-content class=main><section class=home-hero><div class=home-container><div class=hero-logo><img src=/images/logo-fagelaret-2026.png alt="Ett år med fåglar: Åstorp 2026"></div><div class=hero-progress><div class=progress-header><span class=progress-label>Årslista</span>
-<span class=progress-count><span id=species-count>—</span> av 150 arter</span></div><div class=thermometer><div class=thermometer-scale><span class=scale-mark style=left:0%>0</span>
-<span class=scale-mark style=left:33%>50</span>
-<span class=scale-mark style=left:66%>100</span>
-<span class=scale-mark style=left:100%>150</span></div><div class=thermometer-bar><div class=thermometer-fill id=progress-fill></div></div></div><div class=latest-species id=latest-species></div></div><a href=/posts/2026/04/%C3%A5rta-vid-r%C3%B6nnbacka/ class=latest-post-box><span class=latest-post-label>Senaste notis</span>
-<span class=latest-post-title>Årta vid Rönnbacka</span>
-<span class=latest-post-date>14 apr</span></a><div class=observation-trail><h2 class=trail-title>Observationsspår</h2><div class=trail-timeline id=trail-timeline></div></div></div></section></main><div id=lightbox class=lightbox onclick=closeLightbox()><div class=lightbox-content onclick=event.stopPropagation()><button class=lightbox-close onclick=closeLightbox()>&#215;</button>
-<img id=lightbox-img src alt></div></div><style>.lightbox{display:none;position:fixed;top:0;left:0;width:100%;height:100%;background:rgba(0,0,0,.7);justify-content:center;align-items:center;z-index:1000;cursor:pointer}.lightbox.active{display:flex}.lightbox-content{position:relative;background:#fff;padding:1rem;border-radius:12px;box-shadow:0 20px 60px rgba(0,0,0,.4);max-width:95%;max-height:95%;cursor:default;overflow:auto}.lightbox-content img{max-width:100%;max-height:90vh;border-radius:8px;display:block;cursor:zoom-in;transition:max-width .3s ease,max-height .3s ease}.lightbox-content img[src$=".svg"]{width:95vw;max-width:1400px}.lightbox-content img.zoomed{max-width:none;max-height:none;cursor:zoom-out}.lightbox-close{position:absolute;top:-12px;right:-12px;width:32px;height:32px;background:#333;color:#fff;border:3px solid #fff;border-radius:50%;font-size:1.5rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:0 2px 8px rgba(0,0,0,.3)}.lightbox-close:hover{background:#555}.gallery img{cursor:pointer;transition:transform .3s ease}.gallery img:hover{transform:scale(1.05)}</style><script>function openLightbox(e,t){const s=document.getElementById("lightbox"),n=document.getElementById("lightbox-img");n.src=e,n.alt=t||"",n.classList.remove("zoomed"),s.classList.add("active")}function closeLightbox(){const e=document.getElementById("lightbox-img");e.classList.remove("zoomed"),document.getElementById("lightbox").classList.remove("active")}function toggleZoom(){document.getElementById("lightbox-img").classList.toggle("zoomed")}document.addEventListener("keydown",e=>{e.key==="Escape"&&closeLightbox()}),document.addEventListener("DOMContentLoaded",()=>{document.getElementById("lightbox-img").addEventListener("click",e=>{e.stopPropagation(),toggleZoom()}),document.querySelectorAll(".lightbox-link").forEach(e=>{e.addEventListener("click",t=>{t.preventDefault(),openLightbox(e.href,e.querySelector("img")?.alt)})}),document.querySelectorAll(".gallery img, .post-body img").forEach(e=>{e.closest(".lightbox-link")||e.addEventListener("click",()=>openLightbox(e.src,e.alt))})})</script><link rel=stylesheet href=https://unpkg.com/leaflet@1.9.4/dist/leaflet.css><script src=https://unpkg.com/leaflet@1.9.4/dist/leaflet.js></script><script>window.siteBaseURL="https://astorpsfaglar.se/"</script><script src=/js/location-popup.js></script><script>var data,YEAR_GOAL=150,postsByDate={};postsByDate["2026-04-14"]="/posts/2026/04/%C3%A5rta-vid-r%C3%B6nnbacka/",postsByDate["2026-04-01"]="/posts/2026/04/j%C3%A4rnsparv-100e-arten/",postsByDate["2026-03-27"]="/posts/2026/03/skogssn%C3%A4ppor-vid-madk%C3%A4rr/",postsByDate["2026-03-21"]="/posts/2026/03/mindre-hackspett-och-sjungande-grans%C3%A5ngare/",postsByDate["2026-03-20"]="/posts/2026/03/s%C3%A4des%C3%A4rlan-har-anl%C3%A4nt/",postsByDate["2026-03-17"]="/posts/2026/03/brushane-och-kungsf%C3%A5glar/",postsByDate["2026-03-16"]="/posts/2026/03/g%C3%A4rdsmygens-vinter/",postsByDate["2026-03-14"]="/posts/2026/03/sn%C3%B6sparv-vid-tomarp/",postsByDate["2026-03-12"]="/posts/2026/03/heads-up-bokstavligt-och-bildligt/",postsByDate["2026-03-09"]="/posts/2026/03/f%C3%A5glarna-v%C3%A4ntar/",postsByDate["2026-03-06"]="/posts/2026/03/kraftm%C3%A4tning-p%C3%A5-f%C3%A4ltet/",postsByDate["2026-03-05"]="/posts/2026/03/%C3%A4gretth%C3%A4grar-och-krympande-vattenspeglar/",postsByDate["2026-03-03"]="/posts/2026/03/bes%C3%B6kare-fr%C3%A5n-tundran/",postsByDate["2026-03-03"]="/posts/2026/03/rekordtidiga-citronfj%C3%A4rilar/",postsByDate["2026-03-02"]="/posts/2026/03/vattenspeglar-och-morkulle%C3%B6gon/",postsByDate["2026-03-01"]="/posts/2026/03/%C3%A5rets-f%C3%B6rsta-trana-vid-en-ny-v%C3%A5tmark/",postsByDate["2026-02-27"]="/posts/2026/02/v%C3%A5ren-rullar-in/",postsByDate["2026-02-24"]="/posts/2026/02/f%C3%B6rsta-vipan/",postsByDate["2026-02-22"]="/posts/2026/02/str%C3%B6mstare-tredje-g%C3%A5ngen-gilt/",postsByDate["2026-02-21"]="/posts/2026/02/ensam-and-p%C3%A5-land-...-och-en-sm%C3%A5dopping/",postsByDate["2026-02-19"]="/posts/2026/02/reflekterat-ljus/",postsByDate["2026-02-18"]="/posts/2026/02/vinterh%C3%A4mplingsflock/",postsByDate["2026-02-16"]="/posts/2026/02/50-arter/",postsByDate["2026-02-14"]="/posts/2026/02/jakten-p%C3%A5-str%C3%B6mstare-del-2/",postsByDate["2026-02-06"]="/posts/2026/02/vem-%C3%A4ter-mest-vem-%C3%A4ter-sist/",postsByDate["2026-02-05"]="/posts/2026/02/fj%C3%A4llvr%C3%A5ken-i-tranarp/",postsByDate["2026-01-30"]="/posts/2026/01/jakten-p%C3%A5-str%C3%B6mstare/",postsByDate["2026-01-25"]="/posts/2026/01/vita-svanar-kall-vind/",postsByDate["2026-01-22"]="/posts/2026/01/havs%C3%B6rn-startar-f%C3%A5gel%C3%A5ret/",data={municipality:"Åstorp",observations:[{date:"2026-01-22",lat:56.12868,latin:"Haliaeetus albicilla",lng:13.08559,location:"Sönnarslöv",species:"Havsörn"},{date:"2026-01-22",lat:56.13675,latin:"Pica pica",lng:13.0431,location:"Kvidinge",species:"Skata"},{date:"2026-01-22",lat:56.13675,latin:"Turdus merula",lng:13.0431,location:"Kvidinge",species:"Koltrast"},{date:"2026-01-22",lat:56.13675,latin:"Coloeus monedula",lng:13.0431,location:"Kvidinge",species:"Kaja"},{date:"2026-01-22",lat:56.13675,latin:"Corvus cornix",lng:13.0431,location:"Kvidinge",species:"Gråkråka"},{date:"2026-01-23",lat:56.13675,latin:"Troglodytes troglodytes",lng:13.0431,location:"Kvidinge",species:"Gärdsmyg"},{date:"2026-01-23",lat:56.13675,latin:"Larus argentatus",lng:13.0431,location:"Kvidinge",species:"Gråtrut"},{date:"2026-01-23",lat:56.13015,latin:"Corvus frugilegus",lng:13.07099,location:"Sönnarslöv",species:"Råka"},{date:"2026-01-23",lat:56.13312,latin:"Milvus milvus",lng:13.09428,location:"Bron mot Klippan",species:"Röd glada"},{date:"2026-01-23",lat:56.13312,latin:"Buteo buteo",lng:13.09428,location:"Bron mot Klippan",species:"Ormvråk"},{date:"2026-01-23",lat:56.17858,latin:"Anas platyrhynchos",lng:13.02111,location:"Gamla Tranarpsbron",species:"Gräsand"},{date:"2026-01-23",lat:56.13675,latin:"Erithacus rubecula",lng:13.0431,location:"Kvidinge",species:"Rödhake"},{date:"2026-01-24",lat:56.13675,latin:"Pyrrhula pyrrhula",lng:13.0431,location:"Kvidinge",species:"Domherre"},{date:"2026-01-24",lat:56.13675,latin:"Parus major",lng:13.0431,location:"Kvidinge",species:"Talgoxe"},{date:"2026-01-25",lat:56.15343,latin:"Cygnus cygnus",lng:13.06878,location:"Kungsgårdsmaderna",species:"Sångsvan"},{date:"2026-01-25",lat:56.15343,latin:"Branta canadensis",lng:13.06878,location:"Kungsgårdsmaderna",species:"Kanadagås"},{date:"2026-01-25",lat:56.1487,latin:"Sitta europaea",lng:13.07359,location:"Tomarps Ene",species:"Nötväcka"},{date:"2026-01-25",lat:56.15343,latin:"Phalacrocorax carbo",lng:13.06878,location:"Kungsgårdsmaderna",species:"Storskarv"},{date:"2026-01-25",lat:56.13312,latin:"Bucephala clangula",lng:13.09428,location:"Bron mot Klippan",species:"Knipa"},{date:"2026-01-25",lat:56.13675,latin:"Cyanistes caeruleus",lng:13.0431,location:"Kvidinge",species:"Blåmes"},{date:"2026-01-25",lat:56.13675,latin:"Accipiter nisus",lng:13.0431,location:"Kvidinge",species:"Sparvhök"},{date:"2026-01-26",lat:56.13477,latin:"Columba livia",lng:13.01199,location:"Rörspjäll",species:"Klippduva (tamduva)"},{date:"2026-01-27",lat:56.13312,latin:"Fringilla coelebs",lng:13.09428,location:"Bron mot Klippan",species:"Bofink"},{date:"2026-01-27",lat:56.13675,latin:"Passer montanus",lng:13.0431,location:"Kvidinge",species:"Pilfink"},{date:"2026-01-27",lat:56.13675,latin:"Passer domesticus",lng:13.0431,location:"Kvidinge",species:"Gråsparv"},{date:"2026-01-28",lat:56.18073,latin:"Anser anser",lng:13.01804,location:"Tranarpsbron",species:"Grågås"},{date:"2026-01-28",lat:56.16593,latin:"Falco tinnunculus",lng:13.01946,location:"Killåkravägen",species:"Tornfalk"},{date:"2026-01-30",lat:56.09711,latin:"Dendrocopos major",lng:13.06836,location:"Högalid",species:"Större hackspett"},{date:"2026-01-30",lat:56.09711,latin:"Garrulus glandarius",lng:13.06836,location:"Högalid",species:"Nötskrika"},{date:"2026-01-30",lat:56.09874,latin:"Spinus spinus",lng:13.07474,location:"Körslättaravinen",species:"Grönsiska"},{date:"2026-01-30",lat:56.11749,latin:"Corvus corax",lng:13.06674,location:"Grustagen, Maglaby",species:"Korp"},{date:"2026-01-31",lat:56.14148,latin:"Columba palumbus",lng:13.04893,location:"Prästamarken",species:"Ringduva"},{date:"2026-02-01",lat:56.11793,latin:"Certhia familiaris",lng:12.99447,location:"Vändplats, V Maglabyväg",species:"Trädkrypare"},{date:"2026-02-01",lat:56.12383,latin:"Aegithalos caudatus",lng:12.98772,location:"Hermanssons stuga",species:"Stjärtmes"},{date:"2026-02-04",lat:56.13677,latin:"Coccothraustes coccothraustes",lng:12.95158,location:"Björnekullaskolan",species:"Stenknäck"},{date:"2026-02-05",lat:56.16532231534232,latin:"Buteo lagopus",lng:12.984207625328134,location:"Flodarna",species:"Fjällvråk"},{date:"2026-02-06",lat:56.136750782641876,latin:"Emberiza citrinella",lng:13.043105305042882,location:"Kvidinge",species:"Gulsparv"},{date:"2026-02-06",lat:56.14721124325686,latin:"Mergus merganser",lng:13.076779186245918,location:"Tomarps Ene",species:"Storskrake"},{date:"2026-02-09",lat:56.136750782641876,latin:"Chloris chloris",lng:13.043105305042882,location:"Kvidinge",species:"Grönfink"},{date:"2026-02-09",lat:56.13312,latin:"Ardea alba",lng:13.09428,location:"Bron mot Klippan",species:"Ägretthäger"},{date:"2026-02-09",lat:56.15596454204231,latin:"Branta leucopsis",lng:13.0706159722571,location:"Tomarps mader",species:"Vitkindad gås"},{date:"2026-02-09",lat:56.1487,latin:"Picus viridis",lng:13.07359,location:"Tomarps Ene",species:"Gröngöling"},{date:"2026-02-10",lat:56.101169833958345,latin:"Phasianus colchicus",lng:12.871921799623898,location:"Målarkalk, Hyllinge",species:"Fasan"},{date:"2026-02-13",lat:56.149612,latin:"Anser fabalis",lng:13.0625373,location:"Tomarps kungsgård",species:"Skogsgås"},{date:"2026-02-13",lat:56.149612,latin:"Anser albifrons",lng:13.0625373,location:"Tomarps kungsgård",species:"Bläsgås"},{date:"2026-02-13",lat:56.149612,latin:"Perdix perdix",lng:13.0625373,location:"Tomarps kungsgård",species:"Rapphöna"},{date:"2026-02-15",lat:56.13312,latin:"Circus cyaneus",lng:13.09428,location:"Bron mot Klippan",species:"Blå kärrhök"},{date:"2026-02-16",lat:56.13335909031484,latin:"Linaria flavirostris",lng:13.085150154227945,location:"Vångarna",species:"Vinterhämpling"},{date:"2026-02-16",lat:56.13335909031484,latin:"Columba oenas",lng:13.085150154227945,location:"Vångarna",species:"Skogsduva"},{date:"2026-02-16",lat:56.14244190869201,latin:"Mareca penelope",lng:13.077277080127024,location:"Utloppet av Röda-diket",species:"Bläsand"},{date:"2026-02-18",lat:56.09095485579307,latin:"Poecile palustris",lng:13.050526620868753,location:"NV Mosshult",species:"Entita"},{date:"2026-02-19",lat:56.14176,latin:"Carduelis carduelis",lng:13.059863,location:"Röda smedja, Kvidinge",species:"Steglits"},{date:"2026-02-21",lat:56.150295674056615,latin:"Aythya fuligula",lng:13.051556814010734,location:"Stora fältet - Sånna/Egnahem/Tomarp",species:"Vigg"},{date:"2026-02-21",lat:56.156655789969676,latin:"Tachybaptus ruficollis",lng:13.069328770839913,location:"Rönne å, Kungsgårdsmaderna",species:"Smådopping"},{date:"2026-02-22",lat:56.09126322298655,latin:"Cinclus cinclus",lng:13.102010171371758,location:"Klövaravinen",species:"Strömstare"},{date:"2026-02-24",lat:56.15343,latin:"Vanellus vanellus",lng:13.06878,location:"Kungsgårdsmaderna",species:"Tofsvipa"},{date:"2026-02-24",lat:56.15343,latin:"Anas crecca",lng:13.06878,location:"Kungsgårdsmaderna",species:"Kricka"},{date:"2026-02-24",lat:56.15343,latin:"Falco columbarius",lng:13.06878,location:"Kungsgårdsmaderna",species:"Stenfalk"},{date:"2026-02-24",lat:56.14072103796272,latin:"Ardea cinerea",lng:13.031572672305218,location:"Björkenäs mosse",species:"Gråhäger"},{date:"2026-02-27",lat:56.12774509697216,latin:"Alauda arvensis",lng:12.868473108581973,location:"Kölebäckens mader, V Broby",species:"Sånglärka"},{date:"2026-02-27",lat:56.12774509697216,latin:"Sturnus vulgaris",lng:12.868473108581973,location:"Kölebäckens mader, V Broby",species:"Stare"},{date:"2026-02-27",lat:56.12774509697216,latin:"Mareca strepera",lng:12.868473108581973,location:"Kölebäckens mader, V Broby",species:"Snatterand"},{date:"2026-02-27",lat:56.12774509697216,latin:"Tadorna tadorna",lng:12.868473108581973,location:"Kölebäckens mader, V Broby",species:"Gravand"},{date:"2026-02-27",lat:56.15343,latin:"Aquila chrysaetos",lng:13.06878,location:"Kungsgårdsmaderna",species:"Kungsörn"},{date:"2026-03-01",lat:56.093059657874605,latin:"Turdus viscivorus",lng:13.065669791540584,location:"Körslättabäckens våtmarker",species:"Dubbeltrast"},{date:"2026-03-01",lat:56.093059657874605,latin:"Grus grus",lng:13.065669791540584,location:"Körslättabäckens våtmarker",species:"Trana"},{date:"2026-03-01",lat:56.16336146917374,latin:"Lanius excubitor",lng:13.062392835112023,location:"Madkärr, Tomarp",species:"Varfågel"},{date:"2026-03-01",lat:56.15343,latin:"Anas acuta",lng:13.06878,location:"Kungsgårdsmaderna",species:"Stjärtand"},{date:"2026-03-02",lat:56.12774509697216,latin:"Chroicocephalus ridibundus",lng:12.868473108581973,location:"Kölebäckens mader, V Broby",species:"Skrattmås"},{date:"2026-03-02",lat:56.12774509697216,latin:"Emberiza schoeniclus",lng:12.868473108581973,location:"Kölebäckens mader, V Broby",species:"Sävsparv"},{date:"2026-03-02",lat:56.12774509697216,latin:"Spatula clypeata",lng:12.868473108581973,location:"Kölebäckens mader, V Broby",species:"Skedand"},{date:"2026-03-02",lat:56.12774509697216,latin:"Cygnus olor",lng:12.868473108581973,location:"Kölebäckens mader, V Broby",species:"Knölsvan"},{date:"2026-03-02",lat:56.15343,latin:"Aythya ferina",lng:13.06878,location:"Kungsgårdsmaderna",species:"Brunand"},{date:"2026-03-02",lat:56.14072103796272,latin:"Acanthis flammea",lng:13.031572672305218,location:"Björkenäs mosse",species:"Gråsiska"},{date:"2026-03-02",lat:56.141628953503115,latin:"Numenius arquata",lng:13.01111255477116,location:"Backadal, Kärrarp",species:"Storspov"},{date:"2026-03-02",lat:56.07789001813259,latin:"Strix aluco",lng:13.067594119415102,location:"Fåraböke",species:"Kattuggla"},{date:"2026-03-02",lat:56.093059657874605,latin:"Scolopax rusticola",lng:13.065669791540584,location:"Körslättabäckens våtmarker",species:"Morkulla"},{date:"2026-03-03",lat:56.09124965751413,latin:"Dryocopus martius",lng:13.058212865484588,location:"Körslätta mosse",species:"Spillkråka"},{date:"2026-03-04",lat:56.13677,latin:"Larus canus",lng:12.95158,location:"Björnekullaskolan",species:"Fiskmås"},{date:"2026-03-05",lat:56.133298631450046,latin:"Streptopelia decaocto",lng:13.054133737368847,location:"Östra Storgatan i Kvidinge",species:"Turkduva"},{date:"2026-03-05",lat:56.15343,latin:"Gallinago gallinago",lng:13.06878,location:"Kungsgårdsmaderna",species:"Enkelbeckasin"},{date:"2026-03-06",lat:56.07789001813259,latin:"Periparus ater",lng:13.067594119415102,location:"Fåraböke",species:"Svartmes"},{date:"2026-03-06",lat:56.15343,latin:"Anthus pratensis",lng:13.06878,location:"Kungsgårdsmaderna",species:"Ängspiplärka"},{date:"2026-03-07",lat:56.16336146917374,latin:"Linaria cannabina",lng:13.062392835112023,location:"Madkärr, Tomarp",species:"Hämpling"},{date:"2026-03-09",lat:56.1487,latin:"Motacilla cinerea",lng:13.07359,location:"Tomarps Ene",species:"Forsärla"},{date:"2026-03-10",lat:56.093059657874605,latin:"Turdus pilaris",lng:13.065669791540584,location:"Körslättabäckens våtmarker",species:"Björktrast"},{date:"2026-03-10",lat:56.093059657874605,latin:"Turdus iliacus",lng:13.065669791540584,location:"Körslättabäckens våtmarker",species:"Rödvingetrast"},{date:"2026-03-14",lat:56.093059657874605,latin:"Fringilla montifringilla",lng:13.065669791540584,location:"Körslättabäckens våtmarker",species:"Bergfink"},{date:"2026-03-14",lat:56.149612,latin:"Plectrophenax nivalis",lng:13.0625373,location:"Tomarps kungsgård",species:"Snösparv"},{date:"2026-03-17",lat:56.183486839903935,latin:"Calidris pugnax",lng:13.013507219597335,location:"Dynget",species:"Brushane"},{date:"2026-03-17",lat:56.07789001813259,latin:"Regulus ignicapilla",lng:13.067594119415102,location:"Fåraböke",species:"Brandkronad kungsfågel"},{date:"2026-03-17",lat:56.07789001813259,latin:"Regulus regulus",lng:13.067594119415102,location:"Fåraböke",species:"Kungsfågel"},{date:"2026-03-20",lat:56.100735,latin:"Haematopus ostralegus",lng:12.856615,location:"Hyllinge SV",species:"Strandskata"},{date:"2026-03-20",lat:56.148,latin:"Motacilla alba",lng:13.061,location:"Tomarps kungsgård",species:"Sädesärla"},{date:"2026-03-21",lat:56.09903738445198,latin:"Phylloscopus collybita",lng:13.062423259770256,location:"Högalidshöjden",species:"Gransångare"},{date:"2026-03-21",lat:56.09903738445198,latin:"Dryobates minor",lng:13.062423259770256,location:"Högalidshöjden",species:"Mindre hackspett"},{date:"2026-03-25",lat:56.093059657874605,latin:"Turdus philomelos",lng:13.065669791540584,location:"Körslättabäckens våtmarker",species:"Taltrast"},{date:"2026-03-27",lat:56.16336,latin:"Tringa ochropus",lng:13.06239,location:"Madkärr, Tomarp",species:"Skogssnäppa"},{date:"2026-03-30",lat:56.1795235368064,latin:"Gallinula chloropus",lng:13.017079953054056,location:"Rönnetorpsdammen",species:"Rörhöna"},{date:"2026-04-01",lat:56.09125,latin:"Prunella modularis",lng:13.05821,location:"Körslätta mosse",species:"Järnsparv"},{date:"2026-04-07",lat:56.16336146917374,latin:"Charadrius hiaticula",lng:13.062392835112023,location:"Madkärr, Tomarp",species:"Större strandpipare"},{date:"2026-04-07",lat:56.16336146917374,latin:"Tringa totanus",lng:13.062392835112023,location:"Madkärr, Tomarp",species:"Rödbena"},{date:"2026-04-10",lat:56.183486839903935,latin:"Thinornis dubius",lng:13.013507219597335,location:"Dynget",species:"Mindre strandpipare"},{date:"2026-04-10",lat:56.141628953503115,latin:"Circus aeruginosus",lng:13.01111255477116,location:"Backadal, Kärrarp",species:"Brun kärrhök"},{date:"2026-04-12",lat:56.12001,latin:"Fulica atra",lng:12.92422,location:"Ängsgården",species:"Sothöna"},{date:"2026-04-13",lat:56.13420520510357,latin:"Falco peregrinus",lng:12.942173584912153,location:"Åstorp",species:"Pilgrimsfalk"},{date:"2026-04-14",lat:56.168816409838804,latin:"Spatula querquedula",lng:13.030937554082303,location:"Rönnbacka",species:"Årta"}],year:2026};function initDashboard(){if(!data||!data.observations){console.error("Ingen data laddad");return}var e,t,n,s,o,i,a,r,c,l,d,u,h,m,f,g,p={};data.observations.forEach(function(e){p[e.species]=!0}),f=Object.keys(p).length,u=document.getElementById("species-count"),u&&(u.textContent=f),n=f/YEAR_GOAL*100,r=document.getElementById("progress-fill"),r&&(r.style.width=Math.min(n,100)+"%",n<=30?(e=n/30,i=35+e*10,a=85,o=55):n<=60?(e=(n-30)/30,i=45+e*20,a=85+e*5,o=55-e*5):n<=85?(e=(n-60)/25,i=65+e*35,a=90-e*10,o=50-e*6):(e=Math.min((n-85)/15,1),i=100+e*40,a=80,o=44-e*6),r.style.backgroundColor="hsl("+i+", "+a+"%, "+o+"%)"),data.observations.length>0&&(c=data.observations[data.observations.length-1],d=document.getElementById("latest-species"),d&&(d.innerHTML='<span class="latest-label">Senast kryssad:</span> <strong>'+c.species+'</strong> <span class="latest-meta">('+c.location+", "+new Date(c.date).toLocaleDateString("sv-SE",{day:"numeric",month:"short"})+")</span>")),l={},g=1,s={},data.observations.forEach(function(e){l[e.species]||(l[e.species]=g++),s[e.date]||(s[e.date]={species:[],locations:[]}),s[e.date].species.push(e.species),s[e.date].locations.indexOf(e.location)===-1&&s[e.date].locations.push(e.location)}),h=Object.keys(s).sort(function(e,t){return new Date(t)-new Date(e)}),m=document.getElementById("trail-timeline"),m&&(t="",h.forEach(function(e,n){var d,o=s[e],i=new Date(e),a=i.getDate(),r=i.toLocaleDateString("sv-SE",{month:"long"}),u=n===h.length-1,c=postsByDate[e];t+='<div class="trail-item'+(n===0?" trail-item-latest":"")+'">',t+='<div class="trail-line'+(u?" trail-line-end":"")+'"></div>',t+='<div class="trail-dot"></div>',t+='<div class="trail-content">',c?t+='<a href="'+c+'" class="trail-date has-post">'+a+" "+r+" ↗</a>":t+='<div class="trail-date">'+a+" "+r+"</div>",d=o.species.map(function(e){return'<span class="trail-species-number">#'+l[e]+"</span> "+e}),t+='<div class="trail-species">'+d.join(", ")+"</div>",t+='<div class="trail-location">'+o.locations.join(" • ")+"</div>",t+="</div></div>"}),m.innerHTML=t)}initDashboard()</script><script data-goatcounter=https://hlgk.goatcounter.com/count async src=//gc.zgo.at/count.js></script></body></html>
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+	<meta name="generator" content="Hugo 0.154.5">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="En fågelårsbok för Åstorps kommun — observationer, bilder och krysslista">
+    <meta name="author" content="Håkan Karlsson">
+    <title>Fågelåret i Åstorp</title>
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    
+    
+    <link rel="stylesheet" href="/css/style.d23b9e00fbf2f9f103ee7da1e90eb597a17f60d15945e2d1e7d891a9233fab5f.css">
+
+    
+    <link rel="prefetch" href="/galleri/" as="document">
+
+    
+    
+    <link rel="alternate" type="application/rss+xml" href="https://astorpsfaglar.se/index.xml" title="Fågelåret i Åstorp">
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Hoppa till innehåll</a>
+
+    <header class="site-header">
+    <div class="header-container">
+        <a href="https://astorpsfaglar.se/" class="site-logo">
+            <span class="site-title">Fågelåret i Åstorp</span>
+        </a>
+
+
+        <nav class="main-nav" aria-label="Huvudnavigation">
+            <ul class="nav-list">
+                
+                
+                <li class="nav-item">
+                    <a href="/" class="nav-link active">
+                        Hem
+                    </a>
+                </li>
+                
+                
+                
+                <li class="nav-item">
+                    <a href="/posts/" class="nav-link">
+                        Notiser
+                    </a>
+                </li>
+                
+                
+                
+                <li class="nav-item">
+                    <a href="/karta/" class="nav-link">
+                        Krysskarta
+                    </a>
+                </li>
+                
+                
+                
+                <li class="nav-item">
+                    <a href="/artguide/" class="nav-link">
+                        Årshjul
+                    </a>
+                </li>
+                
+                
+                
+                <li class="nav-item">
+                    <a href="/vader/" class="nav-link">
+                        Horisonten
+                    </a>
+                </li>
+                
+                
+                
+                <li class="nav-item">
+                    <a href="/galleri/" class="nav-link">
+                        Galleri
+                    </a>
+                </li>
+                
+                
+                
+                <li class="nav-item">
+                    <a href="/faltpulsen/" class="nav-link">
+                        Aktuella observationer
+                    </a>
+                </li>
+                
+                
+                
+                <li class="nav-item">
+                    <a href="/om/" class="nav-link">
+                        Om
+                    </a>
+                </li>
+                
+                
+            </ul>
+        </nav>
+
+        <button class="mobile-menu-toggle" aria-label="Öppna meny" aria-expanded="false" id="mobile-menu-btn">
+            <span class="hamburger"></span>
+        </button>
+    </div>
+</header>
+
+<script>
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuToggle = document.getElementById('mobile-menu-btn');
+        const mainNav = document.querySelector('.main-nav');
+
+        if (menuToggle && mainNav) {
+            menuToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                
+                mainNav.classList.toggle('open');
+
+                
+                const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+                menuToggle.setAttribute('aria-expanded', !isExpanded);
+            });
+
+            
+            document.addEventListener('click', (e) => {
+                if (mainNav.classList.contains('open') &&
+                    !mainNav.contains(e.target) &&
+                    !menuToggle.contains(e.target)) {
+                    mainNav.classList.remove('open');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+    });
+</script>
+
+    <main id="main-content" class="main">
+        
+
+<section class="home-hero">
+    <div class="home-container">
+        
+        <div class="hero-logo">
+            <img src="/images/logo-fagelaret-2026.png" alt="Ett år med fåglar: Åstorp 2026">
+        </div>
+
+        
+        <div class="hero-progress">
+            <div class="progress-header">
+                <span class="progress-label">Årslista</span>
+                <span class="progress-count"><span id="species-count">—</span> av 150 arter</span>
+            </div>
+            <div class="thermometer">
+                <div class="thermometer-scale">
+                    <span class="scale-mark" style="left: 0%">0</span>
+                    <span class="scale-mark" style="left: 33%">50</span>
+                    <span class="scale-mark" style="left: 66%">100</span>
+                    <span class="scale-mark" style="left: 100%">150</span>
+                </div>
+                <div class="thermometer-bar">
+                    <div class="thermometer-fill" id="progress-fill"></div>
+                </div>
+            </div>
+            <div class="latest-species" id="latest-species"></div>
+        </div>
+
+        
+        
+        
+        <a href="/posts/2026/04/r%C3%B6dstj%C3%A4rt-vid-kvidinge-kyrka/" class="latest-post-box">
+            <span class="latest-post-label">Senaste notis</span>
+            <span class="latest-post-title">Rödstjärt vid Kvidinge kyrka</span>
+            <span class="latest-post-date">16 apr</span>
+        </a>
+        
+
+        
+        <div class="observation-trail">
+            <h2 class="trail-title">Observationsspår</h2>
+            <div class="trail-timeline" id="trail-timeline">
+                
+            </div>
+        </div>
+
+    </div>
+</section>
+
+    </main>
+
+    
+
+    
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <button class="lightbox-close" onclick="closeLightbox()">&times;</button>
+            <img id="lightbox-img" src="" alt="">
+        </div>
+    </div>
+    <style>
+        .lightbox {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            cursor: pointer;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        .lightbox-content {
+            position: relative;
+            background: white;
+            padding: 1rem;
+            border-radius: 12px;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+            max-width: 95%;
+            max-height: 95%;
+            cursor: default;
+            overflow: auto;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: 90vh;
+            border-radius: 8px;
+            display: block;
+            cursor: zoom-in;
+            transition: max-width 0.3s ease, max-height 0.3s ease;
+        }
+
+        .lightbox-content img[src$=".svg"] {
+            width: 95vw;
+            max-width: 1400px;
+        }
+
+        .lightbox-content img.zoomed {
+            max-width: none;
+            max-height: none;
+            cursor: zoom-out;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: -12px;
+            right: -12px;
+            width: 32px;
+            height: 32px;
+            background: #333;
+            color: white;
+            border: 3px solid white;
+            border-radius: 50%;
+            font-size: 1.5rem;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+        }
+
+        .lightbox-close:hover {
+            background: #555;
+        }
+
+        .gallery img {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+    </style>
+    <script>
+        function openLightbox(src, alt) {
+            const lb = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            img.src = src; img.alt = alt || '';
+            img.classList.remove('zoomed');
+            lb.classList.add('active');
+        }
+        function closeLightbox() {
+            const img = document.getElementById('lightbox-img');
+            img.classList.remove('zoomed');
+            document.getElementById('lightbox').classList.remove('active');
+        }
+        function toggleZoom() {
+            document.getElementById('lightbox-img').classList.toggle('zoomed');
+        }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('lightbox-img').addEventListener('click', e => {
+                e.stopPropagation();
+                toggleZoom();
+            });
+            document.querySelectorAll('.lightbox-link').forEach(a => {
+                a.addEventListener('click', e => {
+                    e.preventDefault();
+                    openLightbox(a.href, a.querySelector('img')?.alt);
+                });
+            });
+            document.querySelectorAll('.gallery img, .post-body img').forEach(img => {
+                if (!img.closest('.lightbox-link')) {
+                    img.addEventListener('click', () => openLightbox(img.src, img.alt));
+                }
+            });
+        });
+    </script>
+
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>window.siteBaseURL = "https:\/\/astorpsfaglar.se\/";</script>
+    <script src="/js/location-popup.js"></script>
+
+    
+<script>
+    
+    var YEAR_GOAL = 150;
+
+    
+    var postsByDate = {};
+    
+    postsByDate["2026-04-16"] = "\/posts\/2026\/04\/r%C3%B6dstj%C3%A4rt-vid-kvidinge-kyrka\/";
+    
+    postsByDate["2026-04-14"] = "\/posts\/2026\/04\/%C3%A5rta-vid-r%C3%B6nnbacka\/";
+    
+    postsByDate["2026-04-01"] = "\/posts\/2026\/04\/j%C3%A4rnsparv-100e-arten\/";
+    
+    postsByDate["2026-03-27"] = "\/posts\/2026\/03\/skogssn%C3%A4ppor-vid-madk%C3%A4rr\/";
+    
+    postsByDate["2026-03-21"] = "\/posts\/2026\/03\/mindre-hackspett-och-sjungande-grans%C3%A5ngare\/";
+    
+    postsByDate["2026-03-20"] = "\/posts\/2026\/03\/s%C3%A4des%C3%A4rlan-har-anl%C3%A4nt\/";
+    
+    postsByDate["2026-03-17"] = "\/posts\/2026\/03\/brushane-och-kungsf%C3%A5glar\/";
+    
+    postsByDate["2026-03-16"] = "\/posts\/2026\/03\/g%C3%A4rdsmygens-vinter\/";
+    
+    postsByDate["2026-03-14"] = "\/posts\/2026\/03\/sn%C3%B6sparv-vid-tomarp\/";
+    
+    postsByDate["2026-03-12"] = "\/posts\/2026\/03\/heads-up-bokstavligt-och-bildligt\/";
+    
+    postsByDate["2026-03-09"] = "\/posts\/2026\/03\/f%C3%A5glarna-v%C3%A4ntar\/";
+    
+    postsByDate["2026-03-06"] = "\/posts\/2026\/03\/kraftm%C3%A4tning-p%C3%A5-f%C3%A4ltet\/";
+    
+    postsByDate["2026-03-05"] = "\/posts\/2026\/03\/%C3%A4gretth%C3%A4grar-och-krympande-vattenspeglar\/";
+    
+    postsByDate["2026-03-03"] = "\/posts\/2026\/03\/bes%C3%B6kare-fr%C3%A5n-tundran\/";
+    
+    postsByDate["2026-03-03"] = "\/posts\/2026\/03\/rekordtidiga-citronfj%C3%A4rilar\/";
+    
+    postsByDate["2026-03-02"] = "\/posts\/2026\/03\/vattenspeglar-och-morkulle%C3%B6gon\/";
+    
+    postsByDate["2026-03-01"] = "\/posts\/2026\/03\/%C3%A5rets-f%C3%B6rsta-trana-vid-en-ny-v%C3%A5tmark\/";
+    
+    postsByDate["2026-02-27"] = "\/posts\/2026\/02\/v%C3%A5ren-rullar-in\/";
+    
+    postsByDate["2026-02-24"] = "\/posts\/2026\/02\/f%C3%B6rsta-vipan\/";
+    
+    postsByDate["2026-02-22"] = "\/posts\/2026\/02\/str%C3%B6mstare-tredje-g%C3%A5ngen-gilt\/";
+    
+    postsByDate["2026-02-21"] = "\/posts\/2026\/02\/ensam-and-p%C3%A5-land-...-och-en-sm%C3%A5dopping\/";
+    
+    postsByDate["2026-02-19"] = "\/posts\/2026\/02\/reflekterat-ljus\/";
+    
+    postsByDate["2026-02-18"] = "\/posts\/2026\/02\/vinterh%C3%A4mplingsflock\/";
+    
+    postsByDate["2026-02-16"] = "\/posts\/2026\/02\/50-arter\/";
+    
+    postsByDate["2026-02-14"] = "\/posts\/2026\/02\/jakten-p%C3%A5-str%C3%B6mstare-del-2\/";
+    
+    postsByDate["2026-02-06"] = "\/posts\/2026\/02\/vem-%C3%A4ter-mest-vem-%C3%A4ter-sist\/";
+    
+    postsByDate["2026-02-05"] = "\/posts\/2026\/02\/fj%C3%A4llvr%C3%A5ken-i-tranarp\/";
+    
+    postsByDate["2026-01-30"] = "\/posts\/2026\/01\/jakten-p%C3%A5-str%C3%B6mstare\/";
+    
+    postsByDate["2026-01-25"] = "\/posts\/2026\/01\/vita-svanar-kall-vind\/";
+    
+    postsByDate["2026-01-22"] = "\/posts\/2026\/01\/havs%C3%B6rn-startar-f%C3%A5gel%C3%A5ret\/";
+    
+
+    
+    var data = {"municipality":"Åstorp","observations":[{"date":"2026-01-22","lat":56.12868,"latin":"Haliaeetus albicilla","lng":13.08559,"location":"Sönnarslöv","species":"Havsörn"},{"date":"2026-01-22","lat":56.13675,"latin":"Pica pica","lng":13.0431,"location":"Kvidinge","species":"Skata"},{"date":"2026-01-22","lat":56.13675,"latin":"Turdus merula","lng":13.0431,"location":"Kvidinge","species":"Koltrast"},{"date":"2026-01-22","lat":56.13675,"latin":"Coloeus monedula","lng":13.0431,"location":"Kvidinge","species":"Kaja"},{"date":"2026-01-22","lat":56.13675,"latin":"Corvus cornix","lng":13.0431,"location":"Kvidinge","species":"Gråkråka"},{"date":"2026-01-23","lat":56.13675,"latin":"Troglodytes troglodytes","lng":13.0431,"location":"Kvidinge","species":"Gärdsmyg"},{"date":"2026-01-23","lat":56.13675,"latin":"Larus argentatus","lng":13.0431,"location":"Kvidinge","species":"Gråtrut"},{"date":"2026-01-23","lat":56.13015,"latin":"Corvus frugilegus","lng":13.07099,"location":"Sönnarslöv","species":"Råka"},{"date":"2026-01-23","lat":56.13312,"latin":"Milvus milvus","lng":13.09428,"location":"Bron mot Klippan","species":"Röd glada"},{"date":"2026-01-23","lat":56.13312,"latin":"Buteo buteo","lng":13.09428,"location":"Bron mot Klippan","species":"Ormvråk"},{"date":"2026-01-23","lat":56.17858,"latin":"Anas platyrhynchos","lng":13.02111,"location":"Gamla Tranarpsbron","species":"Gräsand"},{"date":"2026-01-23","lat":56.13675,"latin":"Erithacus rubecula","lng":13.0431,"location":"Kvidinge","species":"Rödhake"},{"date":"2026-01-24","lat":56.13675,"latin":"Pyrrhula pyrrhula","lng":13.0431,"location":"Kvidinge","species":"Domherre"},{"date":"2026-01-24","lat":56.13675,"latin":"Parus major","lng":13.0431,"location":"Kvidinge","species":"Talgoxe"},{"date":"2026-01-25","lat":56.15343,"latin":"Cygnus cygnus","lng":13.06878,"location":"Kungsgårdsmaderna","species":"Sångsvan"},{"date":"2026-01-25","lat":56.15343,"latin":"Branta canadensis","lng":13.06878,"location":"Kungsgårdsmaderna","species":"Kanadagås"},{"date":"2026-01-25","lat":56.1487,"latin":"Sitta europaea","lng":13.07359,"location":"Tomarps Ene","species":"Nötväcka"},{"date":"2026-01-25","lat":56.15343,"latin":"Phalacrocorax carbo","lng":13.06878,"location":"Kungsgårdsmaderna","species":"Storskarv"},{"date":"2026-01-25","lat":56.13312,"latin":"Bucephala clangula","lng":13.09428,"location":"Bron mot Klippan","species":"Knipa"},{"date":"2026-01-25","lat":56.13675,"latin":"Cyanistes caeruleus","lng":13.0431,"location":"Kvidinge","species":"Blåmes"},{"date":"2026-01-25","lat":56.13675,"latin":"Accipiter nisus","lng":13.0431,"location":"Kvidinge","species":"Sparvhök"},{"date":"2026-01-26","lat":56.13477,"latin":"Columba livia","lng":13.01199,"location":"Rörspjäll","species":"Klippduva (tamduva)"},{"date":"2026-01-27","lat":56.13312,"latin":"Fringilla coelebs","lng":13.09428,"location":"Bron mot Klippan","species":"Bofink"},{"date":"2026-01-27","lat":56.13675,"latin":"Passer montanus","lng":13.0431,"location":"Kvidinge","species":"Pilfink"},{"date":"2026-01-27","lat":56.13675,"latin":"Passer domesticus","lng":13.0431,"location":"Kvidinge","species":"Gråsparv"},{"date":"2026-01-28","lat":56.18073,"latin":"Anser anser","lng":13.01804,"location":"Tranarpsbron","species":"Grågås"},{"date":"2026-01-28","lat":56.16593,"latin":"Falco tinnunculus","lng":13.01946,"location":"Killåkravägen","species":"Tornfalk"},{"date":"2026-01-30","lat":56.09711,"latin":"Dendrocopos major","lng":13.06836,"location":"Högalid","species":"Större hackspett"},{"date":"2026-01-30","lat":56.09711,"latin":"Garrulus glandarius","lng":13.06836,"location":"Högalid","species":"Nötskrika"},{"date":"2026-01-30","lat":56.09874,"latin":"Spinus spinus","lng":13.07474,"location":"Körslättaravinen","species":"Grönsiska"},{"date":"2026-01-30","lat":56.11749,"latin":"Corvus corax","lng":13.06674,"location":"Grustagen, Maglaby","species":"Korp"},{"date":"2026-01-31","lat":56.14148,"latin":"Columba palumbus","lng":13.04893,"location":"Prästamarken","species":"Ringduva"},{"date":"2026-02-01","lat":56.11793,"latin":"Certhia familiaris","lng":12.99447,"location":"Vändplats, V Maglabyväg","species":"Trädkrypare"},{"date":"2026-02-01","lat":56.12383,"latin":"Aegithalos caudatus","lng":12.98772,"location":"Hermanssons stuga","species":"Stjärtmes"},{"date":"2026-02-04","lat":56.13677,"latin":"Coccothraustes coccothraustes","lng":12.95158,"location":"Björnekullaskolan","species":"Stenknäck"},{"date":"2026-02-05","lat":56.16532231534232,"latin":"Buteo lagopus","lng":12.984207625328134,"location":"Flodarna","species":"Fjällvråk"},{"date":"2026-02-06","lat":56.136750782641876,"latin":"Emberiza citrinella","lng":13.043105305042882,"location":"Kvidinge","species":"Gulsparv"},{"date":"2026-02-06","lat":56.14721124325686,"latin":"Mergus merganser","lng":13.076779186245918,"location":"Tomarps Ene","species":"Storskrake"},{"date":"2026-02-09","lat":56.136750782641876,"latin":"Chloris chloris","lng":13.043105305042882,"location":"Kvidinge","species":"Grönfink"},{"date":"2026-02-09","lat":56.13312,"latin":"Ardea alba","lng":13.09428,"location":"Bron mot Klippan","species":"Ägretthäger"},{"date":"2026-02-09","lat":56.15596454204231,"latin":"Branta leucopsis","lng":13.0706159722571,"location":"Tomarps mader","species":"Vitkindad gås"},{"date":"2026-02-09","lat":56.1487,"latin":"Picus viridis","lng":13.07359,"location":"Tomarps Ene","species":"Gröngöling"},{"date":"2026-02-10","lat":56.101169833958345,"latin":"Phasianus colchicus","lng":12.871921799623898,"location":"Målarkalk, Hyllinge","species":"Fasan"},{"date":"2026-02-13","lat":56.149612,"latin":"Anser fabalis","lng":13.0625373,"location":"Tomarps kungsgård","species":"Skogsgås"},{"date":"2026-02-13","lat":56.149612,"latin":"Anser albifrons","lng":13.0625373,"location":"Tomarps kungsgård","species":"Bläsgås"},{"date":"2026-02-13","lat":56.149612,"latin":"Perdix perdix","lng":13.0625373,"location":"Tomarps kungsgård","species":"Rapphöna"},{"date":"2026-02-15","lat":56.13312,"latin":"Circus cyaneus","lng":13.09428,"location":"Bron mot Klippan","species":"Blå kärrhök"},{"date":"2026-02-16","lat":56.13335909031484,"latin":"Linaria flavirostris","lng":13.085150154227945,"location":"Vångarna","species":"Vinterhämpling"},{"date":"2026-02-16","lat":56.13335909031484,"latin":"Columba oenas","lng":13.085150154227945,"location":"Vångarna","species":"Skogsduva"},{"date":"2026-02-16","lat":56.14244190869201,"latin":"Mareca penelope","lng":13.077277080127024,"location":"Utloppet av Röda-diket","species":"Bläsand"},{"date":"2026-02-18","lat":56.09095485579307,"latin":"Poecile palustris","lng":13.050526620868753,"location":"NV Mosshult","species":"Entita"},{"date":"2026-02-19","lat":56.14176,"latin":"Carduelis carduelis","lng":13.059863,"location":"Röda smedja, Kvidinge","species":"Steglits"},{"date":"2026-02-21","lat":56.150295674056615,"latin":"Aythya fuligula","lng":13.051556814010734,"location":"Stora fältet - Sånna/Egnahem/Tomarp","species":"Vigg"},{"date":"2026-02-21","lat":56.156655789969676,"latin":"Tachybaptus ruficollis","lng":13.069328770839913,"location":"Rönne å, Kungsgårdsmaderna","species":"Smådopping"},{"date":"2026-02-22","lat":56.09126322298655,"latin":"Cinclus cinclus","lng":13.102010171371758,"location":"Klövaravinen","species":"Strömstare"},{"date":"2026-02-24","lat":56.15343,"latin":"Vanellus vanellus","lng":13.06878,"location":"Kungsgårdsmaderna","species":"Tofsvipa"},{"date":"2026-02-24","lat":56.15343,"latin":"Anas crecca","lng":13.06878,"location":"Kungsgårdsmaderna","species":"Kricka"},{"date":"2026-02-24","lat":56.15343,"latin":"Falco columbarius","lng":13.06878,"location":"Kungsgårdsmaderna","species":"Stenfalk"},{"date":"2026-02-24","lat":56.14072103796272,"latin":"Ardea cinerea","lng":13.031572672305218,"location":"Björkenäs mosse","species":"Gråhäger"},{"date":"2026-02-27","lat":56.12774509697216,"latin":"Alauda arvensis","lng":12.868473108581973,"location":"Kölebäckens mader, V Broby","species":"Sånglärka"},{"date":"2026-02-27","lat":56.12774509697216,"latin":"Sturnus vulgaris","lng":12.868473108581973,"location":"Kölebäckens mader, V Broby","species":"Stare"},{"date":"2026-02-27","lat":56.12774509697216,"latin":"Mareca strepera","lng":12.868473108581973,"location":"Kölebäckens mader, V Broby","species":"Snatterand"},{"date":"2026-02-27","lat":56.12774509697216,"latin":"Tadorna tadorna","lng":12.868473108581973,"location":"Kölebäckens mader, V Broby","species":"Gravand"},{"date":"2026-02-27","lat":56.15343,"latin":"Aquila chrysaetos","lng":13.06878,"location":"Kungsgårdsmaderna","species":"Kungsörn"},{"date":"2026-03-01","lat":56.093059657874605,"latin":"Turdus viscivorus","lng":13.065669791540584,"location":"Körslättabäckens våtmarker","species":"Dubbeltrast"},{"date":"2026-03-01","lat":56.093059657874605,"latin":"Grus grus","lng":13.065669791540584,"location":"Körslättabäckens våtmarker","species":"Trana"},{"date":"2026-03-01","lat":56.16336146917374,"latin":"Lanius excubitor","lng":13.062392835112023,"location":"Madkärr, Tomarp","species":"Varfågel"},{"date":"2026-03-01","lat":56.15343,"latin":"Anas acuta","lng":13.06878,"location":"Kungsgårdsmaderna","species":"Stjärtand"},{"date":"2026-03-02","lat":56.12774509697216,"latin":"Chroicocephalus ridibundus","lng":12.868473108581973,"location":"Kölebäckens mader, V Broby","species":"Skrattmås"},{"date":"2026-03-02","lat":56.12774509697216,"latin":"Emberiza schoeniclus","lng":12.868473108581973,"location":"Kölebäckens mader, V Broby","species":"Sävsparv"},{"date":"2026-03-02","lat":56.12774509697216,"latin":"Spatula clypeata","lng":12.868473108581973,"location":"Kölebäckens mader, V Broby","species":"Skedand"},{"date":"2026-03-02","lat":56.12774509697216,"latin":"Cygnus olor","lng":12.868473108581973,"location":"Kölebäckens mader, V Broby","species":"Knölsvan"},{"date":"2026-03-02","lat":56.15343,"latin":"Aythya ferina","lng":13.06878,"location":"Kungsgårdsmaderna","species":"Brunand"},{"date":"2026-03-02","lat":56.14072103796272,"latin":"Acanthis flammea","lng":13.031572672305218,"location":"Björkenäs mosse","species":"Gråsiska"},{"date":"2026-03-02","lat":56.141628953503115,"latin":"Numenius arquata","lng":13.01111255477116,"location":"Backadal, Kärrarp","species":"Storspov"},{"date":"2026-03-02","lat":56.07789001813259,"latin":"Strix aluco","lng":13.067594119415102,"location":"Fåraböke","species":"Kattuggla"},{"date":"2026-03-02","lat":56.093059657874605,"latin":"Scolopax rusticola","lng":13.065669791540584,"location":"Körslättabäckens våtmarker","species":"Morkulla"},{"date":"2026-03-03","lat":56.09124965751413,"latin":"Dryocopus martius","lng":13.058212865484588,"location":"Körslätta mosse","species":"Spillkråka"},{"date":"2026-03-04","lat":56.13677,"latin":"Larus canus","lng":12.95158,"location":"Björnekullaskolan","species":"Fiskmås"},{"date":"2026-03-05","lat":56.133298631450046,"latin":"Streptopelia decaocto","lng":13.054133737368847,"location":"Östra Storgatan i Kvidinge","species":"Turkduva"},{"date":"2026-03-05","lat":56.15343,"latin":"Gallinago gallinago","lng":13.06878,"location":"Kungsgårdsmaderna","species":"Enkelbeckasin"},{"date":"2026-03-06","lat":56.07789001813259,"latin":"Periparus ater","lng":13.067594119415102,"location":"Fåraböke","species":"Svartmes"},{"date":"2026-03-06","lat":56.15343,"latin":"Anthus pratensis","lng":13.06878,"location":"Kungsgårdsmaderna","species":"Ängspiplärka"},{"date":"2026-03-07","lat":56.16336146917374,"latin":"Linaria cannabina","lng":13.062392835112023,"location":"Madkärr, Tomarp","species":"Hämpling"},{"date":"2026-03-09","lat":56.1487,"latin":"Motacilla cinerea","lng":13.07359,"location":"Tomarps Ene","species":"Forsärla"},{"date":"2026-03-10","lat":56.093059657874605,"latin":"Turdus pilaris","lng":13.065669791540584,"location":"Körslättabäckens våtmarker","species":"Björktrast"},{"date":"2026-03-10","lat":56.093059657874605,"latin":"Turdus iliacus","lng":13.065669791540584,"location":"Körslättabäckens våtmarker","species":"Rödvingetrast"},{"date":"2026-03-14","lat":56.093059657874605,"latin":"Fringilla montifringilla","lng":13.065669791540584,"location":"Körslättabäckens våtmarker","species":"Bergfink"},{"date":"2026-03-14","lat":56.149612,"latin":"Plectrophenax nivalis","lng":13.0625373,"location":"Tomarps kungsgård","species":"Snösparv"},{"date":"2026-03-17","lat":56.183486839903935,"latin":"Calidris pugnax","lng":13.013507219597335,"location":"Dynget","species":"Brushane"},{"date":"2026-03-17","lat":56.07789001813259,"latin":"Regulus ignicapilla","lng":13.067594119415102,"location":"Fåraböke","species":"Brandkronad kungsfågel"},{"date":"2026-03-17","lat":56.07789001813259,"latin":"Regulus regulus","lng":13.067594119415102,"location":"Fåraböke","species":"Kungsfågel"},{"date":"2026-03-20","lat":56.100735,"latin":"Haematopus ostralegus","lng":12.856615,"location":"Hyllinge SV","species":"Strandskata"},{"date":"2026-03-20","lat":56.148,"latin":"Motacilla alba","lng":13.061,"location":"Tomarps kungsgård","species":"Sädesärla"},{"date":"2026-03-21","lat":56.09903738445198,"latin":"Phylloscopus collybita","lng":13.062423259770256,"location":"Högalidshöjden","species":"Gransångare"},{"date":"2026-03-21","lat":56.09903738445198,"latin":"Dryobates minor","lng":13.062423259770256,"location":"Högalidshöjden","species":"Mindre hackspett"},{"date":"2026-03-25","lat":56.093059657874605,"latin":"Turdus philomelos","lng":13.065669791540584,"location":"Körslättabäckens våtmarker","species":"Taltrast"},{"date":"2026-03-27","lat":56.16336,"latin":"Tringa ochropus","lng":13.06239,"location":"Madkärr, Tomarp","species":"Skogssnäppa"},{"date":"2026-03-30","lat":56.1795235368064,"latin":"Gallinula chloropus","lng":13.017079953054056,"location":"Rönnetorpsdammen","species":"Rörhöna"},{"date":"2026-04-01","lat":56.09125,"latin":"Prunella modularis","lng":13.05821,"location":"Körslätta mosse","species":"Järnsparv"},{"date":"2026-04-07","lat":56.16336146917374,"latin":"Charadrius hiaticula","lng":13.062392835112023,"location":"Madkärr, Tomarp","species":"Större strandpipare"},{"date":"2026-04-07","lat":56.16336146917374,"latin":"Tringa totanus","lng":13.062392835112023,"location":"Madkärr, Tomarp","species":"Rödbena"},{"date":"2026-04-10","lat":56.183486839903935,"latin":"Thinornis dubius","lng":13.013507219597335,"location":"Dynget","species":"Mindre strandpipare"},{"date":"2026-04-10","lat":56.141628953503115,"latin":"Circus aeruginosus","lng":13.01111255477116,"location":"Backadal, Kärrarp","species":"Brun kärrhök"},{"date":"2026-04-12","lat":56.12001,"latin":"Fulica atra","lng":12.92422,"location":"Ängsgården","species":"Sothöna"},{"date":"2026-04-13","lat":56.13420520510357,"latin":"Falco peregrinus","lng":12.942173584912153,"location":"Åstorp","species":"Pilgrimsfalk"},{"date":"2026-04-14","lat":56.168816409838804,"latin":"Spatula querquedula","lng":13.030937554082303,"location":"Rönnbacka","species":"Årta"},{"date":"2026-04-16","lat":56.13889744420109,"lng":13.050458728254817,"location":"Kvidinge kyrka","species":"Rödstjärt"}],"year":2026};
+
+    function initDashboard() {
+        if (!data || !data.observations) {
+            console.error("Ingen data laddad");
+            return;
+        }
+
+        var uniqueSpecies = {};
+        data.observations.forEach(function (o) { uniqueSpecies[o.species] = true; });
+        var speciesCount = Object.keys(uniqueSpecies).length;
+
+        var countEl = document.getElementById('species-count');
+        if (countEl) countEl.textContent = speciesCount;
+
+        var percentage = (speciesCount / YEAR_GOAL) * 100;
+        var fill = document.getElementById('progress-fill');
+        if (fill) {
+            fill.style.width = Math.min(percentage, 100) + '%';
+            
+            
+            var hue, sat, light;
+            if (percentage <= 30) {
+                
+                var t = percentage / 30;
+                hue = 35 + t * 10;
+                sat = 85;
+                light = 55;
+            } else if (percentage <= 60) {
+                
+                var t = (percentage - 30) / 30;
+                hue = 45 + t * 20;
+                sat = 85 + t * 5;
+                light = 55 - t * 5;
+            } else if (percentage <= 85) {
+                
+                var t = (percentage - 60) / 25;
+                hue = 65 + t * 35;
+                sat = 90 - t * 10;
+                light = 50 - t * 6;
+            } else {
+                
+                var t = Math.min((percentage - 85) / 15, 1);
+                hue = 100 + t * 40;
+                sat = 80;
+                light = 44 - t * 6;
+            }
+            fill.style.backgroundColor = 'hsl(' + hue + ', ' + sat + '%, ' + light + '%)';
+        }
+
+        if (data.observations.length > 0) {
+            var latest = data.observations[data.observations.length - 1];
+            var latestEl = document.getElementById('latest-species');
+            if (latestEl) {
+                latestEl.innerHTML = '<span class="latest-label">Senast kryssad:</span> <strong>' + latest.species + '</strong> <span class="latest-meta">(' + latest.location + ', ' + new Date(latest.date).toLocaleDateString('sv-SE', { day: 'numeric', month: 'short' }) + ')</span>';
+            }
+        }
+
+        
+        
+        var speciesNumber = {};
+        var nextNumber = 1;
+        var byDate = {};
+        data.observations.forEach(function (obs) {
+            if (!speciesNumber[obs.species]) {
+                speciesNumber[obs.species] = nextNumber++;
+            }
+            if (!byDate[obs.date]) {
+                byDate[obs.date] = { species: [], locations: [] };
+            }
+            byDate[obs.date].species.push(obs.species);
+            if (byDate[obs.date].locations.indexOf(obs.location) === -1) {
+                byDate[obs.date].locations.push(obs.location);
+            }
+        });
+
+        var dates = Object.keys(byDate).sort(function (a, b) { return new Date(b) - new Date(a); });
+        var trailEl = document.getElementById('trail-timeline');
+
+        if (trailEl) {
+            var html = '';
+            dates.forEach(function (date, i) {
+                var info = byDate[date];
+                var dateObj = new Date(date);
+                var day = dateObj.getDate();
+                var month = dateObj.toLocaleDateString('sv-SE', { month: 'long' });
+                var isLast = i === dates.length - 1;
+                var postLink = postsByDate[date];
+
+                html += '<div class="trail-item' + (i === 0 ? ' trail-item-latest' : '') + '">';
+                html += '<div class="trail-line' + (isLast ? ' trail-line-end' : '') + '"></div>';
+                html += '<div class="trail-dot"></div>';
+                html += '<div class="trail-content">';
+
+                
+                if (postLink) {
+                    html += '<a href="' + postLink + '" class="trail-date has-post">' + day + ' ' + month + ' ↗</a>';
+                } else {
+                    html += '<div class="trail-date">' + day + ' ' + month + '</div>';
+                }
+
+                
+                var speciesWithNumbers = info.species.map(function (sp) {
+                    return '<span class="trail-species-number">#' + speciesNumber[sp] + '</span> ' + sp;
+                });
+                html += '<div class="trail-species">' + speciesWithNumbers.join(', ') + '</div>';
+
+                
+                html += '<div class="trail-location">' + info.locations.join(' • ') + '</div>';
+
+                html += '</div></div>';
+            });
+            trailEl.innerHTML = html;
+        }
+    }
+
+    initDashboard();
+</script>
+
+
+    
+    <script data-goatcounter="https://hlgk.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+    
+    
+</body>
+
+</html>

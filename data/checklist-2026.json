@@ -857,6 +857,13 @@
       "location": "Rönnbacka",
       "lat": 56.168816409838804,
       "lng": 13.030937554082303
+    },
+    {
+      "species": "Rödstjärt",
+      "date": "2026-04-16",
+      "location": "Kvidinge kyrka",
+      "lat": 56.13889744420109,
+      "lng": 13.050458728254817
     }
   ]
 }
