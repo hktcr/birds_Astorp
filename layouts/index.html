@@ -170,9 +170,10 @@ RATT: dubbelklammer range dubbelklammer
                     if (postLink.length === 1) {
                         html += '<a href="' + postLink[0].url + '" class="trail-date has-post">' + day + ' ' + month + ' ↗</a>';
                     } else {
-                        html += '<div class="trail-date has-post" style="display:flex; flex-wrap:wrap; gap:0.5rem; align-items:baseline;"><span>' + day + ' ' + month + '</span> <span style="font-size: 0.8em; font-weight: normal; color: var(--light-text);">';
+                        html += '<div class="trail-date has-post" style="display:flex; flex-wrap:wrap; gap:0.5rem; align-items:baseline;"><span>' + day + ' ' + month + '</span> <span style="font-size: 0.85em; font-weight: normal; opacity: 0.85;">';
                         postLink.sort(function(a,b){ return a.title.localeCompare(b.title); }).forEach(function(link, j) {
-                            html += '<a href="' + link.url + '" title="' + link.title + '" style="text-decoration:none; color:inherit; border-bottom:1px dotted currentColor;">Notis ' + (j+1) + '</a>' + (j < postLink.length - 1 ? ' · ' : '');
+                            var cleanTitle = link.title.length > 30 ? link.title.substring(0, 27) + '...' : link.title;
+                            html += '<a href="' + link.url + '" style="text-decoration:none; color:inherit; font-weight: 500;">' + cleanTitle + ' ↗</a>' + (j < postLink.length - 1 ? ' <span style="opacity: 0.4;">|</span> ' : '');
                         });
                         html += '</span></div>';
                     }
