@@ -28,10 +28,10 @@ publishDir = 'docs'
     name = 'Årshjul'
     pageRef = '/artguide/'
     weight = 25
-  [[menus.main]]
-    name = 'Fenologi'
-    pageRef = '/fenologi/'
-    weight = 26
+#  [[menus.main]]
+#    name = 'Fenologi'
+#    pageRef = '/fenologi/'
+#    weight = 26
   [[menus.main]]
     name = 'Horisonten'
     pageRef = '/vader/'
