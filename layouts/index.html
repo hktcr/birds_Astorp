@@ -65,7 +65,9 @@ RATT: dubbelklammer range dubbelklammer
     // Mappa datum till notiser (genereras av Hugo vid byggtid)
     var postsByDate = {};
     {{ range where .Site.RegularPages "Section" "posts" }}
-    postsByDate["{{ .Date.Format "2006-01-02" }}"] = "{{ .RelPermalink }}";
+    var pd = "{{ .Date.Format "2006-01-02" }}";
+    if (!postsByDate[pd]) postsByDate[pd] = [];
+    postsByDate[pd].unshift({ url: "{{ .RelPermalink }}", title: "{{ .Title }}" });
     {{ end }}
 
     // DATA: Inbäddas vid byggtid
@@ -164,8 +166,16 @@ RATT: dubbelklammer range dubbelklammer
                 html += '<div class="trail-content">';
 
                 // Rad 1: Datum (länkat om notis finns)
-                if (postLink) {
-                    html += '<a href="' + postLink + '" class="trail-date has-post">' + day + ' ' + month + ' ↗</a>';
+                if (postLink && postLink.length > 0) {
+                    if (postLink.length === 1) {
+                        html += '<a href="' + postLink[0].url + '" class="trail-date has-post">' + day + ' ' + month + ' ↗</a>';
+                    } else {
+                        html += '<div class="trail-date has-post" style="display:flex; flex-wrap:wrap; gap:0.5rem; align-items:baseline;"><span>' + day + ' ' + month + '</span> <span style="font-size: 0.8em; font-weight: normal; color: var(--light-text);">';
+                        postLink.sort(function(a,b){ return a.title.localeCompare(b.title); }).forEach(function(link, j) {
+                            html += '<a href="' + link.url + '" title="' + link.title + '" style="text-decoration:none; color:inherit; border-bottom:1px dotted currentColor;">Notis ' + (j+1) + '</a>' + (j < postLink.length - 1 ? ' · ' : '');
+                        });
+                        html += '</span></div>';
+                    }
                 } else {
                     html += '<div class="trail-date">' + day + ' ' + month + '</div>';
                 }

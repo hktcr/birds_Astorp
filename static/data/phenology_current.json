@@ -1,0 +1,1001 @@
+{
+    "Havsörn": {
+        "arrival_date": "2026-01-22",
+        "skane_spring_record": null,
+        "astorp_spring_record": "01-22",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Skata": {
+        "arrival_date": "2026-01-22",
+        "skane_spring_record": null,
+        "astorp_spring_record": "01-22",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Koltrast": {
+        "arrival_date": "2026-01-22",
+        "skane_spring_record": null,
+        "astorp_spring_record": "01-22",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Kaja": {
+        "arrival_date": "2026-01-22",
+        "skane_spring_record": null,
+        "astorp_spring_record": "01-22",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Gråkråka": {
+        "arrival_date": "2026-01-22",
+        "skane_spring_record": null,
+        "astorp_spring_record": "01-22",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Gärdsmyg": {
+        "arrival_date": "2026-01-23",
+        "skane_spring_record": null,
+        "astorp_spring_record": "01-23",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Gråtrut": {
+        "arrival_date": "2026-01-23",
+        "skane_spring_record": null,
+        "astorp_spring_record": "01-23",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Råka": {
+        "arrival_date": "2026-01-23",
+        "skane_spring_record": null,
+        "astorp_spring_record": "01-23",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Röd glada": {
+        "arrival_date": "2026-01-23",
+        "skane_spring_record": null,
+        "astorp_spring_record": "01-23",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Ormvråk": {
+        "arrival_date": "2026-01-23",
+        "skane_spring_record": null,
+        "astorp_spring_record": "01-23",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Gräsand": {
+        "arrival_date": "2026-01-23",
+        "skane_spring_record": null,
+        "astorp_spring_record": "01-23",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Rödhake": {
+        "arrival_date": "2026-01-23",
+        "skane_spring_record": null,
+        "astorp_spring_record": "01-23",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Domherre": {
+        "arrival_date": "2026-01-24",
+        "skane_spring_record": null,
+        "astorp_spring_record": "01-24",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Talgoxe": {
+        "arrival_date": "2026-01-24",
+        "skane_spring_record": null,
+        "astorp_spring_record": "01-24",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Sångsvan": {
+        "arrival_date": "2026-01-25",
+        "skane_spring_record": null,
+        "astorp_spring_record": "01-25",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Kanadagås": {
+        "arrival_date": "2026-01-25",
+        "skane_spring_record": null,
+        "astorp_spring_record": "01-25",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Nötväcka": {
+        "arrival_date": "2026-01-25",
+        "skane_spring_record": null,
+        "astorp_spring_record": "01-25",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Storskarv": {
+        "arrival_date": "2026-01-25",
+        "skane_spring_record": null,
+        "astorp_spring_record": "01-25",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Knipa": {
+        "arrival_date": "2026-01-25",
+        "skane_spring_record": null,
+        "astorp_spring_record": "01-25",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Blåmes": {
+        "arrival_date": "2026-01-25",
+        "skane_spring_record": null,
+        "astorp_spring_record": "01-25",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Sparvhök": {
+        "arrival_date": "2026-01-25",
+        "skane_spring_record": null,
+        "astorp_spring_record": "01-25",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Klippduva (tamduva)": {
+        "arrival_date": "2026-01-26",
+        "skane_spring_record": null,
+        "astorp_spring_record": "01-26",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Bofink": {
+        "arrival_date": "2026-01-27",
+        "skane_spring_record": null,
+        "astorp_spring_record": "01-27",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Pilfink": {
+        "arrival_date": "2026-01-27",
+        "skane_spring_record": null,
+        "astorp_spring_record": "01-27",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Gråsparv": {
+        "arrival_date": "2026-01-27",
+        "skane_spring_record": null,
+        "astorp_spring_record": "01-27",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Grågås": {
+        "arrival_date": "2026-01-28",
+        "skane_spring_record": null,
+        "astorp_spring_record": "01-28",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Tornfalk": {
+        "arrival_date": "2026-01-28",
+        "skane_spring_record": null,
+        "astorp_spring_record": "01-28",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Större hackspett": {
+        "arrival_date": "2026-01-30",
+        "skane_spring_record": null,
+        "astorp_spring_record": "01-30",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Nötskrika": {
+        "arrival_date": "2026-01-30",
+        "skane_spring_record": null,
+        "astorp_spring_record": "01-30",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Grönsiska": {
+        "arrival_date": "2026-01-30",
+        "skane_spring_record": null,
+        "astorp_spring_record": "01-30",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Korp": {
+        "arrival_date": "2026-01-30",
+        "skane_spring_record": null,
+        "astorp_spring_record": "01-30",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Ringduva": {
+        "arrival_date": "2026-01-31",
+        "skane_spring_record": null,
+        "astorp_spring_record": "01-31",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Trädkrypare": {
+        "arrival_date": "2026-02-01",
+        "skane_spring_record": null,
+        "astorp_spring_record": "02-01",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Stjärtmes": {
+        "arrival_date": "2026-02-01",
+        "skane_spring_record": null,
+        "astorp_spring_record": "02-01",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Stenknäck": {
+        "arrival_date": "2026-02-04",
+        "skane_spring_record": null,
+        "astorp_spring_record": "02-04",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Fjällvråk": {
+        "arrival_date": "2026-02-05",
+        "skane_spring_record": null,
+        "astorp_spring_record": "02-05",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Gulsparv": {
+        "arrival_date": "2026-02-06",
+        "skane_spring_record": null,
+        "astorp_spring_record": "02-06",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Storskrake": {
+        "arrival_date": "2026-02-06",
+        "skane_spring_record": null,
+        "astorp_spring_record": "02-06",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Grönfink": {
+        "arrival_date": "2026-02-09",
+        "skane_spring_record": null,
+        "astorp_spring_record": "02-09",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Ägretthäger": {
+        "arrival_date": "2026-02-09",
+        "skane_spring_record": null,
+        "astorp_spring_record": "02-09",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Vitkindad gås": {
+        "arrival_date": "2026-02-09",
+        "skane_spring_record": null,
+        "astorp_spring_record": "02-09",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Gröngöling": {
+        "arrival_date": "2026-02-09",
+        "skane_spring_record": null,
+        "astorp_spring_record": "02-09",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Fasan": {
+        "arrival_date": "2026-02-10",
+        "skane_spring_record": null,
+        "astorp_spring_record": "02-10",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Skogsgås": {
+        "arrival_date": "2026-02-13",
+        "skane_spring_record": null,
+        "astorp_spring_record": "02-13",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Bläsgås": {
+        "arrival_date": "2026-02-13",
+        "skane_spring_record": null,
+        "astorp_spring_record": "02-13",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Rapphöna": {
+        "arrival_date": "2026-02-13",
+        "skane_spring_record": null,
+        "astorp_spring_record": "02-13",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Blå kärrhök": {
+        "arrival_date": "2026-02-15",
+        "skane_spring_record": null,
+        "astorp_spring_record": "02-15",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Vinterhämpling": {
+        "arrival_date": "2026-02-16",
+        "skane_spring_record": null,
+        "astorp_spring_record": "02-16",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Skogsduva": {
+        "arrival_date": "2026-02-16",
+        "skane_spring_record": null,
+        "astorp_spring_record": "02-16",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Bläsand": {
+        "arrival_date": "2026-02-16",
+        "skane_spring_record": null,
+        "astorp_spring_record": "02-16",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Entita": {
+        "arrival_date": "2026-02-18",
+        "skane_spring_record": null,
+        "astorp_spring_record": "02-18",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Steglits": {
+        "arrival_date": "2026-02-19",
+        "skane_spring_record": null,
+        "astorp_spring_record": "02-19",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Vigg": {
+        "arrival_date": "2026-02-21",
+        "skane_spring_record": null,
+        "astorp_spring_record": "02-21",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Smådopping": {
+        "arrival_date": "2026-02-21",
+        "skane_spring_record": null,
+        "astorp_spring_record": "02-21",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Strömstare": {
+        "arrival_date": "2026-02-22",
+        "skane_spring_record": null,
+        "astorp_spring_record": "02-22",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Tofsvipa": {
+        "arrival_date": "2026-02-24",
+        "skane_spring_record": null,
+        "astorp_spring_record": "02-24",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Kricka": {
+        "arrival_date": "2026-02-24",
+        "skane_spring_record": null,
+        "astorp_spring_record": "02-24",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Stenfalk": {
+        "arrival_date": "2026-02-24",
+        "skane_spring_record": null,
+        "astorp_spring_record": "02-24",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Gråhäger": {
+        "arrival_date": "2026-02-24",
+        "skane_spring_record": null,
+        "astorp_spring_record": "02-24",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Sånglärka": {
+        "arrival_date": "2026-02-27",
+        "skane_spring_record": null,
+        "astorp_spring_record": "02-27",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Stare": {
+        "arrival_date": "2026-02-27",
+        "skane_spring_record": null,
+        "astorp_spring_record": "02-27",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Snatterand": {
+        "arrival_date": "2026-02-27",
+        "skane_spring_record": null,
+        "astorp_spring_record": "02-27",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Gravand": {
+        "arrival_date": "2026-02-27",
+        "skane_spring_record": null,
+        "astorp_spring_record": "02-27",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Kungsörn": {
+        "arrival_date": "2026-02-27",
+        "skane_spring_record": null,
+        "astorp_spring_record": "02-27",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Dubbeltrast": {
+        "arrival_date": "2026-03-01",
+        "skane_spring_record": null,
+        "astorp_spring_record": "03-01",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Trana": {
+        "arrival_date": "2026-03-01",
+        "skane_spring_record": null,
+        "astorp_spring_record": "03-01",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Varfågel": {
+        "arrival_date": "2026-03-01",
+        "skane_spring_record": null,
+        "astorp_spring_record": "03-01",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Stjärtand": {
+        "arrival_date": "2026-03-01",
+        "skane_spring_record": null,
+        "astorp_spring_record": "03-01",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Skrattmås": {
+        "arrival_date": "2026-03-02",
+        "skane_spring_record": null,
+        "astorp_spring_record": "03-02",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Sävsparv": {
+        "arrival_date": "2026-03-02",
+        "skane_spring_record": null,
+        "astorp_spring_record": "03-02",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Skedand": {
+        "arrival_date": "2026-03-02",
+        "skane_spring_record": null,
+        "astorp_spring_record": "03-02",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Knölsvan": {
+        "arrival_date": "2026-03-02",
+        "skane_spring_record": null,
+        "astorp_spring_record": "03-02",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Brunand": {
+        "arrival_date": "2026-03-02",
+        "skane_spring_record": null,
+        "astorp_spring_record": "03-02",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Gråsiska": {
+        "arrival_date": "2026-03-02",
+        "skane_spring_record": null,
+        "astorp_spring_record": "03-02",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Storspov": {
+        "arrival_date": "2026-03-02",
+        "skane_spring_record": null,
+        "astorp_spring_record": "03-02",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Kattuggla": {
+        "arrival_date": "2026-03-02",
+        "skane_spring_record": null,
+        "astorp_spring_record": "03-02",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Morkulla": {
+        "arrival_date": "2026-03-02",
+        "skane_spring_record": null,
+        "astorp_spring_record": "03-02",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Spillkråka": {
+        "arrival_date": "2026-03-03",
+        "skane_spring_record": null,
+        "astorp_spring_record": "03-03",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Fiskmås": {
+        "arrival_date": "2026-03-04",
+        "skane_spring_record": null,
+        "astorp_spring_record": "03-04",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Turkduva": {
+        "arrival_date": "2026-03-05",
+        "skane_spring_record": null,
+        "astorp_spring_record": "03-05",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Enkelbeckasin": {
+        "arrival_date": "2026-03-05",
+        "skane_spring_record": null,
+        "astorp_spring_record": "03-05",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Svartmes": {
+        "arrival_date": "2026-03-06",
+        "skane_spring_record": null,
+        "astorp_spring_record": "03-06",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Ängspiplärka": {
+        "arrival_date": "2026-03-06",
+        "skane_spring_record": null,
+        "astorp_spring_record": "03-06",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Hämpling": {
+        "arrival_date": "2026-03-07",
+        "skane_spring_record": null,
+        "astorp_spring_record": "03-07",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Forsärla": {
+        "arrival_date": "2026-03-09",
+        "skane_spring_record": null,
+        "astorp_spring_record": "03-09",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Björktrast": {
+        "arrival_date": "2026-03-10",
+        "skane_spring_record": null,
+        "astorp_spring_record": "03-10",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Rödvingetrast": {
+        "arrival_date": "2026-03-10",
+        "skane_spring_record": null,
+        "astorp_spring_record": "03-10",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Bergfink": {
+        "arrival_date": "2026-03-14",
+        "skane_spring_record": null,
+        "astorp_spring_record": "03-14",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Snösparv": {
+        "arrival_date": "2026-03-14",
+        "skane_spring_record": null,
+        "astorp_spring_record": "03-14",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Brushane": {
+        "arrival_date": "2026-03-17",
+        "skane_spring_record": null,
+        "astorp_spring_record": "03-17",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Brandkronad kungsfågel": {
+        "arrival_date": "2026-03-17",
+        "skane_spring_record": null,
+        "astorp_spring_record": "03-17",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Kungsfågel": {
+        "arrival_date": "2026-03-17",
+        "skane_spring_record": null,
+        "astorp_spring_record": "03-17",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Strandskata": {
+        "arrival_date": "2026-03-20",
+        "skane_spring_record": null,
+        "astorp_spring_record": "03-20",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Sädesärla": {
+        "arrival_date": "2026-03-20",
+        "skane_spring_record": "02-15",
+        "astorp_spring_record": "03-05",
+        "delta_skane": 33,
+        "delta_astorp": 15,
+        "is_new_astorp_record": false,
+        "is_resident": false
+    },
+    "Gransångare": {
+        "arrival_date": "2026-03-21",
+        "skane_spring_record": "02-28",
+        "astorp_spring_record": "03-15",
+        "delta_skane": 21,
+        "delta_astorp": 6,
+        "is_new_astorp_record": false,
+        "is_resident": false
+    },
+    "Mindre hackspett": {
+        "arrival_date": "2026-03-21",
+        "skane_spring_record": null,
+        "astorp_spring_record": "03-21",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Taltrast": {
+        "arrival_date": "2026-03-25",
+        "skane_spring_record": null,
+        "astorp_spring_record": "03-25",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Skogssnäppa": {
+        "arrival_date": "2026-03-27",
+        "skane_spring_record": null,
+        "astorp_spring_record": "03-27",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Rörhöna": {
+        "arrival_date": "2026-03-30",
+        "skane_spring_record": null,
+        "astorp_spring_record": "03-30",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Järnsparv": {
+        "arrival_date": "2026-04-01",
+        "skane_spring_record": null,
+        "astorp_spring_record": "04-01",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Större strandpipare": {
+        "arrival_date": "2026-04-07",
+        "skane_spring_record": null,
+        "astorp_spring_record": "04-07",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Rödbena": {
+        "arrival_date": "2026-04-07",
+        "skane_spring_record": null,
+        "astorp_spring_record": "04-07",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Mindre strandpipare": {
+        "arrival_date": "2026-04-10",
+        "skane_spring_record": null,
+        "astorp_spring_record": "04-10",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Brun kärrhök": {
+        "arrival_date": "2026-04-10",
+        "skane_spring_record": null,
+        "astorp_spring_record": "04-10",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Sothöna": {
+        "arrival_date": "2026-04-12",
+        "skane_spring_record": null,
+        "astorp_spring_record": "04-12",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Pilgrimsfalk": {
+        "arrival_date": "2026-04-13",
+        "skane_spring_record": null,
+        "astorp_spring_record": "04-13",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Årta": {
+        "arrival_date": "2026-04-14",
+        "skane_spring_record": null,
+        "astorp_spring_record": "04-14",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Rödstjärt": {
+        "arrival_date": "2026-04-16",
+        "skane_spring_record": "04-01",
+        "astorp_spring_record": "04-12",
+        "delta_skane": 15,
+        "delta_astorp": 4,
+        "is_new_astorp_record": false,
+        "is_resident": false
+    },
+    "Lövsångare": {
+        "arrival_date": "2026-04-16",
+        "skane_spring_record": "03-25",
+        "astorp_spring_record": "04-05",
+        "delta_skane": 22,
+        "delta_astorp": 11,
+        "is_new_astorp_record": false,
+        "is_resident": false
+    },
+    "Hornuggla": {
+        "arrival_date": "2026-04-16",
+        "skane_spring_record": null,
+        "astorp_spring_record": "04-16",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    },
+    "Silltrut": {
+        "arrival_date": "2026-04-16",
+        "skane_spring_record": null,
+        "astorp_spring_record": "04-16",
+        "delta_skane": null,
+        "delta_astorp": 0,
+        "is_new_astorp_record": true,
+        "is_resident": false
+    }
+}

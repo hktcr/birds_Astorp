@@ -1,0 +1,1586 @@
+{
+    "Knölsvan": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-02",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Mindre sångsvan": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Sångsvan": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "01-25",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Prutgås": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Rödhalsad gås": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Kanadagås": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "01-25",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Vitkindad gås": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "02-09",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Stripgås": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Grågås": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "01-28",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Bläsgås": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "02-13",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Tundragås": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Spetsbergsgås": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Skogsgås": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "02-13",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Nilgås": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Gravand": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "02-27",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Ejder": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Knipa": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "01-25",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Salskrake": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Storskrake": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "02-06",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Brunand": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-02",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Vigg": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "02-21",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Årta": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "04-14",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Skedand": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-02",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Snatterand": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "02-27",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Bläsand": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "02-16",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Gräsand": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "01-23",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Stjärtand": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-01",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Kricka": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "02-24",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Rapphöna": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "02-13",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Fasan": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "02-10",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Vaktel": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Smådopping": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "02-21",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Gråhakedopping": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Gök": {
+        "skane_spring_record": "04-12",
+        "skane_fall_record": null,
+        "astorp_spring_record": "04-25",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Turturduva": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Turkduva": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-05",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Ringduva": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "01-31",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Klippduva (tamduva)": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "01-26",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Skogsduva": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "02-16",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Trana": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-01",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Vattenrall": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Kornknarr": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Småfläckig sumphöna": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Rörhöna": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-30",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Sothöna": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "04-12",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Skärfläcka": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Strandskata": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-20",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Ljungpipare": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Större strandpipare": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "04-07",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Mindre strandpipare": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "04-10",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Tofsvipa": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "02-24",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Småspov": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Storspov": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-02",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Rödspov": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Dvärgbeckasin": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Morkulla": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-02",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Dubbelbeckasin": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Enkelbeckasin": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-05",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Drillsnäppa": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Skogssnäppa": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-27",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Grönbena": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Rödbena": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "04-07",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Svartsnäppa": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Gluttsnäppa": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Brushane": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-17",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Mosnäppa": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Småsnäppa": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Fisktärna": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Skrattmås": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-02",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Svarthuvad mås": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Fiskmås": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-04",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Kaspisk trut": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Gråtrut": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "01-23",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Havstrut": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Silltrut": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "04-16",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Stormfågel": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Svart stork": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Vit stork": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Storskarv": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "01-25",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Ägretthäger": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "02-09",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Gråhäger": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "02-24",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Nattskärra": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Tornseglare": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Jorduggla": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Hornuggla": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "04-16",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Berguv": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Kattuggla": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-02",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Fiskgjuse": {
+        "skane_spring_record": "03-10",
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-25",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Bivråk": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Stäppörn": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Kungsörn": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "02-27",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Sparvhök": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "01-25",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Duvhök": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Stäpphök": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Blå kärrhök": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "02-15",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Brun kärrhök": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "04-10",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Röd glada": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "01-23",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Brun glada": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Havsörn": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "01-22",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Fjällvråk": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "02-05",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Ormvråk": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "01-23",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Kungsfiskare": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Göktyta": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Gröngöling": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "02-09",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Spillkråka": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-03",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Större hackspett": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "01-30",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Mindre hackspett": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-21",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Tornfalk": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "01-28",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Aftonfalk": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Stenfalk": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "02-24",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Lärkfalk": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Pilgrimsfalk": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "04-13",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Varfågel": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-01",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Törnskata": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Nötskrika": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "01-30",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Skata": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "01-22",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Nötkråka": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Kaja": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "01-22",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Råka": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "01-23",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Korp": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "01-30",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Gråkråka": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "01-22",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Blåmes": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "01-25",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Talgoxe": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "01-24",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Svartmes": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-06",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Tofsmes": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Entita": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "02-18",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Talltita": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Trädlärka": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Sånglärka": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "02-27",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Härmsångare": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Sävsångare": {
+        "skane_spring_record": "04-10",
+        "skane_fall_record": null,
+        "astorp_spring_record": "04-22",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Kärrsångare": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Rörsångare": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Gräshoppsångare": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Backsvala": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Ladusvala": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Hussvala": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Stjärtmes": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "02-01",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Grönsångare": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Lövsångare": {
+        "skane_spring_record": "03-25",
+        "skane_fall_record": null,
+        "astorp_spring_record": "04-05",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Gransångare": {
+        "skane_spring_record": "02-28",
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-15",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Lundsångare": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Trädgårdssångare": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Svarthätta": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Ärtsångare": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Törnsångare": {
+        "skane_spring_record": "04-15",
+        "skane_fall_record": null,
+        "astorp_spring_record": "05-01",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Sidensvans": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Brandkronad kungsfågel": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-17",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Kungsfågel": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-17",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Nötväcka": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "01-25",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Trädkrypare": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "02-01",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Trädgårdsträdkrypare": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Gärdsmyg": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "01-23",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Stare": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "02-27",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Strömstare": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "02-22",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Dubbeltrast": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-01",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Taltrast": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-25",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Rödvingetrast": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-10",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Koltrast": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "01-22",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Björktrast": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-10",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Ringtrast": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Grå flugsnappare": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Rödhake": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "01-23",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Näktergal": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Mindre flugsnappare": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Svartvit flugsnappare": {
+        "skane_spring_record": "04-05",
+        "skane_fall_record": null,
+        "astorp_spring_record": "04-20",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Svart rödstjärt": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Rödstjärt": {
+        "skane_spring_record": "04-01",
+        "skane_fall_record": null,
+        "astorp_spring_record": "04-12",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Buskskvätta": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Stenskvätta": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Järnsparv": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "04-01",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Pilfink": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "01-27",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Gråsparv": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "01-27",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Forsärla": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-09",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Gulärla": {
+        "skane_spring_record": "04-02",
+        "skane_fall_record": null,
+        "astorp_spring_record": "04-15",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Sädesärla": {
+        "skane_spring_record": "02-15",
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-05",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Trädpiplärka": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Rödstrupig piplärka": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Ängspiplärka": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-06",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Bergfink": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-14",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Bofink": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "01-27",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Stenknäck": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "02-04",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Tallbit": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Domherre": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "01-24",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Grönfink": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "02-09",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Vinterhämpling": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "02-16",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Hämpling": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-07",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Gråsiska": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-02",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Bändelkorsnäbb": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Större korsnäbb": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Mindre korsnäbb": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Steglits": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "02-19",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Gulhämpling": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Grönsiska": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "01-30",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Snösparv": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-14",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Sävsparv": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "03-02",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Kornsparv": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": null,
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    },
+    "Gulsparv": {
+        "skane_spring_record": null,
+        "skane_fall_record": null,
+        "astorp_spring_record": "02-06",
+        "astorp_fall_record": null,
+        "skof_status": "unverified",
+        "is_resident": false
+    }
+}
