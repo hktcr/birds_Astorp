@@ -15,43 +15,8 @@
     async function init() {
         const tbody = document.getElementById('fen-tbody');
         try {
-            const base = window.siteBaseURL || '/';
-            const [clRes, recRes, guideRes] = await Promise.all([
-                fetch(base + 'data/checklist-2026.json'),
-                fetch(base + 'data/skane-fenologi-rekord.json'),
-                fetch(base + 'data/species-guide.json')
-            ]);
-            const checklist = await clRes.json();
-            const records = await recRes.json();
-            const guide = await guideRes.json();
-
-            const obs = checklist.observations || [];
-            const obs2026 = {};
-            obs.forEach(o => { if (!obs2026[o.species]) obs2026[o.species] = o; });
-
-            const guideSpecies = guide.species || [];
-            const taxoMap = {};
-            guideSpecies.forEach((s, i) => { taxoMap[s.name] = i; });
-
-            Object.keys(records).forEach(name => {
-                const rec = records[name];
-                const thisObs = obs2026[name] || null;
-                let latin = rec.latin;
-                if (!latin) {
-                    const gItem = guideSpecies.find(s => s.name === name);
-                    if (gItem) latin = gItem.latin;
-                }
-                if (!latin && thisObs) latin = thisObs.latin;
-
-                data.push({
-                    name,
-                    latin: latin || '',
-                    taxoIndex: taxoMap[name] !== undefined ? taxoMap[name] : 9999,
-                    skaneRec: rec.skane_rekord_vart || null,
-                    astorpHist: rec.astorp_rekord_vart || null,
-                    obs: thisObs
-                });
-            });
+            const res = await fetch('/data/fenologi-db.json');
+            data = await res.json();
 
             render();
             setupControls();
@@ -101,15 +66,15 @@
 
     function render() {
         let items = data.filter(d => {
-            if (filterMode === 'arrived') return d.obs !== null;
-            if (filterMode === 'missing') return d.obs === null;
+            if (filterMode === 'arrived') return d.obs2026 !== null;
+            if (filterMode === 'missing') return d.obs2026 === null;
             return true;
         });
 
         items.sort((a, b) => {
             if (sortMode === 'chronological') {
-                const da = a.obs ? mmddToDays(a.obs.date.substring(5)) : 9999;
-                const db = b.obs ? mmddToDays(b.obs.date.substring(5)) : 9999;
+                const da = a.obs2026 ? mmddToDays(a.obs2026.date.substring(5)) : 9999;
+                const db = b.obs2026 ? mmddToDays(b.obs2026.date.substring(5)) : 9999;
                 if (da !== db) return da - db;
             }
             return a.taxoIndex - b.taxoIndex;
@@ -127,12 +92,12 @@
             let badgeHtml = '';
             let statusNote = '';
 
-            if (!item.obs) {
+            if (!item.obs2026) {
                 rowClass += ' fen-row--waiting';
                 badgeHtml = `<span class="fen-badge fen-badge--waiting">Vantas</span>`;
             } else {
                 rowClass += ' fen-row--arrived';
-                const obsMmdd = item.obs.date.substring(5);
+                const obsMmdd = item.obs2026.date.substring(5);
                 const obsDays = mmddToDays(obsMmdd);
                 const skaneDays = mmddToDays(item.skaneRec);
                 const astorpDays = mmddToDays(item.astorpHist);
@@ -158,7 +123,7 @@
             tr.setAttribute('aria-expanded', 'false');
             tr.setAttribute('data-detail', rowId);
 
-            const obsDate = item.obs ? humanDate(item.obs.date.substring(5)) : '–';
+            const obsDate = item.obs2026 ? humanDate(item.obs2026.date.substring(5)) : '–';
             const astorpHistDate = item.astorpHist ? humanDate(item.astorpHist) : '–';
             const skaneDate = item.skaneRec ? humanDate(item.skaneRec) : '–';
 
@@ -167,7 +132,7 @@
                     <div class="fen-species">${item.name}</div>
                     <div class="fen-latin">${item.latin}</div>
                 </td>
-                <td class="fen-date${!item.obs ? ' fen-date--dim' : ''}">${obsDate}</td>
+                <td class="fen-date${!item.obs2026 ? ' fen-date--dim' : ''}">${obsDate}</td>
                 <td class="fen-date fen-date--dim">${astorpHistDate}</td>
                 <td class="fen-date fen-date--dim">${skaneDate}</td>
                 <td>${badgeHtml}</td>
@@ -184,11 +149,11 @@
 
             let detailItems = '';
 
-            if (item.obs) {
-                detailItems += detailBlock('Datum', item.obs.date);
-                detailItems += detailBlock('Lokal', item.obs.location || '–');
-                if (item.obs.lat && item.obs.lng) {
-                    detailItems += detailBlock('Koordinater', `${item.obs.lat.toFixed(4)}, ${item.obs.lng.toFixed(4)}`);
+            if (item.obs2026) {
+                detailItems += detailBlock('Datum', item.obs2026.date);
+                detailItems += detailBlock('Lokal', item.obs2026.location || '–');
+                if (item.obs2026.lat && item.obs2026.lng) {
+                    detailItems += detailBlock('Koordinater', `${item.obs2026.lat.toFixed(4)}, ${item.obs2026.lng.toFixed(4)}`);
                 }
             } else {
                 detailItems += detailBlock('Status', 'Ej observerad i Astorp under 2026');

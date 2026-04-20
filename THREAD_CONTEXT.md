@@ -312,3 +312,18 @@
 - `static/data/species_days_historic.json` (+28 dagspunkter)
 
 ---
+
+### 2026-04-17 — 2134bca4
+
+**Ursprung:** Åstorp 2026: Ny fenologimotor och UX-uppdatering
+**Typ:** Framsteg
+
+> Implementerade en ny automatisk fenologimotor (`phenology_master.json` + Python-skript) för att övervaka och kalkylera ankomstdeltas. Åtgärdade även en JavaScript-UX-bugg på startsidans Observationsspår för datum med multipla notiser. Etablerade SOP för manuell SkOF-validering.
+
+**Relaterade filer:**
+- `static/data/phenology_master.json`
+- `scripts/update_phenology.py`
+- `layouts/index.html`
+- `Fåglar/Kommunornitolog/Resurser/RUTIN_FENOLOGI.md`
+
+---

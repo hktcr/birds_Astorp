@@ -45,7 +45,6 @@
             <a href="#chart-wind" class="vader-chart-nav-link">Komponenter</a>
             <a href="#chart-temp-delta" class="vader-chart-nav-link">ΔT Temp</a>
             <a href="#chart-wind-delta" class="vader-chart-nav-link">ΔW Vind</a>
-            <a href="#meadow-indicator" class="vader-chart-nav-link">Maderna</a>
         </div>
 
         <!-- Kvintett: fem diagram vertikalt -->
@@ -85,29 +84,6 @@
 
 
 
-            <!-- 5. Vattenföring -->
-            <div class="vader-chart-box" id="chart-flow">
-                <div class="vader-chart-label">Vattenföring</div>
-                <canvas id="flow-chart"></canvas>
-                <p class="vader-chart-hint">Diagrammet visar vattenföringen (m³/s) vid Forsmöllan i Rönne å. Det visar inte det exakta vattenflödet, eller vattenståndet på maderna, i Åstorps kommun men fungerar förmodligen väl som en indikator för vattenläget eftersom hela åsystemet reagerar på liknande nederbörds- och flödesmönster.</p>
-                <div class="vader-chart-source">SMHI, Forsmöllan, Rönne å (15 km öster om Åstorp)</div>
-            </div>
-
-            <!-- 6. Maderindikator — experimentell vattenståndsprediktion -->
-            <div class="vader-chart-box" id="meadow-indicator" style="display:none;">
-                <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
-                    <div class="vader-chart-label" style="margin:0;">Förväntad vattennivå — Kungsgårdsmaderna</div>
-                    <span style="background:rgba(120,80,200,0.12); color:#7850c8; font-size:0.7em; font-weight:600; padding:2px 8px; border-radius:10px; letter-spacing:0.03em;">Experiment</span>
-                </div>
-                <div id="meadow-level-box" style="border-radius:10px; padding:16px 20px; display:flex; align-items:center; gap:14px; transition: background 0.5s ease;">
-                    <div style="display:flex; flex-direction:column; gap:2px;">
-                        <span id="meadow-level-label" style="font-size:1.2em; font-weight:700; color:#fff; text-shadow:0 1px 3px rgba(0,0,0,0.3);">Laddar…</span>
-                        <span id="meadow-level-detail" style="font-size:0.85em; color:rgba(255,255,255,0.85);"></span>
-                    </div>
-                    <span id="meadow-trend-arrow" style="font-size:1.6em; margin-left:auto; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.2));"></span>
-                </div>
-                <p class="vader-chart-hint" style="margin-top:8px; font-style:italic;">Experimentell uppskattning baserad på 14-dagars glidande medelvärde av vattenföringen vid Forsmöllan, viktat mot 14 dagars kumulativ nederbörd. Korrelationen med den faktiska vattennivån på maderna är ännu under kalibrering.</p>
-            </div>
         </div>
 
     </div>
@@ -713,301 +689,6 @@
         };
     }
 
-    // ================================================================
-    // CHART 3: Nederbörd — blå staplar per dag
-    // ================================================================
-    // Global: spara nederbördsdata så maderindikatorn kan använda den
-    var _precipPoints = null;
-
-    function buildPrecipChart() {
-        var canvas = document.getElementById('precip-chart');
-        if (!canvas) return;
-
-        fetchSMHI(5, STATION_PRECIP).then(function (result) {
-            var vals = result.value || [];
-            var points = [];
-            vals.forEach(function (v) {
-                if (v.ref >= '2026-01-01') {
-                    points.push({ x: v.ref, y: parseFloat(v.value) });
-                }
-            });
-
-            // Spara globalt för maderindikatorn
-            _precipPoints = points;
-
-            var xCfg = JSON.parse(JSON.stringify(timeScaleConfig));
-            if (_currentTimeFrom) xCfg.min = _currentTimeFrom;
-            if (_currentTimeTo) xCfg.max = _currentTimeTo;
-            var tu = timeUnitForRange(_currentTimeFrom, _currentTimeTo);
-            xCfg.time.unit = tu.unit;
-            xCfg.time.displayFormats = tu.displayFormats;
-            xCfg.offset = (tu.unit === 'day');
-
-            new Chart(canvas, {
-                type: 'bar',
-                data: {
-                    datasets: [{
-                        label: 'Nederbörd',
-                        data: points,
-                        backgroundColor: 'rgba(91, 155, 213, 0.6)',
-                        borderColor: 'rgba(91, 155, 213, 0.85)',
-                        borderWidth: 1,
-                        borderRadius: 2,
-                        barPercentage: 0.9,
-                        categoryPercentage: 0.9
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: true,
-                    aspectRatio: window.innerWidth < 600 ? 1.6 : 2.5,
-                    scales: {
-                        x: xCfg,
-                        y: {
-                            min: 0,
-                            grid: { color: 'rgba(0,0,0,0.04)', drawTicks: false },
-                            ticks: {
-                                callback: function (v) { return v + ' mm'; },
-                                font: { family: 'Inter', size: 11 },
-                                color: '#666'
-                            }
-                        }
-                    },
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: {
-                            backgroundColor: 'rgba(30,66,32,0.9)',
-                            titleFont: { family: 'Inter' },
-                            bodyFont: { family: 'Inter' },
-                            callbacks: {
-                                label: function (ctx) {
-                                    return ctx.parsed.y.toFixed(1) + ' mm';
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-
-            // Försök bygga maderindikatorn (behöver både flow + precip)
-            tryBuildMeadowIndicator();
-        }).catch(function (err) {
-            console.warn('Kunde inte hämta nederbördsdata:', err);
-            canvas.parentElement.innerHTML = '<p class="vader-chart-error">Nederbördsdata kunde inte laddas</p>';
-        });
-    }
-
-    // ================================================================
-    // CHART 4: Vattenföring — linjediagram (m³/s)
-    // ================================================================
-    function buildFlowChart() {
-        var canvas = document.getElementById('flow-chart');
-        if (!canvas) return;
-
-
-        var url = 'https://opendata-download-hydroobs.smhi.se/api/version/latest/parameter/1/station/' +
-            STATION_FLOW + '/period/corrected-archive/data.json';
-
-        fetch(url).then(function (r) { return r.json(); }).then(function (result) {
-            var vals = result.value || [];
-            var startMs = new Date('2026-01-01').getTime();
-
-            // Aggregera till dagsvärden (medel per dag)
-            var dayMap = {};
-            vals.forEach(function (v) {
-                if (v.date >= startMs) {
-                    var d = new Date(v.date).toISOString().slice(0, 10);
-                    if (!dayMap[d]) dayMap[d] = { sum: 0, count: 0 };
-                    dayMap[d].sum += v.value;
-                    dayMap[d].count++;
-                }
-            });
-
-            var points = Object.keys(dayMap).sort().map(function (d) {
-                return { x: d, y: Math.round(dayMap[d].sum / dayMap[d].count * 100) / 100 };
-            });
-
-            var xCfg = JSON.parse(JSON.stringify(timeScaleConfig));
-            if (_currentTimeFrom) xCfg.min = _currentTimeFrom;
-            if (_currentTimeTo) xCfg.max = _currentTimeTo;
-            var tu = timeUnitForRange(_currentTimeFrom, _currentTimeTo);
-            xCfg.time.unit = tu.unit;
-            xCfg.time.displayFormats = tu.displayFormats;
-            xCfg.offset = (tu.unit === 'day');
-
-            new Chart(canvas, {
-                type: 'line',
-                data: {
-                    datasets: [{
-                        label: 'Vattenföring',
-                        data: points,
-                        borderColor: '#2A7B8F',
-                        backgroundColor: '#2A7B8F',
-                        borderWidth: 2,
-                        fill: true,
-                        tension: 0.3,
-                        pointRadius: 0,
-                        pointHitRadius: 8
-                    }]
-                },
-                options: {
-                    responsive: true,
-                    maintainAspectRatio: true,
-                    aspectRatio: window.innerWidth < 600 ? 1.6 : 2.5,
-                    scales: {
-                        x: xCfg,
-                        y: {
-                            min: 0,
-                            grid: { color: 'rgba(0,0,0,0.04)', drawTicks: false },
-                            ticks: {
-                                callback: function (v) { return v + ' m\u00B3/s'; },
-                                font: { family: 'Inter', size: 11 },
-                                color: '#666'
-                            }
-                        }
-                    },
-                    plugins: {
-                        legend: { display: false },
-                        tooltip: {
-                            backgroundColor: 'rgba(30,66,32,0.9)',
-                            titleFont: { family: 'Inter' },
-                            bodyFont: { family: 'Inter' },
-                            callbacks: {
-                                label: function (ctx) {
-                                    return ctx.parsed.y.toFixed(2) + ' m\u00B3/s';
-                                }
-                            }
-                        }
-                    }
-                }
-            });
-
-            // Spara flödesdata globalt och försök bygga maderindikatorn
-            _flowPoints = points;
-            tryBuildMeadowIndicator();
-        }).catch(function (err) {
-            console.warn('Kunde inte hämta vattenföringsdata:', err);
-            canvas.parentElement.innerHTML = '<p class="vader-chart-error">Vattenföringsdata kunde inte laddas</p>';
-        });
-    }
-
-    // ================================================================
-    // MEADOW INDICATOR v2 — Kombinerad vattenståndsprediktion
-    // Baserad på:
-    //   - 14-dagars glidande medelvärde av vattenföringen (m³/s)
-    //     vid Forsmöllan, Rönne å (SMHI station 2372)
-    //   - 14-dagars kumulativ nederbörd (mm)
-    //     vid Åstorp (SMHI station 62060)
-    // Korrelationsanalys visar r=0.55 för 14d kumulativ nederbörd,
-    // jämfört med r=-0.05 för enstaka dagars regn.
-    // Komposit: 70% flödessignal + 30% nederbördssignal.
-    // Kalibrering: fältobservationer feb–mar 2026.
-    // ================================================================
-    var _flowPoints = null;
-
-    function tryBuildMeadowIndicator() {
-        // Kräver att BÅDA datakällorna har laddats
-        if (!_flowPoints || !_precipPoints) return;
-        buildMeadowIndicator(_flowPoints, _precipPoints);
-    }
-
-    function buildMeadowIndicator(flowPoints, precipPoints) {
-        var container = document.getElementById('meadow-indicator');
-        if (!container || !flowPoints || flowPoints.length < 2) return;
-
-        var LOOKBACK = 14; // dagar att titta bakåt
-
-        // Sortera kronologiskt
-        var sortedFlow = flowPoints.slice().sort(function (a, b) {
-            return a.x < b.x ? -1 : a.x > b.x ? 1 : 0;
-        });
-
-        // ── 1) 14-dagars glidande medelvärde av vattenföring ──
-        var recentFlow = sortedFlow.slice(-LOOKBACK);
-        var avg14dFlow = recentFlow.reduce(function (s, p) { return s + p.y; }, 0) / recentFlow.length;
-
-        // ── 2) 14-dagars kumulativ nederbörd ──
-        var precip14d = 0;
-        if (precipPoints && precipPoints.length > 0) {
-            var sortedPrecip = precipPoints.slice().sort(function (a, b) {
-                return a.x < b.x ? -1 : a.x > b.x ? 1 : 0;
-            });
-            var recentPrecip = sortedPrecip.slice(-LOOKBACK);
-            precip14d = recentPrecip.reduce(function (s, p) { return s + p.y; }, 0);
-        }
-
-        // ── 3) Kompositscore ──
-        // Normalisera nederbörd: 0 mm → 0, ~40 mm → bidrar ~1 "flödespoäng"
-        // Logiken: 14d med 3 mm/dag = 42mm är en blöt period.
-        // Vi skalar upp nederbörden till en flödesekvivalent.
-        var precipSignal = precip14d / 10; // 40mm → 4 "poäng"
-
-        // Viktat: 70% flöde, 30% nederbörd
-        var composite = avg14dFlow * 0.7 + precipSignal * 0.3;
-
-        // ── 4) Trend: jämför senaste 3 dagars medel med föregående 3 dagar ──
-        var trend = 0;
-        if (sortedFlow.length >= 6) {
-            var last3 = sortedFlow.slice(-3);
-            var prev3 = sortedFlow.slice(-6, -3);
-            var avgLast3 = last3.reduce(function (s, p) { return s + p.y; }, 0) / 3;
-            var avgPrev3 = prev3.reduce(function (s, p) { return s + p.y; }, 0) / 3;
-            trend = avgLast3 - avgPrev3;
-        } else if (sortedFlow.length >= 2) {
-            trend = sortedFlow[sortedFlow.length - 1].y - sortedFlow[sortedFlow.length - 2].y;
-        }
-
-        // ── 5) 5-stegsskala (kalibrerad mot composite-värden) ──
-        // Kalibreringspunkter:
-        //   - Feb 2026 torrperiod: flow ~3-4, precip14d ~0-5mm → composite ~2-3 → Torrt ✓
-        //   - Jan 13 regndag (12mm): flow steg till ~5 efter dagar → Fuktigt ✓
-        //   - Feb 20-22 blötperiod: flow ~5-7, precip14d ~14mm → composite ~4-5 → Fuktigt/Vattenspeglar ✓
-        //   - Mar 17: flow14d ~7.2, precip14d ~12mm → composite ~5.4 → Fuktigt (minskande vattenspeglar) ✓
-        //   - Mar 18: Fältobs bekräftar "Fuktigt" — fuktig mark, enstaka pölar, mycket små speglar
-        //   - Apr 14: Fältobs "Fuktigt med grunda små vattensamlingar" → flow14d ~4.7, precip14d ~3.3mm → composite ~3.4 ✓
-        //   - Feb 27-Mar 1 flödestoppp (13-15 m³/s) → composite ~10-11 → Stora vattenspeglar
-        var levels = [
-            { max: 3.2,  label: 'Torrt',               color: '#c4a96a', detail: 'Maderna är torra eller nästan torra' },
-            { max: 6,    label: 'Fuktigt',              color: '#8fbc8f', detail: 'Fuktigt med grunda små vattensamlingar' },
-            { max: 9,    label: 'Vattenspeglar',         color: '#5dade2', detail: 'Mindre vattenspeglar på maderna' },
-            { max: 14,   label: 'Stora vattenspeglar',   color: '#2980b9', detail: 'Stora vattenspeglar, bra för änder och vadare' },
-            { max: 9999, label: 'Översvämmat',           color: '#1a5276', detail: 'Maderna i stort sett helt under vatten' }
-        ];
-
-        var level = levels[0];
-        for (var i = 0; i < levels.length; i++) {
-            if (composite < levels[i].max) {
-                level = levels[i];
-                break;
-            }
-        }
-
-        // Trend-pil (baserad på 3d-medelsjämförelse — stabilare signal)
-        var trendArrow = '→';
-        if (trend > 0.3) trendArrow = '↑';
-        else if (trend < -0.3) trendArrow = '↓';
-
-        // Uppdatera DOM
-        var box = document.getElementById('meadow-level-box');
-        var labelEl = document.getElementById('meadow-level-label');
-        var detailEl = document.getElementById('meadow-level-detail');
-        var arrowEl = document.getElementById('meadow-trend-arrow');
-
-        if (box) box.style.background = 'linear-gradient(135deg, ' + level.color + ', ' + level.color + 'cc)';
-        if (labelEl) labelEl.textContent = level.label;
-        if (detailEl) detailEl.textContent = level.detail;
-        if (arrowEl) arrowEl.textContent = trendArrow;
-
-        container.style.display = 'block';
-
-        // Debug-logg för kalibrering
-        console.log('[Meadow v2] flow14d=' + avg14dFlow.toFixed(2) +
-            ' precip14d=' + precip14d.toFixed(1) + 'mm' +
-            ' precipSignal=' + precipSignal.toFixed(2) +
-            ' composite=' + composite.toFixed(2) +
-            ' level=' + level.label +
-            ' trend=' + trend.toFixed(2) + ' ' + trendArrow);
-    }
 
     // ================================================================
     // WIDGET: "Just nu" — Realtidsvind från SMHI latest-hour
@@ -1142,8 +823,6 @@
                 buildProgressChart();
                 buildWindChart();
                 buildTempChart();
-                buildPrecipChart();
-                buildFlowChart();
                 setupTimeRangeSelector();
                 // Default: senaste 14 dagar
                 setTimeRange('14d');
@@ -1545,7 +1224,7 @@
 
         // 1. Uppdatera Chart.js-instanser (progress, precip, flow — temp är nu Canvas)
         var tu = timeUnitForRange(xMin, xMax);
-        var chartIds = ['progress-chart', 'precip-chart', 'flow-chart'];
+        var chartIds = ['progress-chart'];
         chartIds.forEach(function (id) {
             var el = document.getElementById(id);
             if (!el) return;
@@ -1592,7 +1271,7 @@
 
     function show24hView() {
         // Dölj sektioner utan timdata
-        var hideIds = ['chart-progress', 'chart-flow', 'chart-temp-delta', 'chart-wind-delta'];
+        var hideIds = ['chart-progress', 'chart-temp-delta', 'chart-wind-delta'];
         hideIds.forEach(function (id) {
             var el = document.getElementById(id);
             if (el) el.style.display = 'none';
