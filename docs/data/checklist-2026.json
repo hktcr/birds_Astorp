@@ -894,19 +894,28 @@
       "species": "Svartvit flugsnappare",
       "date": "2026-04-20",
       "location": "Maglaby",
-      "notes": "1 hane"
+      "notes": "1 hane",
+      "lat": 56.108898895955186,
+      "lng": 13.052546726545025,
+      "latin": "Ficedula hypoleuca"
     },
     {
       "order": 2,
       "species": "Stenskvätta",
       "date": "2026-04-20",
-      "location": "Fåraböke"
+      "location": "Fåraböke",
+      "lat": 56.07789001813259,
+      "lng": 13.067594119415102,
+      "latin": "Oenanthe oenanthe"
     },
     {
       "order": 3,
       "species": "Ladusvala",
       "date": "2026-04-20",
-      "location": "Madkärr"
+      "location": "Madkärr",
+      "lat": 56.16336,
+      "lng": 13.06239,
+      "latin": "Hirundo rustica"
     }
   ]
 }
