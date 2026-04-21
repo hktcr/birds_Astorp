@@ -925,6 +925,14 @@
             "location": "Östra vägen, Åstorp",
             "lat": 56.13671788511213,
             "lng": 12.962609736539072
+        },
+        {
+            "species": "Buskskvätta",
+            "latin": "Saxicola rubetra",
+            "date": "2026-04-21",
+            "location": "Kungsgårdsmaderna",
+            "lat": 56.15343,
+            "lng": 13.06878
         }
     ]
 }
