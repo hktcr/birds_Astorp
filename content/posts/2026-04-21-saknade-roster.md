@@ -25,7 +25,7 @@ Fågelkören blir rikare för var dag som går. Både antalet individer och stä
 
 ![Saknade röster](/images/posts/2026-04-21-saknade-roster/saknade_roster.jpg)
 
-Redan [tidigare i år](/posts/2026/03/gärdsmygens-vinter/) konstaterade vi att vintern förmodligen gått hårt åt övervintrande gärdsmygar. Nu, när reviren borde eka av deras explosiva sång, verkar de i stort sett vara borta. En annan art som verkar ha gått ur vintern med starkt försvagade antal är trädkryparen. 
+Redan [tidigare i år]({{< ref "2026-03-16-gardsmygens-vinter.md" >}}) konstaterade vi att vintern förmodligen gått hårt åt övervintrande gärdsmygar. Nu, när reviren borde eka av deras explosiva sång, verkar de i stort sett vara borta. En annan art som verkar ha gått ur vintern med starkt försvagade antal är trädkryparen. 
 
 Längs Rönne å saknas också en välbekant profil. Normalt sett hade jag stött på kungsfiskare regelbundet med tanke på hur mycket jag rört mig utmed ån den senaste tiden. Än så länge är arten helt frånvarande. Stora delar av vattendraget frös till under den kallaste vinterperioden. Det är därför inte konstigt att kungsfiskarna, som är helt beroende av öppet vatten för att fiska, har haft svårt att klara sig.
 
