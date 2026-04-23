@@ -933,6 +933,38 @@
             "location": "Kungsgårdsmaderna",
             "lat": 56.15343,
             "lng": 13.06878
+        },
+        {
+            "species": "Gulärla",
+            "latin": "Motacilla flava",
+            "date": "2026-04-23",
+            "location": "Rönnbacka",
+            "lat": 56.168816409838804,
+            "lng": 13.030937554082303
+        },
+        {
+            "species": "Grönbena",
+            "latin": "Tringa glareola",
+            "date": "2026-04-23",
+            "location": "Rönnbacka",
+            "lat": 56.168816409838804,
+            "lng": 13.030937554082303
+        },
+        {
+            "species": "Gråhakedopping",
+            "latin": "Podiceps grisegena",
+            "date": "2026-04-23",
+            "location": "Rönnbacka",
+            "lat": 56.168816409838804,
+            "lng": 13.030937554082303
+        },
+        {
+            "species": "Ljungpipare",
+            "latin": "Pluvialis apricaria",
+            "date": "2026-04-23",
+            "location": "Sånna",
+            "lat": 56.152500229576226,
+            "lng": 13.028410974347539
         }
     ]
 }
