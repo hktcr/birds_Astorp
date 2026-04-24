@@ -965,6 +965,22 @@
             "location": "Sånna",
             "lat": 56.152500229576226,
             "lng": 13.028410974347539
+        },
+        {
+            "species": "Hussvala",
+            "latin": "Delichon urbicum",
+            "date": "2026-04-24",
+            "location": "Körslättabäckens våtmarker",
+            "lat": 56.093059657874605,
+            "lng": 13.065669791540584
+        },
+        {
+            "species": "Trädpiplärka",
+            "latin": "Anthus trivialis",
+            "date": "2026-04-24",
+            "location": "Körslättabäckens våtmarker",
+            "lat": 56.093059657874605,
+            "lng": 13.065669791540584
         }
     ]
 }
