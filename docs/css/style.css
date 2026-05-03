@@ -1016,6 +1016,29 @@ a:hover {
     margin: 0;
     max-height: 150px;
     overflow-y: auto;
+    /* Tydliggör scrollbar för macOS-användare */
+    scrollbar-width: thin;
+    scrollbar-color: #c1c1c1 #f1f1f1;
+    border-bottom: 1px solid var(--color-border); /* Tydliggör botten */
+}
+
+.popup-species-list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.popup-species-list::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 4px;
+}
+
+.popup-species-list::-webkit-scrollbar-thumb {
+    background: #c1c1c1; 
+    border-radius: 4px;
+    border: 2px solid #f1f1f1;
+}
+
+.popup-species-list::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary); 
 }
 
 .popup-species-list li {
@@ -1782,6 +1805,29 @@ a:hover {
     margin: 0;
     max-height: 200px;
     overflow-y: auto;
+    /* Tydliggör scrollbar för macOS-användare */
+    scrollbar-width: thin;
+    scrollbar-color: #c1c1c1 #f1f1f1;
+    border-bottom: 1px solid var(--color-border); /* Tydliggör botten */
+}
+
+.popup-species::-webkit-scrollbar {
+    width: 8px;
+}
+
+.popup-species::-webkit-scrollbar-track {
+    background: #f1f1f1; 
+    border-radius: 4px;
+}
+
+.popup-species::-webkit-scrollbar-thumb {
+    background: #c1c1c1; 
+    border-radius: 4px;
+    border: 2px solid #f1f1f1;
+}
+
+.popup-species::-webkit-scrollbar-thumb:hover {
+    background: var(--color-primary); 
 }
 
 .popup-species li {
