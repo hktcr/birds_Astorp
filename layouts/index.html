@@ -41,7 +41,7 @@ RATT: dubbelklammer range dubbelklammer
         <a href="{{ .RelPermalink }}" class="latest-post-box">
             <span class="latest-post-label">Senaste notis</span>
             <span class="latest-post-title">{{ .Title }}</span>
-            <span class="latest-post-date">{{ .Date | time.Format "2 Jan" | lower }}</span>
+            <span class="latest-post-date">{{ .Date.Day }} {{ index (slice "jan" "feb" "mar" "apr" "maj" "jun" "jul" "aug" "sep" "okt" "nov" "dec") (sub .Date.Month 1) }}</span>
         </a>
         {{ end }}
 
