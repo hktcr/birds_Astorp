@@ -46,6 +46,10 @@
                     <button class="fp-sort-btn" data-sort="rarity">Sällsynthet ↓</button>
                 </div>
 
+                <div id="fp-disclaimer" style="display:none; color: #64748b; font-size: 0.75rem; line-height: 1.4; margin: 0 0 1rem 0; font-style: italic; background: #f1f5f9; padding: 0.5rem 0.75rem; border-radius: 0.5rem; border-left: 2px solid #cbd5e1;">
+                    <strong>Observera:</strong> Färgkodningen för sällsynthet utgår från data i Artportalen. Eftersom Åstorp är en relativt underrapporterad kommun kan vissa arter framstå som statistiskt mer sällsynta i listan än vad de faktiskt är i fält.
+                </div>
+
                 <!-- Laddning -->
                 <div class="kommun-loading" id="fp-loading" style="margin-top:2rem;">
                     <div class="kommun-spinner"></div>
@@ -482,6 +486,7 @@
         document.getElementById('fp-list').style.display = 'none';
         document.getElementById('fp-error').style.display = 'none';
         document.getElementById('fp-sort-bar').style.display = 'none';
+        document.getElementById('fp-disclaimer').style.display = 'none';
         document.getElementById('fp-stats-row').style.display = 'none';
 
         fetchObservations(days)
@@ -490,6 +495,7 @@
                 document.getElementById('fp-loading').style.display = 'none';
                 document.getElementById('fp-list').style.display = 'flex';
                 document.getElementById('fp-sort-bar').style.display = 'flex';
+                document.getElementById('fp-disclaimer').style.display = 'block';
                 document.getElementById('fp-stats-row').style.display = 'flex';
                 document.getElementById('fp-source').style.display = 'block';
 
