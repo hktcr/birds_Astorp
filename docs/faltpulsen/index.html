@@ -17,7 +17,7 @@
 
     
     
-    <link rel="stylesheet" href="/css/style.38c1a151192c374497dca246c72308585909bb486197eb7e1204b8f4e1cec760.css">
+    <link rel="stylesheet" href="/css/style.7fe3dcbace1689b184183dcfd319711e2ca88e19753b6891e4b81abdb9c2222b.css">
 
     
     <link rel="prefetch" href="/galleri/" as="document">
@@ -147,7 +147,7 @@
     <main id="main-content" class="main">
         
 <div class="fp-page">
-    <div class="fp-container">
+    <div class="fp-container" style="max-width: 1300px;">
 
         
         <div class="fp-header">
@@ -157,54 +157,62 @@
 </div>
         </div>
 
-        
-        <div class="fp-map-wrap">
-            <div class="fp-time-pills" id="fp-time-pills">
-                <button class="fp-pill active" data-days="3">Senaste 3 dagarna</button>
-                <button class="fp-pill" data-days="7">Senaste veckan</button>
-                <button class="fp-pill" data-days="30">Senaste månaden</button>
+        <div class="fp-split-layout">
+            
+            <div class="fp-map-col">
+                
+                <div class="fp-map-wrap">
+                    <div class="fp-time-pills" id="fp-time-pills">
+                        <button class="fp-pill active" data-days="3">Senaste 3 dagarna</button>
+                        <button class="fp-pill" data-days="7">Senaste veckan</button>
+                        <button class="fp-pill" data-days="30">Senaste månaden</button>
+                    </div>
+
+                    <div id="fp-map" class="observation-map" style="min-height: 400px; height: 50vh;"></div>
+                </div>
             </div>
 
-            <div id="fp-map" class="observation-map" style="min-height: 400px; height: 50vh;"></div>
-        </div>
+            
+            <div class="fp-list-col">
+                
+                <div class="fp-stats-row" id="fp-stats-row" style="display:none;">
+                    <div class="fp-stat-pill">
+                        <strong id="fp-stat-obs">0</strong> observationer
+                    </div>
+                    <div class="fp-stat-pill">
+                        <strong id="fp-stat-species">0</strong> arter
+                    </div>
+                    <div class="fp-stat-pill">
+                        <strong id="fp-stat-observers">0</strong> observatörer
+                    </div>
+                </div>
 
-        
-        <div class="fp-stats-row" id="fp-stats-row" style="display:none;">
-            <div class="fp-stat-pill">
-                <strong id="fp-stat-obs">0</strong> observationer
+                
+                <div class="fp-sort-row" id="fp-sort-bar" style="display:none;">
+                    <button class="fp-sort-btn active" data-sort="date">Datum ↓</button>
+                    <button class="fp-sort-btn" data-sort="taxonomy">Taxonomi ↓</button>
+                    <button class="fp-sort-btn" data-sort="rarity">Sällsynthet ↓</button>
+                </div>
+
+                
+                <div class="kommun-loading" id="fp-loading" style="margin-top:2rem;">
+                    <div class="kommun-spinner"></div>
+                    <span>Hämtar observationer…</span>
+                </div>
+
+                
+                <div class="kommun-error" id="fp-error" style="display:none; margin-top:2rem;">
+                    <span>⚠️ Kunde inte hämta data. Försök ladda om sidan.</span>
+                </div>
+
+                
+                <div id="fp-list" class="fp-compact-list" style="display:none;"></div>
+
+                <div class="kommun-source" id="fp-source" style="display:none; margin-top:2rem; text-align:right;">
+                    Data: <a href="https://www.artportalen.se" target="_blank" rel="noopener">Artportalen</a> via
+                    <a href="https://api-portal.artdatabanken.se" target="_blank" rel="noopener">SLU Artdatabankens API</a>
+                </div>
             </div>
-            <div class="fp-stat-pill">
-                <strong id="fp-stat-species">0</strong> arter
-            </div>
-            <div class="fp-stat-pill">
-                <strong id="fp-stat-observers">0</strong> observatörer
-            </div>
-        </div>
-
-        
-        <div class="fp-sort-row" id="fp-sort-bar" style="display:none;">
-            <button class="fp-sort-btn active" data-sort="date">Datum ↓</button>
-            <button class="fp-sort-btn" data-sort="taxonomy">Taxonomi ↓</button>
-            <button class="fp-sort-btn" data-sort="rarity">Sällsynthet ↓</button>
-        </div>
-
-        
-        <div class="kommun-loading" id="fp-loading" style="margin-top:2rem;">
-            <div class="kommun-spinner"></div>
-            <span>Hämtar observationer…</span>
-        </div>
-
-        
-        <div class="kommun-error" id="fp-error" style="display:none; margin-top:2rem;">
-            <span>⚠️ Kunde inte hämta data. Försök ladda om sidan.</span>
-        </div>
-
-        
-        <div id="fp-list" class="fp-compact-list" style="display:none;"></div>
-
-        <div class="kommun-source" id="fp-source" style="display:none; margin-top:2rem; text-align:right;">
-            Data: <a href="https://www.artportalen.se" target="_blank" rel="noopener">Artportalen</a> via
-            <a href="https://api-portal.artdatabanken.se" target="_blank" rel="noopener">SLU Artdatabankens API</a>
         </div>
     </div>
 </div>
