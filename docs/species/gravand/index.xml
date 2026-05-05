@@ -1,2 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Gravand on Fågelåret i Åstorp</title><link>https://astorpsfaglar.se/species/gravand/</link><description>Recent content in Gravand on Fågelåret i Åstorp</description><generator>Hugo</generator><language>sv</language><lastBuildDate>Fri, 27 Feb 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://astorpsfaglar.se/species/gravand/index.xml" rel="self" type="application/rss+xml"/><item><title>Våren rullar in</title><link>https://astorpsfaglar.se/posts/2026/02/v%C3%A5ren-rullar-in/</link><pubDate>Fri, 27 Feb 2026 00:00:00 +0000</pubDate><guid>https://astorpsfaglar.se/posts/2026/02/v%C3%A5ren-rullar-in/</guid><description>&lt;p&gt;Idag rullade våren in över markerna. Den kom med lärkkvitter och gåskackel. Plog efter annan med kanadagäss och grågäss. Överallt sånglärkor. Sjungande, sträckande, rastande. Där det nyss varit tomt och tyst fylldes de översvämmade maderna av tofsvipor. Bläsänder, krickor, två par snatteränder simmade fram och tillbaka på vattenspeglarna vid Kölebäcken. Två gravänder.&lt;/p&gt;
-&lt;p&gt;Nere vid Tomarps Ene fortsatte sånglärkorna. Men örnarna tog över. Två havsörnar kretsade över maderna, och när jag följde en av dem i tubkikaren gled en kungsörn in i synfältet. En ung fågel, 3K, inne på sitt tredje kalenderår, fortfarande med stora vita fält i vingarna.&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Gravand on Fågelåret i Åstorp</title>
+    <link>http://localhost:1313/species/gravand/</link>
+    <description>Recent content in Gravand on Fågelåret i Åstorp</description>
+    <generator>Hugo</generator>
+    <language>sv</language>
+    <lastBuildDate>Fri, 27 Feb 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/species/gravand/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Våren rullar in</title>
+      <link>http://localhost:1313/posts/2026/02/v%C3%A5ren-rullar-in/</link>
+      <pubDate>Fri, 27 Feb 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2026/02/v%C3%A5ren-rullar-in/</guid>
+      <description>&lt;p&gt;Idag rullade våren in över markerna. Den kom med lärkkvitter och gåskackel. Plog efter annan med kanadagäss och grågäss. Överallt sånglärkor. Sjungande, sträckande, rastande. Där det nyss varit tomt och tyst fylldes de översvämmade maderna av tofsvipor. Bläsänder, krickor, två par snatteränder simmade fram och tillbaka på vattenspeglarna vid Kölebäcken. Två gravänder.&lt;/p&gt;&#xA;&lt;p&gt;Nere vid Tomarps Ene fortsatte sånglärkorna. Men örnarna tog över. Två havsörnar kretsade över maderna, och när jag följde en av dem i tubkikaren gled en kungsörn in i synfältet. En ung fågel, 3K, inne på sitt tredje kalenderår, fortfarande med stora vita fält i vingarna.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
