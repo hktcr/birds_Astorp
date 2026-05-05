@@ -103,8 +103,8 @@
             attributionControl: true,
             dragging: true
         });
-        L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-            attribution: '&copy; OpenTopoMap',
+        L.tileLayer('https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png', {
+            attribution: '&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors &copy; <a href="https://carto.com/attributions">CARTO</a>',
             maxZoom: 17
         }).addTo(map);
 
@@ -128,8 +128,11 @@
         markerGroup = L.layerGroup().addTo(map);
     }
 
+    window.fpLocationMarkers = {};
+
     function updateMapMarkers(records) {
         markerGroup.clearLayers();
+        window.fpLocationMarkers = {};
         var locMap = {};
         records.forEach(function(obs) {
             var loc = obs.location || {};
@@ -155,6 +158,8 @@
 
             var marker = L.marker([loc.lat, loc.lng], { icon: pulseIcon })
                 .addTo(markerGroup);
+
+            window.fpLocationMarkers[name] = marker;
 
             // Klick på markern filtrerar listan
             marker.on('click', function() {
@@ -372,7 +377,7 @@
             else if (cat === 'uncommon') badgeHtml = '<span class="fp-badge fp-badge--uncommon">Ovanlig</span>';
 
             var rowClass = currentSort !== 'date' ? 'fp-obs-row fp-obs-row--with-date' : 'fp-obs-row';
-            html += '<div class="' + rowClass + '" data-idx="' + idx + '">';
+            html += '<div class="' + rowClass + '" data-idx="' + idx + '" data-loc="' + place.replace(/"/g, '&quot;') + '">';
             html += '<div class="fp-obs-col-dot" style="background:' + dotColor + '" title="' + cat + '"></div>';
             if (currentSort !== 'date') {
                 html += '<div class="fp-obs-col-date">' + fmtDate(dateStr) + '</div>';
@@ -402,6 +407,7 @@
         container.querySelectorAll('.fp-obs-row').forEach(function(row) {
             row.addEventListener('click', function() {
                 var idx = row.getAttribute('data-idx');
+                var locName = row.getAttribute('data-loc');
                 var detail = document.getElementById('fp-detail-' + idx);
                 var arrow = row.querySelector('.fp-obs-col-expand');
                 if (detail) {
@@ -409,7 +415,41 @@
                     detail.style.display = isOpen ? 'none' : 'block';
                     if (arrow) arrow.textContent = isOpen ? '▸' : '▾';
                     row.classList.toggle('fp-obs-row--expanded', !isOpen);
+                    
+                    // Pan map gently to the location if opened
+                    if (!isOpen && window.fpLocationMarkers[locName]) {
+                        map.panTo(window.fpLocationMarkers[locName].getLatLng());
+                    }
                 }
+            });
+
+            // Hover effects for Spotlight
+            row.addEventListener('mouseenter', function() {
+                var locName = row.getAttribute('data-loc');
+                Object.keys(window.fpLocationMarkers).forEach(function(name) {
+                    var m = window.fpLocationMarkers[name];
+                    if (m && m.getElement()) {
+                        if (name === locName) {
+                            m.getElement().classList.add('fp-marker-spotlight');
+                            m.getElement().classList.remove('fp-marker-dimmed');
+                            m.setZIndexOffset(1000);
+                        } else {
+                            m.getElement().classList.add('fp-marker-dimmed');
+                            m.getElement().classList.remove('fp-marker-spotlight');
+                            m.setZIndexOffset(0);
+                        }
+                    }
+                });
+            });
+
+            row.addEventListener('mouseleave', function() {
+                Object.keys(window.fpLocationMarkers).forEach(function(name) {
+                    var m = window.fpLocationMarkers[name];
+                    if (m && m.getElement()) {
+                        m.getElement().classList.remove('fp-marker-dimmed', 'fp-marker-spotlight');
+                        m.setZIndexOffset(0);
+                    }
+                });
             });
         });
 
