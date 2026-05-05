@@ -21,14 +21,6 @@
                     </div>
 
                     <div id="fp-map" class="observation-map" style="min-height: 400px; height: 50vh;"></div>
-                    
-                    <div class="fp-legend" style="display: flex; gap: 0.75rem; flex-wrap: wrap; justify-content: center; margin-top: 0.75rem; font-size: 0.75rem; color: #64748b; padding: 0.5rem; background: rgba(255,255,255,0.8); border-radius: 0.5rem;">
-                        <span style="display: flex; align-items: center; gap: 0.25rem;"><span style="display:inline-block; width: 8px; height: 8px; border-radius: 50%; background: #0e7490;"></span> Förväntad</span>
-                        <span style="display: flex; align-items: center; gap: 0.25rem;"><span style="display:inline-block; width: 8px; height: 8px; border-radius: 50%; background: #7c3aed;"></span> Möjlig</span>
-                        <span style="display: flex; align-items: center; gap: 0.25rem;"><span style="display:inline-block; width: 8px; height: 8px; border-radius: 50%; background: #e09f3e;"></span> Ovanlig</span>
-                        <span style="display: flex; align-items: center; gap: 0.25rem;"><span style="display:inline-block; width: 8px; height: 8px; border-radius: 50%; background: #c1121f;"></span> Raritet</span>
-                        <span style="display: flex; align-items: center; gap: 0.25rem;"><span style="display:inline-block; width: 8px; height: 8px; border-radius: 50%; background: #00897b;"></span> Ny för året</span>
-                    </div>
                 </div>
             </div>
 
@@ -54,8 +46,17 @@
                     <button class="fp-sort-btn" data-sort="rarity">Sällsynthet ↓</button>
                 </div>
 
-                <div id="fp-disclaimer" style="display:none; color: #64748b; font-size: 0.75rem; line-height: 1.4; margin: 0 0 1rem 0; font-style: italic; background: #f1f5f9; padding: 0.5rem 0.75rem; border-radius: 0.5rem; border-left: 2px solid #cbd5e1;">
-                    <strong>Observera:</strong> Färgkodningen för sällsynthet utgår från data i Artportalen. Eftersom Åstorp är en relativt underrapporterad kommun kan vissa arter framstå som statistiskt mer sällsynta i listan än vad de faktiskt är i fält.
+                <div id="fp-disclaimer" style="display:none; color: #64748b; font-size: 0.75rem; line-height: 1.4; margin: 0 0 1rem 0; background: #f1f5f9; padding: 0.75rem; border-radius: 0.5rem; border-left: 2px solid #cbd5e1;">
+                    <div style="font-style: italic; margin-bottom: 0.5rem;">
+                        <strong>Observera:</strong> Färgkodningen för sällsynthet utgår från data i Artportalen. Eftersom Åstorp är en relativt underrapporterad kommun kan vissa arter framstå som statistiskt mer sällsynta i listan än vad de faktiskt är i fält.
+                    </div>
+                    <div class="fp-legend" style="display: flex; gap: 0.75rem; flex-wrap: wrap; font-size: 0.7rem; color: #475569;">
+                        <span style="display: flex; align-items: center; gap: 0.25rem;"><span style="display:inline-block; width: 8px; height: 8px; border-radius: 50%; background: #0e7490;"></span> Förväntad</span>
+                        <span style="display: flex; align-items: center; gap: 0.25rem;"><span style="display:inline-block; width: 8px; height: 8px; border-radius: 50%; background: #7c3aed;"></span> Möjlig</span>
+                        <span style="display: flex; align-items: center; gap: 0.25rem;"><span style="display:inline-block; width: 8px; height: 8px; border-radius: 50%; background: #e09f3e;"></span> Ovanlig</span>
+                        <span style="display: flex; align-items: center; gap: 0.25rem;"><span style="display:inline-block; width: 8px; height: 8px; border-radius: 50%; background: #c1121f;"></span> Raritet</span>
+                        <span style="display: flex; align-items: center; gap: 0.25rem;"><span style="display:inline-block; width: 8px; height: 8px; border-radius: 50%; background: #00897b;"></span> Ny för året</span>
+                    </div>
                 </div>
 
                 <!-- Laddning -->
