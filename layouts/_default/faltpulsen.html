@@ -385,8 +385,10 @@
             else if (cat === 'uncommon') badgeHtml = '<span class="fp-badge fp-badge--uncommon">Ovanlig</span>';
 
             var rowClass = currentSort !== 'date' ? 'fp-obs-row fp-obs-row--with-date' : 'fp-obs-row';
+            rowClass += ' fp-cat-' + cat;
+            
             html += '<div class="' + rowClass + '" data-idx="' + idx + '" data-loc="' + place.replace(/"/g, '&quot;') + '">';
-            html += '<div class="fp-obs-col-dot" style="background:' + dotColor + '" title="' + cat + '"></div>';
+            
             if (currentSort !== 'date') {
                 html += '<div class="fp-obs-col-date">' + fmtDate(dateStr) + '</div>';
             }
