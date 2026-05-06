@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="sv">
 
-<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Senaste fågelobservationerna i Åstorps kommun, livedata från Artportalen med karta och sortering.">
@@ -17,7 +17,7 @@
 
     
     
-    <link rel="stylesheet" href="/css/style.27ac2498a729fd483f4d13829127f99245e49fe76ad518c8c188b878337d955b.css">
+    <link rel="stylesheet" href="/css/style.2e3340fb3a355d486d21e42df78d4604d36e8ea8cb63144102e2f5341e34834b.css">
 
     
     <link rel="prefetch" href="/galleri/" as="document">
@@ -31,7 +31,7 @@
 
     <header class="site-header">
     <div class="header-container">
-        <a href="http://localhost:1313/" class="site-logo">
+        <a href="https://astorpsfaglar.se/" class="site-logo">
             <span class="site-title">Fågelåret i Åstorp</span>
         </a>
 
@@ -367,7 +367,7 @@
     
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script>window.siteBaseURL = "http:\/\/localhost:1313\/";</script>
+    <script>window.siteBaseURL = "https:\/\/astorpsfaglar.se\/";</script>
     <script src="/js/location-popup.js"></script>
 
     
@@ -571,6 +571,11 @@
                 sorted.sort(function(a, b) {
                     var nameA = ((a.taxon || {}).vernacularName || '').toLowerCase();
                     var nameB = ((b.taxon || {}).vernacularName || '').toLowerCase();
+                    if (nameA === nameB) {
+                        var da = (a.event || {}).startDate || '';
+                        var db = (b.event || {}).startDate || '';
+                        return db.localeCompare(da);
+                    }
                     var ga = speciesGuide[nameA] || {};
                     var gb = speciesGuide[nameB] || {};
                     var oa = ga.order !== undefined ? ga.order : 9999;
@@ -582,9 +587,16 @@
                 sorted.sort(function(a, b) {
                     var nameA = ((a.taxon || {}).vernacularName || '').toLowerCase();
                     var nameB = ((b.taxon || {}).vernacularName || '').toLowerCase();
+                    if (nameA === nameB) {
+                        var da = (a.event || {}).startDate || '';
+                        var db = (b.event || {}).startDate || '';
+                        return db.localeCompare(da);
+                    }
                     var ga = speciesGuide[nameA] || {};
                     var gb = speciesGuide[nameB] || {};
-                    return (ga.total || 9999) - (gb.total || 9999);
+                    var ta = ga.total !== undefined ? ga.total : 0;
+                    var tb = gb.total !== undefined ? gb.total : 0;
+                    return ta - tb;
                 });
                 break;
         }
@@ -672,13 +684,13 @@
 
             var nameKey = speciesName.toLowerCase();
             var guide = speciesGuide[nameKey] || {};
-            var cat = guide.category || 'regular';
-            var dotColor = CATEGORY_COLORS[cat] || CATEGORY_COLORS.regular;
+            var cat = guide.category || 'new';
+            var dotColor = CATEGORY_COLORS[cat] || CATEGORY_COLORS.new;
             
             var badgeHtml = '';
-            if (cat === 'rare') badgeHtml = '<span class="fp-badge fp-badge--rare">Sällsynt</span>';
-            else if (cat === 'scarce') badgeHtml = '<span class="fp-badge fp-badge--scarce">Ovanlig</span>';
-            else if (cat === 'uncommon') badgeHtml = '<span class="fp-badge fp-badge--uncommon">Ovanlig</span>';
+            if (cat === 'new') badgeHtml = '<span class="fp-badge fp-badge--new">Ny!</span>';
+            else if (cat === 'rare') badgeHtml = '<span class="fp-badge fp-badge--rare">Sällsynt</span>';
+            else if (cat === 'scarce' || cat === 'uncommon') badgeHtml = '<span class="fp-badge fp-badge--uncommon">Ovanlig</span>';
 
             var rowClass = currentSort !== 'date' ? 'fp-obs-row fp-obs-row--with-date' : 'fp-obs-row';
             rowClass += ' fp-cat-' + cat;
@@ -821,7 +833,7 @@
     });
 
     
-    window.siteBaseURL = 'http:\/\/localhost:1313\/';
+    window.siteBaseURL = 'https:\/\/astorpsfaglar.se\/';
     initMap();
     fetchSpeciesGuide().then(function(guide) {
         speciesGuide = guide;

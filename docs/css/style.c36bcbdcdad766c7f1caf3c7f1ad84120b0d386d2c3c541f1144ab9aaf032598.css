@@ -1368,7 +1368,6 @@ a.archive-tag:hover {
 }
 
 .legend-marker {
-    display: inline-block;
     width: 16px;
     height: 16px;
     border-radius: 50%;

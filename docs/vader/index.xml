@@ -2,16 +2,16 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Horisonten on Fågelåret i Åstorp</title>
-    <link>http://localhost:1313/vader/</link>
+    <link>https://astorpsfaglar.se/vader/</link>
     <description>Recent content in Horisonten on Fågelåret i Åstorp</description>
     <generator>Hugo</generator>
     <language>sv</language>
-    <atom:link href="http://localhost:1313/vader/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://astorpsfaglar.se/vader/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Fältlabb</title>
-      <link>http://localhost:1313/vader/faltlabb/</link>
+      <link>https://astorpsfaglar.se/vader/faltlabb/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/vader/faltlabb/</guid>
+      <guid>https://astorpsfaglar.se/vader/faltlabb/</guid>
       <description></description>
     </item>
   </channel>

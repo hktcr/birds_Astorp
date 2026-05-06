@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Ormvråk on Fågelåret i Åstorp</title>
-    <link>http://localhost:1313/species/ormvr%C3%A5k/</link>
+    <link>https://astorpsfaglar.se/species/ormvr%C3%A5k/</link>
     <description>Recent content in Ormvråk on Fågelåret i Åstorp</description>
     <generator>Hugo</generator>
     <language>sv</language>
     <lastBuildDate></lastBuildDate>
-    <atom:link href="http://localhost:1313/species/ormvr%C3%A5k/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://astorpsfaglar.se/species/ormvr%C3%A5k/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>

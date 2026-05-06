@@ -2,11 +2,11 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Svarthätta on Fågelåret i Åstorp</title>
-    <link>http://localhost:1313/species/svarth%C3%A4tta/</link>
+    <link>https://astorpsfaglar.se/species/svarth%C3%A4tta/</link>
     <description>Recent content in Svarthätta on Fågelåret i Åstorp</description>
     <generator>Hugo</generator>
     <language>sv</language>
     <lastBuildDate></lastBuildDate>
-    <atom:link href="http://localhost:1313/species/svarth%C3%A4tta/index.xml" rel="self" type="application/rss+xml" />
+    <atom:link href="https://astorpsfaglar.se/species/svarth%C3%A4tta/index.xml" rel="self" type="application/rss+xml" />
   </channel>
 </rss>
