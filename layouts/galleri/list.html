@@ -185,8 +185,8 @@
                     display: none;
                     position: fixed;
                     inset: 0;
-                    background: #0f110e;
-                    color: #eef2eb;
+                    background: #000;
+                    color: #e0e0e0;
                     z-index: 9999;
                     flex-direction: column;
                     font-family: 'Inter', sans-serif;
@@ -199,10 +199,11 @@
                     justify-content: space-between;
                     align-items: center;
                     padding: 15px 20px;
-                    background: rgba(0,0,0,0.6);
+                    background: #000;
                     border-bottom: 1px solid #222;
                     height: 70px;
                     box-sizing: border-box;
+                    transition: opacity 0.4s ease, transform 0.4s ease;
                 }
                 .slideshow-timeline-container {
                     display: flex;
@@ -272,22 +273,34 @@
                     position: absolute;
                     top: 50%;
                     transform: translateY(-50%);
-                    background: rgba(0,0,0,0.4);
-                    color: white;
+                    background: transparent;
+                    color: rgba(255,255,255,0.4);
                     border: none;
-                    font-size: 3rem;
-                    padding: 20px 15px;
+                    font-size: 2rem;
+                    padding: 20px 12px;
                     cursor: pointer;
                     z-index: 10;
-                    transition: background 0.3s, transform 0.2s;
+                    transition: color 0.3s, background 0.3s, opacity 0.4s;
                     border-radius: 8px;
+                    opacity: 0;
+                }
+                .slideshow-overlay:hover .slideshow-nav,
+                .slideshow-nav:focus {
+                    opacity: 1;
                 }
                 .slideshow-nav:hover {
-                    background: rgba(0,0,0,0.8);
-                    transform: translateY(-50%) scale(1.05);
+                    background: rgba(255,255,255,0.08);
+                    color: rgba(255,255,255,0.9);
+                }
+                .slideshow-nav:focus {
+                    outline: 2px solid #a8cf92;
+                    outline-offset: 2px;
                 }
                 .slideshow-nav-left { left: 20px; }
                 .slideshow-nav-right { right: 20px; }
+                .slideshow-content img {
+                    border-radius: 0 !important;
+                }
                 .slideshow-content {
                     display: flex;
                     align-items: center;
@@ -302,95 +315,146 @@
                     to { opacity: 1; transform: scale(1); }
                 }
 
-                /* --- Layout: Bara bild (Image Only) --- */
+                /* --- Layout: Helskärm (Image Only) --- */
                 .slideshow-overlay.layout-image-only .slideshow-content {
                     flex-direction: column;
+                    max-width: 95vw;
+                    max-height: 95vh;
+                    position: relative;
                 }
                 .slideshow-overlay.layout-image-only .slideshow-content img {
-                    max-width: 100%;
-                    max-height: 65vh;
+                    max-width: 95vw;
+                    max-height: 85vh;
                     object-fit: contain;
-                    border-radius: 6px;
-                    box-shadow: 0 10px 40px rgba(0,0,0,0.6);
-                    transition: opacity 0.3s ease;
+                    border-radius: 0;
+                    box-shadow: 0 10px 50px rgba(0,0,0,0.7);
+                    transition: opacity 0.35s ease, transform 0.35s ease;
                 }
                 .slideshow-overlay.layout-image-only .slideshow-text-panel {
                     display: none;
                 }
                 .slideshow-overlay.layout-image-only .slideshow-info {
-                    margin-top: 25px;
-                    text-align: center;
+                    display: none;
+                }
+                .slideshow-date-badge {
+                    position: absolute;
+                    bottom: 12px;
+                    left: 16px;
+                    background: rgba(0,0,0,0.55);
+                    color: rgba(255,255,255,0.85);
+                    padding: 6px 14px;
+                    border-radius: 20px;
                     font-family: 'Lora', Georgia, serif;
+                    font-size: 1rem;
+                    letter-spacing: 0.3px;
+                    pointer-events: none;
+                    backdrop-filter: blur(6px);
+                    -webkit-backdrop-filter: blur(6px);
                 }
-                .slideshow-overlay.layout-image-only .slideshow-info h2 {
-                    margin: 0 0 8px 0;
-                    font-size: 1.8rem;
-                    color: #fff;
-                    font-weight: 400;
-                }
-                .slideshow-overlay.layout-image-only .slideshow-meta {
-                    font-size: 0.95rem;
-                    color: #a8cf92;
-                    margin-bottom: 20px;
-                    font-family: 'Inter', sans-serif;
-                    letter-spacing: 0.5px;
+                .slideshow-overlay.layout-split .slideshow-date-badge {
+                    display: none;
                 }
 
                 /* --- Layout: Bild + Notis (Split Mode) --- */
                 .slideshow-overlay.layout-split .slideshow-content {
-                    background: #1a1c18;
-                    padding: 30px;
-                    border-radius: 12px;
-                    box-shadow: 0 15px 50px rgba(0,0,0,0.8);
-                    gap: 30px;
+                    background: #000;
+                    padding: 24px;
+                    border-radius: 0;
+                    box-shadow: none;
+                    gap: 24px;
+                    width: 95vw;
+                    max-width: 1500px;
+                    height: calc(100vh - 140px);
+                    box-sizing: border-box;
                 }
                 .slideshow-overlay.layout-split .slideshow-info {
-                    display: none; /* Hide centered info */
+                    display: none;
                 }
                 .slideshow-text-panel {
-                    color: #eef2eb;
+                    color: #e0e0e0;
                     font-family: 'Inter', sans-serif;
                     font-size: 1rem;
-                    line-height: 1.6;
+                    line-height: 1.7;
                     overflow-y: auto;
                     scrollbar-width: thin;
                     scrollbar-color: #465c3d transparent;
+                    box-sizing: border-box;
                 }
                 .slideshow-text-panel p { margin-bottom: 1em; }
                 .slideshow-text-panel a { color: #a8cf92; }
+                /* Dölj bilder i textpanelen (de visas redan som huvudbild) */
+                .slideshow-text-panel img { display: none; }
+                .slideshow-text-panel figure { display: none; }
+                .slideshow-text-panel div:has(> video) { display: none; }
 
-                /* Horizontal split (Image above text) */
-                .slideshow-overlay.layout-split .slideshow-content.horizontal-image {
+                /* Flerkolumnstext för långa notiser */
+                .slideshow-text-panel.multi-col {
+                    column-count: 2;
+                    column-gap: 30px;
+                    column-rule: 1px solid #222;
+                }
+                .slideshow-text-panel.multi-col h2,
+                .slideshow-text-panel.multi-col .slideshow-meta-el {
+                    column-span: all;
+                }
+                @media (max-width: 900px) {
+                    .slideshow-text-panel.multi-col {
+                        column-count: 1;
+                    }
+                }
+
+                /* Side-by-side: Bild vänster, text höger (stående bilder) */
+                .slideshow-overlay.layout-split .slideshow-content.split-side {
+                    flex-direction: row;
+                    align-items: stretch;
+                }
+                .slideshow-overlay.layout-split .slideshow-content.split-side img {
+                    max-width: 55%;
+                    max-height: 100%;
+                    object-fit: contain;
+                    border-radius: 6px;
+                    flex-shrink: 0;
+                }
+                .slideshow-overlay.layout-split .slideshow-content.split-side .slideshow-text-panel {
+                    flex: 1;
+                    min-width: 280px;
+                    overflow-y: auto;
+                }
+
+                /* Stacked: Bild uppe, text nere (liggande bilder) */
+                .slideshow-overlay.layout-split .slideshow-content.split-stack {
                     flex-direction: column;
                 }
-                .slideshow-overlay.layout-split .slideshow-content.horizontal-image img {
-                    max-height: 45vh;
-                    border-radius: 6px;
-                    max-width: 100%;
-                    object-fit: contain;
-                }
-                .slideshow-overlay.layout-split .slideshow-content.horizontal-image .slideshow-text-panel {
+                .slideshow-overlay.layout-split .slideshow-content.split-stack img {
+                    max-height: 50%;
                     width: 100%;
-                    max-height: 25vh;
-                    max-width: 800px;
+                    object-fit: contain;
+                    border-radius: 6px;
+                    flex-shrink: 0;
+                }
+                .slideshow-overlay.layout-split .slideshow-content.split-stack .slideshow-text-panel {
+                    flex: 1;
+                    overflow-y: auto;
+                    max-width: 850px;
+                    align-self: center;
                 }
 
-                /* Vertical split (Image next to text) */
-                .slideshow-overlay.layout-split .slideshow-content.vertical-image {
-                    flex-direction: row;
-                    align-items: flex-start;
+                /* Text-focus: Kort text med mera bildutrymme */
+                .slideshow-overlay.layout-split .slideshow-content.split-text-focus {
+                    flex-direction: column;
                 }
-                .slideshow-overlay.layout-split .slideshow-content.vertical-image img {
-                    max-height: 75vh;
-                    max-width: 50vw;
-                    border-radius: 6px;
+                .slideshow-overlay.layout-split .slideshow-content.split-text-focus img {
+                    max-height: 35%;
+                    width: 100%;
                     object-fit: contain;
+                    border-radius: 6px;
+                    flex-shrink: 0;
                 }
-                .slideshow-overlay.layout-split .slideshow-content.vertical-image .slideshow-text-panel {
+                .slideshow-overlay.layout-split .slideshow-content.split-text-focus .slideshow-text-panel {
                     flex: 1;
-                    min-width: 300px;
-                    max-width: 450px;
-                    max-height: 75vh;
+                    overflow-y: auto;
+                    max-width: 850px;
+                    align-self: center;
                 }
 
                 .slideshow-post-link {
@@ -414,10 +478,27 @@
                     justify-content: space-between;
                     align-items: center;
                     padding: 15px 25px;
-                    background: rgba(0,0,0,0.6);
+                    background: #000;
                     border-top: 1px solid #222;
                     height: 60px;
                     box-sizing: border-box;
+                    transition: opacity 0.4s ease, transform 0.4s ease;
+                }
+
+                /* Auto-hide chrome i helskärmsläge */
+                .slideshow-overlay.chrome-hidden .slideshow-header {
+                    opacity: 0;
+                    transform: translateY(-100%);
+                    pointer-events: none;
+                }
+                .slideshow-overlay.chrome-hidden .slideshow-footer {
+                    opacity: 0;
+                    transform: translateY(100%);
+                    pointer-events: none;
+                }
+                .slideshow-overlay.chrome-hidden .slideshow-nav {
+                    opacity: 0;
+                    pointer-events: none;
                 }
                 .slideshow-playback-controls {
                     display: flex;
@@ -441,6 +522,148 @@
                     font-size: 1rem;
                     color: #aaa;
                     font-variant-numeric: tabular-nums;
+                }
+
+                /* --- Datumväljare (Start-modal) --- */
+                .slideshow-picker-overlay {
+                    display: none;
+                    position: fixed;
+                    inset: 0;
+                    z-index: 100001;
+                    background: rgba(0,0,0,0.95);
+                    backdrop-filter: blur(12px);
+                    -webkit-backdrop-filter: blur(12px);
+                    justify-content: center;
+                    align-items: center;
+                    flex-direction: column;
+                }
+                .slideshow-picker-overlay.active {
+                    display: flex;
+                }
+                .picker-title {
+                    font-family: 'Lora', Georgia, serif;
+                    font-size: 1.6rem;
+                    color: #fff;
+                    margin-bottom: 8px;
+                    font-weight: 400;
+                }
+                .picker-subtitle {
+                    font-family: 'Inter', sans-serif;
+                    font-size: 0.95rem;
+                    color: #8a9a7e;
+                    margin-bottom: 30px;
+                }
+                .picker-wheel-frame {
+                    position: relative;
+                    width: 340px;
+                    height: 250px;
+                    overflow: hidden;
+                    border-radius: 16px;
+                    background: #111;
+                    border: 1px solid #333;
+                    box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+                }
+                .picker-wheel-frame::before,
+                .picker-wheel-frame::after {
+                    content: '';
+                    position: absolute;
+                    left: 0; right: 0;
+                    height: 100px;
+                    z-index: 2;
+                    pointer-events: none;
+                }
+                .picker-wheel-frame::before {
+                    top: 0;
+                    background: linear-gradient(to bottom, #111 0%, transparent 100%);
+                }
+                .picker-wheel-frame::after {
+                    bottom: 0;
+                    background: linear-gradient(to top, #111 0%, transparent 100%);
+                }
+                .picker-highlight {
+                    position: absolute;
+                    top: 50%;
+                    left: 10px; right: 10px;
+                    height: 50px;
+                    transform: translateY(-50%);
+                    border: 2px solid #6b7f61;
+                    border-radius: 10px;
+                    background: rgba(107,127,97,0.12);
+                    z-index: 1;
+                    pointer-events: none;
+                }
+                .picker-scroll {
+                    height: 100%;
+                    overflow-y: scroll;
+                    scroll-snap-type: y mandatory;
+                    -webkit-overflow-scrolling: touch;
+                    scrollbar-width: none;
+                }
+                .picker-scroll::-webkit-scrollbar { display: none; }
+                .picker-scroll-pad {
+                    height: 100px; /* half frame minus half item = centers first/last */
+                }
+                .picker-item {
+                    height: 50px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    scroll-snap-align: center;
+                    font-family: 'Lora', Georgia, serif;
+                    font-size: 1.15rem;
+                    color: #888;
+                    cursor: pointer;
+                    transition: color 0.2s, transform 0.2s;
+                    user-select: none;
+                    flex-direction: column;
+                    gap: 2px;
+                }
+                .picker-item .picker-item-title {
+                    font-family: 'Inter', sans-serif;
+                    font-size: 0.8rem;
+                    color: #666;
+                    max-width: 280px;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                    white-space: nowrap;
+                }
+                .picker-item.selected {
+                    color: #fff;
+                    font-size: 1.25rem;
+                }
+                .picker-item.selected .picker-item-title {
+                    color: #a8cf92;
+                }
+                .picker-actions {
+                    margin-top: 30px;
+                    display: flex;
+                    gap: 15px;
+                }
+                .picker-btn {
+                    padding: 12px 30px;
+                    border: none;
+                    border-radius: 25px;
+                    font-family: 'Inter', sans-serif;
+                    font-size: 1rem;
+                    cursor: pointer;
+                    transition: all 0.2s;
+                }
+                .picker-btn-start {
+                    background: #6b7f61;
+                    color: white;
+                }
+                .picker-btn-start:hover {
+                    background: #7d9472;
+                    transform: translateY(-2px);
+                    box-shadow: 0 4px 15px rgba(107,127,97,0.4);
+                }
+                .picker-btn-cancel {
+                    background: #333;
+                    color: #aaa;
+                }
+                .picker-btn-cancel:hover {
+                    background: #444;
+                    color: #fff;
                 }
 
                 /* Mobilresponsiv filterrad */
@@ -656,25 +879,49 @@
     </div>
 </div>
 
+<!-- Datumväljare (Startskärm) -->
+<div id="slideshow-picker" class="slideshow-picker-overlay">
+    <div class="picker-title">Börja bildspelet</div>
+    <div class="picker-subtitle" id="picker-count">Snurra till det datum du vill starta från</div>
+    <div class="picker-wheel-frame">
+        <div class="picker-highlight"></div>
+        <div class="picker-scroll" id="picker-scroll">
+            <div class="picker-scroll-pad"></div>
+            <!-- Items injected via JS -->
+            <div class="picker-scroll-pad"></div>
+        </div>
+    </div>
+    <div class="picker-actions">
+        <button id="picker-cancel" class="picker-btn picker-btn-cancel">Avbryt</button>
+        <button id="picker-start" class="picker-btn picker-btn-start">▶ Starta</button>
+    </div>
+</div>
+
 <!-- Slideshow Overlay -->
 <div id="slideshow-overlay" class="slideshow-overlay layout-image-only">
     <div class="slideshow-header">
         <div class="slideshow-timeline-container" id="slideshow-timeline">
             <!-- Timeline items injected via JS -->
         </div>
-        <button id="slideshow-layout-toggle" class="slideshow-btn" title="Växla mellan bara bild / bild + text (T)" style="margin-right: 10px; font-size: 1rem;">
-            <span><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:text-bottom; margin-right:4px;"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="9" y1="3" x2="9" y2="21"></line></svg> Layout</span>
+        <button id="slideshow-layout-toggle" class="slideshow-btn" title="Växla mellan helskärm / bild + text (T)" style="margin-right: 10px; font-size: 0.95rem;">
+            <span id="layout-toggle-label">📖 Visa text</span>
+        </button>
+        <button id="slideshow-fullscreen-btn" class="slideshow-btn" title="Fullskärm (F)" style="margin-right: 10px; font-size: 0.95rem;">
+            <span id="fullscreen-label">⛶ Fullskärm</span>
         </button>
         <button id="slideshow-close" class="slideshow-btn slideshow-close-btn" title="Stäng (Esc)">&times;</button>
     </div>
     
     <div class="slideshow-body">
-        <button id="slideshow-prev" class="slideshow-nav slideshow-nav-left" title="Föregående (Pil vänster)">&lsaquo;</button>
+        <button id="slideshow-prev" class="slideshow-nav slideshow-nav-left" title="Föregående (Pil vänster)" aria-label="Föregående bild">&lsaquo;</button>
         
         <div class="slideshow-content">
             <img id="slideshow-img" src="" alt="">
             
-            <!-- Centered info for Image-Only Mode -->
+            <!-- Diskret datum-badge för helskärmsläge -->
+            <div class="slideshow-date-badge" id="slideshow-date-badge"></div>
+            
+            <!-- Centrerad info (dold i båda lägena nu, ersatt av date-badge) -->
             <div class="slideshow-info">
                 <h2 class="slideshow-title-el"></h2>
                 <div class="slideshow-meta-el"></div>
@@ -692,7 +939,7 @@
             </div>
         </div>
 
-        <button id="slideshow-next" class="slideshow-nav slideshow-nav-right" title="Nästa (Pil höger)">&rsaquo;</button>
+        <button id="slideshow-next" class="slideshow-nav slideshow-nav-right" title="Nästa (Pil höger)" aria-label="Nästa bild">&rsaquo;</button>
     </div>
 
     <div class="slideshow-footer">
@@ -923,6 +1170,7 @@
         const slideshowOverlay = document.getElementById('slideshow-overlay');
         const slideshowTimeline = document.getElementById('slideshow-timeline');
         const slideshowImg = document.getElementById('slideshow-img');
+        const slideshowDateBadge = document.getElementById('slideshow-date-badge');
         const slideshowTitleEls = document.querySelectorAll('.slideshow-title-el');
         const slideshowMetaEls = document.querySelectorAll('.slideshow-meta-el');
         const slideshowPostLinkEls = document.querySelectorAll('.slideshow-post-link-el');
@@ -932,14 +1180,40 @@
         const slideshowCurrentIdx = document.getElementById('slideshow-current-idx');
         const slideshowTotalIdx = document.getElementById('slideshow-total-idx');
         const slideshowLayoutToggle = document.getElementById('slideshow-layout-toggle');
+        const layoutToggleLabel = document.getElementById('layout-toggle-label');
         const slideshowContentBox = document.querySelector('.slideshow-content');
+
+        // Svenska månadsnamn för datum-badge
+        const SV_MONTHS = ['januari','februari','mars','april','maj','juni','juli','augusti','september','oktober','november','december'];
+        function formatSwedishDate(dateStr) {
+            // Parsa '5 Feb, 2026' eller liknande till '5 februari 2026'
+            const m = dateStr.match(/(\d+)\s+(\w+),?\s+(\d{4})/);
+            if (!m) return dateStr;
+            const day = m[1];
+            const engMonth = m[2].toLowerCase();
+            const year = m[3];
+            const monthMap = { jan:0, feb:1, mar:2, apr:3, may:4, jun:5, jul:6, aug:7, sep:8, oct:9, nov:10, dec:11 };
+            const monthIdx = monthMap[engMonth.substring(0,3)];
+            if (monthIdx === undefined) return dateStr;
+            return `${day} ${SV_MONTHS[monthIdx]} ${year}`;
+        }
 
         let slideshowItems = [];
         let currentSlideIndex = 0;
         let slideshowTimer = null;
         let isPlaying = false;
+        
+        let currentPostHref = '';
 
         // Layout Toggle
+        function updateToggleLabel() {
+            if (slideshowOverlay.classList.contains('layout-image-only')) {
+                layoutToggleLabel.textContent = '📖 Visa text';
+            } else {
+                layoutToggleLabel.textContent = '🖼️ Helskärm';
+            }
+        }
+
         slideshowLayoutToggle.addEventListener('click', () => {
             if (slideshowOverlay.classList.contains('layout-image-only')) {
                 slideshowOverlay.classList.remove('layout-image-only');
@@ -948,31 +1222,141 @@
                 slideshowOverlay.classList.remove('layout-split');
                 slideshowOverlay.classList.add('layout-image-only');
             }
-            adjustSplitLayoutForCurrentImg();
+            chooseSplitLayout();
+            updateToggleLabel();
         });
 
-        function adjustSplitLayoutForCurrentImg() {
+        const SPLIT_CLASSES = ['split-side', 'split-stack', 'split-text-focus'];
+
+        function clearSplitClasses() {
+            SPLIT_CLASSES.forEach(c => slideshowContentBox.classList.remove(c));
+        }
+
+        function chooseSplitLayout() {
             if (!slideshowOverlay.classList.contains('layout-split')) return;
-            if (slideshowImg.naturalWidth && slideshowImg.naturalHeight) {
-                const ratio = slideshowImg.naturalWidth / slideshowImg.naturalHeight;
-                if (ratio > 1.2) {
-                    slideshowContentBox.classList.add('horizontal-image');
-                    slideshowContentBox.classList.remove('vertical-image');
-                } else {
-                    slideshowContentBox.classList.add('vertical-image');
-                    slideshowContentBox.classList.remove('horizontal-image');
-                }
+            clearSplitClasses();
+
+            const imgW = slideshowImg.naturalWidth || 1;
+            const imgH = slideshowImg.naturalHeight || 1;
+            const ratio = imgW / imgH;
+
+            // Mät textlängd (antal tecken i textpanelen)
+            const textLen = (slideshowFullContent.textContent || '').trim().length;
+            const vw = window.innerWidth;
+            const textPanel = document.querySelector('.slideshow-overlay .slideshow-text-panel');
+
+            // Rensa flerkolumns-klass
+            if (textPanel) textPanel.classList.remove('multi-col');
+
+            if (ratio <= 1.0 && vw > 768) {
+                // Stående bild på bred skärm → sida vid sida
+                slideshowContentBox.classList.add('split-side');
+            } else if (textLen > 600) {
+                // Mycket text → ge texten extra utrymme, bild krymps
+                slideshowContentBox.classList.add('split-text-focus');
+            } else {
+                // Liggande bild eller smal skärm → stapla
+                slideshowContentBox.classList.add('split-stack');
             }
         }
 
-        slideshowImg.addEventListener('load', adjustSplitLayoutForCurrentImg);
+        slideshowImg.addEventListener('load', chooseSplitLayout);
 
         document.getElementById('start-slideshow-btn').addEventListener('click', () => {
-            // Hämta endast de bilder som för närvarande visas efter filtrering
-            slideshowItems = Array.from(items).filter(item => item.style.display !== 'none');
+            // Hämta bilder och vänd till kronologisk ordning (äldst först)
+            slideshowItems = Array.from(items)
+                .filter(item => item.style.display !== 'none')
+                .reverse();
             if (slideshowItems.length === 0) return;
 
-            // Bygg tidslinje
+            // Visa datumväljaren
+            showDatePicker();
+        });
+
+        // --- Datumväljare ---
+        const pickerOverlay = document.getElementById('slideshow-picker');
+        const pickerScroll = document.getElementById('picker-scroll');
+        const pickerCount = document.getElementById('picker-count');
+        let pickerSelectedIdx = 0;
+
+        function showDatePicker() {
+            // Rensa gamla items (behåll padding-divarna)
+            const oldItems = pickerScroll.querySelectorAll('.picker-item');
+            oldItems.forEach(el => el.remove());
+
+            const bottomPad = pickerScroll.querySelector('.picker-scroll-pad:last-child');
+
+            // Bygg unika datum-poster
+            const seenDates = new Set();
+            const pickerEntries = [];
+            slideshowItems.forEach((item, idx) => {
+                const dateStr = item.querySelector('.gallery-date').textContent;
+                const titleStr = item.querySelector('.gallery-title').textContent;
+                if (!seenDates.has(dateStr)) {
+                    seenDates.add(dateStr);
+                    pickerEntries.push({ dateStr, titleStr, idx });
+                }
+            });
+
+            pickerEntries.forEach(entry => {
+                const el = document.createElement('div');
+                el.className = 'picker-item';
+                el.dataset.idx = entry.idx;
+                el.innerHTML = `<span>${entry.dateStr}</span><span class="picker-item-title">${entry.titleStr}</span>`;
+                el.addEventListener('click', () => {
+                    el.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                });
+                pickerScroll.insertBefore(el, bottomPad);
+            });
+
+            pickerCount.textContent = `${slideshowItems.length} bilder i urvalet`;
+            pickerOverlay.classList.add('active');
+            document.body.style.overflow = 'hidden';
+
+            // Scrolla till toppen (första datumet)
+            pickerScroll.scrollTop = 0;
+            updatePickerSelection();
+        }
+
+        function updatePickerSelection() {
+            const pickerItems = pickerScroll.querySelectorAll('.picker-item');
+            const frameRect = pickerScroll.getBoundingClientRect();
+            const centerY = frameRect.top + frameRect.height / 2;
+            let closestIdx = 0;
+            let closestDist = Infinity;
+
+            pickerItems.forEach((el, i) => {
+                const rect = el.getBoundingClientRect();
+                const dist = Math.abs(rect.top + rect.height / 2 - centerY);
+                if (dist < closestDist) {
+                    closestDist = dist;
+                    closestIdx = i;
+                }
+                el.classList.remove('selected');
+            });
+
+            if (pickerItems[closestIdx]) {
+                pickerItems[closestIdx].classList.add('selected');
+                pickerSelectedIdx = parseInt(pickerItems[closestIdx].dataset.idx, 10);
+            }
+        }
+
+        pickerScroll.addEventListener('scroll', () => {
+            requestAnimationFrame(updatePickerSelection);
+        });
+
+        document.getElementById('picker-start').addEventListener('click', () => {
+            pickerOverlay.classList.remove('active');
+            launchSlideshow(pickerSelectedIdx);
+        });
+
+        document.getElementById('picker-cancel').addEventListener('click', () => {
+            pickerOverlay.classList.remove('active');
+            document.body.style.overflow = '';
+        });
+
+        function launchSlideshow(startIdx) {
+            // Bygg tidslinje (nu kronologisk)
             slideshowTimeline.innerHTML = '';
             slideshowItems.forEach((item, idx) => {
                 const dateStr = item.querySelector('.gallery-date').textContent;
@@ -990,11 +1374,12 @@
 
             slideshowTotalIdx.textContent = slideshowItems.length;
             slideshowOverlay.classList.add('active');
-            document.body.style.overflow = 'hidden'; // Lås bakgrundsscroll
+            document.body.style.overflow = 'hidden';
             
-            goToSlide(0);
+            currentPostHref = '';
+            goToSlide(startIdx);
             startSlideshow();
-        });
+        }
 
         document.getElementById('slideshow-close').addEventListener('click', closeSlideshow);
 
@@ -1006,11 +1391,11 @@
 
         document.getElementById('slideshow-prev').addEventListener('click', () => {
             stopSlideshow();
-            goToSlide(currentSlideIndex - 1);
+            advanceSlideshow(false);
         });
         document.getElementById('slideshow-next').addEventListener('click', () => {
             stopSlideshow();
-            goToSlide(currentSlideIndex + 1);
+            advanceSlideshow(true);
         });
 
         slideshowPlayPause.addEventListener('click', () => {
@@ -1035,7 +1420,9 @@
             currentSlideIndex = idx;
             const item = slideshowItems[idx];
             
+            // Crossfade: fade ut + subtil krympning
             slideshowImg.style.opacity = '0';
+            slideshowImg.style.transform = 'scale(0.98)';
             
             setTimeout(() => {
                 slideshowImg.src = item.getAttribute('data-image-src');
@@ -1047,23 +1434,37 @@
                 const speciesStr = speciesSpan ? speciesSpan.textContent : '';
                 const hrefStr = item.getAttribute('href');
                 
-                slideshowTitleEls.forEach(el => el.textContent = titleStr);
-                slideshowMetaEls.forEach(el => el.innerHTML = `${dateStr} &bull; ${speciesStr}`);
-                slideshowPostLinkEls.forEach(el => el.href = hrefStr);
+                // Uppdatera datum-badge med svensk formatering
+                slideshowDateBadge.textContent = formatSwedishDate(dateStr);
                 
-                const template = item.querySelector('.post-content-template');
-                if (template) {
-                    slideshowFullContent.innerHTML = template.innerHTML;
-                } else {
-                    slideshowFullContent.innerHTML = '';
+                slideshowTitleEls.forEach(el => el.textContent = titleStr);
+                slideshowMetaEls.forEach(el => el.innerHTML = `${formatSwedishDate(dateStr)} &bull; ${speciesStr}`);
+                
+                // --- Uppdatera bara texten om vi har bytt notis! ---
+                if (currentPostHref !== hrefStr) {
+                    currentPostHref = hrefStr;
+                    
+                    slideshowPostLinkEls.forEach(el => el.href = hrefStr);
+                    const template = item.querySelector('.post-content-template');
+                    if (template) {
+                        slideshowFullContent.innerHTML = template.innerHTML;
+                    } else {
+                        slideshowFullContent.innerHTML = '';
+                    }
+                    
+                    // Återställ scrollposition för textpanelen
+                    const textPanel = document.querySelector('.slideshow-overlay .slideshow-text-panel');
+                    if (textPanel) textPanel.scrollTop = 0;
                 }
                 
                 slideshowCurrentIdx.textContent = currentSlideIndex + 1;
                 
                 updateTimelineUI();
+                // Crossfade: fade in + återställ skala
                 slideshowImg.style.opacity = '1';
-                adjustSplitLayoutForCurrentImg();
-            }, 150);
+                slideshowImg.style.transform = 'scale(1)';
+                // chooseSplitLayout() triggas via img 'load'-eventet
+            }, 200);
         }
 
         function updateTimelineUI() {
@@ -1078,13 +1479,45 @@
             });
         }
 
+        function advanceSlideshow(forward) {
+            // Smart paginering av text i split-mode
+            if (slideshowOverlay.classList.contains('layout-split')) {
+                const textPanel = document.querySelector('.slideshow-overlay .slideshow-text-panel');
+                if (textPanel && textPanel.scrollHeight > textPanel.clientHeight) {
+                    const maxScroll = textPanel.scrollHeight - textPanel.clientHeight;
+                    const pageScroll = textPanel.clientHeight - 40; // Överlappa 40px för läskontext
+                    
+                    if (forward) {
+                        // Om vi inte har scrollat hela vägen ner än
+                        if (Math.ceil(textPanel.scrollTop) < maxScroll - 5) {
+                            textPanel.scrollBy({ top: pageScroll, behavior: 'smooth' });
+                            return; // Stoppa här, byt INTE bild
+                        }
+                    } else {
+                        // Om vi inte har scrollat hela vägen upp än
+                        if (Math.floor(textPanel.scrollTop) > 5) {
+                            textPanel.scrollBy({ top: -pageScroll, behavior: 'smooth' });
+                            return; // Stoppa här, byt INTE bild
+                        }
+                    }
+                }
+            }
+            
+            // Om vi inte scrollade (eller inte är i split-mode), byt bild
+            if (forward) {
+                goToSlide(currentSlideIndex + 1);
+            } else {
+                goToSlide(currentSlideIndex - 1);
+            }
+        }
+
         function startSlideshow() {
             isPlaying = true;
             slideshowPlayPause.innerHTML = '⏸ Paus';
             clearInterval(slideshowTimer);
             const interval = parseInt(slideshowInterval.value, 10);
             slideshowTimer = setInterval(() => {
-                goToSlide(currentSlideIndex + 1);
+                advanceSlideshow(true);
             }, interval);
         }
 
@@ -1094,18 +1527,72 @@
             clearInterval(slideshowTimer);
         }
 
+        // --- Fullscreen API ---
+        const fullscreenBtn = document.getElementById('slideshow-fullscreen-btn');
+        const fullscreenLabel = document.getElementById('fullscreen-label');
+
+        function toggleFullscreen() {
+            if (document.fullscreenElement) {
+                document.exitFullscreen();
+            } else {
+                slideshowOverlay.requestFullscreen().catch(() => {});
+            }
+        }
+
+        function updateFullscreenLabel() {
+            if (document.fullscreenElement) {
+                fullscreenLabel.textContent = '⛶ Avsluta fullskärm';
+            } else {
+                fullscreenLabel.textContent = '⛶ Fullskärm';
+            }
+        }
+
+        fullscreenBtn.addEventListener('click', toggleFullscreen);
+        document.addEventListener('fullscreenchange', updateFullscreenLabel);
+
+        // --- Auto-hide chrome (biograf-konvention) ---
+        let chromeHideTimer = null;
+        function resetChromeTimer() {
+            slideshowOverlay.classList.remove('chrome-hidden');
+            clearTimeout(chromeHideTimer);
+            // Göm bara i image-only-läge
+            if (slideshowOverlay.classList.contains('layout-image-only')) {
+                chromeHideTimer = setTimeout(() => {
+                    slideshowOverlay.classList.add('chrome-hidden');
+                }, 3000);
+            }
+        }
+        slideshowOverlay.addEventListener('mousemove', resetChromeTimer);
+        slideshowOverlay.addEventListener('click', resetChromeTimer);
+
         // Tangentbordsnavigering
         document.addEventListener('keydown', (e) => {
+            // Escape stänger datumväljaren om den är öppen
+            const pickerOverlay = document.getElementById('slideshow-picker-overlay');
+            if (e.key === 'Escape' && pickerOverlay && pickerOverlay.style.display === 'flex') {
+                pickerOverlay.style.display = 'none';
+                return;
+            }
+
             if (!slideshowOverlay.classList.contains('active')) return;
-            if (e.key === 'Escape') closeSlideshow();
+            if (e.key === 'Escape') {
+                if (document.fullscreenElement) {
+                    return;
+                }
+                closeSlideshow();
+            }
+            if (e.key === 'f' || e.key === 'F') {
+                toggleFullscreen();
+            }
             if (e.key === 't' || e.key === 'T') {
                 slideshowLayoutToggle.click();
             }
-            if (e.key === 'ArrowLeft') { stopSlideshow(); goToSlide(currentSlideIndex - 1); }
-            if (e.key === 'ArrowRight') { stopSlideshow(); goToSlide(currentSlideIndex + 1); }
+            if (e.key === 'ArrowLeft') { stopSlideshow(); advanceSlideshow(false); resetChromeTimer(); }
+            if (e.key === 'ArrowRight') { stopSlideshow(); advanceSlideshow(true); resetChromeTimer(); }
             if (e.key === ' ') {
-                e.preventDefault(); // Förhindra sidscroll
+                e.preventDefault();
                 isPlaying ? stopSlideshow() : startSlideshow();
+                resetChromeTimer();
             }
         });
     });

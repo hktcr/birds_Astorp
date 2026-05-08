@@ -1,0 +1,381 @@
+{
+  "meta": {
+    "project": "Fågelprojekt 2027",
+    "event": "Personlig brainstorming",
+    "date": "2026-05-06",
+    "subtitle": "Idéer för fältprojekt i Åstorps kommun 2027",
+    "presenter": {
+      "name": "Håkan Karlsson",
+      "title": "Kommunornitolog · SkOF-styrelseledamot",
+      "org": "Åstorps kommun"
+    }
+  },
+  "sections": [
+    {
+      "id": "start",
+      "label": "Bakgrund",
+      "color": "#2B5A2B"
+    },
+    {
+      "id": "rapphona",
+      "label": "A. Rapphöna",
+      "color": "#c2410c"
+    },
+    {
+      "id": "nyvang",
+      "label": "B. Nyvångshögen",
+      "color": "#7e22ce"
+    },
+    {
+      "id": "prasta",
+      "label": "C. Prästamarken",
+      "color": "#16a34a"
+    },
+    {
+      "id": "ronnea",
+      "label": "D. Rönneåprojektet",
+      "color": "#0ea5e9"
+    },
+    {
+      "id": "syntes",
+      "label": "Syntes",
+      "color": "#eab308"
+    }
+  ],
+  "slides": [
+    {
+      "id": "title",
+      "section": "start",
+      "type": "title",
+      "title": "Fågelprojekt 2027",
+      "subtitle": "Idéer för fältprojekt i Åstorps kommun",
+      "note": "Brainstorming · Maj 2026",
+      "background": "assets/hero_landscape.png"
+    },
+    {
+      "id": "context-quote",
+      "section": "start",
+      "type": "quote",
+      "text": "93 km². Ingen kust. Inga sjöar. Men Söderåsens raviner, Rönneåns dalgång och ett öppet jordbrukslandskap. *Det finns gott om fågel.*",
+      "author": "astorpsfaglar.se",
+      "style": "typewriter"
+    },
+    {
+      "id": "2026-foundation",
+      "section": "start",
+      "type": "number-wall",
+      "title": "Vad vi byggt 2026",
+      "cardTitle": "2026 — Grunden",
+      "items": [
+        { "value": "1647", "label": "rutor i 250m-grid", "color": "#2B5A2B" },
+        { "value": "384", "label": "observationer i registret", "color": "#22c55e" },
+        { "value": "120+", "label": "arter på årslistan", "color": "#eab308" },
+        { "value": "1", "label": "råkinventering genomförd", "color": "#f97316" }
+      ]
+    },
+    {
+      "id": "timeline-2026",
+      "section": "start",
+      "type": "timeline-vertical",
+      "title": "Erfarenheter från råkprojektet",
+      "cardTitle": "Råkprojektet — tidslinje",
+      "nodes": [
+        {
+          "year": "26 mars",
+          "text": "Möte med Miljöförvaltningen",
+          "sub": "Dialogen med Boban öppnade dörren. Strategin: Push & Pull — inte panik."
+        },
+        {
+          "year": "3 april",
+          "text": "GIS-verktyg byggt",
+          "sub": "Admin-gränssnitt + publik kartvy. Punkt-baserad databas (ej rut-baserad). Clean Slate-VEP."
+        },
+        {
+          "year": "April–maj",
+          "text": "Fältinventering",
+          "sub": "Inventeringsdata registrerad med exakt koordinat, datum och antal bon per träddunge."
+        }
+      ]
+    },
+    {
+      "id": "rapphona-hero",
+      "section": "rapphona",
+      "type": "hero-image",
+      "title": "Rapphöna — Perdix perdix",
+      "cardTitle": "A. Rapphöna",
+      "image": "assets/rapphona.png",
+      "caption": "Rödlistad jordbruksfågel. Var vanlig i NV Skåne — nu fragmenterad."
+    },
+    {
+      "id": "rapphona-decline",
+      "section": "rapphona",
+      "type": "bullet-build",
+      "title": "Varför minskar rapphönan?",
+      "cardTitle": "Rapphöna — hot",
+      "bullets": [
+        "Försvunna kantzoner och häckar i storskaligt jordbruk",
+        "Brist på insekter — kycklingarna svälter (ogräsbekämpning)",
+        "Ökat predationstryck i öppna landskap utan skydd",
+        "Fragmenterad population — isolerade grupper utan kontakt"
+      ]
+    },
+    {
+      "id": "rapphona-method",
+      "section": "rapphona",
+      "type": "comparison",
+      "title": "Inventeringsalternativ",
+      "cardTitle": "Rapphöna — metod",
+      "left": {
+        "title": "Spelande hanar",
+        "items": [
+          "Kvällslyssning mar–apr",
+          "Standardiserade punkter",
+          "\"Kirrande\" spel i skymning",
+          "Låg utrustningströskel"
+        ]
+      },
+      "right": {
+        "title": "Ströobs + höstflockar",
+        "items": [
+          "Löpande registrering helår",
+          "Kullstorlekar aug–okt",
+          "Integreras i befintliga rundor",
+          "Mått på häckningsframgång"
+        ]
+      }
+    },
+    {
+      "id": "nyvang-hero",
+      "section": "nyvang",
+      "type": "hero-image",
+      "title": "Nyvångshögen — Från kol till fågelrevir",
+      "cardTitle": "B. Nyvångshögen",
+      "image": "assets/nyvangshogen.png",
+      "caption": "~60 m hög slaggvarp. 2 miljoner ton gråberg. Skandinaviens största stenkolsgruva (1911–1966)."
+    },
+    {
+      "id": "nyvang-concept",
+      "section": "nyvang",
+      "type": "box-reveal",
+      "title": "Den industriella ön",
+      "cardTitle": "Nyvångshögen — koncept",
+      "boxes": [
+        {
+          "label": "🏔️ Topografi",
+          "content": "50–60 m hög pyramid mitt i slättens monotoni. Varma sydsluttningar, vindskyddade läsidor, temperaturgradienter."
+        },
+        {
+          "label": "🌿 Vegetation",
+          "content": "Pionjärskog, ruderatmark, buskage av björk och sälg. Helt annan karaktär än omgivande åkermark."
+        },
+        {
+          "label": "🐦 Förväntade arter",
+          "content": "Hämpling, törnsångare, sånglärka, ängspiplärka, stenskvätta? Hackspettar i stammar? Rovfåglar som utkiksplats?"
+        },
+        {
+          "label": "📐 Metod",
+          "content": "6–8 morgonbesök apr–jun. Alla sjungande/varnande fåglar prickas på karta. Revirkluster sammanställs."
+        }
+      ]
+    },
+    {
+      "id": "prasta-hero",
+      "section": "prasta",
+      "type": "hero-image",
+      "title": "Prästamarken — Naturreservat vid Kvidinge",
+      "cardTitle": "C. Prästamarken",
+      "image": "assets/prastamarken.png",
+      "caption": "Kommunalt naturreservat. 200–300-åriga ekar. Drygt 40 fågelarter. Potentiell häckning av mindre hackspett."
+    },
+    {
+      "id": "prasta-history",
+      "section": "prasta",
+      "type": "timeline-vertical",
+      "title": "Dina egna data — fenologi sedan 2009",
+      "cardTitle": "Prästamarken — historik",
+      "nodes": [
+        {
+          "year": "2009",
+          "text": "Bofink · Större hackspett",
+          "sub": "Spel/sång och revir noterade. Första fenologidata från lokalen."
+        },
+        {
+          "year": "2012",
+          "text": "Näktergal · Gråhäger · Gulsparv",
+          "sub": "Näktergalen sjöng i maj. Gråhäger förbiflygande i januari."
+        },
+        {
+          "year": "2016",
+          "text": "Rörhöna i dammarna",
+          "sub": "Rörhöna simmande i Prästamarkens märgelgravar. Lövsångare vid Makadammen samma dag."
+        },
+        {
+          "year": "2026",
+          "text": "Ringduva (50 ex) vintertid",
+          "sub": "Stor vinterflock. Gransångare 2019 bekräftad. Lokalen lever!"
+        }
+      ]
+    },
+    {
+      "id": "prasta-target",
+      "section": "prasta",
+      "type": "bullet-build",
+      "title": "Vad vi letar efter",
+      "cardTitle": "Prästamarken — fokusarter",
+      "bullets": [
+        "Mindre hackspett — rödlistad, kan häcka i de gamla ekarna",
+        "Skogsduva — hålhäckare i ädellöv, ofta förbisedd",
+        "Svarthätta + trädgårdssångare — undervegetationens mästare",
+        "Kattuggla — nattbesök i april kan avslöja revir",
+        "Rörhöna — märgelgravarna som vattenhabitat"
+      ]
+    },
+    {
+      "id": "ronnea-hero",
+      "section": "ronnea",
+      "type": "hero-image",
+      "title": "Rönneåprojektet — \"Ån vaknar\"",
+      "cardTitle": "D. Rönneåprojektet",
+      "image": "assets/dam_removal.png",
+      "caption": "6 maj 2026: Domstolen godkänner rivning av 3 kraftverk. Utrivning tidigast försommaren 2027."
+    },
+    {
+      "id": "ronnea-timeline",
+      "section": "ronnea",
+      "type": "timeline-vertical",
+      "title": "Dammrivningens kronologi",
+      "cardTitle": "Rönneå — tidslinje",
+      "nodes": [
+        {
+          "year": "6 maj 2026",
+          "text": "Domstolsbeslut",
+          "sub": "Mark- och miljödomstolen Växjö. Tillstånd för utrivning av Forsmöllan, Klippan Pappersbruket och Stackarp."
+        },
+        {
+          "year": "Vår 2027",
+          "text": "Avsänkning av dammar",
+          "sub": "Vattennivån sänks gradvis. Sediment börjar röra sig nedströms."
+        },
+        {
+          "year": "Sommar 2027",
+          "text": "Utrivning påbörjas",
+          "sub": "10+ mil åsträcka öppnas för vandrande fisk. Atlantlax, ål, flodpärlmussla."
+        },
+        {
+          "year": "2027–2028+",
+          "text": "Ekologisk transition",
+          "sub": "Ändrade vattenstånd, nytt sedimenttransport, ny strömhastighet. Vad händer med fåglarna?"
+        }
+      ]
+    },
+    {
+      "id": "ronnea-species",
+      "section": "ronnea",
+      "type": "box-reveal",
+      "title": "Fokusarter längs ån",
+      "cardTitle": "Rönneå — arter att följa",
+      "boxes": [
+        {
+          "label": "🐟➡️🐦 Åvattenarter",
+          "content": "Strömstare, forsärla, kungsfiskare — direkt beroende av strömmande vatten och bottenfauna."
+        },
+        {
+          "label": "🦅 Rovfåglar",
+          "content": "Havsörn och fiskgjuse — responderar de på ändrade fiskbestånd? Mer fisk = mer rovfågel?"
+        },
+        {
+          "label": "🦆 Mader & våtmark",
+          "content": "Kungsgårdsmaderna, Körslättabäcken, Pumphusmaderna. Vadare, änder, gäss. Vattenståndsförändringar?"
+        },
+        {
+          "label": "📊 Baslinje",
+          "content": "2027 = unikt tillfälle att dokumentera INNAN förändringarna slår igenom nedströms i Åstorp."
+        }
+      ]
+    },
+    {
+      "id": "ronnea-locations",
+      "section": "ronnea",
+      "type": "map-pins",
+      "title": "Befintliga lokaler längs Rönneå",
+      "cardTitle": "Rönneå — lokaler",
+      "mapImage": "assets/dark_topo.png",
+      "pins": [
+        { "label": "Bron vid Rönneå", "x": 72, "y": 25, "detail": "Sönnarslöv. Havsörn startade Fågelåret härifrån." },
+        { "label": "Tomarps Ene", "x": 55, "y": 45, "detail": "Naturområde med gamla ekar. Forsärla, strömstare." },
+        { "label": "Kungsgårdsmaderna", "x": 45, "y": 55, "detail": "Blöta ängsmarker. Vadare, änder, bläsgäss." },
+        { "label": "Kölebäckens mader", "x": 40, "y": 40, "detail": "Våtmark. Skedand, morkulla, sångsvan." },
+        { "label": "Pumphusmaderna", "x": 50, "y": 60, "detail": "Trana, bläsand, enkelbeckasin." },
+        { "label": "Körslättabäckens våtmarker", "x": 35, "y": 50, "detail": "Dubbeltrast, turkduva, taltrast." }
+      ]
+    },
+    {
+      "id": "syntes-comparison",
+      "section": "syntes",
+      "type": "comparison",
+      "title": "Projekten sida vid sida",
+      "cardTitle": "Jämförelse",
+      "left": {
+        "title": "Revirkartering (B/C)",
+        "items": [
+          "6–8 morgnar apr–jun",
+          "Avgränsad yta",
+          "Standardiserad metod",
+          "Baslinjestudier"
+        ]
+      },
+      "right": {
+        "title": "Helårsprojekt (A/D)",
+        "items": [
+          "Löpande hela 2027",
+          "Stort geografiskt område",
+          "Flexibel metodik",
+          "Fenologisk koppling"
+        ]
+      }
+    },
+    {
+      "id": "syntes-key",
+      "section": "syntes",
+      "type": "giant-text",
+      "text": "Projekten utesluter inte varandra.",
+      "cardTitle": "Nyckelinsikt"
+    },
+    {
+      "id": "syntes-combo",
+      "section": "syntes",
+      "type": "process-chain",
+      "title": "Ett möjligt 2027-program",
+      "cardTitle": "Kombinerat program",
+      "steps": [
+        { "label": "Jan–mar", "text": "Vinterrapphöns & planering" },
+        { "label": "Apr–jun", "text": "Revirkartering (Prästamarken ELLER Nyvångshögen)" },
+        { "label": "Helår", "text": "Rönneåprojektet — löpande stationer" },
+        { "label": "Aug–okt", "text": "Rapphöne-kullräkning i stubbåkrarna" },
+        { "label": "Dec", "text": "Sammanställning & rapport" }
+      ]
+    },
+    {
+      "id": "next-steps",
+      "section": "syntes",
+      "type": "bullet-build",
+      "title": "Nästa steg",
+      "cardTitle": "Att göra",
+      "bullets": [
+        "Håkans prioritering — vilka idéer väcker mest?",
+        "Sondera: Länsstyrelsen, Kenneth/SkOF, Klippans kommun",
+        "Detaljerade inventeringsprotokoll (höst 2026)",
+        "Systemdesign — nya moduler i GAIA-infrastrukturen",
+        "Fler idéer? Vad finns i bakfickan?"
+      ]
+    },
+    {
+      "id": "outro",
+      "section": "syntes",
+      "type": "quote",
+      "text": "Ån vaknar. Skogen väntar. Fälten behöver ögon. *Det finns gott om fågel.*",
+      "author": "",
+      "style": "typewriter"
+    }
+  ]
+}

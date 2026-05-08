@@ -189,12 +189,23 @@
     function drawZones(ctx, cx, cy, outerR, innerR, t) {
         var zones = [];
 
-        if (t.astronomicalDawn && t.astronomicalDusk) {
-            // Natt (före astronomisk gryning + efter astronomisk skymning)
-            zones.push({ from: 0, to: minOfDay(t.astronomicalDawn), color: '#1a1a2e' });
-            zones.push({ from: minOfDay(t.astronomicalDusk), to: 1440, color: '#1a1a2e' });
+        // 1. Determine the darkest phase reached during the night to use as a base ring
+        var baseColor = '#1a1a2e'; // Default to true night
+        if (!t.astronomicalDawn && t.nauticalDawn) {
+            baseColor = '#2d3561'; // Continues in astronomical twilight
+        } else if (!t.nauticalDawn && t.civilDawn) {
+            baseColor = '#4a6fa5'; // Continues in nautical twilight
+        } else if (!t.civilDawn && t.sunrise) {
+            baseColor = '#e8a87c'; // Continues in civil twilight
+        } else if (!t.sunrise) {
+            baseColor = '#87ceeb'; // Midnight sun
+        }
 
-            // Astronomisk skymning
+        // Add base ring covering the entire 24h
+        zones.push({ from: 0, to: 1440, color: baseColor });
+
+        // 2. Add the brighter zones on top
+        if (t.astronomicalDawn && t.astronomicalDusk) {
             zones.push({ from: minOfDay(t.astronomicalDawn), to: minOfDay(t.nauticalDawn), color: '#2d3561' });
             zones.push({ from: minOfDay(t.nauticalDusk), to: minOfDay(t.astronomicalDusk), color: '#2d3561' });
         }
@@ -213,6 +224,7 @@
             zones.push({ from: minOfDay(t.sunrise), to: minOfDay(t.sunset), color: '#87ceeb' });
         }
 
+        // Render all zones
         zones.forEach(function (z) {
             var a1 = minToAngle(z.from);
             var a2 = minToAngle(z.to);

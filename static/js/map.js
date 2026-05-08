@@ -52,7 +52,8 @@ document.addEventListener('DOMContentLoaded', function () {
                 color: 'transparent',
                 fillColor: '#4b5563',
                 fillOpacity: 0.4,
-                interactive: false
+                interactive: false,
+                noClip: true
             }).addTo(map);
 
             // Lägg också till en kraftig gräns runt kommunen
