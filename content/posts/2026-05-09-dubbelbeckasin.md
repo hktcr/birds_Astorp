@@ -3,6 +3,12 @@ title: "Dubbelbeckasin!"
 date: 2026-05-09T21:00:00+02:00
 location: "Tomarps Ene · Kungsgårdsmaderna"
 species: [Dubbelbeckasin, Gräshoppssångare, Gråhäger, Buskskvätta, Lövsångare, Rödstjärt]
+images:
+  - url: "/images/2026-05-09-dubbelbeckasin/kungsgardsmaderna.jpg"
+    name: "Kungsgårdsmaderna"
+    alt: "Kungsgårdsmaderna i skymningen"
+    categories:
+      - Landskap
 ---
 ![Kungsgårdsmaderna i skymningen](/images/2026-05-09-dubbelbeckasin/kungsgardsmaderna.jpg)
 

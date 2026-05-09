@@ -6,6 +6,9 @@ build:
   list: never
 species:
   - "Aftonfalk"
+  - "Dubbelbeckasin"
+  - "Grönsångare"
+  - "Trädgårdssångare"
   - "Backsvala"
   - "Bergfink"
   - "Berguv"
