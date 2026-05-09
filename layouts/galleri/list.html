@@ -373,8 +373,8 @@
                 .slideshow-text-panel {
                     color: #e0e0e0;
                     font-family: 'Inter', sans-serif;
-                    font-size: 1rem;
-                    line-height: 1.7;
+                    font-size: 1.15rem;
+                    line-height: 1.8;
                     overflow-y: auto;
                     scrollbar-width: thin;
                     scrollbar-color: #465c3d transparent;
@@ -945,11 +945,11 @@
     <div class="slideshow-footer">
         <div class="slideshow-playback-controls">
             <button id="slideshow-play-pause" class="slideshow-btn" title="Spela/Pausa (Mellanslag)">▶ Spela</button>
-            <select id="slideshow-interval" class="slideshow-select" title="Tid per bild">
-                <option value="3000">3 sek</option>
-                <option value="5000" selected>5 sek</option>
-                <option value="8000">8 sek</option>
-                <option value="15000">15 sek</option>
+            <select id="slideshow-interval" class="slideshow-select" title="Lästakt (1 = långsam)">
+                <option value="10">Lästakt 1</option>
+                <option value="15">Lästakt 2</option>
+                <option value="20" selected>Lästakt 3</option>
+                <option value="30">Lästakt 4</option>
             </select>
         </div>
         <div class="slideshow-counter">
@@ -1391,11 +1391,11 @@
 
         document.getElementById('slideshow-prev').addEventListener('click', () => {
             stopSlideshow();
-            advanceSlideshow(false);
+            goToSlide(currentSlideIndex - 1);
         });
         document.getElementById('slideshow-next').addEventListener('click', () => {
             stopSlideshow();
-            advanceSlideshow(true);
+            goToSlide(currentSlideIndex + 1);
         });
 
         slideshowPlayPause.addEventListener('click', () => {
@@ -1412,6 +1412,44 @@
             }
         });
 
+        let scrollAnimFrame;
+
+        function startAutoScroll(duration) {
+            const textPanel = document.querySelector('.slideshow-overlay .slideshow-text-panel');
+            if (!textPanel || !slideshowOverlay.classList.contains('layout-split')) return;
+            
+            // Ge läsaren 2 sekunder att fästa blicken innan scroll börjar
+            const delay = 2000;
+            const scrollDuration = Math.max(1000, duration - delay - 1000); // Sluta scrolla 1 sek före bytet
+            
+            // Vi mäter scroll-behovet dynamiskt efter texten har renderats
+            setTimeout(() => {
+                const maxScroll = textPanel.scrollHeight - textPanel.clientHeight;
+                if (maxScroll <= 0) return; // Behöver inte scrolla
+                
+                const startScroll = textPanel.scrollTop;
+                const startTime = performance.now();
+                
+                function animateScroll(currentTime) {
+                    if (!isPlaying) return; // Avbryt om pausad
+                    
+                    const elapsed = currentTime - startTime;
+                    let progress = elapsed / scrollDuration;
+                    if (progress > 1) progress = 1;
+                    
+                    // Linear scroll-kurva är bäst för läsning
+                    textPanel.scrollTop = startScroll + (maxScroll * progress);
+                    
+                    if (progress < 1) {
+                        scrollAnimFrame = requestAnimationFrame(animateScroll);
+                    }
+                }
+                
+                cancelAnimationFrame(scrollAnimFrame);
+                scrollAnimFrame = requestAnimationFrame(animateScroll);
+            }, delay);
+        }
+
         function goToSlide(idx) {
             if (slideshowItems.length === 0) return;
             if (idx < 0) idx = slideshowItems.length - 1;
@@ -1420,6 +1458,10 @@
             currentSlideIndex = idx;
             const item = slideshowItems[idx];
             
+            // Stoppa eventuell pågående scroll
+            cancelAnimationFrame(scrollAnimFrame);
+            clearTimeout(slideshowTimer);
+
             // Crossfade: fade ut + subtil krympning
             slideshowImg.style.opacity = '0';
             slideshowImg.style.transform = 'scale(0.98)';
@@ -1463,7 +1505,21 @@
                 // Crossfade: fade in + återställ skala
                 slideshowImg.style.opacity = '1';
                 slideshowImg.style.transform = 'scale(1)';
-                // chooseSplitLayout() triggas via img 'load'-eventet
+                
+                // Om vi spelar, beräkna dynamisk tid baserat på textlängd
+                if (isPlaying) {
+                    const charsPerSec = parseInt(slideshowInterval.value, 10);
+                    const textLen = (slideshowFullContent.textContent || '').trim().length;
+                    const totalChars = textLen + 100; // Lägg till lite buffert för rubrik
+                    let duration = Math.max(4000, (totalChars / charsPerSec) * 1000);
+                    
+                    startAutoScroll(duration);
+                    
+                    slideshowTimer = setTimeout(() => {
+                        goToSlide(currentSlideIndex + 1);
+                    }, duration);
+                }
+
             }, 200);
         }
 
@@ -1479,52 +1535,18 @@
             });
         }
 
-        function advanceSlideshow(forward) {
-            // Smart paginering av text i split-mode
-            if (slideshowOverlay.classList.contains('layout-split')) {
-                const textPanel = document.querySelector('.slideshow-overlay .slideshow-text-panel');
-                if (textPanel && textPanel.scrollHeight > textPanel.clientHeight) {
-                    const maxScroll = textPanel.scrollHeight - textPanel.clientHeight;
-                    const pageScroll = textPanel.clientHeight - 40; // Överlappa 40px för läskontext
-                    
-                    if (forward) {
-                        // Om vi inte har scrollat hela vägen ner än
-                        if (Math.ceil(textPanel.scrollTop) < maxScroll - 5) {
-                            textPanel.scrollBy({ top: pageScroll, behavior: 'smooth' });
-                            return; // Stoppa här, byt INTE bild
-                        }
-                    } else {
-                        // Om vi inte har scrollat hela vägen upp än
-                        if (Math.floor(textPanel.scrollTop) > 5) {
-                            textPanel.scrollBy({ top: -pageScroll, behavior: 'smooth' });
-                            return; // Stoppa här, byt INTE bild
-                        }
-                    }
-                }
-            }
-            
-            // Om vi inte scrollade (eller inte är i split-mode), byt bild
-            if (forward) {
-                goToSlide(currentSlideIndex + 1);
-            } else {
-                goToSlide(currentSlideIndex - 1);
-            }
-        }
-
         function startSlideshow() {
             isPlaying = true;
             slideshowPlayPause.innerHTML = '⏸ Paus';
-            clearInterval(slideshowTimer);
-            const interval = parseInt(slideshowInterval.value, 10);
-            slideshowTimer = setInterval(() => {
-                advanceSlideshow(true);
-            }, interval);
+            // Starta om aktuell slide för att beräkna duration/scroll korrekt
+            goToSlide(currentSlideIndex);
         }
 
         function stopSlideshow() {
             isPlaying = false;
             slideshowPlayPause.innerHTML = '▶ Spela';
-            clearInterval(slideshowTimer);
+            clearTimeout(slideshowTimer);
+            cancelAnimationFrame(scrollAnimFrame);
         }
 
         // --- Fullscreen API ---
@@ -1587,8 +1609,8 @@
             if (e.key === 't' || e.key === 'T') {
                 slideshowLayoutToggle.click();
             }
-            if (e.key === 'ArrowLeft') { stopSlideshow(); advanceSlideshow(false); resetChromeTimer(); }
-            if (e.key === 'ArrowRight') { stopSlideshow(); advanceSlideshow(true); resetChromeTimer(); }
+            if (e.key === 'ArrowLeft') { stopSlideshow(); goToSlide(currentSlideIndex - 1); resetChromeTimer(); }
+            if (e.key === 'ArrowRight') { stopSlideshow(); goToSlide(currentSlideIndex + 1); resetChromeTimer(); }
             if (e.key === ' ') {
                 e.preventDefault();
                 isPlaying ? stopSlideshow() : startSlideshow();
