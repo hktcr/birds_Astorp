@@ -11,6 +11,6 @@ images:
       - Landskap
 ---
 
-Söderåsen grönskar. Grönare för var dag som går. Morgonen bjöd på trädgårdssångare nere vid ån och eftermiddagen bjöd på grönsångare uppe på åsen.
+Söderåsen grönskar. Grönare för var dag som går. Morgonen bjöd på trädgårdssångare nere vid ån, medan eftermiddagen svarade med grönsångare uppe på åsen.
 
 ![Söderåsen grönskar](/images/2026-05-08-soderasen-gronskar/soderasen-gronskar.jpg)
