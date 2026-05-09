@@ -10,7 +10,6 @@ images:
     categories:
       - Landskap
 ---
-![Kungsgårdsmaderna i skymningen](/images/2026-05-09-dubbelbeckasin/kungsgardsmaderna.jpg)
 
 Jag kom i god tid. Kvällen var helt vindstilla. Från en utsiktspunkt i kanten av Tomarps Ene väntade jag in skymningen, omgiven av sjungande tättingar: lövsångare, buskskvättor och rödstjärtar. En halvtimme innan solen skulle försvinna flyttade jag ut mot maderna, gjorde mig hemmastadd bland tuvorna och hällde upp kaffet. Ovanför mig lämnade den blå himlen långsamt över till en orange solnedgång. Djuren som släppts ut på bete höll till strax nedanför Kungsgården. Det var skönt att inte behöva trängas med dem ute på maderna idag. Sedan var det bara att vänta in mörkret.
 
@@ -21,5 +20,6 @@ Jag tyckte mig höra spelet redan strax efter solnedgången. Egentligen var jag 
 Som tur är började det sporadiska spelet en stund senare på ett annat håll, närmare den här gången. Med största sannolikhet var det en annan fågel, eftersom jag tyckte mig ana spel i den första riktningen ytterligare någon gång. För noggrannhetens skull markerar jag viss osäkerhet i anteckningarna.
 
 Kvällens dubbelbeckasiner är mer än bara ett kryss på årslistan. Det är ett högtidligt och kortvarigt möte längs deras resa upp mot fjällvärlden. I takt med att våtmarkerna dikades ut och det gamla rika jordbrukslandskapet gav vika för industrijordbruk tystnade dubbelbeckasinernas spel plats för plats, tills den enda fristaden som stod att finna var längst upp i norr. Men ikväll, på Kungsgårdsmaderna, lät det för en stund precis som förr.
+![Kungsgårdsmaderna i skymningen](/images/2026-05-09-dubbelbeckasin/kungsgardsmaderna.jpg)
 
 *Fågelåret i Åstorp, 132/150*
