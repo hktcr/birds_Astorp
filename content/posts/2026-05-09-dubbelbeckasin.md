@@ -16,7 +16,7 @@ Jag kom i god tid. Kvällen var helt vindstilla. Från en utsiktspunkt i kanten 
 
 Solen gick ner prick 21:00. Fram till 21:50 råder den borgerliga skymningen, den tid då ögat fortfarande kan uppfatta färg. Sedan följer den nautiska skymningen då världen istället blir svartvit. Min erfarenhet är att chansen för dubbelbeckasinspel är som störst exakt i denna övergång.
 
-Jag tyckte mig höra spelet redan strax efter solnedgången. Egentligen var jag säker, men det var ett tag sedan sist och lätet låg på gränsen till hörbart. Innan jag helt kunde bekräfta det märkte jag plötsligt att en räv hade smugit sig fram mot mig lågt mellan starrtuvorna. När den fick syn på mig for den iväg, stannade vid madkanten och började skälla. En annan räv svarade omedelbart. I den mycket högljudda kvartsduett som följde var chanserna att uppfatta någon dubbelbeckasin plötsligt mycket liten.
+Jag tyckte mig höra spelet redan strax efter solnedgången. Egentligen var jag säker, men lätet låg på gränsen till hörbart. Innan jag helt kunde bekräfta det märkte jag plötsligt att en räv hade smugit sig fram mot mig lågt mellan starrtuvorna. När den fick syn på mig for den iväg, stannade vid madkanten och började skälla. En annan räv svarade omedelbart. I den mycket högljudda kvartsduett som följde var chanserna att uppfatta någon dubbelbeckasin plötsligt mycket liten.
 
 Som tur är började det sporadiska spelet en stund senare på ett annat håll, närmare den här gången. Med största sannolikhet var det en annan fågel, eftersom jag tyckte mig ana spel i den första riktningen ytterligare någon gång. För noggrannhetens skull markerar jag viss osäkerhet i anteckningarna.
 
