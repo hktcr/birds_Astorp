@@ -1,6 +1,6 @@
 ---
 title: "Dubbelbeckasin!"
-date: 2026-05-09T21:00:00+02:00
+date: 2026-05-08T23:00:00+02:00
 location: "Tomarps Ene · Kungsgårdsmaderna"
 species: [Dubbelbeckasin, Gräshoppssångare, Gråhäger, Buskskvätta, Lövsångare, Rödstjärt]
 images:
@@ -22,4 +22,4 @@ Som tur är började det sporadiska spelet en stund senare på ett annat håll, 
 
 Kvällens dubbelbeckasiner är mer än bara ett kryss på årslistan. Det är ett högtidligt och kortvarigt möte längs deras resa upp mot fjällvärlden. I takt med att våtmarkerna dikades ut och det gamla rika jordbrukslandskapet gav vika för industrijordbruk tystnade dubbelbeckasinernas spel plats för plats, tills den enda fristaden som stod att finna var längst upp i norr. Men ikväll, på Kungsgårdsmaderna, lät det för en stund precis som förr.
 
-*Fågelåret i Åstorp, [X]/150*
+*Fågelåret i Åstorp, 132/150*
