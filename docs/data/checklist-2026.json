@@ -1061,6 +1061,14 @@
             "location": "Kungsgårdsmaderna",
             "lat": 56.15343,
             "lng": 13.06878
+        },
+        {
+            "species": "Backsvala",
+            "latin": "Riparia riparia",
+            "date": "2026-05-10",
+            "location": "Grustagen mellan Kvidinge och Maglaby",
+            "lat": 56.11749,
+            "lng": 13.06674
         }
     ]
 }

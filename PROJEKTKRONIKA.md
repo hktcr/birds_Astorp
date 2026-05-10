@@ -45,3 +45,14 @@ title: Fåglar/astorp-faglar Krönika
 - **Språklig stil:** Genomfört strikt tillämpning av Håkan Karlssons språkliga regler (inga em-dashes · användning av medelpunkt som separator · exakthets-principen).
 - **Logik:** Heuristisk analys där tryckfall > 0.8 hPa och fuktighet > 80% indikerar förhöjd regnrisk.
 
+---
+
+## Session 2026-05-09
+*Observatör: gAIa*
+**Status:** `Aktiv` (Gallerifelsökning och introduktion av Vykorts-genren)
+
+### 🌱 Lärdomar
+- **Vykorts-konceptet ("Micro-post"):** För att lösa det strukturella problemet att galleriet kräver en `.md`-post, skapades "Vykortet" som en redaktionell form (snarare än en ny kodtyp). Vykortet är en vanlig notis men med enbart en stämningsbild och exakt *3-4 rader skarp kontext*. Detta undviker teknisk skuld (inga nya Hugo-layouter behövs) och upprätthåller den litterära kvaliteten (förhindrar dumpning av tysta bilder).
+- **Redaktionell Sparring:** gAIa bröt under sessionen mot "Author Sovereignty / Anti-Laziness Pact" genom att publicera ett utkast utan redaktionell granskning. Förbättring: gAIa måste alltid använda `/redaktör`-läget och ge respons eller presentera alternativ när användaren ger ett råmanus, även för mycket korta texter.
+- **Automatisera Thumbnails:** Insåg att avsaknad av miniatyrfiler kraschade bildvisningen i galleriet. `generate-thumbnails.sh` byggs därför in som ett obligatoriskt för-steg i `deploy.sh`.
+

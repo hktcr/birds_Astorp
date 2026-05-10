@@ -4,6 +4,9 @@
 # OBS: gAIa ska ALDRIG köra detta script direkt — använd /Åstorp-2026 steg D.
 set -e
 
+echo "🖼️  Genererar thumbnails (800px bredd)..."
+bash scripts/generate-thumbnails.sh
+
 echo "🔨 Building Hugo..."
 hugo --minify
 
