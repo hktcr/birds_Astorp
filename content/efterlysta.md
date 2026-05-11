@@ -39,35 +39,7 @@ Efter en systematisk genomgång av Skånes fågelfauna har jag valt ut 54 arter 
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-/* Base missing status */
-.bounty-status {
-    position: absolute;
-    top: 10px;
-    right: 10px;
-    z-index: 10;
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    font-weight: 700;
-    color: #6b7280;
-    border: 1px solid #9ca3af;
-    padding: 2px 6px;
-    border-radius: 4px;
-    transform: rotate(5deg);
-    transition: all 0.3s;
-}
-
-/* Season: No unique locations, but right month */
-.bounty-card.heat-season {
-    border-color: rgba(250, 204, 21, 0.5);
-    box-shadow: 0 0 15px rgba(250, 204, 21, 0.1);
-}
-.bounty-card.heat-season .bounty-status {
-    color: #ca8a04;
-    border-color: #facc15;
-}
-
-/* Level 1: Lokalt fynd (1-4 locations) - Gul */
+/* Level 1: Lokalt inflöde (5-9 locations) - Gul */
 .bounty-card.heat-1 {
     border-color: rgba(234, 179, 8, 0.8);
     box-shadow: 0 0 15px rgba(234, 179, 8, 0.2);
@@ -76,14 +48,8 @@ Efter en systematisk genomgång av Skånes fågelfauna har jag valt ut 54 arter 
     filter: drop-shadow(0px 4px 10px rgba(234, 179, 8, 0.5));
     opacity: 0.85;
 }
-.bounty-card.heat-1 .bounty-status {
-    background-color: rgba(234, 179, 8, 0.1);
-    color: #a16207;
-    border-color: #eab308;
-    animation: pulse-yellow 2s infinite;
-}
 
-/* Level 2: Inflöde (5-14 locations) - Orange */
+/* Level 2: Kraftigt inflöde (10-19 locations) - Orange */
 .bounty-card.heat-2 {
     border-color: rgba(249, 115, 22, 0.9);
     box-shadow: 0 0 25px rgba(249, 115, 22, 0.3), inset 0 0 15px rgba(249, 115, 22, 0.1);
@@ -92,14 +58,8 @@ Efter en systematisk genomgång av Skånes fågelfauna har jag valt ut 54 arter 
     filter: drop-shadow(0px 4px 10px rgba(249, 115, 22, 0.7));
     opacity: 0.95;
 }
-.bounty-card.heat-2 .bounty-status {
-    background-color: rgba(249, 115, 22, 0.15);
-    color: #c2410c;
-    border-color: #f97316;
-    animation: pulse-orange 1.5s infinite;
-}
 
-/* Level 3: Högaktuell (15+ locations) - Röd */
+/* Level 3: Högaktuell (20+ locations) - Röd */
 .bounty-card.heat-3 {
     border-color: rgba(239, 68, 68, 1);
     box-shadow: 0 0 35px rgba(239, 68, 68, 0.4), inset 0 0 20px rgba(239, 68, 68, 0.2);
@@ -107,31 +67,6 @@ Efter en systematisk genomgång av Skånes fågelfauna har jag valt ut 54 arter 
 .bounty-card.heat-3 .bounty-icon {
     filter: drop-shadow(0px 4px 15px rgba(239, 68, 68, 0.9));
     opacity: 1;
-}
-.bounty-card.heat-3 .bounty-status {
-    background-color: rgba(239, 68, 68, 0.2);
-    color: #b91c1c;
-    border-color: #ef4444;
-    animation: pulse-red 1s infinite;
-    transform: rotate(5deg) scale(1.05);
-}
-
-@keyframes pulse-yellow {
-    0% { transform: rotate(5deg) scale(1); box-shadow: 0 0 0 0 rgba(234, 179, 8, 0.3); }
-    70% { transform: rotate(5deg) scale(1.05); box-shadow: 0 0 0 8px rgba(234, 179, 8, 0); }
-    100% { transform: rotate(5deg) scale(1); box-shadow: 0 0 0 0 rgba(234, 179, 8, 0); }
-}
-
-@keyframes pulse-orange {
-    0% { transform: rotate(5deg) scale(1); box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.4); }
-    70% { transform: rotate(5deg) scale(1.1); box-shadow: 0 0 0 10px rgba(249, 115, 22, 0); }
-    100% { transform: rotate(5deg) scale(1); box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); }
-}
-
-@keyframes pulse-red {
-    0% { transform: rotate(5deg) scale(1.05); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6); }
-    70% { transform: rotate(5deg) scale(1.15); box-shadow: 0 0 0 15px rgba(239, 68, 68, 0); }
-    100% { transform: rotate(5deg) scale(1.05); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
 }
 
 .bounty-icon {
@@ -257,329 +192,280 @@ Efter en systematisk genomgång av Skånes fågelfauna har jag valt ut 54 arter 
 
 <div class="bounty-grid" id="bountyGrid">
 <div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="13" onclick="openModal('102939', 'Småskrake')">
-<div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/profiles/102939.png" alt="Illustration of Småskrake">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Småskrake">
 <div class="bounty-name">Småskrake</div>
 <div class="bounty-latin">Mergus serrator</div>
 </div>
 <div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="12" onclick="openModal('102936', 'Sjöorre')">
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Sjöorre">
 <div class="bounty-name">Sjöorre</div>
 <div class="bounty-latin">Melanitta nigra</div>
 </div>
 <div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="3" onclick="openModal('102108', 'Alfågel')">
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Alfågel">
 <div class="bounty-name">Alfågel</div>
 <div class="bounty-latin">Clangula hyemalis</div>
 </div>
 <div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="11" onclick="openModal('102109', 'Svärta')">
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Svärta">
 <div class="bounty-name">Svärta</div>
 <div class="bounty-latin">Melanitta fusca</div>
 </div>
 <div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Bergand">
 <div class="bounty-name">Bergand</div>
 <div class="bounty-latin">Aythya marila</div>
 </div>
 <div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
-<div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/profiles/232269.png" alt="Illustration of Rödhalsad gås">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Rödhalsad gås">
 <div class="bounty-name">Rödhalsad gås</div>
 <div class="bounty-latin">Branta ruficollis</div>
 </div>
 <div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
-<div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/profiles/233137.png" alt="Illustration of Rödhuvad dykand">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Rödhuvad dykand">
 <div class="bounty-name">Rödhuvad dykand</div>
 <div class="bounty-latin">Netta rufina</div>
 </div>
 <div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="18" onclick="openModal('102925', 'Skäggdopping')">
-<div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/profiles/102925.png" alt="Illustration of Skäggdopping">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Skäggdopping">
 <div class="bounty-name">Skäggdopping</div>
 <div class="bounty-latin">Podiceps cristatus</div>
 </div>
 <div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="12" onclick="openModal('100062', 'Storlom')">
-<div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/profiles/100062.png" alt="Illustration of Storlom">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Storlom">
 <div class="bounty-name">Storlom</div>
 <div class="bounty-latin">Gavia arctica</div>
 </div>
 <div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="11" onclick="openModal('100063', 'Smålom')">
-<div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/profiles/100063.png" alt="Illustration of Smålom">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Smålom">
 <div class="bounty-name">Smålom</div>
 <div class="bounty-latin">Gavia stellata</div>
 </div>
 <div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
-<div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/profiles/100113.png" alt="Illustration of Svarthakedopping">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Svarthakedopping">
 <div class="bounty-name">Svarthakedopping</div>
 <div class="bounty-latin">Podiceps auritus</div>
 </div>
 <div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="4" onclick="openModal('100018', 'Rördrom')">
-<div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/profiles/100018.png" alt="Illustration of Rördrom">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Rördrom">
 <div class="bounty-name">Rördrom</div>
 <div class="bounty-latin">Botaurus stellaris</div>
 </div>
 <div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
-<div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/profiles/100035.png" alt="Illustration of Ängshök">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Ängshök">
 <div class="bounty-name">Ängshök</div>
 <div class="bounty-latin">Circus pygargus</div>
 </div>
 <div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
-<div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/profiles/205550.png" alt="Illustration of Mindre skrikörn">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Mindre skrikörn">
 <div class="bounty-name">Mindre skrikörn</div>
 <div class="bounty-latin">Clanga pomarina</div>
 </div>
 <div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="7" onclick="openModal('205617', 'Kärrsnäppa')">
-<div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/profiles/205617.png" alt="Illustration of Kärrsnäppa">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Kärrsnäppa">
 <div class="bounty-name">Kärrsnäppa</div>
 <div class="bounty-latin">Calidris alpina</div>
 </div>
 <div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="8" onclick="openModal('100075', 'Myrspov')">
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Myrspov">
 <div class="bounty-name">Myrspov</div>
 <div class="bounty-latin">Limosa lapponica</div>
 </div>
 <div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Kustpipare">
 <div class="bounty-name">Kustpipare</div>
 <div class="bounty-latin">Pluvialis squatarola</div>
 </div>
 <div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Kustsnäppa">
 <div class="bounty-name">Kustsnäppa</div>
 <div class="bounty-latin">Calidris canutus</div>
 </div>
 <div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Spovsnäppa">
 <div class="bounty-name">Spovsnäppa</div>
 <div class="bounty-latin">Calidris ferruginea</div>
 </div>
 <div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Sandlöpare">
 <div class="bounty-name">Sandlöpare</div>
 <div class="bounty-latin">Calidris alba</div>
 </div>
 <div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="5" onclick="openModal('102115', 'Roskarl')">
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Roskarl">
 <div class="bounty-name">Roskarl</div>
 <div class="bounty-latin">Arenaria interpres</div>
 </div>
 <div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Myrsnäppa">
 <div class="bounty-name">Myrsnäppa</div>
 <div class="bounty-latin">Calidris falcinellus</div>
 </div>
 <div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Smalnäbbad simsnäppa">
 <div class="bounty-name">Smalnäbbad simsnäppa</div>
 <div class="bounty-latin">Phalaropus lobatus</div>
 </div>
 <div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Fjällpipare">
 <div class="bounty-name">Fjällpipare</div>
 <div class="bounty-latin">Eudromias morinellus</div>
 </div>
 <div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Dammsnäppa">
 <div class="bounty-name">Dammsnäppa</div>
 <div class="bounty-latin">Tringa stagnatilis</div>
 </div>
 <div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Tuvsnäppa">
 <div class="bounty-name">Tuvsnäppa</div>
 <div class="bounty-latin">Calidris melanotos</div>
 </div>
 <div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="12" onclick="openModal('100072', 'Dvärgmås')">
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Dvärgmås">
 <div class="bounty-name">Dvärgmås</div>
 <div class="bounty-latin">Hydrocoloeus minutus</div>
 </div>
 <div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="11" onclick="openModal('100133', 'Småtärna')">
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Småtärna">
 <div class="bounty-name">Småtärna</div>
 <div class="bounty-latin">Sternula albifrons</div>
 </div>
 <div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="8" onclick="openModal('100134', 'Skräntärna')">
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Skräntärna">
 <div class="bounty-name">Skräntärna</div>
 <div class="bounty-latin">Hydroprogne caspia</div>
 </div>
 <div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="13" onclick="openModal('102619', 'Silvertärna')">
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Silvertärna">
 <div class="bounty-name">Silvertärna</div>
 <div class="bounty-latin">Sterna paradisaea</div>
 </div>
 <div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="14" onclick="openModal('100030', 'Svarttärna')">
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Svarttärna">
 <div class="bounty-name">Svarttärna</div>
 <div class="bounty-latin">Chlidonias niger</div>
 </div>
 <div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Tretåig mås">
 <div class="bounty-name">Tretåig mås</div>
 <div class="bounty-latin">Rissa tridactyla</div>
 </div>
 <div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Medelhavstrut">
 <div class="bounty-name">Medelhavstrut</div>
 <div class="bounty-latin">Larus michahellis</div>
 </div>
 <div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Vitvingad tärna">
 <div class="bounty-name">Vitvingad tärna</div>
 <div class="bounty-latin">Chlidonias leucopterus</div>
 </div>
 <div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Sparvuggla">
 <div class="bounty-name">Sparvuggla</div>
 <div class="bounty-latin">Glaucidium passerinum</div>
 </div>
 <div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Pärluggla">
 <div class="bounty-name">Pärluggla</div>
 <div class="bounty-latin">Aegolius funereus</div>
 </div>
 <div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Hökuggla">
 <div class="bounty-name">Hökuggla</div>
 <div class="bounty-latin">Surnia ulula</div>
 </div>
 <div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Biätare">
 <div class="bounty-name">Biätare</div>
 <div class="bounty-latin">Merops apiaster</div>
 </div>
 <div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="3" onclick="openModal('100143', 'Härfågel')">
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Härfågel">
 <div class="bounty-name">Härfågel</div>
 <div class="bounty-latin">Upupa epops</div>
 </div>
 <div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="7" onclick="openModal('100097', 'Skäggmes')">
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Skäggmes">
 <div class="bounty-name">Skäggmes</div>
 <div class="bounty-latin">Panurus biarmicus</div>
 </div>
 <div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Rosenfink">
 <div class="bounty-name">Rosenfink</div>
 <div class="bounty-latin">Carpodacus erythrinus</div>
 </div>
 <div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="12" onclick="openModal('233849', 'Svarthakad buskskvätta')">
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Svarthakad buskskvätta">
 <div class="bounty-name">Svarthakad buskskvätta</div>
 <div class="bounty-latin">Saxicola rubicola</div>
 </div>
 <div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="3" onclick="openModal('100094', 'Sommargylling')">
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Sommargylling">
 <div class="bounty-name">Sommargylling</div>
 <div class="bounty-latin">Oriolus oriolus</div>
 </div>
 <div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Pungmes">
 <div class="bounty-name">Pungmes</div>
 <div class="bounty-latin">Remiz pendulinus</div>
 </div>
 <div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Lappsparv">
 <div class="bounty-name">Lappsparv</div>
 <div class="bounty-latin">Calcarius lapponicus</div>
 </div>
 <div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Berglärka">
 <div class="bounty-name">Berglärka</div>
 <div class="bounty-latin">Eremophila alpestris</div>
 </div>
 <div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Ortolansparv">
 <div class="bounty-name">Ortolansparv</div>
 <div class="bounty-latin">Emberiza hortulana</div>
 </div>
 <div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Blåhake">
 <div class="bounty-name">Blåhake</div>
 <div class="bounty-latin">Luscinia svecica</div>
 </div>
 <div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Tajgasångare">
 <div class="bounty-name">Tajgasångare</div>
 <div class="bounty-latin">Phylloscopus inornatus</div>
 </div>
 <div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Flodsångare">
 <div class="bounty-name">Flodsångare</div>
 <div class="bounty-latin">Locustella fluviatilis</div>
 </div>
 <div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="2" onclick="openModal('103076', 'Vassångare')">
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Vassångare">
 <div class="bounty-name">Vassångare</div>
 <div class="bounty-latin">Locustella luscinioides</div>
 </div>
 <div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Höksångare">
 <div class="bounty-name">Höksångare</div>
 <div class="bounty-latin">Curruca nisoria</div>
 </div>
 <div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Större piplärka">
 <div class="bounty-name">Större piplärka</div>
 <div class="bounty-latin">Anthus richardi</div>
 </div>
 <div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="1" onclick="openModal('103073', 'Citronärla')">
-<div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Citronärla">
 <div class="bounty-name">Citronärla</div>
 <div class="bounty-latin">Motacilla citreola</div>
 </div>
+</div>
+
+
+<div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color); opacity: 0.6; font-size: 0.85rem;">
+    <p><em>Samtliga artillustrationer i detta galleri är skapade med hjälp av generativ AI.</em></p>
 </div>
 
 <!-- Modal Structure -->
@@ -639,21 +525,13 @@ function closeModal(event) {
     cards.forEach(card => {
         try {
             const locs = parseInt(card.getAttribute("data-unique-locs")) || 0;
-            const peakMonths = JSON.parse(card.getAttribute("data-peak-months"));
-            const statusEl = card.querySelector(".bounty-status");
             
-            if (locs >= 15) {
+            if (locs >= 20) {
                 card.classList.add("heat-3");
-                if (statusEl) statusEl.textContent = "HÖGAKTUELL";
-            } else if (locs >= 5) {
+            } else if (locs >= 10) {
                 card.classList.add("heat-2");
-                if (statusEl) statusEl.textContent = "INFLÖDE";
-            } else if (locs >= 1) {
+            } else if (locs >= 5) {
                 card.classList.add("heat-1");
-                if (statusEl) statusEl.textContent = "LOKALT FYND";
-            } else if (peakMonths && peakMonths.includes(currentMonth)) {
-                card.classList.add("heat-season");
-                if (statusEl) statusEl.textContent = "HÖGSÄSONG";
             }
         } catch(e) {
             console.error("Error parsing card data", e);
