@@ -318,31 +318,31 @@ Efter en systematisk genomgång av Skånes fågelfauna har jag valt ut 54 arter 
 </div>
 <div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Svarthakedopping">
+<img class="bounty-icon" src="/images/profiles/100113.png" alt="Illustration of Svarthakedopping">
 <div class="bounty-name">Svarthakedopping</div>
 <div class="bounty-latin">Podiceps auritus</div>
 </div>
 <div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="4" onclick="openModal('100018', 'Rördrom')">
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Rördrom">
+<img class="bounty-icon" src="/images/profiles/100018.png" alt="Illustration of Rördrom">
 <div class="bounty-name">Rördrom</div>
 <div class="bounty-latin">Botaurus stellaris</div>
 </div>
 <div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Ängshök">
+<img class="bounty-icon" src="/images/profiles/100035.png" alt="Illustration of Ängshök">
 <div class="bounty-name">Ängshök</div>
 <div class="bounty-latin">Circus pygargus</div>
 </div>
 <div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Mindre skrikörn">
+<img class="bounty-icon" src="/images/profiles/205550.png" alt="Illustration of Mindre skrikörn">
 <div class="bounty-name">Mindre skrikörn</div>
 <div class="bounty-latin">Clanga pomarina</div>
 </div>
 <div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="7" onclick="openModal('205617', 'Kärrsnäppa')">
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Kärrsnäppa">
+<img class="bounty-icon" src="/images/profiles/205617.png" alt="Illustration of Kärrsnäppa">
 <div class="bounty-name">Kärrsnäppa</div>
 <div class="bounty-latin">Calidris alpina</div>
 </div>
