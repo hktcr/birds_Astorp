@@ -1,8 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Sädesärla on Fågelåret i Åstorp</title><link>https://astorpsfaglar.se/species/s%C3%A4des%C3%A4rla/</link><description>Recent content in Sädesärla on Fågelåret i Åstorp</description><generator>Hugo</generator><language>sv</language><lastBuildDate>Fri, 20 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://astorpsfaglar.se/species/s%C3%A4des%C3%A4rla/index.xml" rel="self" type="application/rss+xml"/><item><title>Sädesärlan har anlänt</title><link>https://astorpsfaglar.se/posts/2026/03/s%C3%A4des%C3%A4rlan-har-anl%C3%A4nt/</link><pubDate>Fri, 20 Mar 2026 00:00:00 +0000</pubDate><guid>https://astorpsfaglar.se/posts/2026/03/s%C3%A4des%C3%A4rlan-har-anl%C3%A4nt/</guid><description>&lt;p&gt;Årets första strandskata vid Hyllinge och årets första sädesärla vid Tomarps kungsgård. Två klassiska hållpunkter under fågelåret.&lt;/p&gt;
-&lt;div style="margin: 2rem 0;"&gt;
- &lt;a href="https://astorpsfaglar.se/images/posts/2026-03-20-hallpunkter-i-fagelaret/ankomst-tidslinje.svg" class="lightbox-link" style="display: block; width: 100%;"&gt;
- &lt;img src="https://astorpsfaglar.se/images/posts/2026-03-20-hallpunkter-i-fagelaret/ankomst-tidslinje.svg" alt="Ankomsttidslinje för strandskata och sädesärla" style="width: 100%; height: auto; cursor: zoom-in; border-radius: 8px;"&gt;
- &lt;/a&gt;
- &lt;p style="font-size: 0.7rem; color: #94a3b8; text-align: center; margin: 0.3rem 0 0 0; line-height: 1.3;"&gt;Första vår-observation per år i Åstorps kommun. Källa: Artportalen.&lt;/p&gt;
-&lt;/div&gt;
-&lt;p&gt;Den 20 mars hamnar strandskatans ankomst mitt i fältet, varken anmärkningsvärt tidigt eller sent. Sädesärlan dyker upp i den tidigare halvan, där de flesta år har noterats från slutet av mars och framåt.&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Sädesärla on Fågelåret i Åstorp</title>
+    <link>http://localhost:1313/species/s%C3%A4des%C3%A4rla/</link>
+    <description>Recent content in Sädesärla on Fågelåret i Åstorp</description>
+    <generator>Hugo</generator>
+    <language>sv</language>
+    <lastBuildDate>Fri, 20 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/species/s%C3%A4des%C3%A4rla/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Sädesärlan har anlänt</title>
+      <link>http://localhost:1313/posts/2026/03/s%C3%A4des%C3%A4rlan-har-anl%C3%A4nt/</link>
+      <pubDate>Fri, 20 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2026/03/s%C3%A4des%C3%A4rlan-har-anl%C3%A4nt/</guid>
+      <description>&lt;p&gt;Årets första strandskata vid Hyllinge och årets första sädesärla vid Tomarps kungsgård. Två klassiska hållpunkter under fågelåret.&lt;/p&gt;&#xA;&lt;div style=&#34;margin: 2rem 0;&#34;&gt;&#xA;  &lt;a href=&#34;http://localhost:1313/images/posts/2026-03-20-hallpunkter-i-fagelaret/ankomst-tidslinje.svg&#34; class=&#34;lightbox-link&#34; style=&#34;display: block; width: 100%;&#34;&gt;&#xA;    &lt;img src=&#34;http://localhost:1313/images/posts/2026-03-20-hallpunkter-i-fagelaret/ankomst-tidslinje.svg&#34; alt=&#34;Ankomsttidslinje för strandskata och sädesärla&#34; style=&#34;width: 100%; height: auto; cursor: zoom-in; border-radius: 8px;&#34;&gt;&#xA;  &lt;/a&gt;&#xA;  &lt;p style=&#34;font-size: 0.7rem; color: #94a3b8; text-align: center; margin: 0.3rem 0 0 0; line-height: 1.3;&#34;&gt;Första vår-observation per år i Åstorps kommun. Källa: Artportalen.&lt;/p&gt;&#xA;&lt;/div&gt;&#xA;&lt;p&gt;Den 20 mars hamnar strandskatans ankomst mitt i fältet, varken anmärkningsvärt tidigt eller sent. Sädesärlan dyker upp i den tidigare halvan, där de flesta år har noterats från slutet av mars och framåt.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

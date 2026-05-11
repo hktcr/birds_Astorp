@@ -2,9 +2,9 @@
 title: "Återkomsten till Kvidinge grustag"
 date: 2026-05-10T21:00:00+02:00
 author: "Håkan Karlsson"
-images:
+post_images:
   - url: "/images/posts/2026-05-10-backsvalor-kvidinge/Backsvalekoloni_20260510.jpg"
-    alt: "Sandbrink med backsvalebon"
+    alt: "Backsvalekoloni i sandbrink"
     categories:
       - "Backsvala"
 species:
@@ -22,6 +22,6 @@ Så fort jag närmade mig några av de återlämnade väggarna av sand blev jag 
 
 Någon noggrann räkning av bohålen lät sig inte göras idag. Det får vänta ett litet tag. Jag kunde i alla fall räkna in ett drygt femtiotal bon i farten och konstatera att dessa små doldisar var en konstant närvaro runtomkring mig. Sannolikt har de varit på plats någon vecka redan, men för egen del blev detta årets första möte efter att ha gått bet på mina övriga vårlokaler. Tills vidare får besöket stå som ett mycket välkommet årskryss och årets första bekräftade backsvalor i kommunen.
 
-![Sandbrink med backsvalebon](/images/posts/2026-05-10-backsvalor-kvidinge/Backsvalekoloni_20260510.jpg)
+![Backsvalekoloni i sandbrink](/images/posts/2026-05-10-backsvalor-kvidinge/Backsvalekoloni_20260510.jpg)
 
 *Fågelåret i Åstorp, 133/150*
