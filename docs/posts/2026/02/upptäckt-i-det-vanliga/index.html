@@ -236,21 +236,23 @@
         .lightbox {
             display: none;
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100vw;
-            height: 100vh;
-            background: rgba(0, 0, 0, 0.92);
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
             justify-content: center;
             align-items: center;
-            z-index: 1000;
+            z-index: 9999;
             cursor: pointer;
-            padding: 2.5rem;
+            padding: 3rem;
             box-sizing: border-box;
+            overflow: hidden;
         }
 
         .lightbox.active {
             display: flex;
+        }
+
+        body.lightbox-open {
+            overflow: hidden;
         }
 
         .lightbox-content {
@@ -265,7 +267,7 @@
 
         .lightbox-content img {
             max-width: 100%;
-            max-height: calc(100vh - 5rem);
+            max-height: calc(100vh - 6rem);
             border-radius: 4px;
             display: block;
             cursor: zoom-in;
@@ -274,7 +276,7 @@
         }
 
         .lightbox-content img[src$=".svg"] {
-            width: calc(100vw - 5rem);
+            width: calc(100vw - 6rem);
             max-width: 1400px;
         }
 
@@ -288,24 +290,24 @@
             position: absolute;
             top: 0.75rem;
             right: 0.75rem;
-            width: 40px;
-            height: 40px;
+            width: 44px;
+            height: 44px;
             background: rgba(255, 255, 255, 0.15);
             color: white;
             border: none;
             border-radius: 50%;
-            font-size: 1.6rem;
+            font-size: 1.8rem;
             line-height: 1;
             cursor: pointer;
             display: flex;
             align-items: center;
             justify-content: center;
-            z-index: 1001;
+            z-index: 10000;
             transition: background 0.2s ease;
         }
 
         .lightbox-close:hover {
-            background: rgba(255, 255, 255, 0.3);
+            background: rgba(255, 255, 255, 0.35);
         }
 
         .gallery img {
@@ -321,14 +323,18 @@
         function openLightbox(src, alt) {
             const lb = document.getElementById('lightbox');
             const img = document.getElementById('lightbox-img');
+            
+            lb.querySelectorAll('.lightbox-post-link').forEach(el => el.remove());
             img.src = src; img.alt = alt || '';
             img.classList.remove('zoomed');
             lb.classList.add('active');
+            document.body.classList.add('lightbox-open');
         }
         function closeLightbox() {
             const img = document.getElementById('lightbox-img');
             img.classList.remove('zoomed');
             document.getElementById('lightbox').classList.remove('active');
+            document.body.classList.remove('lightbox-open');
         }
         function toggleZoom() {
             document.getElementById('lightbox-img').classList.toggle('zoomed');

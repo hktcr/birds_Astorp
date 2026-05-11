@@ -2,7 +2,7 @@
 title: "Återkomsten till Kvidinge grustag"
 date: 2026-05-10T21:00:00+02:00
 author: "Håkan Karlsson"
-post_images:
+images:
   - url: "/images/posts/2026-05-10-backsvalor-kvidinge/Backsvalekoloni_20260510.jpg"
     alt: "Backsvalekoloni i sandbrink"
     categories:
