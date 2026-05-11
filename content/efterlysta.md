@@ -156,19 +156,19 @@ Efter en systematisk genomgång av Skånes fågelfauna har jag valt ut 54 arter 
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
 <div class="bounty-name">Alfågel</div>
 <div class="bounty-latin">Clangula hyemalis</div>
-<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 10 ex<br><span class='obs-loc'>Simrishamn</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 4 ex<br><span class='obs-loc'>Ystad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 10 ex<br><span class='obs-loc'>Ystad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 5 ex<br><span class='obs-loc'>Simrishamn</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 3 ex<br><span class='obs-loc'>Ystad</span></div></div></div>
+<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 10 ex<br><span class='obs-loc'>Simrishamn</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 4 ex<br><span class='obs-loc'>Ystad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 5 ex<br><span class='obs-loc'>Simrishamn</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 10 ex<br><span class='obs-loc'>Ystad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 3 ex<br><span class='obs-loc'>Ystad</span></div></div></div>
 <div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
 <div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
 <div class="bounty-name">Svärta</div>
 <div class="bounty-latin">Melanitta fusca</div>
 <div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 4 ex<br><span class='obs-loc'>Kristianstad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Örkelljunga</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 32 ex<br><span class='obs-loc'>Vellinge</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 43 ex<br><span class='obs-loc'>Trelleborg</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 81 ex<br><span class='obs-loc'>Ystad</span></div></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
+<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
 <div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
 <div class="bounty-name">Bergand</div>
 <div class="bounty-latin">Aythya marila</div>
-<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 7 ex<br><span class='obs-loc'>Lomma</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Ystad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 5 ex<br><span class='obs-loc'>Trelleborg</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 3 ex<br><span class='obs-loc'>Ystad</span></div></div></div>
+<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
 <div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
 <div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
@@ -211,12 +211,12 @@ Efter en systematisk genomgång av Skånes fågelfauna har jag valt ut 54 arter 
 <div class="bounty-name">Rördrom</div>
 <div class="bounty-latin">Botaurus stellaris</div>
 <div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Hässleholm</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Kristianstad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Kristianstad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Kristianstad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Vellinge</span></div></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
+<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
 <div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
 <div class="bounty-name">Ängshök</div>
 <div class="bounty-latin">Circus pygargus</div>
-<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Ystad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Eslöv</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Lund</span></div></div></div>
+<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
 <div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
 <div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
@@ -228,37 +228,37 @@ Efter en systematisk genomgång av Skånes fågelfauna har jag valt ut 54 arter 
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
 <div class="bounty-name">Kärrsnäppa</div>
 <div class="bounty-latin">Calidris alpina</div>
-<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 27 ex<br><span class='obs-loc'>Helsingborg</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Höganäs</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 10 ex<br><span class='obs-loc'>Malmö</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Helsingborg</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 4 ex<br><span class='obs-loc'>Helsingborg</span></div></div></div>
+<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 27 ex<br><span class='obs-loc'>Helsingborg</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Höganäs</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 10 ex<br><span class='obs-loc'>Malmö</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 4 ex<br><span class='obs-loc'>Helsingborg</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 4 ex<br><span class='obs-loc'>Helsingborg</span></div></div></div>
 <div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
 <div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
 <div class="bounty-name">Myrspov</div>
 <div class="bounty-latin">Limosa lapponica</div>
 <div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 70 ex<br><span class='obs-loc'>Helsingborg</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 54 ex<br><span class='obs-loc'>Lomma</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Höganäs</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Helsingborg</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 4 ex<br><span class='obs-loc'>Burlöv</span></div></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
+<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
 <div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
 <div class="bounty-name">Kustpipare</div>
 <div class="bounty-latin">Pluvialis squatarola</div>
-<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Kävlinge</span></div></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
+<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
+<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
 <div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
 <div class="bounty-name">Kustsnäppa</div>
 <div class="bounty-latin">Calidris canutus</div>
-<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 2 ex<br><span class='obs-loc'>Helsingborg</span></div></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
+<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
+<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
 <div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
 <div class="bounty-name">Spovsnäppa</div>
 <div class="bounty-latin">Calidris ferruginea</div>
-<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Kristianstad</span></div></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
+<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
+<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
 <div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
 <div class="bounty-name">Sandlöpare</div>
 <div class="bounty-latin">Calidris alba</div>
-<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Vellinge</span></div></div></div>
+<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
 <div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
 <div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
@@ -361,12 +361,12 @@ Efter en systematisk genomgång av Skånes fågelfauna har jag valt ut 54 arter 
 <div class="bounty-name">Hökuggla</div>
 <div class="bounty-latin">Surnia ulula</div>
 <div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
+<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
 <div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
 <div class="bounty-name">Biätare</div>
 <div class="bounty-latin">Merops apiaster</div>
-<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Vellinge</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Vellinge</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Vellinge</span></div></div></div>
+<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
 <div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
 <div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
@@ -379,18 +379,18 @@ Efter en systematisk genomgång av Skånes fågelfauna har jag valt ut 54 arter 
 <div class="bounty-name">Skäggmes</div>
 <div class="bounty-latin">Panurus biarmicus</div>
 <div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 2 ex<br><span class='obs-loc'>Kristianstad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 2 ex<br><span class='obs-loc'>Lomma</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 4 ex<br><span class='obs-loc'>Lomma</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 2 ex<br><span class='obs-loc'>Kristianstad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Malmö</span></div></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
+<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
 <div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
 <div class="bounty-name">Rosenfink</div>
 <div class="bounty-latin">Carpodacus erythrinus</div>
-<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Simrishamn</span></div></div></div>
+<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
 <div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
 <div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
 <div class="bounty-name">Svarthakad buskskvätta</div>
 <div class="bounty-latin">Saxicola rubicola</div>
-<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Bromölla</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Bromölla</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Lund</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 2 ex<br><span class='obs-loc'>Höganäs</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Höganäs</span></div></div></div>
+<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Bromölla</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Bromölla</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Lund</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Höganäs</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 2 ex<br><span class='obs-loc'>Höganäs</span></div></div></div>
 <div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
 <div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
@@ -421,12 +421,12 @@ Efter en systematisk genomgång av Skånes fågelfauna har jag valt ut 54 arter 
 <div class="bounty-name">Ortolansparv</div>
 <div class="bounty-latin">Emberiza hortulana</div>
 <div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
+<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
 <div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
 <div class="bounty-name">Blåhake</div>
 <div class="bounty-latin">Luscinia svecica</div>
-<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Helsingborg</span></div></div></div>
+<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
 <div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
 <div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
@@ -451,12 +451,12 @@ Efter en systematisk genomgång av Skånes fågelfauna har jag valt ut 54 arter 
 <div class="bounty-name">Höksångare</div>
 <div class="bounty-latin">Curruca nisoria</div>
 <div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
+<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
 <div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
 <div class="bounty-name">Större piplärka</div>
 <div class="bounty-latin">Anthus richardi</div>
-<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Båstad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Båstad</span></div></div></div>
+<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
 <div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
 <div class="bounty-status">Missing</div>
 <img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">

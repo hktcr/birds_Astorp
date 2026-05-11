@@ -6096,6 +6096,45 @@
                 
                 if (typeof window.openLightbox === 'function') {
                     window.openLightbox(imgSrc, imgAlt);
+
+                    
+                    setTimeout(() => {
+                        const lbContent = document.querySelector('.lightbox-content');
+                        if (lbContent) {
+                            let postLink = document.getElementById('lb-post-link');
+                            if (!postLink) {
+                                postLink = document.createElement('a');
+                                postLink.id = 'lb-post-link';
+                                postLink.className = 'lightbox-post-link'; 
+                                postLink.style.display = 'inline-block';
+                                postLink.style.marginTop = '15px';
+                                postLink.style.color = 'rgba(255, 255, 255, 0.7)';
+                                postLink.style.textDecoration = 'none';
+                                postLink.style.fontFamily = "'Inter', sans-serif";
+                                postLink.style.fontSize = '0.9rem';
+                                postLink.style.padding = '6px 16px';
+                                postLink.style.borderRadius = '20px';
+                                postLink.style.border = '1px solid rgba(255, 255, 255, 0.2)';
+                                postLink.style.background = 'rgba(0, 0, 0, 0.3)';
+                                postLink.style.transition = 'all 0.2s ease';
+                                
+                                postLink.onmouseenter = function() {
+                                    this.style.color = '#fff';
+                                    this.style.background = 'rgba(255, 255, 255, 0.15)';
+                                    this.style.borderColor = 'rgba(255, 255, 255, 0.4)';
+                                };
+                                postLink.onmouseleave = function() {
+                                    this.style.color = 'rgba(255, 255, 255, 0.7)';
+                                    this.style.background = 'rgba(0, 0, 0, 0.3)';
+                                    this.style.borderColor = 'rgba(255, 255, 255, 0.2)';
+                                };
+                                
+                                lbContent.appendChild(postLink);
+                            }
+                            postLink.href = postHref;
+                            postLink.innerHTML = 'Läs notisen &rarr;';
+                        }
+                    }, 10);
                 } else {
                     
                     window.location.href = postHref;
@@ -6691,6 +6730,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            flex-direction: column;
         }
 
         .lightbox-content img {
