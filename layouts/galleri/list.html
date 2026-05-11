@@ -1039,34 +1039,6 @@
                 // Call the global openLightbox function defined in baseof.html
                 if (typeof window.openLightbox === 'function') {
                     window.openLightbox(imgSrc, imgAlt);
-
-                    // For gallery specifically, we want to add a link to the original post inside the lightbox.
-                    // baseof.html has a .lightbox-content div. We can check if a post link already exists, if not, add it.
-                    // We'll timeout slightly to allow lightbox to render if needed
-                    setTimeout(() => {
-                        const lbContent = document.querySelector('.lightbox-content');
-                        if (lbContent) {
-                            let postLink = document.getElementById('lb-post-link');
-                            if (!postLink) {
-                                postLink = document.createElement('a');
-                                postLink.id = 'lb-post-link';
-                                postLink.style.display = 'block';
-                                postLink.style.marginTop = '15px';
-                                postLink.style.textAlign = 'center';
-                                postLink.style.color = 'white';
-                                postLink.style.textDecoration = 'none';
-                                postLink.style.fontFamily = "'Lora', Georgia, serif";
-                                postLink.style.background = '#6b7f61';
-                                postLink.style.padding = '8px 16px';
-                                postLink.style.borderRadius = '20px';
-                                postLink.style.width = 'max-content';
-                                postLink.style.margin = '15px auto 0 auto';
-                                lbContent.appendChild(postLink);
-                            }
-                            postLink.href = postHref;
-                            postLink.innerHTML = 'Läs fältdagboken &rarr;';
-                        }
-                    }, 10);
                 } else {
                     // Fallback if lightbox goes away
                     window.location.href = postHref;
