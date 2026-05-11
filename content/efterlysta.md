@@ -1,7 +1,7 @@
 ---
 title: "De Efterlysta"
 description: "Åstorps 54 kalla fall – en jakt på kommunens mest saknade arter"
-layout: "single"
+layout: "efterlysta"
 ---
 
 <div style="max-width: 800px; margin: 0 auto; text-align: center; padding: 2rem 0;">
@@ -15,9 +15,10 @@ Efter en systematisk genomgång av Skånes fågelfauna har jag valt ut 54 arter 
 <style>
 .bounty-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
     gap: 1.5rem;
     margin-top: 2rem;
+    padding-bottom: 4rem;
 }
 .bounty-card {
     background: var(--bg-alt);
@@ -36,15 +37,15 @@ Efter en systematisk genomgång av Skånes fågelfauna har jag valt ut 54 arter 
 
 /* Spotlight Effect */
 .bounty-card.spotlight-active {
-    border-color: rgba(250, 204, 21, 0.6);
-    box-shadow: 0 0 20px rgba(250, 204, 21, 0.15), inset 0 0 10px rgba(250, 204, 21, 0.05);
+    border-color: rgba(250, 204, 21, 0.8);
+    box-shadow: 0 0 25px rgba(250, 204, 21, 0.2), inset 0 0 15px rgba(250, 204, 21, 0.08);
 }
 .bounty-card.spotlight-active .bounty-icon {
-    filter: drop-shadow(0px 4px 6px rgba(250,204,21,0.4));
-    opacity: 0.8;
+    filter: drop-shadow(0px 4px 10px rgba(250,204,21,0.6));
+    opacity: 0.85;
 }
 .bounty-card.spotlight-active .bounty-status {
-    background-color: rgba(250, 204, 21, 0.1);
+    background-color: rgba(250, 204, 21, 0.15);
     color: #ca8a04;
     border-color: #facc15;
     animation: pulse 2s infinite;
@@ -52,7 +53,7 @@ Efter en systematisk genomgång av Skånes fågelfauna har jag valt ut 54 arter 
 
 @keyframes pulse {
     0% { transform: rotate(5deg) scale(1); }
-    50% { transform: rotate(5deg) scale(1.05); }
+    50% { transform: rotate(5deg) scale(1.08); }
     100% { transform: rotate(5deg) scale(1); }
 }
 
@@ -425,21 +426,23 @@ Efter en systematisk genomgång av Skånes fågelfauna har jag valt ut 54 arter 
 document.addEventListener("DOMContentLoaded", function() {
     const currentMonth = new Date().getMonth() + 1; // 1-12
     const cards = document.querySelectorAll(".bounty-card");
+    let highlightedCount = 0;
     
     cards.forEach(card => {
         try {
             const peakMonths = JSON.parse(card.getAttribute("data-peak-months"));
             if (peakMonths && peakMonths.includes(currentMonth)) {
                 card.classList.add("spotlight-active");
-                // Optional: Change the label from "Missing" to "High Season"
                 const statusEl = card.querySelector(".bounty-status");
                 if (statusEl) {
                     statusEl.textContent = "HÖGSÄSONG";
                 }
+                highlightedCount++;
             }
         } catch(e) {
             console.error("Error parsing peak months", e);
         }
     });
+    console.log("Highlighted " + highlightedCount + " cards for month " + currentMonth);
 });
 </script>
