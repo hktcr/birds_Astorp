@@ -327,3 +327,16 @@
 - `Fåglar/Kommunornitolog/Resurser/RUTIN_FENOLOGI.md`
 
 ---
+
+### 2026-05-11 — 107d7948
+
+**Ursprung:** Galleri Lightbox knapp fix
+**Typ:** Buggfix | UX
+
+> Tog bort den trasiga dynamiska injektionen av "Läs fältdagboken"-knappen från galleriet som hamnade utanför skärmen. Införde en diskret, mörk halvtransparent knapp nedanför bilden istället och anpassade bildens max-height i baseof.html för att garantera att den nya knappen alltid syns utan att skäras av.
+
+**Relaterade filer:**
+- `layouts/_default/baseof.html` (ändrad max-height och flex-direction)
+- `layouts/galleri/list.html` (nytt utseende och timeout-injektion av lightbox-post-link)
+
+---

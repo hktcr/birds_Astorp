@@ -30,47 +30,16 @@ Efter en systematisk genomgång av Skånes fågelfauna har jag valt ut 54 arter 
     transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s;
     position: relative;
     overflow: hidden;
+}
+.bounty-card.clickable {
     cursor: pointer;
 }
-.bounty-card:hover {
+.bounty-card.clickable:hover {
     transform: translateY(-5px);
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-/* Peak Month Spotlight Effect */
-.bounty-card.spotlight-active {
-    border-color: rgba(250, 204, 21, 0.5);
-    box-shadow: 0 0 15px rgba(250, 204, 21, 0.1);
-}
-
-/* Active Right Now Effect (Orange) */
-.bounty-card.active-now {
-    border-color: rgba(249, 115, 22, 0.9);
-    box-shadow: 0 0 25px rgba(249, 115, 22, 0.3), inset 0 0 15px rgba(249, 115, 22, 0.1);
-}
-.bounty-card.active-now .bounty-icon {
-    filter: drop-shadow(0px 4px 10px rgba(249, 115, 22, 0.7));
-    opacity: 0.95;
-}
-.bounty-card.active-now .bounty-status {
-    background-color: rgba(249, 115, 22, 0.15);
-    color: #c2410c;
-    border-color: #f97316;
-    animation: pulse-orange 1.5s infinite;
-}
-
-@keyframes pulse {
-    0% { transform: rotate(5deg) scale(1); }
-    50% { transform: rotate(5deg) scale(1.08); }
-    100% { transform: rotate(5deg) scale(1); }
-}
-
-@keyframes pulse-orange {
-    0% { transform: rotate(5deg) scale(1); box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.4); }
-    70% { transform: rotate(5deg) scale(1.1); box-shadow: 0 0 0 10px rgba(249, 115, 22, 0); }
-    100% { transform: rotate(5deg) scale(1); box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); }
-}
-
+/* Base missing status */
 .bounty-status {
     position: absolute;
     top: 10px;
@@ -87,6 +56,84 @@ Efter en systematisk genomgång av Skånes fågelfauna har jag valt ut 54 arter 
     transform: rotate(5deg);
     transition: all 0.3s;
 }
+
+/* Season: No unique locations, but right month */
+.bounty-card.heat-season {
+    border-color: rgba(250, 204, 21, 0.5);
+    box-shadow: 0 0 15px rgba(250, 204, 21, 0.1);
+}
+.bounty-card.heat-season .bounty-status {
+    color: #ca8a04;
+    border-color: #facc15;
+}
+
+/* Level 1: Lokalt fynd (1-4 locations) - Gul */
+.bounty-card.heat-1 {
+    border-color: rgba(234, 179, 8, 0.8);
+    box-shadow: 0 0 15px rgba(234, 179, 8, 0.2);
+}
+.bounty-card.heat-1 .bounty-icon {
+    filter: drop-shadow(0px 4px 10px rgba(234, 179, 8, 0.5));
+    opacity: 0.85;
+}
+.bounty-card.heat-1 .bounty-status {
+    background-color: rgba(234, 179, 8, 0.1);
+    color: #a16207;
+    border-color: #eab308;
+    animation: pulse-yellow 2s infinite;
+}
+
+/* Level 2: Inflöde (5-14 locations) - Orange */
+.bounty-card.heat-2 {
+    border-color: rgba(249, 115, 22, 0.9);
+    box-shadow: 0 0 25px rgba(249, 115, 22, 0.3), inset 0 0 15px rgba(249, 115, 22, 0.1);
+}
+.bounty-card.heat-2 .bounty-icon {
+    filter: drop-shadow(0px 4px 10px rgba(249, 115, 22, 0.7));
+    opacity: 0.95;
+}
+.bounty-card.heat-2 .bounty-status {
+    background-color: rgba(249, 115, 22, 0.15);
+    color: #c2410c;
+    border-color: #f97316;
+    animation: pulse-orange 1.5s infinite;
+}
+
+/* Level 3: Högaktuell (15+ locations) - Röd */
+.bounty-card.heat-3 {
+    border-color: rgba(239, 68, 68, 1);
+    box-shadow: 0 0 35px rgba(239, 68, 68, 0.4), inset 0 0 20px rgba(239, 68, 68, 0.2);
+}
+.bounty-card.heat-3 .bounty-icon {
+    filter: drop-shadow(0px 4px 15px rgba(239, 68, 68, 0.9));
+    opacity: 1;
+}
+.bounty-card.heat-3 .bounty-status {
+    background-color: rgba(239, 68, 68, 0.2);
+    color: #b91c1c;
+    border-color: #ef4444;
+    animation: pulse-red 1s infinite;
+    transform: rotate(5deg) scale(1.05);
+}
+
+@keyframes pulse-yellow {
+    0% { transform: rotate(5deg) scale(1); box-shadow: 0 0 0 0 rgba(234, 179, 8, 0.3); }
+    70% { transform: rotate(5deg) scale(1.05); box-shadow: 0 0 0 8px rgba(234, 179, 8, 0); }
+    100% { transform: rotate(5deg) scale(1); box-shadow: 0 0 0 0 rgba(234, 179, 8, 0); }
+}
+
+@keyframes pulse-orange {
+    0% { transform: rotate(5deg) scale(1); box-shadow: 0 0 0 0 rgba(249, 115, 22, 0.4); }
+    70% { transform: rotate(5deg) scale(1.1); box-shadow: 0 0 0 10px rgba(249, 115, 22, 0); }
+    100% { transform: rotate(5deg) scale(1); box-shadow: 0 0 0 0 rgba(249, 115, 22, 0); }
+}
+
+@keyframes pulse-red {
+    0% { transform: rotate(5deg) scale(1.05); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0.6); }
+    70% { transform: rotate(5deg) scale(1.15); box-shadow: 0 0 0 15px rgba(239, 68, 68, 0); }
+    100% { transform: rotate(5deg) scale(1.05); box-shadow: 0 0 0 0 rgba(239, 68, 68, 0); }
+}
+
 .bounty-icon {
     width: 140px;
     height: 140px;
@@ -109,390 +156,514 @@ Efter en systematisk genomgång av Skånes fågelfauna har jag valt ut 54 arter 
     margin-bottom: 0.5rem;
 }
 
-/* Expansion logic */
-.bounty-card .obs-list {
+/* Modal styles */
+.obs-modal-overlay {
     display: none;
-    margin-top: 1rem;
-    padding-top: 1rem;
-    border-top: 1px solid rgba(0,0,0,0.1);
-    text-align: left;
-    font-size: 0.85rem;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(3px);
 }
-.bounty-card.expanded .obs-list {
-    display: block;
-    animation: fadeIn 0.3s ease;
+.obs-modal-overlay.open {
+    display: flex;
 }
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(-5px); }
-    to { opacity: 1; transform: translateY(0); }
+.obs-modal {
+    background: var(--bg-color, #fff);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 12px;
+    width: 90%;
+    max-width: 600px;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    position: relative;
+    padding: 2rem;
 }
-.obs-item {
-    margin-bottom: 0.5rem;
+.obs-modal-close {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    background: none; border: none;
+    font-size: 1.5rem; cursor: pointer;
+    color: var(--text-color, #374151);
+    opacity: 0.6; transition: opacity 0.2s;
 }
-.obs-date {
+.obs-modal-close:hover { opacity: 1; }
+
+.modal-title {
+    font-size: 1.5rem;
     font-weight: bold;
+    margin-bottom: 0.25rem;
     color: var(--text-color);
 }
-.obs-loc {
-    color: var(--text-muted, #666);
+.modal-subtitle {
+    font-size: 1rem;
+    color: var(--text-muted, #6b7280);
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+    padding-bottom: 1rem;
+}
+
+.modal-obs-item {
+    padding: 1rem;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+    display: flex;
+    flex-direction: column;
+    gap: 0.25rem;
+}
+.modal-obs-item:last-child {
+    border-bottom: none;
+}
+.modal-obs-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+.modal-obs-loc {
+    font-weight: 600;
+    color: var(--text-color);
+    font-size: 1.05rem;
+}
+.modal-obs-count {
+    background: rgba(249, 115, 22, 0.15);
+    color: #c2410c;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 0.85rem;
+}
+.modal-obs-meta {
+    font-size: 0.85rem;
+    color: var(--text-muted, #6b7280);
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+}
+.meta-label {
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+    opacity: 0.7;
+}
+.meta-value {
+    color: var(--text-color, #374151);
+}
+.meta-divider {
+    opacity: 0.3;
 }
 </style>
 
 <div class="bounty-grid" id="bountyGrid">
-<div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
+<div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="13" onclick="openModal('102939', 'Småskrake')">
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/profiles/102939.png" alt="Illustration of Småskrake">
 <div class="bounty-name">Småskrake</div>
 <div class="bounty-latin">Mergus serrator</div>
-<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 2 ex<br><span class='obs-loc'>Simrishamn</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 63 ex<br><span class='obs-loc'>Ystad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 2 ex<br><span class='obs-loc'>Lomma</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 22 ex<br><span class='obs-loc'>Trelleborg</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Helsingborg</span></div></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="12" onclick="openModal('102936', 'Sjöorre')">
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Sjöorre">
 <div class="bounty-name">Sjöorre</div>
 <div class="bounty-latin">Melanitta nigra</div>
-<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 272 ex<br><span class='obs-loc'>Ystad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 45 ex<br><span class='obs-loc'>Ystad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 135 ex<br><span class='obs-loc'>Ystad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 175 ex<br><span class='obs-loc'>Trelleborg</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 40 ex<br><span class='obs-loc'>Lomma</span></div></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="3" onclick="openModal('102108', 'Alfågel')">
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Alfågel">
 <div class="bounty-name">Alfågel</div>
 <div class="bounty-latin">Clangula hyemalis</div>
-<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 10 ex<br><span class='obs-loc'>Simrishamn</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 4 ex<br><span class='obs-loc'>Ystad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 5 ex<br><span class='obs-loc'>Simrishamn</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 10 ex<br><span class='obs-loc'>Ystad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 3 ex<br><span class='obs-loc'>Ystad</span></div></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="11" onclick="openModal('102109', 'Svärta')">
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Svärta">
 <div class="bounty-name">Svärta</div>
 <div class="bounty-latin">Melanitta fusca</div>
-<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 4 ex<br><span class='obs-loc'>Kristianstad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Örkelljunga</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 32 ex<br><span class='obs-loc'>Vellinge</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 43 ex<br><span class='obs-loc'>Trelleborg</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 81 ex<br><span class='obs-loc'>Ystad</span></div></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Bergand">
 <div class="bounty-name">Bergand</div>
 <div class="bounty-latin">Aythya marila</div>
-<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/profiles/232269.png" alt="Illustration of Rödhalsad gås">
 <div class="bounty-name">Rödhalsad gås</div>
 <div class="bounty-latin">Branta ruficollis</div>
-<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/profiles/233137.png" alt="Illustration of Rödhuvad dykand">
 <div class="bounty-name">Rödhuvad dykand</div>
 <div class="bounty-latin">Netta rufina</div>
-<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="18" onclick="openModal('102925', 'Skäggdopping')">
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/profiles/102925.png" alt="Illustration of Skäggdopping">
 <div class="bounty-name">Skäggdopping</div>
 <div class="bounty-latin">Podiceps cristatus</div>
-<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 5 ex<br><span class='obs-loc'>Lund</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Kristianstad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Lund</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 4 ex<br><span class='obs-loc'>Lund</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Helsingborg</span></div></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="12" onclick="openModal('100062', 'Storlom')">
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/profiles/100062.png" alt="Illustration of Storlom">
 <div class="bounty-name">Storlom</div>
 <div class="bounty-latin">Gavia arctica</div>
-<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 10 ex<br><span class='obs-loc'>Vellinge</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Malmö</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 3 ex<br><span class='obs-loc'>Helsingborg</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 5 ex<br><span class='obs-loc'>Ystad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 9 ex<br><span class='obs-loc'>Ystad</span></div></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="11" onclick="openModal('100063', 'Smålom')">
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/profiles/100063.png" alt="Illustration of Smålom">
 <div class="bounty-name">Smålom</div>
 <div class="bounty-latin">Gavia stellata</div>
-<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 2 ex<br><span class='obs-loc'>Lomma</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Lomma</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Malmö</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 14 ex<br><span class='obs-loc'>Trelleborg</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 16 ex<br><span class='obs-loc'>Lomma</span></div></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Svarthakedopping">
 <div class="bounty-name">Svarthakedopping</div>
 <div class="bounty-latin">Podiceps auritus</div>
-<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="4" onclick="openModal('100018', 'Rördrom')">
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Rördrom">
 <div class="bounty-name">Rördrom</div>
 <div class="bounty-latin">Botaurus stellaris</div>
-<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Hässleholm</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Kristianstad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Kristianstad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Kristianstad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Vellinge</span></div></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Ängshök">
 <div class="bounty-name">Ängshök</div>
 <div class="bounty-latin">Circus pygargus</div>
-<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Mindre skrikörn">
 <div class="bounty-name">Mindre skrikörn</div>
 <div class="bounty-latin">Clanga pomarina</div>
-<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="7" onclick="openModal('205617', 'Kärrsnäppa')">
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Kärrsnäppa">
 <div class="bounty-name">Kärrsnäppa</div>
 <div class="bounty-latin">Calidris alpina</div>
-<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 27 ex<br><span class='obs-loc'>Helsingborg</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Höganäs</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 10 ex<br><span class='obs-loc'>Malmö</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 4 ex<br><span class='obs-loc'>Helsingborg</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 4 ex<br><span class='obs-loc'>Helsingborg</span></div></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="8" onclick="openModal('100075', 'Myrspov')">
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Myrspov">
 <div class="bounty-name">Myrspov</div>
 <div class="bounty-latin">Limosa lapponica</div>
-<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 70 ex<br><span class='obs-loc'>Helsingborg</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 54 ex<br><span class='obs-loc'>Lomma</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Höganäs</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Helsingborg</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 4 ex<br><span class='obs-loc'>Burlöv</span></div></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Kustpipare">
 <div class="bounty-name">Kustpipare</div>
 <div class="bounty-latin">Pluvialis squatarola</div>
-<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Kustsnäppa">
 <div class="bounty-name">Kustsnäppa</div>
 <div class="bounty-latin">Calidris canutus</div>
-<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Spovsnäppa">
 <div class="bounty-name">Spovsnäppa</div>
 <div class="bounty-latin">Calidris ferruginea</div>
-<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Sandlöpare">
 <div class="bounty-name">Sandlöpare</div>
 <div class="bounty-latin">Calidris alba</div>
-<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="5" onclick="openModal('102115', 'Roskarl')">
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Roskarl">
 <div class="bounty-name">Roskarl</div>
 <div class="bounty-latin">Arenaria interpres</div>
-<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Kristianstad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 2 ex<br><span class='obs-loc'>Lomma</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Helsingborg</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Helsingborg</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Båstad</span></div></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Myrsnäppa">
 <div class="bounty-name">Myrsnäppa</div>
 <div class="bounty-latin">Calidris falcinellus</div>
-<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Smalnäbbad simsnäppa">
 <div class="bounty-name">Smalnäbbad simsnäppa</div>
 <div class="bounty-latin">Phalaropus lobatus</div>
-<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Fjällpipare">
 <div class="bounty-name">Fjällpipare</div>
 <div class="bounty-latin">Eudromias morinellus</div>
-<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Dammsnäppa">
 <div class="bounty-name">Dammsnäppa</div>
 <div class="bounty-latin">Tringa stagnatilis</div>
-<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Tuvsnäppa">
 <div class="bounty-name">Tuvsnäppa</div>
 <div class="bounty-latin">Calidris melanotos</div>
-<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="12" onclick="openModal('100072', 'Dvärgmås')">
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Dvärgmås">
 <div class="bounty-name">Dvärgmås</div>
 <div class="bounty-latin">Hydrocoloeus minutus</div>
-<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 2 ex<br><span class='obs-loc'>Ystad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 5 ex<br><span class='obs-loc'>Helsingborg</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Lund</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 9 ex<br><span class='obs-loc'>Lund</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Lund</span></div></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="11" onclick="openModal('100133', 'Småtärna')">
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Småtärna">
 <div class="bounty-name">Småtärna</div>
 <div class="bounty-latin">Sternula albifrons</div>
-<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 2 ex<br><span class='obs-loc'>Kristianstad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 3 ex<br><span class='obs-loc'>Burlöv</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Kristianstad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 10 ex<br><span class='obs-loc'>Lomma</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 2 ex<br><span class='obs-loc'>Lomma</span></div></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="8" onclick="openModal('100134', 'Skräntärna')">
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Skräntärna">
 <div class="bounty-name">Skräntärna</div>
 <div class="bounty-latin">Hydroprogne caspia</div>
-<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 2 ex<br><span class='obs-loc'>Lomma</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Trelleborg</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 2 ex<br><span class='obs-loc'>Lund</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Burlöv</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 2 ex<br><span class='obs-loc'>Lund</span></div></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="13" onclick="openModal('102619', 'Silvertärna')">
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Silvertärna">
 <div class="bounty-name">Silvertärna</div>
 <div class="bounty-latin">Sterna paradisaea</div>
-<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 4 ex<br><span class='obs-loc'>Kristianstad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 60 ex<br><span class='obs-loc'>Skurup</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 2 ex<br><span class='obs-loc'>Lomma</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 2 ex<br><span class='obs-loc'>Kristianstad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 2 ex<br><span class='obs-loc'>Lomma</span></div></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="14" onclick="openModal('100030', 'Svarttärna')">
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Svarttärna">
 <div class="bounty-name">Svarttärna</div>
 <div class="bounty-latin">Chlidonias niger</div>
-<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 10 ex<br><span class='obs-loc'>Lund</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 4 ex<br><span class='obs-loc'>Lund</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 5 ex<br><span class='obs-loc'>Lund</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 15 ex<br><span class='obs-loc'>Lomma</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Helsingborg</span></div></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Tretåig mås">
 <div class="bounty-name">Tretåig mås</div>
 <div class="bounty-latin">Rissa tridactyla</div>
-<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Medelhavstrut">
 <div class="bounty-name">Medelhavstrut</div>
 <div class="bounty-latin">Larus michahellis</div>
-<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Vitvingad tärna">
 <div class="bounty-name">Vitvingad tärna</div>
 <div class="bounty-latin">Chlidonias leucopterus</div>
-<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Sparvuggla">
 <div class="bounty-name">Sparvuggla</div>
 <div class="bounty-latin">Glaucidium passerinum</div>
-<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Pärluggla">
 <div class="bounty-name">Pärluggla</div>
 <div class="bounty-latin">Aegolius funereus</div>
-<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Hökuggla">
 <div class="bounty-name">Hökuggla</div>
 <div class="bounty-latin">Surnia ulula</div>
-<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Biätare">
 <div class="bounty-name">Biätare</div>
 <div class="bounty-latin">Merops apiaster</div>
-<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="3" onclick="openModal('100143', 'Härfågel')">
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Härfågel">
 <div class="bounty-name">Härfågel</div>
 <div class="bounty-latin">Upupa epops</div>
-<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Vellinge</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Vellinge</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Vellinge</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Landskrona</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Lund</span></div></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="7" onclick="openModal('100097', 'Skäggmes')">
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Skäggmes">
 <div class="bounty-name">Skäggmes</div>
 <div class="bounty-latin">Panurus biarmicus</div>
-<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 2 ex<br><span class='obs-loc'>Kristianstad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 2 ex<br><span class='obs-loc'>Lomma</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 4 ex<br><span class='obs-loc'>Lomma</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 2 ex<br><span class='obs-loc'>Kristianstad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Malmö</span></div></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Rosenfink">
 <div class="bounty-name">Rosenfink</div>
 <div class="bounty-latin">Carpodacus erythrinus</div>
-<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="12" onclick="openModal('233849', 'Svarthakad buskskvätta')">
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Svarthakad buskskvätta">
 <div class="bounty-name">Svarthakad buskskvätta</div>
 <div class="bounty-latin">Saxicola rubicola</div>
-<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Bromölla</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Bromölla</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Lund</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Höganäs</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 2 ex<br><span class='obs-loc'>Höganäs</span></div></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="3" onclick="openModal('100094', 'Sommargylling')">
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Sommargylling">
 <div class="bounty-name">Sommargylling</div>
 <div class="bounty-latin">Oriolus oriolus</div>
-<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Lund</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 2 ex<br><span class='obs-loc'>Lund</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Lund</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Kristianstad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Lund</span></div></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Pungmes">
 <div class="bounty-name">Pungmes</div>
 <div class="bounty-latin">Remiz pendulinus</div>
-<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Lappsparv">
 <div class="bounty-name">Lappsparv</div>
 <div class="bounty-latin">Calcarius lapponicus</div>
-<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Berglärka">
 <div class="bounty-name">Berglärka</div>
 <div class="bounty-latin">Eremophila alpestris</div>
-<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Ortolansparv">
 <div class="bounty-name">Ortolansparv</div>
 <div class="bounty-latin">Emberiza hortulana</div>
-<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Blåhake">
 <div class="bounty-name">Blåhake</div>
 <div class="bounty-latin">Luscinia svecica</div>
-<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Tajgasångare">
 <div class="bounty-name">Tajgasångare</div>
 <div class="bounty-latin">Phylloscopus inornatus</div>
-<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Flodsångare">
 <div class="bounty-name">Flodsångare</div>
 <div class="bounty-latin">Locustella fluviatilis</div>
-<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="2" onclick="openModal('103076', 'Vassångare')">
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Vassångare">
 <div class="bounty-name">Vassångare</div>
 <div class="bounty-latin">Locustella luscinioides</div>
-<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Hässleholm</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Kristianstad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Kristianstad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Kristianstad</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Kristianstad</span></div></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Höksångare">
 <div class="bounty-name">Höksångare</div>
 <div class="bounty-latin">Curruca nisoria</div>
-<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="false" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card " data-peak-months="[]" data-unique-locs="0" >
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Större piplärka">
 <div class="bounty-name">Större piplärka</div>
 <div class="bounty-latin">Anthus richardi</div>
-<div class='obs-list'><em>Inga rapporter i Skåne de senaste 7 dagarna.</em></div></div>
-<div class="bounty-card" data-peak-months="[]" data-active-now="true" onclick="this.classList.toggle('expanded')">
+</div>
+<div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="1" onclick="openModal('103073', 'Citronärla')">
 <div class="bounty-status">Missing</div>
-<img class="bounty-icon" src="/images/most-wanted.png" alt="Silhouette of a bird">
+<img class="bounty-icon" src="/images/most-wanted.png" alt="Illustration of Citronärla">
 <div class="bounty-name">Citronärla</div>
 <div class="bounty-latin">Motacilla citreola</div>
-<div class='obs-list'><strong>Senaste fynden (Skåne):</strong><br><br><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Simrishamn</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Simrishamn</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Simrishamn</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Simrishamn</span></div><div class='obs-item'><span class='obs-date'></span> &ndash; 1 ex<br><span class='obs-loc'>Simrishamn</span></div></div></div>
+</div>
+</div>
+
+<!-- Modal Structure -->
+<div id="obsModalOverlay" class="obs-modal-overlay" onclick="closeModal(event)">
+    <div class="obs-modal" onclick="event.stopPropagation()">
+        <button class="obs-modal-close" onclick="closeModal(event)">&times;</button>
+        <div id="modalContent"></div>
+    </div>
 </div>
 
 <script>
+const obsData = {"102939": [{"date": "", "location": "Okänd plats (Simrishamn)", "count": "2", "observer": "Petter Olsson"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "63", "observer": "Sven Splittorff, Anders Rimne"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "2", "observer": "Jarmo Kalliomäki"}, {"date": "", "location": "Okänd plats (Trelleborg)", "count": "22", "observer": "Roy Blad, Nils Kjellén"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "1", "observer": "Christer Strid"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "3", "observer": "Anders Larsson"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "1", "observer": "Fredrik Öfverbeck"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "1", "observer": "Hampus  Rosberg"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "6", "observer": "Claes Malmberg"}, {"date": "", "location": "Okänd plats (Höganäs)", "count": "2", "observer": "Carsten Fog"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "7", "observer": "Ingemar Andell"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "85", "observer": "Sven Splittorff, Tobias Larsson, Thomas Nilsson"}, {"date": "", "location": "Okänd plats (Kävlinge)", "count": "2", "observer": "Ola Ejdrén"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "3", "observer": "Claes Malmberg"}, {"date": "", "location": "Okänd plats (Landskrona)", "count": "2", "observer": "Fredrik Bothén"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "1", "observer": "Staffan Nilsson"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "10", "observer": "August Thomasson, Anna-Karin Olsson, Tove Thomasson"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "3", "observer": "Emil Lundahl"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "1", "observer": "Ingemar Andell"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "3", "observer": "Ingemar Andell"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "28", "observer": "Nils Eriksson, Thomas Nilsson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "3", "observer": "Hans Cronert"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "4", "observer": "Anders Rydlöv"}, {"date": "", "location": "Okänd plats (Burlöv)", "count": "10", "observer": "Viktor Björkert"}, {"date": "", "location": "Okänd plats (Skurup)", "count": "2", "observer": "Christian Nilsson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "4", "observer": "Ingemar Andell"}, {"date": "", "location": "Okänd plats (Trelleborg)", "count": "35", "observer": "Nils Kjellén"}, {"date": "", "location": "Okänd plats (Båstad)", "count": "1", "observer": "Marcus Vestlund"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "94", "observer": "Sven Splittorff, Anders Rimne, Stefan Wahlstedt"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "2", "observer": "Claes Malmberg"}, {"date": "", "location": "Okänd plats (Båstad)", "count": "6", "observer": "Harald Ris, Anton Kvarnbäck"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "101", "observer": "Sven Splittorff"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "11", "observer": "Ingemar Andell"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "6", "observer": "Claes Malmberg"}, {"date": "", "location": "Okänd plats (Burlöv)", "count": "1", "observer": "Simon Fors, Karl-Erik Splittorff, Peter Hjalmar"}, {"date": "", "location": "Okänd plats (Trelleborg)", "count": "27", "observer": "Matts Lindbladh, Staffan Nilsson"}, {"date": "", "location": "Okänd plats (Burlöv)", "count": "1", "observer": "Hans Gawell"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "10", "observer": "Peter Franzén"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "5", "observer": "Claes Malmberg"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "61", "observer": "Sven Splittorff, Thomas Nilsson, Stefan Wahlstedt, Magnus Stangenberg"}, {"date": "", "location": "Okänd plats (Landskrona)", "count": "1", "observer": "Jonas Göransson, August Oljeqvist, Svea Nikula"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "1", "observer": "Alex Uematsu"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "3", "observer": "Ingemar Andell"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "5", "observer": "Claes Malmberg"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "5", "observer": "Kristian Ståhl"}, {"date": "", "location": "Okänd plats (Trelleborg)", "count": "34", "observer": "Roy Blad, Matts Lindbladh"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "4", "observer": "Adam Johnsson"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "17", "observer": "Harald Ris, Alexander Zackrisson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "6", "observer": "Ingemar Andell"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "17", "observer": "Sven Splittorff, per tufvesson"}], "102936": [{"date": "", "location": "Okänd plats (Ystad)", "count": "272", "observer": "Sven Splittorff, Thomas Nilsson, Stefan Wahlstedt, Magnus Stangenberg"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "45", "observer": "Sven Splittorff, Tobias Larsson, Thomas Nilsson"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "135", "observer": "Sven Splittorff"}, {"date": "", "location": "Okänd plats (Trelleborg)", "count": "175", "observer": "Roy Blad, Nils Kjellén"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "40", "observer": "Lars Nilsson"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "1", "observer": "August Thomasson, Anna-Karin Olsson, Tove Thomasson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "2", "observer": "Staffan Nilsson"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "113", "observer": "Sven Splittorff, Anders Rimne, Stefan Wahlstedt"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "13", "observer": "Per Olof Lippe"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "6", "observer": "Per Olof Lippe"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "10", "observer": "Petter Olsson, Robert Rydbeck"}, {"date": "", "location": "Okänd plats (Trelleborg)", "count": "40", "observer": "Nils Kjellén"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "4", "observer": "Karl Pettersson"}, {"date": "", "location": "Okänd plats (Eslöv)", "count": "1", "observer": "Petter Olsson, Robert Rydbeck"}, {"date": "", "location": "Okänd plats (Skurup)", "count": "1", "observer": "Erik Törnvall"}, {"date": "", "location": "Okänd plats (Trelleborg)", "count": "2", "observer": "Staffan Nilsson"}, {"date": "", "location": "Okänd plats (Skurup)", "count": "4", "observer": "Erik Törnvall"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "11", "observer": "Nils Eriksson, Thomas Nilsson"}, {"date": "", "location": "Okänd plats (Skurup)", "count": "18", "observer": "Erik Törnvall"}, {"date": "", "location": "Okänd plats (Skurup)", "count": "5", "observer": "Erik Törnvall"}, {"date": "", "location": "Okänd plats (Örkelljunga)", "count": "1", "observer": "Patric Carlsson"}, {"date": "", "location": "Okänd plats (Trelleborg)", "count": "10", "observer": "Matts Lindbladh, Staffan Nilsson"}, {"date": "", "location": "Okänd plats (Båstad)", "count": "100", "observer": "Mikael Haraldsson"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "39", "observer": "Sven Splittorff, per tufvesson"}, {"date": "", "location": "Okänd plats (Skurup)", "count": "2", "observer": "Petter Olsson, Robert Rydbeck"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "56", "observer": "Tobias Larsson"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "46", "observer": "Sven Splittorff, Anders Rimne"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "36", "observer": "Per Olof Lippe"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "5", "observer": "Andreas Wernersson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "3", "observer": "Per Olof Lippe"}, {"date": "", "location": "Okänd plats (Örkelljunga)", "count": "1", "observer": "Lennart Persson, Björn Herrlund"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "64", "observer": "Karl Pettersson"}, {"date": "", "location": "Okänd plats (Sjöbo)", "count": "1", "observer": "Petter Olsson, Robert Rydbeck"}, {"date": "", "location": "Okänd plats (Vellinge)", "count": "58", "observer": "Måns Karlsson, Johan Lorentzon"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "11", "observer": "Tomas Flyman"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "2", "observer": "Tomas Flyman"}, {"date": "", "location": "Okänd plats (Trelleborg)", "count": "14", "observer": "Roy Blad, Matts Lindbladh"}, {"date": "", "location": "Okänd plats (Burlöv)", "count": "3", "observer": "Simon Fors, Karl-Erik Splittorff, Peter Hjalmar"}, {"date": "", "location": "Okänd plats (Simrishamn)", "count": "30", "observer": "Petter Olsson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "7", "observer": "Lars Nilsson"}], "102108": [{"date": "", "location": "Okänd plats (Simrishamn)", "count": "10", "observer": "Stefan Göransson"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "4", "observer": "Pentti J Tatti"}, {"date": "", "location": "Okänd plats (Simrishamn)", "count": "5", "observer": "Mark Hammarstedt"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "10", "observer": "Sven Splittorff, Tobias Larsson, Thomas Nilsson"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "3", "observer": "Sven Splittorff, Anders Rimne, Stefan Wahlstedt"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "7", "observer": "Sven Splittorff"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "2", "observer": "Sven Splittorff, Anders Rimne"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Petter Olsson"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "3", "observer": "Sven Splittorff, Thomas Nilsson, Stefan Wahlstedt, Magnus Stangenberg"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "7", "observer": "Sven Splittorff, per tufvesson"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "2", "observer": "Klara Tellebo, Lina Näsström"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "3", "observer": "Nils Eriksson, Thomas Nilsson"}, {"date": "", "location": "Okänd plats (Simrishamn)", "count": "6", "observer": "Dan Hammarlund, Elisabet Hammarlund"}], "102109": [{"date": "", "location": "Okänd plats (Kristianstad)", "count": "4", "observer": "Petter Olsson"}, {"date": "", "location": "Okänd plats (Örkelljunga)", "count": "1", "observer": "Lennart Persson"}, {"date": "", "location": "Okänd plats (Vellinge)", "count": "32", "observer": "Måns Karlsson, Johan Lorentzon"}, {"date": "", "location": "Okänd plats (Trelleborg)", "count": "43", "observer": "Roy Blad, Nils Kjellén"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "81", "observer": "Sven Splittorff"}, {"date": "", "location": "Okänd plats (Skurup)", "count": "13", "observer": "Erik Törnvall"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "15", "observer": "Henrik Johansson"}, {"date": "", "location": "Okänd plats (Trelleborg)", "count": "7", "observer": "Matts Lindbladh, Staffan Nilsson"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "7", "observer": "Sven Splittorff, per tufvesson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "12", "observer": "Tomas Flyman"}, {"date": "", "location": "Okänd plats (Kävlinge)", "count": "75", "observer": "Peter Salmon"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "53", "observer": "Sven Splittorff, Thomas Nilsson, Stefan Wahlstedt, Magnus Stangenberg"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "2", "observer": "Karl Pettersson"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "9", "observer": "Sven Splittorff, Anders Rimne"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "119", "observer": "Sven Splittorff, Anders Rimne, Stefan Wahlstedt"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "10", "observer": "Sven Splittorff, Tobias Larsson, Thomas Nilsson"}, {"date": "", "location": "Okänd plats (Trelleborg)", "count": "19", "observer": "Nils Kjellén"}, {"date": "", "location": "Okänd plats (Båstad)", "count": "3", "observer": "Mikael Haraldsson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "2", "observer": "Lars Nilsson"}], "102925": [{"date": "", "location": "Okänd plats (Lund)", "count": "5", "observer": "Birgitta Bengtsson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Hans Cronert"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Mats Hansson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "4", "observer": "Petter Olsson"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "1", "observer": "Sonja Gunnarsson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "2", "observer": "Ingemar Andell"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "2", "observer": "Håkan Olai, Ronny Nilsson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Peter G Bengtsson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Jonas Nilsson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "3", "observer": "Ingemar Andell"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "1", "observer": "Alex Uematsu"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "2", "observer": "Emil Lundahl"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "2", "observer": "Håkan Olai, Ronny Nilsson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "1", "observer": "Michael Welander"}, {"date": "", "location": "Okänd plats (Lund)", "count": "10", "observer": "Lars G R Nilsson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Michael Welander"}, {"date": "", "location": "Okänd plats (Båstad)", "count": "1", "observer": "Mikael Haraldsson"}, {"date": "", "location": "Okänd plats (Burlöv)", "count": "1", "observer": "Jonathan Frendel"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "2", "observer": "Ingemar Andell"}, {"date": "", "location": "Okänd plats (Lund)", "count": "2", "observer": "Hans Evefalk"}, {"date": "", "location": "Okänd plats (Lund)", "count": "3", "observer": "Karl Båth"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Ebba Falk"}, {"date": "", "location": "Okänd plats (Eslöv)", "count": "2", "observer": "Lars-Ove Jönsson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "2", "observer": "Ingemar Andell"}, {"date": "", "location": "Okänd plats (Lund)", "count": "4", "observer": "Staffan Nilsson"}, {"date": "", "location": "Okänd plats (Sjöbo)", "count": "24", "observer": "Gert Ljungqvist"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Ingrid Evaldsson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "1", "observer": "Ingemar Andell"}, {"date": "", "location": "Okänd plats (Örkelljunga)", "count": "5", "observer": "Lennart Persson, Björn Herrlund"}, {"date": "", "location": "Okänd plats (Lund)", "count": "15", "observer": "Ruben Smith, Isak Smith"}, {"date": "", "location": "Okänd plats (Hässleholm)", "count": "2", "observer": "Håkan Winqvist"}, {"date": "", "location": "Okänd plats (Lund)", "count": "7", "observer": "Max Lundberg"}, {"date": "", "location": "Okänd plats (Sjöbo)", "count": "2", "observer": "Peter Åberg"}, {"date": "", "location": "Okänd plats (Skurup)", "count": "1", "observer": "Petter Olsson, Robert Rydbeck"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "1", "observer": "Petter Olsson, Robert Rydbeck"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "1", "observer": "Ingemar Andell"}, {"date": "", "location": "Okänd plats (Hörby)", "count": "1", "observer": "Robert Rydbeck"}, {"date": "", "location": "Okänd plats (Lund)", "count": "6", "observer": "Jan-Erik Nilsson"}, {"date": "", "location": "Okänd plats (Hässleholm)", "count": "5", "observer": "Leif Nordin"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "5", "observer": "Kristian Ståhl"}, {"date": "", "location": "Okänd plats (Sjöbo)", "count": "12", "observer": "Gert Ljungqvist"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "1", "observer": "Harald Ris, Alexander Zackrisson"}, {"date": "", "location": "Okänd plats (Skurup)", "count": "2", "observer": "Erik Törnvall"}, {"date": "", "location": "Okänd plats (Hässleholm)", "count": "4", "observer": "Roger Antonson"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "2", "observer": "Christoffer Björnheimer"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Adam Johnsson, Tuva Tapper"}, {"date": "", "location": "Okänd plats (Hörby)", "count": "6", "observer": "Suzanne Schlyter"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "2", "observer": "Bertil Ekstedt"}, {"date": "", "location": "Okänd plats (Simrishamn)", "count": "2", "observer": "Mark Hammarstedt"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "1", "observer": "Kjell Hammelin, Gertrud Hammelin"}], "100062": [{"date": "", "location": "Okänd plats (Vellinge)", "count": "10", "observer": "Måns Karlsson, Johan Lorentzon"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "1", "observer": "August Thomasson, Anna-Karin Olsson, Tove Thomasson"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "3", "observer": "Bengt Andersson"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "5", "observer": "Sven Splittorff"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "9", "observer": "Sven Splittorff, Anders Rimne, Stefan Wahlstedt"}, {"date": "", "location": "Okänd plats (Osby)", "count": "1", "observer": "Lars Olsson"}, {"date": "", "location": "Okänd plats (Skurup)", "count": "5", "observer": "Erik Törnvall"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "20", "observer": "Petter Olsson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "20", "observer": "Sven Jönsson, Per-Olof Andersson"}, {"date": "", "location": "Okänd plats (Simrishamn)", "count": "10", "observer": "Dan Hammarlund, Elisabet Hammarlund"}, {"date": "", "location": "Okänd plats (Trelleborg)", "count": "2", "observer": "Roy Blad, Nils Kjellén"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "11", "observer": "Sven Splittorff, Thomas Nilsson, Stefan Wahlstedt, Magnus Stangenberg"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "1", "observer": "Tobias Larsson"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "2", "observer": "Sven Splittorff, per tufvesson"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "2", "observer": "Anders Rydlöv"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "1", "observer": "Nils Eriksson, Thomas Nilsson"}, {"date": "", "location": "Okänd plats (Höganäs)", "count": "2", "observer": "Thomas Lindblad"}, {"date": "", "location": "Okänd plats (Örkelljunga)", "count": "1", "observer": "Lennart Persson, Björn Herrlund"}, {"date": "", "location": "Okänd plats (Skurup)", "count": "1", "observer": "Christian Nilsson"}, {"date": "", "location": "Okänd plats (Simrishamn)", "count": "3", "observer": "Mark Hammarstedt"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "8", "observer": "Sven Splittorff, Tobias Larsson, Thomas Nilsson"}, {"date": "", "location": "Okänd plats (Skurup)", "count": "4", "observer": "Erik Törnvall"}, {"date": "", "location": "Okänd plats (Skurup)", "count": "3", "observer": "Erik Törnvall"}, {"date": "", "location": "Okänd plats (Simrishamn)", "count": "24", "observer": "Petter Olsson"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "11", "observer": "Sven Splittorff, Anders Rimne"}, {"date": "", "location": "Okänd plats (Trelleborg)", "count": "3", "observer": "Nils Kjellén"}, {"date": "", "location": "Okänd plats (Simrishamn)", "count": "6", "observer": "Agne Paulsson"}, {"date": "", "location": "Okänd plats (Trelleborg)", "count": "2", "observer": "Roy Blad, Nils Kjellén"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "1", "observer": "Lars Nilsson"}, {"date": "", "location": "Okänd plats (Simrishamn)", "count": "2", "observer": "Stefan Göransson"}, {"date": "", "location": "Okänd plats (Trelleborg)", "count": "1", "observer": "Roy Blad, Matts Lindbladh"}], "100063": [{"date": "", "location": "Okänd plats (Lomma)", "count": "2", "observer": "Per Olof Lippe"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "1", "observer": "Per Olof Lippe"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "1", "observer": "Karl Pettersson"}, {"date": "", "location": "Okänd plats (Trelleborg)", "count": "14", "observer": "Roy Blad, Nils Kjellén"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "2", "observer": "Sven Jönsson, Per-Olof Andersson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "16", "observer": "Tomas Flyman"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "7", "observer": "Sven Splittorff, Anders Rimne"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "2", "observer": "August Thomasson, Anna-Karin Olsson, Tove Thomasson"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "2", "observer": "Bengt Andersson, Karl Göran Nilsson"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "9", "observer": "Karl Pettersson"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "1", "observer": "Oskar Lindberg, Bengt Andersson"}, {"date": "", "location": "Okänd plats (Höganäs)", "count": "6", "observer": "Thomas Lindblad"}, {"date": "", "location": "Okänd plats (Trelleborg)", "count": "13", "observer": "Roy Blad, Matts Lindbladh"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "11", "observer": "Nils Eriksson, Thomas Nilsson"}, {"date": "", "location": "Okänd plats (Båstad)", "count": "39", "observer": "Mikael Haraldsson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "1", "observer": "Staffan Nilsson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "1", "observer": "Per Olof Lippe"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "1", "observer": "Bengt Andersson"}, {"date": "", "location": "Okänd plats (Burlöv)", "count": "1", "observer": "Simon Fors, Karl-Erik Splittorff, Peter Hjalmar"}, {"date": "", "location": "Okänd plats (Skurup)", "count": "1", "observer": "Erik Törnvall"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "1", "observer": "Sven Splittorff, per tufvesson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "11", "observer": "Tomas Flyman"}, {"date": "", "location": "Okänd plats (Trelleborg)", "count": "1", "observer": "Matts Lindbladh"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "14", "observer": "Lars Nilsson"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "10", "observer": "Sven Splittorff, Thomas Nilsson, Stefan Wahlstedt, Magnus Stangenberg"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "2", "observer": "Lars Nilsson"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "10", "observer": "Sven Splittorff, Anders Rimne, Stefan Wahlstedt"}, {"date": "", "location": "Okänd plats (Vellinge)", "count": "20", "observer": "Måns Karlsson, Johan Lorentzon"}, {"date": "", "location": "Okänd plats (Trelleborg)", "count": "10", "observer": "Nils Kjellén"}, {"date": "", "location": "Okänd plats (Skurup)", "count": "2", "observer": "Erik Törnvall"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "21", "observer": "Sven Splittorff"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "4", "observer": "Bengt Andersson"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "26", "observer": "Sven Splittorff, Tobias Larsson, Thomas Nilsson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "9", "observer": "Tomas Flyman"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "15", "observer": "Per Olof Lippe"}], "100018": [{"date": "", "location": "Okänd plats (Hässleholm)", "count": "1", "observer": "Lennart Björkquist"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Krister Wahlström, Ulla Berglund"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Nils Valdemarsson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Glenn  Nilsson"}, {"date": "", "location": "Okänd plats (Vellinge)", "count": "1", "observer": "Mikael Bauer"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Thomas Lindblad"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Marcus Teveborg"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Patric Österblad, Agneta Byström"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Roine Strandberg"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Anders Karlsson, Mats Alinder, Peter Anderson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Stefan Peterson"}, {"date": "", "location": "Okänd plats (Trelleborg)", "count": "1", "observer": "Mikael Bauer"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Anders Jönsson, Björn Löfman"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Mats Olsson, Lars Olsson"}], "205617": [{"date": "", "location": "Okänd plats (Helsingborg)", "count": "27", "observer": "Åke Mosskull"}, {"date": "", "location": "Okänd plats (Höganäs)", "count": "1", "observer": "Dan Persson"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "10", "observer": "Anders Rydlöv"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "1", "observer": "Frida Fridh"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "4", "observer": "Carsten Fog"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "4", "observer": "Bryan Smith"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "12", "observer": "Mattias Jonsäter"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "8", "observer": "Ingrid Evaldsson, Sofia Broström"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "2", "observer": "Hans Cronert"}, {"date": "", "location": "Okänd plats (Höganäs)", "count": "4", "observer": "Liselotte Andersson"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "3", "observer": "Ulf Carle"}, {"date": "", "location": "Okänd plats (Vellinge)", "count": "3", "observer": "Måns Karlsson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Örjan Fritz, Karin Hernborg"}, {"date": "", "location": "Okänd plats (Kävlinge)", "count": "1", "observer": "Peter Salmon"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "5", "observer": "Henrik Johansson"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "2", "observer": "Leif Klinteroth"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "10", "observer": "Stefan Cherrug"}, {"date": "", "location": "Okänd plats (Vellinge)", "count": "92", "observer": "Måns Karlsson, Johan Lorentzon"}, {"date": "", "location": "Okänd plats (Vellinge)", "count": "6", "observer": "Jarmo Kalliomäki"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "5", "observer": "Thomas Wallin, Mikael Jönsson, Tommi Sandberg"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "10", "observer": "Jörgen Norlund, Anita Norlund"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "8", "observer": "Mark Hammarstedt"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "3", "observer": "Thomas Lindblad"}, {"date": "", "location": "Okänd plats (Vellinge)", "count": "200", "observer": "Janne Dahlén"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Jens Morin"}, {"date": "", "location": "Okänd plats (Höganäs)", "count": "8", "observer": "Mona Hansson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "2", "observer": "Krister Hjalte"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "5", "observer": "Peter Franzén"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "15", "observer": "Göran Ericson"}], "100075": [{"date": "", "location": "Okänd plats (Helsingborg)", "count": "70", "observer": "Peter Franzén"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "54", "observer": "Andreas Wernersson"}, {"date": "", "location": "Okänd plats (Höganäs)", "count": "1", "observer": "Carsten Fog"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "1", "observer": "Göran Ericson"}, {"date": "", "location": "Okänd plats (Burlöv)", "count": "4", "observer": "Fredrik Hansson"}, {"date": "", "location": "Okänd plats (Båstad)", "count": "1", "observer": "Harald Ris, Anton Kvarnbäck"}, {"date": "", "location": "Okänd plats (Kävlinge)", "count": "4", "observer": "Peter Salmon"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "1", "observer": "Petter Olsson, Robert Rydbeck"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "22", "observer": "Per Olof Lippe"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "13", "observer": "Lars-Göran Lillvik"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "30", "observer": "Kristian Ståhl"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "1", "observer": "Liselotte Andersson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "30", "observer": "Kristian Ståhl"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "25", "observer": "Bryan Smith"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "25", "observer": "Åke Mosskull"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "3", "observer": "Christoffer Björnheimer"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "4", "observer": "Per Jensen"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "1", "observer": "Stefan Cherrug"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "1", "observer": "Frida Fridh"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "15", "observer": "Per Jensen"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "89", "observer": "Per Olof Lippe"}, {"date": "", "location": "Okänd plats (Kävlinge)", "count": "4", "observer": "Ola Ejdrén"}, {"date": "", "location": "Okänd plats (Burlöv)", "count": "17", "observer": "Simon Fors, Karl-Erik Splittorff, Peter Hjalmar"}, {"date": "", "location": "Okänd plats (Burlöv)", "count": "10", "observer": "Robert Rydbeck"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "1", "observer": "Jonas Nilsson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "30", "observer": "Kristian Ståhl"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "30", "observer": "Kristian Ståhl"}, {"date": "", "location": "Okänd plats (Höganäs)", "count": "21", "observer": "Mattias Jonsäter"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "39", "observer": "Inge Karlqvist"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "37", "observer": "Lars-Göran Lillvik"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "98", "observer": "Andreas Wernersson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "40", "observer": "Kristian Ståhl"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "30", "observer": "Kristian Ståhl"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "11", "observer": "Ingemar Andell"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "78", "observer": "Thomas Lindblad"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "15", "observer": "Anders Rydlöv"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "120", "observer": "Tomas Flyman"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "107", "observer": "Lars-Göran Lillvik"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "107", "observer": "Tomas Flyman"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "69", "observer": "Lars-Göran Lillvik"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "37", "observer": "Mattias Jonsäter"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "122", "observer": "Per Olof Lippe"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "66", "observer": "Ulf Carle"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "79", "observer": "Karsten Bringmark"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "6", "observer": "Stefan Cherrug"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "3", "observer": "Anders Ask Larsson, Fredrik Herrmann, Henrik Hultén"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "1", "observer": "Staffan Nilsson"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "64", "observer": "Carsten Fog"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "64", "observer": "Lars-Göran Lillvik"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "70", "observer": "Björn Herrlund"}], "102115": [{"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Roine Strandberg"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "2", "observer": "Lars Nilsson"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "1", "observer": "Frida Fridh"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "1", "observer": "Thomas Wallin, Mikael Jönsson, Tommi Sandberg"}, {"date": "", "location": "Okänd plats (Båstad)", "count": "1", "observer": "Klas Rosenkvist, Jonalyn Rosenkvist"}, {"date": "", "location": "Okänd plats (Burlöv)", "count": "2", "observer": "Fredrik Hansson"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "1", "observer": "Christer Claesson"}], "100072": [{"date": "", "location": "Okänd plats (Ystad)", "count": "2", "observer": "Sven Splittorff"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "5", "observer": "Dan Persson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Alexander Zackrisson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "9", "observer": "Per Lagerås"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Lars Råberg"}, {"date": "", "location": "Okänd plats (Skurup)", "count": "1", "observer": "Ola Ejdrén, Mattias Jonsäter"}, {"date": "", "location": "Okänd plats (Lund)", "count": "2", "observer": "Mikael Calner"}, {"date": "", "location": "Okänd plats (Lund)", "count": "4", "observer": "Inger Svensson"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "5", "observer": "Bengt Andersson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "10", "observer": "Lars Råberg"}, {"date": "", "location": "Okänd plats (Lund)", "count": "3", "observer": "Henrik Hansen"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Jonas Nilsson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "4", "observer": "Staffan Nilsson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Staffan Nilsson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Jörgen Sagvik"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "David Magnusson"}, {"date": "", "location": "Okänd plats (Burlöv)", "count": "1", "observer": "Fredrik Hansson"}, {"date": "", "location": "Okänd plats (Höganäs)", "count": "1", "observer": "Thomas Lindblad"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Ebba Falk"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Åke Mosskull"}, {"date": "", "location": "Okänd plats (Sjöbo)", "count": "6", "observer": "Olof Ramel"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "1", "observer": "Per Olof Lippe"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Harald Ris"}, {"date": "", "location": "Okänd plats (Trelleborg)", "count": "4", "observer": "Roy Blad, Matts Lindbladh"}, {"date": "", "location": "Okänd plats (Lund)", "count": "9", "observer": "Martin Dribe"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Jens Morin"}, {"date": "", "location": "Okänd plats (Lund)", "count": "9", "observer": "Lars Råberg"}, {"date": "", "location": "Okänd plats (Lund)", "count": "2", "observer": "Christian Nilsson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "4", "observer": "Krister Hjalte"}, {"date": "", "location": "Okänd plats (Lund)", "count": "5", "observer": "Per Lagerås, Per Karsten"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Hampus  Rosberg"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "1", "observer": "Göran Ericson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "3", "observer": "Mikael Calner"}, {"date": "", "location": "Okänd plats (Vellinge)", "count": "4", "observer": "Måns Karlsson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "6", "observer": "Lars Råberg"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "16", "observer": "Christoffer Björnheimer"}, {"date": "", "location": "Okänd plats (Lund)", "count": "3", "observer": "Inger Svensson, Eva Engberg, Henrik Ehrenberg, Krister Aronsson, Monica Pedersen"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "27", "observer": "Bengt Andersson"}, {"date": "", "location": "Okänd plats (Trelleborg)", "count": "4", "observer": "Nils Kjellén"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "1", "observer": "Sven Splittorff, Anders Rimne, Stefan Wahlstedt"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "4", "observer": "Lars Nilsson"}, {"date": "", "location": "Okänd plats (Sjöbo)", "count": "3", "observer": "Gert Ljungqvist"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Leif Klinteroth"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "4", "observer": "Magnus Ny"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Michael Welander"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "2", "observer": "Per Olof Lippe"}, {"date": "", "location": "Okänd plats (Lund)", "count": "10", "observer": "Sven Jönsson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "4", "observer": "Mats Alinder"}, {"date": "", "location": "Okänd plats (Lund)", "count": "5", "observer": "Olle Thyrestam, Katarina Thyrestam"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "16", "observer": "Anders Ask Larsson, Fredrik Herrmann, Henrik Hultén"}], "100133": [{"date": "", "location": "Okänd plats (Kristianstad)", "count": "2", "observer": "Linda Niklasson"}, {"date": "", "location": "Okänd plats (Burlöv)", "count": "3", "observer": "Viktor Björkert"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Anders Karlsson, Mats Alinder, Peter Anderson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "10", "observer": "Tomas Flyman"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "2", "observer": "Lars-Göran Lillvik"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "2", "observer": "Per Olof Lippe"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "3", "observer": "Ingemar Andell"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Alexander Zackrisson, Erika Eriksson"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "2", "observer": "Sven Splittorff, Tobias Larsson, Thomas Nilsson"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "2", "observer": "Henrik Johansson"}, {"date": "", "location": "Okänd plats (Vellinge)", "count": "1", "observer": "Janne Dahlén"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "1", "observer": "Kristian Ståhl"}, {"date": "", "location": "Okänd plats (Burlöv)", "count": "2", "observer": "David Magnusson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Magnus Ny"}, {"date": "", "location": "Okänd plats (Burlöv)", "count": "4", "observer": "Anton Kvarnbäck, Harald Ris"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "2", "observer": "Magnus Ny"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "2", "observer": "Mats Nymberg"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "7", "observer": "Sven Splittorff"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "2", "observer": "Tomas Flyman"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "10", "observer": "Tomas Flyman"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "2", "observer": "Tommi Sandberg"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "1", "observer": "Staffan Nilsson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Örjan Fritz, Karin Hernborg"}, {"date": "", "location": "Okänd plats (Höganäs)", "count": "2", "observer": "Mattias Jonsäter"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "1", "observer": "Liselotte Andersson"}, {"date": "", "location": "Okänd plats (Skurup)", "count": "1", "observer": "Erik Törnvall"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "2", "observer": "Bryan Smith"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "2", "observer": "Thomas Lindblad"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Sven Englund"}, {"date": "", "location": "Okänd plats (Trelleborg)", "count": "9", "observer": "Roy Blad, Matts Lindbladh"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Roine Strandberg"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "1", "observer": "Peter Franzén"}, {"date": "", "location": "Okänd plats (Vellinge)", "count": "1", "observer": "Magnus Johansson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "2", "observer": "Tomas Flyman"}, {"date": "", "location": "Okänd plats (Simrishamn)", "count": "1", "observer": "Lars Johnsson"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "1", "observer": "Bengt Andersson"}, {"date": "", "location": "Okänd plats (Burlöv)", "count": "1", "observer": "Mikael Bauer"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "2", "observer": "Karl Pettersson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Petter Olsson"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "13", "observer": "Sven Splittorff, Anders Rimne"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "1", "observer": "Tomas Flyman"}, {"date": "", "location": "Okänd plats (Höganäs)", "count": "2", "observer": "Mona Hansson"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "3", "observer": "Sven Splittorff, Anders Rimne, Stefan Wahlstedt"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "2", "observer": "Dan Persson"}, {"date": "", "location": "Okänd plats (Burlöv)", "count": "2", "observer": "Fredrik Hansson"}, {"date": "", "location": "Okänd plats (Burlöv)", "count": "4", "observer": "Fredrik Hansson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "2", "observer": "Tomas Flyman"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "2", "observer": "Ulf Carle"}, {"date": "", "location": "Okänd plats (Skurup)", "count": "3", "observer": "Erik Törnvall"}], "100134": [{"date": "", "location": "Okänd plats (Lomma)", "count": "2", "observer": "Kristian Ståhl"}, {"date": "", "location": "Okänd plats (Trelleborg)", "count": "1", "observer": "Roy Blad, Matts Lindbladh"}, {"date": "", "location": "Okänd plats (Lund)", "count": "2", "observer": "Lars Råberg"}, {"date": "", "location": "Okänd plats (Burlöv)", "count": "1", "observer": "Börje Monsén"}, {"date": "", "location": "Okänd plats (Lund)", "count": "2", "observer": "Ingrid Evaldsson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "1", "observer": "Tomas Flyman"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Rune Stenholm Jakobsen"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "1", "observer": "Tomas Flyman"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "2", "observer": "Lars Nilsson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Christian Nilsson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Krister Hjalte"}, {"date": "", "location": "Okänd plats (Sjöbo)", "count": "1", "observer": "Olof Ramel"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "1", "observer": "Lars-Göran Lillvik"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "2", "observer": "Dan Persson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "2", "observer": "Lars Nilsson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "1", "observer": "Per Olof Lippe"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Per Lagerås, Per Karsten"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "1", "observer": "Ingemar Andell"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "1", "observer": "Per Olof Lippe"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "1", "observer": "Lars-Göran Lillvik"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "John Mo"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "1", "observer": "Tomas Flyman"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Harald Ris"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "3", "observer": "Ingemar Andell"}, {"date": "", "location": "Okänd plats (Burlöv)", "count": "1", "observer": "Fredrik Hansson"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "2", "observer": "Anders Rydlöv"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "David Gustavsson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Ulf Gärdenfors"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "2", "observer": "Lars Nilsson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "1", "observer": "Lars Nilsson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "1", "observer": "Lars Nilsson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Nils Valdemarsson, Linda Niklasson, Greger Flyckt"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "1", "observer": "Staffan Nilsson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "2", "observer": "Lars Nilsson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "1", "observer": "Lars Nilsson, Tomas Flyman"}], "102619": [{"date": "", "location": "Okänd plats (Kristianstad)", "count": "4", "observer": "Nils Valdemarsson, Linda Niklasson, Greger Flyckt"}, {"date": "", "location": "Okänd plats (Skurup)", "count": "60", "observer": "Martin Dribe"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "2", "observer": "Andreas Wernersson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "2", "observer": "Nils Valdemarsson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "2", "observer": "Per Olof Lippe"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Peter G Bengtsson"}, {"date": "", "location": "Okänd plats (Skurup)", "count": "16", "observer": "Erik Törnvall"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "1", "observer": "Henrik Johansson"}, {"date": "", "location": "Okänd plats (Vellinge)", "count": "6", "observer": "Måns Karlsson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Hans Cronert"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "1", "observer": "Christoffer Björnheimer"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Alexander Zackrisson, Erika Eriksson"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "1", "observer": "Christer Igelström"}, {"date": "", "location": "Okänd plats (Trelleborg)", "count": "1", "observer": "Roy Blad, Nils Kjellén"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Lars Råberg"}, {"date": "", "location": "Okänd plats (Trelleborg)", "count": "229", "observer": "Roy Blad, Matts Lindbladh"}, {"date": "", "location": "Okänd plats (Höganäs)", "count": "1", "observer": "Ulf Carle"}, {"date": "", "location": "Okänd plats (Sjöbo)", "count": "11", "observer": "Gert Ljungqvist"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "1", "observer": "Per Olof Lippe"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "3", "observer": "Per Olof Lippe"}, {"date": "", "location": "Okänd plats (Vellinge)", "count": "3", "observer": "Jarmo Kalliomäki"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "4", "observer": "Tobias Larsson"}, {"date": "", "location": "Okänd plats (Burlöv)", "count": "145", "observer": "Simon Fors, Karl-Erik Splittorff, Peter Hjalmar"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "22", "observer": "Sven Splittorff, Anders Rimne"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Roine Strandberg"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Linda Niklasson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "12", "observer": "Per Olof Lippe"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "6", "observer": "Anders Rydlöv"}, {"date": "", "location": "Okänd plats (Höganäs)", "count": "2", "observer": "Ulf Carle"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "10", "observer": "Sven Splittorff"}, {"date": "", "location": "Okänd plats (Vellinge)", "count": "2", "observer": "Janne Dahlén"}, {"date": "", "location": "Okänd plats (Skurup)", "count": "35", "observer": "Erik Törnvall"}, {"date": "", "location": "Okänd plats (Bromölla)", "count": "1", "observer": "Beatrice Krupke"}, {"date": "", "location": "Okänd plats (Skurup)", "count": "2", "observer": "Erik Törnvall"}, {"date": "", "location": "Okänd plats (Vellinge)", "count": "2", "observer": "Bengt Åhgren"}, {"date": "", "location": "Okänd plats (Trelleborg)", "count": "41", "observer": "Nils Kjellén"}], "100030": [{"date": "", "location": "Okänd plats (Lund)", "count": "10", "observer": "Krister Hjalte"}, {"date": "", "location": "Okänd plats (Lund)", "count": "4", "observer": "Petter Olsson, Robert Rydbeck"}, {"date": "", "location": "Okänd plats (Lund)", "count": "5", "observer": "Robert Tuveson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "15", "observer": "Staffan Nilsson"}, {"date": "", "location": "Okänd plats (Helsingborg)", "count": "1", "observer": "Conny Andersson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Roine Strandberg"}, {"date": "", "location": "Okänd plats (Lund)", "count": "7", "observer": "max olsson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "7", "observer": "Lars Råberg"}, {"date": "", "location": "Okänd plats (Lund)", "count": "4", "observer": "Martin Dribe"}, {"date": "", "location": "Okänd plats (Trelleborg)", "count": "1", "observer": "Christer Sjögren"}, {"date": "", "location": "Okänd plats (Svedala)", "count": "2", "observer": "Per Karsten"}, {"date": "", "location": "Okänd plats (Trelleborg)", "count": "4", "observer": "Staffan Nilsson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "8", "observer": "Jörgen Sagvik"}, {"date": "", "location": "Okänd plats (Lund)", "count": "11", "observer": "Stefan Siwersson"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "1", "observer": "Christoffer Björnheimer"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "1", "observer": "Anders Ask Larsson, Fredrik Herrmann, Henrik Hultén"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "9", "observer": "Tomas Flyman"}, {"date": "", "location": "Okänd plats (Lund)", "count": "11", "observer": "Jacob Björnberg"}, {"date": "", "location": "Okänd plats (Lund)", "count": "6", "observer": "Pentti J Tatti"}, {"date": "", "location": "Okänd plats (Skurup)", "count": "2", "observer": "Petter Olsson, Robert Rydbeck"}, {"date": "", "location": "Okänd plats (Lund)", "count": "9", "observer": "Per Lagerås, Per Karsten"}, {"date": "", "location": "Okänd plats (Vellinge)", "count": "12", "observer": "Måns Karlsson, Johan Lorentzon"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Märta Palmer"}, {"date": "", "location": "Okänd plats (Burlöv)", "count": "1", "observer": "Henrik Hansen"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "1", "observer": "Vincent Bengtsson"}, {"date": "", "location": "Okänd plats (Skurup)", "count": "2", "observer": "Marie-Louise Bárány"}, {"date": "", "location": "Okänd plats (Trelleborg)", "count": "2", "observer": "Christer Sjögren"}, {"date": "", "location": "Okänd plats (Lund)", "count": "20", "observer": "Lars G R Nilsson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "3", "observer": "Klas Rådberg"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Jan-Erik Nilsson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "3", "observer": "Mats Hansson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "5", "observer": "Hedvig Wieslander"}, {"date": "", "location": "Okänd plats (Lund)", "count": "2", "observer": "Mikael Grantén"}, {"date": "", "location": "Okänd plats (Lund)", "count": "3", "observer": "Henrik Hansen"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Staffan Nilsson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "15", "observer": "Anders Jägryd, Karin Jägryd"}, {"date": "", "location": "Okänd plats (Lund)", "count": "12", "observer": "Peter Anderson, Gunilla  Andersson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "6", "observer": "Mattias Jonsäter"}, {"date": "", "location": "Okänd plats (Lund)", "count": "2", "observer": "Stefan Lindkvist"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Michael Welander"}, {"date": "", "location": "Okänd plats (Lund)", "count": "4", "observer": "Lars Råberg"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "2", "observer": "Fredrik Adolfsson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "5", "observer": "Mona Wall"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Harald Ris"}, {"date": "", "location": "Okänd plats (Svedala)", "count": "4", "observer": "Alexander Zackrisson, Per Zackrisson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "4", "observer": "Robert Rydbeck"}, {"date": "", "location": "Okänd plats (Lund)", "count": "4", "observer": "Per Blom"}, {"date": "", "location": "Okänd plats (Lund)", "count": "2", "observer": "Åke Mosskull"}, {"date": "", "location": "Okänd plats (Burlöv)", "count": "1", "observer": "Henrik Hansen"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "15", "observer": "Lars Nilsson"}], "100143": [{"date": "", "location": "Okänd plats (Vellinge)", "count": "1", "observer": "Magnus Grylle"}, {"date": "", "location": "Okänd plats (Vellinge)", "count": "1", "observer": "Timmy Micallef"}, {"date": "", "location": "Okänd plats (Vellinge)", "count": "1", "observer": "Christer Landgren"}, {"date": "", "location": "Okänd plats (Landskrona)", "count": "1", "observer": "Julia Hagström"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Staffan Nilsson"}], "100097": [{"date": "", "location": "Okänd plats (Kristianstad)", "count": "2", "observer": "Mats Olsson, Lars Olsson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "2", "observer": "Peter G Bengtsson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "4", "observer": "Lars Nilsson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "2", "observer": "Davide Sanguineti"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "1", "observer": "Mark Hammarstedt"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Roine Strandberg"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Stefan Peterson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Ulf Hjelm"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "2", "observer": "Lars Pettersson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "2", "observer": "Jörgen Norlund, Anita Norlund"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "2", "observer": "Jan Linder"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "2", "observer": "Marcus Teveborg"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "1", "observer": "Michael Welander"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "2", "observer": "Lars Nilsson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "1", "observer": "Ingemar Andell"}, {"date": "", "location": "Okänd plats (Vellinge)", "count": "1", "observer": "Kaj Svahn"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Viktor Björkert, Petter Olsson, Robert Rydbeck"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "1", "observer": "Christian Nilsson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Fredrik Adolfsson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "2", "observer": "Lars Nilsson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "2", "observer": "Staffan Nilsson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Rasmus Jakobsson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "3", "observer": "Bengt Nordin"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Anders Linus Larsson"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "4", "observer": "Hedvig Wieslander"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Mona Wall"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "2", "observer": "Åke Mosskull"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "6", "observer": "Lars Nilsson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Hans Cronert"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "4", "observer": "Lars Nilsson"}, {"date": "", "location": "Okänd plats (Landskrona)", "count": "2", "observer": "Jens Basse"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "1", "observer": "Eva Engberg"}, {"date": "", "location": "Okänd plats (Lomma)", "count": "2", "observer": "Lars Nilsson"}, {"date": "", "location": "Okänd plats (Höganäs)", "count": "1", "observer": "Carsten Fog"}], "233849": [{"date": "", "location": "Okänd plats (Bromölla)", "count": "1", "observer": "Ola Svensson"}, {"date": "", "location": "Okänd plats (Bromölla)", "count": "1", "observer": "Mats Olsson, Lars Olsson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Sven Jönsson"}, {"date": "", "location": "Okänd plats (Höganäs)", "count": "2", "observer": "Mona Hansson"}, {"date": "", "location": "Okänd plats (Höganäs)", "count": "1", "observer": "Carsten Fog"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "2", "observer": "Leif Karlsson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Lars Råberg"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Nils Kjellén"}, {"date": "", "location": "Okänd plats (Ängelholm)", "count": "2", "observer": "Henrik Johansson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "2", "observer": "Ulf Gärdenfors"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "1", "observer": "Leif Karlsson"}, {"date": "", "location": "Okänd plats (Simrishamn)", "count": "1", "observer": "Marie-Louise Bárány"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Johan Andersson, Jennie  Sundberg"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "2", "observer": "Tobias Larsson, Thomas Nilsson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Fredrik Adolfsson"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "2", "observer": "Leif Karlsson"}, {"date": "", "location": "Okänd plats (Hässleholm)", "count": "1", "observer": "Håkan Winqvist"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Ulf Gärdenfors"}, {"date": "", "location": "Okänd plats (Malmö)", "count": "1", "observer": "Stefan Cherrug"}, {"date": "", "location": "Okänd plats (Höganäs)", "count": "1", "observer": "Jakob Persson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "2", "observer": "Viktor Björkert, Petter Olsson, Robert Rydbeck"}, {"date": "", "location": "Okänd plats (Höganäs)", "count": "1", "observer": "Jonas Nilsson"}, {"date": "", "location": "Okänd plats (Höganäs)", "count": "2", "observer": "Ulf Carle"}, {"date": "", "location": "Okänd plats (Höganäs)", "count": "1", "observer": "Stefan Siwersson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Magnus Ny"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "2", "observer": "Tobias Larsson"}, {"date": "", "location": "Okänd plats (Båstad)", "count": "1", "observer": "Gunilla Furenberg, Christer Furenberg"}, {"date": "", "location": "Okänd plats (Höganäs)", "count": "1", "observer": "Mattias Jonsäter"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Fredrik Adolfsson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Harald Ris"}, {"date": "", "location": "Okänd plats (Höganäs)", "count": "1", "observer": "Carsten Fog"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "2", "observer": "Leif Karlsson"}, {"date": "", "location": "Okänd plats (Ystad)", "count": "1", "observer": "Stefan Wahlstedt"}, {"date": "", "location": "Okänd plats (Båstad)", "count": "1", "observer": "Mikael Haraldsson"}, {"date": "", "location": "Okänd plats (Simrishamn)", "count": "1", "observer": "Benny Lorentzon"}, {"date": "", "location": "Okänd plats (Lund)", "count": "2", "observer": "Christian Nilsson"}, {"date": "", "location": "Okänd plats (Simrishamn)", "count": "1", "observer": "Sven Johansson"}, {"date": "", "location": "Okänd plats (Svalöv)", "count": "2", "observer": "Johan Gustafsson"}, {"date": "", "location": "Okänd plats (Vellinge)", "count": "1", "observer": "Johan Lorentzon, Bengt Grandin, Måns Karlsson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Jörgen Adolfsson"}, {"date": "", "location": "Okänd plats (Höganäs)", "count": "1", "observer": "August Oljeqvist, Jonas Göransson, Julia Lea Falk, Svea Nikula"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Stefan Peterson"}, {"date": "", "location": "Okänd plats (Höganäs)", "count": "1", "observer": "Mattias Jonsäter"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Glenn  Nilsson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "2", "observer": "Sven Jönsson"}, {"date": "", "location": "Okänd plats (Svalöv)", "count": "2", "observer": "Anders Ahlberg"}, {"date": "", "location": "Okänd plats (Höganäs)", "count": "1", "observer": "Åke Mosskull"}, {"date": "", "location": "Okänd plats (Lund)", "count": "2", "observer": "Petter Olsson, Robert Rydbeck"}], "100094": [{"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Petter Olsson, Robert Rydbeck"}, {"date": "", "location": "Okänd plats (Lund)", "count": "2", "observer": "Anders Karlsson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Mats-Åke Persson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Charlotte Wigermo"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Anders Karlsson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "2", "observer": "Petter Olsson, Robert Rydbeck"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Jörgen Norlund, Anita Norlund"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Monica Back"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Mikael Grantén, Eva-Lotta Grantén"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Johan Andersson, Jennie  Sundberg"}, {"date": "", "location": "Okänd plats (Lund)", "count": "2", "observer": "Jörgen Adolfsson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "2", "observer": "Mats GH Larsson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Christian Nilsson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Per Karsten"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Lars G R Nilsson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "3", "observer": "Sven Jönsson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Hampus  Rosberg"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Hampus  Rosberg"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Arnt Draveng"}, {"date": "", "location": "Okänd plats (Simrishamn)", "count": "4", "observer": "Agne Paulsson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Petter Olsson, Robert Rydbeck"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Mikael Edlund"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Mikael Grantén, Eva-Lotta Grantén"}, {"date": "", "location": "Okänd plats (Lund)", "count": "2", "observer": "Frida Fridh"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Fredrik Adolfsson"}, {"date": "", "location": "Okänd plats (Simrishamn)", "count": "1", "observer": "Petter Olsson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "2", "observer": "Davide Sanguineti"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Stefan Siwersson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Jörgen Sagvik"}, {"date": "", "location": "Okänd plats (Lund)", "count": "3", "observer": "Peter Anderson, Mats Alinder"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Stefan Lindkvist"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Pär Söderquist, Sixten Söderquist"}, {"date": "", "location": "Okänd plats (Lund)", "count": "2", "observer": "Peter Anderson, Gunilla  Andersson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Jonas Nilsson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "2", "observer": "Monica Back"}, {"date": "", "location": "Okänd plats (Lund)", "count": "3", "observer": "Dan Persson"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Anders Jägryd, Karin Jägryd"}, {"date": "", "location": "Okänd plats (Lund)", "count": "2", "observer": "Martin Dribe"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Fredrik Adolfsson"}, {"date": "", "location": "Okänd plats (Simrishamn)", "count": "1", "observer": "Nils Kjellén"}, {"date": "", "location": "Okänd plats (Lund)", "count": "1", "observer": "Åke Mosskull"}], "103076": [{"date": "", "location": "Okänd plats (Hässleholm)", "count": "1", "observer": "Leif Nordin"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Patric Österblad, Agneta Byström"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Bengt Nordin, Alexander Lilja Nordin"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Martin Dribe"}, {"date": "", "location": "Okänd plats (Hässleholm)", "count": "1", "observer": "Sture Persson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Mats Johannesson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Fredrik Adolfsson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Marcus Teveborg"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "2", "observer": "Fredrik Adolfsson"}, {"date": "", "location": "Okänd plats (Hässleholm)", "count": "1", "observer": "Jan Pröjts"}, {"date": "", "location": "Okänd plats (Hässleholm)", "count": "1", "observer": "Lennart Björkquist"}, {"date": "", "location": "Okänd plats (Hässleholm)", "count": "1", "observer": "Håkan Winqvist"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Andreas Ottvall"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "2", "observer": "Sven Jönsson, Per-Olof Andersson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Mats Johannesson"}, {"date": "", "location": "Okänd plats (Hässleholm)", "count": "1", "observer": "Anders Linus Larsson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Viktor Björkert, Jonas Nilsson, Petter Olsson, Robert Rydbeck"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Anders Borgehed, max olsson"}, {"date": "", "location": "Okänd plats (Hässleholm)", "count": "1", "observer": "Peter Öhrström"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Anders Karlsson, Mats Alinder, Peter Anderson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "2", "observer": "Anders Blomdahl, Linda Jonasson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Dan Persson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Svante Bro"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "2", "observer": "Jörgen Norlund, Anita Norlund"}, {"date": "", "location": "Okänd plats (Hässleholm)", "count": "1", "observer": "Bengt Nordin"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Carl Christian Tofte"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Göran Andersson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Mats Johannesson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Fredrik Adolfsson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Petter Olsson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Anders Jönsson, Björn Löfman"}, {"date": "", "location": "Okänd plats (Hässleholm)", "count": "1", "observer": "Roger Antonson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Jonas Nilsson"}, {"date": "", "location": "Okänd plats (Kristianstad)", "count": "1", "observer": "Stefan Siwersson"}], "103073": [{"date": "", "location": "Okänd plats (Simrishamn)", "count": "1", "observer": "Tobias Larsson"}, {"date": "", "location": "Okänd plats (Simrishamn)", "count": "1", "observer": "Hans Larsson"}, {"date": "", "location": "Okänd plats (Simrishamn)", "count": "1", "observer": "Lars Johnsson, Bengt Andersson, Davide Sanguineti"}, {"date": "", "location": "Okänd plats (Simrishamn)", "count": "1", "observer": "Leif Karlsson"}, {"date": "", "location": "Okänd plats (Simrishamn)", "count": "1", "observer": "Agne Paulsson"}, {"date": "", "location": "Okänd plats (Simrishamn)", "count": "1", "observer": "Davide Sanguineti"}]};
+
+function openModal(taxonId, speciesName) {
+    const records = obsData[taxonId];
+    if (!records || records.length === 0) return;
+    
+    const content = document.getElementById("modalContent");
+    
+    let html = `<div class="modal-title">${speciesName}</div>`;
+    html += `<div class="modal-subtitle">Senaste fynden i Skåne (${records.length} st)</div>`;
+    
+    html += `<div class="modal-list">`;
+    records.forEach(obs => {
+        const safeLoc = obs.location.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        const safeObs = obs.observer.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
+        
+        html += `
+        <div class="modal-obs-item">
+            <div class="modal-obs-header">
+                <span class="modal-obs-loc">${safeLoc}</span>
+                <span class="modal-obs-count">${obs.count} ex</span>
+            </div>
+            <div class="modal-obs-meta">
+                <span class="meta-label">Datum:</span> <span class="meta-value">${obs.date}</span>
+                <span class="meta-divider">|</span>
+                <span class="meta-label">Observatör:</span> <span class="meta-value">${safeObs}</span>
+            </div>
+        </div>`;
+    });
+    html += `</div>`;
+    
+    content.innerHTML = html;
+    document.getElementById("obsModalOverlay").classList.add("open");
+}
+
+function closeModal(event) {
+    if (event) event.stopPropagation();
+    document.getElementById("obsModalOverlay").classList.remove("open");
+}
+
+// Initialisering av heatmaps/spotlights
 (function() {
     const currentMonth = new Date().getMonth() + 1; // 1-12
     const cards = document.querySelectorAll(".bounty-card");
     
     cards.forEach(card => {
         try {
-            const isActiveNow = card.getAttribute("data-active-now") === "true";
+            const locs = parseInt(card.getAttribute("data-unique-locs")) || 0;
             const peakMonths = JSON.parse(card.getAttribute("data-peak-months"));
             const statusEl = card.querySelector(".bounty-status");
             
-            if (isActiveNow) {
-                // Priority 1: Active RIGHT NOW in Skåne
-                card.classList.add("active-now");
-                if (statusEl) {
-                    statusEl.textContent = "AKTUELL NU";
-                }
+            if (locs >= 15) {
+                card.classList.add("heat-3");
+                if (statusEl) statusEl.textContent = "HÖGAKTUELL";
+            } else if (locs >= 5) {
+                card.classList.add("heat-2");
+                if (statusEl) statusEl.textContent = "INFLÖDE";
+            } else if (locs >= 1) {
+                card.classList.add("heat-1");
+                if (statusEl) statusEl.textContent = "LOKALT FYND";
             } else if (peakMonths && peakMonths.includes(currentMonth)) {
-                // Priority 2: General High Season
-                card.classList.add("spotlight-active");
-                if (statusEl) {
-                    statusEl.textContent = "HÖGSÄSONG";
-                    statusEl.style.color = "#ca8a04";
-                    statusEl.style.borderColor = "#facc15";
-                }
+                card.classList.add("heat-season");
+                if (statusEl) statusEl.textContent = "HÖGSÄSONG";
             }
         } catch(e) {
-            console.error("Error parsing peak months", e);
+            console.error("Error parsing card data", e);
+        }
+    });
+    
+    // Stäng modal på escape
+    document.addEventListener('keydown', function(event) {
+        if (event.key === "Escape") {
+            closeModal();
         }
     });
 })();
