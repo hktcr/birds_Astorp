@@ -33,7 +33,7 @@ publishDir = 'docs'
 #    pageRef = '/fenologi/'
 #    weight = 26
   [[menus.main]]
-    name = 'De Efterlysta'
+    name = 'Efterlysta'
     pageRef = '/efterlysta/'
     weight = 26
   [[menus.main]]

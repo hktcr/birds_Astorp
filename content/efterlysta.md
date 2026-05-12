@@ -1,11 +1,12 @@
 ---
-title: "De Efterlysta"
+title: "Efterlysta"
 description: "Åstorps 54 kalla fall – en jakt på kommunens mest saknade arter"
 layout: "efterlysta"
+url: "/efterlysta/"
 ---
 
-<div style="max-width: 800px; margin: 0 auto; text-align: center; padding: 2rem 0;">
-<h1 style="font-size: 3rem; margin-bottom: 0.5rem; color: var(--text-color);">DE EFTERLYSTA</h1>
+<div style="text-align: center; margin-bottom: 2rem;">
+<h1 style="font-size: 3rem; margin-bottom: 0.5rem; color: var(--text-color);">EFTERLYSTA</h1>
 <p style="font-size: 1.25rem; opacity: 0.8; margin-bottom: 2rem;">Åstorps 54 kalla fall</p>
 <p style="font-size: 1.1rem; line-height: 1.6; text-align: left; opacity: 0.9; margin-bottom: 3rem;">
 Efter en systematisk genomgång av Skånes fågelfauna har jag valt ut 54 arter som utgör tydliga luckor i Åstorps kommun. Det rör sig om arter som med ganska stor sannolikhet skulle kunna dyka upp inom Åstorps kommun. Målet är att systematiskt minska antalet oöppnade kort i galleriet nedan.
