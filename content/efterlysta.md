@@ -40,6 +40,16 @@ Efter en systematisk genomgång av Skånes fågelfauna har jag valt ut 54 arter 
     box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
+/* Level 0: Enstaka fynd (1-4 locations) - Blå */
+.bounty-card.heat-0 {
+    border-color: rgba(56, 189, 248, 0.8);
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
+}
+.bounty-card.heat-0 .bounty-icon {
+    filter: drop-shadow(0px 4px 8px rgba(56, 189, 248, 0.4));
+    opacity: 0.8;
+}
+
 /* Level 1: Lokalt inflöde (5-9 locations) - Gul */
 .bounty-card.heat-1 {
     border-color: rgba(234, 179, 8, 0.8);
@@ -538,6 +548,8 @@ function closeModal(event) {
                 card.classList.add("heat-2");
             } else if (locs >= 5) {
                 card.classList.add("heat-1");
+            } else if (locs >= 1) {
+                card.classList.add("heat-0");
             }
         } catch(e) {
             console.error("Error parsing card data", e);
