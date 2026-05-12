@@ -1,0 +1,5723 @@
+[
+  {
+    "taxonId": 102939,
+    "vernacularName": "småskrake",
+    "scientificName": "Mergus serrator",
+    "observationCount": 54260,
+    "peakMonths": [],
+    "activeNow": true,
+    "recentObservations": [
+      {
+        "date": "",
+        "location": "Simrishamn",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.76547,14.19644",
+        "count": "2",
+        "observer": "Petter Olsson"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "63",
+        "observer": "Sven Splittorff, Anders Rimne"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72953,12.9967",
+        "count": "2",
+        "observer": "Jarmo Kalliomäki"
+      },
+      {
+        "date": "",
+        "location": "Trelleborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.33966,13.34101",
+        "count": "22",
+        "observer": "Roy Blad, Nils Kjellén"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.08384,12.65524",
+        "count": "1",
+        "observer": "Christer Strid"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.60848,12.98619",
+        "count": "3",
+        "observer": "Anders Larsson"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.52226,12.89098",
+        "count": "1",
+        "observer": "Fredrik Öfverbeck"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.52705,12.92775",
+        "count": "1",
+        "observer": "Hampus  Rosberg"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.60628,12.98466",
+        "count": "6",
+        "observer": "Claes Malmberg"
+      },
+      {
+        "date": "",
+        "location": "Höganäs",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22875,12.74968",
+        "count": "2",
+        "observer": "Carsten Fog"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69181,13.05142",
+        "count": "7",
+        "observer": "Ingemar Andell"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "85",
+        "observer": "Sven Splittorff, Tobias Larsson, Thomas Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Kävlinge",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.7322,12.954",
+        "count": "2",
+        "observer": "Ola Ejdrén"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.60628,12.98466",
+        "count": "3",
+        "observer": "Claes Malmberg"
+      },
+      {
+        "date": "",
+        "location": "Landskrona",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.87273,12.83085",
+        "count": "2",
+        "observer": "Fredrik Bothén"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "1",
+        "observer": "Staffan Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.55965,12.90358",
+        "count": "10",
+        "observer": "August Thomasson, Anna-Karin Olsson, Tove Thomasson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69181,13.05142",
+        "count": "1",
+        "observer": "Ingemar Andell"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.60089,12.96434",
+        "count": "3",
+        "observer": "Emil Lundahl"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69181,13.05142",
+        "count": "3",
+        "observer": "Ingemar Andell"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38303,14.06225",
+        "count": "28",
+        "observer": "Nils Eriksson, Thomas Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.92002,14.3215",
+        "count": "3",
+        "observer": "Hans Cronert"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.55965,12.90358",
+        "count": "4",
+        "observer": "Anders Rydlöv"
+      },
+      {
+        "date": "",
+        "location": "Burlöv",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.63813,13.04396",
+        "count": "10",
+        "observer": "Viktor Björkert"
+      },
+      {
+        "date": "",
+        "location": "Skurup",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38609,13.54753",
+        "count": "2",
+        "observer": "Christian Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69181,13.05142",
+        "count": "4",
+        "observer": "Ingemar Andell"
+      },
+      {
+        "date": "",
+        "location": "Trelleborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.33966,13.34101",
+        "count": "35",
+        "observer": "Nils Kjellén"
+      },
+      {
+        "date": "",
+        "location": "Båstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.4331,12.56948",
+        "count": "1",
+        "observer": "Marcus Vestlund"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "94",
+        "observer": "Sven Splittorff, Anders Rimne, Stefan Wahlstedt"
+      },
+      {
+        "date": "",
+        "location": "Båstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.44119,12.56335",
+        "count": "6",
+        "observer": "Harald Ris, Anton Kvarnbäck"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.60628,12.98466",
+        "count": "2",
+        "observer": "Claes Malmberg"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "101",
+        "observer": "Sven Splittorff"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69181,13.05142",
+        "count": "11",
+        "observer": "Ingemar Andell"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.60628,12.98466",
+        "count": "6",
+        "observer": "Claes Malmberg"
+      },
+      {
+        "date": "",
+        "location": "Burlöv",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.64032,13.05052",
+        "count": "1",
+        "observer": "Simon Fors, Karl-Erik Splittorff, Peter Hjalmar"
+      },
+      {
+        "date": "",
+        "location": "Trelleborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.33966,13.34101",
+        "count": "27",
+        "observer": "Matts Lindbladh, Staffan Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Burlöv",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.63813,13.04396",
+        "count": "1",
+        "observer": "Hans Gawell"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "61",
+        "observer": "Sven Splittorff, Thomas Nilsson, Stefan Wahlstedt, Magnus Stangenberg"
+      },
+      {
+        "date": "",
+        "location": "Landskrona",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.91587,12.80139",
+        "count": "1",
+        "observer": "Jonas Göransson, August Oljeqvist, Svea Nikula"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "10",
+        "observer": "Peter Franzén"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.60628,12.98466",
+        "count": "5",
+        "observer": "Claes Malmberg"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.59886,12.94841",
+        "count": "1",
+        "observer": "Alex Uematsu"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69181,13.05142",
+        "count": "3",
+        "observer": "Ingemar Andell"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.60628,12.98466",
+        "count": "5",
+        "observer": "Claes Malmberg"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66021,13.05899",
+        "count": "5",
+        "observer": "Kristian Ståhl"
+      },
+      {
+        "date": "",
+        "location": "Trelleborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.33966,13.34101",
+        "count": "34",
+        "observer": "Roy Blad, Matts Lindbladh"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.62011,12.98111",
+        "count": "4",
+        "observer": "Adam Johnsson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69181,13.05142",
+        "count": "6",
+        "observer": "Ingemar Andell"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "17",
+        "observer": "Sven Splittorff, per tufvesson"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.59043,12.99286",
+        "count": "17",
+        "observer": "Harald Ris, Alexander Zackrisson"
+      }
+    ],
+    "uniqueLocations": 33
+  },
+  {
+    "taxonId": 102936,
+    "vernacularName": "sjöorre",
+    "scientificName": "Melanitta nigra",
+    "observationCount": 48579,
+    "peakMonths": [],
+    "activeNow": true,
+    "recentObservations": [
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "272",
+        "observer": "Sven Splittorff, Thomas Nilsson, Stefan Wahlstedt, Magnus Stangenberg"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "45",
+        "observer": "Sven Splittorff, Tobias Larsson, Thomas Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "135",
+        "observer": "Sven Splittorff"
+      },
+      {
+        "date": "",
+        "location": "Trelleborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.33966,13.34101",
+        "count": "175",
+        "observer": "Roy Blad, Nils Kjellén"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "40",
+        "observer": "Lars Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.55965,12.90358",
+        "count": "1",
+        "observer": "August Thomasson, Anna-Karin Olsson, Tove Thomasson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "2",
+        "observer": "Staffan Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66757,13.06293",
+        "count": "13",
+        "observer": "Per Olof Lippe"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "113",
+        "observer": "Sven Splittorff, Anders Rimne, Stefan Wahlstedt"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66757,13.06293",
+        "count": "6",
+        "observer": "Per Olof Lippe"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69977,13.0484",
+        "count": "10",
+        "observer": "Petter Olsson, Robert Rydbeck"
+      },
+      {
+        "date": "",
+        "location": "Trelleborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.33966,13.34101",
+        "count": "40",
+        "observer": "Nils Kjellén"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.59699,12.93589",
+        "count": "4",
+        "observer": "Karl Pettersson"
+      },
+      {
+        "date": "",
+        "location": "Eslöv",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69778,13.5801",
+        "count": "1",
+        "observer": "Petter Olsson, Robert Rydbeck"
+      },
+      {
+        "date": "",
+        "location": "Skurup",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38609,13.54753",
+        "count": "1",
+        "observer": "Erik Törnvall"
+      },
+      {
+        "date": "",
+        "location": "Trelleborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.33775,13.36231",
+        "count": "2",
+        "observer": "Staffan Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Skurup",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38609,13.54753",
+        "count": "18",
+        "observer": "Erik Törnvall"
+      },
+      {
+        "date": "",
+        "location": "Skurup",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38609,13.54753",
+        "count": "4",
+        "observer": "Erik Törnvall"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38303,14.06225",
+        "count": "11",
+        "observer": "Nils Eriksson, Thomas Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Skurup",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38609,13.54753",
+        "count": "5",
+        "observer": "Erik Törnvall"
+      },
+      {
+        "date": "",
+        "location": "Örkelljunga",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.27939,13.30763",
+        "count": "1",
+        "observer": "Patric Carlsson"
+      },
+      {
+        "date": "",
+        "location": "Trelleborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.33966,13.34101",
+        "count": "10",
+        "observer": "Matts Lindbladh, Staffan Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Båstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.45902,12.68794",
+        "count": "100",
+        "observer": "Mikael Haraldsson"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "39",
+        "observer": "Sven Splittorff, per tufvesson"
+      },
+      {
+        "date": "",
+        "location": "Skurup",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38806,13.54289",
+        "count": "2",
+        "observer": "Petter Olsson, Robert Rydbeck"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.4267,13.77167",
+        "count": "56",
+        "observer": "Tobias Larsson"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "46",
+        "observer": "Sven Splittorff, Anders Rimne"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66021,13.05899",
+        "count": "5",
+        "observer": "Andreas Wernersson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66757,13.06293",
+        "count": "36",
+        "observer": "Per Olof Lippe"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.6827,13.05749",
+        "count": "3",
+        "observer": "Per Olof Lippe"
+      },
+      {
+        "date": "",
+        "location": "Örkelljunga",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.27939,13.30763",
+        "count": "1",
+        "observer": "Lennart Persson, Björn Herrlund"
+      },
+      {
+        "date": "",
+        "location": "Sjöbo",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.67859,13.62583",
+        "count": "1",
+        "observer": "Petter Olsson, Robert Rydbeck"
+      },
+      {
+        "date": "",
+        "location": "Vellinge",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.37842,12.81221",
+        "count": "58",
+        "observer": "Måns Karlsson, Johan Lorentzon"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.59472,12.9323",
+        "count": "64",
+        "observer": "Karl Pettersson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.64734,13.05472",
+        "count": "11",
+        "observer": "Tomas Flyman"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.64734,13.05472",
+        "count": "2",
+        "observer": "Tomas Flyman"
+      },
+      {
+        "date": "",
+        "location": "Trelleborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.33966,13.34101",
+        "count": "14",
+        "observer": "Roy Blad, Matts Lindbladh"
+      },
+      {
+        "date": "",
+        "location": "Burlöv",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.64032,13.05052",
+        "count": "3",
+        "observer": "Simon Fors, Karl-Erik Splittorff, Peter Hjalmar"
+      },
+      {
+        "date": "",
+        "location": "Simrishamn",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.76547,14.19644",
+        "count": "30",
+        "observer": "Petter Olsson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "7",
+        "observer": "Lars Nilsson"
+      }
+    ],
+    "uniqueLocations": 23
+  },
+  {
+    "taxonId": 102108,
+    "vernacularName": "alfågel",
+    "scientificName": "Clangula hyemalis",
+    "observationCount": 27996,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [
+      {
+        "date": "",
+        "location": "Simrishamn",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.50167,14.32848",
+        "count": "10",
+        "observer": "Stefan Göransson"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38303,14.06225",
+        "count": "4",
+        "observer": "Pentti J Tatti"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "10",
+        "observer": "Sven Splittorff, Tobias Larsson, Thomas Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Simrishamn",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.61528,14.29009",
+        "count": "5",
+        "observer": "Mark Hammarstedt"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "3",
+        "observer": "Sven Splittorff, Anders Rimne, Stefan Wahlstedt"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "7",
+        "observer": "Sven Splittorff"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "2",
+        "observer": "Sven Splittorff, Anders Rimne"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.78914,14.20148",
+        "count": "1",
+        "observer": "Petter Olsson"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "3",
+        "observer": "Sven Splittorff, Thomas Nilsson, Stefan Wahlstedt, Magnus Stangenberg"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "7",
+        "observer": "Sven Splittorff, per tufvesson"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38175,14.05581",
+        "count": "2",
+        "observer": "Klara Tellebo, Lina Näsström"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38303,14.06225",
+        "count": "3",
+        "observer": "Nils Eriksson, Thomas Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Simrishamn",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72342,14.19337",
+        "count": "6",
+        "observer": "Dan Hammarlund, Elisabet Hammarlund"
+      }
+    ],
+    "uniqueLocations": 7
+  },
+  {
+    "taxonId": 102109,
+    "vernacularName": "svärta",
+    "scientificName": "Melanitta fusca",
+    "observationCount": 27736,
+    "peakMonths": [],
+    "activeNow": true,
+    "recentObservations": [
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.78914,14.20148",
+        "count": "4",
+        "observer": "Petter Olsson"
+      },
+      {
+        "date": "",
+        "location": "Örkelljunga",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.27939,13.30763",
+        "count": "1",
+        "observer": "Lennart Persson"
+      },
+      {
+        "date": "",
+        "location": "Vellinge",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.37842,12.81221",
+        "count": "32",
+        "observer": "Måns Karlsson, Johan Lorentzon"
+      },
+      {
+        "date": "",
+        "location": "Trelleborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.33966,13.34101",
+        "count": "43",
+        "observer": "Roy Blad, Nils Kjellén"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "81",
+        "observer": "Sven Splittorff"
+      },
+      {
+        "date": "",
+        "location": "Skurup",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38609,13.54753",
+        "count": "13",
+        "observer": "Erik Törnvall"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "15",
+        "observer": "Henrik Johansson"
+      },
+      {
+        "date": "",
+        "location": "Trelleborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.33966,13.34101",
+        "count": "7",
+        "observer": "Matts Lindbladh, Staffan Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "7",
+        "observer": "Sven Splittorff, per tufvesson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.64734,13.05472",
+        "count": "12",
+        "observer": "Tomas Flyman"
+      },
+      {
+        "date": "",
+        "location": "Kävlinge",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.80519,12.93207",
+        "count": "75",
+        "observer": "Peter Salmon"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "53",
+        "observer": "Sven Splittorff, Thomas Nilsson, Stefan Wahlstedt, Magnus Stangenberg"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.59472,12.9323",
+        "count": "2",
+        "observer": "Karl Pettersson"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "9",
+        "observer": "Sven Splittorff, Anders Rimne"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "119",
+        "observer": "Sven Splittorff, Anders Rimne, Stefan Wahlstedt"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "10",
+        "observer": "Sven Splittorff, Tobias Larsson, Thomas Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Trelleborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.33966,13.34101",
+        "count": "19",
+        "observer": "Nils Kjellén"
+      },
+      {
+        "date": "",
+        "location": "Båstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.45902,12.68794",
+        "count": "3",
+        "observer": "Mikael Haraldsson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "2",
+        "observer": "Lars Nilsson"
+      }
+    ],
+    "uniqueLocations": 12
+  },
+  {
+    "taxonId": 100014,
+    "vernacularName": "bergand",
+    "scientificName": "Aythya marila",
+    "observationCount": 20464,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [],
+    "uniqueLocations": 0
+  },
+  {
+    "taxonId": 232269,
+    "vernacularName": "rödhalsad gås",
+    "scientificName": "Branta ruficollis",
+    "observationCount": 584,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [],
+    "uniqueLocations": 0
+  },
+  {
+    "taxonId": 233137,
+    "vernacularName": "rödhuvad dykand",
+    "scientificName": "Netta rufina",
+    "observationCount": 142,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [],
+    "uniqueLocations": 0
+  },
+  {
+    "taxonId": 102925,
+    "vernacularName": "skäggdopping",
+    "scientificName": "Podiceps cristatus",
+    "observationCount": 65284,
+    "peakMonths": [],
+    "activeNow": true,
+    "recentObservations": [
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.6974,13.15712",
+        "count": "5",
+        "observer": "Birgitta Bengtsson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.1166,14.24988",
+        "count": "1",
+        "observer": "Hans Cronert"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.7011,13.47727",
+        "count": "1",
+        "observer": "Mats Hansson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.70007,13.15061",
+        "count": "4",
+        "observer": "Petter Olsson"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.98386,12.75424",
+        "count": "1",
+        "observer": "Sonja Gunnarsson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69181,13.05142",
+        "count": "2",
+        "observer": "Ingemar Andell"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.52353,12.91711",
+        "count": "2",
+        "observer": "Håkan Olai, Ronny Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "1",
+        "observer": "Peter G Bengtsson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.70084,13.46382",
+        "count": "1",
+        "observer": "Jonas Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69181,13.05142",
+        "count": "3",
+        "observer": "Ingemar Andell"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.60224,12.9868",
+        "count": "1",
+        "observer": "Alex Uematsu"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.52353,12.91711",
+        "count": "2",
+        "observer": "Håkan Olai, Ronny Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.60089,12.96434",
+        "count": "2",
+        "observer": "Emil Lundahl"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "1",
+        "observer": "Michael Welander"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69008,13.49327",
+        "count": "10",
+        "observer": "Lars G R Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "1",
+        "observer": "Michael Welander"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69181,13.05142",
+        "count": "2",
+        "observer": "Ingemar Andell"
+      },
+      {
+        "date": "",
+        "location": "Burlöv",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.63813,13.04396",
+        "count": "1",
+        "observer": "Jonathan Frendel"
+      },
+      {
+        "date": "",
+        "location": "Båstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.45902,12.68794",
+        "count": "1",
+        "observer": "Mikael Haraldsson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.70084,13.46382",
+        "count": "2",
+        "observer": "Markus Forslund, Cecilia Näslund"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.70007,13.15061",
+        "count": "2",
+        "observer": "Hans Evefalk"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69178,13.49253",
+        "count": "3",
+        "observer": "Karl Båth"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69836,13.46579",
+        "count": "1",
+        "observer": "Ebba Falk"
+      },
+      {
+        "date": "",
+        "location": "Eslöv",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.6986,13.55513",
+        "count": "2",
+        "observer": "Lars-Ove Jönsson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69181,13.05142",
+        "count": "2",
+        "observer": "Ingemar Andell"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.68456,13.05911",
+        "count": "2",
+        "observer": "Lars-Göran Lillvik"
+      },
+      {
+        "date": "",
+        "location": "Sjöbo",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.67859,13.62583",
+        "count": "24",
+        "observer": "Gert Ljungqvist"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69178,13.49253",
+        "count": "1",
+        "observer": "Ingrid Evaldsson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.70024,13.15125",
+        "count": "4",
+        "observer": "Staffan Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Hässleholm",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.15575,13.69989",
+        "count": "2",
+        "observer": "Håkan Winqvist"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.70007,13.15061",
+        "count": "7",
+        "observer": "Max Lundberg"
+      },
+      {
+        "date": "",
+        "location": "Sjöbo",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66841,13.61589",
+        "count": "2",
+        "observer": "Peter Åberg"
+      },
+      {
+        "date": "",
+        "location": "Skurup",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.44645,13.55362",
+        "count": "1",
+        "observer": "Petter Olsson, Robert Rydbeck"
+      },
+      {
+        "date": "",
+        "location": "Örkelljunga",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.27939,13.30763",
+        "count": "5",
+        "observer": "Lennart Persson, Björn Herrlund"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.70485,13.45555",
+        "count": "15",
+        "observer": "Ruben Smith, Isak Smith"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69326,13.07458",
+        "count": "1",
+        "observer": "Ingemar Andell"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.70116,13.04564",
+        "count": "1",
+        "observer": "Petter Olsson, Robert Rydbeck"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.0966,14.41598",
+        "count": "2",
+        "observer": "Linda Niklasson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "6",
+        "observer": "Jan-Erik Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Hässleholm",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.15496,13.68495",
+        "count": "5",
+        "observer": "Leif Nordin"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69181,13.05142",
+        "count": "1",
+        "observer": "Ingemar Andell"
+      },
+      {
+        "date": "",
+        "location": "Hörby",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.87368,13.60349",
+        "count": "1",
+        "observer": "Robert Rydbeck"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66021,13.05899",
+        "count": "5",
+        "observer": "Kristian Ståhl"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "1",
+        "observer": "Klara Tellebo"
+      },
+      {
+        "date": "",
+        "location": "Sjöbo",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.67859,13.62583",
+        "count": "12",
+        "observer": "Gert Ljungqvist"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.59043,12.99286",
+        "count": "1",
+        "observer": "Harald Ris, Alexander Zackrisson"
+      },
+      {
+        "date": "",
+        "location": "Skurup",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38609,13.54753",
+        "count": "2",
+        "observer": "Erik Törnvall"
+      },
+      {
+        "date": "",
+        "location": "Hässleholm",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.15575,13.69989",
+        "count": "4",
+        "observer": "Roger Antonson"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.52038,12.9149",
+        "count": "2",
+        "observer": "Christoffer Björnheimer"
+      },
+      {
+        "date": "",
+        "location": "Hörby",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.94393,13.66014",
+        "count": "6",
+        "observer": "Suzanne Schlyter"
+      }
+    ],
+    "uniqueLocations": 56
+  },
+  {
+    "taxonId": 100062,
+    "vernacularName": "storlom",
+    "scientificName": "Gavia arctica",
+    "observationCount": 28498,
+    "peakMonths": [],
+    "activeNow": true,
+    "recentObservations": [
+      {
+        "date": "",
+        "location": "Vellinge",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.37842,12.81221",
+        "count": "10",
+        "observer": "Måns Karlsson, Johan Lorentzon"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.55965,12.90358",
+        "count": "1",
+        "observer": "August Thomasson, Anna-Karin Olsson, Tove Thomasson"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "5",
+        "observer": "Sven Splittorff"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.11028,12.6186",
+        "count": "3",
+        "observer": "Bengt Andersson"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "9",
+        "observer": "Sven Splittorff, Anders Rimne, Stefan Wahlstedt"
+      },
+      {
+        "date": "",
+        "location": "Osby",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.3961,13.80575",
+        "count": "1",
+        "observer": "Lars Olsson"
+      },
+      {
+        "date": "",
+        "location": "Skurup",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38811,13.5448",
+        "count": "5",
+        "observer": "Erik Törnvall"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.78914,14.20148",
+        "count": "20",
+        "observer": "Petter Olsson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.81058,14.20972",
+        "count": "20",
+        "observer": "Sven Jönsson, Per-Olof Andersson"
+      },
+      {
+        "date": "",
+        "location": "Simrishamn",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72342,14.19337",
+        "count": "10",
+        "observer": "Dan Hammarlund, Elisabet Hammarlund"
+      },
+      {
+        "date": "",
+        "location": "Trelleborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.33966,13.34101",
+        "count": "2",
+        "observer": "Roy Blad, Nils Kjellén"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "11",
+        "observer": "Sven Splittorff, Thomas Nilsson, Stefan Wahlstedt, Magnus Stangenberg"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.4267,13.77167",
+        "count": "1",
+        "observer": "Tobias Larsson"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "2",
+        "observer": "Sven Splittorff, per tufvesson"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38303,14.06225",
+        "count": "1",
+        "observer": "Nils Eriksson, Thomas Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.59347,12.92493",
+        "count": "2",
+        "observer": "Anders Rydlöv"
+      },
+      {
+        "date": "",
+        "location": "Höganäs",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.30265,12.44708",
+        "count": "2",
+        "observer": "Thomas Lindblad"
+      },
+      {
+        "date": "",
+        "location": "Örkelljunga",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.27939,13.30763",
+        "count": "1",
+        "observer": "Lennart Persson, Björn Herrlund"
+      },
+      {
+        "date": "",
+        "location": "Skurup",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38609,13.54753",
+        "count": "1",
+        "observer": "Christian Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Simrishamn",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.61528,14.29009",
+        "count": "3",
+        "observer": "Mark Hammarstedt"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "8",
+        "observer": "Sven Splittorff, Tobias Larsson, Thomas Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Skurup",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38609,13.54753",
+        "count": "4",
+        "observer": "Erik Törnvall"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "11",
+        "observer": "Sven Splittorff, Anders Rimne"
+      },
+      {
+        "date": "",
+        "location": "Simrishamn",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.76547,14.19644",
+        "count": "24",
+        "observer": "Petter Olsson"
+      },
+      {
+        "date": "",
+        "location": "Skurup",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38609,13.54753",
+        "count": "3",
+        "observer": "Erik Törnvall"
+      },
+      {
+        "date": "",
+        "location": "Trelleborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.33966,13.34101",
+        "count": "3",
+        "observer": "Nils Kjellén"
+      },
+      {
+        "date": "",
+        "location": "Trelleborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.33966,13.34101",
+        "count": "2",
+        "observer": "Roy Blad, Nils Kjellén"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "1",
+        "observer": "Lars Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Simrishamn",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66447,14.27135",
+        "count": "6",
+        "observer": "Agne Paulsson"
+      },
+      {
+        "date": "",
+        "location": "Simrishamn",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.50167,14.32848",
+        "count": "2",
+        "observer": "Stefan Göransson"
+      },
+      {
+        "date": "",
+        "location": "Trelleborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.33966,13.34101",
+        "count": "1",
+        "observer": "Roy Blad, Matts Lindbladh"
+      }
+    ],
+    "uniqueLocations": 21
+  },
+  {
+    "taxonId": 100063,
+    "vernacularName": "smålom",
+    "scientificName": "Gavia stellata",
+    "observationCount": 26262,
+    "peakMonths": [],
+    "activeNow": true,
+    "recentObservations": [
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.6827,13.05749",
+        "count": "2",
+        "observer": "Per Olof Lippe"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66757,13.06293",
+        "count": "1",
+        "observer": "Per Olof Lippe"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.59472,12.9323",
+        "count": "1",
+        "observer": "Karl Pettersson"
+      },
+      {
+        "date": "",
+        "location": "Trelleborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.33966,13.34101",
+        "count": "14",
+        "observer": "Roy Blad, Nils Kjellén"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.65547,13.05273",
+        "count": "16",
+        "observer": "Tomas Flyman"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.81058,14.20972",
+        "count": "2",
+        "observer": "Sven Jönsson, Per-Olof Andersson"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "7",
+        "observer": "Sven Splittorff, Anders Rimne"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.55965,12.90358",
+        "count": "2",
+        "observer": "August Thomasson, Anna-Karin Olsson, Tove Thomasson"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.11028,12.6186",
+        "count": "2",
+        "observer": "Bengt Andersson, Karl Göran Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.59699,12.93589",
+        "count": "9",
+        "observer": "Karl Pettersson"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.11068,12.61751",
+        "count": "1",
+        "observer": "Oskar Lindberg, Bengt Andersson"
+      },
+      {
+        "date": "",
+        "location": "Trelleborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.33966,13.34101",
+        "count": "13",
+        "observer": "Roy Blad, Matts Lindbladh"
+      },
+      {
+        "date": "",
+        "location": "Höganäs",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.30265,12.44708",
+        "count": "6",
+        "observer": "Thomas Lindblad"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38303,14.06225",
+        "count": "11",
+        "observer": "Nils Eriksson, Thomas Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Båstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.45902,12.68794",
+        "count": "39",
+        "observer": "Mikael Haraldsson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "1",
+        "observer": "Staffan Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.6827,13.05749",
+        "count": "1",
+        "observer": "Per Olof Lippe"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.11028,12.6186",
+        "count": "1",
+        "observer": "Bengt Andersson"
+      },
+      {
+        "date": "",
+        "location": "Burlöv",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.64032,13.05052",
+        "count": "1",
+        "observer": "Simon Fors, Karl-Erik Splittorff, Peter Hjalmar"
+      },
+      {
+        "date": "",
+        "location": "Skurup",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38609,13.54753",
+        "count": "1",
+        "observer": "Erik Törnvall"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "1",
+        "observer": "Sven Splittorff, per tufvesson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.64734,13.05472",
+        "count": "11",
+        "observer": "Tomas Flyman"
+      },
+      {
+        "date": "",
+        "location": "Trelleborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.33966,13.34101",
+        "count": "1",
+        "observer": "Matts Lindbladh"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "10",
+        "observer": "Sven Splittorff, Thomas Nilsson, Stefan Wahlstedt, Magnus Stangenberg"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "14",
+        "observer": "Lars Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "2",
+        "observer": "Lars Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "10",
+        "observer": "Sven Splittorff, Anders Rimne, Stefan Wahlstedt"
+      },
+      {
+        "date": "",
+        "location": "Vellinge",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.37842,12.81221",
+        "count": "20",
+        "observer": "Måns Karlsson, Johan Lorentzon"
+      },
+      {
+        "date": "",
+        "location": "Trelleborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.33966,13.34101",
+        "count": "10",
+        "observer": "Nils Kjellén"
+      },
+      {
+        "date": "",
+        "location": "Skurup",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38609,13.54753",
+        "count": "2",
+        "observer": "Erik Törnvall"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "21",
+        "observer": "Sven Splittorff"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.11028,12.6186",
+        "count": "4",
+        "observer": "Bengt Andersson"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "26",
+        "observer": "Sven Splittorff, Tobias Larsson, Thomas Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.64734,13.05472",
+        "count": "9",
+        "observer": "Tomas Flyman"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66757,13.06293",
+        "count": "15",
+        "observer": "Per Olof Lippe"
+      }
+    ],
+    "uniqueLocations": 19
+  },
+  {
+    "taxonId": 100113,
+    "vernacularName": "svarthakedopping",
+    "scientificName": "Podiceps auritus",
+    "observationCount": 15956,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [],
+    "uniqueLocations": 0
+  },
+  {
+    "taxonId": 100018,
+    "vernacularName": "rördrom",
+    "scientificName": "Botaurus stellaris",
+    "observationCount": 5744,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [
+      {
+        "date": "",
+        "location": "Hässleholm",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.15575,13.69989",
+        "count": "1",
+        "observer": "Lennart Björkquist"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.00347,14.25826",
+        "count": "1",
+        "observer": "Krister Wahlström, Ulla Berglund"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.00347,14.25826",
+        "count": "1",
+        "observer": "Nils Valdemarsson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.00347,14.25826",
+        "count": "1",
+        "observer": "Glenn  Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Vellinge",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.48772,13.12936",
+        "count": "1",
+        "observer": "Mikael Bauer"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.00347,14.25826",
+        "count": "1",
+        "observer": "Thomas Lindblad"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.00347,14.25826",
+        "count": "1",
+        "observer": "Marcus Teveborg"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.00347,14.25826",
+        "count": "1",
+        "observer": "Patric Österblad, Agneta Byström"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.00347,14.25826",
+        "count": "1",
+        "observer": "Anders Karlsson, Mats Alinder, Peter Anderson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.00347,14.25826",
+        "count": "1",
+        "observer": "Roine Strandberg"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.00347,14.25826",
+        "count": "1",
+        "observer": "Stefan Peterson"
+      },
+      {
+        "date": "",
+        "location": "Trelleborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.46375,13.14516",
+        "count": "1",
+        "observer": "Mikael Bauer"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.00347,14.25826",
+        "count": "1",
+        "observer": "Anders Jönsson, Björn Löfman"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.00347,14.25826",
+        "count": "1",
+        "observer": "Mats Olsson, Lars Olsson"
+      }
+    ],
+    "uniqueLocations": 4
+  },
+  {
+    "taxonId": 100035,
+    "vernacularName": "ängshök",
+    "scientificName": "Circus pygargus",
+    "observationCount": 2871,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [],
+    "uniqueLocations": 0
+  },
+  {
+    "taxonId": 205550,
+    "vernacularName": "mindre skrikörn",
+    "scientificName": "Clanga pomarina",
+    "observationCount": 582,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [],
+    "uniqueLocations": 0
+  },
+  {
+    "taxonId": 205617,
+    "vernacularName": "kärrsnäppa",
+    "scientificName": "Calidris alpina",
+    "observationCount": 89968,
+    "peakMonths": [],
+    "activeNow": true,
+    "recentObservations": [
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "35",
+        "observer": "Lars Göte Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "27",
+        "observer": "Åke Mosskull"
+      },
+      {
+        "date": "",
+        "location": "Höganäs",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.2266,12.74936",
+        "count": "1",
+        "observer": "Dan Persson"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.5106,12.92495",
+        "count": "10",
+        "observer": "Anders Rydlöv"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "1",
+        "observer": "Frida Fridh"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.21855,12.77927",
+        "count": "4",
+        "observer": "Carsten Fog"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "4",
+        "observer": "Bryan Smith"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22269,12.78225",
+        "count": "30",
+        "observer": "Henrik Johansson"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22174,12.78216",
+        "count": "12",
+        "observer": "Mattias Jonsäter"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.92235,14.32625",
+        "count": "8",
+        "observer": "Ingrid Evaldsson, Sofia Broström"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22269,12.78225",
+        "count": "18",
+        "observer": "Henrik Johansson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.96031,14.37577",
+        "count": "2",
+        "observer": "Hans Cronert"
+      },
+      {
+        "date": "",
+        "location": "Höganäs",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.2266,12.74936",
+        "count": "4",
+        "observer": "Liselotte Andersson"
+      },
+      {
+        "date": "",
+        "location": "Vellinge",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.43856,12.84232",
+        "count": "3",
+        "observer": "Måns Karlsson"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "3",
+        "observer": "Ulf Carle"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.92235,14.32625",
+        "count": "1",
+        "observer": "Örjan Fritz, Karin Hernborg"
+      },
+      {
+        "date": "",
+        "location": "Kävlinge",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.82192,12.90991",
+        "count": "1",
+        "observer": "Peter Salmon"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "5",
+        "observer": "Henrik Johansson"
+      },
+      {
+        "date": "",
+        "location": "Vellinge",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.37842,12.81221",
+        "count": "6",
+        "observer": "Jarmo Kalliomäki"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "2",
+        "observer": "Leif Klinteroth"
+      },
+      {
+        "date": "",
+        "location": "Vellinge",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.37842,12.81221",
+        "count": "92",
+        "observer": "Måns Karlsson, Johan Lorentzon"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.5106,12.92495",
+        "count": "10",
+        "observer": "Stefan Cherrug"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "5",
+        "observer": "Thomas Wallin, Mikael Jönsson, Tommi Sandberg"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "10",
+        "observer": "Jörgen Norlund, Anita Norlund"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.5106,12.92495",
+        "count": "8",
+        "observer": "Mark Hammarstedt"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.21867,12.78251",
+        "count": "3",
+        "observer": "Thomas Lindblad"
+      },
+      {
+        "date": "",
+        "location": "Vellinge",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.43937,12.86338",
+        "count": "200",
+        "observer": "Janne Dahlén"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.70216,13.53484",
+        "count": "1",
+        "observer": "Jens Morin"
+      },
+      {
+        "date": "",
+        "location": "Höganäs",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.23103,12.74923",
+        "count": "8",
+        "observer": "Mona Hansson"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "5",
+        "observer": "Peter Franzén"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.92235,14.32625",
+        "count": "2",
+        "observer": "Krister Hjalte"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "15",
+        "observer": "Göran Ericson"
+      }
+    ],
+    "uniqueLocations": 15
+  },
+  {
+    "taxonId": 100075,
+    "vernacularName": "myrspov",
+    "scientificName": "Limosa lapponica",
+    "observationCount": 37206,
+    "peakMonths": [],
+    "activeNow": true,
+    "recentObservations": [
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "70",
+        "observer": "Peter Franzén"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66021,13.05899",
+        "count": "54",
+        "observer": "Andreas Wernersson"
+      },
+      {
+        "date": "",
+        "location": "Höganäs",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22083,12.70149",
+        "count": "1",
+        "observer": "Carsten Fog"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "1",
+        "observer": "Göran Ericson"
+      },
+      {
+        "date": "",
+        "location": "Burlöv",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.63889,13.04939",
+        "count": "4",
+        "observer": "Fredrik Hansson"
+      },
+      {
+        "date": "",
+        "location": "Båstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.44119,12.56335",
+        "count": "1",
+        "observer": "Harald Ris, Anton Kvarnbäck"
+      },
+      {
+        "date": "",
+        "location": "Kävlinge",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.82192,12.90991",
+        "count": "4",
+        "observer": "Peter Salmon"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69977,13.0484",
+        "count": "1",
+        "observer": "Petter Olsson, Robert Rydbeck"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66021,13.05899",
+        "count": "30",
+        "observer": "Kristian Ståhl"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "1",
+        "observer": "Liselotte Andersson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66021,13.05899",
+        "count": "30",
+        "observer": "Kristian Ståhl"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.68372,13.06102",
+        "count": "13",
+        "observer": "Lars-Göran Lillvik"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.6827,13.05749",
+        "count": "22",
+        "observer": "Per Olof Lippe"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "25",
+        "observer": "Åke Mosskull"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "25",
+        "observer": "Bryan Smith"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.52038,12.9149",
+        "count": "3",
+        "observer": "Christoffer Björnheimer"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.5106,12.92495",
+        "count": "4",
+        "observer": "Per Jensen"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.5106,12.92495",
+        "count": "1",
+        "observer": "Stefan Cherrug"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "1",
+        "observer": "Frida Fridh"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.5106,12.92495",
+        "count": "15",
+        "observer": "Per Jensen"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66757,13.06293",
+        "count": "89",
+        "observer": "Per Olof Lippe"
+      },
+      {
+        "date": "",
+        "location": "Kävlinge",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.7322,12.954",
+        "count": "4",
+        "observer": "Ola Ejdrén"
+      },
+      {
+        "date": "",
+        "location": "Burlöv",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.64032,13.05052",
+        "count": "17",
+        "observer": "Simon Fors, Karl-Erik Splittorff, Peter Hjalmar"
+      },
+      {
+        "date": "",
+        "location": "Burlöv",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.63813,13.04396",
+        "count": "10",
+        "observer": "Robert Rydbeck"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "1",
+        "observer": "Jonas Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66021,13.05899",
+        "count": "30",
+        "observer": "Kristian Ståhl"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66021,13.05899",
+        "count": "30",
+        "observer": "Kristian Ståhl"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66918,13.06289",
+        "count": "37",
+        "observer": "Lars-Göran Lillvik"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66021,13.05899",
+        "count": "98",
+        "observer": "Andreas Wernersson"
+      },
+      {
+        "date": "",
+        "location": "Höganäs",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22815,12.73679",
+        "count": "21",
+        "observer": "Mattias Jonsäter"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "39",
+        "observer": "Inge Karlqvist"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66021,13.05899",
+        "count": "40",
+        "observer": "Kristian Ståhl"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66918,13.06289",
+        "count": "107",
+        "observer": "Lars-Göran Lillvik"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.65547,13.05273",
+        "count": "120",
+        "observer": "Tomas Flyman"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.50988,12.91585",
+        "count": "15",
+        "observer": "Anders Rydlöv"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66021,13.05899",
+        "count": "30",
+        "observer": "Kristian Ståhl"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69181,13.05142",
+        "count": "11",
+        "observer": "Ingemar Andell"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.21867,12.78251",
+        "count": "78",
+        "observer": "Thomas Lindblad"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.64734,13.05472",
+        "count": "107",
+        "observer": "Tomas Flyman"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66021,13.05899",
+        "count": "69",
+        "observer": "Lars-Göran Lillvik"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22174,12.78216",
+        "count": "37",
+        "observer": "Mattias Jonsäter"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66757,13.06293",
+        "count": "122",
+        "observer": "Per Olof Lippe"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "66",
+        "observer": "Ulf Carle"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66021,13.05899",
+        "count": "79",
+        "observer": "Karsten Bringmark"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.5106,12.92495",
+        "count": "6",
+        "observer": "Stefan Cherrug"
+      },
+      {
+        "date": "",
+        "location": "Höganäs",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.23103,12.74923",
+        "count": "17",
+        "observer": "Bengt Paulsson"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.52042,12.91481",
+        "count": "3",
+        "observer": "Anders Ask Larsson, Fredrik Herrmann, Henrik Hultén"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "1",
+        "observer": "Staffan Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.21855,12.77927",
+        "count": "64",
+        "observer": "Carsten Fog"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66021,13.05899",
+        "count": "64",
+        "observer": "Lars-Göran Lillvik"
+      }
+    ],
+    "uniqueLocations": 32
+  },
+  {
+    "taxonId": 103064,
+    "vernacularName": "kustpipare",
+    "scientificName": "Pluvialis squatarola",
+    "observationCount": 33389,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [],
+    "uniqueLocations": 0
+  },
+  {
+    "taxonId": 103065,
+    "vernacularName": "kustsnäppa",
+    "scientificName": "Calidris canutus",
+    "observationCount": 26483,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [],
+    "uniqueLocations": 0
+  },
+  {
+    "taxonId": 205615,
+    "vernacularName": "spovsnäppa",
+    "scientificName": "Calidris ferruginea",
+    "observationCount": 21565,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [],
+    "uniqueLocations": 0
+  },
+  {
+    "taxonId": 205607,
+    "vernacularName": "sandlöpare",
+    "scientificName": "Calidris alba",
+    "observationCount": 12059,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [],
+    "uniqueLocations": 0
+  },
+  {
+    "taxonId": 102115,
+    "vernacularName": "roskarl",
+    "scientificName": "Arenaria interpres",
+    "observationCount": 9021,
+    "peakMonths": [],
+    "activeNow": true,
+    "recentObservations": [
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.92235,14.32625",
+        "count": "1",
+        "observer": "Roine Strandberg"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "2",
+        "observer": "Lars Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "1",
+        "observer": "Frida Fridh"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "1",
+        "observer": "Thomas Wallin, Mikael Jönsson, Tommi Sandberg"
+      },
+      {
+        "date": "",
+        "location": "Båstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.44119,12.56335",
+        "count": "1",
+        "observer": "Klas Rosenkvist, Jonalyn Rosenkvist"
+      },
+      {
+        "date": "",
+        "location": "Burlöv",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.63889,13.04939",
+        "count": "2",
+        "observer": "Fredrik Hansson"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.98975,12.74577",
+        "count": "1",
+        "observer": "Christer Claesson"
+      }
+    ],
+    "uniqueLocations": 6
+  },
+  {
+    "taxonId": 102114,
+    "vernacularName": "myrsnäppa",
+    "scientificName": "Calidris falcinellus",
+    "observationCount": 4455,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [],
+    "uniqueLocations": 0
+  },
+  {
+    "taxonId": 102617,
+    "vernacularName": "smalnäbbad simsnäppa",
+    "scientificName": "Phalaropus lobatus",
+    "observationCount": 1212,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [],
+    "uniqueLocations": 0
+  },
+  {
+    "taxonId": 102111,
+    "vernacularName": "fjällpipare",
+    "scientificName": "Eudromias morinellus",
+    "observationCount": 433,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [],
+    "uniqueLocations": 0
+  },
+  {
+    "taxonId": 103066,
+    "vernacularName": "dammsnäppa",
+    "scientificName": "Tringa stagnatilis",
+    "observationCount": 134,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [],
+    "uniqueLocations": 0
+  },
+  {
+    "taxonId": 205613,
+    "vernacularName": "tuvsnäppa",
+    "scientificName": "Calidris melanotos",
+    "observationCount": 113,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [],
+    "uniqueLocations": 0
+  },
+  {
+    "taxonId": 100072,
+    "vernacularName": "dvärgmås",
+    "scientificName": "Hydrocoloeus minutus",
+    "observationCount": 25934,
+    "peakMonths": [],
+    "activeNow": true,
+    "recentObservations": [
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "2",
+        "observer": "Sven Splittorff"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "5",
+        "observer": "Dan Persson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "1",
+        "observer": "Alexander Zackrisson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.70084,13.46382",
+        "count": "9",
+        "observer": "Per Lagerås"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69178,13.49253",
+        "count": "1",
+        "observer": "Lars Råberg"
+      },
+      {
+        "date": "",
+        "location": "Skurup",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.44645,13.55362",
+        "count": "1",
+        "observer": "Ola Ejdrén, Mattias Jonsäter"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "2",
+        "observer": "Mikael Calner"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.70084,13.46382",
+        "count": "4",
+        "observer": "Inger Svensson"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.11028,12.6186",
+        "count": "5",
+        "observer": "Bengt Andersson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "10",
+        "observer": "Lars Råberg"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.70084,13.46382",
+        "count": "3",
+        "observer": "Henrik Hansen"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "1",
+        "observer": "Bengt Paulsson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "1",
+        "observer": "Jonas Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "4",
+        "observer": "Staffan Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.70084,13.46382",
+        "count": "1",
+        "observer": "Staffan Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "1",
+        "observer": "Jörgen Sagvik"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.7011,13.47727",
+        "count": "1",
+        "observer": "David Magnusson"
+      },
+      {
+        "date": "",
+        "location": "Burlöv",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.63889,13.04939",
+        "count": "1",
+        "observer": "Fredrik Hansson"
+      },
+      {
+        "date": "",
+        "location": "Höganäs",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.30265,12.44708",
+        "count": "1",
+        "observer": "Thomas Lindblad"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "2",
+        "observer": "Lars Göte Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69836,13.46579",
+        "count": "1",
+        "observer": "Ebba Falk"
+      },
+      {
+        "date": "",
+        "location": "Sjöbo",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.67859,13.62583",
+        "count": "6",
+        "observer": "Olof Ramel"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "1",
+        "observer": "Harald Ris"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69178,13.49253",
+        "count": "1",
+        "observer": "Åke Mosskull"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.6827,13.05749",
+        "count": "1",
+        "observer": "Per Olof Lippe"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22269,12.78225",
+        "count": "2",
+        "observer": "Henrik Johansson"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22269,12.78225",
+        "count": "3",
+        "observer": "Henrik Johansson"
+      },
+      {
+        "date": "",
+        "location": "Trelleborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.33966,13.34101",
+        "count": "4",
+        "observer": "Roy Blad, Matts Lindbladh"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.70084,13.46382",
+        "count": "9",
+        "observer": "Martin Dribe"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.70229,13.53445",
+        "count": "1",
+        "observer": "Jens Morin"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.70084,13.46382",
+        "count": "9",
+        "observer": "Lars Råberg"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69178,13.49253",
+        "count": "2",
+        "observer": "Christian Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "4",
+        "observer": "Krister Hjalte"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "5",
+        "observer": "Per Lagerås, Per Karsten"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "1",
+        "observer": "Hampus  Rosberg"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.21788,12.78036",
+        "count": "1",
+        "observer": "Göran Ericson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "3",
+        "observer": "Mikael Calner"
+      },
+      {
+        "date": "",
+        "location": "Vellinge",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.43638,12.86232",
+        "count": "4",
+        "observer": "Måns Karlsson"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.11028,12.6186",
+        "count": "27",
+        "observer": "Bengt Andersson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66347,13.59634",
+        "count": "6",
+        "observer": "Lars Råberg"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.52038,12.9149",
+        "count": "16",
+        "observer": "Christoffer Björnheimer"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "3",
+        "observer": "Inger Svensson, Eva Engberg, Henrik Ehrenberg, Krister Aronsson, Monica Pedersen"
+      },
+      {
+        "date": "",
+        "location": "Trelleborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.33966,13.34101",
+        "count": "4",
+        "observer": "Nils Kjellén"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "4",
+        "observer": "Lars Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "1",
+        "observer": "Sven Splittorff, Anders Rimne, Stefan Wahlstedt"
+      },
+      {
+        "date": "",
+        "location": "Sjöbo",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.67859,13.62583",
+        "count": "3",
+        "observer": "Gert Ljungqvist"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69178,13.49253",
+        "count": "1",
+        "observer": "Leif Klinteroth"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.00191,14.43827",
+        "count": "4",
+        "observer": "Magnus Ny"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "1",
+        "observer": "Michael Welander"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.6827,13.05749",
+        "count": "2",
+        "observer": "Per Olof Lippe"
+      }
+    ],
+    "uniqueLocations": 25
+  },
+  {
+    "taxonId": 100133,
+    "vernacularName": "småtärna",
+    "scientificName": "Sternula albifrons",
+    "observationCount": 22723,
+    "peakMonths": [],
+    "activeNow": true,
+    "recentObservations": [
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.98731,14.41799",
+        "count": "2",
+        "observer": "Linda Niklasson"
+      },
+      {
+        "date": "",
+        "location": "Burlöv",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.63813,13.04396",
+        "count": "3",
+        "observer": "Viktor Björkert"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.92235,14.32625",
+        "count": "1",
+        "observer": "Anders Karlsson, Mats Alinder, Peter Anderson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.64734,13.05472",
+        "count": "10",
+        "observer": "Tomas Flyman"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.65686,13.05464",
+        "count": "2",
+        "observer": "Lars-Göran Lillvik"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66757,13.06293",
+        "count": "2",
+        "observer": "Per Olof Lippe"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66021,13.05899",
+        "count": "3",
+        "observer": "Ingemar Andell"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.9624,14.34883",
+        "count": "1",
+        "observer": "Alexander Zackrisson, Erika Eriksson"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "2",
+        "observer": "Sven Splittorff, Tobias Larsson, Thomas Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66021,13.05899",
+        "count": "1",
+        "observer": "Kristian Ståhl"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "2",
+        "observer": "Henrik Johansson"
+      },
+      {
+        "date": "",
+        "location": "Vellinge",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.43937,12.86338",
+        "count": "1",
+        "observer": "Janne Dahlén"
+      },
+      {
+        "date": "",
+        "location": "Burlöv",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.63813,13.04396",
+        "count": "4",
+        "observer": "Anton Kvarnbäck, Harald Ris"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.92235,14.32625",
+        "count": "2",
+        "observer": "Magnus Ny"
+      },
+      {
+        "date": "",
+        "location": "Burlöv",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.63813,13.04396",
+        "count": "2",
+        "observer": "David Magnusson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.00067,14.44667",
+        "count": "1",
+        "observer": "Magnus Ny"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "2",
+        "observer": "Mats Nymberg"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "7",
+        "observer": "Sven Splittorff"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.64734,13.05472",
+        "count": "2",
+        "observer": "Tomas Flyman"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22183,12.78139",
+        "count": "2",
+        "observer": "Tommi Sandberg"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.64734,13.05472",
+        "count": "10",
+        "observer": "Tomas Flyman"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "1",
+        "observer": "Staffan Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.92235,14.32625",
+        "count": "1",
+        "observer": "Örjan Fritz, Karin Hernborg"
+      },
+      {
+        "date": "",
+        "location": "Höganäs",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22815,12.73679",
+        "count": "2",
+        "observer": "Mattias Jonsäter"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "1",
+        "observer": "Liselotte Andersson"
+      },
+      {
+        "date": "",
+        "location": "Skurup",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38811,13.5448",
+        "count": "1",
+        "observer": "Erik Törnvall"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "2",
+        "observer": "Bryan Smith"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.21867,12.78251",
+        "count": "2",
+        "observer": "Thomas Lindblad"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.98731,14.41799",
+        "count": "1",
+        "observer": "Sven Englund"
+      },
+      {
+        "date": "",
+        "location": "Trelleborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.33966,13.34101",
+        "count": "9",
+        "observer": "Roy Blad, Matts Lindbladh"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.92235,14.32625",
+        "count": "1",
+        "observer": "Roine Strandberg"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "1",
+        "observer": "Peter Franzén"
+      },
+      {
+        "date": "",
+        "location": "Vellinge",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.42851,12.8465",
+        "count": "1",
+        "observer": "Magnus Johansson"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22269,12.78225",
+        "count": "2",
+        "observer": "Henrik Johansson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.64734,13.05472",
+        "count": "2",
+        "observer": "Tomas Flyman"
+      },
+      {
+        "date": "",
+        "location": "Simrishamn",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.47852,14.29375",
+        "count": "1",
+        "observer": "Lars Johnsson"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.11028,12.6186",
+        "count": "1",
+        "observer": "Bengt Andersson"
+      },
+      {
+        "date": "",
+        "location": "Burlöv",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.63813,13.04396",
+        "count": "1",
+        "observer": "Mikael Bauer"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.59472,12.9323",
+        "count": "2",
+        "observer": "Karl Pettersson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.92428,14.32343",
+        "count": "1",
+        "observer": "Petter Olsson"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "3",
+        "observer": "Sven Splittorff, Anders Rimne, Stefan Wahlstedt"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "13",
+        "observer": "Sven Splittorff, Anders Rimne"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.65547,13.05273",
+        "count": "1",
+        "observer": "Tomas Flyman"
+      },
+      {
+        "date": "",
+        "location": "Höganäs",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.23103,12.74923",
+        "count": "2",
+        "observer": "Mona Hansson"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "2",
+        "observer": "Dan Persson"
+      },
+      {
+        "date": "",
+        "location": "Burlöv",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.63889,13.04939",
+        "count": "2",
+        "observer": "Fredrik Hansson"
+      },
+      {
+        "date": "",
+        "location": "Burlöv",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.63889,13.04939",
+        "count": "4",
+        "observer": "Fredrik Hansson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.64734,13.05472",
+        "count": "2",
+        "observer": "Tomas Flyman"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22322,12.78178",
+        "count": "2",
+        "observer": "Ulf Carle"
+      },
+      {
+        "date": "",
+        "location": "Skurup",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38609,13.54753",
+        "count": "3",
+        "observer": "Erik Törnvall"
+      }
+    ],
+    "uniqueLocations": 29
+  },
+  {
+    "taxonId": 100134,
+    "vernacularName": "skräntärna",
+    "scientificName": "Hydroprogne caspia",
+    "observationCount": 21594,
+    "peakMonths": [],
+    "activeNow": true,
+    "recentObservations": [
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66021,13.05899",
+        "count": "2",
+        "observer": "Kristian Ståhl"
+      },
+      {
+        "date": "",
+        "location": "Trelleborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.33966,13.34101",
+        "count": "1",
+        "observer": "Roy Blad, Matts Lindbladh"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.70485,13.45555",
+        "count": "2",
+        "observer": "Lars Råberg"
+      },
+      {
+        "date": "",
+        "location": "Burlöv",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.63813,13.04396",
+        "count": "1",
+        "observer": "Börje Monsén"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.74118,13.20391",
+        "count": "2",
+        "observer": "Ingrid Evaldsson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.64734,13.05472",
+        "count": "1",
+        "observer": "Tomas Flyman"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.03766,14.13109",
+        "count": "1",
+        "observer": "Rune Stenholm Jakobsen"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.64734,13.05472",
+        "count": "1",
+        "observer": "Tomas Flyman"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "2",
+        "observer": "Lars Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69178,13.49253",
+        "count": "1",
+        "observer": "Christian Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "1",
+        "observer": "Krister Hjalte"
+      },
+      {
+        "date": "",
+        "location": "Sjöbo",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.67859,13.62583",
+        "count": "1",
+        "observer": "Olof Ramel"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.68984,13.05476",
+        "count": "1",
+        "observer": "Lars-Göran Lillvik"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.6827,13.05749",
+        "count": "1",
+        "observer": "Per Olof Lippe"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "2",
+        "observer": "Dan Persson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "2",
+        "observer": "Lars Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "1",
+        "observer": "Per Lagerås, Per Karsten"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69181,13.05142",
+        "count": "1",
+        "observer": "Ingemar Andell"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66757,13.06293",
+        "count": "1",
+        "observer": "Per Olof Lippe"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66918,13.06289",
+        "count": "1",
+        "observer": "Lars-Göran Lillvik"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.64734,13.05472",
+        "count": "1",
+        "observer": "Tomas Flyman"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.70265,13.53071",
+        "count": "1",
+        "observer": "John Mo"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "1",
+        "observer": "Harald Ris"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69181,13.05142",
+        "count": "3",
+        "observer": "Ingemar Andell"
+      },
+      {
+        "date": "",
+        "location": "Burlöv",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.63889,13.04939",
+        "count": "1",
+        "observer": "Fredrik Hansson"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.59347,12.92493",
+        "count": "2",
+        "observer": "Anders Rydlöv"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.74118,13.20391",
+        "count": "1",
+        "observer": "David Gustavsson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "2",
+        "observer": "Lars Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.7886,14.20061",
+        "count": "1",
+        "observer": "Ulf Gärdenfors"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "1",
+        "observer": "Lars Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "1",
+        "observer": "Lars Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.97161,14.43091",
+        "count": "1",
+        "observer": "Nils Valdemarsson, Linda Niklasson, Greger Flyckt"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "1",
+        "observer": "Staffan Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "2",
+        "observer": "Lars Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "1",
+        "observer": "Lars Nilsson, Tomas Flyman"
+      }
+    ],
+    "uniqueLocations": 22
+  },
+  {
+    "taxonId": 102619,
+    "vernacularName": "silvertärna",
+    "scientificName": "Sterna paradisaea",
+    "observationCount": 16689,
+    "peakMonths": [],
+    "activeNow": true,
+    "recentObservations": [
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.97161,14.43091",
+        "count": "4",
+        "observer": "Nils Valdemarsson, Linda Niklasson, Greger Flyckt"
+      },
+      {
+        "date": "",
+        "location": "Skurup",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38609,13.54753",
+        "count": "60",
+        "observer": "Martin Dribe"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66021,13.05899",
+        "count": "2",
+        "observer": "Andreas Wernersson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.01343,14.45944",
+        "count": "2",
+        "observer": "Nils Valdemarsson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66757,13.06293",
+        "count": "2",
+        "observer": "Per Olof Lippe"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "1",
+        "observer": "Peter G Bengtsson"
+      },
+      {
+        "date": "",
+        "location": "Skurup",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38609,13.54753",
+        "count": "16",
+        "observer": "Erik Törnvall"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "1",
+        "observer": "Henrik Johansson"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22269,12.78225",
+        "count": "5",
+        "observer": "Henrik Johansson"
+      },
+      {
+        "date": "",
+        "location": "Vellinge",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.43638,12.86232",
+        "count": "6",
+        "observer": "Måns Karlsson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.96031,14.37577",
+        "count": "1",
+        "observer": "Hans Cronert"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.52038,12.9149",
+        "count": "1",
+        "observer": "Christoffer Björnheimer"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.9624,14.34883",
+        "count": "1",
+        "observer": "Alexander Zackrisson, Erika Eriksson"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.55643,12.90859",
+        "count": "1",
+        "observer": "Christer Igelström"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69178,13.49253",
+        "count": "1",
+        "observer": "Lars Råberg"
+      },
+      {
+        "date": "",
+        "location": "Trelleborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.33966,13.34101",
+        "count": "1",
+        "observer": "Roy Blad, Nils Kjellén"
+      },
+      {
+        "date": "",
+        "location": "Trelleborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.33966,13.34101",
+        "count": "229",
+        "observer": "Roy Blad, Matts Lindbladh"
+      },
+      {
+        "date": "",
+        "location": "Höganäs",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.25779,12.5195",
+        "count": "1",
+        "observer": "Ulf Carle"
+      },
+      {
+        "date": "",
+        "location": "Sjöbo",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.67859,13.62583",
+        "count": "11",
+        "observer": "Gert Ljungqvist"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.6827,13.05749",
+        "count": "1",
+        "observer": "Per Olof Lippe"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.4267,13.77167",
+        "count": "4",
+        "observer": "Tobias Larsson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.6827,13.05749",
+        "count": "3",
+        "observer": "Per Olof Lippe"
+      },
+      {
+        "date": "",
+        "location": "Vellinge",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.41972,12.83789",
+        "count": "3",
+        "observer": "Jarmo Kalliomäki"
+      },
+      {
+        "date": "",
+        "location": "Burlöv",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.64032,13.05052",
+        "count": "145",
+        "observer": "Simon Fors, Karl-Erik Splittorff, Peter Hjalmar"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "22",
+        "observer": "Sven Splittorff, Anders Rimne"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.92235,14.32625",
+        "count": "1",
+        "observer": "Roine Strandberg"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.98731,14.41799",
+        "count": "1",
+        "observer": "Linda Niklasson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.6827,13.05749",
+        "count": "12",
+        "observer": "Per Olof Lippe"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38256,14.06189",
+        "count": "10",
+        "observer": "Sven Splittorff"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.55965,12.90358",
+        "count": "6",
+        "observer": "Anders Rydlöv"
+      },
+      {
+        "date": "",
+        "location": "Höganäs",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.26898,12.50967",
+        "count": "2",
+        "observer": "Ulf Carle"
+      },
+      {
+        "date": "",
+        "location": "Vellinge",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.43937,12.86338",
+        "count": "2",
+        "observer": "Janne Dahlén"
+      },
+      {
+        "date": "",
+        "location": "Skurup",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38609,13.54753",
+        "count": "35",
+        "observer": "Erik Törnvall"
+      },
+      {
+        "date": "",
+        "location": "Bromölla",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.03756,14.5067",
+        "count": "1",
+        "observer": "Beatrice Krupke"
+      },
+      {
+        "date": "",
+        "location": "Skurup",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.38609,13.54753",
+        "count": "2",
+        "observer": "Erik Törnvall"
+      },
+      {
+        "date": "",
+        "location": "Vellinge",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.41805,12.84207",
+        "count": "2",
+        "observer": "Bengt Åhgren"
+      },
+      {
+        "date": "",
+        "location": "Trelleborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.33966,13.34101",
+        "count": "41",
+        "observer": "Nils Kjellén"
+      }
+    ],
+    "uniqueLocations": 29
+  },
+  {
+    "taxonId": 100030,
+    "vernacularName": "svarttärna",
+    "scientificName": "Chlidonias niger",
+    "observationCount": 17764,
+    "peakMonths": [],
+    "activeNow": true,
+    "recentObservations": [
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "10",
+        "observer": "Krister Hjalte"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "4",
+        "observer": "Petter Olsson, Robert Rydbeck"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.70015,13.46454",
+        "count": "5",
+        "observer": "Robert Tuveson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "15",
+        "observer": "Staffan Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "1",
+        "observer": "Conny Andersson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.00347,14.25826",
+        "count": "1",
+        "observer": "Roine Strandberg"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "7",
+        "observer": "max olsson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.70084,13.46382",
+        "count": "7",
+        "observer": "Lars Råberg"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "4",
+        "observer": "Martin Dribe"
+      },
+      {
+        "date": "",
+        "location": "Trelleborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.4639,13.46717",
+        "count": "1",
+        "observer": "Christer Sjögren"
+      },
+      {
+        "date": "",
+        "location": "Svedala",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.50344,13.32254",
+        "count": "2",
+        "observer": "Per Karsten"
+      },
+      {
+        "date": "",
+        "location": "Trelleborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.4639,13.46717",
+        "count": "4",
+        "observer": "Staffan Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69178,13.49253",
+        "count": "8",
+        "observer": "Jörgen Sagvik"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "11",
+        "observer": "Stefan Siwersson"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.52038,12.9149",
+        "count": "1",
+        "observer": "Christoffer Björnheimer"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.52042,12.91481",
+        "count": "1",
+        "observer": "Anders Ask Larsson, Fredrik Herrmann, Henrik Hultén"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.65547,13.05273",
+        "count": "9",
+        "observer": "Tomas Flyman"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69003,13.4934",
+        "count": "11",
+        "observer": "Jacob Björnberg"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.7011,13.47727",
+        "count": "6",
+        "observer": "Pentti J Tatti"
+      },
+      {
+        "date": "",
+        "location": "Skurup",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.44645,13.55362",
+        "count": "2",
+        "observer": "Petter Olsson, Robert Rydbeck"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "9",
+        "observer": "Per Lagerås, Per Karsten"
+      },
+      {
+        "date": "",
+        "location": "Vellinge",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.37842,12.81221",
+        "count": "12",
+        "observer": "Måns Karlsson, Johan Lorentzon"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "1",
+        "observer": "Märta Palmer"
+      },
+      {
+        "date": "",
+        "location": "Burlöv",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.63931,13.04972",
+        "count": "1",
+        "observer": "Henrik Hansen"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.59347,12.92493",
+        "count": "1",
+        "observer": "Vincent Bengtsson"
+      },
+      {
+        "date": "",
+        "location": "Skurup",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.44645,13.55362",
+        "count": "2",
+        "observer": "Marie-Louise Bárány"
+      },
+      {
+        "date": "",
+        "location": "Trelleborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.46415,13.46636",
+        "count": "2",
+        "observer": "Christer Sjögren"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "1",
+        "observer": "Jan-Erik Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69008,13.49327",
+        "count": "20",
+        "observer": "Lars G R Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69196,13.49327",
+        "count": "3",
+        "observer": "Klas Rådberg"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "3",
+        "observer": "Mats Hansson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69178,13.49253",
+        "count": "5",
+        "observer": "Hedvig Wieslander"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.70084,13.46382",
+        "count": "2",
+        "observer": "Mikael Grantén"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.70084,13.46382",
+        "count": "3",
+        "observer": "Henrik Hansen"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.70084,13.46382",
+        "count": "1",
+        "observer": "Staffan Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "15",
+        "observer": "Anders Jägryd, Karin Jägryd"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "12",
+        "observer": "Peter Anderson, Gunilla  Andersson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.68967,13.49485",
+        "count": "6",
+        "observer": "Mattias Jonsäter"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69178,13.49253",
+        "count": "2",
+        "observer": "Stefan Lindkvist"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "1",
+        "observer": "Michael Welander"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "4",
+        "observer": "Lars Råberg"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.00347,14.25826",
+        "count": "2",
+        "observer": "Fredrik Adolfsson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.00347,14.25826",
+        "count": "5",
+        "observer": "Mona Wall"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "1",
+        "observer": "Harald Ris"
+      },
+      {
+        "date": "",
+        "location": "Svedala",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.50344,13.32254",
+        "count": "4",
+        "observer": "Alexander Zackrisson, Per Zackrisson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "4",
+        "observer": "Robert Rydbeck"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69036,13.49361",
+        "count": "4",
+        "observer": "Per Blom"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69178,13.49253",
+        "count": "2",
+        "observer": "Åke Mosskull"
+      },
+      {
+        "date": "",
+        "location": "Burlöv",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.63931,13.04972",
+        "count": "1",
+        "observer": "Henrik Hansen"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "15",
+        "observer": "Lars Nilsson"
+      }
+    ],
+    "uniqueLocations": 43
+  },
+  {
+    "taxonId": 100125,
+    "vernacularName": "tretåig mås",
+    "scientificName": "Rissa tridactyla",
+    "observationCount": 10431,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [],
+    "uniqueLocations": 0
+  },
+  {
+    "taxonId": 205663,
+    "vernacularName": "medelhavstrut",
+    "scientificName": "Larus michahellis",
+    "observationCount": 1626,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [],
+    "uniqueLocations": 0
+  },
+  {
+    "taxonId": 103068,
+    "vernacularName": "vitvingad tärna",
+    "scientificName": "Chlidonias leucopterus",
+    "observationCount": 479,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [],
+    "uniqueLocations": 0
+  },
+  {
+    "taxonId": 102621,
+    "vernacularName": "sparvuggla",
+    "scientificName": "Glaucidium passerinum",
+    "observationCount": 1002,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [],
+    "uniqueLocations": 0
+  },
+  {
+    "taxonId": 102622,
+    "vernacularName": "pärluggla",
+    "scientificName": "Aegolius funereus",
+    "observationCount": 1417,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [],
+    "uniqueLocations": 0
+  },
+  {
+    "taxonId": 102620,
+    "vernacularName": "hökuggla",
+    "scientificName": "Surnia ulula",
+    "observationCount": 445,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [],
+    "uniqueLocations": 0
+  },
+  {
+    "taxonId": 103071,
+    "vernacularName": "biätare",
+    "scientificName": "Merops apiaster",
+    "observationCount": 836,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [],
+    "uniqueLocations": 0
+  },
+  {
+    "taxonId": 100143,
+    "vernacularName": "härfågel",
+    "scientificName": "Upupa epops",
+    "observationCount": 335,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [
+      {
+        "date": "",
+        "location": "Vellinge",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.3838,12.81667",
+        "count": "1",
+        "observer": "Magnus Grylle"
+      },
+      {
+        "date": "",
+        "location": "Vellinge",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.3838,12.81667",
+        "count": "1",
+        "observer": "Timmy Micallef"
+      },
+      {
+        "date": "",
+        "location": "Vellinge",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.41413,12.85734",
+        "count": "1",
+        "observer": "Christer Landgren"
+      },
+      {
+        "date": "",
+        "location": "Landskrona",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.92389,12.7957",
+        "count": "1",
+        "observer": "Julia Hagström"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69709,13.4802",
+        "count": "1",
+        "observer": "Staffan Nilsson"
+      }
+    ],
+    "uniqueLocations": 4
+  },
+  {
+    "taxonId": 100097,
+    "vernacularName": "skäggmes",
+    "scientificName": "Panurus biarmicus",
+    "observationCount": 23297,
+    "peakMonths": [],
+    "activeNow": true,
+    "recentObservations": [
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.04838,14.10057",
+        "count": "2",
+        "observer": "Mats Olsson, Lars Olsson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "2",
+        "observer": "Peter G Bengtsson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "4",
+        "observer": "Lars Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.04838,14.10057",
+        "count": "2",
+        "observer": "Davide Sanguineti"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.50776,12.92931",
+        "count": "1",
+        "observer": "Mark Hammarstedt"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.00474,14.25392",
+        "count": "1",
+        "observer": "Roine Strandberg"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.04838,14.10057",
+        "count": "1",
+        "observer": "Stefan Peterson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.04838,14.10057",
+        "count": "1",
+        "observer": "Ulf Hjelm"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "2",
+        "observer": "Lars Pettersson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "2",
+        "observer": "Jörgen Norlund, Anita Norlund"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.04838,14.10057",
+        "count": "2",
+        "observer": "Jan Linder"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.00347,14.25826",
+        "count": "2",
+        "observer": "Marcus Teveborg"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "1",
+        "observer": "Michael Welander"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "2",
+        "observer": "Lars Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "1",
+        "observer": "Ingemar Andell"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.04838,14.10057",
+        "count": "1",
+        "observer": "Viktor Björkert, Petter Olsson, Robert Rydbeck"
+      },
+      {
+        "date": "",
+        "location": "Vellinge",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.44842,12.97059",
+        "count": "1",
+        "observer": "Kaj Svahn"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "1",
+        "observer": "Christian Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.87486,14.20264",
+        "count": "1",
+        "observer": "Fredrik Adolfsson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "2",
+        "observer": "Lars Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "2",
+        "observer": "Staffan Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.69178,13.49253",
+        "count": "1",
+        "observer": "Rasmus Jakobsson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.04838,14.10057",
+        "count": "3",
+        "observer": "Bengt Nordin"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.99306,14.23947",
+        "count": "1",
+        "observer": "Anders Linus Larsson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "4",
+        "observer": "Hedvig Wieslander"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.99306,14.23947",
+        "count": "1",
+        "observer": "Mona Wall"
+      },
+      {
+        "date": "",
+        "location": "Höganäs",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22161,12.70026",
+        "count": "2",
+        "observer": "Henrik Johansson"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "2",
+        "observer": "Åke Mosskull"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "6",
+        "observer": "Lars Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.04711,14.09825",
+        "count": "1",
+        "observer": "Hans Cronert"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "4",
+        "observer": "Lars Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Helsingborg",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22146,12.78259",
+        "count": "1",
+        "observer": "Lars Göte Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Landskrona",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.85578,12.92803",
+        "count": "2",
+        "observer": "Jens Basse"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "1",
+        "observer": "Eva Engberg"
+      },
+      {
+        "date": "",
+        "location": "Lomma",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.72726,12.99678",
+        "count": "2",
+        "observer": "Lars Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Höganäs",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22083,12.70149",
+        "count": "1",
+        "observer": "Carsten Fog"
+      }
+    ],
+    "uniqueLocations": 14
+  },
+  {
+    "taxonId": 103051,
+    "vernacularName": "rosenfink",
+    "scientificName": "Carpodacus erythrinus",
+    "observationCount": 7985,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [],
+    "uniqueLocations": 0
+  },
+  {
+    "taxonId": 233849,
+    "vernacularName": "svarthakad buskskvätta",
+    "scientificName": "Saxicola rubicola",
+    "observationCount": 7573,
+    "peakMonths": [],
+    "activeNow": true,
+    "recentObservations": [
+      {
+        "date": "",
+        "location": "Bromölla",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.04279,14.48834",
+        "count": "1",
+        "observer": "Ola Svensson"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.45007,13.87421",
+        "count": "4",
+        "observer": "Tobias Larsson"
+      },
+      {
+        "date": "",
+        "location": "Bromölla",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.04331,14.48989",
+        "count": "1",
+        "observer": "Mats Olsson, Lars Olsson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.71218,13.41619",
+        "count": "1",
+        "observer": "Sven Jönsson"
+      },
+      {
+        "date": "",
+        "location": "Höganäs",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22875,12.74968",
+        "count": "1",
+        "observer": "Carsten Fog"
+      },
+      {
+        "date": "",
+        "location": "Höganäs",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.23103,12.74923",
+        "count": "2",
+        "observer": "Mona Hansson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.70485,13.45555",
+        "count": "1",
+        "observer": "Lars Råberg"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.67691,13.51819",
+        "count": "1",
+        "observer": "Nils Kjellén"
+      },
+      {
+        "date": "",
+        "location": "Ängelholm",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22479,12.79654",
+        "count": "2",
+        "observer": "Henrik Johansson"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.37943,14.13937",
+        "count": "2",
+        "observer": "Leif Karlsson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.77464,14.10983",
+        "count": "2",
+        "observer": "Ulf Gärdenfors"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.448,13.89616",
+        "count": "1",
+        "observer": "Leif Karlsson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.71218,13.41619",
+        "count": "1",
+        "observer": "Johan Andersson, Jennie  Sundberg"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.37943,14.13937",
+        "count": "2",
+        "observer": "Tobias Larsson, Thomas Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Simrishamn",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.55431,14.31553",
+        "count": "1",
+        "observer": "Marie-Louise Bárány"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.85033,14.18608",
+        "count": "1",
+        "observer": "Fredrik Adolfsson"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.37943,14.13937",
+        "count": "2",
+        "observer": "Leif Karlsson"
+      },
+      {
+        "date": "",
+        "location": "Hässleholm",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.10344,13.72525",
+        "count": "1",
+        "observer": "Håkan Winqvist"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.77464,14.10983",
+        "count": "1",
+        "observer": "Ulf Gärdenfors"
+      },
+      {
+        "date": "",
+        "location": "Malmö",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.50801,12.93662",
+        "count": "1",
+        "observer": "Stefan Cherrug"
+      },
+      {
+        "date": "",
+        "location": "Höganäs",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.26898,12.50967",
+        "count": "1",
+        "observer": "Jakob Persson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.67691,13.51819",
+        "count": "2",
+        "observer": "Viktor Björkert, Petter Olsson, Robert Rydbeck"
+      },
+      {
+        "date": "",
+        "location": "Höganäs",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.26898,12.50967",
+        "count": "1",
+        "observer": "Jonas Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Höganäs",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.26898,12.50967",
+        "count": "2",
+        "observer": "Ulf Carle"
+      },
+      {
+        "date": "",
+        "location": "Höganäs",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.2266,12.74936",
+        "count": "1",
+        "observer": "Stefan Siwersson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.0532,14.35723",
+        "count": "1",
+        "observer": "Magnus Ny"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.42484,13.97854",
+        "count": "2",
+        "observer": "Tobias Larsson"
+      },
+      {
+        "date": "",
+        "location": "Båstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.46985,12.71005",
+        "count": "1",
+        "observer": "Gunilla Furenberg, Christer Furenberg"
+      },
+      {
+        "date": "",
+        "location": "Höganäs",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22815,12.73679",
+        "count": "1",
+        "observer": "Mattias Jonsäter"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.85033,14.18608",
+        "count": "1",
+        "observer": "Fredrik Adolfsson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.70485,13.45555",
+        "count": "1",
+        "observer": "Harald Ris"
+      },
+      {
+        "date": "",
+        "location": "Höganäs",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22083,12.70149",
+        "count": "1",
+        "observer": "Carsten Fog"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.37943,14.13937",
+        "count": "2",
+        "observer": "Leif Karlsson"
+      },
+      {
+        "date": "",
+        "location": "Ystad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.37914,14.13852",
+        "count": "1",
+        "observer": "Stefan Wahlstedt"
+      },
+      {
+        "date": "",
+        "location": "Båstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.45902,12.68794",
+        "count": "1",
+        "observer": "Mikael Haraldsson"
+      },
+      {
+        "date": "",
+        "location": "Simrishamn",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.54675,14.31647",
+        "count": "1",
+        "observer": "Benny Lorentzon"
+      },
+      {
+        "date": "",
+        "location": "Höganäs",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.23103,12.74923",
+        "count": "4",
+        "observer": "Henrik Johansson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.70743,13.45333",
+        "count": "2",
+        "observer": "Christian Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Simrishamn",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.54318,14.31579",
+        "count": "1",
+        "observer": "Sven Johansson"
+      },
+      {
+        "date": "",
+        "location": "Svalöv",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.85151,13.09751",
+        "count": "2",
+        "observer": "Johan Gustafsson"
+      },
+      {
+        "date": "",
+        "location": "Ängelholm",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22479,12.79654",
+        "count": "2",
+        "observer": "Henrik Johansson"
+      },
+      {
+        "date": "",
+        "location": "Vellinge",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.39848,12.86468",
+        "count": "1",
+        "observer": "Johan Lorentzon, Bengt Grandin, Måns Karlsson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.67691,13.51819",
+        "count": "1",
+        "observer": "Jörgen Adolfsson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.70781,13.45229",
+        "count": "2",
+        "observer": "Sven Jönsson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.87325,14.17678",
+        "count": "1",
+        "observer": "Stefan Peterson"
+      },
+      {
+        "date": "",
+        "location": "Höganäs",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22291,12.70565",
+        "count": "1",
+        "observer": "Mattias Jonsäter"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.87325,14.17678",
+        "count": "1",
+        "observer": "Glenn  Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Höganäs",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.27656,12.50146",
+        "count": "1",
+        "observer": "August Oljeqvist, Jonas Göransson, Julia Lea Falk, Svea Nikula"
+      },
+      {
+        "date": "",
+        "location": "Svalöv",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.85457,13.08385",
+        "count": "2",
+        "observer": "Anders Ahlberg"
+      },
+      {
+        "date": "",
+        "location": "Höganäs",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.22177,12.70224",
+        "count": "1",
+        "observer": "Åke Mosskull"
+      }
+    ],
+    "uniqueLocations": 37
+  },
+  {
+    "taxonId": 100094,
+    "vernacularName": "sommargylling",
+    "scientificName": "Oriolus oriolus",
+    "observationCount": 7145,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.65895,13.5544",
+        "count": "1",
+        "observer": "Petter Olsson, Robert Rydbeck"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.65609,13.5714",
+        "count": "2",
+        "observer": "Anders Karlsson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.64614,13.55457",
+        "count": "1",
+        "observer": "Mats-Åke Persson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.85034,14.17779",
+        "count": "1",
+        "observer": "Charlotte Wigermo"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.65609,13.5714",
+        "count": "1",
+        "observer": "Anders Karlsson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.65014,13.54544",
+        "count": "2",
+        "observer": "Petter Olsson, Robert Rydbeck"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.65609,13.5714",
+        "count": "1",
+        "observer": "Jörgen Norlund, Anita Norlund"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.65609,13.5714",
+        "count": "1",
+        "observer": "Monica Back"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.64614,13.55457",
+        "count": "1",
+        "observer": "Mikael Grantén, Eva-Lotta Grantén"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.65609,13.5714",
+        "count": "1",
+        "observer": "Johan Andersson, Jennie  Sundberg"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.65609,13.5714",
+        "count": "2",
+        "observer": "Jörgen Adolfsson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.65609,13.5714",
+        "count": "2",
+        "observer": "Mats GH Larsson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.6646,13.55678",
+        "count": "1",
+        "observer": "Christian Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66595,13.55781",
+        "count": "1",
+        "observer": "Per Karsten"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.65784,13.5713",
+        "count": "1",
+        "observer": "Lars G R Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.64628,13.55322",
+        "count": "3",
+        "observer": "Sven Jönsson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.65609,13.5714",
+        "count": "1",
+        "observer": "Hampus  Rosberg"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.65609,13.5714",
+        "count": "1",
+        "observer": "Hampus  Rosberg"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.71494,13.32191",
+        "count": "1",
+        "observer": "Arnt Draveng"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.6629,13.55599",
+        "count": "1",
+        "observer": "Petter Olsson, Robert Rydbeck"
+      },
+      {
+        "date": "",
+        "location": "Simrishamn",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.75783,14.15973",
+        "count": "4",
+        "observer": "Agne Paulsson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66595,13.55781",
+        "count": "1",
+        "observer": "Mikael Edlund"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.65609,13.5714",
+        "count": "2",
+        "observer": "Frida Fridh"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66595,13.55781",
+        "count": "1",
+        "observer": "Mikael Grantén, Eva-Lotta Grantén"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.85348,14.16855",
+        "count": "1",
+        "observer": "Fredrik Adolfsson"
+      },
+      {
+        "date": "",
+        "location": "Simrishamn",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.75578,14.15271",
+        "count": "1",
+        "observer": "Petter Olsson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.76298,14.15407",
+        "count": "2",
+        "observer": "Davide Sanguineti"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66595,13.55781",
+        "count": "1",
+        "observer": "Jörgen Sagvik"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66647,13.57603",
+        "count": "1",
+        "observer": "Stefan Siwersson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.65609,13.5714",
+        "count": "3",
+        "observer": "Peter Anderson, Mats Alinder"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.65505,13.54191",
+        "count": "1",
+        "observer": "Stefan Lindkvist"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.65609,13.5714",
+        "count": "1",
+        "observer": "Pär Söderquist, Sixten Söderquist"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.65609,13.5714",
+        "count": "2",
+        "observer": "Peter Anderson, Gunilla  Andersson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66303,13.55534",
+        "count": "1",
+        "observer": "Jonas Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.65609,13.5714",
+        "count": "2",
+        "observer": "Monica Back"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.65609,13.5714",
+        "count": "3",
+        "observer": "Dan Persson"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.65609,13.5714",
+        "count": "1",
+        "observer": "Anders Jägryd, Karin Jägryd"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.65609,13.5714",
+        "count": "2",
+        "observer": "Martin Dribe"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.84002,14.18319",
+        "count": "1",
+        "observer": "Fredrik Adolfsson"
+      },
+      {
+        "date": "",
+        "location": "Simrishamn",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.74562,14.15333",
+        "count": "1",
+        "observer": "Nils Kjellén"
+      },
+      {
+        "date": "",
+        "location": "Lund",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.66595,13.55781",
+        "count": "1",
+        "observer": "Åke Mosskull"
+      }
+    ],
+    "uniqueLocations": 20
+  },
+  {
+    "taxonId": 100123,
+    "vernacularName": "pungmes",
+    "scientificName": "Remiz pendulinus",
+    "observationCount": 7112,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [],
+    "uniqueLocations": 0
+  },
+  {
+    "taxonId": 103053,
+    "vernacularName": "lappsparv",
+    "scientificName": "Calcarius lapponicus",
+    "observationCount": 2012,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [],
+    "uniqueLocations": 0
+  },
+  {
+    "taxonId": 100052,
+    "vernacularName": "berglärka",
+    "scientificName": "Eremophila alpestris",
+    "observationCount": 1667,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [],
+    "uniqueLocations": 0
+  },
+  {
+    "taxonId": 102126,
+    "vernacularName": "ortolansparv",
+    "scientificName": "Emberiza hortulana",
+    "observationCount": 1257,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [],
+    "uniqueLocations": 0
+  },
+  {
+    "taxonId": 102624,
+    "vernacularName": "blåhake",
+    "scientificName": "Luscinia svecica",
+    "observationCount": 1177,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [],
+    "uniqueLocations": 0
+  },
+  {
+    "taxonId": 205835,
+    "vernacularName": "tajgasångare",
+    "scientificName": "Phylloscopus inornatus",
+    "observationCount": 1149,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [],
+    "uniqueLocations": 0
+  },
+  {
+    "taxonId": 102122,
+    "vernacularName": "flodsångare",
+    "scientificName": "Locustella fluviatilis",
+    "observationCount": 710,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [],
+    "uniqueLocations": 0
+  },
+  {
+    "taxonId": 103076,
+    "vernacularName": "vassångare",
+    "scientificName": "Locustella luscinioides",
+    "observationCount": 499,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [
+      {
+        "date": "",
+        "location": "Hässleholm",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.15575,13.69989",
+        "count": "1",
+        "observer": "Leif Nordin"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.99306,14.23947",
+        "count": "1",
+        "observer": "Patric Österblad, Agneta Byström"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.8756,14.21487",
+        "count": "1",
+        "observer": "Bengt Nordin, Alexander Lilja Nordin"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.87486,14.20264",
+        "count": "1",
+        "observer": "Martin Dribe"
+      },
+      {
+        "date": "",
+        "location": "Hässleholm",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.15575,13.69989",
+        "count": "1",
+        "observer": "Sture Persson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.99742,14.16481",
+        "count": "1",
+        "observer": "Mats Johannesson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.87486,14.20264",
+        "count": "1",
+        "observer": "Fredrik Adolfsson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.00347,14.25826",
+        "count": "1",
+        "observer": "Marcus Teveborg"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.87486,14.20264",
+        "count": "2",
+        "observer": "Fredrik Adolfsson"
+      },
+      {
+        "date": "",
+        "location": "Hässleholm",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.15575,13.69989",
+        "count": "1",
+        "observer": "Lennart Björkquist"
+      },
+      {
+        "date": "",
+        "location": "Hässleholm",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.15527,13.69706",
+        "count": "1",
+        "observer": "Jan Pröjts"
+      },
+      {
+        "date": "",
+        "location": "Hässleholm",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.15575,13.69989",
+        "count": "1",
+        "observer": "Håkan Winqvist"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.87482,14.21634",
+        "count": "1",
+        "observer": "Andreas Ottvall"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.88629,14.20528",
+        "count": "2",
+        "observer": "Sven Jönsson, Per-Olof Andersson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.87486,14.20264",
+        "count": "1",
+        "observer": "Kjell Wallin"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.99742,14.16481",
+        "count": "1",
+        "observer": "Mats Johannesson"
+      },
+      {
+        "date": "",
+        "location": "Hässleholm",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.15575,13.69989",
+        "count": "1",
+        "observer": "Anders Linus Larsson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.87486,14.20264",
+        "count": "1",
+        "observer": "Viktor Björkert, Jonas Nilsson, Petter Olsson, Robert Rydbeck"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.87486,14.20264",
+        "count": "1",
+        "observer": "Anders Borgehed, max olsson"
+      },
+      {
+        "date": "",
+        "location": "Hässleholm",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.15575,13.69989",
+        "count": "1",
+        "observer": "Peter Öhrström"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.87486,14.20264",
+        "count": "1",
+        "observer": "Anders Karlsson, Mats Alinder, Peter Anderson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.87486,14.20264",
+        "count": "2",
+        "observer": "Anders Blomdahl, Linda Jonasson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.8756,14.21293",
+        "count": "1",
+        "observer": "Dan Persson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.87486,14.20264",
+        "count": "1",
+        "observer": "Svante Bro"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.87486,14.20264",
+        "count": "2",
+        "observer": "Jörgen Norlund, Anita Norlund"
+      },
+      {
+        "date": "",
+        "location": "Hässleholm",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.15575,13.69989",
+        "count": "1",
+        "observer": "Bengt Nordin"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.87486,14.20264",
+        "count": "1",
+        "observer": "Carl Christian Tofte"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.87486,14.20264",
+        "count": "1",
+        "observer": "Göran Andersson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.99742,14.16481",
+        "count": "1",
+        "observer": "Mats Johannesson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.87486,14.20264",
+        "count": "1",
+        "observer": "Fredrik Adolfsson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.87501,14.19738",
+        "count": "1",
+        "observer": "Anders Jönsson, Björn Löfman"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.87511,14.2126",
+        "count": "1",
+        "observer": "Petter Olsson"
+      },
+      {
+        "date": "",
+        "location": "Hässleholm",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.15575,13.69989",
+        "count": "1",
+        "observer": "Roger Antonson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.87486,14.20264",
+        "count": "1",
+        "observer": "Jonas Nilsson"
+      },
+      {
+        "date": "",
+        "location": "Kristianstad",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.87486,14.20264",
+        "count": "1",
+        "observer": "Stefan Siwersson"
+      },
+      {
+        "date": "",
+        "location": "Hässleholm",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=56.15575,13.69989",
+        "count": "1",
+        "observer": "Niclas Winqvist"
+      }
+    ],
+    "uniqueLocations": 12
+  },
+  {
+    "taxonId": 102123,
+    "vernacularName": "höksångare",
+    "scientificName": "Curruca nisoria",
+    "observationCount": 460,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [],
+    "uniqueLocations": 0
+  },
+  {
+    "taxonId": 205750,
+    "vernacularName": "större piplärka",
+    "scientificName": "Anthus richardi",
+    "observationCount": 311,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [],
+    "uniqueLocations": 0
+  },
+  {
+    "taxonId": 103073,
+    "vernacularName": "citronärla",
+    "scientificName": "Motacilla citreola",
+    "observationCount": 116,
+    "peakMonths": [],
+    "activeNow": false,
+    "recentObservations": [
+      {
+        "date": "",
+        "location": "Simrishamn",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.51214,14.17621",
+        "count": "1",
+        "observer": "Tobias Larsson"
+      },
+      {
+        "date": "",
+        "location": "Simrishamn",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.51214,14.17621",
+        "count": "1",
+        "observer": "Hans Larsson"
+      },
+      {
+        "date": "",
+        "location": "Simrishamn",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.51214,14.17621",
+        "count": "1",
+        "observer": "Lars Johnsson, Bengt Andersson, Davide Sanguineti"
+      },
+      {
+        "date": "",
+        "location": "Simrishamn",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.51214,14.17621",
+        "count": "1",
+        "observer": "Leif Karlsson"
+      },
+      {
+        "date": "",
+        "location": "Simrishamn",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.51214,14.17621",
+        "count": "1",
+        "observer": "Agne Paulsson"
+      },
+      {
+        "date": "",
+        "location": "Simrishamn",
+        "maps_url": "https://www.google.com/maps/search/?api=1&query=55.51214,14.17621",
+        "count": "1",
+        "observer": "Davide Sanguineti"
+      }
+    ],
+    "uniqueLocations": 1
+  }
+]

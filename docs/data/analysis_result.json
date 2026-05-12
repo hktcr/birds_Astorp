@@ -1,0 +1,1274 @@
+[
+  {
+    "taxonId": 205617,
+    "vernacularName": "kärrsnäppa",
+    "scientificName": "Calidris alpina",
+    "observationCount": 89968
+  },
+  {
+    "taxonId": 102925,
+    "vernacularName": "skäggdopping",
+    "scientificName": "Podiceps cristatus",
+    "observationCount": 65284
+  },
+  {
+    "taxonId": 102939,
+    "vernacularName": "småskrake",
+    "scientificName": "Mergus serrator",
+    "observationCount": 54260
+  },
+  {
+    "taxonId": 100135,
+    "vernacularName": "kentsk tärna",
+    "scientificName": "Thalasseus sandvicensis",
+    "observationCount": 50151
+  },
+  {
+    "taxonId": 102936,
+    "vernacularName": "sjöorre",
+    "scientificName": "Melanitta nigra",
+    "observationCount": 48579
+  },
+  {
+    "taxonId": 100075,
+    "vernacularName": "myrspov",
+    "scientificName": "Limosa lapponica",
+    "observationCount": 37206
+  },
+  {
+    "taxonId": 103064,
+    "vernacularName": "kustpipare",
+    "scientificName": "Pluvialis squatarola",
+    "observationCount": 33389
+  },
+  {
+    "taxonId": 100062,
+    "vernacularName": "storlom",
+    "scientificName": "Gavia arctica",
+    "observationCount": 28498
+  },
+  {
+    "taxonId": 102108,
+    "vernacularName": "alfågel",
+    "scientificName": "Clangula hyemalis",
+    "observationCount": 27996
+  },
+  {
+    "taxonId": 102109,
+    "vernacularName": "svärta",
+    "scientificName": "Melanitta fusca",
+    "observationCount": 27736
+  },
+  {
+    "taxonId": 205487,
+    "vernacularName": "havssula",
+    "scientificName": "Morus bassanus",
+    "observationCount": 27708
+  },
+  {
+    "taxonId": 103065,
+    "vernacularName": "kustsnäppa",
+    "scientificName": "Calidris canutus",
+    "observationCount": 26483
+  },
+  {
+    "taxonId": 100063,
+    "vernacularName": "smålom",
+    "scientificName": "Gavia stellata",
+    "observationCount": 26262
+  },
+  {
+    "taxonId": 100072,
+    "vernacularName": "dvärgmås",
+    "scientificName": "Hydrocoloeus minutus",
+    "observationCount": 25934
+  },
+  {
+    "taxonId": 100097,
+    "vernacularName": "skäggmes",
+    "scientificName": "Panurus biarmicus",
+    "observationCount": 23297
+  },
+  {
+    "taxonId": 100133,
+    "vernacularName": "småtärna",
+    "scientificName": "Sternula albifrons",
+    "observationCount": 22723
+  },
+  {
+    "taxonId": 100134,
+    "vernacularName": "skräntärna",
+    "scientificName": "Hydroprogne caspia",
+    "observationCount": 21594
+  },
+  {
+    "taxonId": 205615,
+    "vernacularName": "spovsnäppa",
+    "scientificName": "Calidris ferruginea",
+    "observationCount": 21565
+  },
+  {
+    "taxonId": 100014,
+    "vernacularName": "bergand",
+    "scientificName": "Aythya marila",
+    "observationCount": 20464
+  },
+  {
+    "taxonId": 102969,
+    "vernacularName": "tordmule",
+    "scientificName": "Alca torda",
+    "observationCount": 18656
+  },
+  {
+    "taxonId": 100030,
+    "vernacularName": "svarttärna",
+    "scientificName": "Chlidonias niger",
+    "observationCount": 17764
+  },
+  {
+    "taxonId": 102984,
+    "vernacularName": "skärpiplärka",
+    "scientificName": "Anthus petrosus",
+    "observationCount": 17283
+  },
+  {
+    "taxonId": 102619,
+    "vernacularName": "silvertärna",
+    "scientificName": "Sterna paradisaea",
+    "observationCount": 16689
+  },
+  {
+    "taxonId": 100113,
+    "vernacularName": "svarthakedopping",
+    "scientificName": "Podiceps auritus",
+    "observationCount": 15956
+  },
+  {
+    "taxonId": 100144,
+    "vernacularName": "sillgrissla",
+    "scientificName": "Uria aalge",
+    "observationCount": 15032
+  },
+  {
+    "taxonId": 232134,
+    "vernacularName": "sydlig gransångare",
+    "scientificName": "Phylloscopus collybita collybita",
+    "observationCount": 14856
+  },
+  {
+    "taxonId": 233859,
+    "vernacularName": "vanlig gråsiska",
+    "scientificName": "Acanthis flammea flammea",
+    "observationCount": 12795
+  },
+  {
+    "taxonId": 205607,
+    "vernacularName": "sandlöpare",
+    "scientificName": "Calidris alba",
+    "observationCount": 12059
+  },
+  {
+    "taxonId": 102116,
+    "vernacularName": "tobisgrissla",
+    "scientificName": "Cepphus grylle",
+    "observationCount": 11757
+  },
+  {
+    "taxonId": 100125,
+    "vernacularName": "tretåig mås",
+    "scientificName": "Rissa tridactyla",
+    "observationCount": 10431
+  },
+  {
+    "taxonId": 205963,
+    "vernacularName": "nordlig gransångare",
+    "scientificName": "Phylloscopus collybita abietinus",
+    "observationCount": 9242
+  },
+  {
+    "taxonId": 102115,
+    "vernacularName": "roskarl",
+    "scientificName": "Arenaria interpres",
+    "observationCount": 9021
+  },
+  {
+    "taxonId": 100132,
+    "vernacularName": "kustlabb",
+    "scientificName": "Stercorarius parasiticus",
+    "observationCount": 8393
+  },
+  {
+    "taxonId": 103051,
+    "vernacularName": "rosenfink",
+    "scientificName": "Carpodacus erythrinus",
+    "observationCount": 7985
+  },
+  {
+    "taxonId": 233849,
+    "vernacularName": "svarthakad buskskvätta",
+    "scientificName": "Saxicola rubicola",
+    "observationCount": 7573
+  },
+  {
+    "taxonId": 100010,
+    "vernacularName": "fältpiplärka",
+    "scientificName": "Anthus campestris",
+    "observationCount": 7452
+  },
+  {
+    "taxonId": 100094,
+    "vernacularName": "sommargylling",
+    "scientificName": "Oriolus oriolus",
+    "observationCount": 7145
+  },
+  {
+    "taxonId": 100123,
+    "vernacularName": "pungmes",
+    "scientificName": "Remiz pendulinus",
+    "observationCount": 7112
+  },
+  {
+    "taxonId": 205489,
+    "vernacularName": "toppskarv",
+    "scientificName": "Gulosus aristotelis",
+    "observationCount": 7002
+  },
+  {
+    "taxonId": 100025,
+    "vernacularName": "brunsiska",
+    "scientificName": "Acanthis flammea cabaret",
+    "observationCount": 6299
+  },
+  {
+    "taxonId": 100018,
+    "vernacularName": "rördrom",
+    "scientificName": "Botaurus stellaris",
+    "observationCount": 5744
+  },
+  {
+    "taxonId": 102113,
+    "vernacularName": "skärsnäppa",
+    "scientificName": "Calidris maritima",
+    "observationCount": 5240
+  },
+  {
+    "taxonId": 266842,
+    "vernacularName": "fisk-/silvertärna",
+    "scientificName": "Sterna hirundo/paradisaea",
+    "observationCount": 5019
+  },
+  {
+    "taxonId": 102114,
+    "vernacularName": "myrsnäppa",
+    "scientificName": "Calidris falcinellus",
+    "observationCount": 4455
+  },
+  {
+    "taxonId": 205921,
+    "vernacularName": "mellanskarv",
+    "scientificName": "Phalacrocorax carbo sinensis",
+    "observationCount": 4234
+  },
+  {
+    "taxonId": 205651,
+    "vernacularName": "storlabb",
+    "scientificName": "Stercorarius skua",
+    "observationCount": 3775
+  },
+  {
+    "taxonId": 266926,
+    "vernacularName": "sillgrissla/tordmule",
+    "scientificName": "Uria aalge/Alca torda",
+    "observationCount": 3417
+  },
+  {
+    "taxonId": 205935,
+    "vernacularName": "isländsk rödbena",
+    "scientificName": "Tringa totanus robusta",
+    "observationCount": 3320
+  },
+  {
+    "taxonId": 233854,
+    "vernacularName": "nordlig stjärtmes",
+    "scientificName": "Aegithalos caudatus caudatus",
+    "observationCount": 3170
+  },
+  {
+    "taxonId": 100035,
+    "vernacularName": "ängshök",
+    "scientificName": "Circus pygargus",
+    "observationCount": 2871
+  },
+  {
+    "taxonId": 205685,
+    "vernacularName": "alkekung",
+    "scientificName": "Alle alle",
+    "observationCount": 2433
+  },
+  {
+    "taxonId": 205975,
+    "vernacularName": "svartkråka",
+    "scientificName": "Corvus corone corone",
+    "observationCount": 2427
+  },
+  {
+    "taxonId": 205648,
+    "vernacularName": "bredstjärtad labb",
+    "scientificName": "Stercorarius pomarinus",
+    "observationCount": 2157
+  },
+  {
+    "taxonId": 103053,
+    "vernacularName": "lappsparv",
+    "scientificName": "Calcarius lapponicus",
+    "observationCount": 2012
+  },
+  {
+    "taxonId": 205759,
+    "vernacularName": "vattenpiplärka",
+    "scientificName": "Anthus spinoletta",
+    "observationCount": 1841
+  },
+  {
+    "taxonId": 102613,
+    "vernacularName": "orre",
+    "scientificName": "Lyrurus tetrix",
+    "observationCount": 1749
+  },
+  {
+    "taxonId": 100052,
+    "vernacularName": "berglärka",
+    "scientificName": "Eremophila alpestris",
+    "observationCount": 1667
+  },
+  {
+    "taxonId": 205663,
+    "vernacularName": "medelhavstrut",
+    "scientificName": "Larus michahellis",
+    "observationCount": 1626
+  },
+  {
+    "taxonId": 100027,
+    "vernacularName": "svartbent strandpipare",
+    "scientificName": "Anarhynchus alexandrinus",
+    "observationCount": 1610
+  },
+  {
+    "taxonId": 205482,
+    "vernacularName": "grålira",
+    "scientificName": "Ardenna grisea",
+    "observationCount": 1510
+  },
+  {
+    "taxonId": 267094,
+    "vernacularName": "grågås x kanadagås",
+    "scientificName": "Anser anser x Branta canadensis",
+    "observationCount": 1505
+  },
+  {
+    "taxonId": 266774,
+    "vernacularName": "smålom/storlom",
+    "scientificName": "Gavia stellata/arctica",
+    "observationCount": 1492
+  },
+  {
+    "taxonId": 102962,
+    "vernacularName": "fjällabb",
+    "scientificName": "Stercorarius longicaudus",
+    "observationCount": 1436
+  },
+  {
+    "taxonId": 102622,
+    "vernacularName": "pärluggla",
+    "scientificName": "Aegolius funereus",
+    "observationCount": 1417
+  },
+  {
+    "taxonId": 100115,
+    "vernacularName": "svarthalsad dopping",
+    "scientificName": "Podiceps nigricollis",
+    "observationCount": 1276
+  },
+  {
+    "taxonId": 102126,
+    "vernacularName": "ortolansparv",
+    "scientificName": "Emberiza hortulana",
+    "observationCount": 1257
+  },
+  {
+    "taxonId": 102617,
+    "vernacularName": "smalnäbbad simsnäppa",
+    "scientificName": "Phalaropus lobatus",
+    "observationCount": 1212
+  },
+  {
+    "taxonId": 102624,
+    "vernacularName": "blåhake",
+    "scientificName": "Luscinia svecica",
+    "observationCount": 1177
+  },
+  {
+    "taxonId": 100071,
+    "vernacularName": "östersjötrut",
+    "scientificName": "Larus fuscus fuscus",
+    "observationCount": 1174
+  },
+  {
+    "taxonId": 205835,
+    "vernacularName": "tajgasångare",
+    "scientificName": "Phylloscopus inornatus",
+    "observationCount": 1149
+  },
+  {
+    "taxonId": 205952,
+    "vernacularName": "vitstjärnig blåhake",
+    "scientificName": "Luscinia svecica cyanecula",
+    "observationCount": 1144
+  },
+  {
+    "taxonId": 102621,
+    "vernacularName": "sparvuggla",
+    "scientificName": "Glaucidium passerinum",
+    "observationCount": 1002
+  },
+  {
+    "taxonId": 100023,
+    "vernacularName": "sydlig kärrsnäppa",
+    "scientificName": "Calidris alpina schinzii",
+    "observationCount": 893
+  },
+  {
+    "taxonId": 103071,
+    "vernacularName": "biätare",
+    "scientificName": "Merops apiaster",
+    "observationCount": 836
+  },
+  {
+    "taxonId": 100060,
+    "vernacularName": "tofslärka",
+    "scientificName": "Galerida cristata",
+    "observationCount": 830
+  },
+  {
+    "taxonId": 205978,
+    "vernacularName": "snösiska",
+    "scientificName": "Acanthis flammea exilipes",
+    "observationCount": 788
+  },
+  {
+    "taxonId": 2002086,
+    "vernacularName": "alkor",
+    "scientificName": "Alcidae",
+    "observationCount": 745
+  },
+  {
+    "taxonId": 100138,
+    "vernacularName": "tjäder",
+    "scientificName": "Tetrao urogallus",
+    "observationCount": 719
+  },
+  {
+    "taxonId": 233818,
+    "vernacularName": "mandarinand",
+    "scientificName": "Aix galericulata",
+    "observationCount": 718
+  },
+  {
+    "taxonId": 102122,
+    "vernacularName": "flodsångare",
+    "scientificName": "Locustella fluviatilis",
+    "observationCount": 710
+  },
+  {
+    "taxonId": 233778,
+    "vernacularName": "snögås",
+    "scientificName": "Anser caerulescens",
+    "observationCount": 709
+  },
+  {
+    "taxonId": 232271,
+    "vernacularName": "praktejder",
+    "scientificName": "Somateria spectabilis",
+    "observationCount": 708
+  },
+  {
+    "taxonId": 100003,
+    "vernacularName": "trastsångare",
+    "scientificName": "Acrocephalus arundinaceus",
+    "observationCount": 703
+  },
+  {
+    "taxonId": 267312,
+    "vernacularName": "kustlabb, mörk morf",
+    "scientificName": "Stercorarius parasiticus, dark morph",
+    "observationCount": 695
+  },
+  {
+    "taxonId": 266910,
+    "vernacularName": "svartkråka x gråkråka",
+    "scientificName": "Corvus corone corone x cornix",
+    "observationCount": 676
+  },
+  {
+    "taxonId": 205486,
+    "vernacularName": "klykstjärtad stormsvala",
+    "scientificName": "Hydrobates leucorhous",
+    "observationCount": 674
+  },
+  {
+    "taxonId": 205966,
+    "vernacularName": "kontinental stjärtmes",
+    "scientificName": "Aegithalos caudatus europaeus",
+    "observationCount": 657
+  },
+  {
+    "taxonId": 267311,
+    "vernacularName": "kustlabb, ljus morf",
+    "scientificName": "Stercorarius parasiticus, light morph",
+    "observationCount": 634
+  },
+  {
+    "taxonId": 233142,
+    "vernacularName": "svartnäbbad islom",
+    "scientificName": "Gavia immer",
+    "observationCount": 632
+  },
+  {
+    "taxonId": 232269,
+    "vernacularName": "rödhalsad gås",
+    "scientificName": "Branta ruficollis",
+    "observationCount": 584
+  },
+  {
+    "taxonId": 205550,
+    "vernacularName": "mindre skrikörn",
+    "scientificName": "Clanga pomarina",
+    "observationCount": 582
+  },
+  {
+    "taxonId": 100059,
+    "vernacularName": "lunnefågel",
+    "scientificName": "Fratercula arctica",
+    "observationCount": 535
+  },
+  {
+    "taxonId": 205656,
+    "vernacularName": "tärnmås",
+    "scientificName": "Xema sabini",
+    "observationCount": 530
+  },
+  {
+    "taxonId": 103076,
+    "vernacularName": "vassångare",
+    "scientificName": "Locustella luscinioides",
+    "observationCount": 499
+  },
+  {
+    "taxonId": 205934,
+    "vernacularName": "isländsk rödspov",
+    "scientificName": "Limosa limosa islandica",
+    "observationCount": 497
+  },
+  {
+    "taxonId": 103068,
+    "vernacularName": "vitvingad tärna",
+    "scientificName": "Chlidonias leucopterus",
+    "observationCount": 479
+  },
+  {
+    "taxonId": 102123,
+    "vernacularName": "höksångare",
+    "scientificName": "Curruca nisoria",
+    "observationCount": 460
+  },
+  {
+    "taxonId": 102620,
+    "vernacularName": "hökuggla",
+    "scientificName": "Surnia ulula",
+    "observationCount": 445
+  },
+  {
+    "taxonId": 233838,
+    "vernacularName": "mörkbukig prutgås",
+    "scientificName": "Branta bernicla bernicla",
+    "observationCount": 442
+  },
+  {
+    "taxonId": 205483,
+    "vernacularName": "mindre lira",
+    "scientificName": "Puffinus puffinus",
+    "observationCount": 437
+  },
+  {
+    "taxonId": 102111,
+    "vernacularName": "fjällpipare",
+    "scientificName": "Eudromias morinellus",
+    "observationCount": 433
+  },
+  {
+    "taxonId": 234080,
+    "vernacularName": "svart svan",
+    "scientificName": "Cygnus atratus",
+    "observationCount": 421
+  },
+  {
+    "taxonId": 205926,
+    "vernacularName": "ljusbukig prutgås",
+    "scientificName": "Branta bernicla hrota",
+    "observationCount": 408
+  },
+  {
+    "taxonId": 103061,
+    "vernacularName": "större skrikörn",
+    "scientificName": "Clanga clanga",
+    "observationCount": 392
+  },
+  {
+    "taxonId": 205964,
+    "vernacularName": "sibirisk gransångare",
+    "scientificName": "Phylloscopus collybita tristis",
+    "observationCount": 385
+  },
+  {
+    "taxonId": 233133,
+    "vernacularName": "vanlig ormvråk",
+    "scientificName": "Buteo buteo buteo",
+    "observationCount": 376
+  },
+  {
+    "taxonId": 6006099,
+    "vernacularName": "tärnor",
+    "scientificName": "Sterninae",
+    "observationCount": 374
+  },
+  {
+    "taxonId": 267104,
+    "vernacularName": "bredstjärtad labb/kustlabb",
+    "scientificName": "Stercorarius pomarinus/parasiticus",
+    "observationCount": 368
+  },
+  {
+    "taxonId": 233138,
+    "vernacularName": "rostand",
+    "scientificName": "Tadorna ferruginea",
+    "observationCount": 352
+  },
+  {
+    "taxonId": 100143,
+    "vernacularName": "härfågel",
+    "scientificName": "Upupa epops",
+    "observationCount": 335
+  },
+  {
+    "taxonId": 1001421,
+    "vernacularName": "Unknown",
+    "scientificName": "Gavia",
+    "observationCount": 320
+  },
+  {
+    "taxonId": 1001443,
+    "vernacularName": "Unknown",
+    "scientificName": "Anser",
+    "observationCount": 319
+  },
+  {
+    "taxonId": 205750,
+    "vernacularName": "större piplärka",
+    "scientificName": "Anthus richardi",
+    "observationCount": 311
+  },
+  {
+    "taxonId": 2002082,
+    "vernacularName": "labbar",
+    "scientificName": "Stercorariidae",
+    "observationCount": 304
+  },
+  {
+    "taxonId": 205647,
+    "vernacularName": "brednäbbad simsnäppa",
+    "scientificName": "Phalaropus fulicarius",
+    "observationCount": 297
+  },
+  {
+    "taxonId": 100008,
+    "vernacularName": "fjällgås",
+    "scientificName": "Anser erythropus",
+    "observationCount": 286
+  },
+  {
+    "taxonId": 267105,
+    "vernacularName": "kustlabb/fjällabb",
+    "scientificName": "Stercorarius parasiticus/longicaudus",
+    "observationCount": 285
+  },
+  {
+    "taxonId": 205932,
+    "vernacularName": "tundrastrandpipare",
+    "scientificName": "Charadrius hiaticula tundrae",
+    "observationCount": 279
+  },
+  {
+    "taxonId": 233837,
+    "vernacularName": "rysk bläsgås",
+    "scientificName": "Anser albifrons albifrons",
+    "observationCount": 276
+  },
+  {
+    "taxonId": 205665,
+    "vernacularName": "vittrut",
+    "scientificName": "Larus hyperboreus",
+    "observationCount": 263
+  },
+  {
+    "taxonId": 233143,
+    "vernacularName": "vitnäbbad islom",
+    "scientificName": "Gavia adamsii",
+    "observationCount": 252
+  },
+  {
+    "taxonId": 102625,
+    "vernacularName": "halsbandsflugsnappare",
+    "scientificName": "Ficedula albicollis",
+    "observationCount": 245
+  },
+  {
+    "taxonId": 2002057,
+    "vernacularName": "lommar",
+    "scientificName": "Gaviidae",
+    "observationCount": 211
+  },
+  {
+    "taxonId": 232270,
+    "vernacularName": "alförrädare",
+    "scientificName": "Polysticta stelleri",
+    "observationCount": 206
+  },
+  {
+    "taxonId": 266770,
+    "vernacularName": "rödhöna",
+    "scientificName": "Alectoris rufa",
+    "observationCount": 202
+  },
+  {
+    "taxonId": 205950,
+    "vernacularName": "engelsk sädesärla",
+    "scientificName": "Motacilla alba yarrellii",
+    "observationCount": 201
+  },
+  {
+    "taxonId": 233933,
+    "vernacularName": "skandinavisk gråtrut",
+    "scientificName": "Larus argentatus argentatus",
+    "observationCount": 197
+  },
+  {
+    "taxonId": 1001442,
+    "vernacularName": "svanar",
+    "scientificName": "Cygnus",
+    "observationCount": 193
+  },
+  {
+    "taxonId": 233845,
+    "vernacularName": "europeisk sädesärla",
+    "scientificName": "Motacilla alba alba",
+    "observationCount": 183
+  },
+  {
+    "taxonId": 233839,
+    "vernacularName": "europeisk rödspov",
+    "scientificName": "Limosa limosa limosa",
+    "observationCount": 178
+  },
+  {
+    "taxonId": 2002100,
+    "vernacularName": "svalor",
+    "scientificName": "Hirundinidae",
+    "observationCount": 177
+  },
+  {
+    "taxonId": 1001490,
+    "vernacularName": "calidrisvadare",
+    "scientificName": "Calidris",
+    "observationCount": 172
+  },
+  {
+    "taxonId": 205496,
+    "vernacularName": "silkeshäger",
+    "scientificName": "Egretta garzetta",
+    "observationCount": 171
+  },
+  {
+    "taxonId": 234007,
+    "vernacularName": "vanlig taltrast",
+    "scientificName": "Turdus philomelos philomelos",
+    "observationCount": 163
+  },
+  {
+    "taxonId": 205834,
+    "vernacularName": "kungsfågelsångare",
+    "scientificName": "Phylloscopus proregulus",
+    "observationCount": 155
+  },
+  {
+    "taxonId": 266937,
+    "vernacularName": "kontinental x nordlig stjärtmes",
+    "scientificName": "Aegithalos caudatus caudatus x europaeus",
+    "observationCount": 155
+  },
+  {
+    "taxonId": 266775,
+    "vernacularName": "islommar",
+    "scientificName": "Gavia immer/adamsii",
+    "observationCount": 154
+  },
+  {
+    "taxonId": 266838,
+    "vernacularName": "kaspisk trut x gråtrut",
+    "scientificName": "Larus cachinnans x argentatus",
+    "observationCount": 146
+  },
+  {
+    "taxonId": 1016735,
+    "vernacularName": "halsbandsparakit",
+    "scientificName": "Psittacula krameri",
+    "observationCount": 143
+  },
+  {
+    "taxonId": 233137,
+    "vernacularName": "rödhuvad dykand",
+    "scientificName": "Netta rufina",
+    "observationCount": 142
+  },
+  {
+    "taxonId": 103066,
+    "vernacularName": "dammsnäppa",
+    "scientificName": "Tringa stagnatilis",
+    "observationCount": 134
+  },
+  {
+    "taxonId": 4000104,
+    "vernacularName": "fåglar",
+    "scientificName": "Aves",
+    "observationCount": 133
+  },
+  {
+    "taxonId": 205503,
+    "vernacularName": "skedstork",
+    "scientificName": "Platalea leucorodia",
+    "observationCount": 129
+  },
+  {
+    "taxonId": 233840,
+    "vernacularName": "europeisk rödbena",
+    "scientificName": "Tringa totanus totanus",
+    "observationCount": 128
+  },
+  {
+    "taxonId": 266924,
+    "vernacularName": "tundratrut/atlantsilltrut/nordsjösilltrut",
+    "scientificName": "Larus heuglini/fuscus graellsii/fuscus intermedius",
+    "observationCount": 128
+  },
+  {
+    "taxonId": 205540,
+    "vernacularName": "ormörn",
+    "scientificName": "Circaetus gallicus",
+    "observationCount": 126
+  },
+  {
+    "taxonId": 233880,
+    "vernacularName": "västlig grågås",
+    "scientificName": "Anser anser anser",
+    "observationCount": 124
+  },
+  {
+    "taxonId": 266936,
+    "vernacularName": "gransångare, underarterna tristis/abietinus",
+    "scientificName": "Phylloscopus collybita tristis/abietinus",
+    "observationCount": 122
+  },
+  {
+    "taxonId": 1001459,
+    "vernacularName": "kärrhökar",
+    "scientificName": "Circus",
+    "observationCount": 117
+  },
+  {
+    "taxonId": 1001558,
+    "vernacularName": "piplärkor",
+    "scientificName": "Anthus",
+    "observationCount": 117
+  },
+  {
+    "taxonId": 103073,
+    "vernacularName": "citronärla",
+    "scientificName": "Motacilla citreola",
+    "observationCount": 116
+  },
+  {
+    "taxonId": 205613,
+    "vernacularName": "tuvsnäppa",
+    "scientificName": "Calidris melanotos",
+    "observationCount": 113
+  },
+  {
+    "taxonId": 234048,
+    "vernacularName": "europeisk skata",
+    "scientificName": "Pica pica pica",
+    "observationCount": 113
+  },
+  {
+    "taxonId": 103075,
+    "vernacularName": "svarthakad buskskvätta/vitgumpad buskskvätta",
+    "scientificName": "Saxicola torquatus s.lat.",
+    "observationCount": 112
+  },
+  {
+    "taxonId": 205974,
+    "vernacularName": "smalnäbbad nötkråka",
+    "scientificName": "Nucifraga caryocatactes macrorhynchos",
+    "observationCount": 112
+  },
+  {
+    "taxonId": 2002118,
+    "vernacularName": "kråkfåglar",
+    "scientificName": "Corvidae",
+    "observationCount": 111
+  },
+  {
+    "taxonId": 234004,
+    "vernacularName": "vanlig rödhake",
+    "scientificName": "Erithacus rubecula rubecula",
+    "observationCount": 110
+  },
+  {
+    "taxonId": 2002060,
+    "vernacularName": "skarvar",
+    "scientificName": "Phalacrocoracidae",
+    "observationCount": 109
+  },
+  {
+    "taxonId": 205664,
+    "vernacularName": "vitvingad trut",
+    "scientificName": "Larus glaucoides",
+    "observationCount": 107
+  },
+  {
+    "taxonId": 267095,
+    "vernacularName": "stjärtand x gräsand",
+    "scientificName": "Anas acuta x platyrhynchos",
+    "observationCount": 107
+  },
+  {
+    "taxonId": 100050,
+    "vernacularName": "dvärgsparv",
+    "scientificName": "Emberiza pusilla",
+    "observationCount": 106
+  },
+  {
+    "taxonId": 233853,
+    "vernacularName": "sydlig lövsångare",
+    "scientificName": "Phylloscopus trochilus trochilus",
+    "observationCount": 105
+  },
+  {
+    "taxonId": 205502,
+    "vernacularName": "bronsibis",
+    "scientificName": "Plegadis falcinellus",
+    "observationCount": 97
+  },
+  {
+    "taxonId": 233140,
+    "vernacularName": "vitögd dykand",
+    "scientificName": "Aythya nyroca",
+    "observationCount": 97
+  },
+  {
+    "taxonId": 234006,
+    "vernacularName": "vanlig koltrast",
+    "scientificName": "Turdus merula merula",
+    "observationCount": 94
+  },
+  {
+    "taxonId": 6006098,
+    "vernacularName": "måsar och trutar",
+    "scientificName": "Larinae",
+    "observationCount": 91
+  },
+  {
+    "taxonId": 205927,
+    "vernacularName": "svartbukig prutgås",
+    "scientificName": "Branta bernicla nigricans",
+    "observationCount": 89
+  },
+  {
+    "taxonId": 6006019,
+    "vernacularName": "vadare",
+    "scientificName": "Charadrii/Scolopaci",
+    "observationCount": 89
+  },
+  {
+    "taxonId": 205493,
+    "vernacularName": "natthäger",
+    "scientificName": "Nycticorax nycticorax",
+    "observationCount": 88
+  },
+  {
+    "taxonId": 266753,
+    "vernacularName": "snatterand x gräsand",
+    "scientificName": "Mareca strepera x Anas platyrhynchos",
+    "observationCount": 88
+  },
+  {
+    "taxonId": 267295,
+    "vernacularName": "snögås, vit morf",
+    "scientificName": "Anser caerulescens, white morph",
+    "observationCount": 88
+  },
+  {
+    "taxonId": 205480,
+    "vernacularName": "gulnäbbad lira/diomedeslira",
+    "scientificName": "Calonectris borealis/diomedea",
+    "observationCount": 87
+  },
+  {
+    "taxonId": 205937,
+    "vernacularName": "atlantsilltrut",
+    "scientificName": "Larus fuscus graellsii",
+    "observationCount": 87
+  },
+  {
+    "taxonId": 233782,
+    "vernacularName": "amerikansk bläsand",
+    "scientificName": "Mareca americana",
+    "observationCount": 87
+  },
+  {
+    "taxonId": 233841,
+    "vernacularName": "sydlig större strandpipare",
+    "scientificName": "Charadrius hiaticula hiaticula",
+    "observationCount": 87
+  },
+  {
+    "taxonId": 267314,
+    "vernacularName": "bredstjärtad labb, ljus morf",
+    "scientificName": "Stercorarius pomarinus, light morph",
+    "observationCount": 87
+  },
+  {
+    "taxonId": 1001508,
+    "vernacularName": "Unknown",
+    "scientificName": "Larus",
+    "observationCount": 87
+  },
+  {
+    "taxonId": 267099,
+    "vernacularName": "brunand x vigg",
+    "scientificName": "Aythya ferina x fuligula",
+    "observationCount": 86
+  },
+  {
+    "taxonId": 100142,
+    "vernacularName": "tornuggla",
+    "scientificName": "Tyto alba",
+    "observationCount": 85
+  },
+  {
+    "taxonId": 267114,
+    "vernacularName": "vitkindad gås x kanadagås",
+    "scientificName": "Branta leucopsis x canadensis",
+    "observationCount": 85
+  },
+  {
+    "taxonId": 205887,
+    "vernacularName": "rosenstare",
+    "scientificName": "Pastor roseus",
+    "observationCount": 83
+  },
+  {
+    "taxonId": 233820,
+    "vernacularName": "gulkindad kricka",
+    "scientificName": "Sibirionetta formosa",
+    "observationCount": 82
+  },
+  {
+    "taxonId": 205553,
+    "vernacularName": "kejsarörn",
+    "scientificName": "Aquila heliaca",
+    "observationCount": 81
+  },
+  {
+    "taxonId": 233850,
+    "vernacularName": "vanlig stenskvätta",
+    "scientificName": "Oenanthe oenanthe oenanthe",
+    "observationCount": 79
+  },
+  {
+    "taxonId": 2002083,
+    "vernacularName": "måsfåglar",
+    "scientificName": "Laridae",
+    "observationCount": 79
+  },
+  {
+    "taxonId": 6006112,
+    "vernacularName": "småspov/storspov",
+    "scientificName": "Numenius phaeopus/arquata",
+    "observationCount": 79
+  },
+  {
+    "taxonId": 234057,
+    "vernacularName": "nordlig grönfink",
+    "scientificName": "Chloris chloris chloris",
+    "observationCount": 77
+  },
+  {
+    "taxonId": 1016772,
+    "vernacularName": "änder",
+    "scientificName": "Anatinae",
+    "observationCount": 77
+  },
+  {
+    "taxonId": 2002078,
+    "vernacularName": "skärfläckor",
+    "scientificName": "Recurvirostridae",
+    "observationCount": 75
+  },
+  {
+    "taxonId": 266915,
+    "vernacularName": "bivråk/ormvråk",
+    "scientificName": "Pernis apivorus/Buteo buteo",
+    "observationCount": 73
+  },
+  {
+    "taxonId": 266794,
+    "vernacularName": "grågås x vitkindad gås",
+    "scientificName": "Anser anser x Branta leucopsis",
+    "observationCount": 72
+  },
+  {
+    "taxonId": 233999,
+    "vernacularName": "eurasisk sidensvans",
+    "scientificName": "Bombycilla garrulus garrulus",
+    "observationCount": 71
+  },
+  {
+    "taxonId": 6037569,
+    "vernacularName": "kungsfasan",
+    "scientificName": "Syrmaticus reevesii",
+    "observationCount": 70
+  },
+  {
+    "taxonId": 234027,
+    "vernacularName": "europeisk kungsfågel",
+    "scientificName": "Regulus regulus regulus",
+    "observationCount": 67
+  },
+  {
+    "taxonId": 1001465,
+    "vernacularName": "Unknown",
+    "scientificName": "Falco",
+    "observationCount": 66
+  },
+  {
+    "taxonId": 2002079,
+    "vernacularName": "strandskator",
+    "scientificName": "Haematopodidae",
+    "observationCount": 66
+  },
+  {
+    "taxonId": 205518,
+    "vernacularName": "amerikansk kricka",
+    "scientificName": "Anas crecca carolinensis",
+    "observationCount": 65
+  },
+  {
+    "taxonId": 234008,
+    "vernacularName": "vanlig rödvingetrast",
+    "scientificName": "Turdus iliacus iliacus",
+    "observationCount": 64
+  },
+  {
+    "taxonId": 234049,
+    "vernacularName": "skandinavisk kaja",
+    "scientificName": "Coloeus monedula monedula",
+    "observationCount": 63
+  },
+  {
+    "taxonId": 6332453,
+    "vernacularName": "klippduva",
+    "scientificName": "Columba livia",
+    "observationCount": 63
+  },
+  {
+    "taxonId": 205587,
+    "vernacularName": "styltlöpare",
+    "scientificName": "Himantopus himantopus",
+    "observationCount": 62
+  },
+  {
+    "taxonId": 266810,
+    "vernacularName": "stäpphök/blå kärrhök",
+    "scientificName": "Circus macrourus/cyaneus",
+    "observationCount": 62
+  },
+  {
+    "taxonId": 1001487,
+    "vernacularName": "Unknown",
+    "scientificName": "Charadrius",
+    "observationCount": 60
+  },
+  {
+    "taxonId": 233852,
+    "vernacularName": "vanlig rödstjärt",
+    "scientificName": "Phoenicurus phoenicurus phoenicurus",
+    "observationCount": 59
+  },
+  {
+    "taxonId": 103077,
+    "vernacularName": "busksångare",
+    "scientificName": "Acrocephalus dumetorum",
+    "observationCount": 58
+  },
+  {
+    "taxonId": 234052,
+    "vernacularName": "europeisk stare",
+    "scientificName": "Sturnus vulgaris vulgaris",
+    "observationCount": 58
+  },
+  {
+    "taxonId": 2002121,
+    "vernacularName": "finkar",
+    "scientificName": "Fringillidae",
+    "observationCount": 58
+  },
+  {
+    "taxonId": 232224,
+    "vernacularName": "tjocknäbbad nötkråka",
+    "scientificName": "Nucifraga caryocatactes caryocatactes",
+    "observationCount": 56
+  },
+  {
+    "taxonId": 267102,
+    "vernacularName": "röd glada x brun glada",
+    "scientificName": "Milvus milvus x migrans",
+    "observationCount": 56
+  },
+  {
+    "taxonId": 2002074,
+    "vernacularName": "Unknown",
+    "scientificName": "Charadrii",
+    "observationCount": 55
+  },
+  {
+    "taxonId": 205717,
+    "vernacularName": "blek tornseglare",
+    "scientificName": "Apus pallidus",
+    "observationCount": 53
+  },
+  {
+    "taxonId": 266759,
+    "vernacularName": "vigg/bergand",
+    "scientificName": "Aythya fuligula/marila",
+    "observationCount": 52
+  }
+]

@@ -1,0 +1,2300 @@
+[
+  {
+    "event": {
+      "startDate": "2004-08-30T17:29:00+02:00",
+      "endDate": "2004-08-30T17:29:00+02:00"
+    },
+    "identification": {
+      "verified": true,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 400,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1283",
+        "name": "Helsingborg"
+      },
+      "decimalLatitude": 56.13016,
+      "decimalLongitude": 12.81522,
+      "sweref99TmX": 364211.0,
+      "sweref99TmY": 6222716.0
+    },
+    "occurrence": {
+      "individualCount": "1",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:20600631",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "1",
+      "organismQuantityInt": 1,
+      "recordedBy": "Patrik S\u00f6derberg",
+      "reportedBy": "Greger Flyckt"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2009-05-02T21:38:00+02:00",
+      "endDate": "2009-05-02T21:38:00+02:00"
+    },
+    "identification": {
+      "verified": false,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 4167,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1292",
+        "name": "\u00c4ngelholm"
+      },
+      "decimalLatitude": 56.19429,
+      "decimalLongitude": 12.98454,
+      "sweref99TmX": 374941.0,
+      "sweref99TmY": 6229532.0
+    },
+    "occurrence": {
+      "individualCount": "1",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:32499884",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "1",
+      "organismQuantityInt": 1,
+      "recordedBy": "Henrik Ehrenberg",
+      "reportedBy": "Henrik Ehrenberg"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2008-05-06T00:00:00+02:00",
+      "endDate": "2008-05-06T00:00:00+02:00"
+    },
+    "identification": {
+      "verified": false,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 2448,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1277",
+        "name": "\u00c5storp"
+      },
+      "decimalLatitude": 56.13511,
+      "decimalLongitude": 13.05006,
+      "sweref99TmX": 378820.0,
+      "sweref99TmY": 6222829.0
+    },
+    "occurrence": {
+      "individualCount": "2",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:29433346",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "2",
+      "organismQuantityInt": 2,
+      "recordedBy": "Leif Dehlin, Thomas Wallin",
+      "reportedBy": "Leif Dehlin"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2008-05-09T21:45:00+02:00",
+      "endDate": "2008-05-09T21:45:00+02:00"
+    },
+    "identification": {
+      "verified": true,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 4167,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1292",
+        "name": "\u00c4ngelholm"
+      },
+      "decimalLatitude": 56.19429,
+      "decimalLongitude": 12.98454,
+      "sweref99TmX": 374941.0,
+      "sweref99TmY": 6229532.0
+    },
+    "occurrence": {
+      "individualCount": "1",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:29190818",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "1",
+      "organismQuantityInt": 1,
+      "recordedBy": "Henrik Ehrenberg, Henrik Johansson",
+      "reportedBy": "Henrik Ehrenberg"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2018-05-09T07:20:00+02:00",
+      "endDate": "2018-05-09T07:20:00+02:00"
+    },
+    "identification": {
+      "verified": true,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 357,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1214",
+        "name": "Sval\u00f6v"
+      },
+      "decimalLatitude": 56.00713,
+      "decimalLongitude": 13.17481,
+      "sweref99TmX": 386195.0,
+      "sweref99TmY": 6208376.0
+    },
+    "occurrence": {
+      "individualCount": "1",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:71184099",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "1",
+      "organismQuantityInt": 1,
+      "recordedBy": "Magnus Svensson",
+      "reportedBy": "Magnus Svensson"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2025-05-01T00:00:00+02:00",
+      "endDate": "2025-05-10T23:59:59+02:00"
+    },
+    "identification": {
+      "verified": true,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 890,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1276",
+        "name": "Klippan"
+      },
+      "decimalLatitude": 56.20705,
+      "decimalLongitude": 12.98782,
+      "sweref99TmX": 375187.0,
+      "sweref99TmY": 6230946.0
+    },
+    "occurrence": {
+      "individualCount": "3",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:128044580",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "3",
+      "organismQuantityInt": 3,
+      "recordedBy": "Henrik Johansson, Anders Lind\u00e9n",
+      "reportedBy": "Greger Flyckt"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2003-09-06T00:00:00+02:00",
+      "endDate": "2003-09-06T00:00:00+02:00"
+    },
+    "identification": {
+      "verified": true,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 400,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1283",
+        "name": "Helsingborg"
+      },
+      "decimalLatitude": 56.13016,
+      "decimalLongitude": 12.81522,
+      "sweref99TmX": 364211.0,
+      "sweref99TmY": 6222716.0
+    },
+    "occurrence": {
+      "individualCount": "1",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:19268254",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "1",
+      "organismQuantityInt": 1,
+      "recordedBy": "Thomas Svanberg, Bj\u00f6rn Ekelund, M\u00e5rten M\u00fcller, Christer Strid",
+      "reportedBy": "Greger Flyckt"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2014-05-08T21:45:00+02:00",
+      "endDate": "2014-05-08T21:45:00+02:00"
+    },
+    "identification": {
+      "verified": false,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 4167,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1292",
+        "name": "\u00c4ngelholm"
+      },
+      "decimalLatitude": 56.19429,
+      "decimalLongitude": 12.98454,
+      "sweref99TmX": 374941.0,
+      "sweref99TmY": 6229532.0
+    },
+    "occurrence": {
+      "individualCount": "3",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:49536789",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "3",
+      "organismQuantityInt": 3,
+      "recordedBy": "Henrik Johansson",
+      "reportedBy": "Henrik Johansson"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2021-05-13T21:40:00+02:00",
+      "endDate": "2021-05-13T21:40:00+02:00"
+    },
+    "identification": {
+      "verified": false,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 10,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1292",
+        "name": "\u00c4ngelholm"
+      },
+      "decimalLatitude": 56.19765,
+      "decimalLongitude": 12.99841,
+      "sweref99TmX": 375812.0,
+      "sweref99TmY": 6229881.0
+    },
+    "occurrence": {
+      "individualCount": "1",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:93388802",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "1",
+      "organismQuantityInt": 1,
+      "recordedBy": "Ulf St\u00e5hle",
+      "reportedBy": "Ulf St\u00e5hle"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2004-09-12T00:00:00+02:00",
+      "endDate": "2004-09-12T00:00:00+02:00"
+    },
+    "identification": {
+      "verified": true,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 3128,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1276",
+        "name": "Klippan"
+      },
+      "decimalLatitude": 56.16786,
+      "decimalLongitude": 13.0388,
+      "sweref99TmX": 378224.0,
+      "sweref99TmY": 6226494.0
+    },
+    "occurrence": {
+      "individualCount": "1",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:19934387",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "1",
+      "organismQuantityInt": 1,
+      "recordedBy": "Leif Dehlin",
+      "reportedBy": "Leif Dehlin"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2020-05-06T00:00:00+02:00",
+      "endDate": "2020-05-07T23:59:59+02:00"
+    },
+    "identification": {
+      "verified": true,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 598,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1292",
+        "name": "\u00c4ngelholm"
+      },
+      "decimalLatitude": 56.19705,
+      "decimalLongitude": 12.99871,
+      "sweref99TmX": 375829.0,
+      "sweref99TmY": 6229814.0
+    },
+    "occurrence": {
+      "individualCount": "2",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:85713842",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "2",
+      "organismQuantityInt": 2,
+      "recordedBy": "Anders Lind\u00e9n, Thomas Svanberg, Henrik Johansson, Random Persson",
+      "reportedBy": "Greger Flyckt"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2021-05-11T21:10:00+02:00",
+      "endDate": "2021-05-11T22:00:00+02:00"
+    },
+    "identification": {
+      "verified": false,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 598,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1292",
+        "name": "\u00c4ngelholm"
+      },
+      "decimalLatitude": 56.19705,
+      "decimalLongitude": 12.99871,
+      "sweref99TmX": 375829.0,
+      "sweref99TmY": 6229814.0
+    },
+    "occurrence": {
+      "individualCount": "2",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:93319467",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "2",
+      "organismQuantityInt": 2,
+      "recordedBy": "Thomas Svanberg, Henrik Johansson",
+      "reportedBy": "Thomas Svanberg"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "1980-08-15T00:00:00+02:00",
+      "endDate": "1980-08-15T23:59:59+02:00"
+    },
+    "identification": {
+      "verified": true,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 119,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1283",
+        "name": "Helsingborg"
+      },
+      "decimalLatitude": 56.22146,
+      "decimalLongitude": 12.78259,
+      "sweref99TmX": 362510.0,
+      "sweref99TmY": 6232939.0
+    },
+    "occurrence": {
+      "individualCount": "1",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:128427934",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "1",
+      "organismQuantityInt": 1,
+      "recordedBy": "\u00d6rjan Fritz, Gustaf Persson",
+      "reportedBy": "Greger Flyckt"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2025-05-02T00:00:00+02:00",
+      "endDate": "2025-05-02T23:59:59+02:00"
+    },
+    "identification": {
+      "verified": true,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 400,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1283",
+        "name": "Helsingborg"
+      },
+      "decimalLatitude": 56.09915,
+      "decimalLongitude": 12.82862,
+      "sweref99TmX": 364935.0,
+      "sweref99TmY": 6219239.0
+    },
+    "occurrence": {
+      "individualCount": "1",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:129213694",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "1",
+      "organismQuantityInt": 1,
+      "recordedBy": "Klas Rosenkvist, Olof Strand, Oskar Lindberg, Random Persson",
+      "reportedBy": "Greger Flyckt"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2009-10-02T00:00:00+02:00",
+      "endDate": "2009-10-03T00:00:00+02:00"
+    },
+    "identification": {
+      "verified": true,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 400,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1283",
+        "name": "Helsingborg"
+      },
+      "decimalLatitude": 56.13016,
+      "decimalLongitude": 12.81522,
+      "sweref99TmX": 364211.0,
+      "sweref99TmY": 6222716.0
+    },
+    "occurrence": {
+      "individualCount": "1",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:34897437",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "1",
+      "organismQuantityInt": 1,
+      "recordedBy": "Mikael Olofsson, Thomas Svanberg",
+      "reportedBy": "J\u00f6rgen Bernsmo"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2019-09-02T09:30:00+02:00",
+      "endDate": "2019-09-02T12:00:00+02:00"
+    },
+    "identification": {
+      "verified": true,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 900,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1283",
+        "name": "Helsingborg"
+      },
+      "decimalLatitude": 56.17817,
+      "decimalLongitude": 12.74814,
+      "sweref99TmX": 360217.0,
+      "sweref99TmY": 6228192.0
+    },
+    "occurrence": {
+      "individualCount": "1",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:79720330",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "1",
+      "organismQuantityInt": 1,
+      "recordedBy": "G\u00f6ran Gustavsson, Rolf Persson",
+      "reportedBy": "G\u00f6ran Gustavsson"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2012-05-06T21:52:00+02:00",
+      "endDate": "2012-05-06T21:52:00+02:00"
+    },
+    "identification": {
+      "verified": false,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 598,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1276",
+        "name": "Klippan"
+      },
+      "decimalLatitude": 56.20717,
+      "decimalLongitude": 12.98727,
+      "sweref99TmX": 375152.0,
+      "sweref99TmY": 6230960.0
+    },
+    "occurrence": {
+      "individualCount": "1",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:42589234",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "1",
+      "organismQuantityInt": 1,
+      "recordedBy": "Via Fr\u00e5n Rixlarm",
+      "reportedBy": "Fr\u00e5n Rixlarm"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2004-09-11T00:00:00+02:00",
+      "endDate": "2004-09-11T10:10:00+02:00"
+    },
+    "identification": {
+      "verified": true,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 400,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1283",
+        "name": "Helsingborg"
+      },
+      "decimalLatitude": 56.13016,
+      "decimalLongitude": 12.81522,
+      "sweref99TmX": 364211.0,
+      "sweref99TmY": 6222716.0
+    },
+    "occurrence": {
+      "individualCount": "1",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:20595962",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "1",
+      "organismQuantityInt": 1,
+      "recordedBy": "Henrik Ehrenberg, Mats Rellmar, Thomas Svanberg",
+      "reportedBy": "Greger Flyckt"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2015-05-08T21:36:00+02:00",
+      "endDate": "2015-05-08T21:37:00+02:00"
+    },
+    "identification": {
+      "verified": false,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 100,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1276",
+        "name": "Klippan"
+      },
+      "decimalLatitude": 56.20023,
+      "decimalLongitude": 12.994,
+      "sweref99TmX": 375547.0,
+      "sweref99TmY": 6230175.0
+    },
+    "occurrence": {
+      "individualCount": "3",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:53283861",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "3",
+      "organismQuantityInt": 3,
+      "recordedBy": "Ulf St\u00e5hle",
+      "reportedBy": "Ulf St\u00e5hle"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2009-05-08T21:45:00+02:00",
+      "endDate": "2009-05-08T21:45:00+02:00"
+    },
+    "identification": {
+      "verified": false,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 4167,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1292",
+        "name": "\u00c4ngelholm"
+      },
+      "decimalLatitude": 56.19429,
+      "decimalLongitude": 12.98454,
+      "sweref99TmX": 374941.0,
+      "sweref99TmY": 6229532.0
+    },
+    "occurrence": {
+      "individualCount": "2",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:32646695",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "2",
+      "organismQuantityInt": 2,
+      "recordedBy": "Henrik Johansson",
+      "reportedBy": "Henrik Johansson"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "1994-05-18T00:00:00+02:00",
+      "endDate": "1994-05-21T23:59:59+02:00"
+    },
+    "identification": {
+      "verified": true,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 400,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1283",
+        "name": "Helsingborg"
+      },
+      "decimalLatitude": 56.13016,
+      "decimalLongitude": 12.81522,
+      "sweref99TmX": 364211.0,
+      "sweref99TmY": 6222716.0
+    },
+    "occurrence": {
+      "individualCount": "1",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:130583863",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "1",
+      "organismQuantityInt": 1,
+      "recordedBy": "Henrik Johansson, Anders Lind\u00e9n, Nick Gr\u00e4ntz",
+      "reportedBy": "Greger Flyckt"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2002-10-02T09:57:00+02:00",
+      "endDate": "2002-10-02T09:57:00+02:00"
+    },
+    "identification": {
+      "verified": true,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 2613,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1283",
+        "name": "Helsingborg"
+      },
+      "decimalLatitude": 56.09703,
+      "decimalLongitude": 12.63685,
+      "sweref99TmX": 353001.0,
+      "sweref99TmY": 6219396.0
+    },
+    "occurrence": {
+      "individualCount": "1",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:18000157",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "1",
+      "organismQuantityInt": 1,
+      "recordedBy": "Oskar Lindberg",
+      "reportedBy": "Fr\u00e5n Rixlarm"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2000-09-27T10:09:00+02:00",
+      "endDate": "2000-09-28T17:00:00+02:00"
+    },
+    "identification": {
+      "verified": true,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 3128,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1276",
+        "name": "Klippan"
+      },
+      "decimalLatitude": 56.16786,
+      "decimalLongitude": 13.0388,
+      "sweref99TmX": 378224.0,
+      "sweref99TmY": 6226494.0
+    },
+    "occurrence": {
+      "individualCount": "1",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:18689089",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "1",
+      "organismQuantityInt": 1,
+      "recordedBy": "Via Greger Flyckt",
+      "reportedBy": "Greger Flyckt"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2009-05-09T22:24:00+02:00",
+      "endDate": "2009-05-09T22:24:00+02:00"
+    },
+    "identification": {
+      "verified": false,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 4167,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1292",
+        "name": "\u00c4ngelholm"
+      },
+      "decimalLatitude": 56.19429,
+      "decimalLongitude": 12.98454,
+      "sweref99TmX": 374941.0,
+      "sweref99TmY": 6229532.0
+    },
+    "occurrence": {
+      "individualCount": "1",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:32294342",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "1",
+      "organismQuantityInt": 1,
+      "recordedBy": "Via Fr\u00e5n Rixlarm",
+      "reportedBy": "Fr\u00e5n Rixlarm"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2020-05-05T21:47:00+02:00",
+      "endDate": "2020-05-05T21:55:00+02:00"
+    },
+    "identification": {
+      "verified": true,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 10,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1276",
+        "name": "Klippan"
+      },
+      "decimalLatitude": 56.1992,
+      "decimalLongitude": 12.99457,
+      "sweref99TmX": 375580.0,
+      "sweref99TmY": 6230060.0
+    },
+    "occurrence": {
+      "individualCount": "2",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:85189038",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "2",
+      "organismQuantityInt": 2,
+      "recordedBy": "Ulf St\u00e5hle",
+      "reportedBy": "Ulf St\u00e5hle"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2023-05-03T00:00:00+02:00",
+      "endDate": "2023-05-03T23:59:59+02:00"
+    },
+    "identification": {
+      "verified": true,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 4167,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1292",
+        "name": "\u00c4ngelholm"
+      },
+      "decimalLatitude": 56.19429,
+      "decimalLongitude": 12.98454,
+      "sweref99TmX": 374941.0,
+      "sweref99TmY": 6229532.0
+    },
+    "occurrence": {
+      "individualCount": "1",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:109256253",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "1",
+      "organismQuantityInt": 1,
+      "recordedBy": "Dan Persson, Stefan Siwersson",
+      "reportedBy": "Greger Flyckt"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2012-05-09T21:45:00+02:00",
+      "endDate": "2012-05-09T21:45:00+02:00"
+    },
+    "identification": {
+      "verified": true,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 4167,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1292",
+        "name": "\u00c4ngelholm"
+      },
+      "decimalLatitude": 56.19429,
+      "decimalLongitude": 12.98454,
+      "sweref99TmX": 374941.0,
+      "sweref99TmY": 6229532.0
+    },
+    "occurrence": {
+      "individualCount": "2",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:42420735",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "2",
+      "organismQuantityInt": 2,
+      "recordedBy": "Thomas Wallin, Henrik Johansson",
+      "reportedBy": "Thomas Wallin"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2018-05-05T00:00:00+02:00",
+      "endDate": "2018-05-07T23:59:59+02:00"
+    },
+    "identification": {
+      "verified": true,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 4167,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1292",
+        "name": "\u00c4ngelholm"
+      },
+      "decimalLatitude": 56.19429,
+      "decimalLongitude": 12.98454,
+      "sweref99TmX": 374941.0,
+      "sweref99TmY": 6229532.0
+    },
+    "occurrence": {
+      "individualCount": "4",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:72669631",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "4",
+      "organismQuantityInt": 4,
+      "recordedBy": "Henrik Johansson",
+      "reportedBy": "Greger Flyckt"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2021-05-12T21:00:00+02:00",
+      "endDate": "2021-05-12T22:30:00+02:00"
+    },
+    "identification": {
+      "verified": false,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 598,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1292",
+        "name": "\u00c4ngelholm"
+      },
+      "decimalLatitude": 56.19705,
+      "decimalLongitude": 12.99871,
+      "sweref99TmX": 375829.0,
+      "sweref99TmY": 6229814.0
+    },
+    "occurrence": {
+      "individualCount": "1",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:93344164",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "1",
+      "organismQuantityInt": 1,
+      "recordedBy": "Olof Strand, Patric Carlsson, Dan Persson, Henning Svendsen",
+      "reportedBy": "Olof Strand"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2024-05-05T00:00:00+02:00",
+      "endDate": "2024-05-07T23:59:59+02:00"
+    },
+    "identification": {
+      "verified": true,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 4167,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1292",
+        "name": "\u00c4ngelholm"
+      },
+      "decimalLatitude": 56.19429,
+      "decimalLongitude": 12.98454,
+      "sweref99TmX": 374941.0,
+      "sweref99TmY": 6229532.0
+    },
+    "occurrence": {
+      "individualCount": "2",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:120251256",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "2",
+      "organismQuantityInt": 2,
+      "recordedBy": "Random Persson, Thomas Svanberg, Henrik Johansson",
+      "reportedBy": "Greger Flyckt"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2008-05-07T18:30:00+02:00",
+      "endDate": "2008-05-07T20:00:00+02:00"
+    },
+    "identification": {
+      "verified": false,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 2448,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1277",
+        "name": "\u00c5storp"
+      },
+      "decimalLatitude": 56.13511,
+      "decimalLongitude": 13.05006,
+      "sweref99TmX": 378820.0,
+      "sweref99TmY": 6222829.0
+    },
+    "occurrence": {
+      "individualCount": "1",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:29046900",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "1",
+      "organismQuantityInt": 1,
+      "recordedBy": "Phil Benstead",
+      "reportedBy": "Phil Benstead"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2010-05-05T00:00:00+02:00",
+      "endDate": "2010-05-06T00:00:00+02:00"
+    },
+    "identification": {
+      "verified": true,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 4167,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1292",
+        "name": "\u00c4ngelholm"
+      },
+      "decimalLatitude": 56.19429,
+      "decimalLongitude": 12.98454,
+      "sweref99TmX": 374941.0,
+      "sweref99TmY": 6229532.0
+    },
+    "occurrence": {
+      "individualCount": "1",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:37442501",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "1",
+      "organismQuantityInt": 1,
+      "recordedBy": "Martin Ekenberg, Henrik Johansson",
+      "reportedBy": "Greger Flyckt"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "1999-08-24T18:30:00+02:00",
+      "endDate": "1999-08-24T18:30:00+02:00"
+    },
+    "identification": {
+      "verified": true,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 3614,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1214",
+        "name": "Sval\u00f6v"
+      },
+      "decimalLatitude": 55.91126,
+      "decimalLongitude": 13.10599,
+      "sweref99TmX": 381612.0,
+      "sweref99TmY": 6197824.0
+    },
+    "occurrence": {
+      "individualCount": "1",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:40584896",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "1",
+      "organismQuantityInt": 1,
+      "recordedBy": "Mattias Olsson",
+      "reportedBy": "Mattias Olsson"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2016-09-25T07:50:00+02:00",
+      "endDate": "2016-09-25T11:15:00+02:00"
+    },
+    "identification": {
+      "verified": true,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 400,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1214",
+        "name": "Sval\u00f6v"
+      },
+      "decimalLatitude": 55.97165,
+      "decimalLongitude": 12.99986,
+      "sweref99TmX": 375174.0,
+      "sweref99TmY": 6204730.0
+    },
+    "occurrence": {
+      "individualCount": "1",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:61539300",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "1",
+      "organismQuantityInt": 1,
+      "recordedBy": "Johan Gustafsson",
+      "reportedBy": "Johan Gustafsson"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "1972-09-06T23:00:00+01:00",
+      "endDate": "1972-09-07T22:59:59+01:00"
+    },
+    "identification": {
+      "verified": false,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 100,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1283",
+        "name": "Helsingborg"
+      },
+      "decimalLatitude": 56.13271,
+      "decimalLongitude": 12.81491,
+      "sweref99TmX": 364200.0,
+      "sweref99TmY": 6223000.0
+    },
+    "occurrence": {
+      "individualCount": "",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:121280144",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "",
+      "recordedBy": "Christer Strid",
+      "reportedBy": "Christer Strid"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2007-08-24T00:00:00+02:00",
+      "endDate": "2007-09-01T00:00:00+02:00"
+    },
+    "identification": {
+      "verified": true,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 400,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1283",
+        "name": "Helsingborg"
+      },
+      "decimalLatitude": 56.13016,
+      "decimalLongitude": 12.81522,
+      "sweref99TmX": 364211.0,
+      "sweref99TmY": 6222716.0
+    },
+    "occurrence": {
+      "individualCount": "1",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:27257932",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "1",
+      "organismQuantityInt": 1,
+      "recordedBy": "Mats Rellmar, Mikael Olofsson, M\u00e5rten M\u00fcller",
+      "reportedBy": "Greger Flyckt"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2003-08-10T00:00:00+02:00",
+      "endDate": "2003-08-11T00:00:00+02:00"
+    },
+    "identification": {
+      "verified": true,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 400,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1283",
+        "name": "Helsingborg"
+      },
+      "decimalLatitude": 56.13016,
+      "decimalLongitude": 12.81522,
+      "sweref99TmX": 364211.0,
+      "sweref99TmY": 6222716.0
+    },
+    "occurrence": {
+      "individualCount": "1",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:19353137",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "1",
+      "organismQuantityInt": 1,
+      "recordedBy": "Henrik Ehrenberg, Mats Rellmar, Patrik Wantzin, Thomas Svanberg",
+      "reportedBy": "Greger Flyckt"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "1971-05-05T23:00:00+01:00",
+      "endDate": "1971-05-06T22:59:59+01:00"
+    },
+    "identification": {
+      "verified": false,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 200,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1292",
+        "name": "\u00c4ngelholm"
+      },
+      "decimalLatitude": 56.26523,
+      "decimalLongitude": 12.84328,
+      "sweref99TmX": 366425.0,
+      "sweref99TmY": 6237690.0
+    },
+    "occurrence": {
+      "individualCount": "1",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:88873380",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "1",
+      "organismQuantityInt": 1,
+      "recordedBy": "Stefan Lithner",
+      "reportedBy": "Stefan Lithner"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2022-05-01T00:00:00+02:00",
+      "endDate": "2022-05-09T23:59:59+02:00"
+    },
+    "identification": {
+      "verified": true,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 4167,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1292",
+        "name": "\u00c4ngelholm"
+      },
+      "decimalLatitude": 56.19429,
+      "decimalLongitude": 12.98454,
+      "sweref99TmX": 374941.0,
+      "sweref99TmY": 6229532.0
+    },
+    "occurrence": {
+      "individualCount": "3",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:101622472",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "3",
+      "organismQuantityInt": 3,
+      "recordedBy": "Olof Strand, Stefan Siwersson, Random Persson",
+      "reportedBy": "Greger Flyckt"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2019-05-09T21:25:00+02:00",
+      "endDate": "2019-05-09T22:00:00+02:00"
+    },
+    "identification": {
+      "verified": true,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 4167,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1292",
+        "name": "\u00c4ngelholm"
+      },
+      "decimalLatitude": 56.19429,
+      "decimalLongitude": 12.98454,
+      "sweref99TmX": 374941.0,
+      "sweref99TmY": 6229532.0
+    },
+    "occurrence": {
+      "individualCount": "4",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:77638652",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "4",
+      "organismQuantityInt": 4,
+      "recordedBy": "Henrik Johansson",
+      "reportedBy": "Henrik Johansson"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2023-05-08T21:35:00+02:00",
+      "endDate": "2023-05-08T22:05:00+02:00"
+    },
+    "identification": {
+      "verified": true,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 4167,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1292",
+        "name": "\u00c4ngelholm"
+      },
+      "decimalLatitude": 56.19429,
+      "decimalLongitude": 12.98454,
+      "sweref99TmX": 374941.0,
+      "sweref99TmY": 6229532.0
+    },
+    "occurrence": {
+      "individualCount": "1",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:108888396",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "1",
+      "organismQuantityInt": 1,
+      "recordedBy": "Klas Rosenkvist, Henrik Johansson",
+      "reportedBy": "Klas Rosenkvist"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "1926-10-30T23:00:00+01:00",
+      "endDate": "1926-10-31T23:59:59+01:00"
+    },
+    "identification": {
+      "verified": false,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 1324,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1277",
+        "name": "\u00c5storp"
+      },
+      "decimalLatitude": 56.10399,
+      "decimalLongitude": 12.85636,
+      "sweref99TmX": 366677.0,
+      "sweref99TmY": 6219724.0
+    },
+    "occurrence": {
+      "individualCount": "",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:117313281",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "",
+      "recordedBy": "Victor Hasselblad",
+      "reportedBy": "Andr\u00e9as Hagstr\u00f6m"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2017-05-15T21:50:00+02:00",
+      "endDate": "2017-05-15T21:57:00+02:00"
+    },
+    "identification": {
+      "verified": true,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 4167,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1292",
+        "name": "\u00c4ngelholm"
+      },
+      "decimalLatitude": 56.19429,
+      "decimalLongitude": 12.98454,
+      "sweref99TmX": 374941.0,
+      "sweref99TmY": 6229532.0
+    },
+    "occurrence": {
+      "individualCount": "1",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:65614412",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "1",
+      "organismQuantityInt": 1,
+      "recordedBy": "Henrik Johansson",
+      "reportedBy": "Henrik Johansson"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2002-08-24T07:30:00+02:00",
+      "endDate": "2002-08-24T07:30:00+02:00"
+    },
+    "identification": {
+      "verified": true,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 3128,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1276",
+        "name": "Klippan"
+      },
+      "decimalLatitude": 56.16786,
+      "decimalLongitude": 13.0388,
+      "sweref99TmX": 378224.0,
+      "sweref99TmY": 6226494.0
+    },
+    "occurrence": {
+      "individualCount": "1",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:18164084",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "1",
+      "organismQuantityInt": 1,
+      "recordedBy": "Leif Dehlin",
+      "reportedBy": "Greger Flyckt"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2013-05-06T21:45:00+02:00",
+      "endDate": "2013-05-06T21:45:00+02:00"
+    },
+    "identification": {
+      "verified": true,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 4167,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1292",
+        "name": "\u00c4ngelholm"
+      },
+      "decimalLatitude": 56.19429,
+      "decimalLongitude": 12.98454,
+      "sweref99TmX": 374941.0,
+      "sweref99TmY": 6229532.0
+    },
+    "occurrence": {
+      "individualCount": "1",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:45736426",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "1",
+      "organismQuantityInt": 1,
+      "recordedBy": "Henrik Johansson",
+      "reportedBy": "Henrik Johansson"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "1996-09-16T17:30:00+02:00",
+      "endDate": "1996-09-16T19:40:00+02:00"
+    },
+    "identification": {
+      "verified": true,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 2000,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1283",
+        "name": "Helsingborg"
+      },
+      "decimalLatitude": 56.07053,
+      "decimalLongitude": 12.77041,
+      "sweref99TmX": 361212.0,
+      "sweref99TmY": 6216170.0
+    },
+    "occurrence": {
+      "individualCount": "1",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:73954192",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "1",
+      "organismQuantityInt": 1,
+      "recordedBy": "Mattias Olsson",
+      "reportedBy": "Mattias Olsson"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2011-05-19T00:00:00+02:00",
+      "endDate": "2011-05-19T00:00:00+02:00"
+    },
+    "identification": {
+      "verified": true,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 4167,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1292",
+        "name": "\u00c4ngelholm"
+      },
+      "decimalLatitude": 56.19429,
+      "decimalLongitude": 12.98454,
+      "sweref99TmX": 374941.0,
+      "sweref99TmY": 6229532.0
+    },
+    "occurrence": {
+      "individualCount": "2",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:39726721",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "2",
+      "organismQuantityInt": 2,
+      "recordedBy": "Henrik Ehrenberg, H\u00e5kan Johansson, Henrik Johansson",
+      "reportedBy": "Greger Flyckt"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2014-05-10T21:40:00+02:00",
+      "endDate": "2014-05-10T21:40:00+02:00"
+    },
+    "identification": {
+      "verified": false,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 4167,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1292",
+        "name": "\u00c4ngelholm"
+      },
+      "decimalLatitude": 56.19429,
+      "decimalLongitude": 12.98454,
+      "sweref99TmX": 374941.0,
+      "sweref99TmY": 6229532.0
+    },
+    "occurrence": {
+      "individualCount": "1",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:49513123",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "1",
+      "organismQuantityInt": 1,
+      "recordedBy": "Paul Cook",
+      "reportedBy": "Paul Cook"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2021-09-05T10:40:00+02:00",
+      "endDate": "2021-09-05T10:40:00+02:00"
+    },
+    "identification": {
+      "verified": true,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 400,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1283",
+        "name": "Helsingborg"
+      },
+      "decimalLatitude": 56.13016,
+      "decimalLongitude": 12.81522,
+      "sweref99TmX": 364211.0,
+      "sweref99TmY": 6222716.0
+    },
+    "occurrence": {
+      "individualCount": "1",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:95931058",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "1",
+      "organismQuantityInt": 1,
+      "recordedBy": "Henrik Johansson",
+      "reportedBy": "Henrik Johansson"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  },
+  {
+    "event": {
+      "startDate": "2015-05-15T21:30:00+02:00",
+      "endDate": "2015-05-15T21:30:00+02:00"
+    },
+    "identification": {
+      "verified": false,
+      "uncertainIdentification": false
+    },
+    "location": {
+      "coordinateUncertaintyInMeters": 4167,
+      "county": {
+        "featureId": "12",
+        "name": "Sk\u00e5ne"
+      },
+      "municipality": {
+        "featureId": "1292",
+        "name": "\u00c4ngelholm"
+      },
+      "decimalLatitude": 56.19429,
+      "decimalLongitude": 12.98454,
+      "sweref99TmX": 374941.0,
+      "sweref99TmY": 6229532.0
+    },
+    "occurrence": {
+      "individualCount": "1",
+      "occurrenceId": "urn:lsid:artportalen.se:sighting:53457511",
+      "occurrenceStatus": {
+        "id": 0,
+        "value": "present"
+      },
+      "organismQuantity": "1",
+      "organismQuantityInt": 1,
+      "recordedBy": "Thomas Svanberg, Henrik Johansson, Charlotte Svanberg",
+      "reportedBy": "Thomas Svanberg"
+    },
+    "taxon": {
+      "attributes": {
+        "organismGroup": "F\u00e5glar"
+      },
+      "id": 100061,
+      "scientificName": "Gallinago media",
+      "vernacularName": "dubbelbeckasin"
+    },
+    "datasetName": "Artportalen"
+  }
+]
