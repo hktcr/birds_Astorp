@@ -17,7 +17,7 @@
 
     
     
-    <link rel="stylesheet" href="/css/style.0b52826aa94d26550682e670f87cfe47eaa85ed56363112723635dadaa6945b3.css">
+    <link rel="stylesheet" href="/css/style.d685253e45d6eae8d6342d0082ede7a770e3587fbed8dfdd86d9603505a2d0f3.css">
 
     
     <link rel="prefetch" href="/galleri/" as="document">
@@ -154,75 +154,76 @@
 
     <main id="main-content" class="main">
         
-<div class="fp-page">
-    <div class="fp-container" style="max-width: 1300px;">
+<div class="fp-dashboard-page">
 
-        
-        <div class="fp-header">
-            <h1 class="page-title">Aktuella observationer</h1>
-            <p class="fp-intro" id="fp-dynamic-intro"></p>
-            <div class="fp-intro" id="fp-static-intro"><p>Senaste observationerna från alla rapportörer i Åstorps kommun, direkt från Artportalen.</p>
-</div>
+    
+    <div class="fp-toolbar">
+        <div class="fp-toolbar-left">
+            <h1 class="fp-toolbar-title">Aktuella observationer</h1>
+            <p class="fp-toolbar-intro" id="fp-dynamic-intro"></p>
         </div>
-
-        
-        <div class="fp-map-wrap">
+        <div class="fp-toolbar-center">
             <div class="fp-time-pills" id="fp-time-pills">
-                <button class="fp-pill active" data-days="3">Senaste 3 dagarna</button>
-                <button class="fp-pill" data-days="7">Senaste veckan</button>
-                <button class="fp-pill" data-days="30">Senaste månaden</button>
+                <button class="fp-pill active" data-days="3">3 dagar</button>
+                <button class="fp-pill" data-days="7">Vecka</button>
+                <button class="fp-pill" data-days="30">Månad</button>
             </div>
-            <div id="fp-map" class="observation-map" style="height: 420px;"></div>
         </div>
+        <div class="fp-toolbar-right">
+            <div class="fp-stats-row" id="fp-stats-row" style="display:none;">
+                <div class="fp-stat-chip"><strong id="fp-stat-obs">0</strong> obs</div>
+                <div class="fp-stat-chip"><strong id="fp-stat-species">0</strong> arter</div>
+                <div class="fp-stat-chip"><strong id="fp-stat-observers">0</strong> skådare</div>
+            </div>
+            <div class="fp-sort-row" id="fp-sort-bar" style="display:none;">
+                <button class="fp-sort-btn active" data-sort="date">Datum</button>
+                <button class="fp-sort-btn" data-sort="taxonomy">Taxon</button>
+                <button class="fp-sort-btn" data-sort="rarity">Sällsynt</button>
+            </div>
+        </div>
+    </div>
+
+    
+    <div class="fp-dashboard-body">
 
         
-        <div class="fp-stats-row" id="fp-stats-row" style="display:none;">
-            <div class="fp-stat-pill"><strong id="fp-stat-obs">0</strong> observationer</div>
-            <div class="fp-stat-pill"><strong id="fp-stat-species">0</strong> arter</div>
-            <div class="fp-stat-pill"><strong id="fp-stat-observers">0</strong> observatörer</div>
-        </div>
-
-        
-        <div class="fp-sort-row" id="fp-sort-bar" style="display:none;">
-            <button class="fp-sort-btn active" data-sort="date">Datum ↓</button>
-            <button class="fp-sort-btn" data-sort="taxonomy">Taxonomi ↓</button>
-            <button class="fp-sort-btn" data-sort="rarity">Sällsynthet ↓</button>
-        </div>
-
-        <div id="fp-disclaimer" style="display:none; color: #64748b; font-size: 0.75rem; line-height: 1.4; margin: 0 0 1rem 0; background: #f1f5f9; padding: 0.75rem; border-radius: 0.5rem; border-left: 2px solid #cbd5e1;">
-            <div style="font-style: italic; margin-bottom: 0.5rem;">
-                <strong>Observera:</strong> Färgkodningen för sällsynthet utgår från data i Artportalen. Eftersom Åstorp är en relativt underrapporterad kommun kan vissa arter framstå som statistiskt mer sällsynta i listan än vad de faktiskt är i fält.
-            </div>
-            <div class="fp-legend" style="display: flex; gap: 0.75rem; flex-wrap: wrap; font-size: 0.7rem; color: #475569;">
-                <span style="display: flex; align-items: center; gap: 0.25rem;"><span style="display:inline-block; width: 8px; height: 8px; border-radius: 50%; background: #0e7490;"></span> Förväntad</span>
-                <span style="display: flex; align-items: center; gap: 0.25rem;"><span style="display:inline-block; width: 8px; height: 8px; border-radius: 50%; background: #7c3aed;"></span> Möjlig</span>
-                <span style="display: flex; align-items: center; gap: 0.25rem;"><span style="display:inline-block; width: 8px; height: 8px; border-radius: 50%; background: #e09f3e;"></span> Ovanlig</span>
-                <span style="display: flex; align-items: center; gap: 0.25rem;"><span style="display:inline-block; width: 8px; height: 8px; border-radius: 50%; background: #c1121f;"></span> Raritet</span>
-                <span style="display: flex; align-items: center; gap: 0.25rem;"><span style="display:inline-block; width: 8px; height: 8px; border-radius: 50%; background: #00897b;"></span> Ny för året</span>
+        <div class="fp-map-pane">
+            <div class="fp-map-wrap" style="height:100%;">
+                <div id="fp-map" style="height:100%;"></div>
             </div>
         </div>
 
         
-        <div class="kommun-loading" id="fp-loading" style="margin-top:2rem;">
-            <div class="kommun-spinner"></div>
-            <span>Hämtar observationer…</span>
-        </div>
+        <div class="fp-list-pane">
 
-        
-        <div class="kommun-error" id="fp-error" style="display:none; margin-top:2rem;">
-            <span>⚠️ Kunde inte hämta data. Försök ladda om sidan.</span>
-        </div>
+            <div id="fp-disclaimer" style="display:none; color: #64748b; font-size: 0.72rem; line-height: 1.4; margin: 0 0 0.75rem 0; background: #f1f5f9; padding: 0.6rem 0.75rem; border-radius: 0.5rem; border-left: 2px solid #cbd5e1;">
+                <strong>Obs:</strong> Färgkodning baseras på Artportalen-data — Åstorp är underrapporterat.
+                <span style="display:inline-flex; gap:0.5rem; margin-left:0.5rem; flex-wrap:wrap;">
+                    <span style="display:flex;align-items:center;gap:3px"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#0e7490"></span>Förväntad</span>
+                    <span style="display:flex;align-items:center;gap:3px"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#7c3aed"></span>Möjlig</span>
+                    <span style="display:flex;align-items:center;gap:3px"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#e09f3e"></span>Ovanlig</span>
+                    <span style="display:flex;align-items:center;gap:3px"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#c1121f"></span>Raritet</span>
+                    <span style="display:flex;align-items:center;gap:3px"><span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:#00897b"></span>Ny</span>
+                </span>
+            </div>
 
-        
-        <div id="fp-list" class="fp-obs-grid" style="display:none;"></div>
+            <div class="kommun-loading" id="fp-loading">
+                <div class="kommun-spinner"></div>
+                <span>Hämtar observationer…</span>
+            </div>
+            <div class="kommun-error" id="fp-error" style="display:none;">
+                <span>⚠️ Kunde inte hämta data. Försök ladda om.</span>
+            </div>
 
-        <div class="kommun-source" id="fp-source" style="display:none; margin-top:2rem; text-align:right;">
-            Data: <a href="https://www.artportalen.se" target="_blank" rel="noopener">Artportalen</a> via
-            <a href="https://api-portal.artdatabanken.se" target="_blank" rel="noopener">SLU Artdatabankens API</a>
+            <div id="fp-list" class="fp-obs-grid" style="display:none;"></div>
+
+            <div class="kommun-source" id="fp-source" style="display:none; margin-top:1rem; text-align:right; font-size:0.7rem;">
+                Data: <a href="https://www.artportalen.se" target="_blank">Artportalen</a> /
+                <a href="https://api-portal.artdatabanken.se" target="_blank">SLU API</a>
+            </div>
         </div>
     </div>
 </div>
-
 
 <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
 <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
