@@ -154,10 +154,99 @@
 
     <main id="main-content" class="main">
         
+<style>
+ 
+.fp-map-section {
+    border-radius: 14px;
+    overflow: hidden;
+    border: 1px solid var(--border-color, #e2e8f0);
+    box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+    margin-bottom: 1.25rem;
+}
+.fp-map-section .fp-time-pills {
+    display: flex;
+    gap: 0.5rem;
+    padding: 0.7rem 1rem;
+    background: var(--bg-alt, #f8fafc);
+    border-bottom: 1px solid var(--border-color, #e2e8f0);
+    flex-wrap: wrap;
+}
+#fp-map { height: 380px; width: 100%; }
+@media (max-width: 600px) { #fp-map { height: 240px; } }
+
+.fp-stats-row { display: flex; gap: 0.75rem; flex-wrap: wrap; margin-bottom: 1rem; }
+.fp-stat-pill { flex: 1; min-width: 100px; background: var(--bg-alt, #f8fafc); border: 1px solid var(--border-color, #e2e8f0); border-radius: 12px; padding: 0.85rem 1rem; text-align: center; }
+.fp-stat-pill strong { font-size: 1.6rem; display: block; font-weight: 700; line-height: 1.1; }
+.fp-stat-pill { font-size: 0.78rem; color: var(--text-muted, #64748b); }
+
+.fp-sort-row { display: flex; gap: 0.5rem; margin-bottom: 0.75rem; flex-wrap: wrap; align-items: center; }
+
+ 
+.fp-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(340px, 1fr));
+    gap: 0.6rem;
+}
+@media (max-width: 480px) { .fp-card-grid { grid-template-columns: 1fr; } }
+
+.fp-date-sep {
+    grid-column: 1 / -1;
+    font-weight: 700;
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.07em;
+    color: var(--text-muted, #64748b);
+    padding: 0.6rem 0 0.3rem;
+    border-bottom: 2px solid var(--border-color, #e2e8f0);
+    margin-top: 0.5rem;
+}
+.fp-date-sep:first-child { margin-top: 0; }
+
+.fp-filter-banner {
+    grid-column: 1 / -1;
+    display: flex; align-items: center; justify-content: space-between;
+    padding: 0.5rem 0.75rem;
+    background: rgba(43,90,43,0.07);
+    border: 1px solid rgba(43,90,43,0.2);
+    border-radius: 8px; font-size: 0.9rem; margin-bottom: 0.25rem;
+}
+
+ 
+.fp-card-wrap {
+    border-radius: 10px;
+    border: 1px solid var(--border-color, #e2e8f0);
+    overflow: hidden;
+    background: var(--bg-alt, #f8fafc);
+    transition: box-shadow 0.2s, transform 0.15s;
+    cursor: pointer;
+}
+.fp-card-wrap:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.09); transform: translateY(-1px); }
+.fp-card-wrap.fp-card-wrap--expanded { box-shadow: 0 6px 20px rgba(0,0,0,0.12); }
+
+.fp-obs-card { display: flex; align-items: stretch; }
+.fp-card-accent { width: 4px; flex-shrink: 0; background: var(--card-accent, #7c3aed); }
+
+ 
+.fp-card-wrap.fp-cat-abundant  { --card-accent: #0e7490; }
+.fp-card-wrap.fp-cat-regular   { --card-accent: #7c3aed; }
+.fp-card-wrap.fp-cat-common    { --card-accent: #7c3aed; }
+.fp-card-wrap.fp-cat-uncommon  { --card-accent: #e09f3e; }
+.fp-card-wrap.fp-cat-scarce    { --card-accent: #e09f3e; }
+.fp-card-wrap.fp-cat-rare      { --card-accent: #c1121f; }
+.fp-card-wrap.fp-cat-new       { --card-accent: #00897b; }
+
+.fp-card-body { flex: 1; padding: 0.65rem 0.75rem 0.6rem 0.85rem; min-width: 0; }
+.fp-card-top { display: flex; align-items: center; justify-content: space-between; gap: 0.4rem; margin-bottom: 0.2rem; }
+.fp-card-species { font-weight: 700; font-size: 0.95rem; color: var(--text-color); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.fp-card-badges { display: flex; gap: 0.3rem; align-items: center; flex-shrink: 0; }
+.fp-card-date-badge { font-size: 0.7rem; color: var(--text-muted, #64748b); background: var(--bg-color, #fff); border: 1px solid var(--border-color, #e2e8f0); border-radius: 5px; padding: 1px 5px; }
+.fp-card-loc { font-size: 0.8rem; color: var(--text-muted, #64748b); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; margin-bottom: 0.1rem; }
+.fp-card-meta { font-size: 0.76rem; color: var(--text-muted, #64748b); opacity: 0.8; }
+</style>
+
 <div class="fp-page">
     <div class="fp-container" style="max-width: 1300px;">
 
-        
         <div class="fp-header">
             <h1 class="page-title">Aktuella observationer</h1>
             <p class="fp-intro" id="fp-dynamic-intro"></p>
@@ -165,75 +254,53 @@
 </div>
         </div>
 
-        <div class="fp-split-layout">
-            
-            <div class="fp-map-col">
-                
-                <div class="fp-map-wrap">
-                    <div class="fp-time-pills" id="fp-time-pills">
-                        <button class="fp-pill active" data-days="3">Senaste 3 dagarna</button>
-                        <button class="fp-pill" data-days="7">Senaste veckan</button>
-                        <button class="fp-pill" data-days="30">Senaste månaden</button>
-                    </div>
-
-                    <div id="fp-map" class="observation-map" style="min-height: 400px; height: 50vh;"></div>
-                </div>
+        
+        <div class="fp-map-section">
+            <div class="fp-time-pills" id="fp-time-pills">
+                <button class="fp-pill active" data-days="3">Senaste 3 dagarna</button>
+                <button class="fp-pill" data-days="7">Senaste veckan</button>
+                <button class="fp-pill" data-days="30">Senaste månaden</button>
             </div>
+            <div id="fp-map" class="observation-map"></div>
+        </div>
 
-            
-            <div class="fp-list-col">
-                
-                <div class="fp-stats-row" id="fp-stats-row" style="display:none;">
-                    <div class="fp-stat-pill">
-                        <strong id="fp-stat-obs">0</strong> observationer
-                    </div>
-                    <div class="fp-stat-pill">
-                        <strong id="fp-stat-species">0</strong> arter
-                    </div>
-                    <div class="fp-stat-pill">
-                        <strong id="fp-stat-observers">0</strong> observatörer
-                    </div>
-                </div>
+        
+        <div class="fp-stats-row" id="fp-stats-row" style="display:none;">
+            <div class="fp-stat-pill"><strong id="fp-stat-obs">0</strong>observationer</div>
+            <div class="fp-stat-pill"><strong id="fp-stat-species">0</strong>arter</div>
+            <div class="fp-stat-pill"><strong id="fp-stat-observers">0</strong>observatörer</div>
+        </div>
 
-                
-                <div class="fp-sort-row" id="fp-sort-bar" style="display:none;">
-                    <button class="fp-sort-btn active" data-sort="date">Datum ↓</button>
-                    <button class="fp-sort-btn" data-sort="taxonomy">Taxonomi ↓</button>
-                    <button class="fp-sort-btn" data-sort="rarity">Sällsynthet ↓</button>
-                </div>
+        
+        <div class="fp-sort-row" id="fp-sort-bar" style="display:none;">
+            <button class="fp-sort-btn active" data-sort="date">Datum ↓</button>
+            <button class="fp-sort-btn" data-sort="taxonomy">Taxonomi ↓</button>
+            <button class="fp-sort-btn" data-sort="rarity">Sällsynthet ↓</button>
+        </div>
 
-                <div id="fp-disclaimer" style="display:none; color: #64748b; font-size: 0.75rem; line-height: 1.4; margin: 0 0 1rem 0; background: #f1f5f9; padding: 0.75rem; border-radius: 0.5rem; border-left: 2px solid #cbd5e1;">
-                    <div style="font-style: italic; margin-bottom: 0.5rem;">
-                        <strong>Observera:</strong> Färgkodningen för sällsynthet utgår från data i Artportalen. Eftersom Åstorp är en relativt underrapporterad kommun kan vissa arter framstå som statistiskt mer sällsynta i listan än vad de faktiskt är i fält.
-                    </div>
-                    <div class="fp-legend" style="display: flex; gap: 0.75rem; flex-wrap: wrap; font-size: 0.7rem; color: #475569;">
-                        <span style="display: flex; align-items: center; gap: 0.25rem;"><span style="display:inline-block; width: 8px; height: 8px; border-radius: 50%; background: #0e7490;"></span> Förväntad</span>
-                        <span style="display: flex; align-items: center; gap: 0.25rem;"><span style="display:inline-block; width: 8px; height: 8px; border-radius: 50%; background: #7c3aed;"></span> Möjlig</span>
-                        <span style="display: flex; align-items: center; gap: 0.25rem;"><span style="display:inline-block; width: 8px; height: 8px; border-radius: 50%; background: #e09f3e;"></span> Ovanlig</span>
-                        <span style="display: flex; align-items: center; gap: 0.25rem;"><span style="display:inline-block; width: 8px; height: 8px; border-radius: 50%; background: #c1121f;"></span> Raritet</span>
-                        <span style="display: flex; align-items: center; gap: 0.25rem;"><span style="display:inline-block; width: 8px; height: 8px; border-radius: 50%; background: #00897b;"></span> Ny för året</span>
-                    </div>
-                </div>
+        <div id="fp-disclaimer" style="display:none; color:#64748b; font-size:0.75rem; line-height:1.4; margin:0 0 0.75rem; background:#f1f5f9; padding:0.6rem 0.75rem; border-radius:0.5rem; border-left:2px solid #cbd5e1;">
+            <strong>Obs:</strong> Färgkodning baseras på Artportalen-data. Åstorp är relativt underrapporterat, så vissa arter kan se sällsyntare ut än de är.
+            &nbsp;·&nbsp;
+            <span style="display:inline-flex;gap:0.6rem;flex-wrap:wrap;">
+                <span>🔵 Förväntad</span><span>🟣 Möjlig</span><span>🟡 Ovanlig</span><span>🔴 Raritet</span><span>🟢 Ny</span>
+            </span>
+        </div>
 
-                
-                <div class="kommun-loading" id="fp-loading" style="margin-top:2rem;">
-                    <div class="kommun-spinner"></div>
-                    <span>Hämtar observationer…</span>
-                </div>
+        
+        <div class="kommun-loading" id="fp-loading" style="margin-top:2rem;">
+            <div class="kommun-spinner"></div>
+            <span>Hämtar observationer…</span>
+        </div>
+        <div class="kommun-error" id="fp-error" style="display:none; margin-top:2rem;">
+            <span>⚠️ Kunde inte hämta data. Försök ladda om sidan.</span>
+        </div>
 
-                
-                <div class="kommun-error" id="fp-error" style="display:none; margin-top:2rem;">
-                    <span>⚠️ Kunde inte hämta data. Försök ladda om sidan.</span>
-                </div>
+        
+        <div id="fp-list" class="fp-card-grid" style="display:none;"></div>
 
-                
-                <div id="fp-list" class="fp-compact-list" style="display:none;"></div>
-
-                <div class="kommun-source" id="fp-source" style="display:none; margin-top:2rem; text-align:right;">
-                    Data: <a href="https://www.artportalen.se" target="_blank" rel="noopener">Artportalen</a> via
-                    <a href="https://api-portal.artdatabanken.se" target="_blank" rel="noopener">SLU Artdatabankens API</a>
-                </div>
-            </div>
+        <div class="kommun-source" id="fp-source" style="display:none; margin-top:1.5rem; text-align:right;">
+            Data: <a href="https://www.artportalen.se" target="_blank" rel="noopener">Artportalen</a> via
+            <a href="https://api-portal.artdatabanken.se" target="_blank" rel="noopener">SLU Artdatabankens API</a>
         </div>
     </div>
 </div>
@@ -808,8 +875,8 @@
         
         if (currentLocationFilter) {
             html += '<div class="fp-filter-banner">';
-            html += '<span>📍 Visar observationer från <strong>' + currentLocationFilter + '</strong></span>';
-            html += '<button class="fp-filter-clear" onclick="window._fpClearFilter()">Visa alla ×</button>';
+            html += '<span>\uD83D\uDCCD Visar observationer fr\u00e5n <strong>' + currentLocationFilter + '</strong></span>';
+            html += '<button class="fp-filter-clear" onclick="window._fpClearFilter()">Visa alla \u00d7</button>';
             html += '</div>';
         }
 
@@ -822,8 +889,7 @@
 
             var speciesName = taxon.vernacularName || taxon.scientificName || '?';
             var sciName = taxon.scientificName || '';
-            var reporter = occ.reportedBy || occ.recordedBy || 'Okänd';
-            
+            var reporter = occ.reportedBy || occ.recordedBy || 'Ok\u00e4nd';
             var dateStr = event.plainStartDate || (event.startDate || '').substring(0, 10);
             var place = loc.locality || '';
             var quantity = occ.quantity || occ.individualCount || '';
@@ -832,7 +898,7 @@
             
             if (currentSort === 'date' && dateStr !== lastDateStr) {
                 var d = new Date(dateStr);
-                var dayNames = ['söndag','måndag','tisdag','onsdag','torsdag','fredag','lördag'];
+                var dayNames = ['s\u00f6ndag','m\u00e5ndag','tisdag','onsdag','torsdag','fredag','l\u00f6rdag'];
                 var longDate = dayNames[d.getDay()] + ' ' + d.getDate() + ' ' + MONTHS[d.getMonth()];
                 html += '<div class="fp-date-sep">' + longDate + '</div>';
                 lastDateStr = dateStr;
@@ -841,27 +907,30 @@
             var nameKey = speciesName.toLowerCase();
             var guide = speciesGuide[nameKey] || {};
             var cat = guide.category || 'new';
-            var dotColor = CATEGORY_COLORS[cat] || CATEGORY_COLORS.new;
-            
+
             var badgeHtml = '';
             if (cat === 'new') badgeHtml = '<span class="fp-badge fp-badge--new">Ny!</span>';
-            else if (cat === 'rare') badgeHtml = '<span class="fp-badge fp-badge--rare">Sällsynt</span>';
+            else if (cat === 'rare') badgeHtml = '<span class="fp-badge fp-badge--rare">S\u00e4llsynt</span>';
             else if (cat === 'scarce' || cat === 'uncommon') badgeHtml = '<span class="fp-badge fp-badge--uncommon">Ovanlig</span>';
 
-            var rowClass = currentSort !== 'date' ? 'fp-obs-row fp-obs-row--with-date' : 'fp-obs-row';
-            rowClass += ' fp-cat-' + cat;
             
-            html += '<div class="' + rowClass + '" data-idx="' + idx + '" data-loc="' + place.replace(/"/g, '&quot;') + '">';
+            html += '<div class="fp-card-wrap fp-cat-' + cat + '" data-idx="' + idx + '" data-loc="' + place.replace(/"/g, '&quot;') + '">';
+
             
-            if (currentSort !== 'date') {
-                html += '<div class="fp-obs-col-date">' + fmtDate(dateStr) + '</div>';
-            }
-            html += '<div class="fp-obs-col-species">' + speciesName + (quantity ? ' <span class="fp-obs-qty">' + quantity + ' ex</span>' : '') + '</div>';
-            html += '<div class="fp-obs-col-place">📍 ' + place + '</div>';
-            html += '<div class="fp-obs-col-reporter">👤 ' + reporter + '</div>';
-            html += '<div class="fp-obs-col-rarity">' + badgeHtml + '</div>';
-            html += '<div class="fp-obs-col-expand">▸</div>';
+            html += '<div class="fp-obs-card">';
+            html += '<div class="fp-card-accent"></div>';
+            html += '<div class="fp-card-body">';
+            html += '<div class="fp-card-top">';
+            html += '<span class="fp-card-species">' + speciesName + '</span>';
+            html += '<div class="fp-card-badges">';
+            if (quantity) html += '<span class="fp-obs-qty">' + quantity + ' ex</span>';
+            html += badgeHtml;
+            if (currentSort !== 'date') html += '<span class="fp-card-date-badge">' + fmtDate(dateStr) + '</span>';
             html += '</div>';
+            html += '</div>';
+            html += '<div class="fp-card-loc">\uD83D\uDCCD ' + (place || '\u2014') + '</div>';
+            html += '<div class="fp-card-meta">\uD83D\uDC64 ' + reporter + '</div>';
+            html += '</div></div>';
 
             
             html += '<div class="fp-obs-detail" id="fp-detail-' + idx + '" style="display:none;">';
@@ -870,36 +939,39 @@
             html += '<div class="fp-detail-item"><span class="fp-detail-label">Datum</span>' + dateStr + '</div>';
             if (quantity) html += '<div class="fp-detail-item"><span class="fp-detail-label">Antal</span>' + quantity + ' individer</div>';
             html += '<div class="fp-detail-item"><span class="fp-detail-label">Plats</span>' + place + '</div>';
-            html += '<div class="fp-detail-item"><span class="fp-detail-label">Rapportör</span>' + reporter + '</div>';
+            html += '<div class="fp-detail-item"><span class="fp-detail-label">Rapport\u00f6r</span>' + reporter + '</div>';
             if (activity) html += '<div class="fp-detail-item"><span class="fp-detail-label">Aktivitet</span>' + activity + '</div>';
             html += '</div></div>';
+
+            html += '</div>'; 
         });
 
-        container.innerHTML = html || '<p style="text-align:center;color:var(--color-text-muted);padding:var(--space-xl);">Inga observationer hittades för denna period.</p>';
+        container.innerHTML = html || '<p style="text-align:center;color:var(--color-text-muted);padding:var(--space-xl);">Inga observationer hittades f\u00f6r denna period.</p>';
+
         
-        
-        container.querySelectorAll('.fp-obs-row').forEach(function(row) {
-            row.addEventListener('click', function() {
-                var idx = row.getAttribute('data-idx');
-                var locName = row.getAttribute('data-loc');
+        container.querySelectorAll('.fp-card-wrap').forEach(function(wrap) {
+            wrap.addEventListener('click', function() {
+                var idx = wrap.getAttribute('data-idx');
+                var locName = wrap.getAttribute('data-loc');
                 var detail = document.getElementById('fp-detail-' + idx);
-                var arrow = row.querySelector('.fp-obs-col-expand');
                 if (detail) {
                     var isOpen = detail.style.display !== 'none';
-                    detail.style.display = isOpen ? 'none' : 'block';
-                    if (arrow) arrow.textContent = isOpen ? '▸' : '▾';
-                    row.classList.toggle('fp-obs-row--expanded', !isOpen);
                     
-                    
-                    if (!isOpen && window.fpLocationMarkers[locName]) {
-                        map.panTo(window.fpLocationMarkers[locName].getLatLng());
+                    container.querySelectorAll('.fp-obs-detail').forEach(function(d) { d.style.display = 'none'; });
+                    container.querySelectorAll('.fp-card-wrap').forEach(function(w) { w.classList.remove('fp-card-wrap--expanded'); });
+                    if (!isOpen) {
+                        detail.style.display = 'block';
+                        wrap.classList.add('fp-card-wrap--expanded');
+                        if (window.fpLocationMarkers[locName]) {
+                            map.panTo(window.fpLocationMarkers[locName].getLatLng());
+                        }
                     }
                 }
             });
 
             
-            row.addEventListener('mouseenter', function() {
-                var locName = row.getAttribute('data-loc');
+            wrap.addEventListener('mouseenter', function() {
+                var locName = wrap.getAttribute('data-loc');
                 Object.keys(window.fpLocationMarkers).forEach(function(name) {
                     var m = window.fpLocationMarkers[name];
                     if (m && m.getElement()) {
@@ -916,7 +988,7 @@
                 });
             });
 
-            row.addEventListener('mouseleave', function() {
+            wrap.addEventListener('mouseleave', function() {
                 Object.keys(window.fpLocationMarkers).forEach(function(name) {
                     var m = window.fpLocationMarkers[name];
                     if (m && m.getElement()) {
@@ -953,7 +1025,7 @@
             .then(function(records) {
                 allRecords = records;
                 document.getElementById('fp-loading').style.display = 'none';
-                document.getElementById('fp-list').style.display = 'flex';
+                document.getElementById('fp-list').style.display = 'block';
                 document.getElementById('fp-sort-bar').style.display = 'flex';
                 document.getElementById('fp-disclaimer').style.display = 'block';
                 document.getElementById('fp-stats-row').style.display = 'flex';
