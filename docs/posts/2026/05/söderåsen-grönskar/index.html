@@ -348,10 +348,118 @@
     </script>
 
     
+    <div id="map-lightbox" class="lightbox" onclick="closeMapLightbox()" style="z-index: 10000;">
+        <button class="lightbox-close" onclick="event.stopPropagation(); closeMapLightbox()" aria-label="Stäng">&times;</button>
+        <div class="lightbox-content" onclick="event.stopPropagation()" style="width: 90vw; height: 90vh; max-width: 1200px; max-height: 900px; background: white; border-radius: 8px; padding: 1.5rem; position: relative; display: flex; flex-direction: column; cursor: default;">
+            <h2 id="map-lightbox-title" style="margin-top: 0; color: #1e293b; text-align: center; margin-bottom: 1rem;">Var i Åstorp har arten setts?</h2>
+            <div id="map-lightbox-container" style="flex-grow: 1; border-radius: 4px; overflow: hidden; border: 1px solid #e2e8f0; position: relative; z-index: 1;"></div>
+            <div id="map-lightbox-loading" style="text-align: center; padding: 1rem; color: #64748b; display: none;">Laddar fyndplatser...</div>
+        </div>
+    </div>
+    
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
     <script>window.siteBaseURL = "https:\/\/astorpsfaglar.se\/";</script>
     <script src="/js/location-popup.js"></script>
+
+    
+    <script>
+        let globalHistoricMapInstance = null;
+        let globalHistoricMapInitialized = false;
+
+        function openMapLightbox(speciesName) {
+            document.getElementById('map-lightbox-title').textContent = "Historiska fyndplatser: " + speciesName;
+            document.getElementById('map-lightbox').classList.add('active');
+            document.body.classList.add('lightbox-open');
+            
+            const mapLoading = document.getElementById("map-lightbox-loading");
+            if (mapLoading) mapLoading.style.display = "block";
+
+            if (!globalHistoricMapInitialized) {
+                globalHistoricMapInstance = L.map('map-lightbox-container').setView([56.14, 13.05], 11);
+                L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+                    maxZoom: 17,
+                    attribution: 'Kartdata: © OpenTopoMap'
+                }).addTo(globalHistoricMapInstance);
+                
+                fetch('/data/astorp-kommun.geojson')
+                    .then(res => res.json())
+                    .then(geo => {
+                        const coords = geo.features[0].geometry.coordinates[0];
+                        const hole = coords.map(c => [c[1], c[0]]);
+                        const worldBounds = [[-90, -180], [-90, 180], [90, 180], [90, -180], [-90, -180]];
+                        L.polygon([worldBounds, hole], {
+                            color: 'transparent',
+                            fillColor: '#4b5563',
+                            fillOpacity: 0.4,
+                            interactive: false,
+                            noClip: true
+                        }).addTo(globalHistoricMapInstance);
+                        L.polygon(hole, {
+                            color: '#b91c1c',
+                            weight: 3,
+                            fill: false,
+                            opacity: 0.8
+                        }).addTo(globalHistoricMapInstance);
+                        globalHistoricMapInstance.fitBounds(L.latLngBounds(hole));
+                    })
+                    .catch(err => console.error("Could not load municipality bounds", err));
+                    
+                globalHistoricMapInitialized = true;
+            } else {
+                setTimeout(() => {
+                    globalHistoricMapInstance.invalidateSize();
+                }, 10);
+            }
+
+            
+            globalHistoricMapInstance.eachLayer(layer => {
+                if (layer instanceof L.CircleMarker) {
+                    globalHistoricMapInstance.removeLayer(layer);
+                }
+            });
+
+            
+            fetch('/data/astorp_historic_locations.json')
+                .then(res => res.json())
+                .then(data => {
+                    if (mapLoading) mapLoading.style.display = "none";
+                    const locs = data[speciesName] || [];
+                    if (locs.length === 0) {
+                        if (mapLoading) {
+                            mapLoading.style.display = "block";
+                            mapLoading.textContent = "Inga historiska fyndplatser hittades för arten i Åstorp.";
+                        }
+                        return;
+                    }
+                    
+                    locs.forEach(loc => {
+                        const marker = L.circleMarker([loc.lat, loc.lng], {
+                            radius: 6 + Math.min(loc.count, 15),
+                            fillColor: '#dc2626',
+                            color: '#dc2626',
+                            weight: 2,
+                            opacity: 1,
+                            fillOpacity: 0.4
+                        }).addTo(globalHistoricMapInstance);
+                        marker.bindPopup(`<strong>${loc.locality}</strong><br>Totalt ${loc.count} fynd.<br>Senast: ${loc.date}`);
+                    });
+                })
+                .catch(err => {
+                    if (mapLoading) {
+                        mapLoading.style.display = "block";
+                        mapLoading.textContent = "Kunde inte ladda fyndplatser.";
+                    }
+                    console.error("Could not load locations", err);
+                });
+        }
+
+        function closeMapLightbox() {
+            document.getElementById('map-lightbox').classList.remove('active');
+            document.body.classList.remove('lightbox-open');
+        }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMapLightbox(); });
+    </script>
 
     
 
