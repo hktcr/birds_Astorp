@@ -119,14 +119,21 @@ Efter en systematisk genomgång av Skånes fågelfauna har jag valt ut 54 arter 
 .obs-modal {
     background: var(--bg-color, #fff);
     border: 1px solid var(--border-color, #e5e7eb);
-    border-radius: 12px;
-    width: 90%;
-    max-width: 600px;
-    max-height: 80vh;
+    border-radius: 16px;
+    width: 95vw;
+    max-width: 1100px;
+    max-height: 85vh;
     overflow-y: auto;
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25);
     position: relative;
     padding: 2rem;
+}
+@media (max-width: 600px) {
+    .obs-modal {
+        width: 98vw;
+        padding: 1.25rem;
+        border-radius: 10px;
+    }
 }
 .obs-modal-close {
     position: absolute;
@@ -152,15 +159,28 @@ Efter en systematisk genomgång av Skånes fågelfauna har jag valt ut 54 arter 
     padding-bottom: 1rem;
 }
 
+.modal-obs-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 0;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 8px;
+    overflow: hidden;
+}
 .modal-obs-item {
-    padding: 1rem;
+    padding: 0.85rem 1rem;
     border-bottom: 1px solid var(--border-color, #e5e7eb);
     display: flex;
     flex-direction: column;
-    gap: 0.25rem;
+    gap: 0.2rem;
 }
 .modal-obs-item:last-child {
     border-bottom: none;
+}
+@media (max-width: 600px) {
+    .modal-obs-list {
+        grid-template-columns: 1fr;
+    }
 }
 .modal-obs-header {
     display: flex;
@@ -499,7 +519,7 @@ function openModal(taxonId, speciesName) {
     let html = `<div class="modal-title">${speciesName}</div>`;
     html += `<div class="modal-subtitle">Senaste fynden i Skåne (${records.length} st)</div>`;
     
-    html += `<div class="modal-list">`;
+    html += `<div class="modal-obs-list">`;
     records.forEach(obs => {
         const safeLoc = obs.location.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
         const safeObs = obs.observer.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
