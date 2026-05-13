@@ -663,6 +663,12 @@ function openModal(taxonId, speciesName) {
     let html = `<div class="modal-title">${speciesName}</div>`;
     html += `<div class="modal-subtitle">Senaste fynden i Skåne (${records.length} st)</div>`;
     
+    // Kartknapp – visas bara för arter med koordinatdata
+    const hasCoords = records.some(r => r.maps_url && r.maps_url.match(/query=([\d.]+),([\d.]+)/));
+    if (hasCoords) {
+        html += `<button onclick="openSkaneObsMap(obsData['${taxonId}'], '${speciesName.replace(/'/g, "\\'")}')" style="display:inline-flex;align-items:center;gap:0.4rem;margin-bottom:1.25rem;padding:0.5rem 1rem;background:linear-gradient(135deg,#1e40af,#2563eb);color:#fff;border:none;border-radius:8px;font-size:0.9rem;font-weight:600;cursor:pointer;transition:opacity 0.2s;" onmouseover="this.style.opacity='0.85'" onmouseout="this.style.opacity='1'">🗺️ Visa fyndplatser på karta</button>`;
+    }
+    
     html += `<div class="modal-obs-list">`;
     records.forEach(obs => {
         const safeLoc = obs.location.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
@@ -695,6 +701,90 @@ function openModal(taxonId, speciesName) {
 function closeModal(event) {
     if (event) event.stopPropagation();
     document.getElementById("obsModalOverlay").classList.remove("open");
+}
+
+// Öppna global map-lightbox med Skåne-fynddata
+function openSkaneObsMap(records, speciesName) {
+    const dialog = document.getElementById('map-lightbox');
+    if (!dialog) { alert('Kartfunktionen är inte laddad ännu.'); return; }
+
+    // Sätt titel
+    const titleEl = document.getElementById('map-lightbox-title');
+    if (titleEl) titleEl.textContent = 'Fyndplatser i Skåne: ' + speciesName;
+
+    // Öppna dialogen
+    if (!dialog.open) dialog.showModal();
+    document.body.classList.add('lightbox-open');
+
+    // Vänta tills dialogen är synlig, initiera sedan kartan
+    setTimeout(() => {
+        // Hämta/skapa kartinstansen
+        let map = window.globalHistoricMapInstance;
+        const container = document.getElementById('map-lightbox-container');
+        if (!container) return;
+
+        if (!map) {
+            map = L.map(container).setView([55.85, 13.45], 8);
+            L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+                maxZoom: 17,
+                attribution: '© OpenTopoMap'
+            }).addTo(map);
+            window.globalHistoricMapInstance = map;
+            window.globalHistoricMapInitialized = true;
+        }
+
+        // Rensa ALLA icke-tile-lager (polygoner, markörer, etc)
+        map.eachLayer(layer => {
+            if (!(layer instanceof L.TileLayer)) map.removeLayer(layer);
+        });
+
+        // Tvinga Leaflet att rita om
+        map.invalidateSize();
+        setTimeout(() => map.invalidateSize(), 300);
+
+        // Hitta max-count för skalning (sqrt-skala: radius 5–22px)
+        const maxCount = Math.max(1, ...records.map(r => parseInt(r.count) || 1));
+        const bounds = [];
+
+        records.forEach(obs => {
+            const match = obs.maps_url && obs.maps_url.match(/query=([\d.]+),([\d.]+)/);
+            if (!match) return;
+            const lat = parseFloat(match[1]);
+            const lng = parseFloat(match[2]);
+            const count = parseInt(obs.count) || 1;
+
+            // Kvadratrots-skala ger bra visuell spridning
+            const radius = 5 + (Math.sqrt(count) / Math.sqrt(maxCount)) * 17;
+
+            const safeLoc = obs.location.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+            const safeObs = obs.observer.replace(/&/g, '&amp;').replace(/</g, '&lt;');
+
+            const marker = L.circleMarker([lat, lng], {
+                radius: radius,
+                fillColor: '#dc2626',
+                color: '#7f1d1d',
+                weight: 1.5,
+                opacity: 0.9,
+                fillOpacity: 0.45
+            }).addTo(map);
+
+            marker.bindPopup(
+                `<strong>${safeLoc}</strong><br>` +
+                `<span style="font-size:1.1em;font-weight:bold;color:#dc2626">${count} individer</span><br>` +
+                `<span style="font-size:0.85em;opacity:0.7">${safeObs}</span>`
+            );
+
+            bounds.push([lat, lng]);
+        });
+
+        if (bounds.length > 0) {
+            map.fitBounds(L.latLngBounds(bounds), { padding: [30, 30] });
+        }
+
+        // Göm laddningsindikatorn om den finns
+        const loading = document.getElementById('map-lightbox-loading');
+        if (loading) loading.style.display = 'none';
+    }, 80);
 }
 
 // Initialisering av heatmaps/spotlights
