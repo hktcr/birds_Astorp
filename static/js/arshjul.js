@@ -271,9 +271,137 @@ document.addEventListener("DOMContentLoaded", () => {
         return svg;
     }
 
+    // Modal Map Logic
+    let modalMapInitialized = false;
+    let modalMapInstance = null;
+    let currentSpeciesForMap = "";
+
+    const mapBtn = document.getElementById("arshjul-modal-map-btn");
+    const mapWrapper = document.getElementById("arshjul-modal-map-wrapper");
+    const mapContainer = document.getElementById("arshjul-modal-map-container");
+    const mapLoading = document.getElementById("arshjul-modal-map-loading");
+
+    if (mapBtn) {
+        mapBtn.addEventListener("click", () => {
+            if (mapWrapper.style.display === "none") {
+                mapWrapper.style.display = "flex";
+                mapBtn.textContent = "Dölj fyndplatser";
+                initModalMap();
+            } else {
+                mapWrapper.style.display = "none";
+                mapBtn.textContent = "Var i Åstorp har arten setts?";
+            }
+        });
+    }
+
+    function initModalMap() {
+        if (!mapLoading) return;
+        mapLoading.style.display = "block";
+        
+        if (typeof L === 'undefined') {
+            const link = document.createElement("link");
+            link.rel = "stylesheet";
+            link.href = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.css";
+            document.head.appendChild(link);
+            
+            const script = document.createElement("script");
+            script.src = "https://unpkg.com/leaflet@1.9.4/dist/leaflet.js";
+            script.onload = buildModalMap;
+            document.head.appendChild(script);
+        } else {
+            buildModalMap();
+        }
+    }
+
+    function buildModalMap() {
+        if (!modalMapInitialized) {
+            modalMapInstance = L.map('arshjul-modal-map-container').setView([56.14, 13.05], 11);
+            L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+                maxZoom: 17,
+                attribution: 'Kartdata: © OpenTopoMap'
+            }).addTo(modalMapInstance);
+            
+            fetch('/data/astorp-kommun.geojson')
+                .then(res => res.json())
+                .then(geo => {
+                    const coords = geo.features[0].geometry.coordinates[0];
+                    const hole = coords.map(c => [c[1], c[0]]);
+                    const worldBounds = [[-90, -180], [-90, 180], [90, 180], [90, -180], [-90, -180]];
+                    L.polygon([worldBounds, hole], {
+                        color: 'transparent',
+                        fillColor: '#4b5563',
+                        fillOpacity: 0.4,
+                        interactive: false,
+                        noClip: true
+                    }).addTo(modalMapInstance);
+                    L.polygon(hole, {
+                        color: '#b91c1c',
+                        weight: 3,
+                        fill: false,
+                        opacity: 0.8
+                    }).addTo(modalMapInstance);
+                    modalMapInstance.fitBounds(L.latLngBounds(hole));
+                })
+                .catch(err => console.error("Could not load municipality bounds", err));
+                
+            modalMapInitialized = true;
+        } else {
+            // Needed to avoid layout bugs when map container was display:none
+            setTimeout(() => {
+                modalMapInstance.invalidateSize();
+            }, 10);
+        }
+
+        // Clear existing markers
+        modalMapInstance.eachLayer(layer => {
+            if (layer instanceof L.CircleMarker) {
+                modalMapInstance.removeLayer(layer);
+            }
+        });
+
+        // Load specific species data
+        fetch('/data/astorp_historic_locations.json')
+            .then(res => res.json())
+            .then(data => {
+                if (mapLoading) mapLoading.style.display = "none";
+                const locs = data[currentSpeciesForMap] || [];
+                if (locs.length === 0) {
+                    if (mapLoading) {
+                        mapLoading.style.display = "block";
+                        mapLoading.textContent = "Inga historiska fyndplatser hittades för arten i Åstorp.";
+                    }
+                    return;
+                }
+                
+                locs.forEach(loc => {
+                    const marker = L.circleMarker([loc.lat, loc.lng], {
+                        radius: 6 + Math.min(loc.count, 15),
+                        fillColor: '#dc2626',
+                        color: '#dc2626',
+                        weight: 2,
+                        opacity: 1,
+                        fillOpacity: 0.4
+                    }).addTo(modalMapInstance);
+                    marker.bindPopup(`<strong>${loc.locality}</strong><br>Totalt ${loc.count} fynd.<br>Senast: ${loc.date}`);
+                });
+            })
+            .catch(err => {
+                if (mapLoading) {
+                    mapLoading.style.display = "block";
+                    mapLoading.textContent = "Kunde inte ladda fyndplatser.";
+                }
+                console.error("Could not load locations", err);
+            });
+    }
+
     // Modal behavior
     function openModal(speciesName, slug, speciesData, checkDate) {
         modalTitle.textContent = speciesName;
+        currentSpeciesForMap = speciesName;
+
+        // Reset map container if present
+        if (mapWrapper) mapWrapper.style.display = "none";
+        if (mapBtn) mapBtn.textContent = "Var i Åstorp har arten setts?";
 
         // Show latin name below title
         let modalLatin = document.getElementById("arshjul-modal-latin");
