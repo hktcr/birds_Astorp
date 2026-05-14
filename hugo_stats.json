@@ -580,6 +580,7 @@
       "map",
       "map-lightbox",
       "map-lightbox-container",
+      "map-lightbox-legend",
       "map-lightbox-loading",
       "map-lightbox-title",
       "meadow-indicator",

@@ -181,6 +181,12 @@
             <button class="lightbox-close" onclick="closeMapLightbox()" aria-label="Stäng" style="color: #64748b; background: #f1f5f9; top: 1rem; right: 1rem; z-index: 100;">&times;</button>
             <h2 id="map-lightbox-title" style="margin-top: 0; color: #1e293b; text-align: center; margin-bottom: 1rem; font-size: clamp(1.2rem, 3vw, 1.8rem);">Var i Åstorp har arten setts?</h2>
             <div id="map-lightbox-container" style="flex-grow: 1; border-radius: 4px; overflow: hidden; border: 1px solid #e2e8f0; position: relative; z-index: 1;"></div>
+            <div id="map-lightbox-legend" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin-top: 1rem; font-size: 0.85rem; color: #475569;">
+                <div style="display: flex; align-items: center; gap: 0.4rem;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #dc2626; opacity: 0.8;"></span>I år</div>
+                <div style="display: flex; align-items: center; gap: 0.4rem;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #f97316; opacity: 0.8;"></span>Förra året</div>
+                <div style="display: flex; align-items: center; gap: 0.4rem;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #eab308; opacity: 0.8;"></span>2-10 år sedan</div>
+                <div style="display: flex; align-items: center; gap: 0.4rem;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #9ca3af; opacity: 0.8;"></span>Äldre</div>
+            </div>
             <div id="map-lightbox-loading" style="text-align: center; padding: 1rem; color: #64748b; display: none;">Laddar fyndplatser...</div>
         </div>
     </dialog>
@@ -269,11 +275,24 @@
                         return;
                     }
                     
+                    const currentYear = new Date().getFullYear();
+                    
                     locs.forEach(loc => {
+                        let markerColor = '#9ca3af'; // grå (äldre)
+                        const locYear = parseInt(loc.date.substring(0, 4), 10);
+                        
+                        if (locYear >= currentYear) {
+                            markerColor = '#dc2626'; // röd (i år)
+                        } else if (locYear === currentYear - 1) {
+                            markerColor = '#f97316'; // orange (förra året)
+                        } else if (locYear >= currentYear - 10) {
+                            markerColor = '#eab308'; // gul (2-10 år sedan)
+                        }
+                        
                         const marker = L.circleMarker([loc.lat, loc.lng], {
                             radius: 6 + Math.min(loc.count, 15),
-                            fillColor: '#dc2626',
-                            color: '#dc2626',
+                            fillColor: markerColor,
+                            color: markerColor,
                             weight: 2,
                             opacity: 1,
                             fillOpacity: 0.4
