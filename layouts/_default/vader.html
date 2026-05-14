@@ -579,10 +579,29 @@
 
             ctx.fillStyle = '#fff';
             ctx.fillRect(0, 0, w, h);
-            ctx.fillStyle = 'rgba(0,0,0,0.015)';
-            ctx.fillRect(labelW, 0, chartW, rowH);
-            // Frostzon — ljusblå under 0° (VEP Förslag E)
-            ctx.fillStyle = 'rgba(180,210,235,0.12)';
+            // Differentiera dag vs natt med distinkt bakgrundsgradient
+            if (canvasId === 'temp-night-chart') {
+                // Natt: svalt indigo-gradient (ger omedelbar nattkänsla)
+                var nightGrad = ctx.createLinearGradient(0, 0, 0, rowH);
+                nightGrad.addColorStop(0, 'rgba(61, 79, 124, 0.10)');
+                nightGrad.addColorStop(1, 'rgba(61, 79, 124, 0.04)');
+                ctx.fillStyle = nightGrad;
+                ctx.fillRect(labelW, 0, chartW, rowH);
+                // Frostzon natt — djupare blå under 0°
+                var nightFrost = ctx.createLinearGradient(0, rowH, 0, rowH * 2);
+                nightFrost.addColorStop(0, 'rgba(100, 140, 190, 0.14)');
+                nightFrost.addColorStop(1, 'rgba(80, 120, 180, 0.08)');
+                ctx.fillStyle = nightFrost;
+            } else {
+                // Dag: varm amber-gradient (solljuskänsla)
+                var dayGrad = ctx.createLinearGradient(0, 0, 0, rowH);
+                dayGrad.addColorStop(0, 'rgba(198, 123, 79, 0.06)');
+                dayGrad.addColorStop(1, 'rgba(198, 123, 79, 0.02)');
+                ctx.fillStyle = dayGrad;
+                ctx.fillRect(labelW, 0, chartW, rowH);
+                // Frostzon dag — ljusblå under 0° (VEP Förslag E)
+                ctx.fillStyle = 'rgba(180,210,235,0.12)';
+            }
             ctx.fillRect(labelW, rowH, chartW, rowH);
 
             ctx.strokeStyle = 'rgba(0,0,0,0.2)';
