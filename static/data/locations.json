@@ -265,6 +265,18 @@
             "lat": 56.09903738445198,
             "lng": 13.062423259770256,
             "description": ""
+        },
+        {
+            "name": "Dammen, Krangatan",
+            "lat": 56.12002323331779,
+            "lng": 12.901032209138247,
+            "description": ""
+        },
+        {
+            "name": "Malmgatan, Industriområdet",
+            "lat": 56.12542568564323,
+            "lng": 12.922705175235263,
+            "description": ""
         }
     ]
 }

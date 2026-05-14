@@ -1076,7 +1076,10 @@
             "location": "Dammen, Krangatan",
             "observer": "Håkan Karlsson",
             "status": "confirmed",
-            "time": "05:15"
+            "time": "05:15",
+            "latin": "Acrocephalus schoenobaenus",
+            "lat": 56.12002323331779,
+            "lng": 12.901032209138247
         },
         {
             "species": "Svart rödstjärt",
@@ -1084,21 +1087,30 @@
             "location": "Malmgatan, Industriområdet",
             "observer": "Håkan Karlsson",
             "status": "confirmed",
-            "time": "05:30"
+            "time": "05:30",
+            "latin": "Phoenicurus ochruros",
+            "lat": 56.12542568564323,
+            "lng": 12.922705175235263
         },
         {
             "species": "Härmsångare",
             "date": "2026-05-14",
             "location": "Tomarps Ene",
             "observer": "Håkan Karlsson",
-            "status": "confirmed"
+            "status": "confirmed",
+            "latin": "Hippolais icterina",
+            "lat": 56.1487,
+            "lng": 13.07359
         },
         {
             "species": "Grå flugsnappare",
             "date": "2026-05-14",
             "location": "Tomarps Ene",
             "observer": "Håkan Karlsson",
-            "status": "confirmed"
+            "status": "confirmed",
+            "latin": "Muscicapa striata",
+            "lat": 56.1487,
+            "lng": 13.07359
         }
     ],
     "last_updated": "2026-05-14T10:00:00Z"
