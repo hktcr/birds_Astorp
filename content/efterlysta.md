@@ -618,7 +618,7 @@ function openSkaneObsMap(records, speciesName) {
 
             marker.bindPopup(
                 `<strong>${safeLoc}</strong><br>` +
-                `<span style="font-size:1.1em;font-weight:bold;color:#dc2626">${count} individer</span><br>` +
+                `<span style="font-size:1.1em;font-weight:bold;color:#dc2626">${count} ${parseInt(count) === 1 ? 'individ' : 'individer'}</span><br>` +
                 `<span style="font-size:0.85em;opacity:0.7">${safeObs}</span>`
             );
             bounds.push([lat, lng]);

@@ -412,7 +412,7 @@
             html += '<div class="fp-detail-grid">';
             if (sciName) html += '<div class="fp-detail-item"><span class="fp-detail-label">Vetenskapligt namn</span><em>' + sciName + '</em></div>';
             html += '<div class="fp-detail-item"><span class="fp-detail-label">Datum</span>' + dateStr + '</div>';
-            if (quantity) html += '<div class="fp-detail-item"><span class="fp-detail-label">Antal</span>' + quantity + ' individer</div>';
+            if (quantity) html += '<div class="fp-detail-item"><span class="fp-detail-label">Antal</span>' + quantity + (parseInt(quantity) === 1 ? ' individ</div>' : ' individer</div>');
             html += '<div class="fp-detail-item"><span class="fp-detail-label">Plats</span>' + place + '</div>';
             html += '<div class="fp-detail-item"><span class="fp-detail-label">Rapportör</span>' + reporter + '</div>';
             if (activity) html += '<div class="fp-detail-item"><span class="fp-detail-label">Aktivitet</span>' + activity + '</div>';
