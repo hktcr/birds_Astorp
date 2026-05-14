@@ -1069,6 +1069,37 @@
             "location": "Grustagen mellan Kvidinge och Maglaby",
             "lat": 56.11749,
             "lng": 13.06674
+        },
+        {
+            "species": "Sävsångare",
+            "date": "2026-05-14",
+            "location": "Dammen, Krangatan",
+            "observer": "Håkan Karlsson",
+            "status": "confirmed",
+            "time": "05:15"
+        },
+        {
+            "species": "Svart rödstjärt",
+            "date": "2026-05-14",
+            "location": "Malmgatan, Industriområdet",
+            "observer": "Håkan Karlsson",
+            "status": "confirmed",
+            "time": "05:30"
+        },
+        {
+            "species": "Härmsångare",
+            "date": "2026-05-14",
+            "location": "Tomarps Ene",
+            "observer": "Håkan Karlsson",
+            "status": "confirmed"
+        },
+        {
+            "species": "Grå flugsnappare",
+            "date": "2026-05-14",
+            "location": "Tomarps Ene",
+            "observer": "Håkan Karlsson",
+            "status": "confirmed"
         }
-    ]
+    ],
+    "last_updated": "2026-05-14T10:00:00Z"
 }

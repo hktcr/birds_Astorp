@@ -1,887 +1,202 @@
-<!DOCTYPE html>
-<html lang="sv">
-
-<head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="En fågelårsbok för Åstorps kommun — observationer, bilder och krysslista">
-    <meta name="author" content="Håkan Karlsson">
-    <title>Artregister | Fågelåret i Åstorp</title>
-
-    
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link
-        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap"
-        rel="stylesheet">
-
-    
-    
-    <link rel="stylesheet" href="/css/style.d685253e45d6eae8d6342d0082ede7a770e3587fbed8dfdd86d9603505a2d0f3.css">
-
-    
-    <link rel="prefetch" href="/galleri/" as="document">
-
-    
-    
-</head>
-
-<body>
-    <a href="#main-content" class="skip-link">Hoppa till innehåll</a>
-
-    <header class="site-header">
-    <div class="header-container">
-        <a href="https://astorpsfaglar.se/" class="site-logo">
-            <span class="site-title">Fågelåret i Åstorp</span>
-        </a>
-
-
-        <nav class="main-nav" aria-label="Huvudnavigation">
-            <ul class="nav-list">
-                
-                
-                <li class="nav-item">
-                    <a href="/" class="nav-link">
-                        Hem
-                    </a>
-                </li>
-                
-                
-                
-                <li class="nav-item">
-                    <a href="/posts/" class="nav-link">
-                        Notiser
-                    </a>
-                </li>
-                
-                
-                
-                <li class="nav-item">
-                    <a href="/karta/" class="nav-link">
-                        Krysskarta
-                    </a>
-                </li>
-                
-                
-                
-                <li class="nav-item">
-                    <a href="/artguide/" class="nav-link">
-                        Årshjul
-                    </a>
-                </li>
-                
-                
-                
-                <li class="nav-item">
-                    <a href="/efterlysta/" class="nav-link">
-                        Efterlysta
-                    </a>
-                </li>
-                
-                
-                
-                <li class="nav-item">
-                    <a href="/vader/" class="nav-link">
-                        Horisonten
-                    </a>
-                </li>
-                
-                
-                
-                <li class="nav-item">
-                    <a href="/galleri/" class="nav-link">
-                        Galleri
-                    </a>
-                </li>
-                
-                
-                
-                <li class="nav-item">
-                    <a href="/faltpulsen/" class="nav-link">
-                        Aktuella observationer
-                    </a>
-                </li>
-                
-                
-                
-                <li class="nav-item">
-                    <a href="/om/" class="nav-link">
-                        Om
-                    </a>
-                </li>
-                
-                
-            </ul>
-        </nav>
-
-        <button class="mobile-menu-toggle" aria-label="Öppna meny" aria-expanded="false" id="mobile-menu-btn">
-            <span class="hamburger"></span>
-        </button>
-    </div>
-</header>
-
-<script>
-    
-    document.addEventListener('DOMContentLoaded', () => {
-        const menuToggle = document.getElementById('mobile-menu-btn');
-        const mainNav = document.querySelector('.main-nav');
-
-        if (menuToggle && mainNav) {
-            menuToggle.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-
-                
-                mainNav.classList.toggle('open');
-
-                
-                const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-                menuToggle.setAttribute('aria-expanded', !isExpanded);
-            });
-
-            
-            document.addEventListener('click', (e) => {
-                if (mainNav.classList.contains('open') &&
-                    !mainNav.contains(e.target) &&
-                    !menuToggle.contains(e.target)) {
-                    mainNav.classList.remove('open');
-                    menuToggle.setAttribute('aria-expanded', 'false');
-                }
-            });
-        }
-    });
-</script>
-
-    <main id="main-content" class="main">
-        
-<article class="single-post">
-    <header class="post-header">
-        <time datetime=" 2026-01-01" class="post-date">
-            1 januari 2026
-        </time>
-        <h1 class="post-title">Artregister</h1>
-        
-    </header>
-
-
-
-    <div class="post-body prose">
-        <p>Dold registerpost — genererar artsidor för alla arter rapporterade i Åstorps kommun.</p>
-
-    </div>
-
-    
-
-    
-    <aside class="species-list">
-        <h2>Arter i detta inlägg</h2>
-        <div class="species-pills">
-            
-            <span class="species-pill species-pill--static">Aftonfalk</span>
-            
-            <span class="species-pill species-pill--static">Dubbelbeckasin</span>
-            
-            <span class="species-pill species-pill--static">Grönsångare</span>
-            
-            <span class="species-pill species-pill--static">Trädgårdssångare</span>
-            
-            <span class="species-pill species-pill--static">Backsvala</span>
-            
-            <span class="species-pill species-pill--static">Bergfink</span>
-            
-            <span class="species-pill species-pill--static">Berguv</span>
-            
-            <span class="species-pill species-pill--static">Bivråk</span>
-            
-            <span class="species-pill species-pill--static">Björktrast</span>
-            
-            <span class="species-pill species-pill--static">Bläsand</span>
-            
-            <span class="species-pill species-pill--static">Bläsgås</span>
-            
-            <span class="species-pill species-pill--static">Blå kärrhök</span>
-            
-            <span class="species-pill species-pill--static">Blåmes</span>
-            
-            <span class="species-pill species-pill--static">Bofink</span>
-            
-            <span class="species-pill species-pill--static">Brandkronad kungsfågel</span>
-            
-            <span class="species-pill species-pill--static">Brun glada</span>
-            
-            <span class="species-pill species-pill--static">Brun kärrhök</span>
-            
-            <span class="species-pill species-pill--static">Brunand</span>
-            
-            <span class="species-pill species-pill--static">Brushane</span>
-            
-            <span class="species-pill species-pill--static">Buskskvätta</span>
-            
-            <span class="species-pill species-pill--static">Bändelkorsnäbb</span>
-            
-            <span class="species-pill species-pill--static">Domherre</span>
-            
-            <span class="species-pill species-pill--static">Drillsnäppa</span>
-            
-            <span class="species-pill species-pill--static">Dubbelbeckasin</span>
-            
-            <span class="species-pill species-pill--static">Dubbeltrast</span>
-            
-            <span class="species-pill species-pill--static">Duvhök</span>
-            
-            <span class="species-pill species-pill--static">Dvärgbeckasin</span>
-            
-            <span class="species-pill species-pill--static">Ejder</span>
-            
-            <span class="species-pill species-pill--static">Enkelbeckasin</span>
-            
-            <span class="species-pill species-pill--static">Entita</span>
-            
-            <span class="species-pill species-pill--static">Fasan</span>
-            
-            <span class="species-pill species-pill--static">Fiskgjuse</span>
-            
-            <span class="species-pill species-pill--static">Fiskmås</span>
-            
-            <span class="species-pill species-pill--static">Fisktärna</span>
-            
-            <span class="species-pill species-pill--static">Fjällvråk</span>
-            
-            <span class="species-pill species-pill--static">Forsärla</span>
-            
-            <span class="species-pill species-pill--static">Gluttsnäppa</span>
-            
-            <span class="species-pill species-pill--static">Gransångare</span>
-            
-            <span class="species-pill species-pill--static">Gravand</span>
-            
-            <span class="species-pill species-pill--static">Gräsand</span>
-            
-            <span class="species-pill species-pill--static">Gräshoppsångare</span>
-            
-            <span class="species-pill species-pill--static">Grå flugsnappare</span>
-            
-            <span class="species-pill species-pill--static">Grågås</span>
-            
-            <span class="species-pill species-pill--static">Gråhakedopping</span>
-            
-            <span class="species-pill species-pill--static">Gråhäger</span>
-            
-            <span class="species-pill species-pill--static">Gråkråka</span>
-            
-            <span class="species-pill species-pill--static">Gråsiska</span>
-            
-            <span class="species-pill species-pill--static">Gråsparv</span>
-            
-            <span class="species-pill species-pill--static">Gråtrut</span>
-            
-            <span class="species-pill species-pill--static">Grönbena</span>
-            
-            <span class="species-pill species-pill--static">Grönfink</span>
-            
-            <span class="species-pill species-pill--static">Gröngöling</span>
-            
-            <span class="species-pill species-pill--static">Grönsiska</span>
-            
-            <span class="species-pill species-pill--static">Grönsångare</span>
-            
-            <span class="species-pill species-pill--static">Gulhämpling</span>
-            
-            <span class="species-pill species-pill--static">Gulsparv</span>
-            
-            <span class="species-pill species-pill--static">Gulärla</span>
-            
-            <span class="species-pill species-pill--static">Gärdsmyg</span>
-            
-            <span class="species-pill species-pill--static">Gök</span>
-            
-            <span class="species-pill species-pill--static">Göktyta</span>
-            
-            <span class="species-pill species-pill--static">Havstrut</span>
-            
-            <span class="species-pill species-pill--static">Havsörn</span>
-            
-            <span class="species-pill species-pill--static">Hornuggla</span>
-            
-            <span class="species-pill species-pill--static">Hussvala</span>
-            
-            <span class="species-pill species-pill--static">Hämpling</span>
-            
-            <span class="species-pill species-pill--static">Härmsångare</span>
-            
-            <span class="species-pill species-pill--static">Jorduggla</span>
-            
-            <span class="species-pill species-pill--static">Järnsparv</span>
-            
-            <span class="species-pill species-pill--static">Kaja</span>
-            
-            <span class="species-pill species-pill--static">Kanadagås</span>
-            
-            <span class="species-pill species-pill--static">Kaspisk trut</span>
-            
-            <span class="species-pill species-pill--static">Kattuggla</span>
-            
-            <span class="species-pill species-pill--static">Klippduva (tamduva)</span>
-            
-            <span class="species-pill species-pill--static">Knipa</span>
-            
-            <span class="species-pill species-pill--static">Knölsvan</span>
-            
-            <span class="species-pill species-pill--static">Koltrast</span>
-            
-            <span class="species-pill species-pill--static">Kornknarr</span>
-            
-            <span class="species-pill species-pill--static">Kornsparv</span>
-            
-            <span class="species-pill species-pill--static">Korp</span>
-            
-            <span class="species-pill species-pill--static">Kricka</span>
-            
-            <span class="species-pill species-pill--static">Kungsfiskare</span>
-            
-            <span class="species-pill species-pill--static">Kungsfågel</span>
-            
-            <span class="species-pill species-pill--static">Kungsörn</span>
-            
-            <span class="species-pill species-pill--static">Kärrsångare</span>
-            
-            <span class="species-pill species-pill--static">Ladusvala</span>
-            
-            <span class="species-pill species-pill--static">Ljungpipare</span>
-            
-            <span class="species-pill species-pill--static">Lundsångare</span>
-            
-            <span class="species-pill species-pill--static">Lärkfalk</span>
-            
-            <span class="species-pill species-pill--static">Lövsångare</span>
-            
-            <span class="species-pill species-pill--static">Mindre flugsnappare</span>
-            
-            <span class="species-pill species-pill--static">Mindre hackspett</span>
-            
-            <span class="species-pill species-pill--static">Mindre korsnäbb</span>
-            
-            <span class="species-pill species-pill--static">Mindre strandpipare</span>
-            
-            <span class="species-pill species-pill--static">Mindre sångsvan</span>
-            
-            <span class="species-pill species-pill--static">Morkulla</span>
-            
-            <span class="species-pill species-pill--static">Mosnäppa</span>
-            
-            <span class="species-pill species-pill--static">Nattskärra</span>
-            
-            <span class="species-pill species-pill--static">Nilgås</span>
-            
-            <span class="species-pill species-pill--static">Näktergal</span>
-            
-            <span class="species-pill species-pill--static">Nötkråka</span>
-            
-            <span class="species-pill species-pill--static">Nötskrika</span>
-            
-            <span class="species-pill species-pill--static">Nötväcka</span>
-            
-            <span class="species-pill species-pill--static">Ormvråk</span>
-            
-            <span class="species-pill species-pill--static">Pilfink</span>
-            
-            <span class="species-pill species-pill--static">Pilgrimsfalk</span>
-            
-            <span class="species-pill species-pill--static">Prutgås</span>
-            
-            <span class="species-pill species-pill--static">Rapphöna</span>
-            
-            <span class="species-pill species-pill--static">Ringduva</span>
-            
-            <span class="species-pill species-pill--static">Ringtrast</span>
-            
-            <span class="species-pill species-pill--static">Råka</span>
-            
-            <span class="species-pill species-pill--static">Röd glada</span>
-            
-            <span class="species-pill species-pill--static">Rödbena</span>
-            
-            <span class="species-pill species-pill--static">Rödhake</span>
-            
-            <span class="species-pill species-pill--static">Rödhalsad gås</span>
-            
-            <span class="species-pill species-pill--static">Rödspov</span>
-            
-            <span class="species-pill species-pill--static">Rödstjärt</span>
-            
-            <span class="species-pill species-pill--static">Rödstrupig piplärka</span>
-            
-            <span class="species-pill species-pill--static">Rödvingetrast</span>
-            
-            <span class="species-pill species-pill--static">Rörhöna</span>
-            
-            <span class="species-pill species-pill--static">Rörsångare</span>
-            
-            <span class="species-pill species-pill--static">Salskrake</span>
-            
-            <span class="species-pill species-pill--static">Sidensvans</span>
-            
-            <span class="species-pill species-pill--static">Silltrut</span>
-            
-            <span class="species-pill species-pill--static">Skata</span>
-            
-            <span class="species-pill species-pill--static">Skedand</span>
-            
-            <span class="species-pill species-pill--static">Skogsduva</span>
-            
-            <span class="species-pill species-pill--static">Skogsgås</span>
-            
-            <span class="species-pill species-pill--static">Skogssnäppa</span>
-            
-            <span class="species-pill species-pill--static">Skrattmås</span>
-            
-            <span class="species-pill species-pill--static">Skärfläcka</span>
-            
-            <span class="species-pill species-pill--static">Smådopping</span>
-            
-            <span class="species-pill species-pill--static">Småfläckig sumphöna</span>
-            
-            <span class="species-pill species-pill--static">Småsnäppa</span>
-            
-            <span class="species-pill species-pill--static">Småspov</span>
-            
-            <span class="species-pill species-pill--static">Snatterand</span>
-            
-            <span class="species-pill species-pill--static">Snösparv</span>
-            
-            <span class="species-pill species-pill--static">Sothöna</span>
-            
-            <span class="species-pill species-pill--static">Sparvhök</span>
-            
-            <span class="species-pill species-pill--static">Spetsbergsgås</span>
-            
-            <span class="species-pill species-pill--static">Spillkråka</span>
-            
-            <span class="species-pill species-pill--static">Stare</span>
-            
-            <span class="species-pill species-pill--static">Steglits</span>
-            
-            <span class="species-pill species-pill--static">Stenfalk</span>
-            
-            <span class="species-pill species-pill--static">Stenknäck</span>
-            
-            <span class="species-pill species-pill--static">Stenskvätta</span>
-            
-            <span class="species-pill species-pill--static">Stjärtand</span>
-            
-            <span class="species-pill species-pill--static">Stjärtmes</span>
-            
-            <span class="species-pill species-pill--static">Stormfågel</span>
-            
-            <span class="species-pill species-pill--static">Storskarv</span>
-            
-            <span class="species-pill species-pill--static">Storskrake</span>
-            
-            <span class="species-pill species-pill--static">Storspov</span>
-            
-            <span class="species-pill species-pill--static">Strandskata</span>
-            
-            <span class="species-pill species-pill--static">Stripgås</span>
-            
-            <span class="species-pill species-pill--static">Strömstare</span>
-            
-            <span class="species-pill species-pill--static">Stäpphök</span>
-            
-            <span class="species-pill species-pill--static">Stäppörn</span>
-            
-            <span class="species-pill species-pill--static">Större hackspett</span>
-            
-            <span class="species-pill species-pill--static">Större korsnäbb</span>
-            
-            <span class="species-pill species-pill--static">Större strandpipare</span>
-            
-            <span class="species-pill species-pill--static">Svart rödstjärt</span>
-            
-            <span class="species-pill species-pill--static">Svart stork</span>
-            
-            <span class="species-pill species-pill--static">Svarthuvad mås</span>
-            
-            <span class="species-pill species-pill--static">Svarthätta</span>
-            
-            <span class="species-pill species-pill--static">Svartmes</span>
-            
-            <span class="species-pill species-pill--static">Svartsnäppa</span>
-            
-            <span class="species-pill species-pill--static">Svartvit flugsnappare</span>
-            
-            <span class="species-pill species-pill--static">Sädesärla</span>
-            
-            <span class="species-pill species-pill--static">Sävsparv</span>
-            
-            <span class="species-pill species-pill--static">Sävsångare</span>
-            
-            <span class="species-pill species-pill--static">Sånglärka</span>
-            
-            <span class="species-pill species-pill--static">Sångsvan</span>
-            
-            <span class="species-pill species-pill--static">Talgoxe</span>
-            
-            <span class="species-pill species-pill--static">Tallbit</span>
-            
-            <span class="species-pill species-pill--static">Talltita</span>
-            
-            <span class="species-pill species-pill--static">Taltrast</span>
-            
-            <span class="species-pill species-pill--static">Tofsmes</span>
-            
-            <span class="species-pill species-pill--static">Tofsvipa</span>
-            
-            <span class="species-pill species-pill--static">Tornfalk</span>
-            
-            <span class="species-pill species-pill--static">Tornseglare</span>
-            
-            <span class="species-pill species-pill--static">Trana</span>
-            
-            <span class="species-pill species-pill--static">Trädgårdssångare</span>
-            
-            <span class="species-pill species-pill--static">Trädgårdsträdkrypare</span>
-            
-            <span class="species-pill species-pill--static">Trädkrypare</span>
-            
-            <span class="species-pill species-pill--static">Trädlärka</span>
-            
-            <span class="species-pill species-pill--static">Trädpiplärka</span>
-            
-            <span class="species-pill species-pill--static">Tundragås</span>
-            
-            <span class="species-pill species-pill--static">Turkduva</span>
-            
-            <span class="species-pill species-pill--static">Turturduva</span>
-            
-            <span class="species-pill species-pill--static">Törnskata</span>
-            
-            <span class="species-pill species-pill--static">Törnsångare</span>
-            
-            <span class="species-pill species-pill--static">Vaktel</span>
-            
-            <span class="species-pill species-pill--static">Varfågel</span>
-            
-            <span class="species-pill species-pill--static">Vattenrall</span>
-            
-            <span class="species-pill species-pill--static">Vigg</span>
-            
-            <span class="species-pill species-pill--static">Vinterhämpling</span>
-            
-            <span class="species-pill species-pill--static">Vit stork</span>
-            
-            <span class="species-pill species-pill--static">Vitkindad gås</span>
-            
-            <span class="species-pill species-pill--static">Ägretthäger</span>
-            
-            <span class="species-pill species-pill--static">Ängspiplärka</span>
-            
-            <span class="species-pill species-pill--static">Ärtsångare</span>
-            
-            <span class="species-pill species-pill--static">Årta</span>
-            
-        </div>
-    </aside>
-    
-
-    
-
-    <nav class="post-navigation">
-        
-        
-    </nav>
-</article>
-
-    </main>
-
-    
-
-    
-    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
-        <button class="lightbox-close" onclick="event.stopPropagation(); closeLightbox()" aria-label="Stäng">&times;</button>
-        <div class="lightbox-content" onclick="event.stopPropagation()">
-            <img id="lightbox-img" src="" alt="">
-        </div>
-    </div>
-    <style>
-        .lightbox {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0, 0, 0, 0.95);
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-            cursor: pointer;
-            padding: 3rem;
-            box-sizing: border-box;
-            overflow: hidden;
-        }
-
-        .lightbox.active {
-            display: flex;
-        }
-
-        body.lightbox-open {
-            overflow: hidden;
-        }
-
-        .lightbox-content {
-            position: relative;
-            max-width: 100%;
-            max-height: 100%;
-            cursor: default;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            flex-direction: column;
-        }
-
-        .lightbox-content img {
-            max-width: 100%;
-            max-height: calc(100vh - 10rem);
-            border-radius: 4px;
-            display: block;
-            cursor: zoom-in;
-            transition: max-width 0.3s ease, max-height 0.3s ease;
-            object-fit: contain;
-        }
-
-        .lightbox-content img[src$=".svg"] {
-            width: calc(100vw - 6rem);
-            max-width: 1400px;
-        }
-
-        .lightbox-content img.zoomed {
-            max-width: none;
-            max-height: none;
-            cursor: zoom-out;
-        }
-
-        .lightbox-close {
-            position: absolute;
-            top: 0.75rem;
-            right: 0.75rem;
-            width: 44px;
-            height: 44px;
-            background: rgba(255, 255, 255, 0.15);
-            color: white;
-            border: none;
-            border-radius: 50%;
-            font-size: 1.8rem;
-            line-height: 1;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            z-index: 10000;
-            transition: background 0.2s ease;
-        }
-
-        .lightbox-close:hover {
-            background: rgba(255, 255, 255, 0.35);
-        }
-
-        .gallery img {
-            cursor: pointer;
-            transition: transform 0.3s ease;
-        }
-
-        .gallery img:hover {
-            transform: scale(1.05);
-        }
-    </style>
-    <script>
-        function openLightbox(src, alt) {
-            const lb = document.getElementById('lightbox');
-            const img = document.getElementById('lightbox-img');
-            
-            lb.querySelectorAll('.lightbox-post-link').forEach(el => el.remove());
-            img.src = src; img.alt = alt || '';
-            img.classList.remove('zoomed');
-            lb.classList.add('active');
-            document.body.classList.add('lightbox-open');
-        }
-        function closeLightbox() {
-            const img = document.getElementById('lightbox-img');
-            img.classList.remove('zoomed');
-            document.getElementById('lightbox').classList.remove('active');
-            document.body.classList.remove('lightbox-open');
-        }
-        function toggleZoom() {
-            document.getElementById('lightbox-img').classList.toggle('zoomed');
-        }
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
-        document.addEventListener('DOMContentLoaded', () => {
-            document.getElementById('lightbox-img').addEventListener('click', e => {
-                e.stopPropagation();
-                toggleZoom();
-            });
-            document.querySelectorAll('.lightbox-link').forEach(a => {
-                a.addEventListener('click', e => {
-                    e.preventDefault();
-                    openLightbox(a.href, a.querySelector('img')?.alt);
-                });
-            });
-            document.querySelectorAll('.gallery img, .post-body img').forEach(img => {
-                if (!img.closest('.lightbox-link')) {
-                    img.addEventListener('click', () => openLightbox(img.src, img.alt));
-                }
-            });
-        });
-    </script>
-
-    
-    <dialog id="map-lightbox" style="padding: 0; border: none; border-radius: 8px; background: transparent; outline: none; margin: auto; max-width: 1200px; width: 90vw; height: 90vh; max-height: 900px; overflow: hidden;">
-        <div style="width: 100%; height: 100%; background: white; border-radius: 8px; padding: 1.5rem; position: relative; display: flex; flex-direction: column; cursor: default; box-sizing: border-box;">
-            <button class="lightbox-close" onclick="closeMapLightbox()" aria-label="Stäng" style="color: #64748b; background: #f1f5f9; top: 1rem; right: 1rem; z-index: 100;">&times;</button>
-            <h2 id="map-lightbox-title" style="margin-top: 0; color: #1e293b; text-align: center; margin-bottom: 1rem; font-size: clamp(1.2rem, 3vw, 1.8rem);">Var i Åstorp har arten setts?</h2>
-            <div id="map-lightbox-container" style="flex-grow: 1; border-radius: 4px; overflow: hidden; border: 1px solid #e2e8f0; position: relative; z-index: 1;"></div>
-            <div id="map-lightbox-loading" style="text-align: center; padding: 1rem; color: #64748b; display: none;">Laddar fyndplatser...</div>
-        </div>
-    </dialog>
-    <style>
-        #map-lightbox::backdrop {
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(4px);
-        }
-    </style>
-    
-    <script>
-        let globalHistoricMapInstance = null;
-        let globalHistoricMapInitialized = false;
-
-        function openMapLightbox(speciesName) {
-            document.getElementById('map-lightbox-title').textContent = "Historiska fyndplatser: " + speciesName;
-            
-            const dialog = document.getElementById('map-lightbox');
-            if (!dialog.open) {
-                dialog.showModal();
-            }
-            document.body.classList.add('lightbox-open');
-            
-            const mapLoading = document.getElementById("map-lightbox-loading");
-            if (mapLoading) mapLoading.style.display = "block";
-
-            if (!globalHistoricMapInitialized) {
-                globalHistoricMapInstance = L.map('map-lightbox-container').setView([56.14, 13.05], 11);
-                L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-                    maxZoom: 17,
-                    attribution: 'Kartdata: © OpenTopoMap'
-                }).addTo(globalHistoricMapInstance);
-                
-                fetch('/data/astorp-kommun.geojson')
-                    .then(res => res.json())
-                    .then(geo => {
-                        const coords = geo.features[0].geometry.coordinates[0];
-                        const hole = coords.map(c => [c[1], c[0]]);
-                        const worldBounds = [[-90, -180], [-90, 180], [90, 180], [90, -180], [-90, -180]];
-                        L.polygon([worldBounds, hole], {
-                            color: 'transparent',
-                            fillColor: '#4b5563',
-                            fillOpacity: 0.4,
-                            interactive: false,
-                            noClip: true
-                        }).addTo(globalHistoricMapInstance);
-                        L.polygon(hole, {
-                            color: '#b91c1c',
-                            weight: 3,
-                            fill: false,
-                            opacity: 0.8
-                        }).addTo(globalHistoricMapInstance);
-                        globalHistoricMapInstance.fitBounds(L.latLngBounds(hole));
-                    })
-                    .catch(err => console.error("Could not load municipality bounds", err));
-                    
-                globalHistoricMapInitialized = true;
-            }
-            
-            
-            setTimeout(() => {
-                if (globalHistoricMapInstance) globalHistoricMapInstance.invalidateSize();
-            }, 50);
-            setTimeout(() => {
-                if (globalHistoricMapInstance) globalHistoricMapInstance.invalidateSize();
-            }, 300);
-
-            
-            globalHistoricMapInstance.eachLayer(layer => {
-                if (layer instanceof L.CircleMarker) {
-                    globalHistoricMapInstance.removeLayer(layer);
-                }
-            });
-
-            
-            fetch('/data/astorp_historic_locations.json')
-                .then(res => res.json())
-                .then(data => {
-                    if (mapLoading) mapLoading.style.display = "none";
-                    const locs = data[speciesName] || [];
-                    if (locs.length === 0) {
-                        if (mapLoading) {
-                            mapLoading.style.display = "block";
-                            mapLoading.textContent = "Inga historiska fyndplatser hittades för arten i Åstorp.";
-                        }
-                        return;
-                    }
-                    
-                    locs.forEach(loc => {
-                        const marker = L.circleMarker([loc.lat, loc.lng], {
-                            radius: 6 + Math.min(loc.count, 15),
-                            fillColor: '#dc2626',
-                            color: '#dc2626',
-                            weight: 2,
-                            opacity: 1,
-                            fillOpacity: 0.4
-                        }).addTo(globalHistoricMapInstance);
-                        marker.bindPopup(`<strong>${loc.locality}</strong><br>Totalt ${loc.count} fynd.<br>Senast: ${loc.date}`);
-                    });
-                })
-                .catch(err => {
-                    if (mapLoading) {
-                        mapLoading.style.display = "block";
-                        mapLoading.textContent = "Kunde inte ladda fyndplatser.";
-                    }
-                    console.error("Could not load locations", err);
-                });
-        }
-
-        function closeMapLightbox() {
-            const dialog = document.getElementById('map-lightbox');
-            if (dialog.open) {
-                dialog.close();
-            }
-            document.body.classList.remove('lightbox-open');
-        }
-        
-        
-        document.getElementById('map-lightbox').addEventListener('click', function(e) {
-            const dialogDimensions = this.getBoundingClientRect();
-            if (
-                e.clientX < dialogDimensions.left ||
-                e.clientX > dialogDimensions.right ||
-                e.clientY < dialogDimensions.top ||
-                e.clientY > dialogDimensions.bottom
-            ) {
-                closeMapLightbox();
-            }
-        });
-        
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMapLightbox(); });
-    </script>
-
-    
-    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
-    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script>window.siteBaseURL = "https:\/\/astorpsfaglar.se\/";</script>
-    <script src="/js/location-popup.js"></script>
-
-    
-
-    
-    <script data-goatcounter="https://hlgk.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
-
-    
-    
-</body>
-
-</html>
+<!doctype html><html lang=sv><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="En fågelårsbok för Åstorps kommun — observationer, bilder och krysslista"><meta name=author content="Håkan Karlsson"><title>Artregister | Fågelåret i Åstorp</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/css/style.d685253e45d6eae8d6342d0082ede7a770e3587fbed8dfdd86d9603505a2d0f3.css><link rel=prefetch href=/galleri/ as=document></head><body><a href=#main-content class=skip-link>Hoppa till innehåll</a><header class=site-header><div class=header-container><a href=https://astorpsfaglar.se/ class=site-logo><span class=site-title>Fågelåret i Åstorp</span></a><nav class=main-nav aria-label=Huvudnavigation><ul class=nav-list><li class=nav-item><a href=/ class=nav-link>Hem</a></li><li class=nav-item><a href=/posts/ class=nav-link>Notiser</a></li><li class=nav-item><a href=/karta/ class=nav-link>Krysskarta</a></li><li class=nav-item><a href=/artguide/ class=nav-link>Årshjul</a></li><li class=nav-item><a href=/efterlysta/ class=nav-link>Efterlysta</a></li><li class=nav-item><a href=/vader/ class=nav-link>Horisonten</a></li><li class=nav-item><a href=/galleri/ class=nav-link>Galleri</a></li><li class=nav-item><a href=/faltpulsen/ class=nav-link>Aktuella observationer</a></li><li class=nav-item><a href=/om/ class=nav-link>Om</a></li></ul></nav><button class=mobile-menu-toggle aria-label="Öppna meny" aria-expanded=false id=mobile-menu-btn>
+<span class=hamburger></span></button></div></header><script>document.addEventListener("DOMContentLoaded",()=>{const e=document.getElementById("mobile-menu-btn"),t=document.querySelector(".main-nav");e&&t&&(e.addEventListener("click",n=>{n.preventDefault(),n.stopPropagation(),t.classList.toggle("open");const s=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",!s)}),document.addEventListener("click",n=>{t.classList.contains("open")&&!t.contains(n.target)&&!e.contains(n.target)&&(t.classList.remove("open"),e.setAttribute("aria-expanded","false"))}))})</script><main id=main-content class=main><article class=single-post><header class=post-header><time datetime=2026-01-01 class=post-date>1 januari 2026</time><h1 class=post-title>Artregister</h1></header><div class="post-body prose"><p>Dold registerpost — genererar artsidor för alla arter rapporterade i Åstorps kommun.</p></div><aside class=species-list><h2>Arter i detta inlägg</h2><div class=species-pills><span class="species-pill species-pill--static">Aftonfalk</span>
+<span class="species-pill species-pill--static">Dubbelbeckasin</span>
+<span class="species-pill species-pill--static">Grönsångare</span>
+<span class="species-pill species-pill--static">Trädgårdssångare</span>
+<span class="species-pill species-pill--static">Backsvala</span>
+<span class="species-pill species-pill--static">Bergfink</span>
+<span class="species-pill species-pill--static">Berguv</span>
+<span class="species-pill species-pill--static">Bivråk</span>
+<span class="species-pill species-pill--static">Björktrast</span>
+<span class="species-pill species-pill--static">Bläsand</span>
+<span class="species-pill species-pill--static">Bläsgås</span>
+<span class="species-pill species-pill--static">Blå kärrhök</span>
+<span class="species-pill species-pill--static">Blåmes</span>
+<span class="species-pill species-pill--static">Bofink</span>
+<span class="species-pill species-pill--static">Brandkronad kungsfågel</span>
+<span class="species-pill species-pill--static">Brun glada</span>
+<span class="species-pill species-pill--static">Brun kärrhök</span>
+<span class="species-pill species-pill--static">Brunand</span>
+<span class="species-pill species-pill--static">Brushane</span>
+<span class="species-pill species-pill--static">Buskskvätta</span>
+<span class="species-pill species-pill--static">Bändelkorsnäbb</span>
+<span class="species-pill species-pill--static">Domherre</span>
+<span class="species-pill species-pill--static">Drillsnäppa</span>
+<span class="species-pill species-pill--static">Dubbelbeckasin</span>
+<span class="species-pill species-pill--static">Dubbeltrast</span>
+<span class="species-pill species-pill--static">Duvhök</span>
+<span class="species-pill species-pill--static">Dvärgbeckasin</span>
+<span class="species-pill species-pill--static">Ejder</span>
+<span class="species-pill species-pill--static">Enkelbeckasin</span>
+<span class="species-pill species-pill--static">Entita</span>
+<span class="species-pill species-pill--static">Fasan</span>
+<span class="species-pill species-pill--static">Fiskgjuse</span>
+<span class="species-pill species-pill--static">Fiskmås</span>
+<span class="species-pill species-pill--static">Fisktärna</span>
+<span class="species-pill species-pill--static">Fjällvråk</span>
+<span class="species-pill species-pill--static">Forsärla</span>
+<span class="species-pill species-pill--static">Gluttsnäppa</span>
+<span class="species-pill species-pill--static">Gransångare</span>
+<span class="species-pill species-pill--static">Gravand</span>
+<span class="species-pill species-pill--static">Gräsand</span>
+<span class="species-pill species-pill--static">Gräshoppsångare</span>
+<span class="species-pill species-pill--static">Grå flugsnappare</span>
+<span class="species-pill species-pill--static">Grågås</span>
+<span class="species-pill species-pill--static">Gråhakedopping</span>
+<span class="species-pill species-pill--static">Gråhäger</span>
+<span class="species-pill species-pill--static">Gråkråka</span>
+<span class="species-pill species-pill--static">Gråsiska</span>
+<span class="species-pill species-pill--static">Gråsparv</span>
+<span class="species-pill species-pill--static">Gråtrut</span>
+<span class="species-pill species-pill--static">Grönbena</span>
+<span class="species-pill species-pill--static">Grönfink</span>
+<span class="species-pill species-pill--static">Gröngöling</span>
+<span class="species-pill species-pill--static">Grönsiska</span>
+<span class="species-pill species-pill--static">Grönsångare</span>
+<span class="species-pill species-pill--static">Gulhämpling</span>
+<span class="species-pill species-pill--static">Gulsparv</span>
+<span class="species-pill species-pill--static">Gulärla</span>
+<span class="species-pill species-pill--static">Gärdsmyg</span>
+<span class="species-pill species-pill--static">Gök</span>
+<span class="species-pill species-pill--static">Göktyta</span>
+<span class="species-pill species-pill--static">Havstrut</span>
+<span class="species-pill species-pill--static">Havsörn</span>
+<span class="species-pill species-pill--static">Hornuggla</span>
+<span class="species-pill species-pill--static">Hussvala</span>
+<span class="species-pill species-pill--static">Hämpling</span>
+<span class="species-pill species-pill--static">Härmsångare</span>
+<span class="species-pill species-pill--static">Jorduggla</span>
+<span class="species-pill species-pill--static">Järnsparv</span>
+<span class="species-pill species-pill--static">Kaja</span>
+<span class="species-pill species-pill--static">Kanadagås</span>
+<span class="species-pill species-pill--static">Kaspisk trut</span>
+<span class="species-pill species-pill--static">Kattuggla</span>
+<span class="species-pill species-pill--static">Klippduva (tamduva)</span>
+<span class="species-pill species-pill--static">Knipa</span>
+<span class="species-pill species-pill--static">Knölsvan</span>
+<span class="species-pill species-pill--static">Koltrast</span>
+<span class="species-pill species-pill--static">Kornknarr</span>
+<span class="species-pill species-pill--static">Kornsparv</span>
+<span class="species-pill species-pill--static">Korp</span>
+<span class="species-pill species-pill--static">Kricka</span>
+<span class="species-pill species-pill--static">Kungsfiskare</span>
+<span class="species-pill species-pill--static">Kungsfågel</span>
+<span class="species-pill species-pill--static">Kungsörn</span>
+<span class="species-pill species-pill--static">Kärrsångare</span>
+<span class="species-pill species-pill--static">Ladusvala</span>
+<span class="species-pill species-pill--static">Ljungpipare</span>
+<span class="species-pill species-pill--static">Lundsångare</span>
+<span class="species-pill species-pill--static">Lärkfalk</span>
+<span class="species-pill species-pill--static">Lövsångare</span>
+<span class="species-pill species-pill--static">Mindre flugsnappare</span>
+<span class="species-pill species-pill--static">Mindre hackspett</span>
+<span class="species-pill species-pill--static">Mindre korsnäbb</span>
+<span class="species-pill species-pill--static">Mindre strandpipare</span>
+<span class="species-pill species-pill--static">Mindre sångsvan</span>
+<span class="species-pill species-pill--static">Morkulla</span>
+<span class="species-pill species-pill--static">Mosnäppa</span>
+<span class="species-pill species-pill--static">Nattskärra</span>
+<span class="species-pill species-pill--static">Nilgås</span>
+<span class="species-pill species-pill--static">Näktergal</span>
+<span class="species-pill species-pill--static">Nötkråka</span>
+<span class="species-pill species-pill--static">Nötskrika</span>
+<span class="species-pill species-pill--static">Nötväcka</span>
+<span class="species-pill species-pill--static">Ormvråk</span>
+<span class="species-pill species-pill--static">Pilfink</span>
+<span class="species-pill species-pill--static">Pilgrimsfalk</span>
+<span class="species-pill species-pill--static">Prutgås</span>
+<span class="species-pill species-pill--static">Rapphöna</span>
+<span class="species-pill species-pill--static">Ringduva</span>
+<span class="species-pill species-pill--static">Ringtrast</span>
+<span class="species-pill species-pill--static">Råka</span>
+<span class="species-pill species-pill--static">Röd glada</span>
+<span class="species-pill species-pill--static">Rödbena</span>
+<span class="species-pill species-pill--static">Rödhake</span>
+<span class="species-pill species-pill--static">Rödhalsad gås</span>
+<span class="species-pill species-pill--static">Rödspov</span>
+<span class="species-pill species-pill--static">Rödstjärt</span>
+<span class="species-pill species-pill--static">Rödstrupig piplärka</span>
+<span class="species-pill species-pill--static">Rödvingetrast</span>
+<span class="species-pill species-pill--static">Rörhöna</span>
+<span class="species-pill species-pill--static">Rörsångare</span>
+<span class="species-pill species-pill--static">Salskrake</span>
+<span class="species-pill species-pill--static">Sidensvans</span>
+<span class="species-pill species-pill--static">Silltrut</span>
+<span class="species-pill species-pill--static">Skata</span>
+<span class="species-pill species-pill--static">Skedand</span>
+<span class="species-pill species-pill--static">Skogsduva</span>
+<span class="species-pill species-pill--static">Skogsgås</span>
+<span class="species-pill species-pill--static">Skogssnäppa</span>
+<span class="species-pill species-pill--static">Skrattmås</span>
+<span class="species-pill species-pill--static">Skärfläcka</span>
+<span class="species-pill species-pill--static">Smådopping</span>
+<span class="species-pill species-pill--static">Småfläckig sumphöna</span>
+<span class="species-pill species-pill--static">Småsnäppa</span>
+<span class="species-pill species-pill--static">Småspov</span>
+<span class="species-pill species-pill--static">Snatterand</span>
+<span class="species-pill species-pill--static">Snösparv</span>
+<span class="species-pill species-pill--static">Sothöna</span>
+<span class="species-pill species-pill--static">Sparvhök</span>
+<span class="species-pill species-pill--static">Spetsbergsgås</span>
+<span class="species-pill species-pill--static">Spillkråka</span>
+<span class="species-pill species-pill--static">Stare</span>
+<span class="species-pill species-pill--static">Steglits</span>
+<span class="species-pill species-pill--static">Stenfalk</span>
+<span class="species-pill species-pill--static">Stenknäck</span>
+<span class="species-pill species-pill--static">Stenskvätta</span>
+<span class="species-pill species-pill--static">Stjärtand</span>
+<span class="species-pill species-pill--static">Stjärtmes</span>
+<span class="species-pill species-pill--static">Stormfågel</span>
+<span class="species-pill species-pill--static">Storskarv</span>
+<span class="species-pill species-pill--static">Storskrake</span>
+<span class="species-pill species-pill--static">Storspov</span>
+<span class="species-pill species-pill--static">Strandskata</span>
+<span class="species-pill species-pill--static">Stripgås</span>
+<span class="species-pill species-pill--static">Strömstare</span>
+<span class="species-pill species-pill--static">Stäpphök</span>
+<span class="species-pill species-pill--static">Stäppörn</span>
+<span class="species-pill species-pill--static">Större hackspett</span>
+<span class="species-pill species-pill--static">Större korsnäbb</span>
+<span class="species-pill species-pill--static">Större strandpipare</span>
+<span class="species-pill species-pill--static">Svart rödstjärt</span>
+<span class="species-pill species-pill--static">Svart stork</span>
+<span class="species-pill species-pill--static">Svarthuvad mås</span>
+<span class="species-pill species-pill--static">Svarthätta</span>
+<span class="species-pill species-pill--static">Svartmes</span>
+<span class="species-pill species-pill--static">Svartsnäppa</span>
+<span class="species-pill species-pill--static">Svartvit flugsnappare</span>
+<span class="species-pill species-pill--static">Sädesärla</span>
+<span class="species-pill species-pill--static">Sävsparv</span>
+<span class="species-pill species-pill--static">Sävsångare</span>
+<span class="species-pill species-pill--static">Sånglärka</span>
+<span class="species-pill species-pill--static">Sångsvan</span>
+<span class="species-pill species-pill--static">Talgoxe</span>
+<span class="species-pill species-pill--static">Tallbit</span>
+<span class="species-pill species-pill--static">Talltita</span>
+<span class="species-pill species-pill--static">Taltrast</span>
+<span class="species-pill species-pill--static">Tofsmes</span>
+<span class="species-pill species-pill--static">Tofsvipa</span>
+<span class="species-pill species-pill--static">Tornfalk</span>
+<span class="species-pill species-pill--static">Tornseglare</span>
+<span class="species-pill species-pill--static">Trana</span>
+<span class="species-pill species-pill--static">Trädgårdssångare</span>
+<span class="species-pill species-pill--static">Trädgårdsträdkrypare</span>
+<span class="species-pill species-pill--static">Trädkrypare</span>
+<span class="species-pill species-pill--static">Trädlärka</span>
+<span class="species-pill species-pill--static">Trädpiplärka</span>
+<span class="species-pill species-pill--static">Tundragås</span>
+<span class="species-pill species-pill--static">Turkduva</span>
+<span class="species-pill species-pill--static">Turturduva</span>
+<span class="species-pill species-pill--static">Törnskata</span>
+<span class="species-pill species-pill--static">Törnsångare</span>
+<span class="species-pill species-pill--static">Vaktel</span>
+<span class="species-pill species-pill--static">Varfågel</span>
+<span class="species-pill species-pill--static">Vattenrall</span>
+<span class="species-pill species-pill--static">Vigg</span>
+<span class="species-pill species-pill--static">Vinterhämpling</span>
+<span class="species-pill species-pill--static">Vit stork</span>
+<span class="species-pill species-pill--static">Vitkindad gås</span>
+<span class="species-pill species-pill--static">Ägretthäger</span>
+<span class="species-pill species-pill--static">Ängspiplärka</span>
+<span class="species-pill species-pill--static">Ärtsångare</span>
+<span class="species-pill species-pill--static">Årta</span></div></aside><nav class=post-navigation></nav></article></main><div id=lightbox class=lightbox onclick=closeLightbox()><button class=lightbox-close onclick=event.stopPropagation(),closeLightbox() aria-label=Stäng>&#215;</button><div class=lightbox-content onclick=event.stopPropagation()><img id=lightbox-img src alt></div></div><style>.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.95);justify-content:center;align-items:center;z-index:9999;cursor:pointer;padding:3rem;box-sizing:border-box;overflow:hidden}.lightbox.active{display:flex}body.lightbox-open{overflow:hidden}.lightbox-content{position:relative;max-width:100%;max-height:100%;cursor:default;display:flex;justify-content:center;align-items:center;flex-direction:column}.lightbox-content img{max-width:100%;max-height:calc(100vh - 10rem);border-radius:4px;display:block;cursor:zoom-in;transition:max-width .3s ease,max-height .3s ease;object-fit:contain}.lightbox-content img[src$=".svg"]{width:calc(100vw - 6rem);max-width:1400px}.lightbox-content img.zoomed{max-width:none;max-height:none;cursor:zoom-out}.lightbox-close{position:absolute;top:.75rem;right:.75rem;width:44px;height:44px;background:rgba(255,255,255,.15);color:#fff;border:none;border-radius:50%;font-size:1.8rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10000;transition:background .2s ease}.lightbox-close:hover{background:rgba(255,255,255,.35)}.gallery img{cursor:pointer;transition:transform .3s ease}.gallery img:hover{transform:scale(1.05)}</style><script>function openLightbox(e,t){const s=document.getElementById("lightbox"),n=document.getElementById("lightbox-img");s.querySelectorAll(".lightbox-post-link").forEach(e=>e.remove()),n.src=e,n.alt=t||"",n.classList.remove("zoomed"),s.classList.add("active"),document.body.classList.add("lightbox-open")}function closeLightbox(){const e=document.getElementById("lightbox-img");e.classList.remove("zoomed"),document.getElementById("lightbox").classList.remove("active"),document.body.classList.remove("lightbox-open")}function toggleZoom(){document.getElementById("lightbox-img").classList.toggle("zoomed")}document.addEventListener("keydown",e=>{e.key==="Escape"&&closeLightbox()}),document.addEventListener("DOMContentLoaded",()=>{document.getElementById("lightbox-img").addEventListener("click",e=>{e.stopPropagation(),toggleZoom()}),document.querySelectorAll(".lightbox-link").forEach(e=>{e.addEventListener("click",t=>{t.preventDefault(),openLightbox(e.href,e.querySelector("img")?.alt)})}),document.querySelectorAll(".gallery img, .post-body img").forEach(e=>{e.closest(".lightbox-link")||e.addEventListener("click",()=>openLightbox(e.src,e.alt))})})</script><dialog id=map-lightbox style="padding:0;border:none;border-radius:8px;background:0 0;outline:none;margin:auto;max-width:1200px;width:90vw;height:90vh;max-height:900px;overflow:hidden"><div style=width:100%;height:100%;background:#fff;border-radius:8px;padding:1.5rem;position:relative;display:flex;flex-direction:column;cursor:default;box-sizing:border-box><button class=lightbox-close onclick=closeMapLightbox() aria-label=Stäng style=color:#64748b;background:#f1f5f9;top:1rem;right:1rem;z-index:100>&#215;</button><h2 id=map-lightbox-title style=margin-top:0;color:#1e293b;text-align:center;margin-bottom:1rem;font-size:clamp(1.2rem,3vw,1.8rem)>Var i Åstorp har arten setts?</h2><div id=map-lightbox-container style="flex-grow:1;border-radius:4px;overflow:hidden;border:1px solid #e2e8f0;position:relative;z-index:1"></div><div id=map-lightbox-loading style=text-align:center;padding:1rem;color:#64748b;display:none>Laddar fyndplatser...</div></div></dialog><style>#map-lightbox::backdrop{background:rgba(0,0,0,.85);backdrop-filter:blur(4px)}</style><script>let globalHistoricMapInstance=null,globalHistoricMapInitialized=!1;function openMapLightbox(e){document.getElementById("map-lightbox-title").textContent="Historiska fyndplatser: "+e;const n=document.getElementById("map-lightbox");n.open||n.showModal(),document.body.classList.add("lightbox-open");const t=document.getElementById("map-lightbox-loading");t&&(t.style.display="block"),globalHistoricMapInitialized||(globalHistoricMapInstance=L.map("map-lightbox-container").setView([56.14,13.05],11),L.tileLayer("https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png",{maxZoom:17,attribution:"Kartdata: © OpenTopoMap"}).addTo(globalHistoricMapInstance),fetch("/data/astorp-kommun.geojson").then(e=>e.json()).then(e=>{const n=e.features[0].geometry.coordinates[0],t=n.map(e=>[e[1],e[0]]),s=[[-90,-180],[-90,180],[90,180],[90,-180],[-90,-180]];L.polygon([s,t],{color:"transparent",fillColor:"#4b5563",fillOpacity:.4,interactive:!1,noClip:!0}).addTo(globalHistoricMapInstance),L.polygon(t,{color:"#b91c1c",weight:3,fill:!1,opacity:.8}).addTo(globalHistoricMapInstance),globalHistoricMapInstance.fitBounds(L.latLngBounds(t))}).catch(e=>console.error("Could not load municipality bounds",e)),globalHistoricMapInitialized=!0),setTimeout(()=>{globalHistoricMapInstance&&globalHistoricMapInstance.invalidateSize()},50),setTimeout(()=>{globalHistoricMapInstance&&globalHistoricMapInstance.invalidateSize()},300),globalHistoricMapInstance.eachLayer(e=>{e instanceof L.CircleMarker&&globalHistoricMapInstance.removeLayer(e)}),fetch("/data/astorp_historic_locations.json").then(e=>e.json()).then(n=>{t&&(t.style.display="none");const s=n[e]||[];if(s.length===0){t&&(t.style.display="block",t.textContent="Inga historiska fyndplatser hittades för arten i Åstorp.");return}s.forEach(e=>{const t=L.circleMarker([e.lat,e.lng],{radius:6+Math.min(e.count,15),fillColor:"#dc2626",color:"#dc2626",weight:2,opacity:1,fillOpacity:.4}).addTo(globalHistoricMapInstance);t.bindPopup(`<strong>${e.locality}</strong><br>Totalt ${e.count} fynd.<br>Senast: ${e.date}`)})}).catch(e=>{t&&(t.style.display="block",t.textContent="Kunde inte ladda fyndplatser."),console.error("Could not load locations",e)})}function closeMapLightbox(){const e=document.getElementById("map-lightbox");e.open&&e.close(),document.body.classList.remove("lightbox-open")}document.getElementById("map-lightbox").addEventListener("click",function(e){const t=this.getBoundingClientRect();(e.clientX<t.left||e.clientX>t.right||e.clientY<t.top||e.clientY>t.bottom)&&closeMapLightbox()}),document.addEventListener("keydown",e=>{e.key==="Escape"&&closeMapLightbox()})</script><link rel=stylesheet href=https://unpkg.com/leaflet@1.9.4/dist/leaflet.css><script src=https://unpkg.com/leaflet@1.9.4/dist/leaflet.js></script><script>window.siteBaseURL="https://astorpsfaglar.se/"</script><script src=/js/location-popup.js></script><script data-goatcounter=https://hlgk.goatcounter.com/count async src=//gc.zgo.at/count.js></script></body></html>
