@@ -213,6 +213,9 @@
             }
             document.body.classList.add('lightbox-open');
             
+            const legend = document.getElementById('map-lightbox-legend');
+            if (legend) legend.style.display = 'flex';
+            
             const mapLoading = document.getElementById("map-lightbox-loading");
             if (mapLoading) mapLoading.style.display = "block";
 
