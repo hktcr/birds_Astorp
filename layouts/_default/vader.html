@@ -11,116 +11,87 @@
         <!-- DYGNSHJULET FLYTTAT TILL FLIKEN LJUS & SOL -->
 
         <!-- ============================================================ -->
-        <!-- HERO: "Just nu" — full bredd med vind + temperatur -->
+        <!-- SLIMMADO: "Just nu" — Typografisk Premium Remsa -->
         <!-- ============================================================ -->
-        <div class="vader-now-hero" id="vader-now-hero">
-            <div class="vader-now-hero-header">
-                <span class="vader-now-hero-label">Just nu</span>
-                <span class="vader-now-hero-station">Helsingborg A</span>
+        <style>
+            .vader-now-strip {
+                display: flex;
+                flex-wrap: wrap;
+                align-items: center;
+                justify-content: space-between;
+                background: rgba(255,255,255,0.8);
+                border: 1px solid rgba(0,0,0,0.05);
+                border-radius: 12px;
+                padding: 16px 24px;
+                margin-bottom: 2rem;
+                box-shadow: 0 4px 20px rgba(0,0,0,0.02);
+            }
+            .vader-now-strip-label {
+                font-family: var(--font-heading);
+                font-weight: 700;
+                font-size: 1.1rem;
+                color: var(--color-primary-dark);
+                margin-right: auto;
+                padding-right: 24px;
+                border-right: 1px solid rgba(0,0,0,0.08);
+            }
+            .vader-now-strip-item {
+                display: flex;
+                align-items: baseline;
+                gap: 6px;
+                padding: 0 20px;
+            }
+            .vader-now-strip-val {
+                font-family: var(--font-heading);
+                font-weight: 800;
+                font-size: 1.6rem;
+                color: #222;
+            }
+            .vader-now-strip-unit {
+                font-family: var(--font-body);
+                font-weight: 500;
+                font-size: 0.85rem;
+                color: var(--color-text-muted);
+                text-transform: uppercase;
+                letter-spacing: 0.05em;
+            }
+            .vader-now-strip-trend {
+                font-size: 0.8rem;
+                margin-left: 8px;
+            }
+            @media (max-width: 600px) {
+                .vader-now-strip { flex-direction: column; align-items: flex-start; gap: 12px; padding: 16px; }
+                .vader-now-strip-label { border-right: none; margin-bottom: 8px; }
+                .vader-now-strip-item { padding: 0; }
+            }
+        </style>
+
+        <div class="vader-now-strip" id="vader-now-hero">
+            <div class="vader-now-strip-label">
+                JUST NU <span style="font-weight:400; font-size:0.8em; color:#888; margin-left:6px;">Helsingborg A</span>
             </div>
 
-            <div class="vader-now-hero-cards">
-                <!-- VIND-WIDGET -->
-                <div class="vader-now-card">
-                    <div class="vader-now-card-title">Vind</div>
-                    <div class="vader-wind-now-main">
-                        <div class="vader-wind-now-arrow-wrap" style="transform: scale(1.15); margin-bottom: 8px;">
-                            <svg id="wind-arrow" class="vader-wind-now-arrow" viewBox="0 0 80 80" width="64" height="64">
-                                <circle cx="40" cy="40" r="38" fill="none" stroke="rgba(0,0,0,0.06)" stroke-width="1"/>
-                                <text x="40" y="10" text-anchor="middle" font-size="8" fill="#999" font-family="Inter, sans-serif" font-weight="600">N</text>
-                                <text x="40" y="76" text-anchor="middle" font-size="8" fill="#999" font-family="Inter, sans-serif">S</text>
-                                <text x="8" y="43" text-anchor="middle" font-size="8" fill="#999" font-family="Inter, sans-serif">V</text>
-                                <text x="72" y="43" text-anchor="middle" font-size="8" fill="#999" font-family="Inter, sans-serif">Ö</text>
-                                <g id="wind-arrow-group" transform="rotate(0, 40, 40)">
-                                    <line x1="40" y1="58" x2="40" y2="18" stroke="#10b981" stroke-width="2.5" stroke-linecap="round"/>
-                                    <polygon points="40,16 34,28 46,28" fill="#10b981"/>
-                                </g>
-                            </svg>
-                        </div>
-                        <div class="vader-wind-now-speed">
-                            <span id="wind-speed-value" class="vader-wind-now-speed-val" style="font-weight: 800; font-size: 2.2rem; color: var(--color-primary-dark);">—</span>
-                            <span class="vader-wind-now-speed-unit" style="color: var(--color-text-muted);">m/s</span>
-                        </div>
-                        <div id="wind-beaufort" class="vader-wind-now-beaufort" style="color: var(--color-text);">Laddar…</div>
-                        <div id="wind-dir-text" class="vader-wind-now-dir-text" style="color: var(--color-text-muted);"></div>
-                    </div>
-                </div>
-
-                <!-- LUFTTRYCK-WIDGET -->
-                <div class="vader-now-card">
-                    <div class="vader-now-card-title">Lufttryck</div>
-                    <div class="vader-pressure-now-main" style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; min-height:120px;">
-                        <div style="display:flex; align-items:baseline; gap:4px; margin-bottom:12px;">
-                            <span id="pressure-now-value" style="font-family:var(--font-heading); font-size:2.2rem; font-weight:800; color:var(--color-primary-dark); line-height:1;">—</span>
-                            <span style="font-family:var(--font-heading); font-size:12px; color:var(--color-text-muted); font-weight:500;">hPa</span>
-                        </div>
-                        <div id="pressure-now-trend" style="font-size:12px; font-weight:500; color:var(--color-text); display:flex; align-items:center; gap:6px; background: rgba(0,0,0,0.03); border: 1px solid rgba(0,0,0,0.04); padding: 4px 10px; border-radius: 12px;">
-                            <span id="pressure-trend-icon" style="display:flex; align-items:center;">
-                                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><polyline points="12 16 16 12 12 8"></polyline><line x1="8" y1="12" x2="16" y2="12"></line></svg>
-                            </span>
-                            <span id="pressure-trend-text">Hämtar data...</span>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- TEMPERATUR-WIDGET (kompakt, utan inline-kurva) -->
-                <div class="vader-now-card">
-                    <div class="vader-now-card-title">Temperatur</div>
-                    <div style="display:flex; flex-direction:column; align-items:center; justify-content:center; height:100%; min-height:120px; gap:8px;">
-                        <div class="vader-temp-now-current">
-                            <span id="temp-now-value" class="vader-temp-now-val" style="color:var(--color-primary-dark); font-size: 2.2rem; font-weight:800; font-family:var(--font-heading);">—</span>
-                            <span class="vader-temp-now-unit" style="color: var(--color-text-muted); font-family:var(--font-heading); font-size:var(--text-xs); font-weight:500;">°C</span>
-                        </div>
-                        <div class="vader-temp-now-range" style="justify-content:center; margin-top:2px;">
-                            <div class="vader-temp-now-range-item">
-                                <span class="vader-temp-now-range-label" style="color: var(--color-text-muted);">Idag max</span>
-                                <span id="temp-now-max" class="vader-temp-now-range-val" style="color:#d94a4a;">—</span>
-                            </div>
-                            <div class="vader-temp-now-range-item">
-                                <span class="vader-temp-now-range-label" style="color: var(--color-text-muted);">Idag min</span>
-                                <span id="temp-now-min" class="vader-temp-now-range-val" style="color:#4a90d9;">—</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+            <!-- VIND -->
+            <div class="vader-now-strip-item">
+                <span id="wind-speed-value" class="vader-now-strip-val">—</span>
+                <span class="vader-now-strip-unit">m/s</span>
+                <span id="wind-dir-text" class="vader-now-strip-unit" style="margin-left:4px; font-weight:700;"></span>
             </div>
 
-            <!-- TEMPERATURKURVA — senaste 24 h, fullbredd -->
-            <div class="vader-now-curve-section">
-                <div class="vader-now-curve-label">
-                    <span class="vader-now-curve-title">Temperatur</span>
-                    <span class="vader-now-curve-subtitle">senaste 24 h</span>
-                </div>
-                <div class="vader-now-curve-wrap">
-                    <canvas id="temp-now-curve" style="width:100%; display:block;"></canvas>
-                </div>
+            <!-- TEMP -->
+            <div class="vader-now-strip-item">
+                <span id="temp-now-value" class="vader-now-strip-val">—</span>
+                <span class="vader-now-strip-unit">°C</span>
             </div>
 
-            <!-- LUFTTRYCKSKURVA — senaste 24 h, fullbredd -->
-            <div class="vader-now-curve-section">
-                <div class="vader-now-curve-label">
-                    <span class="vader-now-curve-title">Lufttryck</span>
-                    <span class="vader-now-curve-subtitle">senaste 24 h</span>
-                </div>
-                <div class="vader-now-curve-wrap">
-                    <canvas id="pressure-now-curve" style="width:100%; display:block;"></canvas>
-                </div>
+            <!-- TRYCK -->
+            <div class="vader-now-strip-item">
+                <span id="pressure-now-value" class="vader-now-strip-val">—</span>
+                <span class="vader-now-strip-unit">hPa</span>
+                <span id="pressure-trend-icon" class="vader-now-strip-trend" style="display:flex; align-items:center;"></span>
             </div>
-
-            <!-- VÄDERUTSIKT (EXPERIMENT) -->
-            <div class="vader-now-curve-section vader-now-outlook-experiment">
-                <div class="vader-now-curve-label" style="margin-bottom: 4px;">
-                    <span class="vader-now-curve-title">Väderutsikt</span>
-                    <span class="vader-now-curve-subtitle" id="vader-outlook-basis">Analyserar trender...</span>
-                </div>
-                <div id="vader-outlook-display" style="font-size: 13px; line-height: 1.5; color: var(--color-text); font-weight: 500; font-family: var(--font-body);">
-                    Väntar på data för lufttryck och fuktighet...
-                </div>
-            </div>
-
-
-
-            <div id="wind-timestamp" class="vader-now-hero-timestamp">—</div>
+            
+            <div id="wind-timestamp" style="font-size:10px; color:#aaa; margin-left:auto; margin-top:4px; width:100%; text-align:right;"></div>
         </div>
 
         <!-- Introtext (under hero) -->
@@ -1523,14 +1494,6 @@
                 document.getElementById('pressure-now-trend').style.color = colorMarkup;
             }
 
-            // Rita kurva
-            var pPoints = pData.map(function(v) { return { t: v.date, v: parseFloat(v.value) }; }).filter(function(p) { return !isNaN(p.v); });
-            drawPressureSparkline('pressure-now-curve', pPoints);
-
-            // Bygg prognos-modulen (Experiment)
-            var currentH = (hData.length > 0) ? parseFloat(hData[hData.length - 1].value) : null;
-            buildOutlookWidget(currentP, diffP, currentH);
-
         }).catch(function(err) {
             console.warn('Kunde inte hämta tryck/fuktighet:', err);
         });
@@ -1702,20 +1665,7 @@
                     if (elMin) elMin.textContent = minTemp.toFixed(1) + '°';
                 }
 
-                // Rita dygns-kurva med riktiga tidsstämplar
-                var tempPoints = dayVals
-                    .map(function(v) { return { t: v.date, v: parseFloat(v.value) }; })
-                    .filter(function(d) { return !isNaN(d.v); });
-                drawTempSparkline('temp-now-curve', tempPoints);
-                // Uppdatera undertitel dynamiskt
-                if (tempPoints.length > 0) {
-                    var fromD = new Date(tempPoints[0].t);
-                    var fromHH = fromD.getHours();
-                    var fromMM = fromD.getMinutes();
-                    var fromStr = (fromHH < 10 ? '0' : '') + fromHH + ':' + (fromMM < 10 ? '0' : '') + fromMM;
-                    var subEl = document.querySelector('#temp-now-curve').closest('.vader-now-curve-section').querySelector('.vader-now-curve-subtitle');
-                    if (subEl) subEl.textContent = 'från kl ' + fromStr;
-                }
+                // Kurvan har tagits bort i UI:t
             }
         }).catch(function (err) {
             console.warn('Kunde inte hämta temperaturdata:', err);
