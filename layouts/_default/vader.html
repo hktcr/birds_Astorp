@@ -237,6 +237,13 @@
                     <div class="vader-chart-source">SMHI, Helsingborg A (16 km sydväst om Åstorp)</div>
                 </div>
 
+                <!-- 24h Temperatur (Döljs default) -->
+                <div class="vader-chart-box" id="chart-24h-temp" style="display:none;">
+                    <div class="vader-chart-label">Temperatur — senaste 24 h</div>
+                    <canvas id="chart-24h-temp-canvas"></canvas>
+                    <div class="vader-chart-source">SMHI, Helsingborg A (16 km sydväst om Åstorp) · Timvärden</div>
+                </div>
+
                 <div class="vader-chart-box vader-delta-strip" id="chart-temp-delta">
                     <canvas id="temp-delta-chart"></canvas>
                     <div class="vader-chart-hint" style="text-align:center; margin-top:2px;">
@@ -289,6 +296,13 @@
                     <div class="vader-chart-label">Nederbörd</div>
                     <canvas id="precip-chart"></canvas>
                     <div class="vader-chart-source">SMHI, Åstorps station (4 km)</div>
+                </div>
+
+                <!-- 24h Nederbörd (Döljs default) -->
+                <div class="vader-chart-box" id="chart-24h-precip" style="display:none; margin-bottom: 2rem;">
+                    <div class="vader-chart-label">Nederbörd — senaste 24 h</div>
+                    <canvas id="chart-24h-precip-canvas"></canvas>
+                    <div class="vader-chart-source">SMHI, Helsingborg A · Timnederbörd (param 7)</div>
                 </div>
 
                 <div class="vader-chart-box" id="chart-flow">
@@ -2132,79 +2146,39 @@
         });
     }
 
-    // ================================================================
-    // 24H VIEW — Hämtar timdata och bygger dedikerade diagram
-    // ================================================================
-    var _24hContainer = null;
-
     function show24hView() {
-        // Dölj sektioner utan timdata
-        var hideIds = ['chart-progress', 'chart-flow', 'chart-temp-delta', 'chart-wind-delta'];
+        // Dölj sektioner som inte har 24h-data
+        var hideIds = ['chart-progress', 'chart-flow', 'chart-temp-delta', 'chart-wind-delta', 'chart-temp-day', 'chart-temp-night', 'chart-wind', 'chart-precip'];
         hideIds.forEach(function (id) {
             var el = document.getElementById(id);
             if (el) el.style.display = 'none';
         });
 
-        // Dölj befintliga diagram (temp, vind, precip) och visa 24h-versioner
-        ['chart-temp-day', 'chart-temp-night', 'chart-wind', 'chart-precip'].forEach(function (id) {
+        // Visa 24h-sektioner inuti sina respektive flikar
+        var show24hIds = ['chart-24h-temp', 'chart-24h-wind-ns', 'chart-24h-wind-ew', 'chart-24h-precip'];
+        show24hIds.forEach(function(id) {
             var el = document.getElementById(id);
-            if (el) el.style.display = 'none';
+            if(el) el.style.display = 'block';
         });
-
-        // Skapa/visa 24h-container
-        if (!_24hContainer) {
-            _24hContainer = document.createElement('div');
-            _24hContainer.id = 'vader-24h-container';
-            _24hContainer.className = 'vader-triptych';
-            _24hContainer.innerHTML =
-                '<div class="vader-chart-box" id="chart-24h-temp">' +
-                    '<div class="vader-chart-label">Temperatur — senaste 24 h</div>' +
-                    '<canvas id="chart-24h-temp-canvas"></canvas>' +
-                    '<div class="vader-chart-source">SMHI, Helsingborg A (16 km sydväst om Åstorp) · Timvärden</div>' +
-                '</div>' +
-                '<div class="vader-chart-box" id="chart-24h-wind-ns">' +
-                    '<div class="vader-chart-label">Vind N ↔ S — senaste 24 h</div>' +
-                    '<canvas id="chart-24h-wind-ns-canvas"></canvas>' +
-                    '<p class="vader-chart-hint">Staplar uppåt = nordlig vind. Staplar nedåt = sydlig vind.</p>' +
-                    '<div class="vader-chart-source">SMHI, Helsingborg A · Timmedelvärden</div>' +
-                '</div>' +
-                '<div class="vader-chart-box" id="chart-24h-wind-ew">' +
-                    '<div class="vader-chart-label">Vind Ö ↔ V — senaste 24 h</div>' +
-                    '<canvas id="chart-24h-wind-ew-canvas"></canvas>' +
-                    '<p class="vader-chart-hint">Staplar uppåt = östlig vind. Staplar nedåt = västlig vind.</p>' +
-                    '<div class="vader-chart-source">SMHI, Helsingborg A · Timmedelvärden</div>' +
-                '</div>' +
-                '<div class="vader-chart-box" id="chart-24h-precip">' +
-                    '<div class="vader-chart-label">Nederbörd — senaste 24 h</div>' +
-                    '<canvas id="chart-24h-precip-canvas"></canvas>' +
-                    '<div class="vader-chart-source">SMHI, Helsingborg A · Timnederbörd (param 7)</div>' +
-                '</div>';
-
-            // Infoga efter tidsväljaren
-            var timeBar = document.getElementById('vader-time-bar');
-            if (timeBar && timeBar.nextSibling) {
-                timeBar.parentNode.insertBefore(_24hContainer, timeBar.nextSibling.nextSibling);
-            }
-        }
-        _24hContainer.style.display = 'block';
 
         // Hämta data
         fetch24hData();
     }
 
     function restore24hView() {
-        // Visa tillbaka allt som doldes
-        var showIds = ['chart-progress', 'chart-flow', 'chart-temp-delta', 'chart-wind-delta',
-                       'chart-temp-day', 'chart-temp-night', 'chart-wind', 'chart-precip'];
+        // Visa tillbaka ordinarie grafer
+        var showIds = ['chart-progress', 'chart-flow', 'chart-temp-delta', 'chart-wind-delta', 'chart-temp-day', 'chart-temp-night', 'chart-wind', 'chart-precip'];
         showIds.forEach(function (id) {
             var el = document.getElementById(id);
             if (el) el.style.display = '';
         });
 
-        // Dölj 24h-containeraren
-        if (_24hContainer) {
-            _24hContainer.style.display = 'none';
-        }
+        // Dölj 24h-graferna
+        var hide24hIds = ['chart-24h-temp', 'chart-24h-wind-ns', 'chart-24h-wind-ew', 'chart-24h-precip'];
+        hide24hIds.forEach(function(id) {
+            var el = document.getElementById(id);
+            if(el) el.style.display = 'none';
+        });
     }
 
     function fetch24hData() {
