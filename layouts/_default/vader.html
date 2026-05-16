@@ -240,7 +240,7 @@
                 <div class="vader-chart-box vader-delta-strip" id="chart-temp-delta">
                     <canvas id="temp-delta-chart"></canvas>
                     <div class="vader-chart-hint" style="text-align:center; margin-top:2px;">
-                        Fenologisk temperatur — ekologisk karaktär per dygn<br>
+                        Temperaturkaraktär per dygn<br>
                         <span id="phenology-legend"></span>
                     </div>
                     <div id="phenology-milestones" style="display:none; margin-top:6px;"></div>
@@ -815,14 +815,14 @@
 
             // Dynamisk legend — visa bara kategorier som finns i datan
             var legendDefs = [
-                { color: '#1a5276', label: 'isdag (max ≤ 0°)', type: 'solid' },
-                { color: '#5dade2', label: 'frostnatt (min < 0°)', type: 'solid' },
-                { color: '#bbbbbb', label: 'kyligt (0–5°)', type: 'solid' },
-                { color: '#cce5df', label: 'svalt (5–10°)', type: 'solid' },
-                { color: '#f4d03f', label: 'vårdag (≥ 10°)', type: 'solid' },
-                { color: '#e67e22', label: 'sommardag (≥ 20°)', type: 'solid' },
-                { color: '#e74c3c', label: 'tropisk natt (min ≥ 20°)', type: 'solid' },
-                { color: 'SPLIT', label: 'varmfrost (≥ 20° + frost)', type: 'split' }
+                { color: '#1a5276', label: 'Max ≤ 0° (Isdag)', type: 'solid' },
+                { color: '#5dade2', label: 'Min < 0° (Frostnatt)', type: 'solid' },
+                { color: '#bbbbbb', label: '0–5°', type: 'solid' },
+                { color: '#cce5df', label: '5–10°', type: 'solid' },
+                { color: '#f4d03f', label: '10–20°', type: 'solid' },
+                { color: '#e67e22', label: 'Max ≥ 20°', type: 'solid' },
+                { color: '#e74c3c', label: 'Min ≥ 20° (Tropisk natt)', type: 'solid' },
+                { color: 'SPLIT', label: 'Max ≥ 20° + Frost', type: 'split' }
             ];
             var legendEl = document.getElementById('phenology-legend');
             if (legendEl) {
