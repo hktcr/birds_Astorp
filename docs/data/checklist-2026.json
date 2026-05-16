@@ -1122,6 +1122,14 @@
       "latin": "Caprimulgus europaeus",
       "lat": 56.09124965751413,
       "lng": 13.058212865484588
+    },
+    {
+      "species": "Nattskärra",
+      "latin": "Caprimulgus europaeus",
+      "date": "2026-05-15",
+      "location": "Körslätta mosse",
+      "notes": "1 ex., spinnande/spelande",
+      "order": 138
     }
   ],
   "last_updated": "2026-05-14T10:00:00Z"
