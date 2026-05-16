@@ -355,7 +355,7 @@ Efter en genomgång av Skånes fågelfauna har jag identifierat 54 arter som utg
     <div class="bounty-card-back">
         <div class="tomtkryss-label">Hörd/Sedd</div>
         <div class="tomtkryss-date">21 maj 2023</div>
-        <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 1rem;">Klicka för detaljer</div>
+        <div style="font-size: 0.85rem; opacity: 0.9; margin-top: 1.5rem; border: 1px solid rgba(34,197,94,0.4); padding: 0.4rem 0.8rem; border-radius: 6px; background: rgba(34,197,94,0.15);">👆 Klicka för mer info</div>
     </div>
 </div>
 </div>
@@ -406,7 +406,7 @@ Efter en genomgång av Skånes fågelfauna har jag identifierat 54 arter som utg
     <div class="bounty-card-back">
         <div class="tomtkryss-label">Hörd/Sedd</div>
         <div class="tomtkryss-date">9 april 2024</div>
-        <div style="font-size: 0.9rem; opacity: 0.8; margin-top: 1rem;">Klicka för detaljer</div>
+        <div style="font-size: 0.85rem; opacity: 0.9; margin-top: 1.5rem; border: 1px solid rgba(34,197,94,0.4); padding: 0.4rem 0.8rem; border-radius: 6px; background: rgba(34,197,94,0.15);">👆 Klicka för mer info</div>
     </div>
 </div>
 </div>

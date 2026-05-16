@@ -1,56 +1,519 @@
 [
   {
-    "name": "Trädkrypare",
-    "latin": "Certhia familiaris",
-    "taxoIndex": 150,
-    "skaneRec": null,
+    "name": "Härmsångare",
+    "latin": "Hippolais icterina",
+    "taxoIndex": 129,
+    "skaneRec": "05-02",
     "astorpHist": null,
     "obs2026": {
-      "species": "Trädkrypare",
-      "latin": "Certhia familiaris",
-      "date": "2026-02-01",
-      "location": "Vändplats, V Maglabyväg",
-      "lat": 56.11793,
-      "lng": 12.99447
+      "species": "Härmsångare",
+      "date": "2026-05-14",
+      "location": "Tomarps Ene",
+      "observer": "Håkan Karlsson",
+      "status": "confirmed",
+      "latin": "Hippolais icterina",
+      "lat": 56.1487,
+      "lng": 13.07359
     }
   },
   {
-    "name": "Pilgrimsfalk",
-    "latin": "Falco peregrinus",
-    "taxoIndex": 111,
+    "name": "Fasan",
+    "latin": "Phasianus colchicus",
+    "taxoIndex": 29,
     "skaneRec": null,
     "astorpHist": null,
     "obs2026": {
-      "species": "Pilgrimsfalk",
-      "latin": "Falco peregrinus",
-      "date": "2026-04-13",
-      "location": "Åstorp",
-      "lat": 56.13420520510357,
-      "lng": 12.942173584912153
+      "species": "Fasan",
+      "latin": "Phasianus colchicus",
+      "date": "2026-02-10",
+      "location": "Målarkalk, Hyllinge",
+      "lat": 56.101169833958345,
+      "lng": 12.871921799623898
     }
   },
   {
-    "name": "Nordlig gulärla",
-    "latin": "",
-    "taxoIndex": 9999,
-    "skaneRec": "04-20",
+    "name": "Sothöna",
+    "latin": "Fulica atra",
+    "taxoIndex": 44,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Sothöna",
+      "latin": "Fulica atra",
+      "date": "2026-04-12",
+      "location": "Ängsgården",
+      "lat": 56.12001,
+      "lng": 12.92422
+    }
+  },
+  {
+    "name": "Forsärla",
+    "latin": "Motacilla cinerea",
+    "taxoIndex": 173,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Forsärla",
+      "latin": "Motacilla cinerea",
+      "date": "2026-03-09",
+      "location": "Tomarps Ene",
+      "lat": 56.1487,
+      "lng": 13.07359
+    }
+  },
+  {
+    "name": "Aftonfalk",
+    "latin": "Falco vespertinus",
+    "taxoIndex": 108,
+    "skaneRec": "04-10",
     "astorpHist": null,
     "obs2026": null
   },
   {
-    "name": "Skedand",
-    "latin": "Spatula clypeata",
-    "taxoIndex": 22,
+    "name": "Korp",
+    "latin": "Corvus corax",
+    "taxoIndex": 119,
     "skaneRec": null,
     "astorpHist": null,
     "obs2026": {
-      "species": "Skedand",
-      "latin": "Spatula clypeata",
+      "species": "Korp",
+      "latin": "Corvus corax",
+      "date": "2026-01-30",
+      "location": "Grustagen, Maglaby",
+      "lat": 56.11749,
+      "lng": 13.06674
+    }
+  },
+  {
+    "name": "Skärsnäppa",
+    "latin": "",
+    "taxoIndex": 9999,
+    "skaneRec": "06-09",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Knipa",
+    "latin": "Bucephala clangula",
+    "taxoIndex": 16,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Knipa",
+      "latin": "Bucephala clangula",
+      "date": "2026-01-25",
+      "location": "Bron mot Klippan",
+      "lat": 56.13312,
+      "lng": 13.09428
+    }
+  },
+  {
+    "name": "Gråhäger",
+    "latin": "Ardea cinerea",
+    "taxoIndex": 80,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Gråhäger",
+      "latin": "Ardea cinerea",
+      "date": "2026-02-24",
+      "location": "Björkenäs mosse",
+      "lat": 56.14072103796272,
+      "lng": 13.031572672305218
+    }
+  },
+  {
+    "name": "Gök",
+    "latin": "Cuculus canorus",
+    "taxoIndex": 33,
+    "skaneRec": "04-22",
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Gök",
+      "latin": "Cuculus canorus",
+      "date": "2026-05-05",
+      "location": "Rönnbacka",
+      "lat": 56.168816409838804,
+      "lng": 13.030937554082303
+    }
+  },
+  {
+    "name": "Enkelbeckasin",
+    "latin": "Gallinago gallinago",
+    "taxoIndex": 57,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Enkelbeckasin",
+      "latin": "Gallinago gallinago",
+      "date": "2026-03-05",
+      "location": "Kungsgårdsmaderna",
+      "lat": 56.15343,
+      "lng": 13.06878
+    }
+  },
+  {
+    "name": "Gråsiska",
+    "latin": "Acanthis flammea",
+    "taxoIndex": 187,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Gråsiska",
+      "latin": "Acanthis flammea",
       "date": "2026-03-02",
+      "location": "Björkenäs mosse",
+      "lat": 56.14072103796272,
+      "lng": 13.031572672305218
+    }
+  },
+  {
+    "name": "Hämpling",
+    "latin": "Linaria cannabina",
+    "taxoIndex": 186,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Hämpling",
+      "latin": "Linaria cannabina",
+      "date": "2026-03-07",
+      "location": "Madkärr, Tomarp",
+      "lat": 56.16336146917374,
+      "lng": 13.062392835112023
+    }
+  },
+  {
+    "name": "Stjärtand",
+    "latin": "Anas acuta",
+    "taxoIndex": 26,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Stjärtand",
+      "latin": "Anas acuta",
+      "date": "2026-03-01",
+      "location": "Kungsgårdsmaderna",
+      "lat": 56.15343,
+      "lng": 13.06878
+    }
+  },
+  {
+    "name": "Nattskärra",
+    "latin": "Caprimulgus europaeus",
+    "taxoIndex": 81,
+    "skaneRec": "04-29",
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Nattskärra",
+      "date": "2026-05-15",
+      "location": "Körslätta mosse",
+      "observer": "Håkan Karlsson",
+      "status": "confirmed",
+      "time": "23:00",
+      "latin": "Caprimulgus europaeus",
+      "lat": 56.09124965751413,
+      "lng": 13.058212865484588,
+      "notes": "1 ex., spinnande/spelande"
+    }
+  },
+  {
+    "name": "Svart rödstjärt",
+    "latin": "Phoenicurus ochruros",
+    "taxoIndex": 166,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Svart rödstjärt",
+      "date": "2026-05-14",
+      "location": "Malmgatan, Industriområdet",
+      "observer": "Håkan Karlsson",
+      "status": "confirmed",
+      "time": "05:30",
+      "latin": "Phoenicurus ochruros",
+      "lat": 56.12542568564323,
+      "lng": 12.922705175235263
+    }
+  },
+  {
+    "name": "Storskrake",
+    "latin": "Mergus merganser",
+    "taxoIndex": 18,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Storskrake",
+      "latin": "Mergus merganser",
+      "date": "2026-02-06",
+      "location": "Tomarps Ene",
+      "lat": 56.14721124325686,
+      "lng": 13.076779186245918
+    }
+  },
+  {
+    "name": "Kentsk tärna",
+    "latin": "",
+    "taxoIndex": 9999,
+    "skaneRec": "03-11",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Sädesärla",
+    "latin": "Motacilla alba",
+    "taxoIndex": 175,
+    "skaneRec": "02-15",
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Sädesärla",
+      "latin": "Motacilla alba",
+      "date": "2026-03-20",
+      "location": "Tomarps kungsgård",
+      "lat": 56.148,
+      "lng": 13.061
+    }
+  },
+  {
+    "name": "Kärrsångare",
+    "latin": "Acrocephalus palustris",
+    "taxoIndex": 131,
+    "skaneRec": "05-04",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Sparvhök",
+    "latin": "Accipiter nisus",
+    "taxoIndex": 91,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Sparvhök",
+      "latin": "Accipiter nisus",
+      "date": "2026-01-25",
+      "location": "Kvidinge",
+      "lat": 56.13675,
+      "lng": 13.0431
+    }
+  },
+  {
+    "name": "Tornfalk",
+    "latin": "Falco tinnunculus",
+    "taxoIndex": 107,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Tornfalk",
+      "latin": "Falco tinnunculus",
+      "date": "2026-01-28",
+      "location": "Killåkravägen",
+      "lat": 56.16593,
+      "lng": 13.01946
+    }
+  },
+  {
+    "name": "Sydlig gulärla",
+    "latin": "",
+    "taxoIndex": 9999,
+    "skaneRec": "04-07",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Gråhakedopping",
+    "latin": "Podiceps grisegena",
+    "taxoIndex": 32,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Gråhakedopping",
+      "latin": "Podiceps grisegena",
+      "date": "2026-04-23",
+      "location": "Rönnbacka",
+      "lat": 56.168816409838804,
+      "lng": 13.030937554082303
+    }
+  },
+  {
+    "name": "Storskarv",
+    "latin": "Phalacrocorax carbo",
+    "taxoIndex": 78,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Storskarv",
+      "latin": "Phalacrocorax carbo",
+      "date": "2026-01-25",
+      "location": "Kungsgårdsmaderna",
+      "lat": 56.15343,
+      "lng": 13.06878
+    }
+  },
+  {
+    "name": "Rörsångare",
+    "latin": "Acrocephalus scirpaceus",
+    "taxoIndex": 132,
+    "skaneRec": "04-16",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Rödstrupig piplärka",
+    "latin": "Anthus cervinus",
+    "taxoIndex": 177,
+    "skaneRec": "05-01",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Järnsparv",
+    "latin": "Prunella modularis",
+    "taxoIndex": 170,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Järnsparv",
+      "latin": "Prunella modularis",
+      "date": "2026-04-01",
+      "location": "Körslätta mosse",
+      "lat": 56.09125,
+      "lng": 13.05821
+    }
+  },
+  {
+    "name": "Varfågel",
+    "latin": "Lanius excubitor",
+    "taxoIndex": 112,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Varfågel",
+      "latin": "Lanius excubitor",
+      "date": "2026-03-01",
+      "location": "Madkärr, Tomarp",
+      "lat": 56.16336146917374,
+      "lng": 13.062392835112023
+    }
+  },
+  {
+    "name": "Gråkråka",
+    "latin": "Corvus corone cornix",
+    "taxoIndex": 120,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Gråkråka",
+      "latin": "Corvus cornix",
+      "date": "2026-01-22",
+      "location": "Kvidinge",
+      "lat": 56.13675,
+      "lng": 13.0431
+    }
+  },
+  {
+    "name": "Stjärtmes",
+    "latin": "Aegithalos caudatus",
+    "taxoIndex": 137,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Stjärtmes",
+      "latin": "Aegithalos caudatus",
+      "date": "2026-02-01",
+      "location": "Hermanssons stuga",
+      "lat": 56.12383,
+      "lng": 12.98772
+    }
+  },
+  {
+    "name": "Rapphöna",
+    "latin": "Perdix perdix",
+    "taxoIndex": 28,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Rapphöna",
+      "latin": "Perdix perdix",
+      "date": "2026-02-13",
+      "location": "Tomarps kungsgård",
+      "lat": 56.149612,
+      "lng": 13.0625373
+    }
+  },
+  {
+    "name": "Skärfläcka",
+    "latin": "Recurvirostra avosetta",
+    "taxoIndex": 45,
+    "skaneRec": "03-02",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Sånglärka",
+    "latin": "Alauda arvensis",
+    "taxoIndex": 128,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Sånglärka",
+      "latin": "Alauda arvensis",
+      "date": "2026-02-27",
       "location": "Kölebäckens mader, V Broby",
       "lat": 56.12774509697216,
       "lng": 12.868473108581973
     }
+  },
+  {
+    "name": "Lövsångare",
+    "latin": "Phylloscopus trochilus",
+    "taxoIndex": 139,
+    "skaneRec": "04-04",
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Lövsångare",
+      "latin": "Phylloscopus trochilus",
+      "date": "2026-04-16",
+      "location": "Makadamen i Åstorp",
+      "lat": 56.128779101412434,
+      "lng": 12.953635076919914
+    }
+  },
+  {
+    "name": "Trädgårdssångare",
+    "latin": "Sylvia borin",
+    "taxoIndex": 142,
+    "skaneRec": "04-29",
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Trädgårdssångare",
+      "latin": "Sylvia borin",
+      "date": "2026-05-08",
+      "location": "Rönnbacka",
+      "lat": 56.168816409838804,
+      "lng": 13.030937554082303
+    }
+  },
+  {
+    "name": "Rödvingetrast",
+    "latin": "Turdus iliacus",
+    "taxoIndex": 157,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Rödvingetrast",
+      "latin": "Turdus iliacus",
+      "date": "2026-03-10",
+      "location": "Körslättabäckens våtmarker",
+      "lat": 56.093059657874605,
+      "lng": 13.065669791540584
+    }
+  },
+  {
+    "name": "Fiskgjuse",
+    "latin": "Pandion haliaetus",
+    "taxoIndex": 87,
+    "skaneRec": "03-17",
+    "astorpHist": null,
+    "obs2026": null
   },
   {
     "name": "Nötskrika",
@@ -68,79 +531,384 @@
     }
   },
   {
-    "name": "Ärtsångare",
-    "latin": "Curruca curruca",
-    "taxoIndex": 144,
-    "skaneRec": "04-10",
+    "name": "Grönsångare",
+    "latin": "Phylloscopus sibilatrix",
+    "taxoIndex": 138,
+    "skaneRec": "04-12",
     "astorpHist": null,
     "obs2026": {
-      "species": "Ärtsångare",
-      "latin": "Curruca curruca",
-      "date": "2026-04-29",
-      "location": "Björnekullaskolan",
-      "lat": 56.13677,
-      "lng": 12.95158
+      "species": "Grönsångare",
+      "latin": "Phylloscopus sibilatrix",
+      "date": "2026-05-08",
+      "location": "Fåraböke",
+      "lat": 56.07789001813259,
+      "lng": 13.067594119415102
     }
   },
   {
-    "name": "Backsvala",
-    "latin": "Riparia riparia",
-    "taxoIndex": 134,
-    "skaneRec": "03-25",
+    "name": "Bläsgås",
+    "latin": "Anser albifrons",
+    "taxoIndex": 9,
+    "skaneRec": null,
     "astorpHist": null,
     "obs2026": {
-      "species": "Backsvala",
-      "latin": "Riparia riparia",
-      "date": "2026-05-10",
-      "location": "Grustagen mellan Kvidinge och Maglaby",
-      "lat": 56.11749,
-      "lng": 13.06674
+      "species": "Bläsgås",
+      "latin": "Anser albifrons",
+      "date": "2026-02-13",
+      "location": "Tomarps kungsgård",
+      "lat": 56.149612,
+      "lng": 13.0625373
     }
   },
   {
-    "name": "Ringtrast",
-    "latin": "Turdus torquatus",
-    "taxoIndex": 160,
-    "skaneRec": "03-23",
+    "name": "Tofsvipa",
+    "latin": "Vanellus vanellus",
+    "taxoIndex": 50,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Tofsvipa",
+      "latin": "Vanellus vanellus",
+      "date": "2026-02-24",
+      "location": "Kungsgårdsmaderna",
+      "lat": 56.15343,
+      "lng": 13.06878
+    }
+  },
+  {
+    "name": "Farhult Mona Hansson",
+    "latin": "",
+    "taxoIndex": 9999,
+    "skaneRec": "05-03",
     "astorpHist": null,
     "obs2026": null
   },
   {
-    "name": "Talgoxe",
-    "latin": "Parus major",
-    "taxoIndex": 122,
+    "name": "Koltrast",
+    "latin": "Turdus merula",
+    "taxoIndex": 158,
     "skaneRec": null,
     "astorpHist": null,
     "obs2026": {
-      "species": "Talgoxe",
-      "latin": "Parus major",
-      "date": "2026-01-24",
+      "species": "Koltrast",
+      "latin": "Turdus merula",
+      "date": "2026-01-22",
       "location": "Kvidinge",
       "lat": 56.13675,
       "lng": 13.0431
     }
   },
   {
-    "name": "Silvertärna",
-    "latin": "",
-    "taxoIndex": 9999,
-    "skaneRec": "03-31",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Stenfalk",
-    "latin": "Falco columbarius",
-    "taxoIndex": 109,
+    "name": "Gravand",
+    "latin": "Tadorna tadorna",
+    "taxoIndex": 14,
     "skaneRec": null,
     "astorpHist": null,
     "obs2026": {
-      "species": "Stenfalk",
-      "latin": "Falco columbarius",
+      "species": "Gravand",
+      "latin": "Tadorna tadorna",
+      "date": "2026-02-27",
+      "location": "Kölebäckens mader, V Broby",
+      "lat": 56.12774509697216,
+      "lng": 12.868473108581973
+    }
+  },
+  {
+    "name": "Trana",
+    "latin": "Grus grus",
+    "taxoIndex": 39,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Trana",
+      "latin": "Grus grus",
+      "date": "2026-03-01",
+      "location": "Körslättabäckens våtmarker",
+      "lat": 56.093059657874605,
+      "lng": 13.065669791540584
+    }
+  },
+  {
+    "name": "Mosnäppa",
+    "latin": "Calidris temminckii",
+    "taxoIndex": 65,
+    "skaneRec": "04-18",
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Mosnäppa",
+      "latin": "Calidris temminckii",
+      "date": "2026-05-05",
+      "location": "Rönnbacka",
+      "lat": 56.168816409838804,
+      "lng": 13.030937554082303
+    }
+  },
+  {
+    "name": "Kricka",
+    "latin": "Anas crecca",
+    "taxoIndex": 27,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Kricka",
+      "latin": "Anas crecca",
       "date": "2026-02-24",
       "location": "Kungsgårdsmaderna",
       "lat": 56.15343,
       "lng": 13.06878
+    }
+  },
+  {
+    "name": "Göktyta",
+    "latin": "Jynx torquilla",
+    "taxoIndex": 102,
+    "skaneRec": "04-03",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Grå flugsnappare",
+    "latin": "Muscicapa striata",
+    "taxoIndex": 161,
+    "skaneRec": "04-22",
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Grå flugsnappare",
+      "date": "2026-05-14",
+      "location": "Tomarps Ene",
+      "observer": "Håkan Karlsson",
+      "status": "confirmed",
+      "latin": "Muscicapa striata",
+      "lat": 56.1487,
+      "lng": 13.07359
+    }
+  },
+  {
+    "name": "Kornknarr",
+    "latin": "Crex crex",
+    "taxoIndex": 41,
+    "skaneRec": "05-08",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Stenknäck",
+    "latin": "Coccothraustes coccothraustes",
+    "taxoIndex": 181,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Stenknäck",
+      "latin": "Coccothraustes coccothraustes",
+      "date": "2026-02-04",
+      "location": "Björnekullaskolan",
+      "lat": 56.13677,
+      "lng": 12.95158
+    }
+  },
+  {
+    "name": "Skrattmås",
+    "latin": "Chroicocephalus ridibundus",
+    "taxoIndex": 68,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Skrattmås",
+      "latin": "Chroicocephalus ridibundus",
+      "date": "2026-03-02",
+      "location": "Kölebäckens mader, V Broby",
+      "lat": 56.12774509697216,
+      "lng": 12.868473108581973
+    }
+  },
+  {
+    "name": "Ängshök",
+    "latin": "",
+    "taxoIndex": 9999,
+    "skaneRec": "04-18",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Hornuggla",
+    "latin": "Asio otus",
+    "taxoIndex": 84,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Hornuggla",
+      "latin": "Asio otus",
+      "date": "2026-04-16",
+      "location": "Banvallen, Rönnbacka",
+      "lat": 56.16543080674405,
+      "lng": 13.030779192114354
+    }
+  },
+  {
+    "name": "Stare",
+    "latin": "Sturnus vulgaris",
+    "taxoIndex": 153,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Stare",
+      "latin": "Sturnus vulgaris",
+      "date": "2026-02-27",
+      "location": "Kölebäckens mader, V Broby",
+      "lat": 56.12774509697216,
+      "lng": 12.868473108581973
+    }
+  },
+  {
+    "name": "Kungsörn",
+    "latin": "Aquila chrysaetos",
+    "taxoIndex": 90,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Kungsörn",
+      "latin": "Aquila chrysaetos",
+      "date": "2026-02-27",
+      "location": "Kungsgårdsmaderna",
+      "lat": 56.15343,
+      "lng": 13.06878
+    }
+  },
+  {
+    "name": "Vigg",
+    "latin": "Aythya fuligula",
+    "taxoIndex": 20,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Vigg",
+      "latin": "Aythya fuligula",
+      "date": "2026-02-21",
+      "location": "Stora fältet - Sånna/Egnahem/Tomarp",
+      "lat": 56.150295674056615,
+      "lng": 13.051556814010734
+    }
+  },
+  {
+    "name": "Smådopping",
+    "latin": "Tachybaptus ruficollis",
+    "taxoIndex": 31,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Smådopping",
+      "latin": "Tachybaptus ruficollis",
+      "date": "2026-02-21",
+      "location": "Rönne å, Kungsgårdsmaderna",
+      "lat": 56.156655789969676,
+      "lng": 13.069328770839913
+    }
+  },
+  {
+    "name": "Skräntärna",
+    "latin": "",
+    "taxoIndex": 9999,
+    "skaneRec": "03-19",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Gröngöling",
+    "latin": "Picus viridis",
+    "taxoIndex": 103,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Gröngöling",
+      "latin": "Picus viridis",
+      "date": "2026-02-09",
+      "location": "Tomarps Ene",
+      "lat": 56.1487,
+      "lng": 13.07359
+    }
+  },
+  {
+    "name": "Strömstare",
+    "latin": "Cinclus cinclus",
+    "taxoIndex": 154,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Strömstare",
+      "latin": "Cinclus cinclus",
+      "date": "2026-02-22",
+      "location": "Klövaravinen",
+      "lat": 56.09126322298655,
+      "lng": 13.102010171371758
+    }
+  },
+  {
+    "name": "Törnsångare",
+    "latin": "Curruca communis",
+    "taxoIndex": 145,
+    "skaneRec": "04-19",
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Törnsångare",
+      "latin": "Curruca communis",
+      "date": "2026-05-02",
+      "location": "Tomarps Ene",
+      "lat": 56.1487,
+      "lng": 13.07359
+    }
+  },
+  {
+    "name": "Gluttsnäppa",
+    "latin": "Tringa nebularia",
+    "taxoIndex": 63,
+    "skaneRec": "03-25",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Näktergal",
+    "latin": "Luscinia luscinia",
+    "taxoIndex": 163,
+    "skaneRec": "04-23",
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Näktergal",
+      "latin": "Luscinia luscinia",
+      "date": "2026-05-03",
+      "location": "Kungsgårdsmaderna",
+      "lat": 56.15343,
+      "lng": 13.06878
+    }
+  },
+  {
+    "name": "Svarttärna",
+    "latin": "",
+    "taxoIndex": 9999,
+    "skaneRec": "04-29",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Småtärna",
+    "latin": "",
+    "taxoIndex": 9999,
+    "skaneRec": "03-30",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Nötväcka",
+    "latin": "Sitta europaea",
+    "taxoIndex": 149,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Nötväcka",
+      "latin": "Sitta europaea",
+      "date": "2026-01-25",
+      "location": "Tomarps Ene",
+      "lat": 56.1487,
+      "lng": 13.07359
     }
   },
   {
@@ -150,6 +918,97 @@
     "skaneRec": "05-10",
     "astorpHist": null,
     "obs2026": null
+  },
+  {
+    "name": "Grönsiska",
+    "latin": "Spinus spinus",
+    "taxoIndex": 193,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Grönsiska",
+      "latin": "Spinus spinus",
+      "date": "2026-01-30",
+      "location": "Körslättaravinen",
+      "lat": 56.09874,
+      "lng": 13.07474
+    }
+  },
+  {
+    "name": "Skogsgås",
+    "latin": "Anser fabalis",
+    "taxoIndex": 12,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Skogsgås",
+      "latin": "Anser fabalis",
+      "date": "2026-02-13",
+      "location": "Tomarps kungsgård",
+      "lat": 56.149612,
+      "lng": 13.0625373
+    }
+  },
+  {
+    "name": "Lärkfalk",
+    "latin": "Falco subbuteo",
+    "taxoIndex": 110,
+    "skaneRec": "04-13",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Brunand",
+    "latin": "Aythya ferina",
+    "taxoIndex": 19,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Brunand",
+      "latin": "Aythya ferina",
+      "date": "2026-03-02",
+      "location": "Kungsgårdsmaderna",
+      "lat": 56.15343,
+      "lng": 13.06878
+    }
+  },
+  {
+    "name": "Pungmes",
+    "latin": "",
+    "taxoIndex": 9999,
+    "skaneRec": "03-10",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Ringduva",
+    "latin": "Columba palumbus",
+    "taxoIndex": 36,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Ringduva",
+      "latin": "Columba palumbus",
+      "date": "2026-01-31",
+      "location": "Prästamarken",
+      "lat": 56.14148,
+      "lng": 13.04893
+    }
+  },
+  {
+    "name": "Bergfink",
+    "latin": "Fringilla montifringilla",
+    "taxoIndex": 179,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Bergfink",
+      "latin": "Fringilla montifringilla",
+      "date": "2026-03-14",
+      "location": "Körslättabäckens våtmarker",
+      "lat": 56.093059657874605,
+      "lng": 13.065669791540584
+    }
   },
   {
     "name": "Gräsand",
@@ -164,6 +1023,268 @@
       "location": "Gamla Tranarpsbron",
       "lat": 56.17858,
       "lng": 13.02111
+    }
+  },
+  {
+    "name": "Knölsvan",
+    "latin": "Cygnus olor",
+    "taxoIndex": 0,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Knölsvan",
+      "latin": "Cygnus olor",
+      "date": "2026-03-02",
+      "location": "Kölebäckens mader, V Broby",
+      "lat": 56.12774509697216,
+      "lng": 12.868473108581973
+    }
+  },
+  {
+    "name": "Svartsnäppa",
+    "latin": "Tringa erythropus",
+    "taxoIndex": 62,
+    "skaneRec": "03-04",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Grönbena",
+    "latin": "Tringa glareola",
+    "taxoIndex": 60,
+    "skaneRec": "04-08",
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Grönbena",
+      "latin": "Tringa glareola",
+      "date": "2026-04-23",
+      "location": "Rönnbacka",
+      "lat": 56.168816409838804,
+      "lng": 13.030937554082303
+    }
+  },
+  {
+    "name": "Kustlabb",
+    "latin": "",
+    "taxoIndex": 9999,
+    "skaneRec": "03-03",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Snatterand",
+    "latin": "Mareca strepera",
+    "taxoIndex": 23,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Snatterand",
+      "latin": "Mareca strepera",
+      "date": "2026-02-27",
+      "location": "Kölebäckens mader, V Broby",
+      "lat": 56.12774509697216,
+      "lng": 12.868473108581973
+    }
+  },
+  {
+    "name": "Pilfink",
+    "latin": "Passer montanus",
+    "taxoIndex": 171,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Pilfink",
+      "latin": "Passer montanus",
+      "date": "2026-01-27",
+      "location": "Kvidinge",
+      "lat": 56.13675,
+      "lng": 13.0431
+    }
+  },
+  {
+    "name": "Snösparv",
+    "latin": "Plectrophenax nivalis",
+    "taxoIndex": 194,
+    "skaneRec": "04-16",
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Snösparv",
+      "latin": "Plectrophenax nivalis",
+      "date": "2026-03-14",
+      "location": "Tomarps kungsgård",
+      "lat": 56.149612,
+      "lng": 13.0625373
+    }
+  },
+  {
+    "name": "Taltrast",
+    "latin": "Turdus philomelos",
+    "taxoIndex": 156,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Taltrast",
+      "latin": "Turdus philomelos",
+      "date": "2026-03-25",
+      "location": "Körslättabäckens våtmarker",
+      "lat": 56.093059657874605,
+      "lng": 13.065669791540584
+    }
+  },
+  {
+    "name": "Sävsångare",
+    "latin": "Acrocephalus schoenobaenus",
+    "taxoIndex": 130,
+    "skaneRec": "04-12",
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Sävsångare",
+      "date": "2026-05-14",
+      "location": "Dammen, Krangatan",
+      "observer": "Håkan Karlsson",
+      "status": "confirmed",
+      "time": "05:15",
+      "latin": "Acrocephalus schoenobaenus",
+      "lat": 56.12002323331779,
+      "lng": 12.901032209138247
+    }
+  },
+  {
+    "name": "Silvertärna",
+    "latin": "",
+    "taxoIndex": 9999,
+    "skaneRec": "03-31",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Gärdsmyg",
+    "latin": "Troglodytes troglodytes",
+    "taxoIndex": 152,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Gärdsmyg",
+      "latin": "Troglodytes troglodytes",
+      "date": "2026-01-23",
+      "location": "Kvidinge",
+      "lat": 56.13675,
+      "lng": 13.0431
+    }
+  },
+  {
+    "name": "Ägretthäger",
+    "latin": "Ardea alba",
+    "taxoIndex": 79,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Ägretthäger",
+      "latin": "Ardea alba",
+      "date": "2026-02-09",
+      "location": "Bron mot Klippan",
+      "lat": 56.13312,
+      "lng": 13.09428
+    }
+  },
+  {
+    "name": "Berglärka",
+    "latin": "",
+    "taxoIndex": 9999,
+    "skaneRec": "05-02",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Havsörn",
+    "latin": "Haliaeetus albicilla",
+    "taxoIndex": 98,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Havsörn",
+      "latin": "Haliaeetus albicilla",
+      "date": "2026-01-22",
+      "location": "Sönnarslöv",
+      "lat": 56.12868,
+      "lng": 13.08559
+    }
+  },
+  {
+    "name": "Smalnäbbad simsna",
+    "latin": "",
+    "taxoIndex": 9999,
+    "skaneRec": "05-12",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Steglits",
+    "latin": "Carduelis carduelis",
+    "taxoIndex": 191,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Steglits",
+      "latin": "Carduelis carduelis",
+      "date": "2026-02-19",
+      "location": "Röda smedja, Kvidinge",
+      "lat": 56.14176,
+      "lng": 13.059863
+    }
+  },
+  {
+    "name": "Småfläckig sumphöna",
+    "latin": "Porzana porzana",
+    "taxoIndex": 42,
+    "skaneRec": "04-02",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Spovsnäppa",
+    "latin": "",
+    "taxoIndex": 9999,
+    "skaneRec": "04-29",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Silltrut",
+    "latin": "Larus fuscus",
+    "taxoIndex": 74,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Silltrut",
+      "latin": "Larus fuscus",
+      "date": "2026-04-16",
+      "location": "Björkenäs mosse",
+      "lat": 56.14072103796272,
+      "lng": 13.031572672305218
+    }
+  },
+  {
+    "name": "Sommargylling",
+    "latin": "",
+    "taxoIndex": 9999,
+    "skaneRec": "05-03",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Kattuggla",
+    "latin": "Strix aluco",
+    "taxoIndex": 86,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Kattuggla",
+      "latin": "Strix aluco",
+      "date": "2026-03-02",
+      "location": "Fåraböke",
+      "lat": 56.07789001813259,
+      "lng": 13.067594119415102
     }
   },
   {
@@ -183,108 +1304,49 @@
     }
   },
   {
-    "name": "Knölsvan",
-    "latin": "Cygnus olor",
-    "taxoIndex": 0,
+    "name": "Lappsparv",
+    "latin": "",
+    "taxoIndex": 9999,
+    "skaneRec": "05-23",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Klippduva (tamduva)",
+    "latin": "Columba livia, domesticated populations",
+    "taxoIndex": 37,
     "skaneRec": null,
     "astorpHist": null,
     "obs2026": {
-      "species": "Knölsvan",
-      "latin": "Cygnus olor",
-      "date": "2026-03-02",
-      "location": "Kölebäckens mader, V Broby",
-      "lat": 56.12774509697216,
-      "lng": 12.868473108581973
+      "species": "Klippduva (tamduva)",
+      "latin": "Columba livia",
+      "date": "2026-01-26",
+      "location": "Rörspjäll",
+      "lat": 56.13477,
+      "lng": 13.01199
     }
   },
   {
-    "name": "Sparvhök",
-    "latin": "Accipiter nisus",
-    "taxoIndex": 91,
+    "name": "Rosenfink",
+    "latin": "",
+    "taxoIndex": 9999,
+    "skaneRec": "05-01",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Vitkindad gås",
+    "latin": "Branta leucopsis",
+    "taxoIndex": 6,
     "skaneRec": null,
     "astorpHist": null,
     "obs2026": {
-      "species": "Sparvhök",
-      "latin": "Accipiter nisus",
-      "date": "2026-01-25",
-      "location": "Kvidinge",
-      "lat": 56.13675,
-      "lng": 13.0431
-    }
-  },
-  {
-    "name": "Storskarv",
-    "latin": "Phalacrocorax carbo",
-    "taxoIndex": 78,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Storskarv",
-      "latin": "Phalacrocorax carbo",
-      "date": "2026-01-25",
-      "location": "Kungsgårdsmaderna",
-      "lat": 56.15343,
-      "lng": 13.06878
-    }
-  },
-  {
-    "name": "Brandkronad kungsfågel",
-    "latin": "Regulus ignicapilla",
-    "taxoIndex": 147,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Brandkronad kungsfågel",
-      "latin": "Regulus ignicapilla",
-      "date": "2026-03-17",
-      "location": "Fåraböke",
-      "lat": 56.07789001813259,
-      "lng": 13.067594119415102
-    }
-  },
-  {
-    "name": "Bofink",
-    "latin": "Fringilla coelebs",
-    "taxoIndex": 180,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Bofink",
-      "latin": "Fringilla coelebs",
-      "date": "2026-01-27",
-      "location": "Bron mot Klippan",
-      "lat": 56.13312,
-      "lng": 13.09428
-    }
-  },
-  {
-    "name": "Fiskmås",
-    "latin": "Larus canus",
-    "taxoIndex": 70,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Fiskmås",
-      "latin": "Larus canus",
-      "date": "2026-03-04",
-      "location": "Björnekullaskolan",
-      "lat": 56.13677,
-      "lng": 12.95158
-    }
-  },
-  {
-    "name": "Lövsångare",
-    "latin": "Phylloscopus trochilus",
-    "taxoIndex": 139,
-    "skaneRec": "04-04",
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Lövsångare",
-      "latin": "Phylloscopus trochilus",
-      "date": "2026-04-16",
-      "location": "Makadamen i Åstorp",
-      "lat": 56.128779101412434,
-      "lng": 12.953635076919914
+      "species": "Vitkindad gås",
+      "latin": "Branta leucopsis",
+      "date": "2026-02-09",
+      "location": "Tomarps mader",
+      "lat": 56.15596454204231,
+      "lng": 13.0706159722571
     }
   },
   {
@@ -318,6 +1380,104 @@
     }
   },
   {
+    "name": "Entita",
+    "latin": "Poecile palustris",
+    "taxoIndex": 125,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Entita",
+      "latin": "Poecile palustris",
+      "date": "2026-02-18",
+      "location": "NV Mosshult",
+      "lat": 56.09095485579307,
+      "lng": 13.050526620868753
+    }
+  },
+  {
+    "name": "Buskskvätta",
+    "latin": "Saxicola rubetra",
+    "taxoIndex": 168,
+    "skaneRec": "04-12",
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Buskskvätta",
+      "latin": "Saxicola rubetra",
+      "date": "2026-04-21",
+      "location": "Kungsgårdsmaderna",
+      "lat": 56.15343,
+      "lng": 13.06878
+    }
+  },
+  {
+    "name": "Gulärla",
+    "latin": "Motacilla flava",
+    "taxoIndex": 174,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Gulärla",
+      "latin": "Motacilla flava",
+      "date": "2026-04-23",
+      "location": "Rönnbacka",
+      "lat": 56.168816409838804,
+      "lng": 13.030937554082303
+    }
+  },
+  {
+    "name": "Skedand",
+    "latin": "Spatula clypeata",
+    "taxoIndex": 22,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Skedand",
+      "latin": "Spatula clypeata",
+      "date": "2026-03-02",
+      "location": "Kölebäckens mader, V Broby",
+      "lat": 56.12774509697216,
+      "lng": 12.868473108581973
+    }
+  },
+  {
+    "name": "Dubbelbeckasin",
+    "latin": "Gallinago media",
+    "taxoIndex": 56,
+    "skaneRec": "04-27",
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Dubbelbeckasin",
+      "latin": "Gallinago media",
+      "date": "2026-05-08",
+      "location": "Kungsgårdsmaderna",
+      "lat": 56.15343,
+      "lng": 13.06878
+    }
+  },
+  {
+    "name": "Tornseglare",
+    "latin": "Apus apus",
+    "taxoIndex": 82,
+    "skaneRec": "04-19",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Morkulla",
+    "latin": "Scolopax rusticola",
+    "taxoIndex": 55,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Morkulla",
+      "latin": "Scolopax rusticola",
+      "date": "2026-03-02",
+      "location": "Körslättabäckens våtmarker",
+      "lat": 56.093059657874605,
+      "lng": 13.065669791540584
+    }
+  },
+  {
     "name": "Rörhöna",
     "latin": "Gallinula chloropus",
     "taxoIndex": 43,
@@ -333,252 +1493,50 @@
     }
   },
   {
-    "name": "Pilfink",
-    "latin": "Passer montanus",
-    "taxoIndex": 171,
+    "name": "Svartvit flugsnappare",
+    "latin": "Ficedula hypoleuca",
+    "taxoIndex": 165,
+    "skaneRec": "04-08",
+    "astorpHist": null,
+    "obs2026": {
+      "order": 1,
+      "species": "Svartvit flugsnappare",
+      "date": "2026-04-20",
+      "location": "Maglaby",
+      "notes": "1 hane",
+      "lat": 56.108898895955186,
+      "lng": 13.052546726545025,
+      "latin": "Ficedula hypoleuca"
+    }
+  },
+  {
+    "name": "Grönfink",
+    "latin": "Chloris chloris",
+    "taxoIndex": 184,
     "skaneRec": null,
     "astorpHist": null,
     "obs2026": {
-      "species": "Pilfink",
-      "latin": "Passer montanus",
-      "date": "2026-01-27",
+      "species": "Grönfink",
+      "latin": "Chloris chloris",
+      "date": "2026-02-09",
       "location": "Kvidinge",
-      "lat": 56.13675,
-      "lng": 13.0431
+      "lat": 56.136750782641876,
+      "lng": 13.043105305042882
     }
   },
   {
-    "name": "Bläsgås",
-    "latin": "Anser albifrons",
-    "taxoIndex": 9,
+    "name": "Skogssnäppa",
+    "latin": "Tringa ochropus",
+    "taxoIndex": 59,
     "skaneRec": null,
     "astorpHist": null,
     "obs2026": {
-      "species": "Bläsgås",
-      "latin": "Anser albifrons",
-      "date": "2026-02-13",
-      "location": "Tomarps kungsgård",
-      "lat": 56.149612,
-      "lng": 13.0625373
-    }
-  },
-  {
-    "name": "Näktergal",
-    "latin": "Luscinia luscinia",
-    "taxoIndex": 163,
-    "skaneRec": "04-23",
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Näktergal",
-      "latin": "Luscinia luscinia",
-      "date": "2026-05-03",
-      "location": "Kungsgårdsmaderna",
-      "lat": 56.15343,
-      "lng": 13.06878
-    }
-  },
-  {
-    "name": "Rödbena",
-    "latin": "Tringa totanus",
-    "taxoIndex": 61,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Rödbena",
-      "latin": "Tringa totanus",
-      "date": "2026-04-07",
+      "species": "Skogssnäppa",
+      "latin": "Tringa ochropus",
+      "date": "2026-03-27",
       "location": "Madkärr, Tomarp",
-      "lat": 56.16336146917374,
-      "lng": 13.062392835112023
-    }
-  },
-  {
-    "name": "Hornuggla",
-    "latin": "Asio otus",
-    "taxoIndex": 84,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Hornuggla",
-      "latin": "Asio otus",
-      "date": "2026-04-16",
-      "location": "Banvallen, Rönnbacka",
-      "lat": 56.16543080674405,
-      "lng": 13.030779192114354
-    }
-  },
-  {
-    "name": "Nötväcka",
-    "latin": "Sitta europaea",
-    "taxoIndex": 149,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Nötväcka",
-      "latin": "Sitta europaea",
-      "date": "2026-01-25",
-      "location": "Tomarps Ene",
-      "lat": 56.1487,
-      "lng": 13.07359
-    }
-  },
-  {
-    "name": "Knipa",
-    "latin": "Bucephala clangula",
-    "taxoIndex": 16,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Knipa",
-      "latin": "Bucephala clangula",
-      "date": "2026-01-25",
-      "location": "Bron mot Klippan",
-      "lat": 56.13312,
-      "lng": 13.09428
-    }
-  },
-  {
-    "name": "Rödspov",
-    "latin": "Limosa limosa",
-    "taxoIndex": 53,
-    "skaneRec": "03-08",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Silltrut",
-    "latin": "Larus fuscus",
-    "taxoIndex": 74,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Silltrut",
-      "latin": "Larus fuscus",
-      "date": "2026-04-16",
-      "location": "Björkenäs mosse",
-      "lat": 56.14072103796272,
-      "lng": 13.031572672305218
-    }
-  },
-  {
-    "name": "Rödvingetrast",
-    "latin": "Turdus iliacus",
-    "taxoIndex": 157,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Rödvingetrast",
-      "latin": "Turdus iliacus",
-      "date": "2026-03-10",
-      "location": "Körslättabäckens våtmarker",
-      "lat": 56.093059657874605,
-      "lng": 13.065669791540584
-    }
-  },
-  {
-    "name": "Sädesärla",
-    "latin": "Motacilla alba",
-    "taxoIndex": 175,
-    "skaneRec": "02-15",
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Sädesärla",
-      "latin": "Motacilla alba",
-      "date": "2026-03-20",
-      "location": "Tomarps kungsgård",
-      "lat": 56.148,
-      "lng": 13.061
-    }
-  },
-  {
-    "name": "Skärsnäppa",
-    "latin": "",
-    "taxoIndex": 9999,
-    "skaneRec": "06-09",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Kricka",
-    "latin": "Anas crecca",
-    "taxoIndex": 27,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Kricka",
-      "latin": "Anas crecca",
-      "date": "2026-02-24",
-      "location": "Kungsgårdsmaderna",
-      "lat": 56.15343,
-      "lng": 13.06878
-    }
-  },
-  {
-    "name": "Domherre",
-    "latin": "Pyrrhula pyrrhula",
-    "taxoIndex": 183,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Domherre",
-      "latin": "Pyrrhula pyrrhula",
-      "date": "2026-01-24",
-      "location": "Kvidinge",
-      "lat": 56.13675,
-      "lng": 13.0431
-    }
-  },
-  {
-    "name": "Stjärtmes",
-    "latin": "Aegithalos caudatus",
-    "taxoIndex": 137,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Stjärtmes",
-      "latin": "Aegithalos caudatus",
-      "date": "2026-02-01",
-      "location": "Hermanssons stuga",
-      "lat": 56.12383,
-      "lng": 12.98772
-    }
-  },
-  {
-    "name": "Fältpiplärka",
-    "latin": "",
-    "taxoIndex": 9999,
-    "skaneRec": "04-13",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Ljungpipare",
-    "latin": "Pluvialis apricaria",
-    "taxoIndex": 47,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Ljungpipare",
-      "latin": "Pluvialis apricaria",
-      "date": "2026-04-23",
-      "location": "Sånna",
-      "lat": 56.152500229576226,
-      "lng": 13.028410974347539
-    }
-  },
-  {
-    "name": "Gråtrut",
-    "latin": "Larus argentatus",
-    "taxoIndex": 72,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Gråtrut",
-      "latin": "Larus argentatus",
-      "date": "2026-01-23",
-      "location": "Kvidinge",
-      "lat": 56.13675,
-      "lng": 13.0431
+      "lat": 56.16336,
+      "lng": 13.06239
     }
   },
   {
@@ -597,46 +1555,136 @@
     }
   },
   {
-    "name": "Grå flugsnappare",
-    "latin": "Muscicapa striata",
-    "taxoIndex": 161,
-    "skaneRec": "04-22",
+    "name": "Rödspov",
+    "latin": "Limosa limosa",
+    "taxoIndex": 53,
+    "skaneRec": "03-08",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Gransångare",
+    "latin": "Phylloscopus collybita",
+    "taxoIndex": 140,
+    "skaneRec": "02-28",
     "astorpHist": null,
     "obs2026": {
-      "species": "Grå flugsnappare",
-      "date": "2026-05-14",
-      "location": "Tomarps Ene",
-      "observer": "Håkan Karlsson",
-      "status": "confirmed",
-      "latin": "Muscicapa striata",
-      "lat": 56.1487,
-      "lng": 13.07359
+      "species": "Gransångare",
+      "latin": "Phylloscopus collybita",
+      "date": "2026-03-21",
+      "location": "Högalidshöjden",
+      "lat": 56.09903738445198,
+      "lng": 13.062423259770256
     }
   },
   {
-    "name": "Gråsparv",
-    "latin": "Passer domesticus",
-    "taxoIndex": 172,
+    "name": "Röd glada",
+    "latin": "Milvus milvus",
+    "taxoIndex": 96,
     "skaneRec": null,
     "astorpHist": null,
     "obs2026": {
-      "species": "Gråsparv",
-      "latin": "Passer domesticus",
-      "date": "2026-01-27",
-      "location": "Kvidinge",
-      "lat": 56.13675,
-      "lng": 13.0431
+      "species": "Röd glada",
+      "latin": "Milvus milvus",
+      "date": "2026-01-23",
+      "location": "Bron mot Klippan",
+      "lat": 56.13312,
+      "lng": 13.09428
     }
   },
   {
-    "name": "Gråkråka",
-    "latin": "Corvus corone cornix",
-    "taxoIndex": 120,
+    "name": "Större strandpipare",
+    "latin": "Charadrius hiaticula",
+    "taxoIndex": 48,
+    "skaneRec": "02-09",
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Större strandpipare",
+      "latin": "Charadrius hiaticula",
+      "date": "2026-04-07",
+      "location": "Madkärr, Tomarp",
+      "lat": 56.16336146917374,
+      "lng": 13.062392835112023
+    }
+  },
+  {
+    "name": "Småspov",
+    "latin": "Numenius phaeopus",
+    "taxoIndex": 51,
+    "skaneRec": "03-22",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Sångsvan",
+    "latin": "Cygnus cygnus",
+    "taxoIndex": 2,
     "skaneRec": null,
     "astorpHist": null,
     "obs2026": {
-      "species": "Gråkråka",
-      "latin": "Corvus cornix",
+      "species": "Sångsvan",
+      "latin": "Cygnus cygnus",
+      "date": "2026-01-25",
+      "location": "Kungsgårdsmaderna",
+      "lat": 56.15343,
+      "lng": 13.06878
+    }
+  },
+  {
+    "name": "Mindre hackspett",
+    "latin": "Dryobates minor",
+    "taxoIndex": 106,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Mindre hackspett",
+      "latin": "Dryobates minor",
+      "date": "2026-03-21",
+      "location": "Högalidshöjden",
+      "lat": 56.09903738445198,
+      "lng": 13.062423259770256
+    }
+  },
+  {
+    "name": "Fisktärna",
+    "latin": "Sterna hirundo",
+    "taxoIndex": 67,
+    "skaneRec": "03-25",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Vassångare",
+    "latin": "",
+    "taxoIndex": 9999,
+    "skaneRec": "04-14",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Hussvala",
+    "latin": "Delichon urbicum",
+    "taxoIndex": 136,
+    "skaneRec": "03-02",
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Hussvala",
+      "latin": "Delichon urbicum",
+      "date": "2026-04-24",
+      "location": "Körslättabäckens våtmarker",
+      "lat": 56.093059657874605,
+      "lng": 13.065669791540584
+    }
+  },
+  {
+    "name": "Skata",
+    "latin": "Pica pica",
+    "taxoIndex": 115,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Skata",
+      "latin": "Pica pica",
       "date": "2026-01-22",
       "location": "Kvidinge",
       "lat": 56.13675,
@@ -644,18 +1692,93 @@
     }
   },
   {
-    "name": "Gulsparv",
-    "latin": "Emberiza citrinella",
-    "taxoIndex": 197,
+    "name": "Svartmes",
+    "latin": "Periparus ater",
+    "taxoIndex": 123,
     "skaneRec": null,
     "astorpHist": null,
     "obs2026": {
-      "species": "Gulsparv",
-      "latin": "Emberiza citrinella",
-      "date": "2026-02-06",
+      "species": "Svartmes",
+      "latin": "Periparus ater",
+      "date": "2026-03-06",
+      "location": "Fåraböke",
+      "lat": 56.07789001813259,
+      "lng": 13.067594119415102
+    }
+  },
+  {
+    "name": "Ljungpipare",
+    "latin": "Pluvialis apricaria",
+    "taxoIndex": 47,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Ljungpipare",
+      "latin": "Pluvialis apricaria",
+      "date": "2026-04-23",
+      "location": "Sånna",
+      "lat": 56.152500229576226,
+      "lng": 13.028410974347539
+    }
+  },
+  {
+    "name": "Större hackspett",
+    "latin": "Dendrocopos major",
+    "taxoIndex": 105,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Större hackspett",
+      "latin": "Dendrocopos major",
+      "date": "2026-01-30",
+      "location": "Högalid",
+      "lat": 56.09711,
+      "lng": 13.06836
+    }
+  },
+  {
+    "name": "Gråtrut",
+    "latin": "Larus argentatus",
+    "taxoIndex": 72,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Gråtrut",
+      "latin": "Larus argentatus",
+      "date": "2026-01-23",
       "location": "Kvidinge",
-      "lat": 56.136750782641876,
-      "lng": 13.043105305042882
+      "lat": 56.13675,
+      "lng": 13.0431
+    }
+  },
+  {
+    "name": "Brun kärrhök",
+    "latin": "Circus aeruginosus",
+    "taxoIndex": 95,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Brun kärrhök",
+      "latin": "Circus aeruginosus",
+      "date": "2026-04-10",
+      "location": "Backadal, Kärrarp",
+      "lat": 56.141628953503115,
+      "lng": 13.01111255477116
+    }
+  },
+  {
+    "name": "Sävsparv",
+    "latin": "Emberiza schoeniclus",
+    "taxoIndex": 195,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Sävsparv",
+      "latin": "Emberiza schoeniclus",
+      "date": "2026-03-02",
+      "location": "Kölebäckens mader, V Broby",
+      "lat": 56.12774509697216,
+      "lng": 12.868473108581973
     }
   },
   {
@@ -674,6 +1797,241 @@
     }
   },
   {
+    "name": "Årta",
+    "latin": "Spatula querquedula",
+    "taxoIndex": 21,
+    "skaneRec": "03-01",
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Årta",
+      "latin": "Spatula querquedula",
+      "date": "2026-04-14",
+      "location": "Rönnbacka",
+      "lat": 56.168816409838804,
+      "lng": 13.030937554082303
+    }
+  },
+  {
+    "name": "Fiskmås",
+    "latin": "Larus canus",
+    "taxoIndex": 70,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Fiskmås",
+      "latin": "Larus canus",
+      "date": "2026-03-04",
+      "location": "Björnekullaskolan",
+      "lat": 56.13677,
+      "lng": 12.95158
+    }
+  },
+  {
+    "name": "Gräshoppsångare",
+    "latin": "Locustella naevia",
+    "taxoIndex": 133,
+    "skaneRec": "04-23",
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Gräshoppsångare",
+      "latin": "Locustella naevia",
+      "date": "2026-05-03",
+      "location": "Kungsgårdsmaderna",
+      "lat": 56.15343,
+      "lng": 13.06878
+    }
+  },
+  {
+    "name": "Backsvala",
+    "latin": "Riparia riparia",
+    "taxoIndex": 134,
+    "skaneRec": "03-25",
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Backsvala",
+      "latin": "Riparia riparia",
+      "date": "2026-05-10",
+      "location": "Grustagen mellan Kvidinge och Maglaby",
+      "lat": 56.11749,
+      "lng": 13.06674
+    }
+  },
+  {
+    "name": "Turkduva",
+    "latin": "Streptopelia decaocto",
+    "taxoIndex": 35,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Turkduva",
+      "latin": "Streptopelia decaocto",
+      "date": "2026-03-05",
+      "location": "Östra Storgatan i Kvidinge",
+      "lat": 56.133298631450046,
+      "lng": 13.054133737368847
+    }
+  },
+  {
+    "name": "Bivråk",
+    "latin": "Pernis apivorus",
+    "taxoIndex": 88,
+    "skaneRec": "04-29",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Vaktel",
+    "latin": "Coturnix coturnix",
+    "taxoIndex": 30,
+    "skaneRec": "04-23",
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Vaktel",
+      "latin": "Coturnix coturnix",
+      "date": "2026-05-03",
+      "location": "Kungsgårdsmaderna",
+      "lat": 56.15343,
+      "lng": 13.06878
+    }
+  },
+  {
+    "name": "Stenfalk",
+    "latin": "Falco columbarius",
+    "taxoIndex": 109,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Stenfalk",
+      "latin": "Falco columbarius",
+      "date": "2026-02-24",
+      "location": "Kungsgårdsmaderna",
+      "lat": 56.15343,
+      "lng": 13.06878
+    }
+  },
+  {
+    "name": "Flodsångare",
+    "latin": "",
+    "taxoIndex": 9999,
+    "skaneRec": "05-07",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Ringtrast",
+    "latin": "Turdus torquatus",
+    "taxoIndex": 160,
+    "skaneRec": "03-23",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Grågås",
+    "latin": "Anser anser",
+    "taxoIndex": 8,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Grågås",
+      "latin": "Anser anser",
+      "date": "2026-01-28",
+      "location": "Tranarpsbron",
+      "lat": 56.18073,
+      "lng": 13.01804
+    }
+  },
+  {
+    "name": "Höksångare",
+    "latin": "",
+    "taxoIndex": 9999,
+    "skaneRec": "05-09",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Vinterhämpling",
+    "latin": "Linaria flavirostris",
+    "taxoIndex": 185,
+    "skaneRec": "04-30",
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Vinterhämpling",
+      "latin": "Linaria flavirostris",
+      "date": "2026-02-16",
+      "location": "Vångarna",
+      "lat": 56.13335909031484,
+      "lng": 13.085150154227945
+    }
+  },
+  {
+    "name": "Kungsfågel",
+    "latin": "Regulus regulus",
+    "taxoIndex": 148,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Kungsfågel",
+      "latin": "Regulus regulus",
+      "date": "2026-03-17",
+      "location": "Fåraböke",
+      "lat": 56.07789001813259,
+      "lng": 13.067594119415102
+    }
+  },
+  {
+    "name": "Brushane",
+    "latin": "Calidris pugnax",
+    "taxoIndex": 64,
+    "skaneRec": "03-15",
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Brushane",
+      "latin": "Calidris pugnax",
+      "date": "2026-03-17",
+      "location": "Dynget",
+      "lat": 56.183486839903935,
+      "lng": 13.013507219597335
+    }
+  },
+  {
+    "name": "Mindre strandpipare",
+    "latin": "Thinornis dubius",
+    "taxoIndex": 49,
+    "skaneRec": "03-30",
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Mindre strandpipare",
+      "latin": "Thinornis dubius",
+      "date": "2026-04-10",
+      "location": "Dynget",
+      "lat": 56.183486839903935,
+      "lng": 13.013507219597335
+    }
+  },
+  {
+    "name": "Mindre flugsnappare",
+    "latin": "Ficedula parva",
+    "taxoIndex": 164,
+    "skaneRec": "05-01",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Bofink",
+    "latin": "Fringilla coelebs",
+    "taxoIndex": 180,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Bofink",
+      "latin": "Fringilla coelebs",
+      "date": "2026-01-27",
+      "location": "Bron mot Klippan",
+      "lat": 56.13312,
+      "lng": 13.09428
+    }
+  },
+  {
     "name": "Rödstjärt",
     "latin": "Phoenicurus phoenicurus",
     "taxoIndex": 167,
@@ -688,42 +2046,109 @@
     }
   },
   {
-    "name": "Kärrsångare",
-    "latin": "Acrocephalus palustris",
-    "taxoIndex": 131,
-    "skaneRec": "05-04",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Gluttsnäppa",
-    "latin": "Tringa nebularia",
-    "taxoIndex": 63,
-    "skaneRec": "03-25",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Rosenfink",
+    "name": "Nordlig gulärla",
     "latin": "",
     "taxoIndex": 9999,
-    "skaneRec": "05-01",
+    "skaneRec": "04-20",
     "astorpHist": null,
     "obs2026": null
   },
   {
-    "name": "Storskrake",
-    "latin": "Mergus merganser",
-    "taxoIndex": 18,
+    "name": "Pilgrimsfalk",
+    "latin": "Falco peregrinus",
+    "taxoIndex": 111,
     "skaneRec": null,
     "astorpHist": null,
     "obs2026": {
-      "species": "Storskrake",
-      "latin": "Mergus merganser",
-      "date": "2026-02-06",
-      "location": "Tomarps Ene",
-      "lat": 56.14721124325686,
-      "lng": 13.076779186245918
+      "species": "Pilgrimsfalk",
+      "latin": "Falco peregrinus",
+      "date": "2026-04-13",
+      "location": "Åstorp",
+      "lat": 56.13420520510357,
+      "lng": 12.942173584912153
+    }
+  },
+  {
+    "name": "Rödbena",
+    "latin": "Tringa totanus",
+    "taxoIndex": 61,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Rödbena",
+      "latin": "Tringa totanus",
+      "date": "2026-04-07",
+      "location": "Madkärr, Tomarp",
+      "lat": 56.16336146917374,
+      "lng": 13.062392835112023
+    }
+  },
+  {
+    "name": "Domherre",
+    "latin": "Pyrrhula pyrrhula",
+    "taxoIndex": 183,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Domherre",
+      "latin": "Pyrrhula pyrrhula",
+      "date": "2026-01-24",
+      "location": "Kvidinge",
+      "lat": 56.13675,
+      "lng": 13.0431
+    }
+  },
+  {
+    "name": "Sidensvans",
+    "latin": "Bombycilla garrulus",
+    "taxoIndex": 146,
+    "skaneRec": "05-30",
+    "astorpHist": null,
+    "obs2026": null
+  },
+  {
+    "name": "Trädkrypare",
+    "latin": "Certhia familiaris",
+    "taxoIndex": 150,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Trädkrypare",
+      "latin": "Certhia familiaris",
+      "date": "2026-02-01",
+      "location": "Vändplats, V Maglabyväg",
+      "lat": 56.11793,
+      "lng": 12.99447
+    }
+  },
+  {
+    "name": "Fjällvråk",
+    "latin": "Buteo lagopus",
+    "taxoIndex": 99,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Fjällvråk",
+      "latin": "Buteo lagopus",
+      "date": "2026-02-05",
+      "location": "Flodarna",
+      "lat": 56.16532231534232,
+      "lng": 12.984207625328134
+    }
+  },
+  {
+    "name": "Blå kärrhök",
+    "latin": "Circus cyaneus",
+    "taxoIndex": 94,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Blå kärrhök",
+      "latin": "Circus cyaneus",
+      "date": "2026-02-15",
+      "location": "Bron mot Klippan",
+      "lat": 56.13312,
+      "lng": 13.09428
     }
   },
   {
@@ -757,233 +2182,6 @@
     }
   },
   {
-    "name": "Snatterand",
-    "latin": "Mareca strepera",
-    "taxoIndex": 23,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Snatterand",
-      "latin": "Mareca strepera",
-      "date": "2026-02-27",
-      "location": "Kölebäckens mader, V Broby",
-      "lat": 56.12774509697216,
-      "lng": 12.868473108581973
-    }
-  },
-  {
-    "name": "Fisktärna",
-    "latin": "Sterna hirundo",
-    "taxoIndex": 67,
-    "skaneRec": "03-25",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Lärkfalk",
-    "latin": "Falco subbuteo",
-    "taxoIndex": 110,
-    "skaneRec": "04-13",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Björktrast",
-    "latin": "Turdus pilaris",
-    "taxoIndex": 159,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Björktrast",
-      "latin": "Turdus pilaris",
-      "date": "2026-03-10",
-      "location": "Körslättabäckens våtmarker",
-      "lat": 56.093059657874605,
-      "lng": 13.065669791540584
-    }
-  },
-  {
-    "name": "Årta",
-    "latin": "Spatula querquedula",
-    "taxoIndex": 21,
-    "skaneRec": "03-01",
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Årta",
-      "latin": "Spatula querquedula",
-      "date": "2026-04-14",
-      "location": "Rönnbacka",
-      "lat": 56.168816409838804,
-      "lng": 13.030937554082303
-    }
-  },
-  {
-    "name": "Morkulla",
-    "latin": "Scolopax rusticola",
-    "taxoIndex": 55,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Morkulla",
-      "latin": "Scolopax rusticola",
-      "date": "2026-03-02",
-      "location": "Körslättabäckens våtmarker",
-      "lat": 56.093059657874605,
-      "lng": 13.065669791540584
-    }
-  },
-  {
-    "name": "Vaktel",
-    "latin": "Coturnix coturnix",
-    "taxoIndex": 30,
-    "skaneRec": "04-23",
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Vaktel",
-      "latin": "Coturnix coturnix",
-      "date": "2026-05-03",
-      "location": "Kungsgårdsmaderna",
-      "lat": 56.15343,
-      "lng": 13.06878
-    }
-  },
-  {
-    "name": "Höksångare",
-    "latin": "",
-    "taxoIndex": 9999,
-    "skaneRec": "05-09",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Grågås",
-    "latin": "Anser anser",
-    "taxoIndex": 8,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Grågås",
-      "latin": "Anser anser",
-      "date": "2026-01-28",
-      "location": "Tranarpsbron",
-      "lat": 56.18073,
-      "lng": 13.01804
-    }
-  },
-  {
-    "name": "Rödstrupig piplärka",
-    "latin": "Anthus cervinus",
-    "taxoIndex": 177,
-    "skaneRec": "05-01",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Större hackspett",
-    "latin": "Dendrocopos major",
-    "taxoIndex": 105,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Större hackspett",
-      "latin": "Dendrocopos major",
-      "date": "2026-01-30",
-      "location": "Högalid",
-      "lat": 56.09711,
-      "lng": 13.06836
-    }
-  },
-  {
-    "name": "Stjärtand",
-    "latin": "Anas acuta",
-    "taxoIndex": 26,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Stjärtand",
-      "latin": "Anas acuta",
-      "date": "2026-03-01",
-      "location": "Kungsgårdsmaderna",
-      "lat": 56.15343,
-      "lng": 13.06878
-    }
-  },
-  {
-    "name": "Gravand",
-    "latin": "Tadorna tadorna",
-    "taxoIndex": 14,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Gravand",
-      "latin": "Tadorna tadorna",
-      "date": "2026-02-27",
-      "location": "Kölebäckens mader, V Broby",
-      "lat": 56.12774509697216,
-      "lng": 12.868473108581973
-    }
-  },
-  {
-    "name": "Turkduva",
-    "latin": "Streptopelia decaocto",
-    "taxoIndex": 35,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Turkduva",
-      "latin": "Streptopelia decaocto",
-      "date": "2026-03-05",
-      "location": "Östra Storgatan i Kvidinge",
-      "lat": 56.133298631450046,
-      "lng": 13.054133737368847
-    }
-  },
-  {
-    "name": "Fasan",
-    "latin": "Phasianus colchicus",
-    "taxoIndex": 29,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Fasan",
-      "latin": "Phasianus colchicus",
-      "date": "2026-02-10",
-      "location": "Målarkalk, Hyllinge",
-      "lat": 56.101169833958345,
-      "lng": 12.871921799623898
-    }
-  },
-  {
-    "name": "Gråhakedopping",
-    "latin": "Podiceps grisegena",
-    "taxoIndex": 32,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Gråhakedopping",
-      "latin": "Podiceps grisegena",
-      "date": "2026-04-23",
-      "location": "Rönnbacka",
-      "lat": 56.168816409838804,
-      "lng": 13.030937554082303
-    }
-  },
-  {
-    "name": "Stenknäck",
-    "latin": "Coccothraustes coccothraustes",
-    "taxoIndex": 181,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Stenknäck",
-      "latin": "Coccothraustes coccothraustes",
-      "date": "2026-02-04",
-      "location": "Björnekullaskolan",
-      "lat": 56.13677,
-      "lng": 12.95158
-    }
-  },
-  {
     "name": "Bläsand",
     "latin": "Mareca penelope",
     "taxoIndex": 24,
@@ -996,615 +2194,6 @@
       "location": "Utloppet av Röda-diket",
       "lat": 56.14244190869201,
       "lng": 13.077277080127024
-    }
-  },
-  {
-    "name": "Buskskvätta",
-    "latin": "Saxicola rubetra",
-    "taxoIndex": 168,
-    "skaneRec": "04-12",
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Buskskvätta",
-      "latin": "Saxicola rubetra",
-      "date": "2026-04-21",
-      "location": "Kungsgårdsmaderna",
-      "lat": 56.15343,
-      "lng": 13.06878
-    }
-  },
-  {
-    "name": "Dubbeltrast",
-    "latin": "Turdus viscivorus",
-    "taxoIndex": 155,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Dubbeltrast",
-      "latin": "Turdus viscivorus",
-      "date": "2026-03-01",
-      "location": "Körslättabäckens våtmarker",
-      "lat": 56.093059657874605,
-      "lng": 13.065669791540584
-    }
-  },
-  {
-    "name": "Småspov",
-    "latin": "Numenius phaeopus",
-    "taxoIndex": 51,
-    "skaneRec": "03-22",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Havsörn",
-    "latin": "Haliaeetus albicilla",
-    "taxoIndex": 98,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Havsörn",
-      "latin": "Haliaeetus albicilla",
-      "date": "2026-01-22",
-      "location": "Sönnarslöv",
-      "lat": 56.12868,
-      "lng": 13.08559
-    }
-  },
-  {
-    "name": "Sommargylling",
-    "latin": "",
-    "taxoIndex": 9999,
-    "skaneRec": "05-03",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Svart rödstjärt",
-    "latin": "Phoenicurus ochruros",
-    "taxoIndex": 166,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Svart rödstjärt",
-      "date": "2026-05-14",
-      "location": "Malmgatan, Industriområdet",
-      "observer": "Håkan Karlsson",
-      "status": "confirmed",
-      "time": "05:30",
-      "latin": "Phoenicurus ochruros",
-      "lat": 56.12542568564323,
-      "lng": 12.922705175235263
-    }
-  },
-  {
-    "name": "Vinterhämpling",
-    "latin": "Linaria flavirostris",
-    "taxoIndex": 185,
-    "skaneRec": "04-30",
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Vinterhämpling",
-      "latin": "Linaria flavirostris",
-      "date": "2026-02-16",
-      "location": "Vångarna",
-      "lat": 56.13335909031484,
-      "lng": 13.085150154227945
-    }
-  },
-  {
-    "name": "Törnsångare",
-    "latin": "Curruca communis",
-    "taxoIndex": 145,
-    "skaneRec": "04-19",
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Törnsångare",
-      "latin": "Curruca communis",
-      "date": "2026-05-02",
-      "location": "Tomarps Ene",
-      "lat": 56.1487,
-      "lng": 13.07359
-    }
-  },
-  {
-    "name": "Lappsparv",
-    "latin": "",
-    "taxoIndex": 9999,
-    "skaneRec": "05-23",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Bivråk",
-    "latin": "Pernis apivorus",
-    "taxoIndex": 88,
-    "skaneRec": "04-29",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Stäpphök",
-    "latin": "Circus macrourus",
-    "taxoIndex": 93,
-    "skaneRec": "04-04",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Tornfalk",
-    "latin": "Falco tinnunculus",
-    "taxoIndex": 107,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Tornfalk",
-      "latin": "Falco tinnunculus",
-      "date": "2026-01-28",
-      "location": "Killåkravägen",
-      "lat": 56.16593,
-      "lng": 13.01946
-    }
-  },
-  {
-    "name": "Sothöna",
-    "latin": "Fulica atra",
-    "taxoIndex": 44,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Sothöna",
-      "latin": "Fulica atra",
-      "date": "2026-04-12",
-      "location": "Ängsgården",
-      "lat": 56.12001,
-      "lng": 12.92422
-    }
-  },
-  {
-    "name": "Svarthätta",
-    "latin": "Sylvia atricapilla",
-    "taxoIndex": 143,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "order": 3,
-      "species": "Svarthätta",
-      "latin": "Sylvia atricapilla",
-      "date": "2026-04-21",
-      "location": "Östra vägen, Åstorp",
-      "lat": 56.13671788511213,
-      "lng": 12.962609736539072
-    }
-  },
-  {
-    "name": "Fiskgjuse",
-    "latin": "Pandion haliaetus",
-    "taxoIndex": 87,
-    "skaneRec": "03-17",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Rapphöna",
-    "latin": "Perdix perdix",
-    "taxoIndex": 28,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Rapphöna",
-      "latin": "Perdix perdix",
-      "date": "2026-02-13",
-      "location": "Tomarps kungsgård",
-      "lat": 56.149612,
-      "lng": 13.0625373
-    }
-  },
-  {
-    "name": "Småfläckig sumphöna",
-    "latin": "Porzana porzana",
-    "taxoIndex": 42,
-    "skaneRec": "04-02",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Enkelbeckasin",
-    "latin": "Gallinago gallinago",
-    "taxoIndex": 57,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Enkelbeckasin",
-      "latin": "Gallinago gallinago",
-      "date": "2026-03-05",
-      "location": "Kungsgårdsmaderna",
-      "lat": 56.15343,
-      "lng": 13.06878
-    }
-  },
-  {
-    "name": "Bergfink",
-    "latin": "Fringilla montifringilla",
-    "taxoIndex": 179,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Bergfink",
-      "latin": "Fringilla montifringilla",
-      "date": "2026-03-14",
-      "location": "Körslättabäckens våtmarker",
-      "lat": 56.093059657874605,
-      "lng": 13.065669791540584
-    }
-  },
-  {
-    "name": "Brushane",
-    "latin": "Calidris pugnax",
-    "taxoIndex": 64,
-    "skaneRec": "03-15",
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Brushane",
-      "latin": "Calidris pugnax",
-      "date": "2026-03-17",
-      "location": "Dynget",
-      "lat": 56.183486839903935,
-      "lng": 13.013507219597335
-    }
-  },
-  {
-    "name": "Farhult Mona Hansson",
-    "latin": "",
-    "taxoIndex": 9999,
-    "skaneRec": "05-03",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Grönsångare",
-    "latin": "Phylloscopus sibilatrix",
-    "taxoIndex": 138,
-    "skaneRec": "04-12",
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Grönsångare",
-      "latin": "Phylloscopus sibilatrix",
-      "date": "2026-05-08",
-      "location": "Fåraböke",
-      "lat": 56.07789001813259,
-      "lng": 13.067594119415102
-    }
-  },
-  {
-    "name": "Rörsångare",
-    "latin": "Acrocephalus scirpaceus",
-    "taxoIndex": 132,
-    "skaneRec": "04-16",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Skräntärna",
-    "latin": "",
-    "taxoIndex": 9999,
-    "skaneRec": "03-19",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Dubbelbeckasin",
-    "latin": "Gallinago media",
-    "taxoIndex": 56,
-    "skaneRec": "04-27",
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Dubbelbeckasin",
-      "latin": "Gallinago media",
-      "date": "2026-05-08",
-      "location": "Kungsgårdsmaderna",
-      "lat": 56.15343,
-      "lng": 13.06878
-    }
-  },
-  {
-    "name": "Kentsk tärna",
-    "latin": "",
-    "taxoIndex": 9999,
-    "skaneRec": "03-11",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Sidensvans",
-    "latin": "Bombycilla garrulus",
-    "taxoIndex": 146,
-    "skaneRec": "05-30",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Klippduva (tamduva)",
-    "latin": "Columba livia, domesticated populations",
-    "taxoIndex": 37,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Klippduva (tamduva)",
-      "latin": "Columba livia",
-      "date": "2026-01-26",
-      "location": "Rörspjäll",
-      "lat": 56.13477,
-      "lng": 13.01199
-    }
-  },
-  {
-    "name": "Strömstare",
-    "latin": "Cinclus cinclus",
-    "taxoIndex": 154,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Strömstare",
-      "latin": "Cinclus cinclus",
-      "date": "2026-02-22",
-      "location": "Klövaravinen",
-      "lat": 56.09126322298655,
-      "lng": 13.102010171371758
-    }
-  },
-  {
-    "name": "Varfågel",
-    "latin": "Lanius excubitor",
-    "taxoIndex": 112,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Varfågel",
-      "latin": "Lanius excubitor",
-      "date": "2026-03-01",
-      "location": "Madkärr, Tomarp",
-      "lat": 56.16336146917374,
-      "lng": 13.062392835112023
-    }
-  },
-  {
-    "name": "Mindre strandpipare",
-    "latin": "Thinornis dubius",
-    "taxoIndex": 49,
-    "skaneRec": "03-30",
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Mindre strandpipare",
-      "latin": "Thinornis dubius",
-      "date": "2026-04-10",
-      "location": "Dynget",
-      "lat": 56.183486839903935,
-      "lng": 13.013507219597335
-    }
-  },
-  {
-    "name": "Småtärna",
-    "latin": "",
-    "taxoIndex": 9999,
-    "skaneRec": "03-30",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Gök",
-    "latin": "Cuculus canorus",
-    "taxoIndex": 33,
-    "skaneRec": "04-22",
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Gök",
-      "latin": "Cuculus canorus",
-      "date": "2026-05-05",
-      "location": "Rönnbacka",
-      "lat": 56.168816409838804,
-      "lng": 13.030937554082303
-    }
-  },
-  {
-    "name": "Småsnäppa",
-    "latin": "Calidris minuta",
-    "taxoIndex": 66,
-    "skaneRec": "03-15",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Berglärka",
-    "latin": "",
-    "taxoIndex": 9999,
-    "skaneRec": "05-02",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Kornknarr",
-    "latin": "Crex crex",
-    "taxoIndex": 41,
-    "skaneRec": "05-08",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Skata",
-    "latin": "Pica pica",
-    "taxoIndex": 115,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Skata",
-      "latin": "Pica pica",
-      "date": "2026-01-22",
-      "location": "Kvidinge",
-      "lat": 56.13675,
-      "lng": 13.0431
-    }
-  },
-  {
-    "name": "Sävsparv",
-    "latin": "Emberiza schoeniclus",
-    "taxoIndex": 195,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Sävsparv",
-      "latin": "Emberiza schoeniclus",
-      "date": "2026-03-02",
-      "location": "Kölebäckens mader, V Broby",
-      "lat": 56.12774509697216,
-      "lng": 12.868473108581973
-    }
-  },
-  {
-    "name": "Nattskärra",
-    "latin": "Caprimulgus europaeus",
-    "taxoIndex": 81,
-    "skaneRec": "04-29",
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Nattskärra",
-      "date": "2026-05-15",
-      "location": "Körslätta mosse",
-      "observer": "Håkan Karlsson",
-      "status": "confirmed",
-      "time": "23:00",
-      "latin": "Caprimulgus europaeus",
-      "lat": 56.09124965751413,
-      "lng": 13.058212865484588,
-      "notes": "1 ex., spinnande/spelande"
-    }
-  },
-  {
-    "name": "Ängspiplärka",
-    "latin": "Anthus pratensis",
-    "taxoIndex": 178,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Ängspiplärka",
-      "latin": "Anthus pratensis",
-      "date": "2026-03-06",
-      "location": "Kungsgårdsmaderna",
-      "lat": 56.15343,
-      "lng": 13.06878
-    }
-  },
-  {
-    "name": "Stare",
-    "latin": "Sturnus vulgaris",
-    "taxoIndex": 153,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Stare",
-      "latin": "Sturnus vulgaris",
-      "date": "2026-02-27",
-      "location": "Kölebäckens mader, V Broby",
-      "lat": 56.12774509697216,
-      "lng": 12.868473108581973
-    }
-  },
-  {
-    "name": "Kustlabb",
-    "latin": "",
-    "taxoIndex": 9999,
-    "skaneRec": "03-03",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Korp",
-    "latin": "Corvus corax",
-    "taxoIndex": 119,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Korp",
-      "latin": "Corvus corax",
-      "date": "2026-01-30",
-      "location": "Grustagen, Maglaby",
-      "lat": 56.11749,
-      "lng": 13.06674
-    }
-  },
-  {
-    "name": "Steglits",
-    "latin": "Carduelis carduelis",
-    "taxoIndex": 191,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Steglits",
-      "latin": "Carduelis carduelis",
-      "date": "2026-02-19",
-      "location": "Röda smedja, Kvidinge",
-      "lat": 56.14176,
-      "lng": 13.059863
-    }
-  },
-  {
-    "name": "Taltrast",
-    "latin": "Turdus philomelos",
-    "taxoIndex": 156,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Taltrast",
-      "latin": "Turdus philomelos",
-      "date": "2026-03-25",
-      "location": "Körslättabäckens våtmarker",
-      "lat": 56.093059657874605,
-      "lng": 13.065669791540584
-    }
-  },
-  {
-    "name": "Trana",
-    "latin": "Grus grus",
-    "taxoIndex": 39,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Trana",
-      "latin": "Grus grus",
-      "date": "2026-03-01",
-      "location": "Körslättabäckens våtmarker",
-      "lat": 56.093059657874605,
-      "lng": 13.065669791540584
-    }
-  },
-  {
-    "name": "Fjällvråk",
-    "latin": "Buteo lagopus",
-    "taxoIndex": 99,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Fjällvråk",
-      "latin": "Buteo lagopus",
-      "date": "2026-02-05",
-      "location": "Flodarna",
-      "lat": 56.16532231534232,
-      "lng": 12.984207625328134
-    }
-  },
-  {
-    "name": "Trädgårdssångare",
-    "latin": "Sylvia borin",
-    "taxoIndex": 142,
-    "skaneRec": "04-29",
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Trädgårdssångare",
-      "latin": "Sylvia borin",
-      "date": "2026-05-08",
-      "location": "Rönnbacka",
-      "lat": 56.168816409838804,
-      "lng": 13.030937554082303
     }
   },
   {
@@ -1624,12 +2213,72 @@
     }
   },
   {
-    "name": "Vassångare",
+    "name": "Björktrast",
+    "latin": "Turdus pilaris",
+    "taxoIndex": 159,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Björktrast",
+      "latin": "Turdus pilaris",
+      "date": "2026-03-10",
+      "location": "Körslättabäckens våtmarker",
+      "lat": 56.093059657874605,
+      "lng": 13.065669791540584
+    }
+  },
+  {
+    "name": "Fältpiplärka",
     "latin": "",
     "taxoIndex": 9999,
-    "skaneRec": "04-14",
+    "skaneRec": "04-13",
     "astorpHist": null,
     "obs2026": null
+  },
+  {
+    "name": "Dubbeltrast",
+    "latin": "Turdus viscivorus",
+    "taxoIndex": 155,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Dubbeltrast",
+      "latin": "Turdus viscivorus",
+      "date": "2026-03-01",
+      "location": "Körslättabäckens våtmarker",
+      "lat": 56.093059657874605,
+      "lng": 13.065669791540584
+    }
+  },
+  {
+    "name": "Talgoxe",
+    "latin": "Parus major",
+    "taxoIndex": 122,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Talgoxe",
+      "latin": "Parus major",
+      "date": "2026-01-24",
+      "location": "Kvidinge",
+      "lat": 56.13675,
+      "lng": 13.0431
+    }
+  },
+  {
+    "name": "Ängspiplärka",
+    "latin": "Anthus pratensis",
+    "taxoIndex": 178,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Ängspiplärka",
+      "latin": "Anthus pratensis",
+      "date": "2026-03-06",
+      "location": "Kungsgårdsmaderna",
+      "lat": 56.15343,
+      "lng": 13.06878
+    }
   },
   {
     "name": "Spillkråka",
@@ -1647,760 +2296,20 @@
     }
   },
   {
-    "name": "Gärdsmyg",
-    "latin": "Troglodytes troglodytes",
-    "taxoIndex": 152,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Gärdsmyg",
-      "latin": "Troglodytes troglodytes",
-      "date": "2026-01-23",
-      "location": "Kvidinge",
-      "lat": 56.13675,
-      "lng": 13.0431
-    }
-  },
-  {
-    "name": "Brun kärrhök",
-    "latin": "Circus aeruginosus",
-    "taxoIndex": 95,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Brun kärrhök",
-      "latin": "Circus aeruginosus",
-      "date": "2026-04-10",
-      "location": "Backadal, Kärrarp",
-      "lat": 56.141628953503115,
-      "lng": 13.01111255477116
-    }
-  },
-  {
-    "name": "Sävsångare",
-    "latin": "Acrocephalus schoenobaenus",
-    "taxoIndex": 130,
-    "skaneRec": "04-12",
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Sävsångare",
-      "date": "2026-05-14",
-      "location": "Dammen, Krangatan",
-      "observer": "Håkan Karlsson",
-      "status": "confirmed",
-      "time": "05:15",
-      "latin": "Acrocephalus schoenobaenus",
-      "lat": 56.12002323331779,
-      "lng": 12.901032209138247
-    }
-  },
-  {
-    "name": "Koltrast",
-    "latin": "Turdus merula",
-    "taxoIndex": 158,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Koltrast",
-      "latin": "Turdus merula",
-      "date": "2026-01-22",
-      "location": "Kvidinge",
-      "lat": 56.13675,
-      "lng": 13.0431
-    }
-  },
-  {
-    "name": "Spovsnäppa",
-    "latin": "",
-    "taxoIndex": 9999,
-    "skaneRec": "04-29",
+    "name": "Småsnäppa",
+    "latin": "Calidris minuta",
+    "taxoIndex": 66,
+    "skaneRec": "03-15",
     "astorpHist": null,
     "obs2026": null
   },
   {
-    "name": "Ägretthäger",
-    "latin": "Ardea alba",
-    "taxoIndex": 79,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Ägretthäger",
-      "latin": "Ardea alba",
-      "date": "2026-02-09",
-      "location": "Bron mot Klippan",
-      "lat": 56.13312,
-      "lng": 13.09428
-    }
-  },
-  {
-    "name": "Kanadagås",
-    "latin": "Branta canadensis",
-    "taxoIndex": 5,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Kanadagås",
-      "latin": "Branta canadensis",
-      "date": "2026-01-25",
-      "location": "Kungsgårdsmaderna",
-      "lat": 56.15343,
-      "lng": 13.06878
-    }
-  },
-  {
-    "name": "Järnsparv",
-    "latin": "Prunella modularis",
-    "taxoIndex": 170,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Järnsparv",
-      "latin": "Prunella modularis",
-      "date": "2026-04-01",
-      "location": "Körslätta mosse",
-      "lat": 56.09125,
-      "lng": 13.05821
-    }
-  },
-  {
-    "name": "Ringduva",
-    "latin": "Columba palumbus",
-    "taxoIndex": 36,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Ringduva",
-      "latin": "Columba palumbus",
-      "date": "2026-01-31",
-      "location": "Prästamarken",
-      "lat": 56.14148,
-      "lng": 13.04893
-    }
-  },
-  {
-    "name": "Skogssnäppa",
-    "latin": "Tringa ochropus",
-    "taxoIndex": 59,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Skogssnäppa",
-      "latin": "Tringa ochropus",
-      "date": "2026-03-27",
-      "location": "Madkärr, Tomarp",
-      "lat": 56.16336,
-      "lng": 13.06239
-    }
-  },
-  {
-    "name": "Pungmes",
-    "latin": "",
-    "taxoIndex": 9999,
-    "skaneRec": "03-10",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Grönsiska",
-    "latin": "Spinus spinus",
-    "taxoIndex": 193,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Grönsiska",
-      "latin": "Spinus spinus",
-      "date": "2026-01-30",
-      "location": "Körslättaravinen",
-      "lat": 56.09874,
-      "lng": 13.07474
-    }
-  },
-  {
-    "name": "Gräshoppsångare",
-    "latin": "Locustella naevia",
-    "taxoIndex": 133,
-    "skaneRec": "04-23",
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Gräshoppsångare",
-      "latin": "Locustella naevia",
-      "date": "2026-05-03",
-      "location": "Kungsgårdsmaderna",
-      "lat": 56.15343,
-      "lng": 13.06878
-    }
-  },
-  {
-    "name": "Brunand",
-    "latin": "Aythya ferina",
-    "taxoIndex": 19,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Brunand",
-      "latin": "Aythya ferina",
-      "date": "2026-03-02",
-      "location": "Kungsgårdsmaderna",
-      "lat": 56.15343,
-      "lng": 13.06878
-    }
-  },
-  {
-    "name": "Smådopping",
-    "latin": "Tachybaptus ruficollis",
-    "taxoIndex": 31,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Smådopping",
-      "latin": "Tachybaptus ruficollis",
-      "date": "2026-02-21",
-      "location": "Rönne å, Kungsgårdsmaderna",
-      "lat": 56.156655789969676,
-      "lng": 13.069328770839913
-    }
-  },
-  {
-    "name": "Grönfink",
-    "latin": "Chloris chloris",
-    "taxoIndex": 184,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Grönfink",
-      "latin": "Chloris chloris",
-      "date": "2026-02-09",
-      "location": "Kvidinge",
-      "lat": 56.136750782641876,
-      "lng": 13.043105305042882
-    }
-  },
-  {
-    "name": "Sånglärka",
-    "latin": "Alauda arvensis",
-    "taxoIndex": 128,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Sånglärka",
-      "latin": "Alauda arvensis",
-      "date": "2026-02-27",
-      "location": "Kölebäckens mader, V Broby",
-      "lat": 56.12774509697216,
-      "lng": 12.868473108581973
-    }
-  },
-  {
-    "name": "Mosnäppa",
-    "latin": "Calidris temminckii",
-    "taxoIndex": 65,
-    "skaneRec": "04-18",
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Mosnäppa",
-      "latin": "Calidris temminckii",
-      "date": "2026-05-05",
-      "location": "Rönnbacka",
-      "lat": 56.168816409838804,
-      "lng": 13.030937554082303
-    }
-  },
-  {
-    "name": "Entita",
-    "latin": "Poecile palustris",
-    "taxoIndex": 125,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Entita",
-      "latin": "Poecile palustris",
-      "date": "2026-02-18",
-      "location": "NV Mosshult",
-      "lat": 56.09095485579307,
-      "lng": 13.050526620868753
-    }
-  },
-  {
-    "name": "Ängshök",
-    "latin": "",
-    "taxoIndex": 9999,
-    "skaneRec": "04-18",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Kungsfågel",
-    "latin": "Regulus regulus",
-    "taxoIndex": 148,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Kungsfågel",
-      "latin": "Regulus regulus",
-      "date": "2026-03-17",
-      "location": "Fåraböke",
-      "lat": 56.07789001813259,
-      "lng": 13.067594119415102
-    }
-  },
-  {
-    "name": "Större strandpipare",
-    "latin": "Charadrius hiaticula",
-    "taxoIndex": 48,
-    "skaneRec": "02-09",
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Större strandpipare",
-      "latin": "Charadrius hiaticula",
-      "date": "2026-04-07",
-      "location": "Madkärr, Tomarp",
-      "lat": 56.16336146917374,
-      "lng": 13.062392835112023
-    }
-  },
-  {
-    "name": "Hussvala",
-    "latin": "Delichon urbicum",
-    "taxoIndex": 136,
-    "skaneRec": "03-02",
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Hussvala",
-      "latin": "Delichon urbicum",
-      "date": "2026-04-24",
-      "location": "Körslättabäckens våtmarker",
-      "lat": 56.093059657874605,
-      "lng": 13.065669791540584
-    }
-  },
-  {
-    "name": "Gransångare",
-    "latin": "Phylloscopus collybita",
-    "taxoIndex": 140,
-    "skaneRec": "02-28",
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Gransångare",
-      "latin": "Phylloscopus collybita",
-      "date": "2026-03-21",
-      "location": "Högalidshöjden",
-      "lat": 56.09903738445198,
-      "lng": 13.062423259770256
-    }
-  },
-  {
-    "name": "Svartmes",
-    "latin": "Periparus ater",
-    "taxoIndex": 123,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Svartmes",
-      "latin": "Periparus ater",
-      "date": "2026-03-06",
-      "location": "Fåraböke",
-      "lat": 56.07789001813259,
-      "lng": 13.067594119415102
-    }
-  },
-  {
-    "name": "Gulärla",
-    "latin": "Motacilla flava",
-    "taxoIndex": 174,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Gulärla",
-      "latin": "Motacilla flava",
-      "date": "2026-04-23",
-      "location": "Rönnbacka",
-      "lat": 56.168816409838804,
-      "lng": 13.030937554082303
-    }
-  },
-  {
-    "name": "Grönbena",
-    "latin": "Tringa glareola",
-    "taxoIndex": 60,
-    "skaneRec": "04-08",
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Grönbena",
-      "latin": "Tringa glareola",
-      "date": "2026-04-23",
-      "location": "Rönnbacka",
-      "lat": 56.168816409838804,
-      "lng": 13.030937554082303
-    }
-  },
-  {
-    "name": "Tornseglare",
-    "latin": "Apus apus",
-    "taxoIndex": 82,
-    "skaneRec": "04-19",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Härmsångare",
-    "latin": "Hippolais icterina",
-    "taxoIndex": 129,
-    "skaneRec": "05-02",
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Härmsångare",
-      "date": "2026-05-14",
-      "location": "Tomarps Ene",
-      "observer": "Håkan Karlsson",
-      "status": "confirmed",
-      "latin": "Hippolais icterina",
-      "lat": 56.1487,
-      "lng": 13.07359
-    }
-  },
-  {
-    "name": "Forsärla",
-    "latin": "Motacilla cinerea",
-    "taxoIndex": 173,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Forsärla",
-      "latin": "Motacilla cinerea",
-      "date": "2026-03-09",
-      "location": "Tomarps Ene",
-      "lat": 56.1487,
-      "lng": 13.07359
-    }
-  },
-  {
-    "name": "Mindre flugsnappare",
-    "latin": "Ficedula parva",
-    "taxoIndex": 164,
-    "skaneRec": "05-01",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Sydlig gulärla",
-    "latin": "",
-    "taxoIndex": 9999,
-    "skaneRec": "04-07",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Snösparv",
-    "latin": "Plectrophenax nivalis",
-    "taxoIndex": 194,
-    "skaneRec": "04-16",
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Snösparv",
-      "latin": "Plectrophenax nivalis",
-      "date": "2026-03-14",
-      "location": "Tomarps kungsgård",
-      "lat": 56.149612,
-      "lng": 13.0625373
-    }
-  },
-  {
-    "name": "Göktyta",
-    "latin": "Jynx torquilla",
-    "taxoIndex": 102,
-    "skaneRec": "04-03",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Kungsörn",
-    "latin": "Aquila chrysaetos",
-    "taxoIndex": 90,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Kungsörn",
-      "latin": "Aquila chrysaetos",
-      "date": "2026-02-27",
-      "location": "Kungsgårdsmaderna",
-      "lat": 56.15343,
-      "lng": 13.06878
-    }
-  },
-  {
-    "name": "Gröngöling",
-    "latin": "Picus viridis",
-    "taxoIndex": 103,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Gröngöling",
-      "latin": "Picus viridis",
-      "date": "2026-02-09",
-      "location": "Tomarps Ene",
-      "lat": 56.1487,
-      "lng": 13.07359
-    }
-  },
-  {
-    "name": "Skärfläcka",
-    "latin": "Recurvirostra avosetta",
-    "taxoIndex": 45,
-    "skaneRec": "03-02",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Sångsvan",
-    "latin": "Cygnus cygnus",
-    "taxoIndex": 2,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Sångsvan",
-      "latin": "Cygnus cygnus",
-      "date": "2026-01-25",
-      "location": "Kungsgårdsmaderna",
-      "lat": 56.15343,
-      "lng": 13.06878
-    }
-  },
-  {
-    "name": "Tofsvipa",
-    "latin": "Vanellus vanellus",
-    "taxoIndex": 50,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Tofsvipa",
-      "latin": "Vanellus vanellus",
-      "date": "2026-02-24",
-      "location": "Kungsgårdsmaderna",
-      "lat": 56.15343,
-      "lng": 13.06878
-    }
-  },
-  {
-    "name": "Aftonfalk",
-    "latin": "Falco vespertinus",
-    "taxoIndex": 108,
-    "skaneRec": "04-10",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Röd glada",
-    "latin": "Milvus milvus",
-    "taxoIndex": 96,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Röd glada",
-      "latin": "Milvus milvus",
-      "date": "2026-01-23",
-      "location": "Bron mot Klippan",
-      "lat": 56.13312,
-      "lng": 13.09428
-    }
-  },
-  {
-    "name": "Ortolansparv",
-    "latin": "",
-    "taxoIndex": 9999,
-    "skaneRec": "04-24",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Skogsgås",
-    "latin": "Anser fabalis",
-    "taxoIndex": 12,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Skogsgås",
-      "latin": "Anser fabalis",
-      "date": "2026-02-13",
-      "location": "Tomarps kungsgård",
-      "lat": 56.149612,
-      "lng": 13.0625373
-    }
-  },
-  {
-    "name": "Blå kärrhök",
-    "latin": "Circus cyaneus",
-    "taxoIndex": 94,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Blå kärrhök",
-      "latin": "Circus cyaneus",
-      "date": "2026-02-15",
-      "location": "Bron mot Klippan",
-      "lat": 56.13312,
-      "lng": 13.09428
-    }
-  },
-  {
-    "name": "Gråhäger",
-    "latin": "Ardea cinerea",
-    "taxoIndex": 80,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Gråhäger",
-      "latin": "Ardea cinerea",
-      "date": "2026-02-24",
-      "location": "Björkenäs mosse",
-      "lat": 56.14072103796272,
-      "lng": 13.031572672305218
-    }
-  },
-  {
-    "name": "Vigg",
-    "latin": "Aythya fuligula",
-    "taxoIndex": 20,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Vigg",
-      "latin": "Aythya fuligula",
-      "date": "2026-02-21",
-      "location": "Stora fältet - Sånna/Egnahem/Tomarp",
-      "lat": 56.150295674056615,
-      "lng": 13.051556814010734
-    }
-  },
-  {
-    "name": "Smalnäbbad simsna",
-    "latin": "",
-    "taxoIndex": 9999,
-    "skaneRec": "05-12",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Trädpiplärka",
-    "latin": "Anthus trivialis",
-    "taxoIndex": 176,
+    "name": "Stäpphök",
+    "latin": "Circus macrourus",
+    "taxoIndex": 93,
     "skaneRec": "04-04",
     "astorpHist": null,
-    "obs2026": {
-      "species": "Trädpiplärka",
-      "latin": "Anthus trivialis",
-      "date": "2026-04-24",
-      "location": "Körslättabäckens våtmarker",
-      "lat": 56.093059657874605,
-      "lng": 13.065669791540584
-    }
-  },
-  {
-    "name": "Svarttärna",
-    "latin": "",
-    "taxoIndex": 9999,
-    "skaneRec": "04-29",
-    "astorpHist": null,
     "obs2026": null
-  },
-  {
-    "name": "Flodsångare",
-    "latin": "",
-    "taxoIndex": 9999,
-    "skaneRec": "05-07",
-    "astorpHist": null,
-    "obs2026": null
-  },
-  {
-    "name": "Skogsduva",
-    "latin": "Columba oenas",
-    "taxoIndex": 38,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Skogsduva",
-      "latin": "Columba oenas",
-      "date": "2026-02-16",
-      "location": "Vångarna",
-      "lat": 56.13335909031484,
-      "lng": 13.085150154227945
-    }
-  },
-  {
-    "name": "Skrattmås",
-    "latin": "Chroicocephalus ridibundus",
-    "taxoIndex": 68,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Skrattmås",
-      "latin": "Chroicocephalus ridibundus",
-      "date": "2026-03-02",
-      "location": "Kölebäckens mader, V Broby",
-      "lat": 56.12774509697216,
-      "lng": 12.868473108581973
-    }
-  },
-  {
-    "name": "Vitkindad gås",
-    "latin": "Branta leucopsis",
-    "taxoIndex": 6,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Vitkindad gås",
-      "latin": "Branta leucopsis",
-      "date": "2026-02-09",
-      "location": "Tomarps mader",
-      "lat": 56.15596454204231,
-      "lng": 13.0706159722571
-    }
-  },
-  {
-    "name": "Svartvit flugsnappare",
-    "latin": "Ficedula hypoleuca",
-    "taxoIndex": 165,
-    "skaneRec": "04-08",
-    "astorpHist": null,
-    "obs2026": {
-      "order": 1,
-      "species": "Svartvit flugsnappare",
-      "date": "2026-04-20",
-      "location": "Maglaby",
-      "notes": "1 hane",
-      "lat": 56.108898895955186,
-      "lng": 13.052546726545025,
-      "latin": "Ficedula hypoleuca"
-    }
-  },
-  {
-    "name": "Gråsiska",
-    "latin": "Acanthis flammea",
-    "taxoIndex": 187,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Gråsiska",
-      "latin": "Acanthis flammea",
-      "date": "2026-03-02",
-      "location": "Björkenäs mosse",
-      "lat": 56.14072103796272,
-      "lng": 13.031572672305218
-    }
-  },
-  {
-    "name": "Kattuggla",
-    "latin": "Strix aluco",
-    "taxoIndex": 86,
-    "skaneRec": null,
-    "astorpHist": null,
-    "obs2026": {
-      "species": "Kattuggla",
-      "latin": "Strix aluco",
-      "date": "2026-03-02",
-      "location": "Fåraböke",
-      "lat": 56.07789001813259,
-      "lng": 13.067594119415102
-    }
   },
   {
     "name": "Råka",
@@ -2418,41 +2327,132 @@
     }
   },
   {
-    "name": "Svartsnäppa",
-    "latin": "Tringa erythropus",
-    "taxoIndex": 62,
-    "skaneRec": "03-04",
+    "name": "Skogsduva",
+    "latin": "Columba oenas",
+    "taxoIndex": 38,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Skogsduva",
+      "latin": "Columba oenas",
+      "date": "2026-02-16",
+      "location": "Vångarna",
+      "lat": 56.13335909031484,
+      "lng": 13.085150154227945
+    }
+  },
+  {
+    "name": "Svarthätta",
+    "latin": "Sylvia atricapilla",
+    "taxoIndex": 143,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "order": 3,
+      "species": "Svarthätta",
+      "latin": "Sylvia atricapilla",
+      "date": "2026-04-21",
+      "location": "Östra vägen, Åstorp",
+      "lat": 56.13671788511213,
+      "lng": 12.962609736539072
+    }
+  },
+  {
+    "name": "Trädpiplärka",
+    "latin": "Anthus trivialis",
+    "taxoIndex": 176,
+    "skaneRec": "04-04",
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Trädpiplärka",
+      "latin": "Anthus trivialis",
+      "date": "2026-04-24",
+      "location": "Körslättabäckens våtmarker",
+      "lat": 56.093059657874605,
+      "lng": 13.065669791540584
+    }
+  },
+  {
+    "name": "Brandkronad kungsfågel",
+    "latin": "Regulus ignicapilla",
+    "taxoIndex": 147,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Brandkronad kungsfågel",
+      "latin": "Regulus ignicapilla",
+      "date": "2026-03-17",
+      "location": "Fåraböke",
+      "lat": 56.07789001813259,
+      "lng": 13.067594119415102
+    }
+  },
+  {
+    "name": "Gråsparv",
+    "latin": "Passer domesticus",
+    "taxoIndex": 172,
+    "skaneRec": null,
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Gråsparv",
+      "latin": "Passer domesticus",
+      "date": "2026-01-27",
+      "location": "Kvidinge",
+      "lat": 56.13675,
+      "lng": 13.0431
+    }
+  },
+  {
+    "name": "Ortolansparv",
+    "latin": "",
+    "taxoIndex": 9999,
+    "skaneRec": "04-24",
     "astorpHist": null,
     "obs2026": null
   },
   {
-    "name": "Mindre hackspett",
-    "latin": "Dryobates minor",
-    "taxoIndex": 106,
+    "name": "Kanadagås",
+    "latin": "Branta canadensis",
+    "taxoIndex": 5,
     "skaneRec": null,
     "astorpHist": null,
     "obs2026": {
-      "species": "Mindre hackspett",
-      "latin": "Dryobates minor",
-      "date": "2026-03-21",
-      "location": "Högalidshöjden",
-      "lat": 56.09903738445198,
-      "lng": 13.062423259770256
+      "species": "Kanadagås",
+      "latin": "Branta canadensis",
+      "date": "2026-01-25",
+      "location": "Kungsgårdsmaderna",
+      "lat": 56.15343,
+      "lng": 13.06878
     }
   },
   {
-    "name": "Hämpling",
-    "latin": "Linaria cannabina",
-    "taxoIndex": 186,
+    "name": "Gulsparv",
+    "latin": "Emberiza citrinella",
+    "taxoIndex": 197,
     "skaneRec": null,
     "astorpHist": null,
     "obs2026": {
-      "species": "Hämpling",
-      "latin": "Linaria cannabina",
-      "date": "2026-03-07",
-      "location": "Madkärr, Tomarp",
-      "lat": 56.16336146917374,
-      "lng": 13.062392835112023
+      "species": "Gulsparv",
+      "latin": "Emberiza citrinella",
+      "date": "2026-02-06",
+      "location": "Kvidinge",
+      "lat": 56.136750782641876,
+      "lng": 13.043105305042882
+    }
+  },
+  {
+    "name": "Ärtsångare",
+    "latin": "Curruca curruca",
+    "taxoIndex": 144,
+    "skaneRec": "04-10",
+    "astorpHist": null,
+    "obs2026": {
+      "species": "Ärtsångare",
+      "latin": "Curruca curruca",
+      "date": "2026-04-29",
+      "location": "Björnekullaskolan",
+      "lat": 56.13677,
+      "lng": 12.95158
     }
   }
 ]
