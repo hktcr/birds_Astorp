@@ -227,29 +227,26 @@
         </style>
 
         <div class="vader-tab-nav" id="vader-tab-nav">
-            <button class="vader-tab-btn active" data-target="tab-overblick">Överblick</button>
-            <button class="vader-tab-btn" data-target="tab-ljus">Ljus & Sol</button>
+            <button class="vader-tab-btn active" data-target="tab-overblick">Ljus & Överblick</button>
             <button class="vader-tab-btn" data-target="tab-temperatur">Temperatur</button>
             <button class="vader-tab-btn" data-target="tab-vind">Vind</button>
             <button class="vader-tab-btn" data-target="tab-vatten">Vatten & Mader</button>
         </div>
 
         <div class="vader-tabs-container" id="vader-tabs-container">
-            <!-- FLIK: ÖVERBLICK -->
+            <!-- FLIK: LJUS & ÖVERBLICK -->
             <div class="vader-tab-content active" id="tab-overblick">
-                <div class="vader-chart-box" id="chart-progress">
-                    <div class="vader-chart-label">Artframsteg</div>
-                    <canvas id="progress-chart"></canvas>
-                </div>
-            </div>
-
-            <!-- FLIK: LJUS & SOL -->
-            <div class="vader-tab-content" id="tab-ljus">
+                <!-- DYGNSHJULET (Nu direkt synligt) -->
                 <div class="dygn-widget">
                     <div class="dygn-wheel-wrap">
                         <canvas id="dygn-canvas"></canvas>
                     </div>
                     <div id="dygn-timetable"></div>
+                </div>
+
+                <div class="vader-chart-box" id="chart-progress" style="margin-top: 24px;">
+                    <div class="vader-chart-label">Artframsteg</div>
+                    <canvas id="progress-chart"></canvas>
                 </div>
             </div>
 
@@ -1413,8 +1410,6 @@
         switch(tabId) {
             case 'tab-overblick':
                 buildProgressChart();
-                break;
-            case 'tab-ljus':
                 if(window.buildTwilightChart) window.buildTwilightChart();
                 break;
             case 'tab-temperatur':
