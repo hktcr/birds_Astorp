@@ -19,8 +19,45 @@ Efter en genomgång av Skånes fågelfauna har jag identifierat 54 arter som utg
     gap: 1.5rem;
     margin-top: 2rem;
     padding-bottom: 4rem;
-    align-items: start;
+    align-items: stretch;
+}
+
+.bounty-card {
+    background: var(--bg-alt);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+    box-sizing: border-box;
+}
+.bounty-card.clickable {
+    cursor: pointer;
+}
+.bounty-card.clickable:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Flip card styling */
+.flip-wrapper {
     perspective: 1000px;
+    background: transparent;
+    cursor: pointer;
+    min-height: 270px;
+}
+.flip-wrapper:hover .bounty-card-container {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transform: translateY(-5px);
+}
+.flip-wrapper:hover .bounty-card-container.is-flipped {
+    transform: translateY(-5px) rotateY(180deg);
 }
 
 .bounty-card-container {
@@ -28,7 +65,8 @@ Efter en genomgång av Skånes fågelfauna har jag identifierat 54 arter som utg
     width: 100%;
     height: 100%;
     transform-style: preserve-3d;
-    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s;
+    border-radius: 8px;
 }
 
 .bounty-card-container.is-flipped {
@@ -50,30 +88,13 @@ Efter en genomgång av Skånes fågelfauna har jag identifierat 54 arter som utg
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
-}
-
-/* Base card styling applied to wrapper or individual faces */
-.bounty-wrapper {
-    position: relative;
-    min-height: 250px;
-    cursor: pointer;
-}
-
-.bounty-wrapper:hover .bounty-card-front,
-.bounty-wrapper:hover .bounty-card-back {
-    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
-}
-
-.bounty-wrapper:hover {
-    transform: translateY(-5px);
-    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .bounty-card-back {
     transform: rotateY(180deg);
-    background: rgba(34, 197, 94, 0.1); /* Ljusgrön bakgrund för baksidan */
+    background: rgba(34, 197, 94, 0.1);
     border-color: rgba(34, 197, 94, 0.8);
     display: flex;
     flex-direction: column;
@@ -97,52 +118,53 @@ Efter en genomgång av Skånes fågelfauna har jag identifierat 54 arter som utg
     margin-bottom: 1rem;
 }
 
-.bounty-card-front.heat-0 {
+/* Heat levels for ALL cards (normal + front of flip) */
+.heat-0 {
     border-color: rgba(56, 189, 248, 0.8);
     box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
 }
-.bounty-card-front.heat-0 .bounty-icon {
+.heat-0 .bounty-icon {
     filter: drop-shadow(0px 4px 8px rgba(56, 189, 248, 0.4));
     opacity: 0.8;
 }
 
-.bounty-card-front.heat-1 {
+.heat-1 {
     border-color: rgba(234, 179, 8, 0.8);
     box-shadow: 0 0 15px rgba(234, 179, 8, 0.2);
 }
-.bounty-card-front.heat-1 .bounty-icon {
+.heat-1 .bounty-icon {
     filter: drop-shadow(0px 4px 10px rgba(234, 179, 8, 0.5));
     opacity: 0.85;
 }
 
-.bounty-card-front.heat-2 {
+.heat-2 {
     border-color: rgba(249, 115, 22, 0.9);
     box-shadow: 0 0 25px rgba(249, 115, 22, 0.3), inset 0 0 15px rgba(249, 115, 22, 0.1);
 }
-.bounty-card-front.heat-2 .bounty-icon {
+.heat-2 .bounty-icon {
     filter: drop-shadow(0px 4px 10px rgba(249, 115, 22, 0.7));
     opacity: 0.95;
 }
 
-.bounty-card-front.heat-3 {
+.heat-3 {
     border-color: rgba(239, 68, 68, 1);
     box-shadow: 0 0 35px rgba(239, 68, 68, 0.4), inset 0 0 20px rgba(239, 68, 68, 0.2);
 }
-.bounty-card-front.heat-3 .bounty-icon {
+.heat-3 .bounty-icon {
     filter: drop-shadow(0px 4px 15px rgba(239, 68, 68, 0.9));
     opacity: 1;
 }
 
 /* Tomtkryss specific styling */
-.bounty-card-front.tomtkryss-card {
+.tomtkryss-card {
     border-color: rgba(34, 197, 94, 0.9);
     box-shadow: 0 0 25px rgba(34, 197, 94, 0.3), inset 0 0 15px rgba(34, 197, 94, 0.1);
 }
-.bounty-card-front.tomtkryss-card .bounty-icon {
+.tomtkryss-card .bounty-icon {
     filter: drop-shadow(0px 4px 10px rgba(34, 197, 94, 0.7));
     opacity: 0.95;
 }
-.bounty-card-front.tomtkryss-card .bounty-wanted {
+.tomtkryss-card .bounty-wanted {
     color: #15803d;
 }
 
@@ -304,31 +326,25 @@ Efter en genomgång av Skånes fågelfauna har jag identifierat 54 arter som utg
 </style>
 
 <div class="bounty-grid" id="bountyGrid">
-<div class="bounty-wrapper" onclick="openModal('102925', 'Skäggdopping')">
-<div class="bounty-card-front bounty-card clickable" data-unique-locs="55">
+<div class="bounty-card heat-logic clickable" data-unique-locs="55" onclick="openModal('102925', 'Skäggdopping')">
 <img class="bounty-icon" src="/images/profiles/102925.png?v=17" alt="Illustration of Skäggdopping">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Skäggdopping</div>
 <div class="bounty-latin">Podiceps cristatus</div>
 </div>
-</div>
-<div class="bounty-wrapper" onclick="openModal('100030', 'Svarttärna')">
-<div class="bounty-card-front bounty-card clickable" data-unique-locs="40">
+<div class="bounty-card heat-logic clickable" data-unique-locs="40" onclick="openModal('100030', 'Svarttärna')">
 <img class="bounty-icon" src="/images/profiles/100030.png?v=17" alt="Illustration of Svarttärna">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Svarttärna</div>
 <div class="bounty-latin">Chlidonias niger</div>
 </div>
-</div>
-<div class="bounty-wrapper" onclick="openModal('233849', 'Svarthakad buskskvätta')">
-<div class="bounty-card-front bounty-card clickable" data-unique-locs="33">
+<div class="bounty-card heat-logic clickable" data-unique-locs="33" onclick="openModal('233849', 'Svarthakad buskskvätta')">
 <img class="bounty-icon" src="/images/profiles/233849.png?v=17" alt="Illustration of Svarthakad buskskvätta">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Svarthakad buskskvätta</div>
 <div class="bounty-latin">Saxicola rubicola</div>
 </div>
-</div>
-<div class="bounty-wrapper" data-unique-locs="31" onclick="openModal('100075', 'Myrspov')">
+<div class="flip-wrapper heat-logic" data-unique-locs="31" onclick="openModal('100075', 'Myrspov')">
 <div class="bounty-card-container flip-card" id="flip-card-100075">
     <div class="bounty-card-front tomtkryss-card">
         <img class="bounty-icon" src="/images/profiles/100075.png?v=17" alt="Illustration of Myrspov">
@@ -343,55 +359,43 @@ Efter en genomgång av Skånes fågelfauna har jag identifierat 54 arter som utg
     </div>
 </div>
 </div>
-<div class="bounty-wrapper" onclick="openModal('102939', 'Småskrake')">
-<div class="bounty-card-front bounty-card clickable" data-unique-locs="30">
+<div class="bounty-card heat-logic clickable" data-unique-locs="30" onclick="openModal('102939', 'Småskrake')">
 <img class="bounty-icon" src="/images/profiles/102939.png?v=17" alt="Illustration of Småskrake">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Småskrake</div>
 <div class="bounty-latin">Mergus serrator</div>
 </div>
-</div>
-<div class="bounty-wrapper" onclick="openModal('102619', 'Silvertärna')">
-<div class="bounty-card-front bounty-card clickable" data-unique-locs="29">
+<div class="bounty-card heat-logic clickable" data-unique-locs="29" onclick="openModal('102619', 'Silvertärna')">
 <img class="bounty-icon" src="/images/profiles/102619.png?v=17" alt="Illustration of Silvertärna">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Silvertärna</div>
 <div class="bounty-latin">Sterna paradisaea</div>
 </div>
-</div>
-<div class="bounty-wrapper" onclick="openModal('100072', 'Dvärgmås')">
-<div class="bounty-card-front bounty-card clickable" data-unique-locs="27">
+<div class="bounty-card heat-logic clickable" data-unique-locs="27" onclick="openModal('100072', 'Dvärgmås')">
 <img class="bounty-icon" src="/images/profiles/100072.png?v=17" alt="Illustration of Dvärgmås">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Dvärgmås</div>
 <div class="bounty-latin">Hydrocoloeus minutus</div>
 </div>
-</div>
-<div class="bounty-wrapper" onclick="openModal('100133', 'Småtärna')">
-<div class="bounty-card-front bounty-card clickable" data-unique-locs="27">
+<div class="bounty-card heat-logic clickable" data-unique-locs="27" onclick="openModal('100133', 'Småtärna')">
 <img class="bounty-icon" src="/images/profiles/100133.png?v=17" alt="Illustration of Småtärna">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Småtärna</div>
 <div class="bounty-latin">Sternula albifrons</div>
 </div>
-</div>
-<div class="bounty-wrapper" onclick="openModal('100062', 'Storlom')">
-<div class="bounty-card-front bounty-card clickable" data-unique-locs="21">
+<div class="bounty-card heat-logic clickable" data-unique-locs="21" onclick="openModal('100062', 'Storlom')">
 <img class="bounty-icon" src="/images/profiles/100062.png?v=17" alt="Illustration of Storlom">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Storlom</div>
 <div class="bounty-latin">Gavia arctica</div>
 </div>
-</div>
-<div class="bounty-wrapper" onclick="openModal('100094', 'Sommargylling')">
-<div class="bounty-card-front bounty-card clickable" data-unique-locs="21">
+<div class="bounty-card heat-logic clickable" data-unique-locs="21" onclick="openModal('100094', 'Sommargylling')">
 <img class="bounty-icon" src="/images/profiles/100094.png?v=17" alt="Illustration of Sommargylling">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Sommargylling</div>
 <div class="bounty-latin">Oriolus oriolus</div>
 </div>
-</div>
-<div class="bounty-wrapper" data-unique-locs="19" onclick="openModal('102936', 'Sjöorre')">
+<div class="flip-wrapper heat-logic" data-unique-locs="19" onclick="openModal('102936', 'Sjöorre')">
 <div class="bounty-card-container flip-card" id="flip-card-102936">
     <div class="bounty-card-front tomtkryss-card">
         <img class="bounty-icon" src="/images/profiles/102936.png?v=17" alt="Illustration of Sjöorre">
@@ -406,349 +410,263 @@ Efter en genomgång av Skånes fågelfauna har jag identifierat 54 arter som utg
     </div>
 </div>
 </div>
-<div class="bounty-wrapper" onclick="openModal('205617', 'Kärrsnäppa')">
-<div class="bounty-card-front bounty-card clickable" data-unique-locs="19">
+<div class="bounty-card heat-logic clickable" data-unique-locs="19" onclick="openModal('205617', 'Kärrsnäppa')">
 <img class="bounty-icon" src="/images/profiles/205617.png?v=17" alt="Illustration of Kärrsnäppa">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Kärrsnäppa</div>
 <div class="bounty-latin">Calidris alpina</div>
 </div>
-</div>
-<div class="bounty-wrapper" onclick="openModal('100134', 'Skräntärna')">
-<div class="bounty-card-front bounty-card clickable" data-unique-locs="19">
+<div class="bounty-card heat-logic clickable" data-unique-locs="19" onclick="openModal('100134', 'Skräntärna')">
 <img class="bounty-icon" src="/images/profiles/100134.png?v=17" alt="Illustration of Skräntärna">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Skräntärna</div>
 <div class="bounty-latin">Hydroprogne caspia</div>
 </div>
-</div>
-<div class="bounty-wrapper" onclick="openModal('100063', 'Smålom')">
-<div class="bounty-card-front bounty-card clickable" data-unique-locs="18">
+<div class="bounty-card heat-logic clickable" data-unique-locs="18" onclick="openModal('100063', 'Smålom')">
 <img class="bounty-icon" src="/images/profiles/100063.png?v=17" alt="Illustration of Smålom">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Smålom</div>
 <div class="bounty-latin">Gavia stellata</div>
 </div>
-</div>
-<div class="bounty-wrapper" onclick="openModal('100097', 'Skäggmes')">
-<div class="bounty-card-front bounty-card clickable" data-unique-locs="14">
+<div class="bounty-card heat-logic clickable" data-unique-locs="14" onclick="openModal('100097', 'Skäggmes')">
 <img class="bounty-icon" src="/images/profiles/100097.png?v=17" alt="Illustration of Skäggmes">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Skäggmes</div>
 <div class="bounty-latin">Panurus biarmicus</div>
 </div>
-</div>
-<div class="bounty-wrapper" onclick="openModal('102109', 'Svärta')">
-<div class="bounty-card-front bounty-card clickable" data-unique-locs="9">
+<div class="bounty-card heat-logic clickable" data-unique-locs="9" onclick="openModal('102109', 'Svärta')">
 <img class="bounty-icon" src="/images/profiles/102109.png?v=17" alt="Illustration of Svärta">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Svärta</div>
 <div class="bounty-latin">Melanitta fusca</div>
 </div>
-</div>
-<div class="bounty-wrapper" onclick="openModal('103076', 'Vassångare')">
-<div class="bounty-card-front bounty-card clickable" data-unique-locs="9">
+<div class="bounty-card heat-logic clickable" data-unique-locs="9" onclick="openModal('103076', 'Vassångare')">
 <img class="bounty-icon" src="/images/profiles/103076.png?v=17" alt="Illustration of Vassångare">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Vassångare</div>
 <div class="bounty-latin">Locustella luscinioides</div>
 </div>
-</div>
-<div class="bounty-wrapper" onclick="openModal('102108', 'Alfågel')">
-<div class="bounty-card-front bounty-card clickable" data-unique-locs="8">
+<div class="bounty-card heat-logic clickable" data-unique-locs="8" onclick="openModal('102108', 'Alfågel')">
 <img class="bounty-icon" src="/images/profiles/102108.png?v=17" alt="Illustration of Alfågel">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Alfågel</div>
 <div class="bounty-latin">Clangula hyemalis</div>
 </div>
-</div>
-<div class="bounty-wrapper" onclick="openModal('100035', 'Ängshök')">
-<div class="bounty-card-front bounty-card clickable" data-unique-locs="5">
+<div class="bounty-card heat-logic clickable" data-unique-locs="5" onclick="openModal('100035', 'Ängshök')">
 <img class="bounty-icon" src="/images/profiles/100035.png?v=17" alt="Illustration of Ängshök">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Ängshök</div>
 <div class="bounty-latin">Circus pygargus</div>
 </div>
-</div>
-<div class="bounty-wrapper" onclick="openModal('103064', 'Kustpipare')">
-<div class="bounty-card-front bounty-card clickable" data-unique-locs="5">
+<div class="bounty-card heat-logic clickable" data-unique-locs="5" onclick="openModal('103064', 'Kustpipare')">
 <img class="bounty-icon" src="/images/profiles/103064.png?v=17" alt="Illustration of Kustpipare">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Kustpipare</div>
 <div class="bounty-latin">Pluvialis squatarola</div>
 </div>
-</div>
-<div class="bounty-wrapper" onclick="openModal('100143', 'Härfågel')">
-<div class="bounty-card-front bounty-card clickable" data-unique-locs="5">
+<div class="bounty-card heat-logic clickable" data-unique-locs="5" onclick="openModal('100143', 'Härfågel')">
 <img class="bounty-icon" src="/images/profiles/100143.png?v=17" alt="Illustration of Härfågel">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Härfågel</div>
 <div class="bounty-latin">Upupa epops</div>
 </div>
-</div>
-<div class="bounty-wrapper" onclick="openModal('100018', 'Rördrom')">
-<div class="bounty-card-front bounty-card clickable" data-unique-locs="4">
+<div class="bounty-card heat-logic clickable" data-unique-locs="4" onclick="openModal('100018', 'Rördrom')">
 <img class="bounty-icon" src="/images/profiles/100018.png?v=17" alt="Illustration of Rördrom">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Rördrom</div>
 <div class="bounty-latin">Botaurus stellaris</div>
 </div>
-</div>
-<div class="bounty-wrapper" onclick="openModal('103065', 'Kustsnäppa')">
-<div class="bounty-card-front bounty-card clickable" data-unique-locs="4">
+<div class="bounty-card heat-logic clickable" data-unique-locs="4" onclick="openModal('103065', 'Kustsnäppa')">
 <img class="bounty-icon" src="/images/profiles/103065.png?v=17" alt="Illustration of Kustsnäppa">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Kustsnäppa</div>
 <div class="bounty-latin">Calidris canutus</div>
 </div>
-</div>
-<div class="bounty-wrapper" onclick="openModal('103073', 'Citronärla')">
-<div class="bounty-card-front bounty-card clickable" data-unique-locs="1">
+<div class="bounty-card heat-logic clickable" data-unique-locs="1" onclick="openModal('103073', 'Citronärla')">
 <img class="bounty-icon" src="/images/profiles/103073.png?v=17" alt="Illustration of Citronärla">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Citronärla</div>
 <div class="bounty-latin">Motacilla citreola</div>
 </div>
-</div>
-<div class="bounty-wrapper" >
-<div class="bounty-card-front bounty-card " data-unique-locs="0">
+<div class="bounty-card heat-logic " data-unique-locs="0" >
 <img class="bounty-icon" src="/images/profiles/100014.png?v=17" alt="Illustration of Bergand">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Bergand</div>
 <div class="bounty-latin">Aythya marila</div>
 </div>
-</div>
-<div class="bounty-wrapper" >
-<div class="bounty-card-front bounty-card " data-unique-locs="0">
+<div class="bounty-card heat-logic " data-unique-locs="0" >
 <img class="bounty-icon" src="/images/profiles/232269.png?v=17" alt="Illustration of Rödhalsad gås">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Rödhalsad gås</div>
 <div class="bounty-latin">Branta ruficollis</div>
 </div>
-</div>
-<div class="bounty-wrapper" >
-<div class="bounty-card-front bounty-card " data-unique-locs="0">
+<div class="bounty-card heat-logic " data-unique-locs="0" >
 <img class="bounty-icon" src="/images/profiles/233137.png?v=17" alt="Illustration of Rödhuvad dykand">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Rödhuvad dykand</div>
 <div class="bounty-latin">Netta rufina</div>
 </div>
-</div>
-<div class="bounty-wrapper" >
-<div class="bounty-card-front bounty-card " data-unique-locs="0">
+<div class="bounty-card heat-logic " data-unique-locs="0" >
 <img class="bounty-icon" src="/images/profiles/100113.png?v=17" alt="Illustration of Svarthakedopping">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Svarthakedopping</div>
 <div class="bounty-latin">Podiceps auritus</div>
 </div>
-</div>
-<div class="bounty-wrapper" >
-<div class="bounty-card-front bounty-card " data-unique-locs="0">
+<div class="bounty-card heat-logic " data-unique-locs="0" >
 <img class="bounty-icon" src="/images/profiles/205550.png?v=17" alt="Illustration of Mindre skrikörn">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Mindre skrikörn</div>
 <div class="bounty-latin">Clanga pomarina</div>
 </div>
-</div>
-<div class="bounty-wrapper" >
-<div class="bounty-card-front bounty-card " data-unique-locs="0">
+<div class="bounty-card heat-logic " data-unique-locs="0" >
 <img class="bounty-icon" src="/images/profiles/205615.png?v=17" alt="Illustration of Spovsnäppa">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Spovsnäppa</div>
 <div class="bounty-latin">Calidris ferruginea</div>
 </div>
-</div>
-<div class="bounty-wrapper" >
-<div class="bounty-card-front bounty-card " data-unique-locs="0">
+<div class="bounty-card heat-logic " data-unique-locs="0" >
 <img class="bounty-icon" src="/images/profiles/205607.png?v=17" alt="Illustration of Sandlöpare">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Sandlöpare</div>
 <div class="bounty-latin">Calidris alba</div>
 </div>
-</div>
-<div class="bounty-wrapper" >
-<div class="bounty-card-front bounty-card " data-unique-locs="0">
+<div class="bounty-card heat-logic " data-unique-locs="0" >
 <img class="bounty-icon" src="/images/profiles/102115.png?v=17" alt="Illustration of Roskarl">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Roskarl</div>
 <div class="bounty-latin">Arenaria interpres</div>
 </div>
-</div>
-<div class="bounty-wrapper" >
-<div class="bounty-card-front bounty-card " data-unique-locs="0">
+<div class="bounty-card heat-logic " data-unique-locs="0" >
 <img class="bounty-icon" src="/images/profiles/102114.png?v=17" alt="Illustration of Myrsnäppa">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Myrsnäppa</div>
 <div class="bounty-latin">Calidris falcinellus</div>
 </div>
-</div>
-<div class="bounty-wrapper" >
-<div class="bounty-card-front bounty-card " data-unique-locs="0">
+<div class="bounty-card heat-logic " data-unique-locs="0" >
 <img class="bounty-icon" src="/images/profiles/102617.png?v=17" alt="Illustration of Smalnäbbad simsnäppa">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Smalnäbbad simsnäppa</div>
 <div class="bounty-latin">Phalaropus lobatus</div>
 </div>
-</div>
-<div class="bounty-wrapper" >
-<div class="bounty-card-front bounty-card " data-unique-locs="0">
+<div class="bounty-card heat-logic " data-unique-locs="0" >
 <img class="bounty-icon" src="/images/profiles/102111.png?v=17" alt="Illustration of Fjällpipare">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Fjällpipare</div>
 <div class="bounty-latin">Eudromias morinellus</div>
 </div>
-</div>
-<div class="bounty-wrapper" >
-<div class="bounty-card-front bounty-card " data-unique-locs="0">
+<div class="bounty-card heat-logic " data-unique-locs="0" >
 <img class="bounty-icon" src="/images/profiles/103066.png?v=17" alt="Illustration of Dammsnäppa">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Dammsnäppa</div>
 <div class="bounty-latin">Tringa stagnatilis</div>
 </div>
-</div>
-<div class="bounty-wrapper" >
-<div class="bounty-card-front bounty-card " data-unique-locs="0">
+<div class="bounty-card heat-logic " data-unique-locs="0" >
 <img class="bounty-icon" src="/images/profiles/205613.png?v=17" alt="Illustration of Tuvsnäppa">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Tuvsnäppa</div>
 <div class="bounty-latin">Calidris melanotos</div>
 </div>
-</div>
-<div class="bounty-wrapper" >
-<div class="bounty-card-front bounty-card " data-unique-locs="0">
+<div class="bounty-card heat-logic " data-unique-locs="0" >
 <img class="bounty-icon" src="/images/profiles/100125.png?v=17" alt="Illustration of Tretåig mås">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Tretåig mås</div>
 <div class="bounty-latin">Rissa tridactyla</div>
 </div>
-</div>
-<div class="bounty-wrapper" >
-<div class="bounty-card-front bounty-card " data-unique-locs="0">
+<div class="bounty-card heat-logic " data-unique-locs="0" >
 <img class="bounty-icon" src="/images/profiles/205663.png?v=17" alt="Illustration of Medelhavstrut">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Medelhavstrut</div>
 <div class="bounty-latin">Larus michahellis</div>
 </div>
-</div>
-<div class="bounty-wrapper" >
-<div class="bounty-card-front bounty-card " data-unique-locs="0">
+<div class="bounty-card heat-logic " data-unique-locs="0" >
 <img class="bounty-icon" src="/images/profiles/103068.png?v=17" alt="Illustration of Vitvingad tärna">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Vitvingad tärna</div>
 <div class="bounty-latin">Chlidonias leucopterus</div>
 </div>
-</div>
-<div class="bounty-wrapper" >
-<div class="bounty-card-front bounty-card " data-unique-locs="0">
+<div class="bounty-card heat-logic " data-unique-locs="0" >
 <img class="bounty-icon" src="/images/profiles/102621.png?v=17" alt="Illustration of Sparvuggla">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Sparvuggla</div>
 <div class="bounty-latin">Glaucidium passerinum</div>
 </div>
-</div>
-<div class="bounty-wrapper" >
-<div class="bounty-card-front bounty-card " data-unique-locs="0">
+<div class="bounty-card heat-logic " data-unique-locs="0" >
 <img class="bounty-icon" src="/images/profiles/102622.png?v=17" alt="Illustration of Pärluggla">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Pärluggla</div>
 <div class="bounty-latin">Aegolius funereus</div>
 </div>
-</div>
-<div class="bounty-wrapper" >
-<div class="bounty-card-front bounty-card " data-unique-locs="0">
+<div class="bounty-card heat-logic " data-unique-locs="0" >
 <img class="bounty-icon" src="/images/profiles/102620.png?v=17" alt="Illustration of Hökuggla">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Hökuggla</div>
 <div class="bounty-latin">Surnia ulula</div>
 </div>
-</div>
-<div class="bounty-wrapper" >
-<div class="bounty-card-front bounty-card " data-unique-locs="0">
+<div class="bounty-card heat-logic " data-unique-locs="0" >
 <img class="bounty-icon" src="/images/profiles/103071.png?v=17" alt="Illustration of Biätare">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Biätare</div>
 <div class="bounty-latin">Merops apiaster</div>
 </div>
-</div>
-<div class="bounty-wrapper" >
-<div class="bounty-card-front bounty-card " data-unique-locs="0">
+<div class="bounty-card heat-logic " data-unique-locs="0" >
 <img class="bounty-icon" src="/images/profiles/103051.png?v=17" alt="Illustration of Rosenfink">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Rosenfink</div>
 <div class="bounty-latin">Carpodacus erythrinus</div>
 </div>
-</div>
-<div class="bounty-wrapper" >
-<div class="bounty-card-front bounty-card " data-unique-locs="0">
+<div class="bounty-card heat-logic " data-unique-locs="0" >
 <img class="bounty-icon" src="/images/profiles/100123.png?v=17" alt="Illustration of Pungmes">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Pungmes</div>
 <div class="bounty-latin">Remiz pendulinus</div>
 </div>
-</div>
-<div class="bounty-wrapper" >
-<div class="bounty-card-front bounty-card " data-unique-locs="0">
+<div class="bounty-card heat-logic " data-unique-locs="0" >
 <img class="bounty-icon" src="/images/profiles/103053.png?v=17" alt="Illustration of Lappsparv">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Lappsparv</div>
 <div class="bounty-latin">Calcarius lapponicus</div>
 </div>
-</div>
-<div class="bounty-wrapper" >
-<div class="bounty-card-front bounty-card " data-unique-locs="0">
+<div class="bounty-card heat-logic " data-unique-locs="0" >
 <img class="bounty-icon" src="/images/profiles/100052.png?v=17" alt="Illustration of Berglärka">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Berglärka</div>
 <div class="bounty-latin">Eremophila alpestris</div>
 </div>
-</div>
-<div class="bounty-wrapper" >
-<div class="bounty-card-front bounty-card " data-unique-locs="0">
+<div class="bounty-card heat-logic " data-unique-locs="0" >
 <img class="bounty-icon" src="/images/profiles/102126.png?v=17" alt="Illustration of Ortolansparv">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Ortolansparv</div>
 <div class="bounty-latin">Emberiza hortulana</div>
 </div>
-</div>
-<div class="bounty-wrapper" >
-<div class="bounty-card-front bounty-card " data-unique-locs="0">
+<div class="bounty-card heat-logic " data-unique-locs="0" >
 <img class="bounty-icon" src="/images/profiles/102624.png?v=17" alt="Illustration of Blåhake">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Blåhake</div>
 <div class="bounty-latin">Luscinia svecica</div>
 </div>
-</div>
-<div class="bounty-wrapper" >
-<div class="bounty-card-front bounty-card " data-unique-locs="0">
+<div class="bounty-card heat-logic " data-unique-locs="0" >
 <img class="bounty-icon" src="/images/profiles/205835.png?v=17" alt="Illustration of Tajgasångare">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Tajgasångare</div>
 <div class="bounty-latin">Phylloscopus inornatus</div>
 </div>
-</div>
-<div class="bounty-wrapper" >
-<div class="bounty-card-front bounty-card " data-unique-locs="0">
+<div class="bounty-card heat-logic " data-unique-locs="0" >
 <img class="bounty-icon" src="/images/profiles/102122.png?v=17" alt="Illustration of Flodsångare">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Flodsångare</div>
 <div class="bounty-latin">Locustella fluviatilis</div>
 </div>
-</div>
-<div class="bounty-wrapper" >
-<div class="bounty-card-front bounty-card " data-unique-locs="0">
+<div class="bounty-card heat-logic " data-unique-locs="0" >
 <img class="bounty-icon" src="/images/profiles/102123.png?v=17" alt="Illustration of Höksångare">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Höksångare</div>
 <div class="bounty-latin">Curruca nisoria</div>
 </div>
-</div>
-<div class="bounty-wrapper" >
-<div class="bounty-card-front bounty-card " data-unique-locs="0">
+<div class="bounty-card heat-logic " data-unique-locs="0" >
 <img class="bounty-icon" src="/images/profiles/205750.png?v=17" alt="Illustration of Större piplärka">
 <div class="bounty-wanted">WANTED</div>
 <div class="bounty-name">Större piplärka</div>
 <div class="bounty-latin">Anthus richardi</div>
-</div>
 </div>
 </div>
 
@@ -921,7 +839,7 @@ function openSkaneObsMap(records, speciesName) {
 
 // Initialisering av heatmaps/spotlights och flip-animation
 (function() {
-    const cards = document.querySelectorAll(".bounty-card-front");
+    const cards = document.querySelectorAll(".heat-logic");
     
     cards.forEach(card => {
         try {
@@ -935,6 +853,18 @@ function openSkaneObsMap(records, speciesName) {
                 card.classList.add("heat-1");
             } else if (locs >= 1) {
                 card.classList.add("heat-0");
+            }
+            
+            // If this is a flip card, we need to apply heat class to the front face instead
+            if (card.classList.contains("flip-wrapper")) {
+                const front = card.querySelector(".bounty-card-front");
+                if (front && !front.classList.contains("tomtkryss-card")) {
+                    if (locs >= 20) front.classList.add("heat-3");
+                    else if (locs >= 10) front.classList.add("heat-2");
+                    else if (locs >= 5) front.classList.add("heat-1");
+                    else if (locs >= 1) front.classList.add("heat-0");
+                }
+                card.classList.remove("heat-3", "heat-2", "heat-1", "heat-0");
             }
         } catch(e) {
             console.error("Error parsing card data", e);
