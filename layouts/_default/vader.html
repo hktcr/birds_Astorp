@@ -263,6 +263,20 @@
                     <div class="vader-chart-source">SMHI, Helsingborg A (16 km sydväst om Åstorp)</div>
                 </div>
 
+                <!-- 24h Vind (Döljs default) -->
+                <div class="vader-chart-box" id="chart-24h-wind-ns" style="display:none;">
+                    <div class="vader-chart-label">Vind N ↔ S — senaste 24 h</div>
+                    <canvas id="chart-24h-wind-ns-canvas"></canvas>
+                    <p class="vader-chart-hint">Staplar uppåt = nordlig vind. Staplar nedåt = sydlig vind.</p>
+                    <div class="vader-chart-source">SMHI, Helsingborg A · Timmedelvärden</div>
+                </div>
+                <div class="vader-chart-box" id="chart-24h-wind-ew" style="display:none; margin-top:20px;">
+                    <div class="vader-chart-label">Vind Ö ↔ V — senaste 24 h</div>
+                    <canvas id="chart-24h-wind-ew-canvas"></canvas>
+                    <p class="vader-chart-hint">Staplar uppåt = östlig vind. Staplar nedåt = västlig vind.</p>
+                    <div class="vader-chart-source">SMHI, Helsingborg A · Timmedelvärden</div>
+                </div>
+
                 <div class="vader-chart-box vader-delta-strip" id="chart-wind-total">
                     <canvas id="wind-total-chart"></canvas>
                     <div class="vader-chart-hint" style="text-align:center; margin-top:2px;">
