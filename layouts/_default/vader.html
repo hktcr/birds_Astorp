@@ -8,12 +8,7 @@
         <!-- ============================================================ -->
         <!-- DYGNSHJULET — Cirkulär ljusvisualisering -->
         <!-- ============================================================ -->
-        <div class="dygn-widget">
-            <div class="dygn-wheel-wrap">
-                <canvas id="dygn-canvas"></canvas>
-            </div>
-            <div id="dygn-timetable"></div>
-        </div>
+        <!-- DYGNSHJULET FLYTTAT TILL FLIKEN LJUS & SOL -->
 
         <!-- ============================================================ -->
         <!-- HERO: "Just nu" — full bredd med vind + temperatur -->
@@ -167,102 +162,173 @@
             </div>
         </div>
 
-        <!-- Mini-nav för snabb scroll -->
-        <div class="vader-chart-nav" id="vader-chart-nav">
-            <a href="#chart-progress" class="vader-chart-nav-link">Arter</a>
-            <a href="#chart-wind" class="vader-chart-nav-link">Vind</a>
-            <a href="#chart-temp-day" class="vader-chart-nav-link">Dag</a>
-            <a href="#chart-temp-night" class="vader-chart-nav-link">Natt</a>
-            <a href="#chart-precip" class="vader-chart-nav-link">Nederbörd</a>
-            <a href="#chart-flow" class="vader-chart-nav-link">Flöde</a>
+        <!-- Typografisk Flik-meny (Pill-nav) -->
+        <style>
+            /* Premium Typographic Tabs */
+            .vader-tab-nav {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+                margin: 2rem 0 1.5rem 0;
+                justify-content: center;
+                position: sticky;
+                top: 20px;
+                z-index: 100;
+                background: rgba(255, 255, 255, 0.92);
+                backdrop-filter: blur(10px);
+                -webkit-backdrop-filter: blur(10px);
+                padding: 10px 0;
+                border-bottom: 1px solid rgba(0,0,0,0.05);
+            }
+            .vader-tab-btn {
+                background: rgba(0,0,0,0.03);
+                border: 1px solid rgba(0,0,0,0.05);
+                border-radius: 20px;
+                padding: 8px 16px;
+                font-family: var(--font-heading), 'Inter', sans-serif;
+                font-size: 13px;
+                font-weight: 600;
+                color: var(--color-text-muted);
+                cursor: pointer;
+                transition: all 0.3s ease;
+            }
+            .vader-tab-btn:hover {
+                background: rgba(0,0,0,0.06);
+                color: var(--color-text);
+            }
+            /* Active states med subtila accentfärger */
+            .vader-tab-btn.active[data-target="tab-overblick"] {
+                background: #fff; border-color: rgba(0,0,0,0.1); color: var(--color-primary-dark); box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            }
+            .vader-tab-btn.active[data-target="tab-ljus"] {
+                background: #fff8e1; border-color: #ffe082; color: #f57f17; box-shadow: 0 2px 5px rgba(245,127,23,0.1);
+            }
+            .vader-tab-btn.active[data-target="tab-temperatur"] {
+                background: #fbe9e7; border-color: #ffccbc; color: #d84315; box-shadow: 0 2px 5px rgba(216,67,21,0.1);
+            }
+            .vader-tab-btn.active[data-target="tab-vind"] {
+                background: #e3f2fd; border-color: #bbdefb; color: #1565c0; box-shadow: 0 2px 5px rgba(21,101,192,0.1);
+            }
+            .vader-tab-btn.active[data-target="tab-vatten"] {
+                background: #e0f2f1; border-color: #b2dfdb; color: #00695c; box-shadow: 0 2px 5px rgba(0,105,92,0.1);
+            }
+
+            .vader-tab-content {
+                display: none;
+                animation: fadeIn 0.4s ease forwards;
+            }
+            .vader-tab-content.active {
+                display: block;
+            }
+            @keyframes fadeIn {
+                from { opacity: 0; transform: translateY(5px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        </style>
+
+        <div class="vader-tab-nav" id="vader-tab-nav">
+            <button class="vader-tab-btn active" data-target="tab-overblick">Överblick</button>
+            <button class="vader-tab-btn" data-target="tab-ljus">Ljus & Sol</button>
+            <button class="vader-tab-btn" data-target="tab-temperatur">Temperatur</button>
+            <button class="vader-tab-btn" data-target="tab-vind">Vind</button>
+            <button class="vader-tab-btn" data-target="tab-vatten">Vatten & Mader</button>
         </div>
 
-        <!-- Kvintett: fem diagram vertikalt -->
-        <div class="vader-triptych">
-            <!-- 1. Artlista (Progress) -->
-            <div class="vader-chart-box" id="chart-progress">
-                <div class="vader-chart-label">Artframsteg</div>
-                <canvas id="progress-chart"></canvas>
-            </div>
-
-            <!-- 2. Vindkomponenter -->
-            <div class="vader-chart-box" id="chart-wind">
-                <div class="vader-chart-label">Vindkomponenter</div>
-                <canvas id="wind-chart"></canvas>
-                <p class="vader-chart-hint">Staplar uppåt = vind från norr/öst. Staplar nedåt = vind från söder/väst.
-                    Högre stapel = starkare vind från den riktningen.</p>
-                <div class="vader-chart-source">SMHI, Helsingborg A (16 km sydväst om Åstorp)</div>
-            </div>
-
-            <!-- Vindintensitet (totalt) — underliggande heatmap -->
-            <div class="vader-chart-box vader-delta-strip" id="chart-wind-total">
-                <canvas id="wind-total-chart"></canvas>
-                <div class="vader-chart-hint" style="text-align:center; margin-top:2px;">
-                    Vindintensitet (totalt i m/s)<br>
-                    <span style="color:#dcedc8;">■</span> lugnt (<3) ·
-                    <span style="color:#aed581;">■</span> svag/måttlig (3–8) ·
-                    <span style="color:#fbc02d;">■</span> frisk (8–12) ·
-                    <span style="color:#e64a19;">■</span> kuling (>12)
+        <div class="vader-tabs-container" id="vader-tabs-container">
+            <!-- FLIK: ÖVERBLICK -->
+            <div class="vader-tab-content active" id="tab-overblick">
+                <div class="vader-chart-box" id="chart-progress">
+                    <div class="vader-chart-label">Artframsteg</div>
+                    <canvas id="progress-chart"></canvas>
                 </div>
             </div>
 
-            <!-- 3a. Dagtemperatur (max) -->
-            <div class="vader-chart-box" id="chart-temp-day">
-                <div class="vader-chart-label">Dagtemperatur (högsta)</div>
-                <canvas id="temp-day-chart"></canvas>
-                <p class="vader-chart-hint">Dagens uppmätta maxtemperatur. Staplar uppåt = plusgrader, nedåt =
-                    minusgrader.</p>
-                <div class="vader-chart-source">SMHI, Helsingborg A (16 km sydväst om Åstorp)</div>
-            </div>
-
-            <!-- 3b. Natttemperatur (min) -->
-            <div class="vader-chart-box" id="chart-temp-night">
-                <div class="vader-chart-label">Natttemperatur (lägsta)</div>
-                <canvas id="temp-night-chart"></canvas>
-                <p class="vader-chart-hint">Nattens uppmätta mintemperatur. Staplar uppåt = plusgrader, nedåt =
-                    minusgrader.</p>
-                <div class="vader-chart-source">SMHI, Helsingborg A (16 km sydväst om Åstorp)</div>
-            </div>
-
-            <!-- Fenologisk temperaturremsa — kopplingsremsa -->
-            <div class="vader-chart-box vader-delta-strip" id="chart-temp-delta">
-                <canvas id="temp-delta-chart"></canvas>
-                <div class="vader-chart-hint" style="text-align:center; margin-top:2px;">
-                    Fenologisk temperatur — ekologisk karaktär per dygn<br>
-                    <span id="phenology-legend"></span>
-                </div>
-                <div id="phenology-milestones" style="display:none; margin-top:6px;"></div>
-            </div>
-
-            <!-- 4. Nederbörd -->
-            <div class="vader-chart-box" id="chart-precip">
-                <div class="vader-chart-label">Nederbörd</div>
-                <canvas id="precip-chart"></canvas>
-                <div class="vader-chart-source">SMHI, Åstorps station (4 km)</div>
-            </div>
-
-            <!-- 5. Vattenföring -->
-            <div class="vader-chart-box" id="chart-flow">
-                <div class="vader-chart-label">Vattenföring</div>
-                <canvas id="flow-chart"></canvas>
-                <p class="vader-chart-hint">Diagrammet visar vattenföringen (m³/s) vid Forsmöllan i Rönne å. Det visar inte det exakta vattenflödet, eller vattenståndet på maderna, i Åstorps kommun men fungerar förmodligen väl som en indikator för vattenläget eftersom hela åsystemet reagerar på liknande nederbörds- och flödesmönster.</p>
-                <div class="vader-chart-source">SMHI, Forsmöllan, Rönne å (15 km öster om Åstorp)</div>
-            </div>
-
-            <!-- 6. Maderindikator — experimentell vattenståndsprediktion -->
-            <div class="vader-chart-box" id="meadow-indicator" style="display:none;">
-                <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
-                    <div class="vader-chart-label" style="margin:0;">Förväntad vattennivå — Kungsgårdsmaderna</div>
-                    <span style="background:rgba(120,80,200,0.12); color:#7850c8; font-size:0.7em; font-weight:600; padding:2px 8px; border-radius:10px; letter-spacing:0.03em;">Experiment</span>
-                </div>
-                <div id="meadow-level-box" style="border-radius:10px; padding:16px 20px; display:flex; align-items:center; gap:14px; transition: background 0.5s ease;">
-                    <div style="display:flex; flex-direction:column; gap:2px;">
-                        <span id="meadow-level-label" style="font-size:1.2em; font-weight:700; color:#fff; text-shadow:0 1px 3px rgba(0,0,0,0.3);">Laddar…</span>
-                        <span id="meadow-level-detail" style="font-size:0.85em; color:rgba(255,255,255,0.85);"></span>
+            <!-- FLIK: LJUS & SOL -->
+            <div class="vader-tab-content" id="tab-ljus">
+                <div class="dygn-widget">
+                    <div class="dygn-wheel-wrap">
+                        <canvas id="dygn-canvas"></canvas>
                     </div>
-                    <span id="meadow-trend-arrow" style="font-size:1.6em; margin-left:auto; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.2));"></span>
+                    <div id="dygn-timetable"></div>
                 </div>
-                <p class="vader-chart-hint" style="margin-top:8px; font-style:italic;">Experimentell uppskattning baserad på 14-dagars glidande medelvärde av vattenföringen vid Forsmöllan, viktat mot 14 dagars kumulativ nederbörd. Korrelationen med den faktiska vattennivån på maderna är ännu under kalibrering.</p>
+            </div>
+
+            <!-- FLIK: TEMPERATUR -->
+            <div class="vader-tab-content" id="tab-temperatur">
+                <div class="vader-chart-box" id="chart-temp-day">
+                    <div class="vader-chart-label">Dagtemperatur (högsta)</div>
+                    <canvas id="temp-day-chart"></canvas>
+                    <p class="vader-chart-hint">Dagens uppmätta maxtemperatur. Staplar uppåt = plusgrader, nedåt = minusgrader.</p>
+                    <div class="vader-chart-source">SMHI, Helsingborg A (16 km sydväst om Åstorp)</div>
+                </div>
+
+                <div class="vader-chart-box" id="chart-temp-night">
+                    <div class="vader-chart-label">Natttemperatur (lägsta)</div>
+                    <canvas id="temp-night-chart"></canvas>
+                    <p class="vader-chart-hint">Nattens uppmätta mintemperatur. Staplar uppåt = plusgrader, nedåt = minusgrader.</p>
+                    <div class="vader-chart-source">SMHI, Helsingborg A (16 km sydväst om Åstorp)</div>
+                </div>
+
+                <div class="vader-chart-box vader-delta-strip" id="chart-temp-delta">
+                    <canvas id="temp-delta-chart"></canvas>
+                    <div class="vader-chart-hint" style="text-align:center; margin-top:2px;">
+                        Fenologisk temperatur — ekologisk karaktär per dygn<br>
+                        <span id="phenology-legend"></span>
+                    </div>
+                    <div id="phenology-milestones" style="display:none; margin-top:6px;"></div>
+                </div>
+            </div>
+
+            <!-- FLIK: VIND -->
+            <div class="vader-tab-content" id="tab-vind">
+                <div class="vader-chart-box" id="chart-wind">
+                    <div class="vader-chart-label">Vindkomponenter</div>
+                    <canvas id="wind-chart"></canvas>
+                    <p class="vader-chart-hint">Staplar uppåt = vind från norr/öst. Staplar nedåt = vind från söder/väst. Högre stapel = starkare vind från den riktningen.</p>
+                    <div class="vader-chart-source">SMHI, Helsingborg A (16 km sydväst om Åstorp)</div>
+                </div>
+
+                <div class="vader-chart-box vader-delta-strip" id="chart-wind-total">
+                    <canvas id="wind-total-chart"></canvas>
+                    <div class="vader-chart-hint" style="text-align:center; margin-top:2px;">
+                        Vindintensitet (totalt i m/s)<br>
+                        <span style="color:#dcedc8;">■</span> lugnt (<3) ·
+                        <span style="color:#aed581;">■</span> svag/måttlig (3–8) ·
+                        <span style="color:#fbc02d;">■</span> frisk (8–12) ·
+                        <span style="color:#e64a19;">■</span> kuling (>12)
+                    </div>
+                </div>
+            </div>
+
+            <!-- FLIK: VATTEN & MADER -->
+            <div class="vader-tab-content" id="tab-vatten">
+                <div class="vader-chart-box" id="meadow-indicator" style="display:none;">
+                    <div style="display:flex; align-items:center; justify-content:space-between; margin-bottom:8px;">
+                        <div class="vader-chart-label" style="margin:0;">Förväntad vattennivå — Kungsgårdsmaderna</div>
+                        <span style="background:rgba(120,80,200,0.12); color:#7850c8; font-size:0.7em; font-weight:600; padding:2px 8px; border-radius:10px; letter-spacing:0.03em;">Experiment</span>
+                    </div>
+                    <div id="meadow-level-box" style="border-radius:10px; padding:16px 20px; display:flex; align-items:center; gap:14px; transition: background 0.5s ease;">
+                        <div style="display:flex; flex-direction:column; gap:2px;">
+                            <span id="meadow-level-label" style="font-size:1.2em; font-weight:700; color:#fff; text-shadow:0 1px 3px rgba(0,0,0,0.3);">Laddar…</span>
+                            <span id="meadow-level-detail" style="font-size:0.85em; color:rgba(255,255,255,0.85);"></span>
+                        </div>
+                        <span id="meadow-trend-arrow" style="font-size:1.6em; margin-left:auto; filter:drop-shadow(0 1px 2px rgba(0,0,0,0.2));"></span>
+                    </div>
+                    <p class="vader-chart-hint" style="margin-top:8px; font-style:italic;">Experimentell uppskattning baserad på 14-dagars glidande medelvärde av vattenföringen vid Forsmöllan, viktat mot 14 dagars kumulativ nederbörd.</p>
+                </div>
+
+                <div class="vader-chart-box" id="chart-precip">
+                    <div class="vader-chart-label">Nederbörd</div>
+                    <canvas id="precip-chart"></canvas>
+                    <div class="vader-chart-source">SMHI, Åstorps station (4 km)</div>
+                </div>
+
+                <div class="vader-chart-box" id="chart-flow">
+                    <div class="vader-chart-label">Vattenföring</div>
+                    <canvas id="flow-chart"></canvas>
+                    <p class="vader-chart-hint">Diagrammet visar vattenföringen (m³/s) vid Forsmöllan i Rönne å.</p>
+                    <div class="vader-chart-source">SMHI, Forsmöllan, Rönne å (15 km öster om Åstorp)</div>
+                </div>
             </div>
         </div>
 
@@ -1327,7 +1393,72 @@
         return sectors[idx] + ' vind';
     }
 
-    // Ladda Luxon time adapter, sedan bygg alla diagram
+    var tabLoaded = {
+        'tab-overblick': false,
+        'tab-ljus': false,
+        'tab-temperatur': false,
+        'tab-vind': false,
+        'tab-vatten': false
+    };
+
+    function loadTabContent(tabId) {
+        if (tabLoaded[tabId]) return;
+        
+        // Initial setup om inget byggts än
+        if (!tabLoaded['tab-overblick']) {
+            setupTimeRangeSelector();
+            window._currentTimeMode = '14d'; // default
+        }
+
+        switch(tabId) {
+            case 'tab-overblick':
+                buildProgressChart();
+                break;
+            case 'tab-ljus':
+                if(window.buildTwilightChart) window.buildTwilightChart();
+                break;
+            case 'tab-temperatur':
+                buildTempChart();
+                break;
+            case 'tab-vind':
+                buildWindChart();
+                break;
+            case 'tab-vatten':
+                buildPrecipChart();
+                buildFlowChart();
+                break;
+        }
+        tabLoaded[tabId] = true;
+        
+        // Apply current time range to newly loaded charts
+        if (window._currentTimeMode) {
+            setTimeRange(window._currentTimeMode, window._currentTimeRange);
+        }
+    }
+
+    function setupTabs() {
+        var btns = document.querySelectorAll('.vader-tab-btn');
+        var contents = document.querySelectorAll('.vader-tab-content');
+
+        btns.forEach(function(btn) {
+            btn.addEventListener('click', function(e) {
+                e.preventDefault();
+                var targetId = this.getAttribute('data-target');
+
+                btns.forEach(function(b) { b.classList.remove('active'); });
+                contents.forEach(function(c) { c.classList.remove('active'); });
+
+                this.classList.add('active');
+                var targetContent = document.getElementById(targetId);
+                if(targetContent) {
+                    targetContent.classList.add('active');
+                    loadTabContent(targetId);
+                }
+            });
+        });
+    }
+
+    // Ladda Luxon time adapter, sedan bygg aktiva fliken
     (function () {
         var s1 = document.createElement('script');
         s1.src = 'https://cdn.jsdelivr.net/npm/luxon@3/build/global/luxon.min.js';
@@ -1335,14 +1466,8 @@
             var s2 = document.createElement('script');
             s2.src = 'https://cdn.jsdelivr.net/npm/chartjs-adapter-luxon@1';
             s2.onload = function () {
-                buildProgressChart();
-                buildWindChart();
-                buildTempChart();
-                buildPrecipChart();
-                buildFlowChart();
-                setupTimeRangeSelector();
-                // Default: senaste 14 dagar
-                setTimeRange('14d');
+                setupTabs();
+                loadTabContent('tab-overblick'); // Startfliken
             };
             document.head.appendChild(s2);
         };
