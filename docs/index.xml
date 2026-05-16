@@ -116,63 +116,130 @@ Efter en genomgång av Skånes fågelfauna har jag identifierat 54 arter som utg
  margin-top: 2rem;
  padding-bottom: 4rem;
  align-items: start;
+ perspective: 1000px;
 }
-.bounty-card {
+
+.bounty-card-container {
+ position: relative;
+ width: 100%;
+ height: 100%;
+ transform-style: preserve-3d;
+ transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bounty-card-container.is-flipped {
+ transform: rotateY(180deg);
+}
+
+.bounty-card-front, .bounty-card-back {
  background: var(--bg-alt);
  border: 1px solid var(--border-color);
  border-radius: 8px;
  padding: 1.5rem 1rem;
  text-align: center;
- transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s;
- position: relative;
- overflow: hidden;
+ backface-visibility: hidden;
+ position: absolute;
+ top: 0;
+ left: 0;
+ width: 100%;
+ height: 100%;
+ box-sizing: border-box;
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
 }
-.bounty-card.clickable {
+
+/* Base card styling applied to wrapper or individual faces */
+.bounty-wrapper {
+ position: relative;
+ min-height: 250px;
  cursor: pointer;
 }
-.bounty-card.clickable:hover {
- transform: translateY(-5px);
+
+.bounty-wrapper:hover .bounty-card-front,
+.bounty-wrapper:hover .bounty-card-back {
  box-shadow: 0 10px 20px rgba(0,0,0,0.1);
 }
 
-/* Level 0: Enstaka fynd (1-4 locations) - Blå */
-.bounty-card.heat-0 {
+.bounty-wrapper:hover {
+ transform: translateY(-5px);
+ transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.bounty-card-back {
+ transform: rotateY(180deg);
+ background: rgba(34, 197, 94, 0.1); /* Ljusgrön bakgrund för baksidan */
+ border-color: rgba(34, 197, 94, 0.8);
+ display: flex;
+ flex-direction: column;
+ justify-content: center;
+ align-items: center;
+ padding: 1rem;
+}
+
+.tomtkryss-date {
+ font-size: 1.2rem;
+ font-weight: bold;
+ color: #166534;
+ margin-bottom: 0.5rem;
+}
+
+.tomtkryss-label {
+ font-size: 0.9rem;
+ text-transform: uppercase;
+ letter-spacing: 1px;
+ color: #15803d;
+ margin-bottom: 1rem;
+}
+
+.bounty-card-front.heat-0 {
  border-color: rgba(56, 189, 248, 0.8);
  box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
 }
-.bounty-card.heat-0 .bounty-icon {
+.bounty-card-front.heat-0 .bounty-icon {
  filter: drop-shadow(0px 4px 8px rgba(56, 189, 248, 0.4));
  opacity: 0.8;
 }
 
-/* Level 1: Lokalt inflöde (5-9 locations) - Gul */
-.bounty-card.heat-1 {
+.bounty-card-front.heat-1 {
  border-color: rgba(234, 179, 8, 0.8);
  box-shadow: 0 0 15px rgba(234, 179, 8, 0.2);
 }
-.bounty-card.heat-1 .bounty-icon {
+.bounty-card-front.heat-1 .bounty-icon {
  filter: drop-shadow(0px 4px 10px rgba(234, 179, 8, 0.5));
  opacity: 0.85;
 }
 
-/* Level 2: Kraftigt inflöde (10-19 locations) - Orange */
-.bounty-card.heat-2 {
+.bounty-card-front.heat-2 {
  border-color: rgba(249, 115, 22, 0.9);
  box-shadow: 0 0 25px rgba(249, 115, 22, 0.3), inset 0 0 15px rgba(249, 115, 22, 0.1);
 }
-.bounty-card.heat-2 .bounty-icon {
+.bounty-card-front.heat-2 .bounty-icon {
  filter: drop-shadow(0px 4px 10px rgba(249, 115, 22, 0.7));
  opacity: 0.95;
 }
 
-/* Level 3: Högaktuell (20+ locations) - Röd */
-.bounty-card.heat-3 {
+.bounty-card-front.heat-3 {
  border-color: rgba(239, 68, 68, 1);
  box-shadow: 0 0 35px rgba(239, 68, 68, 0.4), inset 0 0 20px rgba(239, 68, 68, 0.2);
 }
-.bounty-card.heat-3 .bounty-icon {
+.bounty-card-front.heat-3 .bounty-icon {
  filter: drop-shadow(0px 4px 15px rgba(239, 68, 68, 0.9));
  opacity: 1;
+}
+
+/* Tomtkryss specific styling */
+.bounty-card-front.tomtkryss-card {
+ border-color: rgba(34, 197, 94, 0.9);
+ box-shadow: 0 0 25px rgba(34, 197, 94, 0.3), inset 0 0 15px rgba(34, 197, 94, 0.1);
+}
+.bounty-card-front.tomtkryss-card .bounty-icon {
+ filter: drop-shadow(0px 4px 10px rgba(34, 197, 94, 0.7));
+ opacity: 0.95;
+}
+.bounty-card-front.tomtkryss-card .bounty-wanted {
+ color: #15803d;
 }
 
 .bounty-icon {
@@ -317,331 +384,466 @@ Efter en genomgång av Skånes fågelfauna har jag identifierat 54 arter som utg
 .meta-divider {
  opacity: 0.3;
 }
+
+/* Tomtkryss modal custom layout */
+.tomtkryss-modal-content {
+ font-size: 1.1rem;
+ line-height: 1.6;
+ color: var(--text-color);
+ background: rgba(34, 197, 94, 0.05);
+ border: 1px solid rgba(34, 197, 94, 0.3);
+ border-radius: 8px;
+ padding: 1.5rem;
+ margin-bottom: 1.5rem;
+}
+
 &lt;/style&gt;
 &lt;div class="bounty-grid" id="bountyGrid"&gt;
-&lt;div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="55" onclick="openModal('102925', 'Skäggdopping')"&gt;
+&lt;div class="bounty-wrapper" onclick="openModal('102925', 'Skäggdopping')"&gt;
+&lt;div class="bounty-card-front bounty-card clickable" data-unique-locs="55"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/102925.png?v=17" alt="Illustration of Skäggdopping"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Skäggdopping&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Podiceps cristatus&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="40" onclick="openModal('100030', 'Svarttärna')"&gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" onclick="openModal('100030', 'Svarttärna')"&gt;
+&lt;div class="bounty-card-front bounty-card clickable" data-unique-locs="40"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/100030.png?v=17" alt="Illustration of Svarttärna"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Svarttärna&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Chlidonias niger&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="33" onclick="openModal('233849', 'Svarthakad buskskvätta')"&gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" onclick="openModal('233849', 'Svarthakad buskskvätta')"&gt;
+&lt;div class="bounty-card-front bounty-card clickable" data-unique-locs="33"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/233849.png?v=17" alt="Illustration of Svarthakad buskskvätta"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Svarthakad buskskvätta&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Saxicola rubicola&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="31" onclick="openModal('100075', 'Myrspov')"&gt;
-&lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/100075.png?v=17" alt="Illustration of Myrspov"&gt;
-&lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
-&lt;div class="bounty-name"&gt;Myrspov&lt;/div&gt;
-&lt;div class="bounty-latin"&gt;Limosa lapponica&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="30" onclick="openModal('102939', 'Småskrake')"&gt;
+&lt;div class="bounty-wrapper" data-unique-locs="31" onclick="openModal('100075', 'Myrspov')"&gt;
+&lt;div class="bounty-card-container flip-card" id="flip-card-100075"&gt;
+ &lt;div class="bounty-card-front tomtkryss-card"&gt;
+ &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/100075.png?v=17" alt="Illustration of Myrspov"&gt;
+ &lt;div class="bounty-wanted"&gt;TOMTKRYSS&lt;/div&gt;
+ &lt;div class="bounty-name"&gt;Myrspov&lt;/div&gt;
+ &lt;div class="bounty-latin"&gt;Limosa lapponica&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="bounty-card-back"&gt;
+ &lt;div class="tomtkryss-label"&gt;Hörd/Sedd&lt;/div&gt;
+ &lt;div class="tomtkryss-date"&gt;21 maj 2023&lt;/div&gt;
+ &lt;div style="font-size: 0.9rem; opacity: 0.8; margin-top: 1rem;"&gt;Klicka för detaljer&lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" onclick="openModal('102939', 'Småskrake')"&gt;
+&lt;div class="bounty-card-front bounty-card clickable" data-unique-locs="30"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/102939.png?v=17" alt="Illustration of Småskrake"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Småskrake&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Mergus serrator&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="29" onclick="openModal('102619', 'Silvertärna')"&gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" onclick="openModal('102619', 'Silvertärna')"&gt;
+&lt;div class="bounty-card-front bounty-card clickable" data-unique-locs="29"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/102619.png?v=17" alt="Illustration of Silvertärna"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Silvertärna&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Sterna paradisaea&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="27" onclick="openModal('100072', 'Dvärgmås')"&gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" onclick="openModal('100072', 'Dvärgmås')"&gt;
+&lt;div class="bounty-card-front bounty-card clickable" data-unique-locs="27"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/100072.png?v=17" alt="Illustration of Dvärgmås"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Dvärgmås&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Hydrocoloeus minutus&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="27" onclick="openModal('100133', 'Småtärna')"&gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" onclick="openModal('100133', 'Småtärna')"&gt;
+&lt;div class="bounty-card-front bounty-card clickable" data-unique-locs="27"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/100133.png?v=17" alt="Illustration of Småtärna"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Småtärna&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Sternula albifrons&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="21" onclick="openModal('100062', 'Storlom')"&gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" onclick="openModal('100062', 'Storlom')"&gt;
+&lt;div class="bounty-card-front bounty-card clickable" data-unique-locs="21"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/100062.png?v=17" alt="Illustration of Storlom"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Storlom&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Gavia arctica&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="21" onclick="openModal('100094', 'Sommargylling')"&gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" onclick="openModal('100094', 'Sommargylling')"&gt;
+&lt;div class="bounty-card-front bounty-card clickable" data-unique-locs="21"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/100094.png?v=17" alt="Illustration of Sommargylling"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Sommargylling&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Oriolus oriolus&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="19" onclick="openModal('102936', 'Sjöorre')"&gt;
-&lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/102936.png?v=17" alt="Illustration of Sjöorre"&gt;
-&lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
-&lt;div class="bounty-name"&gt;Sjöorre&lt;/div&gt;
-&lt;div class="bounty-latin"&gt;Melanitta nigra&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="19" onclick="openModal('205617', 'Kärrsnäppa')"&gt;
+&lt;div class="bounty-wrapper" data-unique-locs="19" onclick="openModal('102936', 'Sjöorre')"&gt;
+&lt;div class="bounty-card-container flip-card" id="flip-card-102936"&gt;
+ &lt;div class="bounty-card-front tomtkryss-card"&gt;
+ &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/102936.png?v=17" alt="Illustration of Sjöorre"&gt;
+ &lt;div class="bounty-wanted"&gt;TOMTKRYSS&lt;/div&gt;
+ &lt;div class="bounty-name"&gt;Sjöorre&lt;/div&gt;
+ &lt;div class="bounty-latin"&gt;Melanitta nigra&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="bounty-card-back"&gt;
+ &lt;div class="tomtkryss-label"&gt;Hörd/Sedd&lt;/div&gt;
+ &lt;div class="tomtkryss-date"&gt;9 april 2024&lt;/div&gt;
+ &lt;div style="font-size: 0.9rem; opacity: 0.8; margin-top: 1rem;"&gt;Klicka för detaljer&lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" onclick="openModal('205617', 'Kärrsnäppa')"&gt;
+&lt;div class="bounty-card-front bounty-card clickable" data-unique-locs="19"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/205617.png?v=17" alt="Illustration of Kärrsnäppa"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Kärrsnäppa&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Calidris alpina&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="19" onclick="openModal('100134', 'Skräntärna')"&gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" onclick="openModal('100134', 'Skräntärna')"&gt;
+&lt;div class="bounty-card-front bounty-card clickable" data-unique-locs="19"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/100134.png?v=17" alt="Illustration of Skräntärna"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Skräntärna&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Hydroprogne caspia&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="18" onclick="openModal('100063', 'Smålom')"&gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" onclick="openModal('100063', 'Smålom')"&gt;
+&lt;div class="bounty-card-front bounty-card clickable" data-unique-locs="18"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/100063.png?v=17" alt="Illustration of Smålom"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Smålom&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Gavia stellata&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="14" onclick="openModal('100097', 'Skäggmes')"&gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" onclick="openModal('100097', 'Skäggmes')"&gt;
+&lt;div class="bounty-card-front bounty-card clickable" data-unique-locs="14"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/100097.png?v=17" alt="Illustration of Skäggmes"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Skäggmes&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Panurus biarmicus&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="9" onclick="openModal('102109', 'Svärta')"&gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" onclick="openModal('102109', 'Svärta')"&gt;
+&lt;div class="bounty-card-front bounty-card clickable" data-unique-locs="9"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/102109.png?v=17" alt="Illustration of Svärta"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Svärta&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Melanitta fusca&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="9" onclick="openModal('103076', 'Vassångare')"&gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" onclick="openModal('103076', 'Vassångare')"&gt;
+&lt;div class="bounty-card-front bounty-card clickable" data-unique-locs="9"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/103076.png?v=17" alt="Illustration of Vassångare"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Vassångare&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Locustella luscinioides&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="8" onclick="openModal('102108', 'Alfågel')"&gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" onclick="openModal('102108', 'Alfågel')"&gt;
+&lt;div class="bounty-card-front bounty-card clickable" data-unique-locs="8"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/102108.png?v=17" alt="Illustration of Alfågel"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Alfågel&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Clangula hyemalis&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="5" onclick="openModal('100035', 'Ängshök')"&gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" onclick="openModal('100035', 'Ängshök')"&gt;
+&lt;div class="bounty-card-front bounty-card clickable" data-unique-locs="5"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/100035.png?v=17" alt="Illustration of Ängshök"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Ängshök&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Circus pygargus&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="5" onclick="openModal('103064', 'Kustpipare')"&gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" onclick="openModal('103064', 'Kustpipare')"&gt;
+&lt;div class="bounty-card-front bounty-card clickable" data-unique-locs="5"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/103064.png?v=17" alt="Illustration of Kustpipare"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Kustpipare&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Pluvialis squatarola&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="5" onclick="openModal('100143', 'Härfågel')"&gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" onclick="openModal('100143', 'Härfågel')"&gt;
+&lt;div class="bounty-card-front bounty-card clickable" data-unique-locs="5"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/100143.png?v=17" alt="Illustration of Härfågel"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Härfågel&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Upupa epops&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="4" onclick="openModal('100018', 'Rördrom')"&gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" onclick="openModal('100018', 'Rördrom')"&gt;
+&lt;div class="bounty-card-front bounty-card clickable" data-unique-locs="4"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/100018.png?v=17" alt="Illustration of Rördrom"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Rördrom&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Botaurus stellaris&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="4" onclick="openModal('103065', 'Kustsnäppa')"&gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" onclick="openModal('103065', 'Kustsnäppa')"&gt;
+&lt;div class="bounty-card-front bounty-card clickable" data-unique-locs="4"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/103065.png?v=17" alt="Illustration of Kustsnäppa"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Kustsnäppa&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Calidris canutus&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card clickable" data-peak-months="[]" data-unique-locs="1" onclick="openModal('103073', 'Citronärla')"&gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" onclick="openModal('103073', 'Citronärla')"&gt;
+&lt;div class="bounty-card-front bounty-card clickable" data-unique-locs="1"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/103073.png?v=17" alt="Illustration of Citronärla"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Citronärla&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Motacilla citreola&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card " data-peak-months="[]" data-unique-locs="0" &gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" &gt;
+&lt;div class="bounty-card-front bounty-card " data-unique-locs="0"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/100014.png?v=17" alt="Illustration of Bergand"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Bergand&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Aythya marila&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card " data-peak-months="[]" data-unique-locs="0" &gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" &gt;
+&lt;div class="bounty-card-front bounty-card " data-unique-locs="0"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/232269.png?v=17" alt="Illustration of Rödhalsad gås"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Rödhalsad gås&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Branta ruficollis&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card " data-peak-months="[]" data-unique-locs="0" &gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" &gt;
+&lt;div class="bounty-card-front bounty-card " data-unique-locs="0"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/233137.png?v=17" alt="Illustration of Rödhuvad dykand"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Rödhuvad dykand&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Netta rufina&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card " data-peak-months="[]" data-unique-locs="0" &gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" &gt;
+&lt;div class="bounty-card-front bounty-card " data-unique-locs="0"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/100113.png?v=17" alt="Illustration of Svarthakedopping"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Svarthakedopping&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Podiceps auritus&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card " data-peak-months="[]" data-unique-locs="0" &gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" &gt;
+&lt;div class="bounty-card-front bounty-card " data-unique-locs="0"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/205550.png?v=17" alt="Illustration of Mindre skrikörn"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Mindre skrikörn&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Clanga pomarina&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card " data-peak-months="[]" data-unique-locs="0" &gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" &gt;
+&lt;div class="bounty-card-front bounty-card " data-unique-locs="0"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/205615.png?v=17" alt="Illustration of Spovsnäppa"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Spovsnäppa&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Calidris ferruginea&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card " data-peak-months="[]" data-unique-locs="0" &gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" &gt;
+&lt;div class="bounty-card-front bounty-card " data-unique-locs="0"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/205607.png?v=17" alt="Illustration of Sandlöpare"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Sandlöpare&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Calidris alba&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card " data-peak-months="[]" data-unique-locs="0" &gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" &gt;
+&lt;div class="bounty-card-front bounty-card " data-unique-locs="0"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/102115.png?v=17" alt="Illustration of Roskarl"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Roskarl&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Arenaria interpres&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card " data-peak-months="[]" data-unique-locs="0" &gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" &gt;
+&lt;div class="bounty-card-front bounty-card " data-unique-locs="0"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/102114.png?v=17" alt="Illustration of Myrsnäppa"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Myrsnäppa&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Calidris falcinellus&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card " data-peak-months="[]" data-unique-locs="0" &gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" &gt;
+&lt;div class="bounty-card-front bounty-card " data-unique-locs="0"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/102617.png?v=17" alt="Illustration of Smalnäbbad simsnäppa"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Smalnäbbad simsnäppa&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Phalaropus lobatus&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card " data-peak-months="[]" data-unique-locs="0" &gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" &gt;
+&lt;div class="bounty-card-front bounty-card " data-unique-locs="0"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/102111.png?v=17" alt="Illustration of Fjällpipare"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Fjällpipare&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Eudromias morinellus&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card " data-peak-months="[]" data-unique-locs="0" &gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" &gt;
+&lt;div class="bounty-card-front bounty-card " data-unique-locs="0"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/103066.png?v=17" alt="Illustration of Dammsnäppa"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Dammsnäppa&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Tringa stagnatilis&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card " data-peak-months="[]" data-unique-locs="0" &gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" &gt;
+&lt;div class="bounty-card-front bounty-card " data-unique-locs="0"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/205613.png?v=17" alt="Illustration of Tuvsnäppa"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Tuvsnäppa&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Calidris melanotos&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card " data-peak-months="[]" data-unique-locs="0" &gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" &gt;
+&lt;div class="bounty-card-front bounty-card " data-unique-locs="0"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/100125.png?v=17" alt="Illustration of Tretåig mås"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Tretåig mås&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Rissa tridactyla&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card " data-peak-months="[]" data-unique-locs="0" &gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" &gt;
+&lt;div class="bounty-card-front bounty-card " data-unique-locs="0"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/205663.png?v=17" alt="Illustration of Medelhavstrut"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Medelhavstrut&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Larus michahellis&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card " data-peak-months="[]" data-unique-locs="0" &gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" &gt;
+&lt;div class="bounty-card-front bounty-card " data-unique-locs="0"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/103068.png?v=17" alt="Illustration of Vitvingad tärna"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Vitvingad tärna&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Chlidonias leucopterus&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card " data-peak-months="[]" data-unique-locs="0" &gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" &gt;
+&lt;div class="bounty-card-front bounty-card " data-unique-locs="0"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/102621.png?v=17" alt="Illustration of Sparvuggla"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Sparvuggla&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Glaucidium passerinum&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card " data-peak-months="[]" data-unique-locs="0" &gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" &gt;
+&lt;div class="bounty-card-front bounty-card " data-unique-locs="0"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/102622.png?v=17" alt="Illustration of Pärluggla"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Pärluggla&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Aegolius funereus&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card " data-peak-months="[]" data-unique-locs="0" &gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" &gt;
+&lt;div class="bounty-card-front bounty-card " data-unique-locs="0"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/102620.png?v=17" alt="Illustration of Hökuggla"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Hökuggla&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Surnia ulula&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card " data-peak-months="[]" data-unique-locs="0" &gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" &gt;
+&lt;div class="bounty-card-front bounty-card " data-unique-locs="0"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/103071.png?v=17" alt="Illustration of Biätare"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Biätare&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Merops apiaster&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card " data-peak-months="[]" data-unique-locs="0" &gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" &gt;
+&lt;div class="bounty-card-front bounty-card " data-unique-locs="0"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/103051.png?v=17" alt="Illustration of Rosenfink"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Rosenfink&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Carpodacus erythrinus&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card " data-peak-months="[]" data-unique-locs="0" &gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" &gt;
+&lt;div class="bounty-card-front bounty-card " data-unique-locs="0"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/100123.png?v=17" alt="Illustration of Pungmes"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Pungmes&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Remiz pendulinus&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card " data-peak-months="[]" data-unique-locs="0" &gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" &gt;
+&lt;div class="bounty-card-front bounty-card " data-unique-locs="0"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/103053.png?v=17" alt="Illustration of Lappsparv"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Lappsparv&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Calcarius lapponicus&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card " data-peak-months="[]" data-unique-locs="0" &gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" &gt;
+&lt;div class="bounty-card-front bounty-card " data-unique-locs="0"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/100052.png?v=17" alt="Illustration of Berglärka"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Berglärka&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Eremophila alpestris&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card " data-peak-months="[]" data-unique-locs="0" &gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" &gt;
+&lt;div class="bounty-card-front bounty-card " data-unique-locs="0"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/102126.png?v=17" alt="Illustration of Ortolansparv"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Ortolansparv&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Emberiza hortulana&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card " data-peak-months="[]" data-unique-locs="0" &gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" &gt;
+&lt;div class="bounty-card-front bounty-card " data-unique-locs="0"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/102624.png?v=17" alt="Illustration of Blåhake"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Blåhake&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Luscinia svecica&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card " data-peak-months="[]" data-unique-locs="0" &gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" &gt;
+&lt;div class="bounty-card-front bounty-card " data-unique-locs="0"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/205835.png?v=17" alt="Illustration of Tajgasångare"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Tajgasångare&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Phylloscopus inornatus&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card " data-peak-months="[]" data-unique-locs="0" &gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" &gt;
+&lt;div class="bounty-card-front bounty-card " data-unique-locs="0"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/102122.png?v=17" alt="Illustration of Flodsångare"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Flodsångare&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Locustella fluviatilis&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card " data-peak-months="[]" data-unique-locs="0" &gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" &gt;
+&lt;div class="bounty-card-front bounty-card " data-unique-locs="0"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/102123.png?v=17" alt="Illustration of Höksångare"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Höksångare&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Curruca nisoria&lt;/div&gt;
 &lt;/div&gt;
-&lt;div class="bounty-card " data-peak-months="[]" data-unique-locs="0" &gt;
+&lt;/div&gt;
+&lt;div class="bounty-wrapper" &gt;
+&lt;div class="bounty-card-front bounty-card " data-unique-locs="0"&gt;
 &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/205750.png?v=17" alt="Illustration of Större piplärka"&gt;
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Större piplärka&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Anthus richardi&lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color); opacity: 0.8; font-size: 1rem;"&gt;
