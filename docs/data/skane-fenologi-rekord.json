@@ -1,42 +1,314 @@
 {
-  "Sädesärla": {
-    "skane_rekord_vart": "02-15",
-    "astorp_rekord_vart": "03-05"
+  "Årta": {
+    "skane_rekord_vart": "03-01",
+    "astorp_rekord_vart": null
+  },
+  "Vaktel": {
+    "skane_rekord_vart": "04-23",
+    "astorp_rekord_vart": null
+  },
+  "Nattskärra": {
+    "skane_rekord_vart": "04-29",
+    "astorp_rekord_vart": null
+  },
+  "Tornseglare": {
+    "skane_rekord_vart": "04-19",
+    "astorp_rekord_vart": null
+  },
+  "Gök": {
+    "skane_rekord_vart": "04-22",
+    "astorp_rekord_vart": null
+  },
+  "Kornknarr": {
+    "skane_rekord_vart": "05-08",
+    "astorp_rekord_vart": null
+  },
+  "Småfläckig sumphöna": {
+    "skane_rekord_vart": "04-02",
+    "astorp_rekord_vart": null
+  },
+  "Skärfläcka": {
+    "skane_rekord_vart": "03-02",
+    "astorp_rekord_vart": null
+  },
+  "Större strandpipare": {
+    "skane_rekord_vart": "02-09",
+    "astorp_rekord_vart": null
+  },
+  "Mindre strandpipare": {
+    "skane_rekord_vart": "03-30",
+    "astorp_rekord_vart": null
+  },
+  "Småspov": {
+    "skane_rekord_vart": "03-22",
+    "astorp_rekord_vart": null
+  },
+  "Rödspov": {
+    "skane_rekord_vart": "03-08",
+    "astorp_rekord_vart": null
+  },
+  "Brushane": {
+    "skane_rekord_vart": "03-15",
+    "astorp_rekord_vart": null
+  },
+  "Myrsnäppa": {
+    "skane_rekord_vart": "05-10",
+    "astorp_rekord_vart": null
+  },
+  "Spovsnäppa": {
+    "skane_rekord_vart": "04-29",
+    "astorp_rekord_vart": null
+  },
+  "Mosnäppa": {
+    "skane_rekord_vart": "04-18",
+    "astorp_rekord_vart": null
+  },
+  "Skärsnäppa": {
+    "skane_rekord_vart": "06-09",
+    "astorp_rekord_vart": null
+  },
+  "Småsnäppa": {
+    "skane_rekord_vart": "03-15",
+    "astorp_rekord_vart": null
+  },
+  "Dubbelbeckasin": {
+    "skane_rekord_vart": "04-27",
+    "astorp_rekord_vart": null
+  },
+  "Smalnäbbad simsna": {
+    "skane_rekord_vart": "05-12",
+    "astorp_rekord_vart": null
+  },
+  "Grönbena": {
+    "skane_rekord_vart": "04-08",
+    "astorp_rekord_vart": null
+  },
+  "Svartsnäppa": {
+    "skane_rekord_vart": "03-04",
+    "astorp_rekord_vart": null
+  },
+  "Gluttsnäppa": {
+    "skane_rekord_vart": "03-25",
+    "astorp_rekord_vart": null
+  },
+  "Skräntärna": {
+    "skane_rekord_vart": "03-19",
+    "astorp_rekord_vart": null
+  },
+  "Kentsk tärna": {
+    "skane_rekord_vart": "03-11",
+    "astorp_rekord_vart": null
+  },
+  "Småtärna": {
+    "skane_rekord_vart": "03-30",
+    "astorp_rekord_vart": null
+  },
+  "Fisktärna": {
+    "skane_rekord_vart": "03-25",
+    "astorp_rekord_vart": null
+  },
+  "Silvertärna": {
+    "skane_rekord_vart": "03-31",
+    "astorp_rekord_vart": null
+  },
+  "Svarttärna": {
+    "skane_rekord_vart": "04-29",
+    "astorp_rekord_vart": null
+  },
+  "Kustlabb": {
+    "skane_rekord_vart": "03-03",
+    "astorp_rekord_vart": null
+  },
+  "Fiskgjuse": {
+    "skane_rekord_vart": "03-17",
+    "astorp_rekord_vart": null
+  },
+  "Bivråk": {
+    "skane_rekord_vart": "04-29",
+    "astorp_rekord_vart": null
+  },
+  "Stäpphök": {
+    "skane_rekord_vart": "04-04",
+    "astorp_rekord_vart": null
+  },
+  "Ängshök": {
+    "skane_rekord_vart": "04-18",
+    "astorp_rekord_vart": null
+  },
+  "Göktyta": {
+    "skane_rekord_vart": "04-03",
+    "astorp_rekord_vart": null
+  },
+  "Aftonfalk": {
+    "skane_rekord_vart": "04-10",
+    "astorp_rekord_vart": null
+  },
+  "Lärkfalk": {
+    "skane_rekord_vart": "04-13",
+    "astorp_rekord_vart": null
+  },
+  "Sommargylling": {
+    "skane_rekord_vart": "05-03",
+    "astorp_rekord_vart": null
+  },
+  "Sidensvans": {
+    "skane_rekord_vart": "05-30",
+    "astorp_rekord_vart": null
+  },
+  "Pungmes": {
+    "skane_rekord_vart": "03-10",
+    "astorp_rekord_vart": null
+  },
+  "Berglärka": {
+    "skane_rekord_vart": "05-02",
+    "astorp_rekord_vart": null
+  },
+  "Backsvala": {
+    "skane_rekord_vart": "03-25",
+    "astorp_rekord_vart": null
+  },
+  "Ladusvala": {
+    "skane_rekord_vart": "03-19",
+    "astorp_rekord_vart": null
+  },
+  "Hussvala": {
+    "skane_rekord_vart": "03-02",
+    "astorp_rekord_vart": null
+  },
+  "Grönsångare": {
+    "skane_rekord_vart": "04-12",
+    "astorp_rekord_vart": null
+  },
+  "Lövsångare": {
+    "skane_rekord_vart": "04-04",
+    "astorp_rekord_vart": null
+  },
+  "Sävsångare": {
+    "skane_rekord_vart": "04-12",
+    "astorp_rekord_vart": null
+  },
+  "Rörsångare": {
+    "skane_rekord_vart": "04-16",
+    "astorp_rekord_vart": null
+  },
+  "Kärrsångare": {
+    "skane_rekord_vart": "05-04",
+    "astorp_rekord_vart": null
+  },
+  "Härmsångare": {
+    "skane_rekord_vart": "05-02",
+    "astorp_rekord_vart": null
+  },
+  "Flodsångare": {
+    "skane_rekord_vart": "05-07",
+    "astorp_rekord_vart": null
+  },
+  "Vassångare": {
+    "skane_rekord_vart": "04-14",
+    "astorp_rekord_vart": null
+  },
+  "Gräshoppsångare": {
+    "skane_rekord_vart": "04-23",
+    "astorp_rekord_vart": null
+  },
+  "Trädgårdssångare": {
+    "skane_rekord_vart": "04-29",
+    "astorp_rekord_vart": null
+  },
+  "Höksångare": {
+    "skane_rekord_vart": "05-09",
+    "astorp_rekord_vart": null
+  },
+  "Ärtsångare": {
+    "skane_rekord_vart": "04-10",
+    "astorp_rekord_vart": null
+  },
+  "Törnsångare": {
+    "skane_rekord_vart": "04-19",
+    "astorp_rekord_vart": null
+  },
+  "Ringtrast": {
+    "skane_rekord_vart": "03-23",
+    "astorp_rekord_vart": null
+  },
+  "Grå flugsnappare": {
+    "skane_rekord_vart": "04-22",
+    "astorp_rekord_vart": null
+  },
+  "Näktergal": {
+    "skane_rekord_vart": "04-23",
+    "astorp_rekord_vart": null
+  },
+  "Mindre flugsnappare": {
+    "skane_rekord_vart": "05-01",
+    "astorp_rekord_vart": null
+  },
+  "Svartvit flugsnappare": {
+    "skane_rekord_vart": "04-08",
+    "astorp_rekord_vart": null
+  },
+  "Rödstjärt": {
+    "skane_rekord_vart": "04-05",
+    "astorp_rekord_vart": null
+  },
+  "Buskskvätta": {
+    "skane_rekord_vart": "04-12",
+    "astorp_rekord_vart": null
+  },
+  "Stenskvätta": {
+    "skane_rekord_vart": "03-15",
+    "astorp_rekord_vart": null
+  },
+  "Sydlig gulärla": {
+    "skane_rekord_vart": "04-07",
+    "astorp_rekord_vart": null
+  },
+  "Nordlig gulärla": {
+    "skane_rekord_vart": "04-20",
+    "astorp_rekord_vart": null
+  },
+  "Fältpiplärka": {
+    "skane_rekord_vart": "04-13",
+    "astorp_rekord_vart": null
+  },
+  "Trädpiplärka": {
+    "skane_rekord_vart": "04-04",
+    "astorp_rekord_vart": null
+  },
+  "Rödstrupig piplärka": {
+    "skane_rekord_vart": "05-01",
+    "astorp_rekord_vart": null
+  },
+  "Rosenfink": {
+    "skane_rekord_vart": "05-01",
+    "astorp_rekord_vart": null
+  },
+  "Vinterhämpling": {
+    "skane_rekord_vart": "04-30",
+    "astorp_rekord_vart": null
+  },
+  "Lappsparv": {
+    "skane_rekord_vart": "05-23",
+    "astorp_rekord_vart": null
+  },
+  "Snösparv": {
+    "skane_rekord_vart": "04-16",
+    "astorp_rekord_vart": null
+  },
+  "Farhult Mona Hansson": {
+    "skane_rekord_vart": "05-03",
+    "astorp_rekord_vart": null
+  },
+  "Ortolansparv": {
+    "skane_rekord_vart": "04-24",
+    "astorp_rekord_vart": null
   },
   "Gransångare": {
     "skane_rekord_vart": "02-28",
-    "astorp_rekord_vart": "03-15"
+    "astorp_rekord_vart": null
   },
-  "Lövsångare": {
-    "skane_rekord_vart": "03-25",
-    "astorp_rekord_vart": "04-05"
-  },
-  "Rödstjärt": {
-    "skane_rekord_vart": "04-01",
-    "astorp_rekord_vart": "04-12"
-  },
-  "Fiskgjuse": {
-    "skane_rekord_vart": "03-10",
-    "astorp_rekord_vart": "03-25"
-  },
-  "Svartvit flugsnappare": {
-    "skane_rekord_vart": "04-05",
-    "astorp_rekord_vart": "04-20"
-  },
-  "Törnsångare": {
-    "skane_rekord_vart": "04-15",
-    "astorp_rekord_vart": "05-01"
-  },
-  "Gulärla": {
-    "skane_rekord_vart": "04-02",
-    "astorp_rekord_vart": "04-15"
-  },
-  "Sävsångare": {
-    "skane_rekord_vart": "04-10",
-    "astorp_rekord_vart": "04-22"
-  },
-  "Gök": {
-    "skane_rekord_vart": "04-12",
-    "astorp_rekord_vart": "04-25"
+  "Sädesärla": {
+    "skane_rekord_vart": "02-15",
+    "astorp_rekord_vart": null
   }
 }

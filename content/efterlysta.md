@@ -777,6 +777,9 @@ function openSkaneObsMap(records, speciesName) {
     if (!dialog.open) dialog.showModal();
     document.body.classList.add('lightbox-open');
 
+    const legend = document.getElementById('map-lightbox-legend');
+    if (legend) legend.style.display = 'none';
+
     setTimeout(() => {
         let map = window.globalHistoricMapInstance;
         const container = document.getElementById('map-lightbox-container');
