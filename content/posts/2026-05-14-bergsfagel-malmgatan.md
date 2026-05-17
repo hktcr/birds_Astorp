@@ -32,8 +32,6 @@ Jag behövde inte leta länge längs gatorna mellan industrilokalerna. Den satt 
 
 Sången blandar visslingar med torrt knaster. Den bär långt. Men vardagsbruset från ett industriområde överröstar lätt de försiktigare rösterna. Idag stod många maskiner stilla.
 
-![Svart rödstjärt sjunger från en fackverksmast på industriområdet](/images/posts/2026-05-14-bergsfagel-malmgatan/svart-rodstjart-malmgatan.png)
-
 <div style="margin: 2rem 0; border-radius: 8px; overflow: hidden; background: #000;">
   <video controls poster="/images/posts/2026-05-14-bergsfagel-malmgatan/svart-rodstjart-malmgatan.png" width="100%" style="width: 100%; object-fit: contain;">
     <source src="/videos/posts/2026-05-14-bergsfagel-malmgatan/svart-rodstjart-malmgatan.mp4" type="video/mp4">
