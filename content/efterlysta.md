@@ -8,7 +8,7 @@ url: "/efterlysta/"
 <div style="text-align: center; margin-bottom: 2rem;">
 <h1 style="font-size: 3rem; margin-bottom: 0.5rem; color: var(--text-color);">EFTERLYSTA</h1>
 <p style="font-size: 1.1rem; line-height: 1.6; text-align: left; opacity: 0.9; margin-bottom: 3rem; max-width: 680px; margin-left: auto; margin-right: auto;">
-Efter en genomgång av Skånes fågelfauna har jag identifierat 54 arter som utgör tydliga luckor för Åstorp — arter som borde kunna dyka upp, men ännu inte noterats i kommunen. Målet: minska listan, ett fynd i taget.
+Efter en noggrann genomgång av artlistan för Åstorp har jag identifierat 54 arter som utgör tydliga luckor: arter som borde kunna dyka upp, men ännu inte noterats i kommunen. Målet: minska listan, ett fynd i taget.
 </p>
 </div>
 
