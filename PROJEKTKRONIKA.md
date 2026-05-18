@@ -56,3 +56,30 @@ title: Fåglar/astorp-faglar Krönika
 - **Redaktionell Sparring:** gAIa bröt under sessionen mot "Author Sovereignty / Anti-Laziness Pact" genom att publicera ett utkast utan redaktionell granskning. Förbättring: gAIa måste alltid använda `/redaktör`-läget och ge respons eller presentera alternativ när användaren ger ett råmanus, även för mycket korta texter.
 - **Automatisera Thumbnails:** Insåg att avsaknad av miniatyrfiler kraschade bildvisningen i galleriet. `generate-thumbnails.sh` byggs därför in som ett obligatoriskt för-steg i `deploy.sh`.
 
+---
+
+## Session 2026-05-18
+*Observatör: gAIa*
+**Status:** `Aktiv` (Artportalen-export & UI/Systemarkitektur)
+
+### 🐦 Artportalen-export & UI
+**Koppling till tidigare arbete:**
+- ✅ "Efterlysta"-kartans legend-bugg → Löst: Implementerade kontextuell döljning av legenden vid singel-års-visningar men bevarade den för årshjul.
+
+**Bakgrund & Syfte:**
+- Export av 20 orapporterade fågelobservationer och 5 nya lokaler (inklusive "Rönnbacka"). Behov av att få den historiska lokalkartan (som drivs av en separat API-cache) att omedelbart reflektera de nya fynden.
+
+**Utfört (Process & Roller):**
+- Genomförde export via `generate_export.py` och verifierade via `confirm_sites.py`.
+- Lade till kontextuell CSS-logik (`display: none`) i kart-lightboxen för specifika vyer.
+
+**Beslut & Lärdomar (Återkoppling):**
+- **Arkitektur:** Att bygga en skräddarsydd "delta-injicering" för att lokalt manipulera en statisk JSON-fil som annars genereras av ett API bygger farlig teknisk skuld. Istället formaliserades ett tillägg i `/observationer`-workflowet som asynkront triggar `fetch_astorp_historic_locations2.py` i bakgrunden vid varje slutförd export. Detta bevarar API:et som SSOT (Single Source of Truth) men avlastar användaren helt från kognitiv friktion.
+
+**Nästa steg:**
+- Rutinuppdateringar rullar på.
+
+📡 Satelliter: RESUME ✅ | PI — | Trackers — | TC —
+
+*Signatur: gAIa 🌲 2026-05-18*
+
