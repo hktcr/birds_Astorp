@@ -21,6 +21,6 @@ draft: false
 Är det sommaren som för med sig tornseglarna, eller är det tornseglarna som bär med sig sommaren? I går kväll kom i alla fall den första. En ensam fågel, men just därför fick den all uppmärksamhet. Snart är de en självklarhet på himlen. Ibland som knappt förnimbara prickar på hög höjd, ibland i ett susande svep strax över husknutarna. Än finns det springor under de gamla takpannorna hemmavid där de kan bosätta sig, men i takt med att taken byts ut i byn blir marginalerna allt mindre.
 
 ![Tornseglare i flykt](/images/posts/2026-05-17-tornseglare/tornseglare-arkiv.jpg)
-*Arkivbild från Kvidinge, sommaren 2010. Får tjäna som stämningshöjare i väntan på årets fotografier.*
+*Arkivbild från Kvidinge, sommaren 2010.*
 
 *Fågelåret i Åstorp, 139/150*
