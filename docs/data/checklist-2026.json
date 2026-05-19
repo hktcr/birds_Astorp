@@ -1123,7 +1123,18 @@
       "lat": 56.09124965751413,
       "lng": 13.058212865484588,
       "notes": "1 ex., spinnande/spelande"
+    },
+    {
+      "species": "Tornseglare",
+      "date": "2026-05-17",
+      "location": "Sönnarslöv",
+      "observer": "Håkan Karlsson",
+      "status": "confirmed",
+      "latin": "Apus apus",
+      "lat": 56.13015,
+      "lng": 13.07099,
+      "notes": "1 ex., årets första"
     }
   ],
-  "last_updated": "2026-05-14T10:00:00Z"
+  "last_updated": "2026-05-17T23:07:43Z"
 }
