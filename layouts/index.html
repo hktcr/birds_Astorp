@@ -35,6 +35,18 @@ RATT: dubbelklammer range dubbelklammer
             <div class="latest-species" id="latest-species"></div>
         </div>
 
+        <!-- Prediktion: Nästa på tur? -->
+        <div class="prediction-section" id="prediction-section">
+            <div class="prediction-header">
+                <h2 class="prediction-title">Nästa på tur?</h2>
+                <p class="prediction-subtitle">Tre arter systemet tror dyker upp härnäst</p>
+            </div>
+            <div class="prediction-cards" id="prediction-cards">
+                <!-- Fylls av JavaScript -->
+            </div>
+            <div class="prediction-score" id="prediction-score"></div>
+        </div>
+
         <!-- Senaste notis (rundad ruta utan emoji) -->
         {{ $latest := first 1 (where .Site.RegularPages "Section" "posts") }}
         {{ range $latest }}
@@ -204,5 +216,143 @@ RATT: dubbelklammer range dubbelklammer
     }
 
     initDashboard();
+
+    // ── Prediktionssektion: "Nästa på tur?" ──
+    function initPredictions() {
+        if (!data || !data.observations) return;
+
+        // Hämta species-guide med historisk månadsdata
+        fetch('/data/species-guide.json')
+            .then(function(r) { return r.json(); })
+            .then(function(guide) {
+                var observed = {};
+                data.observations.forEach(function(o) { observed[o.species] = true; });
+
+                var now = new Date();
+                var currentMonth = now.getMonth(); // 0-indexed (jan=0, maj=4)
+                var nextMonth = (currentMonth + 1) % 12;
+                var monthAfter = (currentMonth + 2) % 12;
+
+                // Månadsnamn för visning
+                var monthNames = ['jan','feb','mar','apr','maj','jun','jul','aug','sep','okt','nov','dec'];
+
+                // Beräkna prediktion: vikta historiska observationer mot aktuell+kommande månader
+                var candidates = [];
+                guide.species.forEach(function(sp) {
+                    var cur = sp.months[currentMonth] || 0;
+                    var nxt = sp.months[nextMonth] || 0;
+                    var aft = sp.months[monthAfter] || 0;
+                    // Vikta: aktuell månad tyngst, sedan avtagande
+                    var score = cur * 3 + nxt * 2 + aft * 1;
+                    if (score > 0) {
+                        // Hitta bästa månad (den med flest obs)
+                        var peakMonth = currentMonth;
+                        var peakVal = cur;
+                        if (nxt > peakVal) { peakMonth = nextMonth; peakVal = nxt; }
+                        if (aft > peakVal) { peakMonth = monthAfter; peakVal = aft; }
+
+                        candidates.push({
+                            name: sp.name,
+                            latin: sp.latin,
+                            total: sp.total,
+                            score: score,
+                            isObserved: !!observed[sp.name],
+                            peakMonth: monthNames[peakMonth],
+                            category: sp.category
+                        });
+                    }
+                });
+
+                // Sortera efter score (högst först)
+                candidates.sort(function(a, b) { return b.score - a.score; });
+
+                // Hämta eller skapa prediktion-state i localStorage
+                var storageKey = 'astorp-predictions-2026';
+                var state = null;
+                try {
+                    state = JSON.parse(localStorage.getItem(storageKey));
+                } catch(e) {}
+
+                // Generera ny omgång om: ingen finns, eller alla tre är avkryssade
+                var needNew = !state || !state.species || state.species.length !== 3;
+                if (state && state.species) {
+                    var allHit = state.species.every(function(name) { return !!observed[name]; });
+                    if (allHit) needNew = true;
+                }
+
+                var predictions;
+                if (needNew) {
+                    // Välj topp 3 OOBSERVERADE arter
+                    var unobserved = candidates.filter(function(c) { return !c.isObserved; });
+                    predictions = unobserved.slice(0, 3).map(function(c) { return c.name; });
+
+                    // Uppdatera historik
+                    var history = [];
+                    if (state && state.history) history = state.history;
+                    // Spara gamla omgången som avslutad (om den fanns)
+                    if (state && state.species) {
+                        var hits = state.species.filter(function(name) { return !!observed[name]; }).length;
+                        history.push({ species: state.species, hits: hits, date: state.date });
+                    }
+
+                    state = {
+                        species: predictions,
+                        date: now.toISOString().slice(0, 10),
+                        history: history
+                    };
+                    try {
+                        localStorage.setItem(storageKey, JSON.stringify(state));
+                    } catch(e) {}
+                } else {
+                    predictions = state.species;
+                }
+
+                // Bygg kandidat-lookup för metadata
+                var candMap = {};
+                candidates.forEach(function(c) { candMap[c.name] = c; });
+
+                // Rendera kort
+                var cardsEl = document.getElementById('prediction-cards');
+                if (!cardsEl) return;
+
+                var checkSvg = '<svg viewBox="0 0 16 16"><polyline points="3.5 8.5 6.5 11.5 12.5 4.5"/></svg>';
+
+                var html = '';
+                predictions.forEach(function(name) {
+                    var info = candMap[name];
+                    var isHit = !!observed[name];
+                    var meta = '';
+                    if (info) {
+                        meta = info.total + ' obs totalt · topp ' + info.peakMonth;
+                    }
+                    html += '<div class="prediction-card' + (isHit ? ' hit' : '') + '">';
+                    html += '  <span class="prediction-species">' + name + '</span>';
+                    html += '  <div class="prediction-check">' + checkSvg + '</div>';
+                    html += '</div>';
+                });
+                cardsEl.innerHTML = html;
+
+                // Visa träffstatistik
+                var scoreEl = document.getElementById('prediction-score');
+                if (scoreEl && state.history && state.history.length > 0) {
+                    var totalPredictions = state.history.length * 3;
+                    var totalHits = 0;
+                    state.history.forEach(function(round) { totalHits += round.hits; });
+                    // Lägg till aktuell omgång
+                    var currentHits = predictions.filter(function(name) { return !!observed[name]; }).length;
+                    totalPredictions += 3;
+                    totalHits += currentHits;
+                    var pct = Math.round((totalHits / totalPredictions) * 100);
+                    scoreEl.innerHTML = 'Träffsäkerhet: <strong>' + totalHits + '/' + totalPredictions + '</strong> (' + pct + '%)';
+                }
+            })
+            .catch(function(err) {
+                console.warn('Kunde inte ladda prediktioner:', err);
+                var section = document.getElementById('prediction-section');
+                if (section) section.style.display = 'none';
+            });
+    }
+
+    initPredictions();
 </script>
 {{ end }}
