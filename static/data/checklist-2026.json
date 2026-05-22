@@ -1134,7 +1134,15 @@
       "lat": 56.13015,
       "lng": 13.07099,
       "notes": "1 ex., årets första"
+    },
+    {
+      "species": "Rörsångare",
+      "latin": "Acrocephalus scirpaceus",
+      "date": "2026-05-22",
+      "location": "Brännaregatans damm",
+      "lat": 56.097269328327776,
+      "lng": 12.857735451930592
     }
   ],
-  "last_updated": "2026-05-17T23:07:43Z"
+  "last_updated": "2026-05-22T15:41:00Z"
 }
