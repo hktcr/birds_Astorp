@@ -1,8 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Väder on Fågelåret i Åstorp</title><link>https://astorpsfaglar.se/tags/v%C3%A4der/</link><description>Recent content in Väder on Fågelåret i Åstorp</description><generator>Hugo</generator><language>sv</language><lastBuildDate>Thu, 12 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://astorpsfaglar.se/tags/v%C3%A4der/index.xml" rel="self" type="application/rss+xml"/><item><title>Heads-up, bokstavligt och bildligt</title><link>https://astorpsfaglar.se/posts/2026/03/heads-up-bokstavligt-och-bildligt/</link><pubDate>Thu, 12 Mar 2026 00:00:00 +0000</pubDate><guid>https://astorpsfaglar.se/posts/2026/03/heads-up-bokstavligt-och-bildligt/</guid><description>&lt;p&gt;Vindarna har slagit om till sydväst. Nu kommer förmodligen nästa våg av vårfåglar.&lt;/p&gt;
-&lt;figure class="notis-chart"&gt;
- &lt;a href="https://astorpsfaglar.se/images/posts/2026-03-12-vindskifte/wind-components.png" class="lightbox-link"&gt;
- &lt;img src="https://astorpsfaglar.se/images/posts/2026-03-12-vindskifte/wind-components.png" alt="Diagram över vindskiftet från S/Ö till S/V"&gt;
- &lt;/a&gt;
- &lt;figcaption&gt;De senaste dagarnas vindutveckling. Sydvinden är ihållande, och den ostliga komponenten har nu bytts ut mot en västlig.&lt;/figcaption&gt;
-&lt;/figure&gt;
-&lt;p&gt;Som diagrammen visar har ostvinden under dygnet vridit över till väst. I kombination med den stabila sydvinden ger detta oss klassiska sydvästvindar. Den här tiden på året betyder det goda chanser för ett märkbart inflöde av flyttfåglar.&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Väder on Fågelåret i Åstorp</title>
+    <link>https://astorpsfaglar.se/tags/v%C3%A4der/</link>
+    <description>Recent content in Väder on Fågelåret i Åstorp</description>
+    <generator>Hugo</generator>
+    <language>sv</language>
+    <lastBuildDate>Thu, 12 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="https://astorpsfaglar.se/tags/v%C3%A4der/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Heads-up, bokstavligt och bildligt</title>
+      <link>https://astorpsfaglar.se/posts/2026/03/heads-up-bokstavligt-och-bildligt/</link>
+      <pubDate>Thu, 12 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>https://astorpsfaglar.se/posts/2026/03/heads-up-bokstavligt-och-bildligt/</guid>
+      <description>&lt;p&gt;Vindarna har slagit om till sydväst. Nu kommer förmodligen nästa våg av vårfåglar.&lt;/p&gt;&#xA;&lt;figure class=&#34;notis-chart&#34;&gt;&#xA;  &lt;a href=&#34;https://astorpsfaglar.se/images/posts/2026-03-12-vindskifte/wind-components.png&#34; class=&#34;lightbox-link&#34;&gt;&#xA;    &lt;img src=&#34;https://astorpsfaglar.se/images/posts/2026-03-12-vindskifte/wind-components.png&#34; alt=&#34;Diagram över vindskiftet från S/Ö till S/V&#34;&gt;&#xA;  &lt;/a&gt;&#xA;  &lt;figcaption&gt;De senaste dagarnas vindutveckling. Sydvinden är ihållande, och den ostliga komponenten har nu bytts ut mot en västlig.&lt;/figcaption&gt;&#xA;&lt;/figure&gt;&#xA;&lt;p&gt;Som diagrammen visar har ostvinden under dygnet vridit över till väst. I kombination med den stabila sydvinden ger detta oss klassiska sydvästvindar. Den här tiden på året betyder det goda chanser för ett märkbart inflöde av flyttfåglar.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -175,169 +175,362 @@
         });
     </script>
 
-    <!-- Map Lightbox -->
-    <dialog id="map-lightbox" style="padding: 0; border: none; border-radius: 8px; background: transparent; outline: none; margin: auto; max-width: 1200px; width: 90vw; height: 90vh; max-height: 900px; overflow: hidden;">
-        <div style="width: 100%; height: 100%; background: white; border-radius: 8px; padding: 1.5rem; position: relative; display: flex; flex-direction: column; cursor: default; box-sizing: border-box;">
-            <button class="lightbox-close" onclick="closeMapLightbox()" aria-label="Stäng" style="color: #64748b; background: #f1f5f9; top: 1rem; right: 1rem; z-index: 100;">&times;</button>
-            <h2 id="map-lightbox-title" style="margin-top: 0; color: #1e293b; text-align: center; margin-bottom: 1rem; font-size: clamp(1.2rem, 3vw, 1.8rem);">Var i Åstorp har arten setts?</h2>
-            <div id="map-lightbox-container" style="flex-grow: 1; border-radius: 4px; overflow: hidden; border: 1px solid #e2e8f0; position: relative; z-index: 1;"></div>
-            <div id="map-lightbox-legend" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 1.5rem; margin-top: 1rem; font-size: 0.85rem; color: #475569;">
-                <div style="display: flex; align-items: center; gap: 0.4rem;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #dc2626; opacity: 0.8;"></span>I år</div>
-                <div style="display: flex; align-items: center; gap: 0.4rem;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #f97316; opacity: 0.8;"></span>Förra året</div>
-                <div style="display: flex; align-items: center; gap: 0.4rem;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #eab308; opacity: 0.8;"></span>2-10 år sedan</div>
-                <div style="display: flex; align-items: center; gap: 0.4rem;"><span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #9ca3af; opacity: 0.8;"></span>Äldre</div>
+    <!-- Observation Explorer (karta + lista) -->
+    <dialog id="obs-explorer-dialog" class="obs-explorer-dialog">
+        <div class="obs-explorer-container">
+            <button class="obs-explorer-close" onclick="closeObsExplorer()" aria-label="Stäng">&times;</button>
+            <h2 id="obs-explorer-title" class="obs-explorer-title">Historiska fyndplatser</h2>
+
+            <div class="obs-explorer-grid">
+                <!-- Map -->
+                <div class="obs-explorer-map-wrap">
+                    <div id="obs-explorer-map" class="obs-explorer-map"></div>
+                </div>
+
+                <!-- Side panel -->
+                <div class="obs-explorer-panel">
+                    <!-- Time filter pills -->
+                    <div class="obs-explorer-filters">
+                        <button class="obs-period-pill active" data-period="all">Alla</button>
+                        <button class="obs-period-pill" data-period="current">I år</button>
+                        <button class="obs-period-pill" data-period="last-year">Förra året</button>
+                        <button class="obs-period-pill" data-period="decade">2–10 år</button>
+                        <button class="obs-period-pill" data-period="older">Äldre</button>
+                    </div>
+
+                    <!-- Stats -->
+                    <div id="obs-explorer-stats" class="obs-explorer-stats">Laddar...</div>
+
+                    <!-- Legend -->
+                    <div class="obs-explorer-legend">
+                        <div class="legend-item"><span class="legend-dot" style="background: #dc2626;"></span>I år</div>
+                        <div class="legend-item"><span class="legend-dot" style="background: #f97316;"></span>Förra året</div>
+                        <div class="legend-item"><span class="legend-dot" style="background: #eab308;"></span>2–10 år</div>
+                        <div class="legend-item"><span class="legend-dot" style="background: #9ca3af;"></span>Äldre</div>
+                    </div>
+
+                    <!-- List -->
+                    <div id="obs-explorer-list" class="obs-explorer-list"></div>
+
+                    <!-- Loading state -->
+                    <div id="obs-explorer-loading" class="obs-explorer-loading" style="display: none;">Laddar fyndplatser...</div>
+
+                    <!-- Disclaimer -->
+                    <p class="obs-explorer-disclaimer">
+                        Observera att allmänna fåglar ofta underrapporteras på Artportalen. Även för vanliga arter kan antalet fyndplatser vara lågt.
+                    </p>
+                </div>
             </div>
-            <p style="text-align: center; margin: 0.75rem 0 0 0; font-size: 0.8rem; color: #64748b; font-style: italic; max-width: 80%; align-self: center;">
-                Observera att allmänna fåglar ofta underrapporteras på Artportalen. Även för vanliga arter kan därför antalet inrapporterade fyndplatser vara lågt.
-            </p>
-            <div id="map-lightbox-loading" style="text-align: center; padding: 1rem; color: #64748b; display: none;">Laddar fyndplatser...</div>
         </div>
     </dialog>
+
     <style>
-        #map-lightbox::backdrop {
-            background: rgba(0, 0, 0, 0.85);
-            backdrop-filter: blur(4px);
+        /* ─── OBS EXPLORER DIALOG ─── */
+        .obs-explorer-dialog {
+            padding: 0;
+            border: none;
+            border-radius: 12px;
+            background: transparent;
+            outline: none;
+            margin: auto;
+            width: 100vw;
+            height: 100vh;
+            max-width: 100vw;
+            max-height: 100vh;
+            overflow: hidden;
+        }
+
+        .obs-explorer-dialog::backdrop {
+            background: rgba(0, 0, 0, 0.88);
+            backdrop-filter: blur(6px);
+        }
+
+        .obs-explorer-container {
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            padding: 1.25rem 1.5rem;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+
+        .obs-explorer-close {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            width: 44px;
+            height: 44px;
+            background: #f1f5f9;
+            color: #64748b;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .obs-explorer-close:hover {
+            background: #e2e8f0;
+            color: #1e293b;
+        }
+
+        .obs-explorer-title {
+            margin: 0 0 0.75rem 0;
+            color: #1e293b;
+            text-align: center;
+            font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .obs-explorer-grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1.6fr 1fr;
+            gap: 1rem;
+            min-height: 0;
+            overflow: hidden;
+        }
+
+        /* Map */
+        .obs-explorer-map-wrap {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .obs-explorer-map {
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
+        }
+
+        /* Side panel */
+        .obs-explorer-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            min-height: 0;
+            overflow: hidden;
+        }
+
+        /* Filter pills */
+        .obs-explorer-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .obs-period-pill {
+            padding: 0.35rem 0.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 9999px;
+            background: #f8fafc;
+            color: #64748b;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .obs-period-pill:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+        }
+
+        .obs-period-pill.active {
+            background: #1e293b;
+            color: #fff;
+            border-color: #1e293b;
+        }
+
+        /* Stats */
+        .obs-explorer-stats {
+            font-size: 0.82rem;
+            color: #64748b;
+            font-weight: 500;
+            padding: 0.25rem 0;
+        }
+
+        /* Legend */
+        .obs-explorer-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            font-size: 0.78rem;
+            color: #64748b;
+            padding: 0.35rem 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .legend-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            opacity: 0.85;
+        }
+
+        /* List */
+        .obs-explorer-list {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            padding-right: 0.25rem;
+            min-height: 0;
+        }
+
+        .obs-explorer-card {
+            padding: 0.65rem 0.75rem;
+            background: #f8fafc;
+            border-radius: 8px;
+            border-left: 3px solid var(--period-color, #9ca3af);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .obs-explorer-card:hover {
+            background: #f1f5f9;
+            transform: translateX(2px);
+        }
+
+        .obs-explorer-card.active {
+            background: #eff6ff;
+            border-left-width: 4px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+        }
+
+        .obs-explorer-card.pulse-highlight {
+            animation: obs-pulse 0.6s ease-out 2;
+        }
+
+        @keyframes obs-pulse {
+            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+            70% { box-shadow: 0 0 0 8px rgba(59, 130, 246, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
+
+        .obs-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        .obs-card-locality {
+            font-weight: 600;
+            font-size: 0.88rem;
+            color: #1e293b;
+            line-height: 1.3;
+        }
+
+        .obs-card-count {
+            font-size: 0.75rem;
+            color: #64748b;
+            white-space: nowrap;
+            font-weight: 500;
+        }
+
+        .obs-card-meta {
+            margin-top: 0.2rem;
+            font-size: 0.78rem;
+            color: #64748b;
+        }
+
+        .obs-explorer-empty {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: #94a3b8;
+            font-style: italic;
+        }
+
+        .obs-explorer-loading {
+            text-align: center;
+            padding: 1rem;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .obs-explorer-disclaimer {
+            text-align: center;
+            font-size: 0.75rem;
+            color: #94a3b8;
+            font-style: italic;
+            margin: 0.5rem 0 0;
+            line-height: 1.4;
+        }
+
+        /* Popup styling */
+        .obs-explorer-popup strong {
+            color: #1e293b;
+        }
+
+        /* ─── RESPONSIVE ─── */
+        @media (max-width: 768px) {
+            .obs-explorer-dialog {
+                border-radius: 0;
+            }
+
+            .obs-explorer-container {
+                padding: 1rem;
+            }
+
+            .obs-explorer-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 1fr;
+            }
+
+            .obs-explorer-map {
+                min-height: 200px;
+            }
+
+            .obs-explorer-title {
+                font-size: 1.1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .obs-explorer-close {
+                width: 36px;
+                height: 36px;
+                font-size: 1.5rem;
+            }
+        }
+
+        /* Custom scrollbar for list */
+        .obs-explorer-list::-webkit-scrollbar {
+            width: 5px;
+        }
+        .obs-explorer-list::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .obs-explorer-list::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .obs-explorer-list::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
         }
     </style>
-    <!-- Map Lightbox Logic -->
-    <script>
-        let globalHistoricMapInstance = null;
-        let globalHistoricMapInitialized = false;
 
-        function openMapLightbox(speciesName) {
-            document.getElementById('map-lightbox-title').textContent = "Historiska fyndplatser: " + speciesName;
-            
-            const dialog = document.getElementById('map-lightbox');
-            if (!dialog.open) {
-                dialog.showModal();
-            }
-            document.body.classList.add('lightbox-open');
-            
-            const legend = document.getElementById('map-lightbox-legend');
-            if (legend) legend.style.display = 'flex';
-            
-            const mapLoading = document.getElementById("map-lightbox-loading");
-            if (mapLoading) mapLoading.style.display = "block";
-
-            if (!globalHistoricMapInitialized) {
-                globalHistoricMapInstance = L.map('map-lightbox-container').setView([56.14, 13.05], 11);
-                L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
-                    maxZoom: 17,
-                    attribution: 'Kartdata: © OpenTopoMap'
-                }).addTo(globalHistoricMapInstance);
-                
-                fetch('/data/astorp-kommun.geojson')
-                    .then(res => res.json())
-                    .then(geo => {
-                        const coords = geo.features[0].geometry.coordinates[0];
-                        const hole = coords.map(c => [c[1], c[0]]);
-                        const worldBounds = [[-90, -180], [-90, 180], [90, 180], [90, -180], [-90, -180]];
-                        L.polygon([worldBounds, hole], {
-                            color: 'transparent',
-                            fillColor: '#4b5563',
-                            fillOpacity: 0.4,
-                            interactive: false,
-                            noClip: true
-                        }).addTo(globalHistoricMapInstance);
-                        L.polygon(hole, {
-                            color: '#b91c1c',
-                            weight: 3,
-                            fill: false,
-                            opacity: 0.8
-                        }).addTo(globalHistoricMapInstance);
-                        globalHistoricMapInstance.fitBounds(L.latLngBounds(hole));
-                    })
-                    .catch(err => console.error("Could not load municipality bounds", err));
-                    
-                globalHistoricMapInitialized = true;
-            }
-            
-            // Critical fix for Leaflet rendering inside modals
-            setTimeout(() => {
-                if (globalHistoricMapInstance) globalHistoricMapInstance.invalidateSize();
-            }, 50);
-            setTimeout(() => {
-                if (globalHistoricMapInstance) globalHistoricMapInstance.invalidateSize();
-            }, 300);
-
-            // Clear existing markers
-            globalHistoricMapInstance.eachLayer(layer => {
-                if (layer instanceof L.CircleMarker) {
-                    globalHistoricMapInstance.removeLayer(layer);
-                }
-            });
-
-            // Load specific species data
-            fetch('/data/astorp_historic_locations.json')
-                .then(res => res.json())
-                .then(data => {
-                    if (mapLoading) mapLoading.style.display = "none";
-                    const locs = data[speciesName] || [];
-                    if (locs.length === 0) {
-                        if (mapLoading) {
-                            mapLoading.style.display = "block";
-                            mapLoading.textContent = "Inga historiska fyndplatser hittades för arten i Åstorp.";
-                        }
-                        return;
-                    }
-                    
-                    const currentYear = new Date().getFullYear();
-                    
-                    locs.forEach(loc => {
-                        let markerColor = '#9ca3af'; // grå (äldre)
-                        const locYear = parseInt(loc.date.substring(0, 4), 10);
-                        
-                        if (locYear >= currentYear) {
-                            markerColor = '#dc2626'; // röd (i år)
-                        } else if (locYear === currentYear - 1) {
-                            markerColor = '#f97316'; // orange (förra året)
-                        } else if (locYear >= currentYear - 10) {
-                            markerColor = '#eab308'; // gul (2-10 år sedan)
-                        }
-                        
-                        const marker = L.circleMarker([loc.lat, loc.lng], {
-                            radius: 6 + Math.min(loc.count, 15),
-                            fillColor: markerColor,
-                            color: markerColor,
-                            weight: 2,
-                            opacity: 1,
-                            fillOpacity: 0.4
-                        }).addTo(globalHistoricMapInstance);
-                        marker.bindPopup(`<strong>${loc.locality}</strong><br>Totalt ${loc.count} fynd.<br>Senast: ${loc.date}`);
-                    });
-                })
-                .catch(err => {
-                    if (mapLoading) {
-                        mapLoading.style.display = "block";
-                        mapLoading.textContent = "Kunde inte ladda fyndplatser.";
-                    }
-                    console.error("Could not load locations", err);
-                });
-        }
-
-        function closeMapLightbox() {
-            const dialog = document.getElementById('map-lightbox');
-            if (dialog.open) {
-                dialog.close();
-            }
-            document.body.classList.remove('lightbox-open');
-        }
-        
-        // Stäng lightboxen om man klickar utanför innehållet (på backdrop)
-        document.getElementById('map-lightbox').addEventListener('click', function(e) {
-            const dialogDimensions = this.getBoundingClientRect();
-            if (
-                e.clientX < dialogDimensions.left ||
-                e.clientX > dialogDimensions.right ||
-                e.clientY < dialogDimensions.top ||
-                e.clientY > dialogDimensions.bottom
-            ) {
-                closeMapLightbox();
-            }
-        });
-        
-        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeMapLightbox(); });
-    </script>
+    <script src="/js/obs-explorer.js"></script>
 
     <!-- Leaflet for location popup maps -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
