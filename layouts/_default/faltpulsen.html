@@ -242,11 +242,16 @@
             .then(function(data) {
                 var guide = {};
                 (data.species || []).forEach(function(sp, i) {
-                    guide[sp.name.toLowerCase()] = {
+                    var entry = {
                         total: sp.total || 0,
                         category: sp.category || 'common',
                         order: i  // taxonomisk ordning
                     };
+                    guide[sp.name.toLowerCase()] = entry;
+                    // Indexera även på latinskt namn för underarts-fallback
+                    if (sp.latin) {
+                        guide['_latin:' + sp.latin.toLowerCase()] = entry;
+                    }
                 });
                 return guide;
             })
@@ -387,6 +392,18 @@
 
             var nameKey = speciesName.toLowerCase();
             var guide = speciesGuide[nameKey] || {};
+            // Underarts-fallback: matcha vetenskapligt namn om svenskt namn missar
+            if (!guide.category && sciName) {
+                var sciLower = sciName.toLowerCase();
+                guide = speciesGuide['_latin:' + sciLower] || {};
+                // Trinomial → binomial: "Motacilla flava flava" → "Motacilla flava"
+                if (!guide.category) {
+                    var parts = sciLower.split(' ');
+                    if (parts.length > 2) {
+                        guide = speciesGuide['_latin:' + parts[0] + ' ' + parts[1]] || {};
+                    }
+                }
+            }
             var cat = guide.category || 'new';
             var dotColor = CATEGORY_COLORS[cat] || CATEGORY_COLORS.new;
 
