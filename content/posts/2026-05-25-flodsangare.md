@@ -1,9 +1,23 @@
-+++
-date = '2026-05-25T21:40:00+02:00'
-draft = false
-title = 'Flodsångare i försommardunklet vid Tomarps Ene'
-tags = ['Årskryss', 'Rönne å']
-+++
+---
+title: "Flodsångare i försommardunklet vid Tomarps Ene"
+date: 2026-05-25
+draft: false
+location: "Tomarps Ene · Kungsgårdsmaderna"
+species:
+  - Flodsångare
+tags:
+  - Årskryss
+  - Rönne å
+locations:
+  - name: "Tomarps Ene"
+    lat: 56.1487
+    lng: 13.07359
+images:
+  - url: "/images/posts/2026-05-25-flodsangare/stillbild.jpg"
+    alt: "Flodsångare sjunger i skymningen vid Tomarps Ene"
+    categories:
+      - Flodsångare
+---
 
 Huvudsyftet med kvällens promenad längs Rönne å var egentligen att lyssna efter kungsfiskare och drillsnäppa. Just nu är många fåglar upptagna med att ruva sina ägg och de håller sig medvetet tysta för att inte röja sina boplatser. Även om förväntningarna på nya fågelfynd var låga, sjöng näktergalarna ljudligt runt omkring mig. En flock hämplingar flög regelbundet fram och tillbaka längs ån och en brun kärrhök patrullerade metodiskt över madmarkerna. 
 
