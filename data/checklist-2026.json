@@ -1,1165 +1,1173 @@
 {
-  "year": 2026,
-  "municipality": "\u00c5storp",
-  "observations": [
-    {
-      "species": "Havs\u00f6rn",
-      "latin": "Haliaeetus albicilla",
-      "date": "2026-01-22",
-      "location": "S\u00f6nnarsl\u00f6v",
-      "lat": 56.12868,
-      "lng": 13.08559
-    },
-    {
-      "species": "Skata",
-      "latin": "Pica pica",
-      "date": "2026-01-22",
-      "location": "Kvidinge",
-      "lat": 56.13675,
-      "lng": 13.0431
-    },
-    {
-      "species": "Koltrast",
-      "latin": "Turdus merula",
-      "date": "2026-01-22",
-      "location": "Kvidinge",
-      "lat": 56.13675,
-      "lng": 13.0431
-    },
-    {
-      "species": "Kaja",
-      "latin": "Coloeus monedula",
-      "date": "2026-01-22",
-      "location": "Kvidinge",
-      "lat": 56.13675,
-      "lng": 13.0431
-    },
-    {
-      "species": "Gr\u00e5kr\u00e5ka",
-      "latin": "Corvus cornix",
-      "date": "2026-01-22",
-      "location": "Kvidinge",
-      "lat": 56.13675,
-      "lng": 13.0431
-    },
-    {
-      "species": "G\u00e4rdsmyg",
-      "latin": "Troglodytes troglodytes",
-      "date": "2026-01-23",
-      "location": "Kvidinge",
-      "lat": 56.13675,
-      "lng": 13.0431
-    },
-    {
-      "species": "Gr\u00e5trut",
-      "latin": "Larus argentatus",
-      "date": "2026-01-23",
-      "location": "Kvidinge",
-      "lat": 56.13675,
-      "lng": 13.0431
-    },
-    {
-      "species": "R\u00e5ka",
-      "latin": "Corvus frugilegus",
-      "date": "2026-01-23",
-      "location": "S\u00f6nnarsl\u00f6v",
-      "lat": 56.13015,
-      "lng": 13.07099
-    },
-    {
-      "species": "R\u00f6d glada",
-      "latin": "Milvus milvus",
-      "date": "2026-01-23",
-      "location": "Bron mot Klippan",
-      "lat": 56.13312,
-      "lng": 13.09428
-    },
-    {
-      "species": "Ormvr\u00e5k",
-      "latin": "Buteo buteo",
-      "date": "2026-01-23",
-      "location": "Bron mot Klippan",
-      "lat": 56.13312,
-      "lng": 13.09428
-    },
-    {
-      "species": "Gr\u00e4sand",
-      "latin": "Anas platyrhynchos",
-      "date": "2026-01-23",
-      "location": "Gamla Tranarpsbron",
-      "lat": 56.17858,
-      "lng": 13.02111
-    },
-    {
-      "species": "R\u00f6dhake",
-      "latin": "Erithacus rubecula",
-      "date": "2026-01-23",
-      "location": "Kvidinge",
-      "lat": 56.13675,
-      "lng": 13.0431
-    },
-    {
-      "species": "Domherre",
-      "latin": "Pyrrhula pyrrhula",
-      "date": "2026-01-24",
-      "location": "Kvidinge",
-      "lat": 56.13675,
-      "lng": 13.0431
-    },
-    {
-      "species": "Talgoxe",
-      "latin": "Parus major",
-      "date": "2026-01-24",
-      "location": "Kvidinge",
-      "lat": 56.13675,
-      "lng": 13.0431
-    },
-    {
-      "species": "S\u00e5ngsvan",
-      "latin": "Cygnus cygnus",
-      "date": "2026-01-25",
-      "location": "Kungsg\u00e5rdsmaderna",
-      "lat": 56.15343,
-      "lng": 13.06878
-    },
-    {
-      "species": "Kanadag\u00e5s",
-      "latin": "Branta canadensis",
-      "date": "2026-01-25",
-      "location": "Kungsg\u00e5rdsmaderna",
-      "lat": 56.15343,
-      "lng": 13.06878
-    },
-    {
-      "species": "N\u00f6tv\u00e4cka",
-      "latin": "Sitta europaea",
-      "date": "2026-01-25",
-      "location": "Tomarps Ene",
-      "lat": 56.1487,
-      "lng": 13.07359
-    },
-    {
-      "species": "Storskarv",
-      "latin": "Phalacrocorax carbo",
-      "date": "2026-01-25",
-      "location": "Kungsg\u00e5rdsmaderna",
-      "lat": 56.15343,
-      "lng": 13.06878
-    },
-    {
-      "species": "Knipa",
-      "latin": "Bucephala clangula",
-      "date": "2026-01-25",
-      "location": "Bron mot Klippan",
-      "lat": 56.13312,
-      "lng": 13.09428
-    },
-    {
-      "species": "Bl\u00e5mes",
-      "latin": "Cyanistes caeruleus",
-      "date": "2026-01-25",
-      "location": "Kvidinge",
-      "lat": 56.13675,
-      "lng": 13.0431
-    },
-    {
-      "species": "Sparvh\u00f6k",
-      "latin": "Accipiter nisus",
-      "date": "2026-01-25",
-      "location": "Kvidinge",
-      "lat": 56.13675,
-      "lng": 13.0431
-    },
-    {
-      "species": "Klippduva (tamduva)",
-      "latin": "Columba livia",
-      "date": "2026-01-26",
-      "location": "R\u00f6rspj\u00e4ll",
-      "lat": 56.13477,
-      "lng": 13.01199
-    },
-    {
-      "species": "Bofink",
-      "latin": "Fringilla coelebs",
-      "date": "2026-01-27",
-      "location": "Bron mot Klippan",
-      "lat": 56.13312,
-      "lng": 13.09428
-    },
-    {
-      "species": "Pilfink",
-      "latin": "Passer montanus",
-      "date": "2026-01-27",
-      "location": "Kvidinge",
-      "lat": 56.13675,
-      "lng": 13.0431
-    },
-    {
-      "species": "Gr\u00e5sparv",
-      "latin": "Passer domesticus",
-      "date": "2026-01-27",
-      "location": "Kvidinge",
-      "lat": 56.13675,
-      "lng": 13.0431
-    },
-    {
-      "species": "Gr\u00e5g\u00e5s",
-      "latin": "Anser anser",
-      "date": "2026-01-28",
-      "location": "Tranarpsbron",
-      "lat": 56.18073,
-      "lng": 13.01804
-    },
-    {
-      "species": "Tornfalk",
-      "latin": "Falco tinnunculus",
-      "date": "2026-01-28",
-      "location": "Kill\u00e5krav\u00e4gen",
-      "lat": 56.16593,
-      "lng": 13.01946
-    },
-    {
-      "species": "St\u00f6rre hackspett",
-      "latin": "Dendrocopos major",
-      "date": "2026-01-30",
-      "location": "H\u00f6galid",
-      "lat": 56.09711,
-      "lng": 13.06836
-    },
-    {
-      "species": "N\u00f6tskrika",
-      "latin": "Garrulus glandarius",
-      "date": "2026-01-30",
-      "location": "H\u00f6galid",
-      "lat": 56.09711,
-      "lng": 13.06836
-    },
-    {
-      "species": "Gr\u00f6nsiska",
-      "latin": "Spinus spinus",
-      "date": "2026-01-30",
-      "location": "K\u00f6rsl\u00e4ttaravinen",
-      "lat": 56.09874,
-      "lng": 13.07474
-    },
-    {
-      "species": "Korp",
-      "latin": "Corvus corax",
-      "date": "2026-01-30",
-      "location": "Grustagen, Maglaby",
-      "lat": 56.11749,
-      "lng": 13.06674
-    },
-    {
-      "species": "Ringduva",
-      "latin": "Columba palumbus",
-      "date": "2026-01-31",
-      "location": "Pr\u00e4stamarken",
-      "lat": 56.14148,
-      "lng": 13.04893
-    },
-    {
-      "species": "Tr\u00e4dkrypare",
-      "latin": "Certhia familiaris",
-      "date": "2026-02-01",
-      "location": "V\u00e4ndplats, V Maglabyv\u00e4g",
-      "lat": 56.11793,
-      "lng": 12.99447
-    },
-    {
-      "species": "Stj\u00e4rtmes",
-      "latin": "Aegithalos caudatus",
-      "date": "2026-02-01",
-      "location": "Hermanssons stuga",
-      "lat": 56.12383,
-      "lng": 12.98772
-    },
-    {
-      "species": "Stenkn\u00e4ck",
-      "latin": "Coccothraustes coccothraustes",
-      "date": "2026-02-04",
-      "location": "Bj\u00f6rnekullaskolan",
-      "lat": 56.13677,
-      "lng": 12.95158
-    },
-    {
-      "species": "Fj\u00e4llvr\u00e5k",
-      "latin": "Buteo lagopus",
-      "date": "2026-02-05",
-      "location": "Flodarna",
-      "lat": 56.16532231534232,
-      "lng": 12.984207625328134
-    },
-    {
-      "species": "Gulsparv",
-      "latin": "Emberiza citrinella",
-      "date": "2026-02-06",
-      "location": "Kvidinge",
-      "lat": 56.136750782641876,
-      "lng": 13.043105305042882
-    },
-    {
-      "species": "Storskrake",
-      "latin": "Mergus merganser",
-      "date": "2026-02-06",
-      "location": "Tomarps Ene",
-      "lat": 56.14721124325686,
-      "lng": 13.076779186245918
-    },
-    {
-      "species": "Gr\u00f6nfink",
-      "latin": "Chloris chloris",
-      "date": "2026-02-09",
-      "location": "Kvidinge",
-      "lat": 56.136750782641876,
-      "lng": 13.043105305042882
-    },
-    {
-      "species": "\u00c4gretth\u00e4ger",
-      "latin": "Ardea alba",
-      "date": "2026-02-09",
-      "location": "Bron mot Klippan",
-      "lat": 56.13312,
-      "lng": 13.09428
-    },
-    {
-      "species": "Vitkindad g\u00e5s",
-      "latin": "Branta leucopsis",
-      "date": "2026-02-09",
-      "location": "Tomarps mader",
-      "lat": 56.15596454204231,
-      "lng": 13.0706159722571
-    },
-    {
-      "species": "Gr\u00f6ng\u00f6ling",
-      "latin": "Picus viridis",
-      "date": "2026-02-09",
-      "location": "Tomarps Ene",
-      "lat": 56.1487,
-      "lng": 13.07359
-    },
-    {
-      "species": "Fasan",
-      "latin": "Phasianus colchicus",
-      "date": "2026-02-10",
-      "location": "M\u00e5larkalk, Hyllinge",
-      "lat": 56.101169833958345,
-      "lng": 12.871921799623898
-    },
-    {
-      "species": "Skogsg\u00e5s",
-      "latin": "Anser fabalis",
-      "date": "2026-02-13",
-      "location": "Tomarps kungsg\u00e5rd",
-      "lat": 56.149612,
-      "lng": 13.0625373
-    },
-    {
-      "species": "Bl\u00e4sg\u00e5s",
-      "latin": "Anser albifrons",
-      "date": "2026-02-13",
-      "location": "Tomarps kungsg\u00e5rd",
-      "lat": 56.149612,
-      "lng": 13.0625373
-    },
-    {
-      "species": "Rapph\u00f6na",
-      "latin": "Perdix perdix",
-      "date": "2026-02-13",
-      "location": "Tomarps kungsg\u00e5rd",
-      "lat": 56.149612,
-      "lng": 13.0625373
-    },
-    {
-      "species": "Bl\u00e5 k\u00e4rrh\u00f6k",
-      "latin": "Circus cyaneus",
-      "date": "2026-02-15",
-      "location": "Bron mot Klippan",
-      "lat": 56.13312,
-      "lng": 13.09428
-    },
-    {
-      "species": "Vinterh\u00e4mpling",
-      "latin": "Linaria flavirostris",
-      "date": "2026-02-16",
-      "location": "V\u00e5ngarna",
-      "lat": 56.13335909031484,
-      "lng": 13.085150154227945
-    },
-    {
-      "species": "Skogsduva",
-      "latin": "Columba oenas",
-      "date": "2026-02-16",
-      "location": "V\u00e5ngarna",
-      "lat": 56.13335909031484,
-      "lng": 13.085150154227945
-    },
-    {
-      "species": "Bl\u00e4sand",
-      "latin": "Mareca penelope",
-      "date": "2026-02-16",
-      "location": "Utloppet av R\u00f6da-diket",
-      "lat": 56.14244190869201,
-      "lng": 13.077277080127024
-    },
-    {
-      "species": "Entita",
-      "latin": "Poecile palustris",
-      "date": "2026-02-18",
-      "location": "NV Mosshult",
-      "lat": 56.09095485579307,
-      "lng": 13.050526620868753
-    },
-    {
-      "species": "Steglits",
-      "latin": "Carduelis carduelis",
-      "date": "2026-02-19",
-      "location": "R\u00f6da smedja, Kvidinge",
-      "lat": 56.14176,
-      "lng": 13.059863
-    },
-    {
-      "species": "Vigg",
-      "latin": "Aythya fuligula",
-      "date": "2026-02-21",
-      "location": "Stora f\u00e4ltet - S\u00e5nna/Egnahem/Tomarp",
-      "lat": 56.150295674056615,
-      "lng": 13.051556814010734
-    },
-    {
-      "species": "Sm\u00e5dopping",
-      "latin": "Tachybaptus ruficollis",
-      "date": "2026-02-21",
-      "location": "R\u00f6nne \u00e5, Kungsg\u00e5rdsmaderna",
-      "lat": 56.156655789969676,
-      "lng": 13.069328770839913
-    },
-    {
-      "species": "Str\u00f6mstare",
-      "latin": "Cinclus cinclus",
-      "date": "2026-02-22",
-      "location": "Kl\u00f6varavinen",
-      "lat": 56.09126322298655,
-      "lng": 13.102010171371758
-    },
-    {
-      "species": "Tofsvipa",
-      "latin": "Vanellus vanellus",
-      "date": "2026-02-24",
-      "location": "Kungsg\u00e5rdsmaderna",
-      "lat": 56.15343,
-      "lng": 13.06878
-    },
-    {
-      "species": "Kricka",
-      "latin": "Anas crecca",
-      "date": "2026-02-24",
-      "location": "Kungsg\u00e5rdsmaderna",
-      "lat": 56.15343,
-      "lng": 13.06878
-    },
-    {
-      "species": "Stenfalk",
-      "latin": "Falco columbarius",
-      "date": "2026-02-24",
-      "location": "Kungsg\u00e5rdsmaderna",
-      "lat": 56.15343,
-      "lng": 13.06878
-    },
-    {
-      "species": "Gr\u00e5h\u00e4ger",
-      "latin": "Ardea cinerea",
-      "date": "2026-02-24",
-      "location": "Bj\u00f6rken\u00e4s mosse",
-      "lat": 56.14072103796272,
-      "lng": 13.031572672305218
-    },
-    {
-      "species": "S\u00e5ngl\u00e4rka",
-      "latin": "Alauda arvensis",
-      "date": "2026-02-27",
-      "location": "K\u00f6leb\u00e4ckens mader, V Broby",
-      "lat": 56.12774509697216,
-      "lng": 12.868473108581973
-    },
-    {
-      "species": "Stare",
-      "latin": "Sturnus vulgaris",
-      "date": "2026-02-27",
-      "location": "K\u00f6leb\u00e4ckens mader, V Broby",
-      "lat": 56.12774509697216,
-      "lng": 12.868473108581973
-    },
-    {
-      "species": "Snatterand",
-      "latin": "Mareca strepera",
-      "date": "2026-02-27",
-      "location": "K\u00f6leb\u00e4ckens mader, V Broby",
-      "lat": 56.12774509697216,
-      "lng": 12.868473108581973
-    },
-    {
-      "species": "Gravand",
-      "latin": "Tadorna tadorna",
-      "date": "2026-02-27",
-      "location": "K\u00f6leb\u00e4ckens mader, V Broby",
-      "lat": 56.12774509697216,
-      "lng": 12.868473108581973
-    },
-    {
-      "species": "Kungs\u00f6rn",
-      "latin": "Aquila chrysaetos",
-      "date": "2026-02-27",
-      "location": "Kungsg\u00e5rdsmaderna",
-      "lat": 56.15343,
-      "lng": 13.06878
-    },
-    {
-      "species": "Dubbeltrast",
-      "latin": "Turdus viscivorus",
-      "date": "2026-03-01",
-      "location": "K\u00f6rsl\u00e4ttab\u00e4ckens v\u00e5tmarker",
-      "lat": 56.093059657874605,
-      "lng": 13.065669791540584
-    },
-    {
-      "species": "Trana",
-      "latin": "Grus grus",
-      "date": "2026-03-01",
-      "location": "K\u00f6rsl\u00e4ttab\u00e4ckens v\u00e5tmarker",
-      "lat": 56.093059657874605,
-      "lng": 13.065669791540584
-    },
-    {
-      "species": "Varf\u00e5gel",
-      "latin": "Lanius excubitor",
-      "date": "2026-03-01",
-      "location": "Madk\u00e4rr, Tomarp",
-      "lat": 56.16336146917374,
-      "lng": 13.062392835112023
-    },
-    {
-      "species": "Stj\u00e4rtand",
-      "latin": "Anas acuta",
-      "date": "2026-03-01",
-      "location": "Kungsg\u00e5rdsmaderna",
-      "lat": 56.15343,
-      "lng": 13.06878
-    },
-    {
-      "species": "Skrattm\u00e5s",
-      "latin": "Chroicocephalus ridibundus",
-      "date": "2026-03-02",
-      "location": "K\u00f6leb\u00e4ckens mader, V Broby",
-      "lat": 56.12774509697216,
-      "lng": 12.868473108581973
-    },
-    {
-      "species": "S\u00e4vsparv",
-      "latin": "Emberiza schoeniclus",
-      "date": "2026-03-02",
-      "location": "K\u00f6leb\u00e4ckens mader, V Broby",
-      "lat": 56.12774509697216,
-      "lng": 12.868473108581973
-    },
-    {
-      "species": "Skedand",
-      "latin": "Spatula clypeata",
-      "date": "2026-03-02",
-      "location": "K\u00f6leb\u00e4ckens mader, V Broby",
-      "lat": 56.12774509697216,
-      "lng": 12.868473108581973
-    },
-    {
-      "species": "Kn\u00f6lsvan",
-      "latin": "Cygnus olor",
-      "date": "2026-03-02",
-      "location": "K\u00f6leb\u00e4ckens mader, V Broby",
-      "lat": 56.12774509697216,
-      "lng": 12.868473108581973
-    },
-    {
-      "species": "Brunand",
-      "latin": "Aythya ferina",
-      "date": "2026-03-02",
-      "location": "Kungsg\u00e5rdsmaderna",
-      "lat": 56.15343,
-      "lng": 13.06878
-    },
-    {
-      "species": "Gr\u00e5siska",
-      "latin": "Acanthis flammea",
-      "date": "2026-03-02",
-      "location": "Bj\u00f6rken\u00e4s mosse",
-      "lat": 56.14072103796272,
-      "lng": 13.031572672305218
-    },
-    {
-      "species": "Storspov",
-      "latin": "Numenius arquata",
-      "date": "2026-03-02",
-      "location": "Backadal, K\u00e4rrarp",
-      "lat": 56.141628953503115,
-      "lng": 13.01111255477116
-    },
-    {
-      "species": "Kattuggla",
-      "latin": "Strix aluco",
-      "date": "2026-03-02",
-      "location": "F\u00e5rab\u00f6ke",
-      "lat": 56.07789001813259,
-      "lng": 13.067594119415102
-    },
-    {
-      "species": "Morkulla",
-      "latin": "Scolopax rusticola",
-      "date": "2026-03-02",
-      "location": "K\u00f6rsl\u00e4ttab\u00e4ckens v\u00e5tmarker",
-      "lat": 56.093059657874605,
-      "lng": 13.065669791540584
-    },
-    {
-      "species": "Spillkr\u00e5ka",
-      "latin": "Dryocopus martius",
-      "date": "2026-03-03",
-      "location": "K\u00f6rsl\u00e4tta mosse",
-      "lat": 56.09124965751413,
-      "lng": 13.058212865484588
-    },
-    {
-      "species": "Fiskm\u00e5s",
-      "latin": "Larus canus",
-      "date": "2026-03-04",
-      "location": "Bj\u00f6rnekullaskolan",
-      "lat": 56.13677,
-      "lng": 12.95158
-    },
-    {
-      "species": "Turkduva",
-      "latin": "Streptopelia decaocto",
-      "date": "2026-03-05",
-      "location": "\u00d6stra Storgatan i Kvidinge",
-      "lat": 56.133298631450046,
-      "lng": 13.054133737368847
-    },
-    {
-      "species": "Enkelbeckasin",
-      "latin": "Gallinago gallinago",
-      "date": "2026-03-05",
-      "location": "Kungsg\u00e5rdsmaderna",
-      "lat": 56.15343,
-      "lng": 13.06878
-    },
-    {
-      "species": "Svartmes",
-      "latin": "Periparus ater",
-      "date": "2026-03-06",
-      "location": "F\u00e5rab\u00f6ke",
-      "lat": 56.07789001813259,
-      "lng": 13.067594119415102
-    },
-    {
-      "species": "\u00c4ngspipl\u00e4rka",
-      "latin": "Anthus pratensis",
-      "date": "2026-03-06",
-      "location": "Kungsg\u00e5rdsmaderna",
-      "lat": 56.15343,
-      "lng": 13.06878
-    },
-    {
-      "species": "H\u00e4mpling",
-      "latin": "Linaria cannabina",
-      "date": "2026-03-07",
-      "location": "Madk\u00e4rr, Tomarp",
-      "lat": 56.16336146917374,
-      "lng": 13.062392835112023
-    },
-    {
-      "species": "Fors\u00e4rla",
-      "latin": "Motacilla cinerea",
-      "date": "2026-03-09",
-      "location": "Tomarps Ene",
-      "lat": 56.1487,
-      "lng": 13.07359
-    },
-    {
-      "species": "Bj\u00f6rktrast",
-      "latin": "Turdus pilaris",
-      "date": "2026-03-10",
-      "location": "K\u00f6rsl\u00e4ttab\u00e4ckens v\u00e5tmarker",
-      "lat": 56.093059657874605,
-      "lng": 13.065669791540584
-    },
-    {
-      "species": "R\u00f6dvingetrast",
-      "latin": "Turdus iliacus",
-      "date": "2026-03-10",
-      "location": "K\u00f6rsl\u00e4ttab\u00e4ckens v\u00e5tmarker",
-      "lat": 56.093059657874605,
-      "lng": 13.065669791540584
-    },
-    {
-      "species": "Bergfink",
-      "latin": "Fringilla montifringilla",
-      "date": "2026-03-14",
-      "location": "K\u00f6rsl\u00e4ttab\u00e4ckens v\u00e5tmarker",
-      "lat": 56.093059657874605,
-      "lng": 13.065669791540584
-    },
-    {
-      "species": "Sn\u00f6sparv",
-      "latin": "Plectrophenax nivalis",
-      "date": "2026-03-14",
-      "location": "Tomarps kungsg\u00e5rd",
-      "lat": 56.149612,
-      "lng": 13.0625373
-    },
-    {
-      "species": "Brushane",
-      "latin": "Calidris pugnax",
-      "date": "2026-03-17",
-      "location": "Dynget",
-      "lat": 56.183486839903935,
-      "lng": 13.013507219597335
-    },
-    {
-      "species": "Brandkronad kungsf\u00e5gel",
-      "latin": "Regulus ignicapilla",
-      "date": "2026-03-17",
-      "location": "F\u00e5rab\u00f6ke",
-      "lat": 56.07789001813259,
-      "lng": 13.067594119415102
-    },
-    {
-      "species": "Kungsf\u00e5gel",
-      "latin": "Regulus regulus",
-      "date": "2026-03-17",
-      "location": "F\u00e5rab\u00f6ke",
-      "lat": 56.07789001813259,
-      "lng": 13.067594119415102
-    },
-    {
-      "species": "Strandskata",
-      "latin": "Haematopus ostralegus",
-      "date": "2026-03-20",
-      "location": "Hyllinge SV",
-      "lat": 56.100735,
-      "lng": 12.856615
-    },
-    {
-      "species": "S\u00e4des\u00e4rla",
-      "latin": "Motacilla alba",
-      "date": "2026-03-20",
-      "location": "Tomarps kungsg\u00e5rd",
-      "lat": 56.148,
-      "lng": 13.061
-    },
-    {
-      "species": "Grans\u00e5ngare",
-      "latin": "Phylloscopus collybita",
-      "date": "2026-03-21",
-      "location": "H\u00f6galidsh\u00f6jden",
-      "lat": 56.09903738445198,
-      "lng": 13.062423259770256
-    },
-    {
-      "species": "Mindre hackspett",
-      "latin": "Dryobates minor",
-      "date": "2026-03-21",
-      "location": "H\u00f6galidsh\u00f6jden",
-      "lat": 56.09903738445198,
-      "lng": 13.062423259770256
-    },
-    {
-      "species": "Taltrast",
-      "latin": "Turdus philomelos",
-      "date": "2026-03-25",
-      "location": "K\u00f6rsl\u00e4ttab\u00e4ckens v\u00e5tmarker",
-      "lat": 56.093059657874605,
-      "lng": 13.065669791540584
-    },
-    {
-      "species": "Skogssn\u00e4ppa",
-      "latin": "Tringa ochropus",
-      "date": "2026-03-27",
-      "location": "Madk\u00e4rr, Tomarp",
-      "lat": 56.16336,
-      "lng": 13.06239
-    },
-    {
-      "species": "R\u00f6rh\u00f6na",
-      "latin": "Gallinula chloropus",
-      "date": "2026-03-30",
-      "location": "R\u00f6nnetorpsdammen",
-      "lat": 56.1795235368064,
-      "lng": 13.017079953054056
-    },
-    {
-      "species": "J\u00e4rnsparv",
-      "latin": "Prunella modularis",
-      "date": "2026-04-01",
-      "location": "K\u00f6rsl\u00e4tta mosse",
-      "lat": 56.09125,
-      "lng": 13.05821
-    },
-    {
-      "species": "St\u00f6rre strandpipare",
-      "latin": "Charadrius hiaticula",
-      "date": "2026-04-07",
-      "location": "Madk\u00e4rr, Tomarp",
-      "lat": 56.16336146917374,
-      "lng": 13.062392835112023
-    },
-    {
-      "species": "R\u00f6dbena",
-      "latin": "Tringa totanus",
-      "date": "2026-04-07",
-      "location": "Madk\u00e4rr, Tomarp",
-      "lat": 56.16336146917374,
-      "lng": 13.062392835112023
-    },
-    {
-      "species": "Mindre strandpipare",
-      "latin": "Thinornis dubius",
-      "date": "2026-04-10",
-      "location": "Dynget",
-      "lat": 56.183486839903935,
-      "lng": 13.013507219597335
-    },
-    {
-      "species": "Brun k\u00e4rrh\u00f6k",
-      "latin": "Circus aeruginosus",
-      "date": "2026-04-10",
-      "location": "Backadal, K\u00e4rrarp",
-      "lat": 56.141628953503115,
-      "lng": 13.01111255477116
-    },
-    {
-      "species": "Soth\u00f6na",
-      "latin": "Fulica atra",
-      "date": "2026-04-12",
-      "location": "\u00c4ngsg\u00e5rden",
-      "lat": 56.12001,
-      "lng": 12.92422
-    },
-    {
-      "species": "Pilgrimsfalk",
-      "latin": "Falco peregrinus",
-      "date": "2026-04-13",
-      "location": "\u00c5storp",
-      "lat": 56.13420520510357,
-      "lng": 12.942173584912153
-    },
-    {
-      "species": "\u00c5rta",
-      "latin": "Spatula querquedula",
-      "date": "2026-04-14",
-      "location": "R\u00f6nnbacka",
-      "lat": 56.168816409838804,
-      "lng": 13.030937554082303
-    },
-    {
-      "species": "R\u00f6dstj\u00e4rt",
-      "date": "2026-04-16",
-      "location": "Kvidinge kyrka",
-      "lat": 56.13889744420109,
-      "lng": 13.050458728254817
-    },
-    {
-      "species": "L\u00f6vs\u00e5ngare",
-      "latin": "Phylloscopus trochilus",
-      "date": "2026-04-16",
-      "location": "Makadamen i \u00c5storp",
-      "lat": 56.128779101412434,
-      "lng": 12.953635076919914
-    },
-    {
-      "species": "Hornuggla",
-      "latin": "Asio otus",
-      "date": "2026-04-16",
-      "location": "Banvallen, R\u00f6nnbacka",
-      "lat": 56.16543080674405,
-      "lng": 13.030779192114354
-    },
-    {
-      "species": "Silltrut",
-      "latin": "Larus fuscus",
-      "date": "2026-04-16",
-      "location": "Bj\u00f6rken\u00e4s mosse",
-      "lat": 56.14072103796272,
-      "lng": 13.031572672305218
-    },
-    {
-      "order": 1,
-      "species": "Svartvit flugsnappare",
-      "date": "2026-04-20",
-      "location": "Maglaby",
-      "notes": "1 hane",
-      "lat": 56.108898895955186,
-      "lng": 13.052546726545025,
-      "latin": "Ficedula hypoleuca"
-    },
-    {
-      "order": 2,
-      "species": "Stenskv\u00e4tta",
-      "date": "2026-04-20",
-      "location": "F\u00e5rab\u00f6ke",
-      "lat": 56.07789001813259,
-      "lng": 13.067594119415102,
-      "latin": "Oenanthe oenanthe"
-    },
-    {
-      "order": 3,
-      "species": "Ladusvala",
-      "date": "2026-04-20",
-      "location": "Madk\u00e4rr, Tomarp",
-      "lat": 56.16336146917374,
-      "lng": 13.062392835112023,
-      "latin": "Hirundo rustica"
-    },
-    {
-      "order": 3,
-      "species": "Svarth\u00e4tta",
-      "latin": "Sylvia atricapilla",
-      "date": "2026-04-21",
-      "location": "\u00d6stra v\u00e4gen, \u00c5storp",
-      "lat": 56.13671788511213,
-      "lng": 12.962609736539072
-    },
-    {
-      "species": "Buskskv\u00e4tta",
-      "latin": "Saxicola rubetra",
-      "date": "2026-04-21",
-      "location": "Kungsg\u00e5rdsmaderna",
-      "lat": 56.15343,
-      "lng": 13.06878
-    },
-    {
-      "species": "Gul\u00e4rla",
-      "latin": "Motacilla flava",
-      "date": "2026-04-23",
-      "location": "R\u00f6nnbacka",
-      "lat": 56.168816409838804,
-      "lng": 13.030937554082303
-    },
-    {
-      "species": "Gr\u00f6nbena",
-      "latin": "Tringa glareola",
-      "date": "2026-04-23",
-      "location": "R\u00f6nnbacka",
-      "lat": 56.168816409838804,
-      "lng": 13.030937554082303
-    },
-    {
-      "species": "Gr\u00e5hakedopping",
-      "latin": "Podiceps grisegena",
-      "date": "2026-04-23",
-      "location": "R\u00f6nnbacka",
-      "lat": 56.168816409838804,
-      "lng": 13.030937554082303
-    },
-    {
-      "species": "Ljungpipare",
-      "latin": "Pluvialis apricaria",
-      "date": "2026-04-23",
-      "location": "S\u00e5nna",
-      "lat": 56.152500229576226,
-      "lng": 13.028410974347539
-    },
-    {
-      "species": "Hussvala",
-      "latin": "Delichon urbicum",
-      "date": "2026-04-24",
-      "location": "K\u00f6rsl\u00e4ttab\u00e4ckens v\u00e5tmarker",
-      "lat": 56.093059657874605,
-      "lng": 13.065669791540584
-    },
-    {
-      "species": "Tr\u00e4dpipl\u00e4rka",
-      "latin": "Anthus trivialis",
-      "date": "2026-04-24",
-      "location": "K\u00f6rsl\u00e4ttab\u00e4ckens v\u00e5tmarker",
-      "lat": 56.093059657874605,
-      "lng": 13.065669791540584
-    },
-    {
-      "species": "\u00c4rts\u00e5ngare",
-      "latin": "Curruca curruca",
-      "date": "2026-04-29",
-      "location": "Bj\u00f6rnekullaskolan",
-      "lat": 56.13677,
-      "lng": 12.95158
-    },
-    {
-      "species": "T\u00f6rns\u00e5ngare",
-      "latin": "Curruca communis",
-      "date": "2026-05-02",
-      "location": "Tomarps Ene",
-      "lat": 56.1487,
-      "lng": 13.07359
-    },
-    {
-      "species": "N\u00e4ktergal",
-      "latin": "Luscinia luscinia",
-      "date": "2026-05-03",
-      "location": "Kungsg\u00e5rdsmaderna",
-      "lat": 56.15343,
-      "lng": 13.06878
-    },
-    {
-      "species": "Vaktel",
-      "latin": "Coturnix coturnix",
-      "date": "2026-05-03",
-      "location": "Kungsg\u00e5rdsmaderna",
-      "lat": 56.15343,
-      "lng": 13.06878
-    },
-    {
-      "species": "Gr\u00e4shopps\u00e5ngare",
-      "latin": "Locustella naevia",
-      "date": "2026-05-03",
-      "location": "Kungsg\u00e5rdsmaderna",
-      "lat": 56.15343,
-      "lng": 13.06878
-    },
-    {
-      "species": "G\u00f6k",
-      "latin": "Cuculus canorus",
-      "date": "2026-05-05",
-      "location": "R\u00f6nnbacka",
-      "lat": 56.168816409838804,
-      "lng": 13.030937554082303
-    },
-    {
-      "species": "Mosn\u00e4ppa",
-      "latin": "Calidris temminckii",
-      "date": "2026-05-05",
-      "location": "R\u00f6nnbacka",
-      "lat": 56.168816409838804,
-      "lng": 13.030937554082303
-    },
-    {
-      "species": "Tr\u00e4dg\u00e5rdss\u00e5ngare",
-      "latin": "Sylvia borin",
-      "date": "2026-05-08",
-      "location": "R\u00f6nnbacka",
-      "lat": 56.168816409838804,
-      "lng": 13.030937554082303
-    },
-    {
-      "species": "Gr\u00f6ns\u00e5ngare",
-      "latin": "Phylloscopus sibilatrix",
-      "date": "2026-05-08",
-      "location": "F\u00e5rab\u00f6ke",
-      "lat": 56.07789001813259,
-      "lng": 13.067594119415102
-    },
-    {
-      "species": "Dubbelbeckasin",
-      "latin": "Gallinago media",
-      "date": "2026-05-08",
-      "location": "Kungsg\u00e5rdsmaderna",
-      "lat": 56.15343,
-      "lng": 13.06878
-    },
-    {
-      "species": "Backsvala",
-      "latin": "Riparia riparia",
-      "date": "2026-05-10",
-      "location": "Grustagen mellan Kvidinge och Maglaby",
-      "lat": 56.11749,
-      "lng": 13.06674
-    },
-    {
-      "species": "S\u00e4vs\u00e5ngare",
-      "date": "2026-05-14",
-      "location": "Dammen, Krangatan",
-      "observer": "H\u00e5kan Karlsson",
-      "status": "confirmed",
-      "time": "05:15",
-      "latin": "Acrocephalus schoenobaenus",
-      "lat": 56.12002323331779,
-      "lng": 12.901032209138247
-    },
-    {
-      "species": "Svart r\u00f6dstj\u00e4rt",
-      "date": "2026-05-14",
-      "location": "Malmgatan, Industriomr\u00e5det",
-      "observer": "H\u00e5kan Karlsson",
-      "status": "confirmed",
-      "time": "05:30",
-      "latin": "Phoenicurus ochruros",
-      "lat": 56.12542568564323,
-      "lng": 12.922705175235263
-    },
-    {
-      "species": "H\u00e4rms\u00e5ngare",
-      "date": "2026-05-14",
-      "location": "Tomarps Ene",
-      "observer": "H\u00e5kan Karlsson",
-      "status": "confirmed",
-      "latin": "Hippolais icterina",
-      "lat": 56.1487,
-      "lng": 13.07359
-    },
-    {
-      "species": "Gr\u00e5 flugsnappare",
-      "date": "2026-05-14",
-      "location": "Tomarps Ene",
-      "observer": "H\u00e5kan Karlsson",
-      "status": "confirmed",
-      "latin": "Muscicapa striata",
-      "lat": 56.1487,
-      "lng": 13.07359
-    },
-    {
-      "species": "Nattsk\u00e4rra",
-      "date": "2026-05-15",
-      "location": "K\u00f6rsl\u00e4tta mosse",
-      "observer": "H\u00e5kan Karlsson",
-      "status": "confirmed",
-      "time": "23:00",
-      "latin": "Caprimulgus europaeus",
-      "lat": 56.09124965751413,
-      "lng": 13.058212865484588,
-      "notes": "1 ex., spinnande/spelande"
-    },
-    {
-      "species": "Tornseglare",
-      "date": "2026-05-17",
-      "location": "S\u00f6nnarsl\u00f6v",
-      "observer": "H\u00e5kan Karlsson",
-      "status": "confirmed",
-      "latin": "Apus apus",
-      "lat": 56.13015,
-      "lng": 13.07099,
-      "notes": "1 ex., \u00e5rets f\u00f6rsta"
-    },
-    {
-      "species": "R\u00f6rs\u00e5ngare",
-      "latin": "Acrocephalus scirpaceus",
-      "date": "2026-05-22",
-      "location": "Br\u00e4nnaregatans damm, Hyllinge",
-      "lat": 56.097269328327776,
-      "lng": 12.857735451930592
-    },
-    {
-      "species": "K\u00e4rrs\u00e5ngare",
-      "latin": "Acrocephalus palustris",
-      "date": "2026-05-23",
-      "location": "R\u00f6nnehill",
-      "lat": 56.133503273071724,
-      "lng": 13.078221314984576
-    },
-    {
-      "species": "Bivr\u00e5k",
-      "latin": "Pernis apivorus",
-      "date": "2026-05-24",
-      "location": "V\u00e4stsidan av Kl\u00f6va hallar",
-      "lat": 56.092365,
-      "lng": 13.100485
-    }
-  ],
-  "last_updated": "2026-05-23T09:01:00Z",
-  "lastUpdated": "2026-05-24 16:28:19"
+    "year": 2026,
+    "municipality": "Åstorp",
+    "observations": [
+        {
+            "species": "Havsörn",
+            "latin": "Haliaeetus albicilla",
+            "date": "2026-01-22",
+            "location": "Sönnarslöv",
+            "lat": 56.12868,
+            "lng": 13.08559
+        },
+        {
+            "species": "Skata",
+            "latin": "Pica pica",
+            "date": "2026-01-22",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.0431
+        },
+        {
+            "species": "Koltrast",
+            "latin": "Turdus merula",
+            "date": "2026-01-22",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.0431
+        },
+        {
+            "species": "Kaja",
+            "latin": "Coloeus monedula",
+            "date": "2026-01-22",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.0431
+        },
+        {
+            "species": "Gråkråka",
+            "latin": "Corvus cornix",
+            "date": "2026-01-22",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.0431
+        },
+        {
+            "species": "Gärdsmyg",
+            "latin": "Troglodytes troglodytes",
+            "date": "2026-01-23",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.0431
+        },
+        {
+            "species": "Gråtrut",
+            "latin": "Larus argentatus",
+            "date": "2026-01-23",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.0431
+        },
+        {
+            "species": "Råka",
+            "latin": "Corvus frugilegus",
+            "date": "2026-01-23",
+            "location": "Sönnarslöv",
+            "lat": 56.13015,
+            "lng": 13.07099
+        },
+        {
+            "species": "Röd glada",
+            "latin": "Milvus milvus",
+            "date": "2026-01-23",
+            "location": "Bron mot Klippan",
+            "lat": 56.13312,
+            "lng": 13.09428
+        },
+        {
+            "species": "Ormvråk",
+            "latin": "Buteo buteo",
+            "date": "2026-01-23",
+            "location": "Bron mot Klippan",
+            "lat": 56.13312,
+            "lng": 13.09428
+        },
+        {
+            "species": "Gräsand",
+            "latin": "Anas platyrhynchos",
+            "date": "2026-01-23",
+            "location": "Gamla Tranarpsbron",
+            "lat": 56.17858,
+            "lng": 13.02111
+        },
+        {
+            "species": "Rödhake",
+            "latin": "Erithacus rubecula",
+            "date": "2026-01-23",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.0431
+        },
+        {
+            "species": "Domherre",
+            "latin": "Pyrrhula pyrrhula",
+            "date": "2026-01-24",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.0431
+        },
+        {
+            "species": "Talgoxe",
+            "latin": "Parus major",
+            "date": "2026-01-24",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.0431
+        },
+        {
+            "species": "Sångsvan",
+            "latin": "Cygnus cygnus",
+            "date": "2026-01-25",
+            "location": "Kungsgårdsmaderna",
+            "lat": 56.15343,
+            "lng": 13.06878
+        },
+        {
+            "species": "Kanadagås",
+            "latin": "Branta canadensis",
+            "date": "2026-01-25",
+            "location": "Kungsgårdsmaderna",
+            "lat": 56.15343,
+            "lng": 13.06878
+        },
+        {
+            "species": "Nötväcka",
+            "latin": "Sitta europaea",
+            "date": "2026-01-25",
+            "location": "Tomarps Ene",
+            "lat": 56.1487,
+            "lng": 13.07359
+        },
+        {
+            "species": "Storskarv",
+            "latin": "Phalacrocorax carbo",
+            "date": "2026-01-25",
+            "location": "Kungsgårdsmaderna",
+            "lat": 56.15343,
+            "lng": 13.06878
+        },
+        {
+            "species": "Knipa",
+            "latin": "Bucephala clangula",
+            "date": "2026-01-25",
+            "location": "Bron mot Klippan",
+            "lat": 56.13312,
+            "lng": 13.09428
+        },
+        {
+            "species": "Blåmes",
+            "latin": "Cyanistes caeruleus",
+            "date": "2026-01-25",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.0431
+        },
+        {
+            "species": "Sparvhök",
+            "latin": "Accipiter nisus",
+            "date": "2026-01-25",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.0431
+        },
+        {
+            "species": "Klippduva (tamduva)",
+            "latin": "Columba livia",
+            "date": "2026-01-26",
+            "location": "Rörspjäll",
+            "lat": 56.13477,
+            "lng": 13.01199
+        },
+        {
+            "species": "Bofink",
+            "latin": "Fringilla coelebs",
+            "date": "2026-01-27",
+            "location": "Bron mot Klippan",
+            "lat": 56.13312,
+            "lng": 13.09428
+        },
+        {
+            "species": "Pilfink",
+            "latin": "Passer montanus",
+            "date": "2026-01-27",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.0431
+        },
+        {
+            "species": "Gråsparv",
+            "latin": "Passer domesticus",
+            "date": "2026-01-27",
+            "location": "Kvidinge",
+            "lat": 56.13675,
+            "lng": 13.0431
+        },
+        {
+            "species": "Grågås",
+            "latin": "Anser anser",
+            "date": "2026-01-28",
+            "location": "Tranarpsbron",
+            "lat": 56.18073,
+            "lng": 13.01804
+        },
+        {
+            "species": "Tornfalk",
+            "latin": "Falco tinnunculus",
+            "date": "2026-01-28",
+            "location": "Killåkravägen",
+            "lat": 56.16593,
+            "lng": 13.01946
+        },
+        {
+            "species": "Större hackspett",
+            "latin": "Dendrocopos major",
+            "date": "2026-01-30",
+            "location": "Högalid",
+            "lat": 56.09711,
+            "lng": 13.06836
+        },
+        {
+            "species": "Nötskrika",
+            "latin": "Garrulus glandarius",
+            "date": "2026-01-30",
+            "location": "Högalid",
+            "lat": 56.09711,
+            "lng": 13.06836
+        },
+        {
+            "species": "Grönsiska",
+            "latin": "Spinus spinus",
+            "date": "2026-01-30",
+            "location": "Körslättaravinen",
+            "lat": 56.09874,
+            "lng": 13.07474
+        },
+        {
+            "species": "Korp",
+            "latin": "Corvus corax",
+            "date": "2026-01-30",
+            "location": "Grustagen, Maglaby",
+            "lat": 56.11749,
+            "lng": 13.06674
+        },
+        {
+            "species": "Ringduva",
+            "latin": "Columba palumbus",
+            "date": "2026-01-31",
+            "location": "Prästamarken",
+            "lat": 56.14148,
+            "lng": 13.04893
+        },
+        {
+            "species": "Trädkrypare",
+            "latin": "Certhia familiaris",
+            "date": "2026-02-01",
+            "location": "Vändplats, V Maglabyväg",
+            "lat": 56.11793,
+            "lng": 12.99447
+        },
+        {
+            "species": "Stjärtmes",
+            "latin": "Aegithalos caudatus",
+            "date": "2026-02-01",
+            "location": "Hermanssons stuga",
+            "lat": 56.12383,
+            "lng": 12.98772
+        },
+        {
+            "species": "Stenknäck",
+            "latin": "Coccothraustes coccothraustes",
+            "date": "2026-02-04",
+            "location": "Björnekullaskolan",
+            "lat": 56.13677,
+            "lng": 12.95158
+        },
+        {
+            "species": "Fjällvråk",
+            "latin": "Buteo lagopus",
+            "date": "2026-02-05",
+            "location": "Flodarna",
+            "lat": 56.16532231534232,
+            "lng": 12.984207625328134
+        },
+        {
+            "species": "Gulsparv",
+            "latin": "Emberiza citrinella",
+            "date": "2026-02-06",
+            "location": "Kvidinge",
+            "lat": 56.136750782641876,
+            "lng": 13.043105305042882
+        },
+        {
+            "species": "Storskrake",
+            "latin": "Mergus merganser",
+            "date": "2026-02-06",
+            "location": "Tomarps Ene",
+            "lat": 56.14721124325686,
+            "lng": 13.076779186245918
+        },
+        {
+            "species": "Grönfink",
+            "latin": "Chloris chloris",
+            "date": "2026-02-09",
+            "location": "Kvidinge",
+            "lat": 56.136750782641876,
+            "lng": 13.043105305042882
+        },
+        {
+            "species": "Ägretthäger",
+            "latin": "Ardea alba",
+            "date": "2026-02-09",
+            "location": "Bron mot Klippan",
+            "lat": 56.13312,
+            "lng": 13.09428
+        },
+        {
+            "species": "Vitkindad gås",
+            "latin": "Branta leucopsis",
+            "date": "2026-02-09",
+            "location": "Tomarps mader",
+            "lat": 56.15596454204231,
+            "lng": 13.0706159722571
+        },
+        {
+            "species": "Gröngöling",
+            "latin": "Picus viridis",
+            "date": "2026-02-09",
+            "location": "Tomarps Ene",
+            "lat": 56.1487,
+            "lng": 13.07359
+        },
+        {
+            "species": "Fasan",
+            "latin": "Phasianus colchicus",
+            "date": "2026-02-10",
+            "location": "Målarkalk, Hyllinge",
+            "lat": 56.101169833958345,
+            "lng": 12.871921799623898
+        },
+        {
+            "species": "Skogsgås",
+            "latin": "Anser fabalis",
+            "date": "2026-02-13",
+            "location": "Tomarps kungsgård",
+            "lat": 56.149612,
+            "lng": 13.0625373
+        },
+        {
+            "species": "Bläsgås",
+            "latin": "Anser albifrons",
+            "date": "2026-02-13",
+            "location": "Tomarps kungsgård",
+            "lat": 56.149612,
+            "lng": 13.0625373
+        },
+        {
+            "species": "Rapphöna",
+            "latin": "Perdix perdix",
+            "date": "2026-02-13",
+            "location": "Tomarps kungsgård",
+            "lat": 56.149612,
+            "lng": 13.0625373
+        },
+        {
+            "species": "Blå kärrhök",
+            "latin": "Circus cyaneus",
+            "date": "2026-02-15",
+            "location": "Bron mot Klippan",
+            "lat": 56.13312,
+            "lng": 13.09428
+        },
+        {
+            "species": "Vinterhämpling",
+            "latin": "Linaria flavirostris",
+            "date": "2026-02-16",
+            "location": "Vångarna",
+            "lat": 56.13335909031484,
+            "lng": 13.085150154227945
+        },
+        {
+            "species": "Skogsduva",
+            "latin": "Columba oenas",
+            "date": "2026-02-16",
+            "location": "Vångarna",
+            "lat": 56.13335909031484,
+            "lng": 13.085150154227945
+        },
+        {
+            "species": "Bläsand",
+            "latin": "Mareca penelope",
+            "date": "2026-02-16",
+            "location": "Utloppet av Röda-diket",
+            "lat": 56.14244190869201,
+            "lng": 13.077277080127024
+        },
+        {
+            "species": "Entita",
+            "latin": "Poecile palustris",
+            "date": "2026-02-18",
+            "location": "NV Mosshult",
+            "lat": 56.09095485579307,
+            "lng": 13.050526620868753
+        },
+        {
+            "species": "Steglits",
+            "latin": "Carduelis carduelis",
+            "date": "2026-02-19",
+            "location": "Röda smedja, Kvidinge",
+            "lat": 56.14176,
+            "lng": 13.059863
+        },
+        {
+            "species": "Vigg",
+            "latin": "Aythya fuligula",
+            "date": "2026-02-21",
+            "location": "Stora fältet - Sånna/Egnahem/Tomarp",
+            "lat": 56.150295674056615,
+            "lng": 13.051556814010734
+        },
+        {
+            "species": "Smådopping",
+            "latin": "Tachybaptus ruficollis",
+            "date": "2026-02-21",
+            "location": "Rönne å, Kungsgårdsmaderna",
+            "lat": 56.156655789969676,
+            "lng": 13.069328770839913
+        },
+        {
+            "species": "Strömstare",
+            "latin": "Cinclus cinclus",
+            "date": "2026-02-22",
+            "location": "Klövaravinen",
+            "lat": 56.09126322298655,
+            "lng": 13.102010171371758
+        },
+        {
+            "species": "Tofsvipa",
+            "latin": "Vanellus vanellus",
+            "date": "2026-02-24",
+            "location": "Kungsgårdsmaderna",
+            "lat": 56.15343,
+            "lng": 13.06878
+        },
+        {
+            "species": "Kricka",
+            "latin": "Anas crecca",
+            "date": "2026-02-24",
+            "location": "Kungsgårdsmaderna",
+            "lat": 56.15343,
+            "lng": 13.06878
+        },
+        {
+            "species": "Stenfalk",
+            "latin": "Falco columbarius",
+            "date": "2026-02-24",
+            "location": "Kungsgårdsmaderna",
+            "lat": 56.15343,
+            "lng": 13.06878
+        },
+        {
+            "species": "Gråhäger",
+            "latin": "Ardea cinerea",
+            "date": "2026-02-24",
+            "location": "Björkenäs mosse",
+            "lat": 56.14072103796272,
+            "lng": 13.031572672305218
+        },
+        {
+            "species": "Sånglärka",
+            "latin": "Alauda arvensis",
+            "date": "2026-02-27",
+            "location": "Kölebäckens mader, V Broby",
+            "lat": 56.12774509697216,
+            "lng": 12.868473108581973
+        },
+        {
+            "species": "Stare",
+            "latin": "Sturnus vulgaris",
+            "date": "2026-02-27",
+            "location": "Kölebäckens mader, V Broby",
+            "lat": 56.12774509697216,
+            "lng": 12.868473108581973
+        },
+        {
+            "species": "Snatterand",
+            "latin": "Mareca strepera",
+            "date": "2026-02-27",
+            "location": "Kölebäckens mader, V Broby",
+            "lat": 56.12774509697216,
+            "lng": 12.868473108581973
+        },
+        {
+            "species": "Gravand",
+            "latin": "Tadorna tadorna",
+            "date": "2026-02-27",
+            "location": "Kölebäckens mader, V Broby",
+            "lat": 56.12774509697216,
+            "lng": 12.868473108581973
+        },
+        {
+            "species": "Kungsörn",
+            "latin": "Aquila chrysaetos",
+            "date": "2026-02-27",
+            "location": "Kungsgårdsmaderna",
+            "lat": 56.15343,
+            "lng": 13.06878
+        },
+        {
+            "species": "Dubbeltrast",
+            "latin": "Turdus viscivorus",
+            "date": "2026-03-01",
+            "location": "Körslättabäckens våtmarker",
+            "lat": 56.093059657874605,
+            "lng": 13.065669791540584
+        },
+        {
+            "species": "Trana",
+            "latin": "Grus grus",
+            "date": "2026-03-01",
+            "location": "Körslättabäckens våtmarker",
+            "lat": 56.093059657874605,
+            "lng": 13.065669791540584
+        },
+        {
+            "species": "Varfågel",
+            "latin": "Lanius excubitor",
+            "date": "2026-03-01",
+            "location": "Madkärr, Tomarp",
+            "lat": 56.16336146917374,
+            "lng": 13.062392835112023
+        },
+        {
+            "species": "Stjärtand",
+            "latin": "Anas acuta",
+            "date": "2026-03-01",
+            "location": "Kungsgårdsmaderna",
+            "lat": 56.15343,
+            "lng": 13.06878
+        },
+        {
+            "species": "Skrattmås",
+            "latin": "Chroicocephalus ridibundus",
+            "date": "2026-03-02",
+            "location": "Kölebäckens mader, V Broby",
+            "lat": 56.12774509697216,
+            "lng": 12.868473108581973
+        },
+        {
+            "species": "Sävsparv",
+            "latin": "Emberiza schoeniclus",
+            "date": "2026-03-02",
+            "location": "Kölebäckens mader, V Broby",
+            "lat": 56.12774509697216,
+            "lng": 12.868473108581973
+        },
+        {
+            "species": "Skedand",
+            "latin": "Spatula clypeata",
+            "date": "2026-03-02",
+            "location": "Kölebäckens mader, V Broby",
+            "lat": 56.12774509697216,
+            "lng": 12.868473108581973
+        },
+        {
+            "species": "Knölsvan",
+            "latin": "Cygnus olor",
+            "date": "2026-03-02",
+            "location": "Kölebäckens mader, V Broby",
+            "lat": 56.12774509697216,
+            "lng": 12.868473108581973
+        },
+        {
+            "species": "Brunand",
+            "latin": "Aythya ferina",
+            "date": "2026-03-02",
+            "location": "Kungsgårdsmaderna",
+            "lat": 56.15343,
+            "lng": 13.06878
+        },
+        {
+            "species": "Gråsiska",
+            "latin": "Acanthis flammea",
+            "date": "2026-03-02",
+            "location": "Björkenäs mosse",
+            "lat": 56.14072103796272,
+            "lng": 13.031572672305218
+        },
+        {
+            "species": "Storspov",
+            "latin": "Numenius arquata",
+            "date": "2026-03-02",
+            "location": "Backadal, Kärrarp",
+            "lat": 56.141628953503115,
+            "lng": 13.01111255477116
+        },
+        {
+            "species": "Kattuggla",
+            "latin": "Strix aluco",
+            "date": "2026-03-02",
+            "location": "Fåraböke",
+            "lat": 56.07789001813259,
+            "lng": 13.067594119415102
+        },
+        {
+            "species": "Morkulla",
+            "latin": "Scolopax rusticola",
+            "date": "2026-03-02",
+            "location": "Körslättabäckens våtmarker",
+            "lat": 56.093059657874605,
+            "lng": 13.065669791540584
+        },
+        {
+            "species": "Spillkråka",
+            "latin": "Dryocopus martius",
+            "date": "2026-03-03",
+            "location": "Körslätta mosse",
+            "lat": 56.09124965751413,
+            "lng": 13.058212865484588
+        },
+        {
+            "species": "Fiskmås",
+            "latin": "Larus canus",
+            "date": "2026-03-04",
+            "location": "Björnekullaskolan",
+            "lat": 56.13677,
+            "lng": 12.95158
+        },
+        {
+            "species": "Turkduva",
+            "latin": "Streptopelia decaocto",
+            "date": "2026-03-05",
+            "location": "Östra Storgatan i Kvidinge",
+            "lat": 56.133298631450046,
+            "lng": 13.054133737368847
+        },
+        {
+            "species": "Enkelbeckasin",
+            "latin": "Gallinago gallinago",
+            "date": "2026-03-05",
+            "location": "Kungsgårdsmaderna",
+            "lat": 56.15343,
+            "lng": 13.06878
+        },
+        {
+            "species": "Svartmes",
+            "latin": "Periparus ater",
+            "date": "2026-03-06",
+            "location": "Fåraböke",
+            "lat": 56.07789001813259,
+            "lng": 13.067594119415102
+        },
+        {
+            "species": "Ängspiplärka",
+            "latin": "Anthus pratensis",
+            "date": "2026-03-06",
+            "location": "Kungsgårdsmaderna",
+            "lat": 56.15343,
+            "lng": 13.06878
+        },
+        {
+            "species": "Hämpling",
+            "latin": "Linaria cannabina",
+            "date": "2026-03-07",
+            "location": "Madkärr, Tomarp",
+            "lat": 56.16336146917374,
+            "lng": 13.062392835112023
+        },
+        {
+            "species": "Forsärla",
+            "latin": "Motacilla cinerea",
+            "date": "2026-03-09",
+            "location": "Tomarps Ene",
+            "lat": 56.1487,
+            "lng": 13.07359
+        },
+        {
+            "species": "Björktrast",
+            "latin": "Turdus pilaris",
+            "date": "2026-03-10",
+            "location": "Körslättabäckens våtmarker",
+            "lat": 56.093059657874605,
+            "lng": 13.065669791540584
+        },
+        {
+            "species": "Rödvingetrast",
+            "latin": "Turdus iliacus",
+            "date": "2026-03-10",
+            "location": "Körslättabäckens våtmarker",
+            "lat": 56.093059657874605,
+            "lng": 13.065669791540584
+        },
+        {
+            "species": "Bergfink",
+            "latin": "Fringilla montifringilla",
+            "date": "2026-03-14",
+            "location": "Körslättabäckens våtmarker",
+            "lat": 56.093059657874605,
+            "lng": 13.065669791540584
+        },
+        {
+            "species": "Snösparv",
+            "latin": "Plectrophenax nivalis",
+            "date": "2026-03-14",
+            "location": "Tomarps kungsgård",
+            "lat": 56.149612,
+            "lng": 13.0625373
+        },
+        {
+            "species": "Brushane",
+            "latin": "Calidris pugnax",
+            "date": "2026-03-17",
+            "location": "Dynget",
+            "lat": 56.183486839903935,
+            "lng": 13.013507219597335
+        },
+        {
+            "species": "Brandkronad kungsfågel",
+            "latin": "Regulus ignicapilla",
+            "date": "2026-03-17",
+            "location": "Fåraböke",
+            "lat": 56.07789001813259,
+            "lng": 13.067594119415102
+        },
+        {
+            "species": "Kungsfågel",
+            "latin": "Regulus regulus",
+            "date": "2026-03-17",
+            "location": "Fåraböke",
+            "lat": 56.07789001813259,
+            "lng": 13.067594119415102
+        },
+        {
+            "species": "Strandskata",
+            "latin": "Haematopus ostralegus",
+            "date": "2026-03-20",
+            "location": "Hyllinge SV",
+            "lat": 56.100735,
+            "lng": 12.856615
+        },
+        {
+            "species": "Sädesärla",
+            "latin": "Motacilla alba",
+            "date": "2026-03-20",
+            "location": "Tomarps kungsgård",
+            "lat": 56.148,
+            "lng": 13.061
+        },
+        {
+            "species": "Gransångare",
+            "latin": "Phylloscopus collybita",
+            "date": "2026-03-21",
+            "location": "Högalidshöjden",
+            "lat": 56.09903738445198,
+            "lng": 13.062423259770256
+        },
+        {
+            "species": "Mindre hackspett",
+            "latin": "Dryobates minor",
+            "date": "2026-03-21",
+            "location": "Högalidshöjden",
+            "lat": 56.09903738445198,
+            "lng": 13.062423259770256
+        },
+        {
+            "species": "Taltrast",
+            "latin": "Turdus philomelos",
+            "date": "2026-03-25",
+            "location": "Körslättabäckens våtmarker",
+            "lat": 56.093059657874605,
+            "lng": 13.065669791540584
+        },
+        {
+            "species": "Skogssnäppa",
+            "latin": "Tringa ochropus",
+            "date": "2026-03-27",
+            "location": "Madkärr, Tomarp",
+            "lat": 56.16336,
+            "lng": 13.06239
+        },
+        {
+            "species": "Rörhöna",
+            "latin": "Gallinula chloropus",
+            "date": "2026-03-30",
+            "location": "Rönnetorpsdammen",
+            "lat": 56.1795235368064,
+            "lng": 13.017079953054056
+        },
+        {
+            "species": "Järnsparv",
+            "latin": "Prunella modularis",
+            "date": "2026-04-01",
+            "location": "Körslätta mosse",
+            "lat": 56.09125,
+            "lng": 13.05821
+        },
+        {
+            "species": "Större strandpipare",
+            "latin": "Charadrius hiaticula",
+            "date": "2026-04-07",
+            "location": "Madkärr, Tomarp",
+            "lat": 56.16336146917374,
+            "lng": 13.062392835112023
+        },
+        {
+            "species": "Rödbena",
+            "latin": "Tringa totanus",
+            "date": "2026-04-07",
+            "location": "Madkärr, Tomarp",
+            "lat": 56.16336146917374,
+            "lng": 13.062392835112023
+        },
+        {
+            "species": "Mindre strandpipare",
+            "latin": "Thinornis dubius",
+            "date": "2026-04-10",
+            "location": "Dynget",
+            "lat": 56.183486839903935,
+            "lng": 13.013507219597335
+        },
+        {
+            "species": "Brun kärrhök",
+            "latin": "Circus aeruginosus",
+            "date": "2026-04-10",
+            "location": "Backadal, Kärrarp",
+            "lat": 56.141628953503115,
+            "lng": 13.01111255477116
+        },
+        {
+            "species": "Sothöna",
+            "latin": "Fulica atra",
+            "date": "2026-04-12",
+            "location": "Ängsgården",
+            "lat": 56.12001,
+            "lng": 12.92422
+        },
+        {
+            "species": "Pilgrimsfalk",
+            "latin": "Falco peregrinus",
+            "date": "2026-04-13",
+            "location": "Åstorp",
+            "lat": 56.13420520510357,
+            "lng": 12.942173584912153
+        },
+        {
+            "species": "Årta",
+            "latin": "Spatula querquedula",
+            "date": "2026-04-14",
+            "location": "Rönnbacka",
+            "lat": 56.168816409838804,
+            "lng": 13.030937554082303
+        },
+        {
+            "species": "Rödstjärt",
+            "date": "2026-04-16",
+            "location": "Kvidinge kyrka",
+            "lat": 56.13889744420109,
+            "lng": 13.050458728254817
+        },
+        {
+            "species": "Lövsångare",
+            "latin": "Phylloscopus trochilus",
+            "date": "2026-04-16",
+            "location": "Makadamen i Åstorp",
+            "lat": 56.128779101412434,
+            "lng": 12.953635076919914
+        },
+        {
+            "species": "Hornuggla",
+            "latin": "Asio otus",
+            "date": "2026-04-16",
+            "location": "Banvallen, Rönnbacka",
+            "lat": 56.16543080674405,
+            "lng": 13.030779192114354
+        },
+        {
+            "species": "Silltrut",
+            "latin": "Larus fuscus",
+            "date": "2026-04-16",
+            "location": "Björkenäs mosse",
+            "lat": 56.14072103796272,
+            "lng": 13.031572672305218
+        },
+        {
+            "order": 1,
+            "species": "Svartvit flugsnappare",
+            "date": "2026-04-20",
+            "location": "Maglaby",
+            "notes": "1 hane",
+            "lat": 56.108898895955186,
+            "lng": 13.052546726545025,
+            "latin": "Ficedula hypoleuca"
+        },
+        {
+            "order": 2,
+            "species": "Stenskvätta",
+            "date": "2026-04-20",
+            "location": "Fåraböke",
+            "lat": 56.07789001813259,
+            "lng": 13.067594119415102,
+            "latin": "Oenanthe oenanthe"
+        },
+        {
+            "order": 3,
+            "species": "Ladusvala",
+            "date": "2026-04-20",
+            "location": "Madkärr, Tomarp",
+            "lat": 56.16336146917374,
+            "lng": 13.062392835112023,
+            "latin": "Hirundo rustica"
+        },
+        {
+            "order": 3,
+            "species": "Svarthätta",
+            "latin": "Sylvia atricapilla",
+            "date": "2026-04-21",
+            "location": "Östra vägen, Åstorp",
+            "lat": 56.13671788511213,
+            "lng": 12.962609736539072
+        },
+        {
+            "species": "Buskskvätta",
+            "latin": "Saxicola rubetra",
+            "date": "2026-04-21",
+            "location": "Kungsgårdsmaderna",
+            "lat": 56.15343,
+            "lng": 13.06878
+        },
+        {
+            "species": "Gulärla",
+            "latin": "Motacilla flava",
+            "date": "2026-04-23",
+            "location": "Rönnbacka",
+            "lat": 56.168816409838804,
+            "lng": 13.030937554082303
+        },
+        {
+            "species": "Grönbena",
+            "latin": "Tringa glareola",
+            "date": "2026-04-23",
+            "location": "Rönnbacka",
+            "lat": 56.168816409838804,
+            "lng": 13.030937554082303
+        },
+        {
+            "species": "Gråhakedopping",
+            "latin": "Podiceps grisegena",
+            "date": "2026-04-23",
+            "location": "Rönnbacka",
+            "lat": 56.168816409838804,
+            "lng": 13.030937554082303
+        },
+        {
+            "species": "Ljungpipare",
+            "latin": "Pluvialis apricaria",
+            "date": "2026-04-23",
+            "location": "Sånna",
+            "lat": 56.152500229576226,
+            "lng": 13.028410974347539
+        },
+        {
+            "species": "Hussvala",
+            "latin": "Delichon urbicum",
+            "date": "2026-04-24",
+            "location": "Körslättabäckens våtmarker",
+            "lat": 56.093059657874605,
+            "lng": 13.065669791540584
+        },
+        {
+            "species": "Trädpiplärka",
+            "latin": "Anthus trivialis",
+            "date": "2026-04-24",
+            "location": "Körslättabäckens våtmarker",
+            "lat": 56.093059657874605,
+            "lng": 13.065669791540584
+        },
+        {
+            "species": "Ärtsångare",
+            "latin": "Curruca curruca",
+            "date": "2026-04-29",
+            "location": "Björnekullaskolan",
+            "lat": 56.13677,
+            "lng": 12.95158
+        },
+        {
+            "species": "Törnsångare",
+            "latin": "Curruca communis",
+            "date": "2026-05-02",
+            "location": "Tomarps Ene",
+            "lat": 56.1487,
+            "lng": 13.07359
+        },
+        {
+            "species": "Näktergal",
+            "latin": "Luscinia luscinia",
+            "date": "2026-05-03",
+            "location": "Kungsgårdsmaderna",
+            "lat": 56.15343,
+            "lng": 13.06878
+        },
+        {
+            "species": "Vaktel",
+            "latin": "Coturnix coturnix",
+            "date": "2026-05-03",
+            "location": "Kungsgårdsmaderna",
+            "lat": 56.15343,
+            "lng": 13.06878
+        },
+        {
+            "species": "Gräshoppsångare",
+            "latin": "Locustella naevia",
+            "date": "2026-05-03",
+            "location": "Kungsgårdsmaderna",
+            "lat": 56.15343,
+            "lng": 13.06878
+        },
+        {
+            "species": "Gök",
+            "latin": "Cuculus canorus",
+            "date": "2026-05-05",
+            "location": "Rönnbacka",
+            "lat": 56.168816409838804,
+            "lng": 13.030937554082303
+        },
+        {
+            "species": "Mosnäppa",
+            "latin": "Calidris temminckii",
+            "date": "2026-05-05",
+            "location": "Rönnbacka",
+            "lat": 56.168816409838804,
+            "lng": 13.030937554082303
+        },
+        {
+            "species": "Trädgårdssångare",
+            "latin": "Sylvia borin",
+            "date": "2026-05-08",
+            "location": "Rönnbacka",
+            "lat": 56.168816409838804,
+            "lng": 13.030937554082303
+        },
+        {
+            "species": "Grönsångare",
+            "latin": "Phylloscopus sibilatrix",
+            "date": "2026-05-08",
+            "location": "Fåraböke",
+            "lat": 56.07789001813259,
+            "lng": 13.067594119415102
+        },
+        {
+            "species": "Dubbelbeckasin",
+            "latin": "Gallinago media",
+            "date": "2026-05-08",
+            "location": "Kungsgårdsmaderna",
+            "lat": 56.15343,
+            "lng": 13.06878
+        },
+        {
+            "species": "Backsvala",
+            "latin": "Riparia riparia",
+            "date": "2026-05-10",
+            "location": "Grustagen mellan Kvidinge och Maglaby",
+            "lat": 56.11749,
+            "lng": 13.06674
+        },
+        {
+            "species": "Sävsångare",
+            "date": "2026-05-14",
+            "location": "Dammen, Krangatan",
+            "observer": "Håkan Karlsson",
+            "status": "confirmed",
+            "time": "05:15",
+            "latin": "Acrocephalus schoenobaenus",
+            "lat": 56.12002323331779,
+            "lng": 12.901032209138247
+        },
+        {
+            "species": "Svart rödstjärt",
+            "date": "2026-05-14",
+            "location": "Malmgatan, Industriområdet",
+            "observer": "Håkan Karlsson",
+            "status": "confirmed",
+            "time": "05:30",
+            "latin": "Phoenicurus ochruros",
+            "lat": 56.12542568564323,
+            "lng": 12.922705175235263
+        },
+        {
+            "species": "Härmsångare",
+            "date": "2026-05-14",
+            "location": "Tomarps Ene",
+            "observer": "Håkan Karlsson",
+            "status": "confirmed",
+            "latin": "Hippolais icterina",
+            "lat": 56.1487,
+            "lng": 13.07359
+        },
+        {
+            "species": "Grå flugsnappare",
+            "date": "2026-05-14",
+            "location": "Tomarps Ene",
+            "observer": "Håkan Karlsson",
+            "status": "confirmed",
+            "latin": "Muscicapa striata",
+            "lat": 56.1487,
+            "lng": 13.07359
+        },
+        {
+            "species": "Nattskärra",
+            "date": "2026-05-15",
+            "location": "Körslätta mosse",
+            "observer": "Håkan Karlsson",
+            "status": "confirmed",
+            "time": "23:00",
+            "latin": "Caprimulgus europaeus",
+            "lat": 56.09124965751413,
+            "lng": 13.058212865484588,
+            "notes": "1 ex., spinnande/spelande"
+        },
+        {
+            "species": "Tornseglare",
+            "date": "2026-05-17",
+            "location": "Sönnarslöv",
+            "observer": "Håkan Karlsson",
+            "status": "confirmed",
+            "latin": "Apus apus",
+            "lat": 56.13015,
+            "lng": 13.07099,
+            "notes": "1 ex., årets första"
+        },
+        {
+            "species": "Rörsångare",
+            "latin": "Acrocephalus scirpaceus",
+            "date": "2026-05-22",
+            "location": "Brännaregatans damm, Hyllinge",
+            "lat": 56.097269328327776,
+            "lng": 12.857735451930592
+        },
+        {
+            "species": "Kärrsångare",
+            "latin": "Acrocephalus palustris",
+            "date": "2026-05-23",
+            "location": "Rönnehill",
+            "lat": 56.133503273071724,
+            "lng": 13.078221314984576
+        },
+        {
+            "species": "Bivråk",
+            "latin": "Pernis apivorus",
+            "date": "2026-05-24",
+            "location": "Västsidan av Klöva hallar",
+            "lat": 56.092365,
+            "lng": 13.100485
+        },
+        {
+            "species": "Flodsångare",
+            "latin": "Locustella fluviatilis",
+            "date": "2026-05-25",
+            "location": "Tomarps Ene",
+            "lat": 56.1487,
+            "lng": 13.07359
+        }
+    ],
+    "last_updated": "2026-05-23T09:01:00Z",
+    "lastUpdated": "2026-05-24 16:28:19"
 }
