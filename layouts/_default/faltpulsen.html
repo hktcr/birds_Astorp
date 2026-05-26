@@ -84,6 +84,14 @@
     var TAXON_BIRDS = 4000104;
     var ASTORP_CENTER = [56.14, 13.05];
 
+    var firstObsDates = {};
+    {{ $checklist := index site.Data "checklist-2026" }}
+    {{ if $checklist }}
+        {{ range $checklist.observations }}
+            firstObsDates["{{ .species | lower }}"] = "{{ .date }}";
+        {{ end }}
+    {{ end }}
+
     // ── State ──────────────────────────────────────────────
     var allRecords = [];
     var speciesGuide = {};
@@ -266,6 +274,35 @@
         return d.getDate() + ' ' + MONTHS[d.getMonth()];
     }
 
+    function getCat(obs) {
+        var name = ((obs.taxon || {}).vernacularName || '').toLowerCase();
+        var sciName = ((obs.taxon || {}).scientificName || '').toLowerCase();
+        var guide = speciesGuide[name] || {};
+        if (!guide.category && sciName.includes(' ')) {
+            var parts = sciName.split(' ');
+            guide = speciesGuide['_latin:' + parts[0] + ' ' + parts[1]] || {};
+        }
+        
+        var cat = guide.category;
+        if (!cat) {
+            cat = 'new';
+            // Check if it's been more than 3 days since the first find this year
+            var firstDateStr = firstObsDates[name];
+            if (firstDateStr) {
+                var firstDate = new Date(firstDateStr);
+                // We use the observation's date to calculate age, so that historical records
+                // don't retroactively lose their "Ny!" badge if we look back in time
+                var obsDateStr = ((obs.event || {}).startDate || '').substring(0, 10);
+                var obsDate = obsDateStr ? new Date(obsDateStr) : new Date();
+                var diffDays = (obsDate - firstDate) / (1000 * 60 * 60 * 24);
+                if (diffDays > 3) {
+                    cat = 'rare'; // downgrade to rare after 3 days
+                }
+            }
+        }
+        return cat;
+    }
+
     function sortRecords(records, sortType) {
         var sorted = records.slice();
         switch(sortType) {
@@ -276,16 +313,6 @@
                     var diff = db.localeCompare(da);
                     if (diff !== 0) return diff;
                     
-                    function getCat(obs) {
-                        var name = ((obs.taxon || {}).vernacularName || '').toLowerCase();
-                        var sciName = ((obs.taxon || {}).scientificName || '').toLowerCase();
-                        var guide = speciesGuide[name] || {};
-                        if (!guide.category && sciName.includes(' ')) {
-                            var parts = sciName.split(' ');
-                            guide = speciesGuide['_latin:' + parts[0] + ' ' + parts[1]] || {};
-                        }
-                        return guide.category || 'new';
-                    }
                     var catA = getCat(a);
                     var catB = getCat(b);
                     if (catA === 'new' && catB !== 'new') return -1;
@@ -407,21 +434,7 @@
                 lastDateStr = dateStr;
             }
 
-            var nameKey = speciesName.toLowerCase();
-            var guide = speciesGuide[nameKey] || {};
-            // Underarts-fallback: matcha vetenskapligt namn om svenskt namn missar
-            if (!guide.category && sciName) {
-                var sciLower = sciName.toLowerCase();
-                guide = speciesGuide['_latin:' + sciLower] || {};
-                // Trinomial → binomial: "Motacilla flava flava" → "Motacilla flava"
-                if (!guide.category) {
-                    var parts = sciLower.split(' ');
-                    if (parts.length > 2) {
-                        guide = speciesGuide['_latin:' + parts[0] + ' ' + parts[1]] || {};
-                    }
-                }
-            }
-            var cat = guide.category || 'new';
+            var cat = getCat(obs);
             var dotColor = CATEGORY_COLORS[cat] || CATEGORY_COLORS.new;
 
             var badgeHtml = '';
