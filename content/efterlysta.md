@@ -8,7 +8,7 @@ url: "/efterlysta/"
 <div style="text-align: center; margin-bottom: 2rem;">
 <h1 style="font-size: 3rem; margin-bottom: 0.5rem; color: var(--text-color);">EFTERLYSTA</h1>
 <p style="font-size: 1.1rem; line-height: 1.6; text-align: left; opacity: 0.9; margin-bottom: 3rem; max-width: 680px; margin-left: auto; margin-right: auto;">
-Efter en noggrann genomgång av artlistan för Åstorp har jag identifierat 54 arter som utgör tydliga luckor: arter som borde kunna dyka upp, men ännu inte noterats i kommunen. Målet: minska listan, en art i taget.
+Efter en noggrann genomgång av artlistan för Åstorp har jag identifierat 53 arter som utgör tydliga luckor: arter som borde kunna dyka upp, men ännu inte noterats i kommunen. Målet: minska listan, en art i taget.
 </p>
 </div>
 
@@ -650,20 +650,6 @@ Efter en noggrann genomgång av artlistan för Åstorp har jag identifierat 54 a
 <div class="bounty-name">Tajgasångare</div>
 <div class="bounty-latin">Phylloscopus inornatus</div>
 </div>
-<div class="flip-wrapper heat-logic" data-unique-locs="0">
-<div class="bounty-card-container flip-card" id="flip-card-102122">
-    <div class="bounty-card-front tomtkryss-card">
-        <img class="bounty-icon" src="/images/profiles/102122.png?v=17" alt="Illustration of Flodsångare">
-        <div class="bounty-wanted">TOMTKRYSS</div>
-        <div class="bounty-name">Flodsångare</div>
-        <div class="bounty-latin">Locustella fluviatilis</div>
-    </div>
-    <div class="bounty-card-back">
-        <div class="tomtkryss-label">Hörd/Sedd</div>
-        <div class="tomtkryss-date">25 maj 2026</div>
-    </div>
-</div>
-</div>
 <div class="bounty-card heat-logic " data-unique-locs="0" >
 <img class="bounty-icon" src="/images/profiles/102123.png?v=17" alt="Illustration of Höksångare">
 <div class="bounty-wanted">WANTED</div>
@@ -784,9 +770,6 @@ function openSkaneObsMap(records, speciesName) {
 
     if (!dialog.open) dialog.showModal();
     document.body.classList.add('lightbox-open');
-
-    const legend = document.getElementById('map-lightbox-legend');
-    if (legend) legend.style.display = 'none';
 
     setTimeout(() => {
         let map = window.globalHistoricMapInstance;
