@@ -650,11 +650,19 @@ Efter en noggrann genomgång av artlistan för Åstorp har jag identifierat 54 a
 <div class="bounty-name">Tajgasångare</div>
 <div class="bounty-latin">Phylloscopus inornatus</div>
 </div>
-<div class="bounty-card heat-logic " data-unique-locs="0" >
-<img class="bounty-icon" src="/images/profiles/102122.png?v=17" alt="Illustration of Flodsångare">
-<div class="bounty-wanted">WANTED</div>
-<div class="bounty-name">Flodsångare</div>
-<div class="bounty-latin">Locustella fluviatilis</div>
+<div class="flip-wrapper heat-logic" data-unique-locs="0">
+<div class="bounty-card-container flip-card" id="flip-card-102122">
+    <div class="bounty-card-front tomtkryss-card">
+        <img class="bounty-icon" src="/images/profiles/102122.png?v=17" alt="Illustration of Flodsångare">
+        <div class="bounty-wanted">TOMTKRYSS</div>
+        <div class="bounty-name">Flodsångare</div>
+        <div class="bounty-latin">Locustella fluviatilis</div>
+    </div>
+    <div class="bounty-card-back">
+        <div class="tomtkryss-label">Hörd/Sedd</div>
+        <div class="tomtkryss-date">25 maj 2026</div>
+    </div>
+</div>
 </div>
 <div class="bounty-card heat-logic " data-unique-locs="0" >
 <img class="bounty-icon" src="/images/profiles/102123.png?v=17" alt="Illustration of Höksångare">
