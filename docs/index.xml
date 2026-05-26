@@ -106,7 +106,7 @@
 &lt;p&gt;För att komma fram till ett rimligt mål utgick jag från alla observationer i rapportdatabasen &lt;a href="https://artportalen.se"&gt;Artportalen&lt;/a&gt;. Drygt 200 arter har rapporterats från kommunen genom åren.&lt;/p&gt;</description></item><item><title>Aktuella observationer</title><link>https://astorpsfaglar.se/faltpulsen/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://astorpsfaglar.se/faltpulsen/</guid><description>&lt;p&gt;Senaste observationerna från alla rapportörer i Åstorps kommun, direkt från Artportalen.&lt;/p&gt;</description></item><item><title>Aktuellt i markerna</title><link>https://astorpsfaglar.se/aktuellt/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://astorpsfaglar.se/aktuellt/</guid><description>&lt;p&gt;Dagens sammanställning av fåglar i Åstorp, baserat på vad som historiskt brukar ses just nu. Trender, kommande ankomster och möjliga rariteter samlade på ett ställe.&lt;/p&gt;</description></item><item><title>Årslista 2026</title><link>https://astorpsfaglar.se/arslista/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://astorpsfaglar.se/arslista/</guid><description>&lt;p&gt;Alla arter som observerats i Åstorps kommun under 2026.&lt;/p&gt;</description></item><item><title>Artkalender</title><link>https://astorpsfaglar.se/artguide/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://astorpsfaglar.se/artguide/</guid><description>&lt;p&gt;Alla fågelarter som observerats i Åstorps kommun genom åren, med månadsfördelning, raritetsklass och kryss-status.&lt;/p&gt;</description></item><item><title>Efterlysta</title><link>https://astorpsfaglar.se/efterlysta/</link><pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate><guid>https://astorpsfaglar.se/efterlysta/</guid><description>&lt;div style="text-align: center; margin-bottom: 2rem;"&gt;
 &lt;h1 style="font-size: 3rem; margin-bottom: 0.5rem; color: var(--text-color);"&gt;EFTERLYSTA&lt;/h1&gt;
 &lt;p style="font-size: 1.1rem; line-height: 1.6; text-align: left; opacity: 0.9; margin-bottom: 3rem; max-width: 680px; margin-left: auto; margin-right: auto;"&gt;
-Efter en noggrann genomgång av artlistan för Åstorp har jag identifierat 53 arter som utgör tydliga luckor: arter som borde kunna dyka upp, men ännu inte noterats i kommunen. Målet: minska listan, en art i taget.
+Efter en noggrann genomgång av artlistan för Åstorp har jag identifierat 54 arter som utgör tydliga luckor: arter som borde kunna dyka upp, men ännu inte noterats i kommunen. Målet: minska listan, en art i taget.
 &lt;/p&gt;
 &lt;/div&gt;
 &lt;style&gt;
@@ -757,6 +757,21 @@ Efter en noggrann genomgång av artlistan för Åstorp har jag identifierat 53 a
 &lt;div class="bounty-wanted"&gt;WANTED&lt;/div&gt;
 &lt;div class="bounty-name"&gt;Större piplärka&lt;/div&gt;
 &lt;div class="bounty-latin"&gt;Anthus richardi&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class="flip-wrapper heat-logic" data-unique-locs="0" onclick="openModal('102122', 'Locustella fluviatilis')"&gt;
+&lt;div class="bounty-card-container flip-card" id="flip-card-102122"&gt;
+ &lt;div class="bounty-card-front tomtkryss-card" style="border-color: #f59e0b; box-shadow: 0 0 15px rgba(245,158,11,0.3);"&gt;
+ &lt;img class="bounty-icon" src="https://astorpsfaglar.se/images/profiles/102122.png?v=17" alt="Illustration of Locustella fluviatilis"&gt;
+ &lt;div class="bounty-wanted" style="color: #f59e0b; border-bottom-color: #f59e0b;"&gt;FÖRSTAFYND&lt;/div&gt;
+ &lt;div class="bounty-name"&gt;Locustella fluviatilis&lt;/div&gt;
+ &lt;div class="bounty-latin"&gt;Locustella fluviatilis&lt;/div&gt;
+ &lt;/div&gt;
+ &lt;div class="bounty-card-back"&gt;
+ &lt;div class="tomtkryss-label"&gt;Hittad!&lt;/div&gt;
+ &lt;div class="tomtkryss-date"&gt;25 maj 2026&lt;/div&gt;
+ &lt;div style="font-size: 0.85rem; opacity: 0.9; margin-top: 1.5rem; border: 1px solid rgba(245,158,11,0.4); padding: 0.4rem 0.8rem; border-radius: 6px; background: rgba(245,158,11,0.15);"&gt;👆 Klicka för mer info&lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;
 &lt;/div&gt;
 &lt;/div&gt;
 &lt;div style="text-align: center; margin-top: 3rem; padding-top: 2rem; border-top: 1px solid var(--border-color); opacity: 0.8; font-size: 1rem;"&gt;
