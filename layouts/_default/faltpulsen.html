@@ -273,7 +273,24 @@
                 sorted.sort(function(a, b) {
                     var da = (a.event || {}).startDate || '';
                     var db = (b.event || {}).startDate || '';
-                    return db.localeCompare(da);
+                    var diff = db.localeCompare(da);
+                    if (diff !== 0) return diff;
+                    
+                    function getCat(obs) {
+                        var name = ((obs.taxon || {}).vernacularName || '').toLowerCase();
+                        var sciName = ((obs.taxon || {}).scientificName || '').toLowerCase();
+                        var guide = speciesGuide[name] || {};
+                        if (!guide.category && sciName.includes(' ')) {
+                            var parts = sciName.split(' ');
+                            guide = speciesGuide['_latin:' + parts[0] + ' ' + parts[1]] || {};
+                        }
+                        return guide.category || 'new';
+                    }
+                    var catA = getCat(a);
+                    var catB = getCat(b);
+                    if (catA === 'new' && catB !== 'new') return -1;
+                    if (catB === 'new' && catA !== 'new') return 1;
+                    return 0;
                 });
                 break;
             case 'taxonomy':
