@@ -345,12 +345,12 @@ Efter en noggrann genomgång av artlistan för Åstorp har jag identifierat 53 a
 <div class="bounty-card-container flip-card" id="flip-card-100075">
     <div class="bounty-card-front tomtkryss-card">
         <img class="bounty-icon" src="/images/profiles/100075.png?v=17" alt="Illustration of Myrspov">
-        <div class="bounty-wanted">TOMTKRYSS</div>
+        <div class="bounty-wanted" style="font-size: 1.05rem;">HISTORISKT FYND</div>
         <div class="bounty-name">Myrspov</div>
         <div class="bounty-latin">Limosa lapponica</div>
     </div>
     <div class="bounty-card-back">
-        <div class="tomtkryss-label">Hörd/Sedd</div>
+        <div class="tomtkryss-label">Tidigare obs</div>
         <div class="tomtkryss-date">21 maj 2023</div>
         <div style="font-size: 0.85rem; opacity: 0.9; margin-top: 1.5rem; border: 1px solid rgba(34,197,94,0.4); padding: 0.4rem 0.8rem; border-radius: 6px; background: rgba(34,197,94,0.15);">👆 Klicka för mer info</div>
     </div>
@@ -360,12 +360,12 @@ Efter en noggrann genomgång av artlistan för Åstorp har jag identifierat 53 a
 <div class="bounty-card-container flip-card" id="flip-card-102936">
     <div class="bounty-card-front tomtkryss-card">
         <img class="bounty-icon" src="/images/profiles/102936.png?v=17" alt="Illustration of Sjöorre">
-        <div class="bounty-wanted">TOMTKRYSS</div>
+        <div class="bounty-wanted" style="font-size: 1.05rem;">HISTORISKT FYND</div>
         <div class="bounty-name">Sjöorre</div>
         <div class="bounty-latin">Melanitta nigra</div>
     </div>
     <div class="bounty-card-back">
-        <div class="tomtkryss-label">Hörd/Sedd</div>
+        <div class="tomtkryss-label">Tidigare obs</div>
         <div class="tomtkryss-date">9 april 2024</div>
         <div style="font-size: 0.85rem; opacity: 0.9; margin-top: 1.5rem; border: 1px solid rgba(34,197,94,0.4); padding: 0.4rem 0.8rem; border-radius: 6px; background: rgba(34,197,94,0.15);">👆 Klicka för mer info</div>
     </div>
@@ -725,10 +725,10 @@ function openModal(taxonId, speciesName) {
         // Special modal for tomtkryss
         const info = tomtkryssInfo[taxonId];
         let html = `<div class="modal-title">${speciesName}</div>`;
-        html += `<div class="modal-subtitle" style="color: #15803d;">Personligt fynd · Tomtkryss</div>`;
+        html += `<div class="modal-subtitle" style="color: #15803d;">Arkivfynd · Historisk observation</div>`;
         
         html += `<div class="tomtkryss-modal-content">`;
-        html += `<p>Jag tyckte mig minnas att jag observerat arten inom Åstorps kommun. Vid eftersök i mina personliga anteckningar återfanns ett fynd bland mina tomtkryss.</p>`;
+        html += `<p>Den här arten har tidigare observerats av mig inom Åstorps kommun, ett historiskt fynd som letats fram ur arkiven.</p>`;
         html += `<p style="margin-top: 1rem;"><strong>${speciesName}</strong> observerades ${info.kommentar.toLowerCase()} den <strong>${info.date}</strong>.</p>`;
         html += `</div>`;
         
