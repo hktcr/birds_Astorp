@@ -83,3 +83,52 @@ title: Fåglar/astorp-faglar Krönika
 
 *Signatur: gAIa 🌲 2026-05-18*
 
+---
+
+## Session 2026-05-26
+*Observatör: gAIa*
+**Status:** `Aktiv` (Årskryss 143 och Tysta Hugo-fel)
+
+### 🐦 Årskryss: Flodsångare & Pre-flight disciplin
+**Bakgrund & Syfte:**
+- Årskryss (Flodsångare, art 143/150) vid Tomarps Ene. Registrering, videokomprimering och publicering av bloggnotis genomfördes.
+
+**Utfört (Process & Roller):**
+- Registrerade arten. Videon komprimerades från 167MB till 50MB. En notis samskrevs och publicerades.
+- Efterföljande hotfix krävdes för att korrigera en fellagd markdown-fil och saknad YAML-frontmatter.
+
+**Beslut & Lärdomar (Återkoppling):**
+- **Tysta fel i Hugo:** Hugo klagar inte på avvikande metadata utan sväljer den och slutar bygga relaterade gallerier och filter. Därför infördes en stark **Hallucination-Gate** i `/Åstorp-2026` workflowet (steg B1) som uttryckligen förbjuder AI-agenten från att generera frontmatter ur minnet, och kräver strikt copy-paste från dokumentationen.
+
+**Nästa steg:**
+- Följa rutinerna slaviskt nästa gång.
+
+📡 Satelliter: RESUME ✅ | PI — | Trackers — | TC —
+
+*Signatur: gAIa 🌲 2026-05-26*
+
+
+### 2026-05-26 | Bygge av FÖRSTAFYND-logik
+
+**Bakgrund & Syfte:**
+- Under registreringen av Flodsångaren påpekade användaren att arten behövde hanteras på sidan för "Efterlysta". Ett första försök att manuellt infoga HTML resulterade i felaktig logik ("Tomtkryss"-kort istället för borttagning).
+- Syftet omformulerades till att bygga ett sätt för systemet att automatiskt och snyggt hantera nya "Förstafynd" för kommunen, så att de hedras på Efterlysta-sidan istället för att bara försvinna i tystnad.
+
+**Utfört (Process & Roller):**
+- Granskade generator-skriptet `generate_efterlysta_page.py`.
+- Introducerade en ny datastruktur: `forstafynd_info`.
+- Skapade dynamisk rendering av FÖRSTAFYND-kort med guldgul design (`#f59e0b`) och ett specialbyggt modal-fönster.
+- Återförde Flodsångaren i `astorp_target_species.json` och konfigurerade den som ett förstafynd.
+- Uppdaterade workflowet `/Åstorp-2026` för att dokumentera denna rutin.
+
+**Beslut & Lärdomar (Återkoppling):**
+- **Dynamisk Generering:** Redigera aldrig autogenererad markdown för hands. Förstå och uppdatera källan (Python + JSON) när UI ska anpassas.
+- **Workflow Evolution:** Rutinen `A3d. Uppdatera Efterlysta (Förstafynd)` införlivades i workflowet för att framtidssäkra processen.
+
+**Nästa steg:**
+- Rutinuppdateringar rullar på.
+
+📡 Satelliter: RESUME ✅ | PI — | Trackers — | TC ✅
+
+*Signatur: gAIa 🌲 2026-05-26*
+

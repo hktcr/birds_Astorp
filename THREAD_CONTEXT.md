@@ -340,3 +340,15 @@
 - `layouts/galleri/list.html` (nytt utseende och timeout-injektion av lightbox-post-link)
 
 ---
+
+### 2026-05-26 — b3557e89
+
+**Ursprung:** Flodsångare och Efterlysta-sidan (Förstafynd-logik)
+**Typ:** Buggfix | Nytt system | Insikt
+
+> Ett manuellt försök att lägga in ett HTML-kort för Flodsångare i `efterlysta.md` orsakade inkongruens ("Tomtkryss"-kort istället för borttagning). Insikten ledde till bygget av en ny FÖRSTAFYND-logik direkt i Python-generatorn `generate_efterlysta_page.py`. Nu styrs nya kommunarter via `forstafynd_info`-ordlistan i Python, vilket skapar guldgula Förstafynd-kort på Efterlysta-sidan. Workflowet `/Åstorp-2026` uppdaterades med steg A3d för att dokumentera processen.
+
+**Relaterade filer:**
+- `Fåglar/data_mining/generate_efterlysta_page.py` (forstafynd_info, rendering av JS modal)
+- `Fåglar/data_mining/astorp_target_species.json` (Flodsångare tillagd igen)
+- `.agent/workflows/Åstorp-2026.md` (nytt steg A3d)
