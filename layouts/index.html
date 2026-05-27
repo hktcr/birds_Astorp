@@ -315,8 +315,6 @@ RATT: dubbelklammer range dubbelklammer
                 var cardsEl = document.getElementById('prediction-cards');
                 if (!cardsEl) return;
 
-                var checkSvg = '<svg viewBox="0 0 16 16"><polyline points="3.5 8.5 6.5 11.5 12.5 4.5"/></svg>';
-
                 var html = '';
                 predictions.forEach(function(name) {
                     var info = candMap[name];
@@ -327,7 +325,6 @@ RATT: dubbelklammer range dubbelklammer
                     }
                     html += '<div class="prediction-card' + (isHit ? ' hit' : '') + '">';
                     html += '  <span class="prediction-species">' + name + '</span>';
-                    html += '  <div class="prediction-check">' + checkSvg + '</div>';
                     html += '</div>';
                 });
                 cardsEl.innerHTML = html;

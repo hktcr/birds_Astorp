@@ -15,50 +15,40 @@
         <a href="{{ .Permalink }}" class="clear-filter-btn">✕ Visa alla inlägg</a>
     </div>
 
-    <div class="archive-timeline">
-        {{ range $posts }}
-        <article class="archive-item"
-            data-species="{{ with .Params.species }}{{ delimit (apply . `urlize` `.`) `,` | lower }}{{ end }}">
-            <time datetime="{{ .Date.Format `2006-01-02` }}" class="archive-date">
-                {{ .Date.Format "2 Jan" }}
-            </time>
-            <div class="archive-card">
-                {{ if .Params.image }}
-                <div class="archive-thumb">
-                    <img src="{{ .Params.image | relURL }}" alt="{{ .Title }}" loading="lazy">
-                </div>
-                {{ else if .Params.images }}
-                <div class="archive-thumb">
-                    <img src="{{ (index .Params.images 0).url | relURL }}" alt="{{ .Title }}" loading="lazy">
-                </div>
-                {{ else }}
-                <div class="archive-thumb archive-thumb--fallback">
-                    <span class="archive-thumb__date">{{ .Date.Format "2 Jan" }}</span>
-                </div>
-                {{ end }}
-                <div class="archive-card__body">
-                    <h2 class="archive-title">
-                        <a href="{{ .Permalink }}" class="archive-card__link">{{ .Title }}</a>
-                    </h2>
-                    {{ with .Params.location }}
-                    <span class="archive-location">📍 {{ . }}</span>
-                    {{ end }}
-                    <p class="archive-summary">{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate
-                        120 }}{{ end }}</p>
-                    {{ with .Params.species }}
-                    <div class="archive-tags">
-                        {{ range (first 3 .) }}
-                        <a href="?species={{ . | urlize }}" class="archive-tag">{{ . }}</a>
-                        {{ end }}
-                        {{ if gt (len .) 3 }}
-                        <span class="archive-tag archive-tag--more">+{{ sub (len .) 3 }}</span>
-                        {{ end }}
+    <div class="archive-grid-container">
+        <div class="archive-grid">
+            {{ range $posts }}
+            <article class="archive-item"
+                data-species="{{ with .Params.species }}{{ delimit (apply . `urlize` `.`) `,` | lower }}{{ end }}">
+                <div class="archive-card">
+                    {{ if .Params.image }}
+                    <div class="archive-thumb">
+                        <img src="{{ .Params.image | relURL }}" alt="{{ .Title }}" loading="lazy">
+                        <span class="archive-thumb-date">{{ .Date.Format "2 Jan" }}</span>
+                    </div>
+                    {{ else if .Params.images }}
+                    <div class="archive-thumb">
+                        <img src="{{ (index .Params.images 0).url | relURL }}" alt="{{ .Title }}" loading="lazy">
+                        <span class="archive-thumb-date">{{ .Date.Format "2 Jan" }}</span>
+                    </div>
+                    {{ else }}
+                    <div class="archive-thumb archive-thumb--fallback">
+                        <span class="archive-thumb__date">{{ .Date.Format "2 Jan" }}</span>
                     </div>
                     {{ end }}
+                    <div class="archive-card__body">
+                        <h2 class="archive-title">
+                            <a href="{{ .Permalink }}" class="archive-card__link">{{ .Title }}</a>
+                        </h2>
+                        {{ with .Params.location }}
+                        <span class="archive-location">📍 {{ . }}</span>
+                        {{ end }}
+                        <p class="archive-summary">{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 120 }}{{ end }}</p>
+                    </div>
                 </div>
-            </div>
-        </article>
-        {{ end }}
+            </article>
+            {{ end }}
+        </div>
     </div>
 
     {{ if eq (len $posts) 0 }}
@@ -66,6 +56,9 @@
     {{ end }}
 </section>
 
+<!-- Masonry.js and imagesLoaded.js -->
+<script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+<script src="https://unpkg.com/masonry-layout@4/dist/masonry.pkgd.min.js"></script>
 <script>
     document.addEventListener('DOMContentLoaded', () => {
         const params = new URLSearchParams(window.location.search);
@@ -76,8 +69,6 @@
             const filterBar = document.getElementById('active-filter-bar');
             const filterName = document.getElementById('active-filter-name');
 
-            // Try to get a nice display name from the URL by capitalizing it (or we can just show the slug if it's tricky)
-            // A simple readable format from the slug: replace dashes with spaces, uppercase first letter
             const displayLabel = decodeURIComponent(filterSpecies).replace(/-/g, ' ').replace(/^./, str => str.toUpperCase());
 
             if (filterBar && filterName) {
@@ -101,13 +92,36 @@
                 }
             });
 
-            // Show empty message if nothing matches
             if (visibleCount === 0) {
-                const timeline = document.querySelector('.archive-timeline');
+                const timeline = document.querySelector('.archive-grid-container');
                 if (timeline) {
                     timeline.innerHTML = '<p class="empty-state">Inga inlägg hittades för ' + displayLabel + '.</p>';
                 }
             }
+        }
+
+        // Initialize Masonry.js for the tight grid packing (left-to-right)
+        if (typeof Masonry !== 'undefined' && typeof imagesLoaded !== 'undefined') {
+            const grids = document.querySelectorAll('.archive-grid');
+            grids.forEach(grid => {
+                const msnry = new Masonry(grid, {
+                    itemSelector: '.archive-item',
+                    columnWidth: '.archive-item',
+                    gutter: 32, // Matches var(--space-xl)
+                    percentPosition: true,
+                    transitionDuration: '0.2s'
+                });
+                
+                // Relayout after each image loads so heights are correct
+                imagesLoaded(grid).on('progress', function() {
+                    msnry.layout();
+                });
+                
+                // If filter was active, we must layout again after displaying/hiding
+                if (filterSpecies) {
+                    msnry.layout();
+                }
+            });
         }
     });
 </script>
