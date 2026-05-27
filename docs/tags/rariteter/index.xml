@@ -1,19 +1,7 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?>
-<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
-  <channel>
-    <title>Rariteter on Fågelåret i Åstorp</title>
-    <link>http://localhost:1313/tags/rariteter/</link>
-    <description>Recent content in Rariteter on Fågelåret i Åstorp</description>
-    <generator>Hugo</generator>
-    <language>sv</language>
-    <lastBuildDate>Sat, 14 Mar 2026 00:00:00 +0000</lastBuildDate>
-    <atom:link href="http://localhost:1313/tags/rariteter/index.xml" rel="self" type="application/rss+xml" />
-    <item>
-      <title>Snösparv vid Tomarp</title>
-      <link>http://localhost:1313/posts/2026/03/sn%C3%B6sparv-vid-tomarp/</link>
-      <pubDate>Sat, 14 Mar 2026 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/posts/2026/03/sn%C3%B6sparv-vid-tomarp/</guid>
-      <description>&lt;p&gt;Snösparv är ingen enkel art att få in på årslistan i Åstorps kommun, men nu är rätt tid. Tittar man på artens årshjul ser man att det är rätt läge att stöta på arten just nu.&lt;/p&gt;&#xA;&lt;div style=&#34;display: flex; flex-wrap: wrap; gap: 1rem; align-items: stretch; margin: 2rem 0; justify-content: center;&#34;&gt;&#xA;  &lt;div style=&#34;flex: 0 0 200px; display: flex; flex-direction: column; align-items: center; justify-content: center;&#34;&gt;&#xA;    &lt;a href=&#34;http://localhost:1313/images/posts/2026-03-14-snosparv-tomarp/arshjul-snosparv.svg&#34; class=&#34;lightbox-link&#34; style=&#34;display: block; width: 100%;&#34;&gt;&#xA;      &lt;img src=&#34;http://localhost:1313/images/posts/2026-03-14-snosparv-tomarp/arshjul-snosparv.svg&#34; alt=&#34;Årshjul för snösparv i Åstorps kommun&#34; style=&#34;width: 100%; height: auto; cursor: zoom-in;&#34;&gt;&#xA;    &lt;/a&gt;&#xA;    &lt;p style=&#34;font-size: 0.7rem; color: #94a3b8; text-align: center; margin: 0.3rem 0 0 0; line-height: 1.3;&#34;&gt;Ögonblicksbild vid publicering. &lt;a href=&#34;http://localhost:1313/arshjul/&#34; style=&#34;color: #64748b;&#34;&gt;Levande årshjul →&lt;/a&gt;&lt;/p&gt;</description>
-    </item>
-  </channel>
-</rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Rariteter on Fågelåret i Åstorp</title><link>https://astorpsfaglar.se/tags/rariteter/</link><description>Recent content in Rariteter on Fågelåret i Åstorp</description><generator>Hugo</generator><language>sv</language><lastBuildDate>Sat, 14 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://astorpsfaglar.se/tags/rariteter/index.xml" rel="self" type="application/rss+xml"/><item><title>Snösparv vid Tomarp</title><link>https://astorpsfaglar.se/posts/2026/03/sn%C3%B6sparv-vid-tomarp/</link><pubDate>Sat, 14 Mar 2026 00:00:00 +0000</pubDate><guid>https://astorpsfaglar.se/posts/2026/03/sn%C3%B6sparv-vid-tomarp/</guid><description>&lt;p&gt;Snösparv är ingen enkel art att få in på årslistan i Åstorps kommun, men nu är rätt tid. Tittar man på artens årshjul ser man att det är rätt läge att stöta på arten just nu.&lt;/p&gt;
+&lt;div style="display: flex; flex-wrap: wrap; gap: 1rem; align-items: stretch; margin: 2rem 0; justify-content: center;"&gt;
+ &lt;div style="flex: 0 0 200px; display: flex; flex-direction: column; align-items: center; justify-content: center;"&gt;
+ &lt;a href="https://astorpsfaglar.se/images/posts/2026-03-14-snosparv-tomarp/arshjul-snosparv.svg" class="lightbox-link" style="display: block; width: 100%;"&gt;
+ &lt;img src="https://astorpsfaglar.se/images/posts/2026-03-14-snosparv-tomarp/arshjul-snosparv.svg" alt="Årshjul för snösparv i Åstorps kommun" style="width: 100%; height: auto; cursor: zoom-in;"&gt;
+ &lt;/a&gt;
+ &lt;p style="font-size: 0.7rem; color: #94a3b8; text-align: center; margin: 0.3rem 0 0 0; line-height: 1.3;"&gt;Ögonblicksbild vid publicering. &lt;a href="https://astorpsfaglar.se/arshjul/" style="color: #64748b;"&gt;Levande årshjul →&lt;/a&gt;&lt;/p&gt;</description></item></channel></rss>
