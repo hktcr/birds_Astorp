@@ -895,20 +895,23 @@ function openSkaneObsMap(records, speciesName) {
         }
     });
     
-    // Continuous flip animation for tomtkryss cards
+    // Continuous flip animation for flip cards
     const flipCards = document.querySelectorAll(".flip-card");
     if (flipCards.length > 0) {
         let flipIndex = 0;
         setInterval(() => {
-            // Toggle current
-            flipCards[flipIndex].classList.toggle("is-flipped");
+            // Vänd aktuellt kort till baksidan
+            flipCards[flipIndex].classList.add("is-flipped");
             
-            // Move to next in a staggered way
+            // Vänd tillbaka det efter 3 sekunder
+            const currentIndex = flipIndex;
             setTimeout(() => {
-                flipIndex = (flipIndex + 1) % flipCards.length;
-                flipCards[flipIndex].classList.toggle("is-flipped");
-            }, 2000); // 2 second delay between flipping the different cards
-        }, 4000); // Full cycle every 4 seconds
+                flipCards[currentIndex].classList.remove("is-flipped");
+            }, 3000);
+            
+            // Gå till nästa kort
+            flipIndex = (flipIndex + 1) % flipCards.length;
+        }, 4000);
     }
     
     // Stäng modal på escape
