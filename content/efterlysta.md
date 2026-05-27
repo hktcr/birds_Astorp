@@ -328,16 +328,16 @@ Efter en noggrann genomgång av artlistan för Åstorp har jag identifierat 53 a
 <div class="bounty-grid" id="bountyGrid">
 <div class="flip-wrapper heat-logic" data-unique-locs="0" onclick="openModal('102122', 'Flodsångare')">
 <div class="bounty-card-container flip-card" id="flip-card-102122">
-    <div class="bounty-card-front tomtkryss-card" style="border-color: #f59e0b; box-shadow: 0 0 15px rgba(245,158,11,0.3);">
+    <div class="bounty-card-front tomtkryss-card">
         <img class="bounty-icon" src="/images/profiles/102122.png?v=17" alt="Illustration of Flodsångare">
-        <div class="bounty-wanted" style="color: #f59e0b; border-bottom-color: #f59e0b;">FÖRSTAFYND</div>
+        <div class="bounty-wanted" style="color: #15803d; border-bottom-color: #15803d; font-size: 1.05rem;">FÖRSTAFYND</div>
         <div class="bounty-name">Flodsångare</div>
         <div class="bounty-latin">Locustella fluviatilis</div>
     </div>
     <div class="bounty-card-back">
         <div class="tomtkryss-label">Hittad!</div>
         <div class="tomtkryss-date">25 maj 2026</div>
-        <div style="font-size: 0.85rem; opacity: 0.9; margin-top: 1.5rem; border: 1px solid rgba(245,158,11,0.4); padding: 0.4rem 0.8rem; border-radius: 6px; background: rgba(245,158,11,0.15);">👆 Klicka för mer info</div>
+        <div style="font-size: 0.85rem; opacity: 0.9; margin-top: 1.5rem; border: 1px solid rgba(34,197,94,0.4); padding: 0.4rem 0.8rem; border-radius: 6px; background: rgba(34,197,94,0.15);">👆 Klicka för mer info</div>
     </div>
 </div>
 </div>
