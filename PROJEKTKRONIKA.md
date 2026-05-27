@@ -132,3 +132,29 @@ title: Fåglar/astorp-faglar Krönika
 
 *Signatur: gAIa 🌲 2026-05-26*
 
+
+
+### 2026-05-26 | Databastvätt och Terminologiuppdatering på Efterlysta-sidan
+
+**Bakgrund & Syfte:**
+- Efter granskning av "Efterlysta"-sidan uppdagades att Kärrsnäppa visades som "WANTED" (aldrig sedd) trots att Kent Ivarsson hittade arten i juli 2024. Orsaken var en datasynkningsmiss där Kents observation registrerades som underarten "nordlig kärrsnäppa", vilket fick databasen att förbise fyndet.
+- "Tomtkryss" kändes dessutom som en felaktig etikett för äldre fynd i en kommunlista.
+
+**Utfört (Process & Roller):**
+- **Datatvätt:** Körde ett python-script som anropade Artportalens API för *samtliga 54 efterlysta arter* för att dubbelkolla "kalla fall". Bekräftade att Kärrsnäppan var det enda falska larmet. Kärrsnäppan raderades därefter manuellt från `astorp_target_species.json`.
+- **Terminologi:** Uppdaterade renderingen i `generate_efterlysta_page.py` för att märka om Myrspov och Sjöorre från "TOMTKRYSS" till "HISTORISKT FYND", inklusive uppdaterade texter i deras respektive modaler.
+- **Deploy:** Sidan genererades om med Hugo och pushades till produktion.
+
+**Beslut & Lärdomar (Återkoppling):**
+- Underarter i Artportalen måste medräknas när man letar efter en arts förekomst; automatik som genererar target-listor bör använda `includeUnderlyingTaxa: True` (eller motsvarande) för att inte missa fynd.
+
+**Öppna frågor:**
+- [ ] Finns det behov av att schemalägga automatiska "sanity checks" mot Artportalen framöver?
+
+**Nästa steg:**
+- Fortsätta använda sajten som vanligt; data är nu kongruent med verkligheten.
+
+📡 Satelliter: RESUME ✅ | PI — | Trackers — | TC ✅
+
+*Signatur: gAIa 🌲 2026-05-26*
+

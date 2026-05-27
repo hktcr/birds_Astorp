@@ -1,3 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Knölsvan on Fågelåret i Åstorp</title><link>https://astorpsfaglar.se/species/kn%C3%B6lsvan/</link><description>Recent content in Knölsvan on Fågelåret i Åstorp</description><generator>Hugo</generator><language>sv</language><lastBuildDate>Mon, 02 Mar 2026 00:00:00 +0000</lastBuildDate><atom:link href="https://astorpsfaglar.se/species/kn%C3%B6lsvan/index.xml" rel="self" type="application/rss+xml"/><item><title>Vattenspeglar och morkulleögon</title><link>https://astorpsfaglar.se/posts/2026/03/vattenspeglar-och-morkulle%C3%B6gon/</link><pubDate>Mon, 02 Mar 2026 00:00:00 +0000</pubDate><guid>https://astorpsfaglar.se/posts/2026/03/vattenspeglar-och-morkulle%C3%B6gon/</guid><description>&lt;p&gt;Stora vattenspeglar är som ett nytt äventyr varje dag. Nya fåglar anländer och andra lämnar. Här på sidan har jag börjat skissa på några automatiskt uppdaterande diagram som kan hjälpa till att förstå, och kanske till och med förutsäga, &lt;a href="https://astorpsfaglar.se/vader/"&gt;väder och fågelläget&lt;/a&gt;.&lt;/p&gt;
-&lt;p&gt;Under de senaste dagarna visar diagrammen hur vindarna slog om från nordliga till sydliga. Ostvinden som dominerade ersattes av vindar från väster. Temperatur, vattenflöde, vindar. Allt spelar in.&lt;/p&gt;
-&lt;p&gt;Med väderskiftet kom de första skrattmåsarna. Än så länge vitspräckliga. Skedänder simmade bland krickorna på Kölebäckens mader. Knölsvanar slog ned på de nya vattenspeglarna. En brunand bland viggarna vid Kungsgårdsmaderna. Storspoven flöjtade över Backadal.&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Knölsvan on Fågelåret i Åstorp</title>
+    <link>http://localhost:1313/species/kn%C3%B6lsvan/</link>
+    <description>Recent content in Knölsvan on Fågelåret i Åstorp</description>
+    <generator>Hugo</generator>
+    <language>sv</language>
+    <lastBuildDate>Mon, 02 Mar 2026 00:00:00 +0000</lastBuildDate>
+    <atom:link href="http://localhost:1313/species/kn%C3%B6lsvan/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Vattenspeglar och morkulleögon</title>
+      <link>http://localhost:1313/posts/2026/03/vattenspeglar-och-morkulle%C3%B6gon/</link>
+      <pubDate>Mon, 02 Mar 2026 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/posts/2026/03/vattenspeglar-och-morkulle%C3%B6gon/</guid>
+      <description>&lt;p&gt;Stora vattenspeglar är som ett nytt äventyr varje dag. Nya fåglar anländer och andra lämnar. Här på sidan har jag börjat skissa på några automatiskt uppdaterande diagram som kan hjälpa till att förstå, och kanske till och med förutsäga, &lt;a href=&#34;http://localhost:1313/vader/&#34;&gt;väder och fågelläget&lt;/a&gt;.&lt;/p&gt;&#xA;&lt;p&gt;Under de senaste dagarna visar diagrammen hur vindarna slog om från nordliga till sydliga. Ostvinden som dominerade ersattes av vindar från väster. Temperatur, vattenflöde, vindar. Allt spelar in.&lt;/p&gt;&#xA;&lt;p&gt;Med väderskiftet kom de första skrattmåsarna. Än så länge vitspräckliga. Skedänder simmade bland krickorna på Kölebäckens mader. Knölsvanar slog ned på de nya vattenspeglarna. En brunand bland viggarna vid Kungsgårdsmaderna. Storspoven flöjtade över Backadal.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

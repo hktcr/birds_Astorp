@@ -1,2 +1,19 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Grönsångare on Fågelåret i Åstorp</title><link>https://astorpsfaglar.se/species/gr%C3%B6ns%C3%A5ngare/</link><description>Recent content in Grönsångare on Fågelåret i Åstorp</description><generator>Hugo</generator><language>sv</language><lastBuildDate>Fri, 08 May 2026 15:00:00 +0200</lastBuildDate><atom:link href="https://astorpsfaglar.se/species/gr%C3%B6ns%C3%A5ngare/index.xml" rel="self" type="application/rss+xml"/><item><title>Söderåsen grönskar</title><link>https://astorpsfaglar.se/posts/2026/05/s%C3%B6der%C3%A5sen-gr%C3%B6nskar/</link><pubDate>Fri, 08 May 2026 15:00:00 +0200</pubDate><guid>https://astorpsfaglar.se/posts/2026/05/s%C3%B6der%C3%A5sen-gr%C3%B6nskar/</guid><description>&lt;p&gt;Söderåsen grönskar. Grönare för var dag som går. Morgonen bjöd på trädgårdssångare nere vid ån, medan eftermiddagen svarade med grönsångare uppe på åsen.&lt;/p&gt;
-&lt;p&gt;&lt;img src="https://astorpsfaglar.se/images/2026-05-08-soderasen-gronskar/soderasen-gronskar.jpg" alt="Söderåsen grönskar"&gt;&lt;/p&gt;</description></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Grönsångare on Fågelåret i Åstorp</title>
+    <link>http://localhost:1313/species/gr%C3%B6ns%C3%A5ngare/</link>
+    <description>Recent content in Grönsångare on Fågelåret i Åstorp</description>
+    <generator>Hugo</generator>
+    <language>sv</language>
+    <lastBuildDate>Fri, 08 May 2026 15:00:00 +0200</lastBuildDate>
+    <atom:link href="http://localhost:1313/species/gr%C3%B6ns%C3%A5ngare/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Söderåsen grönskar</title>
+      <link>http://localhost:1313/posts/2026/05/s%C3%B6der%C3%A5sen-gr%C3%B6nskar/</link>
+      <pubDate>Fri, 08 May 2026 15:00:00 +0200</pubDate>
+      <guid>http://localhost:1313/posts/2026/05/s%C3%B6der%C3%A5sen-gr%C3%B6nskar/</guid>
+      <description>&lt;p&gt;Söderåsen grönskar. Grönare för var dag som går. Morgonen bjöd på trädgårdssångare nere vid ån, medan eftermiddagen svarade med grönsångare uppe på åsen.&lt;/p&gt;&#xA;&lt;p&gt;&lt;img src=&#34;http://localhost:1313/images/2026-05-08-soderasen-gronskar/soderasen-gronskar.jpg&#34; alt=&#34;Söderåsen grönskar&#34;&gt;&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>
