@@ -685,6 +685,351 @@
                         width: 100%;
                     }
                 }
+
+                /* ═══════════════════════════════════════════
+                   TAB SYSTEM (Galleri | Fotokarta)
+                   ═══════════════════════════════════════════ */
+                .gallery-tabs {
+                    display: flex;
+                    gap: 0;
+                    margin-bottom: 28px;
+                    border-bottom: 2px solid #d4ddd0;
+                    position: relative;
+                }
+                .gallery-tab {
+                    padding: 14px 28px;
+                    font-family: 'Inter', sans-serif;
+                    font-size: 0.95rem;
+                    font-weight: 500;
+                    color: #7a8e70;
+                    background: transparent;
+                    border: none;
+                    border-bottom: 3px solid transparent;
+                    cursor: pointer;
+                    transition: all 0.25s ease;
+                    margin-bottom: -2px;
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    letter-spacing: 0.2px;
+                }
+                .gallery-tab.active {
+                    color: #2b4022;
+                    border-bottom-color: #465c3d;
+                    font-weight: 600;
+                }
+                .gallery-tab:hover:not(.active) {
+                    color: #465c3d;
+                    background: rgba(70, 92, 61, 0.05);
+                    border-radius: 6px 6px 0 0;
+                }
+                .gallery-tab svg {
+                    opacity: 0.7;
+                }
+                .gallery-tab.active svg {
+                    opacity: 1;
+                }
+
+                /* ═══════════════════════════════════════════
+                   SNAPSHOT BADGE
+                   ═══════════════════════════════════════════ */
+                .gallery-item[data-type="snapshot"]::after {
+                    content: "📷";
+                    position: absolute;
+                    top: 10px;
+                    right: 10px;
+                    font-size: 1.1rem;
+                    filter: drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+                    z-index: 3;
+                    pointer-events: none;
+                }
+
+                /* ═══════════════════════════════════════════
+                   PHOTO MAP VIEW
+                   ═══════════════════════════════════════════ */
+                #photomap-view {
+                    display: none;
+                }
+                #photomap-view.active {
+                    display: block;
+                }
+                #gallery-view {
+                    display: block;
+                }
+                #gallery-view.hidden {
+                    display: none;
+                }
+
+                .photomap-container {
+                    position: relative;
+                    border-radius: 12px;
+                    overflow: hidden;
+                    box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+                    margin-bottom: 24px;
+                    border: 1px solid #d4ddd0;
+                }
+                #photomap {
+                    width: 100%;
+                    height: 65vh;
+                    min-height: 400px;
+                    z-index: 1;
+                }
+
+                /* Map controls overlay */
+                .photomap-controls {
+                    position: absolute;
+                    top: 12px;
+                    right: 12px;
+                    z-index: 1000;
+                    display: flex;
+                    flex-direction: column;
+                    gap: 8px;
+                }
+                .photomap-btn {
+                    background: rgba(255,255,255,0.95);
+                    border: 1px solid #c5cfc0;
+                    border-radius: 8px;
+                    padding: 10px 16px;
+                    font-family: 'Inter', sans-serif;
+                    font-size: 13px;
+                    font-weight: 500;
+                    color: #2b4022;
+                    cursor: pointer;
+                    transition: all 0.2s;
+                    display: flex;
+                    align-items: center;
+                    gap: 6px;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+                    backdrop-filter: blur(8px);
+                    -webkit-backdrop-filter: blur(8px);
+                }
+                .photomap-btn:hover {
+                    background: #fff;
+                    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+                    transform: translateY(-1px);
+                }
+                .photomap-btn.active {
+                    background: #465c3d;
+                    color: white;
+                    border-color: #465c3d;
+                }
+                .photomap-btn.active:hover {
+                    background: #36482f;
+                }
+                .photomap-clear-btn {
+                    display: none;
+                    background: rgba(220, 50, 50, 0.9);
+                    color: white;
+                    border-color: rgba(220, 50, 50, 0.5);
+                }
+                .photomap-clear-btn.visible {
+                    display: flex;
+                }
+                .photomap-clear-btn:hover {
+                    background: rgba(200, 30, 30, 1);
+                }
+
+                /* Selection rectangle */
+                .photomap-container.selecting {
+                    cursor: crosshair;
+                }
+                .selection-rect {
+                    border: 2px dashed #465c3d;
+                    background: rgba(70, 92, 61, 0.12);
+                    border-radius: 4px;
+                }
+
+                /* Recency legend */
+                .photomap-legend {
+                    position: absolute;
+                    bottom: 12px;
+                    left: 12px;
+                    z-index: 1000;
+                    background: rgba(255,255,255,0.92);
+                    backdrop-filter: blur(10px);
+                    -webkit-backdrop-filter: blur(10px);
+                    border-radius: 10px;
+                    padding: 12px 16px;
+                    font-family: 'Inter', sans-serif;
+                    font-size: 12px;
+                    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+                    border: 1px solid rgba(200,210,195,0.6);
+                }
+                .photomap-legend-title {
+                    font-weight: 600;
+                    color: #2b4022;
+                    margin-bottom: 8px;
+                    font-size: 12px;
+                    text-transform: uppercase;
+                    letter-spacing: 0.5px;
+                }
+                .photomap-legend-item {
+                    display: flex;
+                    align-items: center;
+                    gap: 8px;
+                    margin-bottom: 4px;
+                    color: #4a5e40;
+                }
+                .photomap-legend-dot {
+                    width: 12px;
+                    height: 12px;
+                    border-radius: 50%;
+                    border: 2px solid white;
+                    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+                    flex-shrink: 0;
+                }
+
+                /* Tile layer switcher override */
+                .leaflet-control-layers {
+                    border-radius: 10px !important;
+                    box-shadow: 0 2px 12px rgba(0,0,0,0.1) !important;
+                    border: 1px solid rgba(200,210,195,0.6) !important;
+                    font-family: 'Inter', sans-serif !important;
+                    font-size: 12px !important;
+                }
+                .leaflet-control-layers-expanded {
+                    background: rgba(255,255,255,0.95) !important;
+                    backdrop-filter: blur(10px);
+                    -webkit-backdrop-filter: blur(10px);
+                    padding: 10px 14px 8px !important;
+                }
+
+                }
+
+                /* ═══════════════════════════════════════════
+                   FILTERED IMAGE STRIP (under kartan)
+                   ═══════════════════════════════════════════ */
+                .photomap-strip {
+                    margin-top: 20px;
+                }
+                .photomap-strip-header {
+                    display: flex;
+                    justify-content: space-between;
+                    align-items: center;
+                    margin-bottom: 14px;
+                }
+                .photomap-strip-title {
+                    font-family: 'Lora', Georgia, serif;
+                    font-size: 1.1rem;
+                    color: #2b4022;
+                    font-weight: 600;
+                }
+                .photomap-strip-count {
+                    font-family: 'Inter', sans-serif;
+                    font-size: 0.85rem;
+                    color: #6b7f61;
+                }
+                .photomap-strip-grid {
+                    display: grid;
+                    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+                    gap: 12px;
+                }
+                .photomap-strip-item {
+                    position: relative;
+                    border-radius: 8px;
+                    overflow: hidden;
+                    cursor: pointer;
+                    aspect-ratio: 4/3;
+                    box-shadow: 0 2px 8px rgba(0,0,0,0.08);
+                    transition: transform 0.2s, box-shadow 0.2s;
+                    background: #eef2eb;
+                }
+                .photomap-strip-item:hover {
+                    transform: translateY(-3px);
+                    box-shadow: 0 6px 16px rgba(0,0,0,0.15);
+                }
+                .photomap-strip-item.highlighted {
+                    outline: 3px solid #465c3d;
+                    outline-offset: 2px;
+                }
+                .photomap-strip-item img {
+                    width: 100%;
+                    height: 100%;
+                    object-fit: cover;
+                }
+                .photomap-strip-item-overlay {
+                    position: absolute;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                    background: linear-gradient(to top, rgba(0,0,0,0.7), transparent);
+                    padding: 20px 10px 8px;
+                    color: white;
+                    font-family: 'Inter', sans-serif;
+                }
+                .photomap-strip-item-title {
+                    font-size: 0.78rem;
+                    font-weight: 500;
+                    white-space: nowrap;
+                    overflow: hidden;
+                    text-overflow: ellipsis;
+                }
+                .photomap-strip-item-date {
+                    font-size: 0.68rem;
+                    opacity: 0.8;
+                }
+
+                /* Marker styling */
+                .photomap-marker {
+                    transition: opacity 0.3s ease;
+                }
+                .photomap-marker.dimmed {
+                    opacity: 0.15 !important;
+                }
+                .photomap-marker.highlighted {
+                    z-index: 10000 !important;
+                }
+
+                /* Cluster count labels */
+                .photomap-cluster-label {
+                    background: none !important;
+                    border: none !important;
+                }
+                .photomap-cluster-label span {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 20px;
+                    height: 20px;
+                    background: rgba(30, 40, 25, 0.85);
+                    color: #fff;
+                    font-family: 'Inter', sans-serif;
+                    font-size: 10px;
+                    font-weight: 700;
+                    border-radius: 50%;
+                    border: 1.5px solid rgba(255,255,255,0.9);
+                    pointer-events: none;
+                }
+
+                /* Pulsing animation for recent markers */
+                @keyframes photomapPulse {
+                    0% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0.5); }
+                    70% { box-shadow: 0 0 0 10px rgba(34, 197, 94, 0); }
+                    100% { box-shadow: 0 0 0 0 rgba(34, 197, 94, 0); }
+                }
+
+                /* Responsive */
+                @media (max-width: 768px) {
+                    #photomap {
+                        height: 45vh;
+                        min-height: 300px;
+                    }
+                    .photomap-strip-grid {
+                        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+                        gap: 8px;
+                    }
+                    .photomap-legend {
+                        padding: 8px 12px;
+                        font-size: 11px;
+                    }
+                    .gallery-tabs {
+                        margin-bottom: 16px;
+                    }
+                    .gallery-tab {
+                        padding: 10px 16px;
+                        font-size: 0.88rem;
+                    }
+                }
             </style>
 
             {{ $pages := where .Site.RegularPages "Section" "posts" }}
@@ -788,11 +1133,43 @@
                 {{ end }}
                 {{ end }}
 
-                {{ $globalImages.Add "images" (dict "url" $cleanUrl "alt" .alt "post" $post "species" $imageSpecies) }}
+                {{/* Determine post type */}}
+                {{ $postType := "notis" }}
+                {{ if $post.Params.snapshot }}
+                  {{ $postType = "snapshot" }}
+                {{ else if (in ($post.Params.tags | default slice) "Vykort") }}
+                  {{ $postType = "vykort" }}
+                {{ end }}
+
+                {{/* Get all locations as JSON for smart per-image matching */}}
+                {{ $allLocs := slice }}
+                {{ with $post.Params.locations }}
+                  {{ range . }}
+                    {{ $allLocs = $allLocs | append (dict "name" .name "lat" .lat "lng" .lng) }}
+                  {{ end }}
+                {{ end }}
+                {{ $locsJSON := $allLocs | jsonify }}
+
+                {{ $globalImages.Add "images" (dict "url" $cleanUrl "alt" .alt "post" $post "species" $imageSpecies "type" $postType "locations" $locsJSON) }}
                 {{ end }}
                 {{ end }}
                 {{ end }}
                 {{ end }}
+
+                <!-- Tab Bar -->
+                <div class="gallery-tabs">
+                    <button class="gallery-tab active" id="tab-gallery" onclick="switchTab('gallery')">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="7" height="7"></rect><rect x="14" y="3" width="7" height="7"></rect><rect x="3" y="14" width="7" height="7"></rect><rect x="14" y="14" width="7" height="7"></rect></svg>
+                        Galleri
+                    </button>
+                    <button class="gallery-tab" id="tab-photomap" onclick="switchTab('photomap')">
+                        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="1 6 1 22 8 18 16 22 23 18 23 2 16 6 8 2 1 6"></polygon><line x1="8" y1="2" x2="8" y2="18"></line><line x1="16" y1="6" x2="16" y2="22"></line></svg>
+                        Fotokarta
+                    </button>
+                </div>
+
+                <!-- Gallery View -->
+                <div id="gallery-view">
 
                 <!-- Filter UI -->
                 <div class="gallery-filter-bar">
@@ -837,6 +1214,8 @@
                     {{ $alt := .alt }}
                     {{ $post := .post }}
                     {{ $speciesTags := .species }}
+                    {{ $imgType := .type | default "notis" }}
+                    {{ $locsJSON := .locations | default "[]" }}
 
                     {{/* Generate robust thumbnail URL via base64url encoding of filename */}}
                     {{ $urlNoExt := replaceRE `\.(jpg|jpeg|png|webp)$` "" $url }}
@@ -857,9 +1236,14 @@
                     {{ $speciesData = delimit (apply . `urlize` `.`) `,` | lower }}
                     {{ end }}
                     {{ $monthData := $post.Date.Format "2006-01" }}
+                    {{ $dateISO := $post.Date.Format "2006-01-02" }}
 
                     <a href="{{ $post.RelPermalink }}" class="gallery-item" data-species="{{ $speciesData }}"
                         data-month="{{ $monthData }}" data-image-src="{{ $url }}" data-image-alt="{{ $alt }}"
+                        data-locations='{{ $locsJSON | safeHTMLAttr }}'
+                        data-type="{{ $imgType }}"
+                        data-date-iso="{{ $dateISO }}"
+                        data-thumb-src="{{ $thumbUrl }}"
                         title="Läs mer: {{ $post.Title }}">
                         <img src="{{ $thumbUrl }}" alt="{{ $alt }}" decoding="async">
                         <div class="gallery-overlay">
@@ -875,6 +1259,66 @@
                     </a>
                     {{ end }}
                 </div>
+
+                </div><!-- /gallery-view -->
+
+                <!-- ═══════════════════════════════════════════
+                     PHOTO MAP VIEW
+                     ═══════════════════════════════════════════ -->
+                <div id="photomap-view">
+                    <div class="photomap-container" id="photomap-container">
+                        <div id="photomap"></div>
+
+
+
+                        <!-- Control buttons -->
+                        <div class="photomap-controls">
+                            <button class="photomap-btn" id="photomap-select-btn" title="Dra en rektangel för att filtrera bilder efter område">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" stroke-dasharray="4 2"></rect></svg>
+                                Välj område
+                            </button>
+                            <button class="photomap-btn photomap-clear-btn" id="photomap-clear-btn">
+                                ✕ Rensa urval
+                            </button>
+                        </div>
+
+                        <!-- Recency legend -->
+                        <div class="photomap-legend">
+                            <div class="photomap-legend-title">Aktualitet</div>
+                            <div class="photomap-legend-item">
+                                <div class="photomap-legend-dot" style="background: #22c55e;"></div>
+                                Senaste 7 dagarna
+                            </div>
+                            <div class="photomap-legend-item">
+                                <div class="photomap-legend-dot" style="background: #3b82f6;"></div>
+                                Senaste 30 dagarna
+                            </div>
+                            <div class="photomap-legend-item">
+                                <div class="photomap-legend-dot" style="background: #eab308;"></div>
+                                1–3 månader
+                            </div>
+                            <div class="photomap-legend-item">
+                                <div class="photomap-legend-dot" style="background: #9ca3af;"></div>
+                                Äldre
+                            </div>
+                        </div>
+
+                    </div>
+
+
+
+                    <!-- Filtered image strip -->
+                    <div class="photomap-strip" id="photomap-strip">
+                        <div class="photomap-strip-header">
+                            <span class="photomap-strip-title" id="photomap-strip-title">Alla bilder</span>
+                            <span class="photomap-strip-count" id="photomap-strip-count"></span>
+                        </div>
+                        <div class="photomap-strip-grid" id="photomap-strip-grid">
+                            <!-- Populated by JS -->
+                        </div>
+                    </div>
+                </div><!-- /photomap-view -->
+
         </div>
     </div>
 </div>
@@ -1628,6 +2072,471 @@
                 resetChromeTimer();
             }
         });
+
+        // ═══════════════════════════════════════════
+        //  TAB SWITCHING (Galleri ↔ Fotokarta)
+        // ═══════════════════════════════════════════
+        let photomapInitialized = false;
+
+        window.switchTab = function(tab) {
+            const galleryView = document.getElementById('gallery-view');
+            const photomapView = document.getElementById('photomap-view');
+            const tabGallery = document.getElementById('tab-gallery');
+            const tabPhotomap = document.getElementById('tab-photomap');
+
+            if (tab === 'photomap') {
+                galleryView.classList.add('hidden');
+                photomapView.classList.add('active');
+                tabGallery.classList.remove('active');
+                tabPhotomap.classList.add('active');
+
+                // Update URL
+                const url = new URL(window.location);
+                url.searchParams.set('view', 'fotokarta');
+                window.history.replaceState({}, '', url);
+
+                // Lazy-init the map
+                if (!photomapInitialized) {
+                    photomapInitialized = true;
+                    initPhotoMap();
+                } else {
+                    // Invalidate size when showing
+                    setTimeout(() => { if (window._photomapMap) window._photomapMap.invalidateSize(); }, 100);
+                }
+            } else {
+                galleryView.classList.remove('hidden');
+                photomapView.classList.remove('active');
+                tabGallery.classList.add('active');
+                tabPhotomap.classList.remove('active');
+
+                const url = new URL(window.location);
+                url.searchParams.delete('view');
+                window.history.replaceState({}, '', url);
+
+                // Re-layout masonry
+                if (typeof layoutMasonry === 'function') layoutMasonry();
+            }
+        };
+
+        // Check URL on load
+        if (new URLSearchParams(window.location.search).get('view') === 'fotokarta') {
+            switchTab('photomap');
+        }
+
+        // ═══════════════════════════════════════════
+        //  PHOTO MAP INITIALIZATION
+        // ═══════════════════════════════════════════
+        function initPhotoMap() {
+            const map = L.map('photomap', {
+                center: [56.14, 13.05],
+                zoom: 12,
+                zoomControl: true,
+                scrollWheelZoom: true
+            });
+            window._photomapMap = map;
+
+            // ─── Tile layers with switcher ───
+            const topoLayer = L.tileLayer('https://{s}.tile.opentopomap.org/{z}/{x}/{y}.png', {
+                maxZoom: 17,
+                attribution: '&copy; OpenTopoMap'
+            });
+            const osmLayer = L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+                maxZoom: 19,
+                attribution: '&copy; OpenStreetMap'
+            });
+            const satLayer = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}', {
+                maxZoom: 18,
+                attribution: '&copy; Esri'
+            });
+
+            // Default layer
+            topoLayer.addTo(map);
+
+            // Layer control — bottom-right
+            L.control.layers({
+                'Topografisk': topoLayer,
+                'Gatukarta': osmLayer,
+                'Satellit': satLayer
+            }, null, { position: 'bottomright', collapsed: true }).addTo(map);
+
+            // Municipality boundary
+            fetch((window.siteBaseURL || '') + '/data/astorp-kommun.geojson')
+                .then(r => r.json())
+                .then(geoData => {
+                    L.geoJSON(geoData, {
+                        style: {
+                            color: '#465c3d',
+                            weight: 2,
+                            opacity: 0.6,
+                            fillColor: 'transparent',
+                            fillOpacity: 0,
+                            dashArray: '6 4'
+                        }
+                    }).addTo(map);
+                })
+                .catch(() => {}); // Graceful fail
+
+            // ─── Collect image data from gallery items ───
+            const allPhotoData = [];
+            const galleryItems = document.querySelectorAll('.gallery-item');
+
+            galleryItems.forEach(item => {
+                let locations = [];
+                try {
+                    // Hugo HTML-encodes the JSON; decode entities first
+                    const raw = item.dataset.locations || '[]';
+                    const decoded = raw.replace(/&amp;/g, '&').replace(/&#34;/g, '"').replace(/&lt;/g, '<').replace(/&gt;/g, '>');
+                    locations = JSON.parse(decoded);
+                } catch(e) {}
+                if (!locations.length) return;
+
+                // Pick best location for this image:
+                // Try matching image species/categories against location names
+                const species = (item.querySelector('.gallery-species')?.textContent || '').toLowerCase();
+                let bestLoc = locations[0]; // default: first location
+
+                // Simple heuristic: if any location name appears in species text, use that one
+                if (locations.length > 1 && species) {
+                    for (const loc of locations) {
+                        if (species.includes(loc.name.toLowerCase())) {
+                            bestLoc = loc;
+                            break;
+                        }
+                    }
+                }
+
+                const lat = parseFloat(bestLoc.lat);
+                const lng = parseFloat(bestLoc.lng);
+                if (!lat || !lng) return;
+
+                allPhotoData.push({
+                    lat, lng,
+                    locationName: bestLoc.name || '',
+                    src: item.dataset.imageSrc,
+                    alt: item.dataset.imageAlt,
+                    thumb: item.dataset.thumbSrc,
+                    title: item.querySelector('.gallery-title')?.textContent || '',
+                    date: item.dataset.dateIso,
+                    type: item.dataset.type || 'notis',
+                    species: item.querySelector('.gallery-species')?.textContent || '',
+                    href: item.getAttribute('href'),
+                    dateDisplay: item.querySelector('.gallery-date')?.textContent || ''
+                });
+            });
+
+            // ─── Recency color helper ───
+            const now = new Date();
+            function getRecencyColor(dateStr) {
+                const d = new Date(dateStr);
+                const diff = (now - d) / (1000 * 60 * 60 * 24);
+                if (diff <= 7)  return { color: '#22c55e', label: 'Nyligen',           pulse: true };
+                if (diff <= 30) return { color: '#3b82f6', label: 'Denna månad',       pulse: false };
+                if (diff <= 90) return { color: '#eab308', label: 'Senaste kvartalet', pulse: false };
+                return                  { color: '#9ca3af', label: 'Äldre',            pulse: false };
+            }
+
+            // Swedish date formatting
+            const SV_MONTHS_MAP = ['januari','februari','mars','april','maj','juni','juli','augusti','september','oktober','november','december'];
+            function formatDateSv(isoStr) {
+                const d = new Date(isoStr);
+                return `${d.getDate()} ${SV_MONTHS_MAP[d.getMonth()]} ${d.getFullYear()}`;
+            }
+
+            const typeLabels = { notis: 'Notis', snapshot: 'Ögonblick', vykort: 'Vykort' };
+
+            // ─── Group photos by coordinate (cluster overlapping) ───
+            const coordKey = (lat, lng) => `${lat.toFixed(6)},${lng.toFixed(6)}`;
+            const clusters = new Map(); // key → [indices]
+
+            allPhotoData.forEach((photo, idx) => {
+                const key = coordKey(photo.lat, photo.lng);
+                if (!clusters.has(key)) clusters.set(key, []);
+                clusters.get(key).push(idx);
+            });
+
+            // ─── Create ONE marker per cluster ───
+            const markers = [];              // sparse: photo idx → cluster marker
+            const allClusterMarkers = [];    // flat: one per cluster
+            const markerGroup = L.featureGroup().addTo(map);
+
+            clusters.forEach((photoIndices, key) => {
+                const firstPhoto = allPhotoData[photoIndices[0]];
+                const count = photoIndices.length;
+
+                // Use most recent photo's recency for marker color
+                const sortedByDate = [...photoIndices].sort((a, b) =>
+                    new Date(allPhotoData[b].date) - new Date(allPhotoData[a].date)
+                );
+                const newestPhoto = allPhotoData[sortedByDate[0]];
+                const rc = getRecencyColor(newestPhoto.date);
+
+                const radius = count > 1 ? Math.min(9 + count * 1.5, 18) : 9;
+
+                const marker = L.circleMarker([firstPhoto.lat, firstPhoto.lng], {
+                    radius: radius,
+                    fillColor: rc.color,
+                    color: '#fff',
+                    weight: 2.5,
+                    opacity: 1,
+                    fillOpacity: 0.85,
+                    className: 'photomap-marker'
+                });
+
+                marker._clusterIndices = sortedByDate;
+                marker._recency = rc;
+                marker._baseRadius = radius;
+                marker._locationName = firstPhoto.locationName || '';
+
+                // Add count label for multi-photo clusters
+                if (count > 1) {
+                    const label = L.divIcon({
+                        className: 'photomap-cluster-label',
+                        html: `<span>${count}</span>`,
+                        iconSize: [20, 20],
+                        iconAnchor: [10, 10]
+                    });
+                    L.marker([firstPhoto.lat, firstPhoto.lng], { icon: label, interactive: false }).addTo(markerGroup);
+                }
+
+                // Click → select this cluster (filter strip)
+                marker.on('click', () => {
+                    selectCluster(marker);
+                });
+
+                marker.addTo(markerGroup);
+                allClusterMarkers.push(marker);
+
+                // Register each photo index → this marker (for strip sync)
+                photoIndices.forEach(idx => {
+                    markers[idx] = marker;
+                });
+            });
+
+            // Update stats
+            // (stats overlay removed — count shown in strip instead)
+
+            // Fit bounds if we have markers
+            if (markers.length > 0) {
+                map.fitBounds(markerGroup.getBounds().pad(0.1));
+            }
+
+            // ─── Populate image strip ───
+            function populateStrip(photoIndices) {
+                const stripGrid = document.getElementById('photomap-strip-grid');
+                const stripCount = document.getElementById('photomap-strip-count');
+                const stripTitle = document.getElementById('photomap-strip-title');
+
+                stripGrid.innerHTML = '';
+
+                const indices = photoIndices || allPhotoData.map((_, i) => i);
+                stripCount.textContent = `${indices.length} bilder`;
+                stripTitle.textContent = photoIndices ? 'Bilder i valt område' : 'Alla bilder';
+
+                // Sort by date desc
+                const sorted = [...indices].sort((a, b) => {
+                    return new Date(allPhotoData[b].date) - new Date(allPhotoData[a].date);
+                });
+
+                sorted.forEach(idx => {
+                    const photo = allPhotoData[idx];
+                    const rc = getRecencyColor(photo.date);
+
+                    const card = document.createElement('div');
+                    card.className = 'photomap-strip-item';
+                    card.dataset.markerIdx = idx;
+
+                    card.innerHTML = `
+                        <img src="${photo.thumb}" alt="${photo.alt}" loading="lazy">
+                    `;
+
+                    // Click → lightbox with caption
+                    card.addEventListener('click', () => {
+                        if (typeof window.openLightbox === 'function') {
+                            window.openLightbox(photo.src, photo.alt, {
+                                title: photo.title,
+                                meta: `${formatDateSv(photo.date)} · ${photo.species}`,
+                                href: photo.href
+                            });
+                        }
+                    });
+
+                    stripGrid.appendChild(card);
+                });
+            }
+
+            populateStrip(null); // Show all initially
+
+            // ─── Cluster selection ───
+            let selectedCluster = null;
+
+            function selectCluster(marker) {
+                // If same cluster clicked again → deselect
+                if (selectedCluster === marker) {
+                    clearSelection();
+                    return;
+                }
+
+                selectedCluster = marker;
+                clearBtn.classList.add('visible');
+
+                // Dim all, highlight selected
+                allClusterMarkers.forEach(m => {
+                    if (m === marker) {
+                        m.setStyle({ opacity: 1, fillOpacity: 0.9, weight: 3.5 });
+                        m.getElement()?.classList.remove('dimmed');
+                        m.getElement()?.classList.add('photomap-marker-selected');
+                        m.bringToFront();
+                    } else {
+                        m.setStyle({ opacity: 0.3, fillOpacity: 0.15 });
+                        m.getElement()?.classList.add('dimmed');
+                        m.getElement()?.classList.remove('photomap-marker-selected');
+                    }
+                });
+
+                // Update strip with cluster's photos
+                populateStrip(marker._clusterIndices);
+
+                // Update strip title
+                const firstPhoto = allPhotoData[marker._clusterIndices[0]];
+                const stripTitle = document.getElementById('photomap-strip-title');
+                stripTitle.textContent = firstPhoto.locationName || 'Vald plats';
+            }
+
+            // ─── Rectangle Area Selection ───
+            const selectBtn = document.getElementById('photomap-select-btn');
+            const clearBtn = document.getElementById('photomap-clear-btn');
+            const container = document.getElementById('photomap-container');
+
+            let isSelecting = false;
+            let selectionRect = null;
+            let selStart = null;
+
+            selectBtn.addEventListener('click', () => {
+                isSelecting = !isSelecting;
+                selectBtn.classList.toggle('active', isSelecting);
+                container.classList.toggle('selecting', isSelecting);
+
+                if (isSelecting) {
+                    map.dragging.disable();
+                    map.doubleClickZoom.disable();
+                } else {
+                    map.dragging.enable();
+                    map.doubleClickZoom.enable();
+                }
+            });
+
+            // Mouse handlers on the map container
+            const mapEl = document.getElementById('photomap');
+
+            mapEl.addEventListener('mousedown', (e) => {
+                if (!isSelecting) return;
+                e.preventDefault();
+                e.stopPropagation();
+
+                selStart = map.mouseEventToLatLng(e);
+
+                // Remove old rectangle
+                if (selectionRect) {
+                    map.removeLayer(selectionRect);
+                    selectionRect = null;
+                }
+            });
+
+            mapEl.addEventListener('mousemove', (e) => {
+                if (!isSelecting || !selStart) return;
+                e.preventDefault();
+
+                const current = map.mouseEventToLatLng(e);
+                const bounds = L.latLngBounds(selStart, current);
+
+                if (selectionRect) {
+                    selectionRect.setBounds(bounds);
+                } else {
+                    selectionRect = L.rectangle(bounds, {
+                        color: '#465c3d',
+                        weight: 2,
+                        dashArray: '6 3',
+                        fillColor: '#465c3d',
+                        fillOpacity: 0.08,
+                        className: 'selection-rect'
+                    }).addTo(map);
+                }
+            });
+
+            mapEl.addEventListener('mouseup', (e) => {
+                if (!isSelecting || !selStart) return;
+                e.preventDefault();
+
+                selStart = null;
+
+                if (selectionRect) {
+                    applySelection(selectionRect.getBounds());
+
+                    // Exit selection mode
+                    isSelecting = false;
+                    selectBtn.classList.remove('active');
+                    container.classList.remove('selecting');
+                    map.dragging.enable();
+                    map.doubleClickZoom.enable();
+                }
+            });
+
+            function applySelection(bounds) {
+                selectedCluster = null;
+                clearBtn.classList.add('visible');
+
+                const insideIndices = [];
+                allClusterMarkers.forEach(m => {
+                    const inside = bounds.contains(m.getLatLng());
+                    if (inside) {
+                        m._clusterIndices.forEach(idx => insideIndices.push(idx));
+                        m.setStyle({ opacity: 1, fillOpacity: 0.85 });
+                        m.getElement()?.classList.remove('dimmed');
+                        m.getElement()?.classList.remove('photomap-marker-selected');
+                    } else {
+                        m.setStyle({ opacity: 0.3, fillOpacity: 0.15 });
+                        m.getElement()?.classList.add('dimmed');
+                        m.getElement()?.classList.remove('photomap-marker-selected');
+                    }
+                });
+
+                populateStrip(insideIndices);
+                document.getElementById('photomap-strip-title').textContent = `${insideIndices.length} bilder i valt område`;
+            }
+
+            clearBtn.addEventListener('click', () => {
+                clearSelection();
+            });
+
+            function clearSelection() {
+                selectedCluster = null;
+                if (selectionRect) {
+                    map.removeLayer(selectionRect);
+                    selectionRect = null;
+                }
+                clearBtn.classList.remove('visible');
+
+                // Restore all markers
+                allClusterMarkers.forEach(m => {
+                    m.setStyle({ opacity: 1, fillOpacity: 0.85, weight: 2.5 });
+                    m.getElement()?.classList.remove('dimmed');
+                    m.getElement()?.classList.remove('photomap-marker-selected');
+                });
+
+                // Reset strip
+                document.getElementById('photomap-strip-title').textContent = 'Alla bilder';
+                populateStrip(null);
+            }
+
+            // Keyboard: Escape clears selection
+            document.addEventListener('keydown', (e) => {
+                if (e.key === 'Escape' && selectionRect) {
+                    clearSelection();
+                }
+            });
+        }
+
     });
+
 </script>
 {{ end }}
