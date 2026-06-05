@@ -2407,6 +2407,9 @@
 
             // ─── Cluster selection ───
             let selectedCluster = null;
+            const selectBtn = document.getElementById('photomap-select-btn');
+            const clearBtn = document.getElementById('photomap-clear-btn');
+            const container = document.getElementById('photomap-container');
 
             function selectCluster(marker) {
                 console.log('[Fotokarta] selectCluster called, indices:', marker._clusterIndices);
@@ -2443,10 +2446,6 @@
             }
 
             // ─── Rectangle Area Selection ───
-            const selectBtn = document.getElementById('photomap-select-btn');
-            const clearBtn = document.getElementById('photomap-clear-btn');
-            const container = document.getElementById('photomap-container');
-
             let isSelecting = false;
             let selectionRect = null;
             let selStart = null;
