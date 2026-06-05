@@ -178,6 +178,11 @@
         <div class="lightbox-content" onclick="event.stopPropagation()">
             <img id="lightbox-img" src="" alt="">
         </div>
+        <div class="lightbox-caption" id="lightbox-caption" onclick="event.stopPropagation()">
+            <span class="lightbox-caption-title" id="lightbox-caption-title"></span>
+            <span class="lightbox-caption-meta" id="lightbox-caption-meta"></span>
+            <a class="lightbox-caption-link" id="lightbox-caption-link" href="#">Läs mer →</a>
+        </div>
     </div>
     <style>
         .lightbox {
@@ -266,15 +271,77 @@
         .gallery img:hover {
             transform: scale(1.05);
         }
+
+         
+        .lightbox-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 14px 24px;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
+            color: rgba(255,255,255,0.9);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            opacity: 0;
+            transform: translateY(4px);
+            transition: opacity 0.4s ease 0.3s, transform 0.4s ease 0.3s;
+            z-index: 10001;
+        }
+        .lightbox-caption.visible {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .lightbox-caption-title {
+            font-family: 'Lora', Georgia, serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .lightbox-caption-meta {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.78rem;
+        }
+        .lightbox-caption-link {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.78rem;
+            font-weight: 500;
+            margin-left: auto;
+            transition: color 0.2s;
+        }
+        .lightbox-caption-link:hover {
+            color: white;
+        }
     </style>
     <script>
-        function openLightbox(src, alt) {
+        function openLightbox(src, alt, caption) {
             const lb = document.getElementById('lightbox');
             const img = document.getElementById('lightbox-img');
+            const cap = document.getElementById('lightbox-caption');
             
             lb.querySelectorAll('.lightbox-post-link').forEach(el => el.remove());
             img.src = src; img.alt = alt || '';
             img.classList.remove('zoomed');
+            
+            cap.classList.remove('visible');
+            if (caption && (caption.title || caption.meta)) {
+                document.getElementById('lightbox-caption-title').textContent = caption.title || '';
+                document.getElementById('lightbox-caption-meta').textContent = caption.meta || '';
+                const link = document.getElementById('lightbox-caption-link');
+                if (caption.href) {
+                    link.href = caption.href;
+                    link.style.display = '';
+                } else {
+                    link.style.display = 'none';
+                }
+                
+                requestAnimationFrame(() => requestAnimationFrame(() => cap.classList.add('visible')));
+            }
             lb.classList.add('active');
             document.body.classList.add('lightbox-open');
         }

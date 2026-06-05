@@ -28,7 +28,8 @@ locations:
     lng: 13.06878
 images:
   - url: "/images/posts/2026-02-27-varen-rullar-in/kungsorn_och_havsorn_tomarps_ene_20260227.jpg"
-    alt: "Kungsörn och havsörn vid Tomarps Ene"
+    alt: "Kungsörn och havsörn vid Kungsgårdsmaderna"
+    location: "Kungsgårdsmaderna"
     categories:
       - Kungsörn
       - Havsörn

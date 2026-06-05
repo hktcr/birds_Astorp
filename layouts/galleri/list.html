@@ -1078,7 +1078,9 @@
             {{ if isset . "categories" }}
             {{ $categories = .categories }}
             {{ end }}
-            {{ $postImages.Add "list" (dict "url" .url "alt" .alt "categories" $categories) }}
+            {{ $imgLocation := "" }}
+            {{ with .location }}{{ $imgLocation = . }}{{ end }}
+            {{ $postImages.Add "list" (dict "url" .url "alt" .alt "categories" $categories "location" $imgLocation) }}
             {{ end }}
             {{ else }}
             {{/* Fallback for older posts without "images" frontmatter */}}
@@ -1161,10 +1163,22 @@
                   {{ end }}
                   {{ $allLocs = $allLocs | append (dict "name" $bestName "lat" $imgLat "lng" $imgLng) }}
                 {{ else }}
-                  {{/* Fallback: use all post locations */}}
-                  {{ with $post.Params.locations }}
-                    {{ range . }}
-                      {{ $allLocs = $allLocs | append (dict "name" .name "lat" .lat "lng" .lng) }}
+                  {{/* Fallback: check for explicit image location, else use all post locations */}}
+                  {{ $explicitLoc := .location | default "" }}
+                  {{ $matched := false }}
+                  {{ if and (ne $explicitLoc "") ($post.Params.locations) }}
+                    {{ range $post.Params.locations }}
+                      {{ if eq .name $explicitLoc }}
+                        {{ $allLocs = $allLocs | append (dict "name" .name "lat" .lat "lng" .lng) }}
+                        {{ $matched = true }}
+                      {{ end }}
+                    {{ end }}
+                  {{ end }}
+                  {{ if not $matched }}
+                    {{ with $post.Params.locations }}
+                      {{ range . }}
+                        {{ $allLocs = $allLocs | append (dict "name" .name "lat" .lat "lng" .lng) }}
+                      {{ end }}
                     {{ end }}
                   {{ end }}
                 {{ end }}
@@ -2324,6 +2338,7 @@
 
                 // Click → select this cluster (filter strip)
                 marker.on('click', () => {
+                    console.log('[Fotokarta] Marker clicked!', marker._clusterIndices.length, 'photos');
                     selectCluster(marker);
                 });
 
@@ -2394,6 +2409,7 @@
             let selectedCluster = null;
 
             function selectCluster(marker) {
+                console.log('[Fotokarta] selectCluster called, indices:', marker._clusterIndices);
                 // If same cluster clicked again → deselect
                 if (selectedCluster === marker) {
                     clearSelection();
