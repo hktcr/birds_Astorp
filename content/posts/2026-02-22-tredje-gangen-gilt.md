@@ -4,7 +4,7 @@ date: 2026-02-22
 draft: false
 image: "/images/posts/2026-02-22-tredje-gangen-gilt/stromstare.jpg"
 youtube: mYqY7qRKhEA
-location: "Klövaravinen"
+location: "Klöva hallar"
 species:
   - Strömstare
 tags:
@@ -12,6 +12,9 @@ tags:
   - ravin
   - årskryss
 locations:
+  - name: "Klöva hallar"
+    lat: 56.092365
+    lng: 13.100485
   - name: "Klövaravinen"
     lat: 56.09126322298655
     lng: 13.102010171371758
@@ -20,6 +23,7 @@ images:
     alt: "Strömstare med en nattsländelarv i näbben"
     categories:
       - Strömstare
+    location: "Klöva hallar"
 ---
 
 Mildare väder. Snön ger sakta med sig men inne i Klövaravinen var det fortfarande vitt. Jag trampade igenom ett par gånger.

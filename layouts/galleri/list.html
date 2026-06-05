@@ -1210,42 +1210,56 @@
                   {{ $postType = "vykort" }}
                 {{ end }}
 
-                {{/* EXIF-first: look up per-image GPS from data/imageexif.json */}}
+                {{/* EXIF data lookup */}}
                 {{ $exifData := index site.Data.imageexif $cleanUrl }}
-                {{ $imgLat := 0.0 }}
-                {{ $imgLng := 0.0 }}
-                {{ $imgLocName := "" }}
-                {{ with $exifData }}
-                  {{ with .lat }}{{ $imgLat = . }}{{ end }}
-                  {{ with .lng }}{{ $imgLng = . }}{{ end }}
+
+                {{/* Build locations: explicit image coords/location -> EXIF -> fallback to post locations */}}
+                {{ $allLocs := slice }}
+                {{ $matched := false }}
+
+                {{/* 1. Check for explicit image coordinates in frontmatter */}}
+                {{ $explicitLat := .lat | default 0.0 }}
+                {{ $explicitLng := .lng | default 0.0 }}
+                {{ if and (ne $explicitLat 0.0) (ne $explicitLng 0.0) }}
+                  {{ $locName := .location | default "Okänd plats" }}
+                  {{ $allLocs = $allLocs | append (dict "name" $locName "lat" $explicitLat "lng" $explicitLng) }}
+                  {{ $matched = true }}
                 {{ end }}
 
-                {{/* Build locations: EXIF coord or fallback to post locations */}}
-                {{ $allLocs := slice }}
-                {{ if and (ne $imgLat 0.0) (ne $imgLng 0.0) }}
-                  {{/* Use EXIF GPS — find nearest post location name */}}
-                  {{ $bestName := "Okänd plats" }}
-                  {{ with $post.Params.locations }}
-                    {{ $bestName = (index . 0).name }}
-                  {{ end }}
-                  {{ $allLocs = $allLocs | append (dict "name" $bestName "lat" $imgLat "lng" $imgLng) }}
-                {{ else }}
-                  {{/* Fallback: check for explicit image location, else use all post locations */}}
-                  {{ $explicitLoc := .location | default "" }}
-                  {{ $matched := false }}
-                  {{ if and (ne $explicitLoc "") ($post.Params.locations) }}
-                    {{ range $post.Params.locations }}
-                      {{ if eq .name $explicitLoc }}
-                        {{ $allLocs = $allLocs | append (dict "name" .name "lat" .lat "lng" .lng) }}
-                        {{ $matched = true }}
-                      {{ end }}
+                {{/* 2. Check for explicit image location name in frontmatter */}}
+                {{ $explicitLoc := .location | default "" }}
+                {{ if and (not $matched) (ne $explicitLoc "") ($post.Params.locations) }}
+                  {{ range $post.Params.locations }}
+                    {{ if eq .name $explicitLoc }}
+                      {{ $allLocs = $allLocs | append (dict "name" .name "lat" .lat "lng" .lng) }}
+                      {{ $matched = true }}
                     {{ end }}
                   {{ end }}
-                  {{ if not $matched }}
+                {{ end }}
+
+                {{/* 3. Check for EXIF GPS coordinates */}}
+                {{ if not $matched }}
+                  {{ $imgLat := 0.0 }}
+                  {{ $imgLng := 0.0 }}
+                  {{ with $exifData }}
+                    {{ with .lat }}{{ $imgLat = . }}{{ end }}
+                    {{ with .lng }}{{ $imgLng = . }}{{ end }}
+                  {{ end }}
+                  {{ if and (ne $imgLat 0.0) (ne $imgLng 0.0) }}
+                    {{ $bestName := "Okänd plats" }}
                     {{ with $post.Params.locations }}
-                      {{ range . }}
-                        {{ $allLocs = $allLocs | append (dict "name" .name "lat" .lat "lng" .lng) }}
-                      {{ end }}
+                      {{ $bestName = (index . 0).name }}
+                    {{ end }}
+                    {{ $allLocs = $allLocs | append (dict "name" $bestName "lat" $imgLat "lng" $imgLng) }}
+                    {{ $matched = true }}
+                  {{ end }}
+                {{ end }}
+
+                {{/* 4. Fallback: Use all post locations */}}
+                {{ if not $matched }}
+                  {{ with $post.Params.locations }}
+                    {{ range . }}
+                      {{ $allLocs = $allLocs | append (dict "name" .name "lat" .lat "lng" .lng) }}
                     {{ end }}
                   {{ end }}
                 {{ end }}
