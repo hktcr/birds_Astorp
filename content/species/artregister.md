@@ -40,6 +40,7 @@ species:
   - "Fiskmås"
   - "Fisktärna"
   - "Fjällvråk"
+  - "Flodsångare"
   - "Forsärla"
   - "Gluttsnäppa"
   - "Gransångare"
