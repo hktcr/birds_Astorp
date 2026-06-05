@@ -1047,6 +1047,70 @@
                 }
 
                  
+                .photomap-month-filter {
+                    position: absolute;
+                    bottom: 12px;
+                    left: 12px;
+                    z-index: 1000;
+                    background: rgba(255,255,255,0.92);
+                    backdrop-filter: blur(12px);
+                    -webkit-backdrop-filter: blur(12px);
+                    border-radius: 12px;
+                    padding: 8px 10px;
+                    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
+                    border: 1px solid rgba(200,210,195,0.5);
+                    max-width: 260px;
+                }
+                .photomap-month-filter-title {
+                    font-family: 'Inter', sans-serif;
+                    font-size: 10px;
+                    font-weight: 600;
+                    text-transform: uppercase;
+                    letter-spacing: 0.8px;
+                    color: #6b7f61;
+                    margin-bottom: 5px;
+                }
+                .photomap-month-filter-grid {
+                    display: grid;
+                    grid-template-columns: repeat(6, 1fr);
+                    gap: 3px;
+                }
+                .photomap-month-chip {
+                    cursor: pointer;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+                .photomap-month-chip input {
+                    display: none;
+                }
+                .photomap-month-chip span {
+                    display: block;
+                    padding: 3px 0;
+                    border-radius: 6px;
+                    font-family: 'Inter', sans-serif;
+                    font-size: 11px;
+                    font-weight: 500;
+                    color: #6b7f61;
+                    background: rgba(200,210,195,0.2);
+                    text-align: center;
+                    width: 100%;
+                    transition: all 0.15s ease;
+                    user-select: none;
+                }
+                .photomap-month-chip input:checked + span {
+                    background: #465c3d;
+                    color: #fff;
+                    font-weight: 600;
+                }
+                .photomap-month-chip:hover span {
+                    background: rgba(70,92,61,0.15);
+                }
+                .photomap-month-chip input:checked:hover + span {
+                    background: #374d30;
+                }
+
+                 
                 .photomap-strip {
                     margin-top: 20px;
                 }
@@ -8997,6 +9061,25 @@
                         </div>
 
                         
+                        <div class="photomap-month-filter" id="photomap-month-filter">
+                            <div class="photomap-month-filter-title">Månad</div>
+                            <div class="photomap-month-filter-grid">
+                                <label class="photomap-month-chip"><input type="checkbox" value="1" checked><span>Jan</span></label>
+                                <label class="photomap-month-chip"><input type="checkbox" value="2" checked><span>Feb</span></label>
+                                <label class="photomap-month-chip"><input type="checkbox" value="3" checked><span>Mar</span></label>
+                                <label class="photomap-month-chip"><input type="checkbox" value="4" checked><span>Apr</span></label>
+                                <label class="photomap-month-chip"><input type="checkbox" value="5" checked><span>Maj</span></label>
+                                <label class="photomap-month-chip"><input type="checkbox" value="6" checked><span>Jun</span></label>
+                                <label class="photomap-month-chip"><input type="checkbox" value="7" checked><span>Jul</span></label>
+                                <label class="photomap-month-chip"><input type="checkbox" value="8" checked><span>Aug</span></label>
+                                <label class="photomap-month-chip"><input type="checkbox" value="9" checked><span>Sep</span></label>
+                                <label class="photomap-month-chip"><input type="checkbox" value="10" checked><span>Okt</span></label>
+                                <label class="photomap-month-chip"><input type="checkbox" value="11" checked><span>Nov</span></label>
+                                <label class="photomap-month-chip"><input type="checkbox" value="12" checked><span>Dec</span></label>
+                            </div>
+                        </div>
+
+                        
                         <div class="photomap-legend">
                             <div class="photomap-legend-title">Aktualitet</div>
                             <div class="photomap-legend-item">
@@ -9812,7 +9895,11 @@
                 
                 if (!photomapInitialized) {
                     photomapInitialized = true;
-                    initPhotoMap();
+                    try {
+                        initPhotoMap();
+                    } catch(e) {
+                        console.error('[Fotokarta] initPhotoMap crashed:', e);
+                    }
                 } else {
                     
                     setTimeout(() => { if (window._photomapMap) window._photomapMap.invalidateSize(); }, 100);
@@ -10245,10 +10332,108 @@
 
             
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && selectionRect) {
+                if (e.key === 'Escape' && (selectionRect || selectedCluster)) {
                     clearSelection();
                 }
             });
+
+            
+            function getActiveMonths() {
+                const checks = document.querySelectorAll('#photomap-month-filter input[type=checkbox]');
+                const active = new Set();
+                checks.forEach(cb => { if (cb.checked) active.add(parseInt(cb.value)); });
+                return active;
+            }
+
+            function getFilteredIndices() {
+                const months = getActiveMonths();
+                return allPhotoData
+                    .map((p, i) => ({ idx: i, month: new Date(p.date).getMonth() + 1 }))
+                    .filter(o => months.has(o.month))
+                    .map(o => o.idx);
+            }
+
+            function rebuildMarkers() {
+                
+                markerGroup.clearLayers();
+                allClusterMarkers.length = 0;
+                Object.keys(markers).forEach(k => delete markers[k]);
+
+                const filtered = getFilteredIndices();
+                const filteredSet = new Set(filtered);
+
+                
+                const newClusters = {};
+                filtered.forEach(idx => {
+                    const p = allPhotoData[idx];
+                    const key = p.lat.toFixed(5) + ',' + p.lng.toFixed(5);
+                    if (!newClusters[key]) newClusters[key] = [];
+                    newClusters[key].push(idx);
+                });
+
+                Object.entries(newClusters).forEach(([key, photoIndices]) => {
+                    const sortedByDate = [...photoIndices].sort((a, b) =>
+                        new Date(allPhotoData[b].date) - new Date(allPhotoData[a].date)
+                    );
+                    const firstPhoto = allPhotoData[sortedByDate[0]];
+                    const count = sortedByDate.length;
+                    const rc = getRecencyColor(allPhotoData[sortedByDate[0]].date);
+                    const radius = Math.min(6 + Math.sqrt(count) * 2, 14);
+
+                    const marker = L.circleMarker([firstPhoto.lat, firstPhoto.lng], {
+                        radius: radius,
+                        fillColor: rc.color,
+                        color: '#fff',
+                        weight: 2.5,
+                        opacity: 1,
+                        fillOpacity: 0.85,
+                        className: 'photomap-marker'
+                    });
+
+                    marker._clusterIndices = sortedByDate;
+                    marker._recency = rc;
+                    marker._baseRadius = radius;
+                    marker._locationName = firstPhoto.locationName || '';
+
+                    if (count > 1) {
+                        const label = L.divIcon({
+                            className: 'photomap-cluster-label',
+                            html: `<span>${count}</span>`,
+                            iconSize: [20, 20],
+                            iconAnchor: [10, 10]
+                        });
+                        L.marker([firstPhoto.lat, firstPhoto.lng], { icon: label, interactive: false }).addTo(markerGroup);
+                    }
+
+                    marker.on('click', () => {
+                        selectCluster(marker);
+                    });
+
+                    marker.addTo(markerGroup);
+                    allClusterMarkers.push(marker);
+
+                    sortedByDate.forEach(idx => { markers[idx] = marker; });
+                });
+
+                
+                selectedCluster = null;
+                clearBtn.classList.remove('visible');
+                populateStrip(filtered.length < allPhotoData.length ? filtered : null);
+
+                const activeMonths = getActiveMonths();
+                if (activeMonths.size < 12) {
+                    document.getElementById('photomap-strip-title').textContent = `${filtered.length} bilder (filtrerade)`;
+                } else {
+                    document.getElementById('photomap-strip-title').textContent = 'Alla bilder';
+                }
+            }
+
+            
+            document.querySelectorAll('#photomap-month-filter input[type=checkbox]').forEach(cb => {
+                cb.addEventListener('change', rebuildMarkers);
+            });
+
+            console.log('[Fotokarta] Initialized OK:', allPhotoData.length, 'photos,', allClusterMarkers.length, 'clusters');
         }
 
     });
