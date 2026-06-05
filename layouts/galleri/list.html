@@ -1141,16 +1141,40 @@
                   {{ $postType = "vykort" }}
                 {{ end }}
 
-                {{/* Get all locations as JSON for smart per-image matching */}}
+                {{/* EXIF-first: look up per-image GPS from data/imageexif.json */}}
+                {{ $exifData := index site.Data.imageexif $cleanUrl }}
+                {{ $imgLat := 0.0 }}
+                {{ $imgLng := 0.0 }}
+                {{ $imgLocName := "" }}
+                {{ with $exifData }}
+                  {{ with .lat }}{{ $imgLat = . }}{{ end }}
+                  {{ with .lng }}{{ $imgLng = . }}{{ end }}
+                {{ end }}
+
+                {{/* Build locations: EXIF coord or fallback to post locations */}}
                 {{ $allLocs := slice }}
-                {{ with $post.Params.locations }}
-                  {{ range . }}
-                    {{ $allLocs = $allLocs | append (dict "name" .name "lat" .lat "lng" .lng) }}
+                {{ if and (ne $imgLat 0.0) (ne $imgLng 0.0) }}
+                  {{/* Use EXIF GPS — find nearest post location name */}}
+                  {{ $bestName := "Okänd plats" }}
+                  {{ with $post.Params.locations }}
+                    {{ $bestName = (index . 0).name }}
+                  {{ end }}
+                  {{ $allLocs = $allLocs | append (dict "name" $bestName "lat" $imgLat "lng" $imgLng) }}
+                {{ else }}
+                  {{/* Fallback: use all post locations */}}
+                  {{ with $post.Params.locations }}
+                    {{ range . }}
+                      {{ $allLocs = $allLocs | append (dict "name" .name "lat" .lat "lng" .lng) }}
+                    {{ end }}
                   {{ end }}
                 {{ end }}
                 {{ $locsJSON := $allLocs | jsonify }}
 
-                {{ $globalImages.Add "images" (dict "url" $cleanUrl "alt" .alt "post" $post "species" $imageSpecies "type" $postType "locations" $locsJSON) }}
+                {{/* Also pass EXIF date if available */}}
+                {{ $exifDate := "" }}
+                {{ with $exifData }}{{ with .date }}{{ $exifDate = . }}{{ end }}{{ end }}
+
+                {{ $globalImages.Add "images" (dict "url" $cleanUrl "alt" .alt "post" $post "species" $imageSpecies "type" $postType "locations" $locsJSON "exifDate" $exifDate) }}
                 {{ end }}
                 {{ end }}
                 {{ end }}
