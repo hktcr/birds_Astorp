@@ -1050,6 +1050,7 @@
                 .photomap-cluster-label {
                     background: none !important;
                     border: none !important;
+                    pointer-events: none !important;
                 }
                 .photomap-cluster-label span {
                     display: flex;
@@ -2371,82 +2372,10 @@
 
             const typeLabels = { notis: 'Notis', snapshot: 'Ögonblick', vykort: 'Vykort' };
 
-            // ─── Group photos by coordinate (cluster overlapping) ───
-            const coordKey = (lat, lng) => `${lat.toFixed(6)},${lng.toFixed(6)}`;
-            const clusters = new Map(); // key → [indices]
-
-            allPhotoData.forEach((photo, idx) => {
-                const key = coordKey(photo.lat, photo.lng);
-                if (!clusters.has(key)) clusters.set(key, []);
-                clusters.get(key).push(idx);
-            });
-
-            // ─── Create ONE marker per cluster ───
             const markers = [];              // sparse: photo idx → cluster marker
             const allClusterMarkers = [];    // flat: one per cluster
             const markerGroup = L.featureGroup().addTo(map);
-
-            clusters.forEach((photoIndices, key) => {
-                const firstPhoto = allPhotoData[photoIndices[0]];
-                const count = photoIndices.length;
-
-                // Use most recent photo's recency for marker color
-                const sortedByDate = [...photoIndices].sort((a, b) =>
-                    new Date(allPhotoData[b].date) - new Date(allPhotoData[a].date)
-                );
-                const newestPhoto = allPhotoData[sortedByDate[0]];
-                const rc = getRecencyColor(newestPhoto.date);
-
-                const radius = count > 1 ? Math.min(9 + count * 1.5, 18) : 9;
-
-                const marker = L.circleMarker([firstPhoto.lat, firstPhoto.lng], {
-                    radius: radius,
-                    fillColor: rc.color,
-                    color: '#fff',
-                    weight: 2.5,
-                    opacity: 1,
-                    fillOpacity: 0.85,
-                    className: 'photomap-marker'
-                });
-
-                marker._clusterIndices = sortedByDate;
-                marker._recency = rc;
-                marker._baseRadius = radius;
-                marker._locationName = firstPhoto.locationName || '';
-
-                // Add count label for multi-photo clusters
-                if (count > 1) {
-                    const label = L.divIcon({
-                        className: 'photomap-cluster-label',
-                        html: `<span>${count}</span>`,
-                        iconSize: [20, 20],
-                        iconAnchor: [10, 10]
-                    });
-                    L.marker([firstPhoto.lat, firstPhoto.lng], { icon: label, interactive: false }).addTo(markerGroup);
-                }
-
-                // Click → select this cluster (filter strip)
-                marker.on('click', () => {
-                    console.log('[Fotokarta] Marker clicked!', marker._clusterIndices.length, 'photos');
-                    selectCluster(marker);
-                });
-
-                marker.addTo(markerGroup);
-                allClusterMarkers.push(marker);
-
-                // Register each photo index → this marker (for strip sync)
-                photoIndices.forEach(idx => {
-                    markers[idx] = marker;
-                });
-            });
-
-            // Update stats
-            // (stats overlay removed — count shown in strip instead)
-
-            // Fit bounds if we have markers
-            if (markers.length > 0) {
-                map.fitBounds(markerGroup.getBounds().pad(0.1));
-            }
+            let initialBoundsFit = false;    // only fit bounds once
 
             // ─── Populate image strip ───
             function populateStrip(photoIndices) {
@@ -2683,30 +2612,54 @@
                 // Clear existing
                 markerGroup.clearLayers();
                 allClusterMarkers.length = 0;
-                Object.keys(markers).forEach(k => delete markers[k]);
+                markers.length = 0;
 
-                const filtered = getFilteredIndices();
-                const filteredSet = new Set(filtered);
+                const filteredIndices = getFilteredIndices();
 
-                // Re-cluster only filtered photos
-                const newClusters = {};
-                filtered.forEach(idx => {
-                    const p = allPhotoData[idx];
-                    const key = p.lat.toFixed(5) + ',' + p.lng.toFixed(5);
-                    if (!newClusters[key]) newClusters[key] = [];
-                    newClusters[key].push(idx);
+                // Perform dynamic pixel-distance clustering at current zoom
+                const zoom = map.getZoom();
+                const clusters = []; // array of { lat, lng, photoIndices, locationNames }
+                const threshold = 24; // pixel distance threshold for clustering
+
+                filteredIndices.forEach(idx => {
+                    const photo = allPhotoData[idx];
+                    const latLng = L.latLng(photo.lat, photo.lng);
+                    const projPoint = map.project(latLng, zoom);
+
+                    let foundCluster = null;
+                    for (const cluster of clusters) {
+                        const clusterLatLng = L.latLng(cluster.lat, cluster.lng);
+                        const clusterProjPoint = map.project(clusterLatLng, zoom);
+                        if (projPoint.distanceTo(clusterProjPoint) <= threshold) {
+                            foundCluster = cluster;
+                            break;
+                        }
+                    }
+
+                    if (foundCluster) {
+                        foundCluster.photoIndices.push(idx);
+                        if (photo.locationName) foundCluster.locationNames.add(photo.locationName);
+                    } else {
+                        clusters.push({
+                            lat: photo.lat,
+                            lng: photo.lng,
+                            photoIndices: [idx],
+                            locationNames: new Set(photo.locationName ? [photo.locationName] : [])
+                        });
+                    }
                 });
 
-                Object.entries(newClusters).forEach(([key, photoIndices]) => {
-                    const sortedByDate = [...photoIndices].sort((a, b) =>
+                // Render clusters
+                clusters.forEach(cluster => {
+                    const sortedByDate = [...cluster.photoIndices].sort((a, b) =>
                         new Date(allPhotoData[b].date) - new Date(allPhotoData[a].date)
                     );
-                    const firstPhoto = allPhotoData[sortedByDate[0]];
+                    const newestPhoto = allPhotoData[sortedByDate[0]];
                     const count = sortedByDate.length;
-                    const rc = getRecencyColor(allPhotoData[sortedByDate[0]].date);
-                    const radius = Math.min(6 + Math.sqrt(count) * 2, 14);
+                    const rc = getRecencyColor(newestPhoto.date);
+                    const radius = count > 1 ? Math.min(9 + count * 1.5, 18) : 9;
 
-                    const marker = L.circleMarker([firstPhoto.lat, firstPhoto.lng], {
+                    const marker = L.circleMarker([cluster.lat, cluster.lng], {
                         radius: radius,
                         fillColor: rc.color,
                         color: '#fff',
@@ -2719,7 +2672,7 @@
                     marker._clusterIndices = sortedByDate;
                     marker._recency = rc;
                     marker._baseRadius = radius;
-                    marker._locationName = firstPhoto.locationName || '';
+                    marker._locationName = Array.from(cluster.locationNames).join(', ') || newestPhoto.locationName || '';
 
                     if (count > 1) {
                         const label = L.divIcon({
@@ -2728,7 +2681,7 @@
                             iconSize: [20, 20],
                             iconAnchor: [10, 10]
                         });
-                        L.marker([firstPhoto.lat, firstPhoto.lng], { icon: label, interactive: false }).addTo(markerGroup);
+                        L.marker([cluster.lat, cluster.lng], { icon: label, interactive: false }).addTo(markerGroup);
                     }
 
                     marker.on('click', () => {
@@ -2738,19 +2691,48 @@
                     marker.addTo(markerGroup);
                     allClusterMarkers.push(marker);
 
-                    sortedByDate.forEach(idx => { markers[idx] = marker; });
+                    sortedByDate.forEach(idx => {
+                        markers[idx] = marker;
+                    });
                 });
 
-                // Update strip
-                selectedCluster = null;
-                clearBtn.classList.remove('visible');
-                populateStrip(filtered.length < allPhotoData.length ? filtered : null);
+                // Auto-fit bounds on initial load only
+                if (!initialBoundsFit && allClusterMarkers.length > 0) {
+                    map.fitBounds(markerGroup.getBounds().pad(0.1));
+                    initialBoundsFit = true;
+                }
 
-                const activeMonths = getActiveMonths();
-                if (activeMonths.size < 12) {
-                    document.getElementById('photomap-strip-title').textContent = `${filtered.length} bilder (filtrerade)`;
+                // If a cluster was selected before, try to restore selection on the new cluster representing the same photo
+                if (selectedCluster) {
+                    const prevSelectedIndex = selectedCluster._clusterIndices[0];
+                    const newMarker = markers[prevSelectedIndex];
+                    if (newMarker) {
+                        selectedCluster = newMarker;
+                        allClusterMarkers.forEach(m => {
+                            if (m === selectedCluster) {
+                                m.setStyle({ opacity: 1, fillOpacity: 0.9, weight: 3.5 });
+                                m.getElement()?.classList.remove('dimmed');
+                                m.getElement()?.classList.add('photomap-marker-selected');
+                                m.bringToFront();
+                            } else {
+                                m.setStyle({ opacity: 0.3, fillOpacity: 0.15 });
+                                m.getElement()?.classList.add('dimmed');
+                                m.getElement()?.classList.remove('photomap-marker-selected');
+                            }
+                        });
+                        populateStrip(selectedCluster._clusterIndices);
+                        document.getElementById('photomap-strip-title').textContent = selectedCluster._locationName || 'Valt område';
+                    } else {
+                        clearSelection();
+                    }
                 } else {
-                    document.getElementById('photomap-strip-title').textContent = 'Alla bilder';
+                    populateStrip(filteredIndices.length < allPhotoData.length ? filteredIndices : null);
+                    const activeMonths = getActiveMonths();
+                    if (activeMonths.size < 12) {
+                        document.getElementById('photomap-strip-title').textContent = `${filteredIndices.length} bilder (filtrerade)`;
+                    } else {
+                        document.getElementById('photomap-strip-title').textContent = 'Alla bilder';
+                    }
                 }
             }
 
@@ -2758,6 +2740,12 @@
             document.querySelectorAll('#photomap-month-filter input[type=checkbox]').forEach(cb => {
                 cb.addEventListener('change', rebuildMarkers);
             });
+
+            // Map zoom listener
+            map.on('zoomend', rebuildMarkers);
+
+            // Initial build
+            rebuildMarkers();
 
             console.log('[Fotokarta] Initialized OK:', allPhotoData.length, 'photos,', allClusterMarkers.length, 'clusters');
         }

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="sv">
 
-<head>
+<head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Ett samlat galleri med alla bilder från fågelårets notiser.">
@@ -24,7 +24,7 @@
 
     
     
-    <link rel="alternate" type="application/rss+xml" href="https://astorpsfaglar.se/galleri/index.xml" title="Fågelåret i Åstorp">
+    <link rel="alternate" type="application/rss+xml" href="http://localhost:1313/galleri/index.xml" title="Fågelåret i Åstorp">
 </head>
 
 <body>
@@ -32,7 +32,7 @@
 
     <header class="site-header">
     <div class="header-container">
-        <a href="https://astorpsfaglar.se/" class="site-logo">
+        <a href="http://localhost:1313/" class="site-logo">
             <span class="site-title">Fågelåret i Åstorp</span>
         </a>
 
@@ -1196,6 +1196,7 @@
                 .photomap-cluster-label {
                     background: none !important;
                     border: none !important;
+                    pointer-events: none !important;
                 }
                 .photomap-cluster-label span {
                     display: flex;
@@ -5201,6 +5202,49 @@
             
             
             
+
+            
+            
+                
+
+                
+                
+                
+
+                
+                
+                
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+              
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            
             
             
             
@@ -5681,6 +5725,51 @@
 
                 
                 
+                
+                
+                
+            
+            
+
+            
+            
+            
+            
+            
+            
+
+            
+            
+            
+            
+            
+            
+            
+            
+            
+            
+              
+            
+            
+
+            
+            
+            
+
+            
+            
+            
+            
+            
+
+            
+            
+                
+
+                
+                
+                
+
                 
                 
                 
@@ -6511,7 +6600,7 @@
                         <script type="text/template" class="post-content-template">
                             <p>Fågelkören blir rikare för var dag som går. Både antalet individer och stämmor växer. Lövsångare, rödstjärtar, svartvita flugsnappare och svarthättor anländer i huvudsak under nätterna och ansluter direkt till morgonens ljudmatta. Våren rullar in med full kraft och fyller markerna med liv. Men för den som känner sina lokaler väl märks det att väven har hål. Vissa röster saknas i den tilltagande kören.</p>
 <p><img src="/images/posts/2026-04-21-saknade-roster/saknade_roster.jpg" alt="Saknade röster"></p>
-<p>Redan <a href="https://astorpsfaglar.se/posts/2026/03/g%C3%A4rdsmygens-vinter/">tidigare i år</a> konstaterade vi att vintern förmodligen gått hårt åt övervintrande gärdsmygar. Nu, när reviren borde eka av deras explosiva sång, verkar de i stort sett vara borta. En annan art som verkar ha gått ur vintern med starkt försvagade antal är trädkryparen.</p>
+<p>Redan <a href="http://localhost:1313/posts/2026/03/g%C3%A4rdsmygens-vinter/">tidigare i år</a> konstaterade vi att vintern förmodligen gått hårt åt övervintrande gärdsmygar. Nu, när reviren borde eka av deras explosiva sång, verkar de i stort sett vara borta. En annan art som verkar ha gått ur vintern med starkt försvagade antal är trädkryparen.</p>
 <p>Längs Rönne å saknas också en välbekant profil. Normalt sett hade jag stött på kungsfiskare regelbundet med tanke på hur mycket jag rört mig utmed ån den senaste tiden. Än så länge är arten helt frånvarande. Stora delar av vattendraget frös till under den kallaste vinterperioden. Det är därför inte konstigt att kungsfiskarna, som är helt beroende av öppet vatten för att fiska, har haft svårt att klara sig.</p>
 <p>Vi får se om markerna fylls på av fåglar som rört sig längre söderut under vintern och nu flyttar upp. Alternativt kommer det att ta betydligt längre tid innan populationerna hämtar sig och fyller ut tomrummen.</p>
 <p><em>Fågelåret i Åstorp, 115/150</em></p>
@@ -10045,82 +10134,10 @@
 
             const typeLabels = { notis: 'Notis', snapshot: 'Ögonblick', vykort: 'Vykort' };
 
-            
-            const coordKey = (lat, lng) => `${lat.toFixed(6)},${lng.toFixed(6)}`;
-            const clusters = new Map(); 
-
-            allPhotoData.forEach((photo, idx) => {
-                const key = coordKey(photo.lat, photo.lng);
-                if (!clusters.has(key)) clusters.set(key, []);
-                clusters.get(key).push(idx);
-            });
-
-            
             const markers = [];              
             const allClusterMarkers = [];    
             const markerGroup = L.featureGroup().addTo(map);
-
-            clusters.forEach((photoIndices, key) => {
-                const firstPhoto = allPhotoData[photoIndices[0]];
-                const count = photoIndices.length;
-
-                
-                const sortedByDate = [...photoIndices].sort((a, b) =>
-                    new Date(allPhotoData[b].date) - new Date(allPhotoData[a].date)
-                );
-                const newestPhoto = allPhotoData[sortedByDate[0]];
-                const rc = getRecencyColor(newestPhoto.date);
-
-                const radius = count > 1 ? Math.min(9 + count * 1.5, 18) : 9;
-
-                const marker = L.circleMarker([firstPhoto.lat, firstPhoto.lng], {
-                    radius: radius,
-                    fillColor: rc.color,
-                    color: '#fff',
-                    weight: 2.5,
-                    opacity: 1,
-                    fillOpacity: 0.85,
-                    className: 'photomap-marker'
-                });
-
-                marker._clusterIndices = sortedByDate;
-                marker._recency = rc;
-                marker._baseRadius = radius;
-                marker._locationName = firstPhoto.locationName || '';
-
-                
-                if (count > 1) {
-                    const label = L.divIcon({
-                        className: 'photomap-cluster-label',
-                        html: `<span>${count}</span>`,
-                        iconSize: [20, 20],
-                        iconAnchor: [10, 10]
-                    });
-                    L.marker([firstPhoto.lat, firstPhoto.lng], { icon: label, interactive: false }).addTo(markerGroup);
-                }
-
-                
-                marker.on('click', () => {
-                    console.log('[Fotokarta] Marker clicked!', marker._clusterIndices.length, 'photos');
-                    selectCluster(marker);
-                });
-
-                marker.addTo(markerGroup);
-                allClusterMarkers.push(marker);
-
-                
-                photoIndices.forEach(idx => {
-                    markers[idx] = marker;
-                });
-            });
-
-            
-            
-
-            
-            if (markers.length > 0) {
-                map.fitBounds(markerGroup.getBounds().pad(0.1));
-            }
+            let initialBoundsFit = false;    
 
             
             function populateStrip(photoIndices) {
@@ -10357,30 +10374,54 @@
                 
                 markerGroup.clearLayers();
                 allClusterMarkers.length = 0;
-                Object.keys(markers).forEach(k => delete markers[k]);
+                markers.length = 0;
 
-                const filtered = getFilteredIndices();
-                const filteredSet = new Set(filtered);
+                const filteredIndices = getFilteredIndices();
 
                 
-                const newClusters = {};
-                filtered.forEach(idx => {
-                    const p = allPhotoData[idx];
-                    const key = p.lat.toFixed(5) + ',' + p.lng.toFixed(5);
-                    if (!newClusters[key]) newClusters[key] = [];
-                    newClusters[key].push(idx);
+                const zoom = map.getZoom();
+                const clusters = []; 
+                const threshold = 24; 
+
+                filteredIndices.forEach(idx => {
+                    const photo = allPhotoData[idx];
+                    const latLng = L.latLng(photo.lat, photo.lng);
+                    const projPoint = map.project(latLng, zoom);
+
+                    let foundCluster = null;
+                    for (const cluster of clusters) {
+                        const clusterLatLng = L.latLng(cluster.lat, cluster.lng);
+                        const clusterProjPoint = map.project(clusterLatLng, zoom);
+                        if (projPoint.distanceTo(clusterProjPoint) <= threshold) {
+                            foundCluster = cluster;
+                            break;
+                        }
+                    }
+
+                    if (foundCluster) {
+                        foundCluster.photoIndices.push(idx);
+                        if (photo.locationName) foundCluster.locationNames.add(photo.locationName);
+                    } else {
+                        clusters.push({
+                            lat: photo.lat,
+                            lng: photo.lng,
+                            photoIndices: [idx],
+                            locationNames: new Set(photo.locationName ? [photo.locationName] : [])
+                        });
+                    }
                 });
 
-                Object.entries(newClusters).forEach(([key, photoIndices]) => {
-                    const sortedByDate = [...photoIndices].sort((a, b) =>
+                
+                clusters.forEach(cluster => {
+                    const sortedByDate = [...cluster.photoIndices].sort((a, b) =>
                         new Date(allPhotoData[b].date) - new Date(allPhotoData[a].date)
                     );
-                    const firstPhoto = allPhotoData[sortedByDate[0]];
+                    const newestPhoto = allPhotoData[sortedByDate[0]];
                     const count = sortedByDate.length;
-                    const rc = getRecencyColor(allPhotoData[sortedByDate[0]].date);
-                    const radius = Math.min(6 + Math.sqrt(count) * 2, 14);
+                    const rc = getRecencyColor(newestPhoto.date);
+                    const radius = count > 1 ? Math.min(9 + count * 1.5, 18) : 9;
 
-                    const marker = L.circleMarker([firstPhoto.lat, firstPhoto.lng], {
+                    const marker = L.circleMarker([cluster.lat, cluster.lng], {
                         radius: radius,
                         fillColor: rc.color,
                         color: '#fff',
@@ -10393,7 +10434,7 @@
                     marker._clusterIndices = sortedByDate;
                     marker._recency = rc;
                     marker._baseRadius = radius;
-                    marker._locationName = firstPhoto.locationName || '';
+                    marker._locationName = Array.from(cluster.locationNames).join(', ') || newestPhoto.locationName || '';
 
                     if (count > 1) {
                         const label = L.divIcon({
@@ -10402,7 +10443,7 @@
                             iconSize: [20, 20],
                             iconAnchor: [10, 10]
                         });
-                        L.marker([firstPhoto.lat, firstPhoto.lng], { icon: label, interactive: false }).addTo(markerGroup);
+                        L.marker([cluster.lat, cluster.lng], { icon: label, interactive: false }).addTo(markerGroup);
                     }
 
                     marker.on('click', () => {
@@ -10412,19 +10453,48 @@
                     marker.addTo(markerGroup);
                     allClusterMarkers.push(marker);
 
-                    sortedByDate.forEach(idx => { markers[idx] = marker; });
+                    sortedByDate.forEach(idx => {
+                        markers[idx] = marker;
+                    });
                 });
 
                 
-                selectedCluster = null;
-                clearBtn.classList.remove('visible');
-                populateStrip(filtered.length < allPhotoData.length ? filtered : null);
+                if (!initialBoundsFit && allClusterMarkers.length > 0) {
+                    map.fitBounds(markerGroup.getBounds().pad(0.1));
+                    initialBoundsFit = true;
+                }
 
-                const activeMonths = getActiveMonths();
-                if (activeMonths.size < 12) {
-                    document.getElementById('photomap-strip-title').textContent = `${filtered.length} bilder (filtrerade)`;
+                
+                if (selectedCluster) {
+                    const prevSelectedIndex = selectedCluster._clusterIndices[0];
+                    const newMarker = markers[prevSelectedIndex];
+                    if (newMarker) {
+                        selectedCluster = newMarker;
+                        allClusterMarkers.forEach(m => {
+                            if (m === selectedCluster) {
+                                m.setStyle({ opacity: 1, fillOpacity: 0.9, weight: 3.5 });
+                                m.getElement()?.classList.remove('dimmed');
+                                m.getElement()?.classList.add('photomap-marker-selected');
+                                m.bringToFront();
+                            } else {
+                                m.setStyle({ opacity: 0.3, fillOpacity: 0.15 });
+                                m.getElement()?.classList.add('dimmed');
+                                m.getElement()?.classList.remove('photomap-marker-selected');
+                            }
+                        });
+                        populateStrip(selectedCluster._clusterIndices);
+                        document.getElementById('photomap-strip-title').textContent = selectedCluster._locationName || 'Valt område';
+                    } else {
+                        clearSelection();
+                    }
                 } else {
-                    document.getElementById('photomap-strip-title').textContent = 'Alla bilder';
+                    populateStrip(filteredIndices.length < allPhotoData.length ? filteredIndices : null);
+                    const activeMonths = getActiveMonths();
+                    if (activeMonths.size < 12) {
+                        document.getElementById('photomap-strip-title').textContent = `${filteredIndices.length} bilder (filtrerade)`;
+                    } else {
+                        document.getElementById('photomap-strip-title').textContent = 'Alla bilder';
+                    }
                 }
             }
 
@@ -10432,6 +10502,12 @@
             document.querySelectorAll('#photomap-month-filter input[type=checkbox]').forEach(cb => {
                 cb.addEventListener('change', rebuildMarkers);
             });
+
+            
+            map.on('zoomend', rebuildMarkers);
+
+            
+            rebuildMarkers();
 
             console.log('[Fotokarta] Initialized OK:', allPhotoData.length, 'photos,', allClusterMarkers.length, 'clusters');
         }
@@ -11006,7 +11082,7 @@
     
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
     <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
-    <script>window.siteBaseURL = "https:\/\/astorpsfaglar.se\/";</script>
+    <script>window.siteBaseURL = "http:\/\/localhost:1313\/";</script>
     <script src="/js/location-popup.js"></script>
 
     
