@@ -1174,8 +1174,16 @@
             "location": "Björkenäs mosse",
             "lat": 56.14072103796272,
             "lng": 13.031572672305218
+        },
+        {
+            "species": "Vit stork",
+            "latin": "Ciconia ciconia",
+            "date": "2026-06-05",
+            "location": "Kungsgårdsmaderna",
+            "lat": 56.15343,
+            "lng": 13.06878
         }
     ],
-    "last_updated": "2026-05-31T12:30:00Z",
-    "lastUpdated": "2026-05-31 14:30:00"
+    "last_updated": "2026-06-05T10:23:03Z",
+    "lastUpdated": "2026-06-05 10:23:03"
 }
