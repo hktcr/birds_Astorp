@@ -733,7 +733,8 @@
                 /* ═══════════════════════════════════════════
                    SNAPSHOT BADGE
                    ═══════════════════════════════════════════ */
-                .gallery-item[data-type="snapshot"]::after {
+                .gallery-item[data-type="snapshot"]::after,
+                .gallery-item[data-type="foto"]::after {
                     content: "📷";
                     position: absolute;
                     top: 10px;
@@ -1099,7 +1100,9 @@
                 }
             </style>
 
-            {{ $pages := where .Site.RegularPages "Section" "posts" }}
+            {{ $postPages := where .Site.RegularPages "Section" "posts" }}
+            {{ $fotoPages := where .Site.RegularPages "Section" "foton" }}
+            {{ $pages := $postPages | append $fotoPages }}
 
             {{/* Global structures for deduplication and filters */}}
             {{ $globalImages := newScratch }}
@@ -1208,6 +1211,8 @@
                   {{ $postType = "snapshot" }}
                 {{ else if (in ($post.Params.tags | default slice) "Vykort") }}
                   {{ $postType = "vykort" }}
+                {{ else if eq $post.Section "foton" }}
+                  {{ $postType = "foto" }}
                 {{ end }}
 
                 {{/* EXIF data lookup */}}
@@ -2090,6 +2095,14 @@
                     // Återställ scrollposition för textpanelen
                     const textPanel = document.querySelector('.slideshow-overlay .slideshow-text-panel');
                     if (textPanel) textPanel.scrollTop = 0;
+                    
+                    // Automatiskt helskärm om text saknas (t.ex. 'foto')
+                    const textLen = (slideshowFullContent.textContent || '').trim().length;
+                    if (textLen === 0) {
+                        slideshowOverlay.classList.remove('layout-split');
+                        slideshowOverlay.classList.add('layout-image-only');
+                        updateToggleLabel();
+                    }
                 }
                 
                 slideshowCurrentIdx.textContent = currentSlideIndex + 1;
@@ -2384,7 +2397,7 @@
                 return `${d.getDate()} ${SV_MONTHS_MAP[d.getMonth()]} ${d.getFullYear()}`;
             }
 
-            const typeLabels = { notis: 'Notis', snapshot: 'Ögonblick', vykort: 'Vykort' };
+            const typeLabels = { notis: 'Notis', snapshot: 'Ögonblick', vykort: 'Vykort', foto: 'Foto' };
 
             const markers = [];              // sparse: photo idx → cluster marker
             const allClusterMarkers = [];    // flat: one per cluster
