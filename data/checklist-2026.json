@@ -1182,6 +1182,14 @@
             "location": "Kungsgårdsmaderna",
             "lat": 56.15343,
             "lng": 13.06878
+        },
+        {
+            "species": "Kornknarr",
+            "latin": "Crex crex",
+            "date": "2026-06-06",
+            "location": "Madkärr, Tomarp",
+            "lat": 56.16336146917374,
+            "lng": 13.062392835112023
         }
     ],
     "last_updated": "2026-06-05T10:23:03Z",
