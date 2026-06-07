@@ -2,6 +2,10 @@
 title: "Dubbelbeckasin!"
 date: 2026-05-08T23:00:00+02:00
 location: "Tomarps Ene · Kungsgårdsmaderna"
+locations:
+  - name: "Tomarps Ene · Kungsgårdsmaderna"
+    lat: 56.15343
+    lng: 13.06878
 species: [Dubbelbeckasin, Gräshoppssångare, Gråhäger, Buskskvätta, Lövsångare, Rödstjärt]
 images:
   - url: "/images/2026-05-09-dubbelbeckasin/kungsgardsmaderna.jpg"

@@ -10,6 +10,10 @@ images:
 species:
   - "Backsvala"
 location: "Grustagen mellan Kvidinge och Maglaby"
+locations:
+  - name: "Grustagen mellan Kvidinge och Maglaby"
+    lat: 56.11749
+    lng: 13.06674
 tags: ["årskryss", "backsvala", "Kvidinge", "fenologi", "vår"]
 draft: false
 ---

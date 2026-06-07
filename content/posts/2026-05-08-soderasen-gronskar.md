@@ -2,6 +2,10 @@
 title: "Söderåsen grönskar"
 date: 2026-05-08T15:00:00+02:00
 location: "Söderåsen"
+locations:
+  - name: "Söderåsen"
+    lat: 56.09126
+    lng: 13.10201
 species: [Trädgårdssångare, Grönsångare]
 images:
   - url: "/images/2026-05-08-soderasen-gronskar/soderasen-gronskar.jpg"

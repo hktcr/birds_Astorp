@@ -3,6 +3,10 @@ title: "En osynlig motorväg till Kungsgårdsmaderna"
 date: 2026-05-03T21:00:00+02:00
 draft: false
 location: "Kungsgårdsmaderna"
+locations:
+  - name: "Kungsgårdsmaderna"
+    lat: 56.15343
+    lng: 13.06878
 species:
   - "Näktergal"
   - "Vaktel"
