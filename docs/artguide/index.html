@@ -1,76 +1,1255 @@
-<!doctype html><html lang=sv><head><meta charset=utf-8><meta name=viewport content="width=device-width,initial-scale=1"><meta name=description content="En fågelårsbok för Åstorps kommun — observationer, bilder och krysslista"><meta name=author content="Håkan Karlsson"><title>Artkalender | Fågelåret i Åstorp</title><link rel=preconnect href=https://fonts.googleapis.com><link rel=preconnect href=https://fonts.gstatic.com crossorigin><link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap" rel=stylesheet><link rel=stylesheet href=/css/style.e9efe1ea1d8f0683abe513ee83aacb1ea4cbf2b4ae4048edacbbdc43188889df.css><link rel=prefetch href=/galleri/ as=document></head><body><a href=#main-content class=skip-link>Hoppa till innehåll</a><header class=site-header><div class=header-container><a href=https://astorpsfaglar.se/ class=site-logo><span class=site-title>Fågelåret i Åstorp</span></a><nav class=main-nav aria-label=Huvudnavigation><ul class=nav-list><li class=nav-item><a href=/ class=nav-link>Hem</a></li><li class=nav-item><a href=/posts/ class=nav-link>Notiser</a></li><li class=nav-item><a href=/karta/ class=nav-link>Krysskarta</a></li><li class=nav-item><a href=/artguide/ class="nav-link active">Årshjul</a></li><li class=nav-item><a href=/efterlysta/ class=nav-link>Efterlysta</a></li><li class=nav-item><a href=/vader/ class=nav-link>Horisonten</a></li><li class=nav-item><a href=/galleri/ class=nav-link>Galleri</a></li><li class=nav-item><a href=/faltpulsen/ class=nav-link>Aktuella observationer</a></li><li class=nav-item><a href=/om/ class=nav-link>Om</a></li></ul></nav><button class=mobile-menu-toggle aria-label="Öppna meny" aria-expanded=false id=mobile-menu-btn>
-<span class=hamburger></span></button></div></header><script>document.addEventListener("DOMContentLoaded",()=>{const e=document.getElementById("mobile-menu-btn"),t=document.querySelector(".main-nav");e&&t&&(e.addEventListener("click",n=>{n.preventDefault(),n.stopPropagation(),t.classList.toggle("open");const s=e.getAttribute("aria-expanded")==="true";e.setAttribute("aria-expanded",!s)}),document.addEventListener("click",n=>{t.classList.contains("open")&&!t.contains(n.target)&&!e.contains(n.target)&&(t.classList.remove("open"),e.setAttribute("aria-expanded","false"))}))})</script><main id=main-content class=main><div class=artguide><div class=artguide-progress role=progressbar aria-valuemin=0 aria-valuemax=150 aria-valuenow=0 aria-label="Årslista framsteg" style=margin-bottom:2rem><div class=artguide-progress__header><span class=artguide-progress__label>Årslista</span>
-<span class=artguide-progress__count>0/150 arter</span></div><div class=artguide-progress__thermometer><div class=artguide-progress__scale><span class=artguide-progress__scale-mark style=left:0%>0</span>
-<span class=artguide-progress__scale-mark style=left:33.3%>50</span>
-<span class=artguide-progress__scale-mark style=left:66.6%>100</span>
-<span class=artguide-progress__scale-mark style=left:100%>150</span></div><div class=artguide-progress__bar><div class=artguide-progress__fill></div></div></div><div class=artguide-progress__latest></div></div><div style=display:flex;justify-content:center;gap:.5rem;margin-bottom:1.5rem;flex-wrap:wrap><button id=btn-toggle-tips class=artguide-view-btn style="background:0 0;color:#475569;border:1px solid #cbd5e1;border-radius:.5rem;padding:.5rem 1.25rem;font-size:.9rem;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem;transition:all .2s ease">
-<svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"/></svg>
-Tips & aktuellt
-</button>
-<button id=btn-toggle-kalender class=artguide-view-btn style="background:0 0;color:#475569;border:1px solid #cbd5e1;border-radius:.5rem;padding:.5rem 1.25rem;font-size:.9rem;font-weight:500;cursor:pointer;display:inline-flex;align-items:center;gap:.4rem;transition:all .2s ease">
-<svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5A2 2 0 003 7v12a2 2 0 002 2z"/></svg>
-Månadsguide</button></div><div id=panel-kalender class=artguide-panel style="display:none;padding:1.5rem;background:#f8fafc;border-radius:1rem;border:1px solid #e2e8f0;margin-bottom:3rem"><div style=display:flex;justify-content:space-between;align-items:center;margin-bottom:.5rem><h3 style=margin:0;font-size:1.25rem;color:#1e293b>Månadsguide</h3><button id=btn-close-kalender style="background:0 0;border:none;font-size:1.5rem;color:#64748b;cursor:pointer" aria-label="Stäng kalender">×</button></div><p style="color:#64748b;font-size:.85rem;line-height:1.5;margin:0 0 1.5rem;font-style:italic;background:#f1f5f9;padding:.75rem;border-radius:.5rem;border-left:3px solid #cbd5e1"><strong>Observera:</strong> Klassificeringarna (Ovanlig, Raritet m.fl.) utgår från data i Artportalen. Eftersom Åstorp är en relativt underskådad och underrapporterad kommun, kan vissa arter framstå som statistiskt mer sällsynta i guiden än vad de faktiskt är i markerna.</p><nav class=artguide-months aria-label="Välj månad"><button class=artguide-months__btn data-month=0>Jan</button>
-<button class=artguide-months__btn data-month=1>Feb</button>
-<button class=artguide-months__btn data-month=2>Mar</button>
-<button class=artguide-months__btn data-month=3>Apr</button>
-<button class=artguide-months__btn data-month=4>Maj</button>
-<button class=artguide-months__btn data-month=5>Jun</button>
-<button class=artguide-months__btn data-month=6>Jul</button>
-<button class=artguide-months__btn data-month=7>Aug</button>
-<button class=artguide-months__btn data-month=8>Sep</button>
-<button class=artguide-months__btn data-month=9>Okt</button>
-<button class=artguide-months__btn data-month=10>Nov</button>
-<button class=artguide-months__btn data-month=11>Dec</button></nav><div class=artguide-controls><div class=artguide-sort-toggle aria-label=Sortering><button class="artguide-sort__btn artguide-sort__btn--active" data-sort=likely>Troligast</button>
-<button class=artguide-sort__btn data-sort=chronological>Kronologisk</button>
-<button class=artguide-sort__btn data-sort=taxonomy>Taxonomisk</button></div><div class=artguide-filters><button class="artguide-filter artguide-filter--active" data-filter=all>Alla</button>
-<button class=artguide-filter data-filter=abundant>Förväntade</button>
-<button class=artguide-filter data-filter=regular>Möjliga</button>
-<button class=artguide-filter data-filter=uncommon>Ovanliga</button>
-<button class=artguide-filter data-filter=rare>Rariteter</button>
-<button class=artguide-filter data-filter=new>Nya</button>
-<button class=artguide-filter data-filter=checked>Kryssade ✓</button>
-<button class=artguide-filter data-filter=missing>Saknade</button></div></div><div class=artguide-legend id=artguide-legend><span class=artguide-legend__label>Kryssade:</span><div class=artguide-legend__item data-category=abundant><span class="artguide-legend__swatch artguide-legend__swatch--abundant"></span>
-<span>Förväntad</span>
-<span class=artguide-legend__count id=legend-count-abundant></span></div><div class=artguide-legend__item data-category=regular><span class="artguide-legend__swatch artguide-legend__swatch--regular"></span>
-<span>Möjlig</span>
-<span class=artguide-legend__count id=legend-count-regular></span></div><div class=artguide-legend__item data-category=uncommon><span class="artguide-legend__swatch artguide-legend__swatch--uncommon"></span>
-<span>Ovanlig ◆</span>
-<span class=artguide-legend__count id=legend-count-uncommon></span></div><div class=artguide-legend__item data-category=rare><span class="artguide-legend__swatch artguide-legend__swatch--rare"></span>
-<span>Raritet ★</span>
-<span class=artguide-legend__count id=legend-count-rare></span></div><div class=artguide-legend__item data-category=new><span class="artguide-legend__swatch artguide-legend__swatch--new"></span>
-<span>Ny</span>
-<span class=artguide-legend__count id=legend-count-new></span></div><div class="artguide-legend__item artguide-legend__item--total"><span class=artguide-legend__count id=legend-count-total></span></div></div><div class=artguide-month-heading><h2 class=artguide-month-heading__title></h2><p class=artguide-month-heading__subtitle></p><p class=artguide-month-heading__description id=artguide-description></p></div><div class=artguide-species id=artguide-species></div></div><div id=panel-tips class=artguide-panel style="display:none;padding:1.5rem;background:#f8fafc;border-radius:1rem;border:1px solid #e2e8f0;margin-bottom:3rem"><div style=display:flex;justify-content:space-between;align-items:center;margin-bottom:1.5rem><h3 style=margin:0;font-size:1.25rem;color:#1e293b>Tips & aktuellt</h3><button id=btn-close-tips style="background:0 0;border:none;font-size:1.5rem;color:#64748b;cursor:pointer" aria-label="Stäng tips">×</button></div><p style="color:#64748b;font-size:.95rem;line-height:1.6;margin:0 0 1rem">Baserat på historiska observationsdata för Åstorps kommun: vilka arter kan du se just nu,
-vilka är på väg, och vilka bör du passa på att se innan de drar?
-Visar arter du inte kryssat i år.</p><p style="color:#64748b;font-size:.85rem;line-height:1.5;margin:0 0 1.5rem;font-style:italic;background:#f1f5f9;padding:.75rem;border-radius:.5rem;border-left:3px solid #cbd5e1"><strong>Observera:</strong> Klassificeringarna (Raritet m.fl.) utgår från data i Artportalen. Eftersom Åstorp är en relativt underskådad och underrapporterad kommun, kan vissa arter framstå som statistiskt mer sällsynta i guiden än vad de faktiskt är i markerna.</p><label id=tips-show-all-label style=display:inline-flex;align-items:center;gap:.4rem;font-size:.85rem;color:#64748b;cursor:pointer;margin-bottom:1.5rem;user-select:none><input type=checkbox id=tips-show-all style=accent-color:#2d5016;width:16px;height:16px;cursor:pointer>
-Visa även redan kryssade
-<span id=tips-checked-count style=color:#94a3b8;font-size:.8rem></span></label><div id=tips-possible style=margin-bottom:2rem><h4 style="margin:0 0 1rem;font-size:.8rem;color:#64748b;text-transform:uppercase;letter-spacing:.05em;font-weight:700">Aktuella arter: möjliga just nu</h4><div class=tips-grid style=display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem></div><p class=tips-empty style=display:none;color:#94a3b8;font-size:.9rem;font-style:italic>Inga okryssade arter att tipsa om just nu.</p></div><div id=tips-arriving style=margin-bottom:2rem><h4 style="margin:0 0 1rem;font-size:.8rem;color:#64748b;text-transform:uppercase;letter-spacing:.05em;font-weight:700">I antågande: kommande 1-3 veckor</h4><div class=tips-grid style=display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem></div><p class=tips-empty style=display:none;color:#94a3b8;font-size:.9rem;font-style:italic>Inga arter i antågande just nu.</p></div><div id=tips-leaving style=margin-bottom:2rem><h4 style="margin:0 0 1rem;font-size:.8rem;color:#64748b;text-transform:uppercase;letter-spacing:.05em;font-weight:700">Lämnar snart: arter som snart drar vidare</h4><div class=tips-grid style=display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem></div><p class=tips-empty style=display:none;color:#94a3b8;font-size:.9rem;font-style:italic>Inga arter att flagga just nu.</p></div><div id=tips-inarea style=margin-bottom:2rem><h4 style="margin:0 0 1rem;font-size:.8rem;color:#64748b;text-transform:uppercase;letter-spacing:.05em;font-weight:700">Finns i området: men inte i topp just nu</h4><div class=tips-grid style=display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem></div><p class=tips-empty style=display:none;color:#94a3b8;font-size:.9rem;font-style:italic>Inga helårsarter att visa just nu.</p></div><div id=tips-rarities style=margin-bottom:1rem><h4 style="margin:0 0 1rem;font-size:.8rem;color:#64748b;text-transform:uppercase;letter-spacing:.05em;font-weight:700">Rariteter: sällsynta arter vid den här tiden</h4><div class=tips-grid style=display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:1rem></div><p class=tips-empty style=display:none;color:#94a3b8;font-size:.9rem;font-style:italic>Inga aktuella rariteter just nu.</p></div></div><div id=panel-arshjul class=artguide-panel style=display:block><div class=arshjul-page style="max-width:1200px;margin:0 auto;padding:1rem 0"><div id=arshjul-filters style=display:flex;justify-content:center;gap:.5rem;flex-wrap:wrap;margin-bottom:2rem><button class="arshjul-filter-btn arshjul-filter-btn--active" data-filter=alla style="padding:.4rem 1rem;border-radius:999px;border:1px solid #d1d5db;background:#2d5016;color:#fff;cursor:pointer;font-size:.85rem;transition:all .2s">Alla</button>
-<button class=arshjul-filter-btn data-filter=abundant style="padding:.4rem 1rem;border-radius:999px;border:1px solid #d1d5db;background:#fff;color:#374151;cursor:pointer;font-size:.85rem;transition:all .2s">Förväntade</button>
-<button class=arshjul-filter-btn data-filter=regular style="padding:.4rem 1rem;border-radius:999px;border:1px solid #d1d5db;background:#fff;color:#374151;cursor:pointer;font-size:.85rem;transition:all .2s">Möjliga</button>
-<button class=arshjul-filter-btn data-filter=uncommon style="padding:.4rem 1rem;border-radius:999px;border:1px solid #d1d5db;background:#fff;color:#374151;cursor:pointer;font-size:.85rem;transition:all .2s">Ovanliga</button>
-<button class=arshjul-filter-btn data-filter=rare style="padding:.4rem 1rem;border-radius:999px;border:1px solid #d1d5db;background:#fff;color:#374151;cursor:pointer;font-size:.85rem;transition:all .2s">Rariteter</button>
-<button class=arshjul-filter-btn data-filter=checked style="padding:.4rem 1rem;border-radius:999px;border:1px solid #d1d5db;background:#fff;color:#374151;cursor:pointer;font-size:.85rem;transition:all .2s">Kryssade
-✓</button>
-<button class=arshjul-filter-btn data-filter=missing style="padding:.4rem 1rem;border-radius:999px;border:1px solid #d1d5db;background:#fff;color:#374151;cursor:pointer;font-size:.85rem;transition:all .2s">Saknade</button></div><div id=arshjul-search-container style=display:flex;justify-content:center;margin-bottom:2rem><div style=position:relative;width:100%;max-width:400px id=arshjul-search-wrapper><input type=text id=arshjul-search placeholder="Sök art..." autocomplete=off style="width:100%;padding:.75rem 1.25rem .75rem 2.5rem;border:1px solid #d1d5db;border-radius:999px;font-size:1rem;outline:none;transition:border-color .2s,box-shadow .2s;box-shadow:0 1px 2px rgba(0,0,0,5%);background:#fff" onfocus='this.style.borderColor="#2d5016",this.style.boxShadow="0 0 0 3px rgba(45, 80, 22, 0.2)"' onblur='this.style.borderColor="#d1d5db",this.style.boxShadow="0 1px 2px 0 rgba(0, 0, 0, 0.05)"'>
-<svg style="position:absolute;left:1rem;top:23px;transform:translateY(-50%);color:#9ca3af;pointer-events:none" width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5A7 7 0 113 10a7 7 0 0114 0z"/></svg></div></div><div id=arshjul-grid style=display:grid;grid-template-columns:repeat(auto-fill,minmax(240px,1fr));gap:1.5rem;margin-bottom:3rem><p id=arshjul-loading style="text-align:center;grid-column:1/-1;color:#94a3b8;padding:3rem 0">Laddar fenologidata...</p></div><div class=arshjul-header style="text-align:left;padding:0 1.5rem;display:flex;flex-wrap:wrap;justify-content:space-between;gap:2rem"><div style="flex:1 1 350px;max-width:640px"><p style="color:#64748b;font-size:1.05rem;line-height:1.6;margin:0 0 1rem">Varje segment i hjulet motsvarar en dag på året. En färgad markering betyder att arten
-har observerats i Åstorps kommun den dagen minst ett år. Ju starkare färg, desto fler
-år arten noterats just den dagen. Siffrorna i mitten visar totalt antal unika
-observationsdagar under året.</p><div style=display:flex;gap:1.5rem;margin-top:1.5rem;font-size:.875rem;flex-wrap:wrap><span style=display:flex;align-items:center;gap:.35rem><span style=display:inline-block;width:12px;height:12px;border-radius:50%;background:#4ade80></span>
-Vår <span style=color:#94a3b8>(mar–maj)</span>
-</span><span style=display:flex;align-items:center;gap:.35rem><span style=display:inline-block;width:12px;height:12px;border-radius:50%;background:#facc15></span>
-Sommar <span style=color:#94a3b8>(jun–aug)</span>
-</span><span style=display:flex;align-items:center;gap:.35rem><span style=display:inline-block;width:12px;height:12px;border-radius:50%;background:#fb923c></span>
-Höst <span style=color:#94a3b8>(sep–nov)</span>
-</span><span style=display:flex;align-items:center;gap:.35rem><span style=display:inline-block;width:12px;height:12px;border-radius:50%;background:#60a5fa></span>
-Vinter <span style=color:#94a3b8>(dec–feb)</span>
-</span><span style=display:flex;align-items:center;gap:.35rem><span style=display:inline-block;width:8px;height:2px;background:#dc2626;border-radius:1px></span>
-Idag
-</span><span style=display:flex;align-items:center;gap:.35rem><span style=display:inline-block;width:8px;height:2.5px;background:#22c55e;border-radius:1px></span>
-Kryssad 2026</span></div></div><div style="flex:1 1 300px;max-width:500px"><p style="color:#64748b;font-size:.85rem;line-height:1.5;margin:0;font-style:italic;background:#fff;padding:.75rem;border-radius:.5rem;border:1px solid #e2e8f0;border-left:3px solid #cbd5e1"><strong>Observera:</strong> Filterklassificeringen (Ovanlig, Raritet m.fl.) utgår från data i Artportalen. Eftersom Åstorp är en underskådad och underrapporterad kommun, kan vissa arter framstå som statistiskt mer sällsynta än vad de faktiskt är i markerna.</p></div></div></div><dialog id=arshjul-modal style="padding:0;border:none;border-radius:1.5rem;background:0 0;outline:none;margin:auto"><div class=modal-content style="background:#fff;border-radius:1.5rem;box-shadow:0 25px 50px -12px rgba(0,0,0,.25);padding:4vmin;position:relative;width:92vw;height:92vh;max-width:800px;max-height:800px;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;overflow-y:auto"><button id=arshjul-modal-close style=position:absolute;top:1.5rem;right:1.5rem;background:#f1f5f9;border:none;width:44px;height:44px;border-radius:50%;cursor:pointer;display:flex;align-items:center;justify-content:center;color:#64748b;font-weight:700;font-size:1.25rem>✕</button><h2 id=arshjul-modal-title style=text-align:center;margin-top:0;margin-bottom:1rem;font-size:clamp(1.5rem,4vw,2.5rem);color:#1e293b>Art</h2><div id=arshjul-modal-svg-container style=position:relative;flex-grow:1;width:100%;display:flex;justify-content:center;align-items:center;overflow:hidden;min-height:0><div id=arshjul-modal-tooltip style="position:absolute;opacity:0;pointer-events:none;background:rgba(15,23,42,.9);color:#fff;padding:10px 14px;border-radius:8px;font-size:.875rem;text-align:center;transform:translate(-50%,-100%);transition:opacity .2s;white-space:nowrap;z-index:10;box-shadow:0 4px 6px -1px rgba(0,0,0,.1)"><span id=arshjul-modal-tooltip-date style=font-weight:700;font-size:1rem></span><br><span id=arshjul-modal-tooltip-count style=font-weight:400;color:#cbd5e1></span></div></div><div style=text-align:center;margin-top:.5rem;margin-bottom:.5rem><button id=arshjul-modal-map-btn style="background:0 0;border:none;font-size:.9rem;text-decoration:underline;cursor:pointer;font-weight:600;color:#1e293b;transition:all .2s">
-Var i Åstorp har arten setts?</button></div><div style=text-align:center;margin-top:1rem;color:#64748b;font-size:.9rem;max-width:600px;line-height:1.5><p style=margin:0>Färgerna indikerar under hur många olika år arten har observerats.<br>Färgtonen visar årstiden: <span style=color:#4ade80>Vår</span>, <span style=color:#facc15>Sommar</span>, <span style=color:#fb923c>Höst</span>, <span style=color:#60a5fa>Vinter</span>.<br>Siffrorna i mitten visar totalt antal <strong>unika observationsdagar</strong> under året.</p></div></div></dialog></div><footer class=artguide-footer><p>Data: <a href=https://www.artportalen.se target=_blank rel=noopener>Artportalen</a>. Samtliga
-fågelobservationer i Åstorps kommun, alla observatörer, alla år.</p><p class=artguide-footer__date></p></footer></div><style>dialog::backdrop{background:rgba(15,23,42,.6);backdrop-filter:blur(4px)}.arshjul-card{background:#fff;border:1px solid #e2e8f0;border-radius:1rem;padding:1.5rem;box-shadow:0 4px 6px -1px rgba(0,0,0,5%);transition:transform .2s,box-shadow .2s;cursor:pointer;display:flex;flex-direction:column;align-items:center;position:relative}.arshjul-card:hover{transform:translateY(-4px);box-shadow:0 10px 15px -3px rgba(0,0,0,.1);border-color:#cbd5e1}.arshjul-card-badge{position:absolute;top:8px;left:8px;width:20px;height:20px;z-index:2;filter:drop-shadow(0 1px 2px rgba(0,0,0,.2))}.arshjul-card h3{margin:0 0 1rem;font-size:1.25rem;color:#334155;text-align:center}.arshjul-card-svg-wrapper{width:100%;aspect-ratio:1/1;display:flex;justify-content:center;align-items:center;opacity:0;transition:opacity .5s ease}.arshjul-card-svg-wrapper.loaded{opacity:1}</style></main><div id=lightbox class=lightbox onclick=closeLightbox()><button class=lightbox-close onclick=event.stopPropagation(),closeLightbox() aria-label=Stäng>&#215;</button><div class=lightbox-content onclick=event.stopPropagation()><img id=lightbox-img src alt></div><div class=lightbox-caption id=lightbox-caption onclick=event.stopPropagation()><span class=lightbox-caption-title id=lightbox-caption-title></span>
-<span class=lightbox-caption-meta id=lightbox-caption-meta></span>
-<a class=lightbox-caption-link id=lightbox-caption-link href=#>Läs mer →</a></div></div><style>.lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,.95);justify-content:center;align-items:center;z-index:9999;cursor:pointer;padding:3rem;box-sizing:border-box;overflow:hidden}.lightbox.active{display:flex}body.lightbox-open{overflow:hidden}.lightbox-content{position:relative;max-width:100%;max-height:100%;cursor:default;display:flex;justify-content:center;align-items:center;flex-direction:column}.lightbox-content img{max-width:100%;max-height:calc(100vh - 10rem);border-radius:4px;display:block;cursor:zoom-in;transition:max-width .3s ease,max-height .3s ease;object-fit:contain}.lightbox-content img[src$=".svg"]{width:calc(100vw - 6rem);max-width:1400px}.lightbox-content img.zoomed{max-width:none;max-height:none;cursor:zoom-out}.lightbox-close{position:absolute;top:.75rem;right:.75rem;width:44px;height:44px;background:rgba(255,255,255,.15);color:#fff;border:none;border-radius:50%;font-size:1.8rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:10000;transition:background .2s ease}.lightbox-close:hover{background:rgba(255,255,255,.35)}.gallery img{cursor:pointer;transition:transform .3s ease}.gallery img:hover{transform:scale(1.05)}.lightbox-caption{position:absolute;bottom:0;left:0;right:0;display:none;align-items:center;justify-content:center;gap:12px;padding:14px 24px;background:linear-gradient(to top,rgba(0,0,0,.7),rgba(0,0,0,.3));color:rgba(255,255,255,.9);font-family:inter,sans-serif;font-size:.85rem;opacity:0;transform:translateY(4px);transition:opacity .4s ease .3s,transform .4s ease .3s;z-index:10001}.lightbox-caption.visible{display:flex;opacity:1;transform:translateY(0)}.lightbox-caption-title{font-family:lora,Georgia,serif;font-weight:600;font-size:.95rem}.lightbox-caption-meta{color:rgba(255,255,255,.6);font-size:.78rem}.lightbox-caption-link{color:rgba(255,255,255,.7);text-decoration:none;font-size:.78rem;font-weight:500;margin-left:auto;transition:color .2s}.lightbox-caption-link:hover{color:#fff}</style><script>function openLightbox(e,t,n){const o=document.getElementById("lightbox"),s=document.getElementById("lightbox-img"),i=document.getElementById("lightbox-caption");if(o.querySelectorAll(".lightbox-post-link").forEach(e=>e.remove()),s.src=e,s.alt=t||"",s.classList.remove("zoomed"),i.classList.remove("visible"),n&&(n.title||n.meta)){document.getElementById("lightbox-caption-title").textContent=n.title||"",document.getElementById("lightbox-caption-meta").textContent=n.meta||"";const e=document.getElementById("lightbox-caption-link");n.href?(e.href=n.href,e.style.display=""):e.style.display="none",requestAnimationFrame(()=>requestAnimationFrame(()=>i.classList.add("visible")))}o.classList.add("active"),document.body.classList.add("lightbox-open")}function closeLightbox(){const e=document.getElementById("lightbox-img");e.classList.remove("zoomed"),document.getElementById("lightbox").classList.remove("active"),document.body.classList.remove("lightbox-open")}function toggleZoom(){document.getElementById("lightbox-img").classList.toggle("zoomed")}document.addEventListener("keydown",e=>{e.key==="Escape"&&closeLightbox()}),document.addEventListener("DOMContentLoaded",()=>{document.getElementById("lightbox-img").addEventListener("click",e=>{e.stopPropagation(),toggleZoom()}),document.querySelectorAll(".lightbox-link").forEach(e=>{e.addEventListener("click",t=>{t.preventDefault(),openLightbox(e.href,e.querySelector("img")?.alt)})}),document.querySelectorAll(".gallery img, .post-body img").forEach(e=>{e.closest(".lightbox-link")||e.addEventListener("click",()=>openLightbox(e.src,e.alt))})})</script><dialog id=obs-explorer-dialog class=obs-explorer-dialog><div class=obs-explorer-container><button class=obs-explorer-close onclick=closeObsExplorer() aria-label=Stäng>&#215;</button><h2 id=obs-explorer-title class=obs-explorer-title>Historiska fyndplatser</h2><div class=obs-explorer-grid><div class=obs-explorer-map-wrap><div id=obs-explorer-map class=obs-explorer-map></div></div><div class=obs-explorer-panel><div class=obs-explorer-filters><button class="obs-period-pill active" data-period=all>Alla</button>
-<button class=obs-period-pill data-period=current>I år</button>
-<button class=obs-period-pill data-period=last-year>Förra året</button>
-<button class=obs-period-pill data-period=decade>2–10 år</button>
-<button class=obs-period-pill data-period=older>Äldre</button></div><div id=obs-explorer-stats class=obs-explorer-stats>Laddar...</div><div class=obs-explorer-legend><div class=legend-item><span class=legend-dot style=background:#dc2626></span>I år</div><div class=legend-item><span class=legend-dot style=background:#f97316></span>Förra året</div><div class=legend-item><span class=legend-dot style=background:#eab308></span>2–10 år</div><div class=legend-item><span class=legend-dot style=background:#9ca3af></span>Äldre</div></div><div id=obs-explorer-list class=obs-explorer-list></div><div id=obs-explorer-loading class=obs-explorer-loading style=display:none>Laddar fyndplatser...</div><p class=obs-explorer-disclaimer>Observera att allmänna fåglar ofta underrapporteras på Artportalen. Även för vanliga arter kan antalet fyndplatser vara lågt.</p></div></div></div></dialog><style>.obs-explorer-dialog{padding:0;border:none;border-radius:12px;background:0 0;outline:none;margin:auto;width:100vw;height:100vh;max-width:100vw;max-height:100vh;overflow:hidden}.obs-explorer-dialog::backdrop{background:rgba(0,0,0,.88);backdrop-filter:blur(6px)}.obs-explorer-container{width:100%;height:100%;background:#fff;padding:1.25rem 1.5rem;position:relative;display:flex;flex-direction:column;box-sizing:border-box}.obs-explorer-close{position:absolute;top:.75rem;right:.75rem;width:44px;height:44px;background:#f1f5f9;color:#64748b;border:none;border-radius:50%;font-size:1.8rem;line-height:1;cursor:pointer;display:flex;align-items:center;justify-content:center;z-index:100;transition:background .2s,color .2s}.obs-explorer-close:hover{background:#e2e8f0;color:#1e293b}.obs-explorer-title{margin:0 0 .75rem;color:#1e293b;text-align:center;font-size:clamp(1.1rem,2.5vw,1.6rem);font-weight:600;letter-spacing:-.02em}.obs-explorer-grid{flex:1;display:grid;grid-template-columns:1.6fr 1fr;gap:1rem;min-height:0;overflow:hidden}.obs-explorer-map-wrap{border-radius:8px;overflow:hidden;border:1px solid #e2e8f0;position:relative;z-index:1}.obs-explorer-map{width:100%;height:100%;min-height:300px}.obs-explorer-panel{display:flex;flex-direction:column;gap:.6rem;min-height:0;overflow:hidden}.obs-explorer-filters{display:flex;flex-wrap:wrap;gap:.4rem}.obs-period-pill{padding:.35rem .75rem;border:1px solid #e2e8f0;border-radius:9999px;background:#f8fafc;color:#64748b;font-size:.8rem;font-weight:500;cursor:pointer;transition:all .2s;white-space:nowrap}.obs-period-pill:hover{background:#f1f5f9;border-color:#cbd5e1}.obs-period-pill.active{background:#1e293b;color:#fff;border-color:#1e293b}.obs-explorer-stats{font-size:.82rem;color:#64748b;font-weight:500;padding:.25rem 0}.obs-explorer-legend{display:flex;flex-wrap:wrap;gap:.75rem;font-size:.78rem;color:#64748b;padding:.35rem 0;border-bottom:1px solid #f1f5f9}.legend-item{display:flex;align-items:center;gap:.3rem}.legend-dot{display:inline-block;width:10px;height:10px;border-radius:50%;opacity:.85}.obs-explorer-list{flex:1;overflow-y:auto;display:flex;flex-direction:column;gap:.4rem;padding-right:.25rem;min-height:0}.obs-explorer-card{padding:.65rem .75rem;background:#f8fafc;border-radius:8px;border-left:3px solid var(--period-color,#9ca3af);cursor:pointer;transition:all .2s}.obs-explorer-card:hover{background:#f1f5f9;transform:translateX(2px)}.obs-explorer-card.active{background:#eff6ff;border-left-width:4px;box-shadow:0 1px 4px rgba(0,0,0,8%)}.obs-explorer-card.pulse-highlight{animation:obs-pulse .6s ease-out 2}@keyframes obs-pulse{0%{box-shadow:0 0 rgba(59,130,246,.4)}70%{box-shadow:0 0 0 8px rgba(59,130,246,0)}100%{box-shadow:0 0 rgba(59,130,246,0)}}.obs-card-header{display:flex;justify-content:space-between;align-items:baseline;gap:.5rem}.obs-card-locality{font-weight:600;font-size:.88rem;color:#1e293b;line-height:1.3}.obs-card-count{font-size:.75rem;color:#64748b;white-space:nowrap;font-weight:500}.obs-card-meta{margin-top:.2rem;font-size:.78rem;color:#64748b}.obs-explorer-empty{text-align:center;padding:2rem 1rem;color:#94a3b8;font-style:italic}.obs-explorer-loading{text-align:center;padding:1rem;color:#64748b;font-size:.9rem}.obs-explorer-disclaimer{text-align:center;font-size:.75rem;color:#94a3b8;font-style:italic;margin:.5rem 0 0;line-height:1.4}.obs-explorer-popup strong{color:#1e293b}@media(max-width:768px){.obs-explorer-dialog{border-radius:0}.obs-explorer-container{padding:1rem}.obs-explorer-grid{grid-template-columns:1fr;grid-template-rows:1fr 1fr}.obs-explorer-map{min-height:200px}.obs-explorer-title{font-size:1.1rem;margin-bottom:.5rem}.obs-explorer-close{width:36px;height:36px;font-size:1.5rem}}.obs-explorer-list::-webkit-scrollbar{width:5px}.obs-explorer-list::-webkit-scrollbar-track{background:0 0}.obs-explorer-list::-webkit-scrollbar-thumb{background:#cbd5e1;border-radius:4px}.obs-explorer-list::-webkit-scrollbar-thumb:hover{background:#94a3b8}</style><script src=/js/obs-explorer.js></script><link rel=stylesheet href=https://unpkg.com/leaflet@1.9.4/dist/leaflet.css><script src=https://unpkg.com/leaflet@1.9.4/dist/leaflet.js></script><script>window.siteBaseURL="https://astorpsfaglar.se/"</script><script src=/js/location-popup.js></script><script>window.siteBaseURL="https://astorpsfaglar.se/",window.arshjulTaxonomy=["Knölsvan","Mindre sångsvan","Sångsvan","Prutgås","Rödhalsad gås","Kanadagås","Vitkindad gås","Stripgås","Grågås","Bläsgås","Tundragås","Spetsbergsgås","Skogsgås","Nilgås","Gravand","Ejder","Knipa","Salskrake","Storskrake","Brunand","Vigg","Årta","Skedand","Snatterand","Bläsand","Gräsand","Stjärtand","Kricka","Rapphöna","Fasan","Vaktel","Smådopping","Gråhakedopping","Gök","Turturduva","Turkduva","Ringduva","Klippduva (tamduva)","Skogsduva","Trana","Vattenrall","Kornknarr","Småfläckig sumphöna","Rörhöna","Sothöna","Skärfläcka","Strandskata","Ljungpipare","Större strandpipare","Mindre strandpipare","Tofsvipa","Småspov","Storspov","Rödspov","Dvärgbeckasin","Morkulla","Dubbelbeckasin","Enkelbeckasin","Drillsnäppa","Skogssnäppa","Grönbena","Rödbena","Svartsnäppa","Gluttsnäppa","Brushane","Mosnäppa","Småsnäppa","Fisktärna","Skrattmås","Svarthuvad mås","Fiskmås","Kaspisk trut","Gråtrut","Havstrut","Silltrut","Stormfågel","Svart stork","Vit stork","Storskarv","Ägretthäger","Gråhäger","Nattskärra","Tornseglare","Jorduggla","Hornuggla","Berguv","Kattuggla","Fiskgjuse","Bivråk","Stäppörn","Kungsörn","Sparvhök","Duvhök","Stäpphök","Blå kärrhök","Brun kärrhök","Röd glada","Brun glada","Havsörn","Fjällvråk","Ormvråk","Kungsfiskare","Göktyta","Gröngöling","Spillkråka","Större hackspett","Mindre hackspett","Tornfalk","Aftonfalk","Stenfalk","Lärkfalk","Pilgrimsfalk","Varfågel","Törnskata","Nötskrika","Skata","Nötkråka","Kaja","Råka","Korp","Gråkråka","Blåmes","Talgoxe","Svartmes","Tofsmes","Entita","Talltita","Trädlärka","Sånglärka","Härmsångare","Sävsångare","Kärrsångare","Rörsångare","Gräshoppsångare","Backsvala","Ladusvala","Hussvala","Stjärtmes","Grönsångare","Lövsångare","Gransångare","Lundsångare","Trädgårdssångare","Svarthätta","Ärtsångare","Törnsångare","Sidensvans","Brandkronad kungsfågel","Kungsfågel","Nötväcka","Trädkrypare","Trädgårdsträdkrypare","Gärdsmyg","Stare","Strömstare","Dubbeltrast","Taltrast","Rödvingetrast","Koltrast","Björktrast","Ringtrast","Grå flugsnappare","Rödhake","Näktergal","Mindre flugsnappare","Svartvit flugsnappare","Svart rödstjärt","Rödstjärt","Buskskvätta","Stenskvätta","Järnsparv","Pilfink","Gråsparv","Forsärla","Gulärla","Sädesärla","Trädpiplärka","Rödstrupig piplärka","Ängspiplärka","Bergfink","Bofink","Stenknäck","Tallbit","Domherre","Grönfink","Vinterhämpling","Hämpling","Gråsiska","Bändelkorsnäbb","Större korsnäbb","Mindre korsnäbb","Steglits","Gulhämpling","Grönsiska","Snösparv","Sävsparv","Kornsparv","Gulsparv"],document.addEventListener("DOMContentLoaded",()=>{const n=document.getElementById("btn-toggle-tips"),s=document.getElementById("btn-toggle-kalender"),a=document.getElementById("btn-close-tips"),r=document.getElementById("btn-close-kalender"),o=document.getElementById("panel-tips"),i=document.getElementById("panel-kalender"),t=document.getElementById("panel-arshjul"),l=[n,s].filter(Boolean);function e(e){[o,i,t].forEach(e=>{e&&(e.style.display="none")}),e&&(e.style.display="block"),l.forEach(e=>{e.style.background="none",e.style.color="#475569",e.style.borderColor="#cbd5e1"})}function c(e){e.style.background="#2d5016",e.style.color="white",e.style.borderColor="#2d5016"}n&&n.addEventListener("click",()=>{const s=o.style.display==="none";s?(e(o),c(n)):e(t)}),s&&s.addEventListener("click",()=>{const n=i.style.display==="none";n?(e(i),c(s)):e(t)}),a&&a.addEventListener("click",()=>e(t)),r&&r.addEventListener("click",()=>e(t))})</script><script src=/js/artguide.14d5878b7b124e0406451d49442d47299fb2a95b5c216ca878e6d289f13def1a.js></script><script src="/js/arshjul.js?v=1780783288" defer></script><script data-goatcounter=https://hlgk.goatcounter.com/count async src=//gc.zgo.at/count.js></script></body></html>
+<!DOCTYPE html>
+<html lang="sv">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="En fågelårsbok för Åstorps kommun — observationer, bilder och krysslista">
+    <meta name="author" content="Håkan Karlsson">
+    <title>Artkalender | Fågelåret i Åstorp</title>
+
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Lora:ital,wght@0,400;0,700;1,400&display=swap"
+        rel="stylesheet">
+
+    
+    
+    <link rel="stylesheet" href="/css/style.e9efe1ea1d8f0683abe513ee83aacb1ea4cbf2b4ae4048edacbbdc43188889df.css">
+
+    
+    <link rel="prefetch" href="/galleri/" as="document">
+
+    
+    
+</head>
+
+<body>
+    <a href="#main-content" class="skip-link">Hoppa till innehåll</a>
+
+    <header class="site-header">
+    <div class="header-container">
+        <a href="https://astorpsfaglar.se/" class="site-logo">
+            <span class="site-title">Fågelåret i Åstorp</span>
+        </a>
+
+
+        <nav class="main-nav" aria-label="Huvudnavigation">
+            <ul class="nav-list">
+                
+                
+                <li class="nav-item">
+                    <a href="/" class="nav-link">
+                        Hem
+                    </a>
+                </li>
+                
+                
+                
+                <li class="nav-item">
+                    <a href="/posts/" class="nav-link">
+                        Notiser
+                    </a>
+                </li>
+                
+                
+                
+                <li class="nav-item">
+                    <a href="/karta/" class="nav-link">
+                        Krysskarta
+                    </a>
+                </li>
+                
+                
+                
+                <li class="nav-item">
+                    <a href="/artguide/" class="nav-link active">
+                        Årshjul
+                    </a>
+                </li>
+                
+                
+                
+                <li class="nav-item">
+                    <a href="/efterlysta/" class="nav-link">
+                        Efterlysta
+                    </a>
+                </li>
+                
+                
+                
+                <li class="nav-item">
+                    <a href="/vader/" class="nav-link">
+                        Horisonten
+                    </a>
+                </li>
+                
+                
+                
+                <li class="nav-item">
+                    <a href="/galleri/" class="nav-link">
+                        Galleri
+                    </a>
+                </li>
+                
+                
+                
+                <li class="nav-item">
+                    <a href="/faltpulsen/" class="nav-link">
+                        Aktuella observationer
+                    </a>
+                </li>
+                
+                
+                
+                <li class="nav-item">
+                    <a href="/om/" class="nav-link">
+                        Om
+                    </a>
+                </li>
+                
+                
+            </ul>
+        </nav>
+
+        <button class="mobile-menu-toggle" aria-label="Öppna meny" aria-expanded="false" id="mobile-menu-btn">
+            <span class="hamburger"></span>
+        </button>
+    </div>
+</header>
+
+<script>
+    
+    document.addEventListener('DOMContentLoaded', () => {
+        const menuToggle = document.getElementById('mobile-menu-btn');
+        const mainNav = document.querySelector('.main-nav');
+
+        if (menuToggle && mainNav) {
+            menuToggle.addEventListener('click', (e) => {
+                e.preventDefault();
+                e.stopPropagation();
+
+                
+                mainNav.classList.toggle('open');
+
+                
+                const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
+                menuToggle.setAttribute('aria-expanded', !isExpanded);
+            });
+
+            
+            document.addEventListener('click', (e) => {
+                if (mainNav.classList.contains('open') &&
+                    !mainNav.contains(e.target) &&
+                    !menuToggle.contains(e.target)) {
+                    mainNav.classList.remove('open');
+                    menuToggle.setAttribute('aria-expanded', 'false');
+                }
+            });
+        }
+    });
+</script>
+
+    <main id="main-content" class="main">
+        
+<div class="artguide">
+
+    
+    <div class="artguide-progress" role="progressbar" aria-valuemin="0" aria-valuemax="150" aria-valuenow="0"
+        aria-label="Årslista framsteg" style="margin-bottom: 2rem;">
+        <div class="artguide-progress__header">
+            <span class="artguide-progress__label">Årslista</span>
+            <span class="artguide-progress__count">0/150 arter</span>
+        </div>
+        <div class="artguide-progress__thermometer">
+            <div class="artguide-progress__scale">
+                <span class="artguide-progress__scale-mark" style="left: 0%">0</span>
+                <span class="artguide-progress__scale-mark" style="left: 33.3%">50</span>
+                <span class="artguide-progress__scale-mark" style="left: 66.6%">100</span>
+                <span class="artguide-progress__scale-mark" style="left: 100%">150</span>
+            </div>
+            <div class="artguide-progress__bar">
+                <div class="artguide-progress__fill"></div>
+            </div>
+        </div>
+        <div class="artguide-progress__latest"></div>
+    </div>
+
+    
+    <div style="display: flex; justify-content: center; gap: 0.5rem; margin-bottom: 1.5rem; flex-wrap: wrap;">
+        <button id="btn-toggle-tips" class="artguide-view-btn" style="
+            background: none;
+            color: #475569;
+            border: 1px solid #cbd5e1;
+            border-radius: 0.5rem;
+            padding: 0.5rem 1.25rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.2s ease;">
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path>
+            </svg>
+            Tips &amp; aktuellt
+        </button>
+        <button id="btn-toggle-kalender" class="artguide-view-btn" style="
+            background: none;
+            color: #475569;
+            border: 1px solid #cbd5e1;
+            border-radius: 0.5rem;
+            padding: 0.5rem 1.25rem;
+            font-size: 0.9rem;
+            font-weight: 500;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            transition: all 0.2s ease;">
+            <svg width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                xmlns="http://www.w3.org/2000/svg">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                    d="M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z"></path>
+            </svg>
+            Månadsguide
+        </button>
+    </div>
+
+    
+    <div id="panel-kalender" class="artguide-panel"
+        style="display: none; padding: 1.5rem; background: #f8fafc; border-radius: 1rem; border: 1px solid #e2e8f0; margin-bottom: 3rem;">
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 0.5rem;">
+            <h3 style="margin: 0; font-size: 1.25rem; color: #1e293b;">Månadsguide</h3>
+            <button id="btn-close-kalender"
+                style="background: none; border: none; font-size: 1.5rem; color: #64748b; cursor: pointer;"
+                aria-label="Stäng kalender">×</button>
+        </div>
+
+        <p style="color: #64748b; font-size: 0.85rem; line-height: 1.5; margin: 0 0 1.5rem 0; font-style: italic; background: #f1f5f9; padding: 0.75rem; border-radius: 0.5rem; border-left: 3px solid #cbd5e1;">
+            <strong>Observera:</strong> Klassificeringarna (Ovanlig, Raritet m.fl.) utgår från data i Artportalen. Eftersom Åstorp är en relativt underskådad och underrapporterad kommun, kan vissa arter framstå som statistiskt mer sällsynta i guiden än vad de faktiskt är i markerna.
+        </p>
+
+        
+        <nav class="artguide-months" aria-label="Välj månad">
+            <button class="artguide-months__btn" data-month="0">Jan</button>
+            <button class="artguide-months__btn" data-month="1">Feb</button>
+            <button class="artguide-months__btn" data-month="2">Mar</button>
+            <button class="artguide-months__btn" data-month="3">Apr</button>
+            <button class="artguide-months__btn" data-month="4">Maj</button>
+            <button class="artguide-months__btn" data-month="5">Jun</button>
+            <button class="artguide-months__btn" data-month="6">Jul</button>
+            <button class="artguide-months__btn" data-month="7">Aug</button>
+            <button class="artguide-months__btn" data-month="8">Sep</button>
+            <button class="artguide-months__btn" data-month="9">Okt</button>
+            <button class="artguide-months__btn" data-month="10">Nov</button>
+            <button class="artguide-months__btn" data-month="11">Dec</button>
+        </nav>
+
+        
+        <div class="artguide-controls">
+            <div class="artguide-sort-toggle" aria-label="Sortering">
+                <button class="artguide-sort__btn artguide-sort__btn--active" data-sort="likely">Troligast</button>
+                <button class="artguide-sort__btn" data-sort="chronological">Kronologisk</button>
+                <button class="artguide-sort__btn" data-sort="taxonomy">Taxonomisk</button>
+            </div>
+            <div class="artguide-filters">
+                <button class="artguide-filter artguide-filter--active" data-filter="all">Alla</button>
+                <button class="artguide-filter" data-filter="abundant">Förväntade</button>
+                <button class="artguide-filter" data-filter="regular">Möjliga</button>
+                <button class="artguide-filter" data-filter="uncommon">Ovanliga</button>
+                <button class="artguide-filter" data-filter="rare">Rariteter</button>
+                <button class="artguide-filter" data-filter="new">Nya</button>
+                <button class="artguide-filter" data-filter="checked">Kryssade ✓</button>
+                <button class="artguide-filter" data-filter="missing">Saknade</button>
+            </div>
+        </div>
+
+        
+        <div class="artguide-legend" id="artguide-legend">
+            <span class="artguide-legend__label">Kryssade:</span>
+            <div class="artguide-legend__item" data-category="abundant">
+                <span class="artguide-legend__swatch artguide-legend__swatch--abundant"></span>
+                <span>Förväntad</span>
+                <span class="artguide-legend__count" id="legend-count-abundant"></span>
+            </div>
+            <div class="artguide-legend__item" data-category="regular">
+                <span class="artguide-legend__swatch artguide-legend__swatch--regular"></span>
+                <span>Möjlig</span>
+                <span class="artguide-legend__count" id="legend-count-regular"></span>
+            </div>
+            <div class="artguide-legend__item" data-category="uncommon">
+                <span class="artguide-legend__swatch artguide-legend__swatch--uncommon"></span>
+                <span>Ovanlig ◆</span>
+                <span class="artguide-legend__count" id="legend-count-uncommon"></span>
+            </div>
+            <div class="artguide-legend__item" data-category="rare">
+                <span class="artguide-legend__swatch artguide-legend__swatch--rare"></span>
+                <span>Raritet ★</span>
+                <span class="artguide-legend__count" id="legend-count-rare"></span>
+            </div>
+            <div class="artguide-legend__item" data-category="new">
+                <span class="artguide-legend__swatch artguide-legend__swatch--new"></span>
+                <span>Ny</span>
+                <span class="artguide-legend__count" id="legend-count-new"></span>
+            </div>
+            <div class="artguide-legend__item artguide-legend__item--total">
+                <span class="artguide-legend__count" id="legend-count-total"></span>
+            </div>
+        </div>
+
+        
+        <div class="artguide-month-heading">
+            <h2 class="artguide-month-heading__title"></h2>
+            <p class="artguide-month-heading__subtitle"></p>
+            <p class="artguide-month-heading__description" id="artguide-description"></p>
+        </div>
+
+        
+        <div class="artguide-species" id="artguide-species"></div>
+
+    </div>
+
+    
+    <div id="panel-tips" class="artguide-panel"
+        style="display: none; padding: 1.5rem; background: #f8fafc; border-radius: 1rem; border: 1px solid #e2e8f0; margin-bottom: 3rem;">
+
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem;">
+            <h3 style="margin: 0; font-size: 1.25rem; color: #1e293b;">Tips &amp; aktuellt</h3>
+            <button id="btn-close-tips"
+                style="background: none; border: none; font-size: 1.5rem; color: #64748b; cursor: pointer;"
+                aria-label="Stäng tips">×</button>
+        </div>
+
+        <p style="color: #64748b; font-size: 0.95rem; line-height: 1.6; margin: 0 0 1rem 0;">
+            Baserat på historiska observationsdata för Åstorps kommun: vilka arter kan du se just nu,
+            vilka är på väg, och vilka bör du passa på att se innan de drar?
+            Visar arter du inte kryssat i år.
+        </p>
+
+        <p style="color: #64748b; font-size: 0.85rem; line-height: 1.5; margin: 0 0 1.5rem 0; font-style: italic; background: #f1f5f9; padding: 0.75rem; border-radius: 0.5rem; border-left: 3px solid #cbd5e1;">
+            <strong>Observera:</strong> Klassificeringarna (Raritet m.fl.) utgår från data i Artportalen. Eftersom Åstorp är en relativt underskådad och underrapporterad kommun, kan vissa arter framstå som statistiskt mer sällsynta i guiden än vad de faktiskt är i markerna.
+        </p>
+
+        <label id="tips-show-all-label" style="display: inline-flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; color: #64748b; cursor: pointer; margin-bottom: 1.5rem; user-select: none;">
+            <input type="checkbox" id="tips-show-all" style="accent-color: #2d5016; width: 16px; height: 16px; cursor: pointer;">
+            Visa även redan kryssade
+            <span id="tips-checked-count" style="color: #94a3b8; font-size: 0.8rem;"></span>
+        </label>
+
+        
+        <div id="tips-possible" style="margin-bottom: 2rem;">
+            <h4 style="margin: 0 0 1rem 0; font-size: 0.8rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700;">
+                Aktuella arter: möjliga just nu
+            </h4>
+            <div class="tips-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;"></div>
+            <p class="tips-empty" style="display: none; color: #94a3b8; font-size: 0.9rem; font-style: italic;">Inga okryssade arter att tipsa om just nu.</p>
+        </div>
+
+        
+        <div id="tips-arriving" style="margin-bottom: 2rem;">
+            <h4 style="margin: 0 0 1rem 0; font-size: 0.8rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700;">
+                I antågande: kommande 1-3 veckor
+            </h4>
+            <div class="tips-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;"></div>
+            <p class="tips-empty" style="display: none; color: #94a3b8; font-size: 0.9rem; font-style: italic;">Inga arter i antågande just nu.</p>
+        </div>
+
+        
+        <div id="tips-leaving" style="margin-bottom: 2rem;">
+            <h4 style="margin: 0 0 1rem 0; font-size: 0.8rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700;">
+                Lämnar snart: arter som snart drar vidare
+            </h4>
+            <div class="tips-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;"></div>
+            <p class="tips-empty" style="display: none; color: #94a3b8; font-size: 0.9rem; font-style: italic;">Inga arter att flagga just nu.</p>
+        </div>
+
+        
+        <div id="tips-inarea" style="margin-bottom: 2rem;">
+            <h4 style="margin: 0 0 1rem 0; font-size: 0.8rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700;">
+                Finns i området: men inte i topp just nu
+            </h4>
+            <div class="tips-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;"></div>
+            <p class="tips-empty" style="display: none; color: #94a3b8; font-size: 0.9rem; font-style: italic;">Inga helårsarter att visa just nu.</p>
+        </div>
+
+        
+        <div id="tips-rarities" style="margin-bottom: 1rem;">
+            <h4 style="margin: 0 0 1rem 0; font-size: 0.8rem; color: #64748b; text-transform: uppercase; letter-spacing: 0.05em; font-weight: 700;">
+                Rariteter: sällsynta arter vid den här tiden
+            </h4>
+            <div class="tips-grid" style="display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 1rem;"></div>
+            <p class="tips-empty" style="display: none; color: #94a3b8; font-size: 0.9rem; font-style: italic;">Inga aktuella rariteter just nu.</p>
+        </div>
+
+    </div>
+
+    
+    <div id="panel-arshjul" class="artguide-panel" style="display: block;">
+
+        <div class="arshjul-page" style="max-width: 1200px; margin: 0 auto; padding: 1rem 0;">
+
+            
+            <div id="arshjul-filters"
+                style="display: flex; justify-content: center; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 2rem;">
+                <button class="arshjul-filter-btn arshjul-filter-btn--active" data-filter="alla"
+                    style="padding: 0.4rem 1rem; border-radius: 999px; border: 1px solid #d1d5db; background: #2d5016; color: white; cursor: pointer; font-size: 0.85rem; transition: all 0.2s;">Alla</button>
+                <button class="arshjul-filter-btn" data-filter="abundant"
+                    style="padding: 0.4rem 1rem; border-radius: 999px; border: 1px solid #d1d5db; background: white; color: #374151; cursor: pointer; font-size: 0.85rem; transition: all 0.2s;">Förväntade</button>
+                <button class="arshjul-filter-btn" data-filter="regular"
+                    style="padding: 0.4rem 1rem; border-radius: 999px; border: 1px solid #d1d5db; background: white; color: #374151; cursor: pointer; font-size: 0.85rem; transition: all 0.2s;">Möjliga</button>
+                <button class="arshjul-filter-btn" data-filter="uncommon"
+                    style="padding: 0.4rem 1rem; border-radius: 999px; border: 1px solid #d1d5db; background: white; color: #374151; cursor: pointer; font-size: 0.85rem; transition: all 0.2s;">Ovanliga</button>
+                <button class="arshjul-filter-btn" data-filter="rare"
+                    style="padding: 0.4rem 1rem; border-radius: 999px; border: 1px solid #d1d5db; background: white; color: #374151; cursor: pointer; font-size: 0.85rem; transition: all 0.2s;">Rariteter</button>
+                <button class="arshjul-filter-btn" data-filter="checked"
+                    style="padding: 0.4rem 1rem; border-radius: 999px; border: 1px solid #d1d5db; background: white; color: #374151; cursor: pointer; font-size: 0.85rem; transition: all 0.2s;">Kryssade
+                    ✓</button>
+                <button class="arshjul-filter-btn" data-filter="missing"
+                    style="padding: 0.4rem 1rem; border-radius: 999px; border: 1px solid #d1d5db; background: white; color: #374151; cursor: pointer; font-size: 0.85rem; transition: all 0.2s;">Saknade</button>
+            </div>
+
+            
+            <div id="arshjul-search-container" style="display: flex; justify-content: center; margin-bottom: 2rem;">
+                <div style="position: relative; width: 100%; max-width: 400px;" id="arshjul-search-wrapper">
+                    <input type="text" id="arshjul-search" placeholder="Sök art..." autocomplete="off"
+                        style="width: 100%; padding: 0.75rem 1.25rem 0.75rem 2.5rem; border: 1px solid #d1d5db; border-radius: 999px; font-size: 1rem; outline: none; transition: border-color 0.2s, box-shadow 0.2s; box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05); background: white;"
+                        onfocus="this.style.borderColor='#2d5016'; this.style.boxShadow='0 0 0 3px rgba(45, 80, 22, 0.2)';"
+                        onblur="this.style.borderColor='#d1d5db'; this.style.boxShadow='0 1px 2px 0 rgba(0, 0, 0, 0.05)';">
+                    <svg style="position: absolute; left: 1rem; top: 23px; transform: translateY(-50%); color: #9ca3af; pointer-events: none;"
+                        width="16" height="16" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                        xmlns="http://www.w3.org/2000/svg">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                            d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+
+
+                </div>
+            </div>
+
+            
+            <div id="arshjul-grid"
+                style="display: grid; grid-template-columns: repeat(auto-fill, minmax(240px, 1fr)); gap: 1.5rem; margin-bottom: 3rem;">
+                <p id="arshjul-loading"
+                    style="text-align: center; grid-column: 1 / -1; color: #94a3b8; padding: 3rem 0;">
+                    Laddar fenologidata...
+                </p>
+            </div>
+
+            
+            <div class="arshjul-header" style="text-align: left; padding: 0 1.5rem; display: flex; flex-wrap: wrap; justify-content: space-between; gap: 2rem;">
+                <div style="flex: 1 1 350px; max-width: 640px;">
+                    <p style="color: #64748b; font-size: 1.05rem; line-height: 1.6; margin: 0 0 1rem 0;">
+                        Varje segment i hjulet motsvarar en dag på året. En färgad markering betyder att arten
+                        har observerats i Åstorps kommun den dagen minst ett år. Ju starkare färg, desto fler
+                        år arten noterats just den dagen. Siffrorna i mitten visar totalt antal unika
+                        observationsdagar under året.
+                    </p>
+                    <div style="display: flex; gap: 1.5rem; margin-top: 1.5rem; font-size: 0.875rem; flex-wrap: wrap;">
+                        <span style="display: flex; align-items: center; gap: 0.35rem;">
+                            <span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #4ade80;"></span>
+                            Vår <span style="color:#94a3b8">(mar–maj)</span>
+                        </span>
+                        <span style="display: flex; align-items: center; gap: 0.35rem;">
+                            <span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #facc15;"></span>
+                            Sommar <span style="color:#94a3b8">(jun–aug)</span>
+                        </span>
+                        <span style="display: flex; align-items: center; gap: 0.35rem;">
+                            <span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #fb923c;"></span>
+                            Höst <span style="color:#94a3b8">(sep–nov)</span>
+                        </span>
+                        <span style="display: flex; align-items: center; gap: 0.35rem;">
+                            <span style="display: inline-block; width: 12px; height: 12px; border-radius: 50%; background: #60a5fa;"></span>
+                            Vinter <span style="color:#94a3b8">(dec–feb)</span>
+                        </span>
+                        <span style="display: flex; align-items: center; gap: 0.35rem;">
+                            <span style="display: inline-block; width: 8px; height: 2px; background: #dc2626; border-radius: 1px;"></span>
+                            Idag
+                        </span>
+                        <span style="display: flex; align-items: center; gap: 0.35rem;">
+                            <span style="display: inline-block; width: 8px; height: 2.5px; background: #22c55e; border-radius: 1px;"></span>
+                            Kryssad 2026
+                        </span>
+                    </div>
+                </div>
+                <div style="flex: 1 1 300px; max-width: 500px;">
+                    <p style="color: #64748b; font-size: 0.85rem; line-height: 1.5; margin: 0; font-style: italic; background: #ffffff; padding: 0.75rem; border-radius: 0.5rem; border: 1px solid #e2e8f0; border-left: 3px solid #cbd5e1;">
+                        <strong>Observera:</strong> Filterklassificeringen (Ovanlig, Raritet m.fl.) utgår från data i Artportalen. Eftersom Åstorp är en underskådad och underrapporterad kommun, kan vissa arter framstå som statistiskt mer sällsynta än vad de faktiskt är i markerna.
+                    </p>
+                </div>
+            </div>
+
+        </div>
+
+    
+    <dialog id="arshjul-modal"
+        style="padding: 0; border: none; border-radius: 1.5rem; background: transparent; outline: none; margin: auto;">
+        <div class="modal-content"
+            style="background: white; border-radius: 1.5rem; box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25); padding: 4vmin; position: relative; width: 92vw; height: 92vh; max-width: 800px; max-height: 800px; display: flex; flex-direction: column; align-items: center; justify-content: flex-start; overflow-y: auto;">
+            <button id="arshjul-modal-close"
+                style="position: absolute; top: 1.5rem; right: 1.5rem; background: #f1f5f9; border: none; width: 44px; height: 44px; border-radius: 50%; cursor: pointer; display: flex; align-items: center; justify-content: center; color: #64748b; font-weight: bold; font-size: 1.25rem;">✕</button>
+            <h2 id="arshjul-modal-title"
+                style="text-align: center; margin-top: 0; margin-bottom: 1rem; font-size: clamp(1.5rem, 4vw, 2.5rem); color: #1e293b;">
+                Art</h2>
+
+            <div id="arshjul-modal-svg-container"
+                style="position: relative; flex-grow: 1; width: 100%; display:flex; justify-content:center; align-items:center; overflow: hidden; min-height: 0;">
+                
+                <div id="arshjul-modal-tooltip"
+                    style="position: absolute; opacity: 0; pointer-events: none; background: rgba(15, 23, 42, 0.9); color: white; padding: 10px 14px; border-radius: 8px; font-size: 0.875rem; text-align: center; transform: translate(-50%, -100%); transition: opacity 0.2s; white-space: nowrap; z-index: 10; box-shadow: 0 4px 6px -1px rgba(0,0,0,0.1);">
+                    <span id="arshjul-modal-tooltip-date"
+                        style="font-weight: bold; font-size: 1rem;"></span><br>
+                    <span id="arshjul-modal-tooltip-count" style="font-weight: normal; color: #cbd5e1;"></span>
+                </div>
+            </div>
+
+            
+            <div style="text-align: center; margin-top: 0.5rem; margin-bottom: 0.5rem;">
+                <button id="arshjul-modal-map-btn" style="background: none; border: none; font-size: 0.9rem; text-decoration: underline; cursor: pointer; font-weight: 600; color: #1e293b; transition: all 0.2s;">
+                    Var i Åstorp har arten setts?
+                </button>
+            </div>
+
+            <div
+                style="text-align: center; margin-top: 1rem; color: #64748b; font-size: 0.9rem; max-width: 600px; line-height: 1.5;">
+                <p style="margin: 0;">
+                    Färgerna indikerar under hur många olika år arten har observerats.<br>
+                    Färgtonen visar årstiden: <span style="color: #4ade80;">Vår</span>, <span
+                        style="color: #facc15;">Sommar</span>, <span style="color: #fb923c;">Höst</span>, <span
+                        style="color: #60a5fa;">Vinter</span>.<br>
+                    Siffrorna i mitten visar totalt antal <strong>unika observationsdagar</strong> under året.
+                </p>
+            </div>
+        </div>
+    </dialog>
+
+    </div>
+
+    
+    <footer class="artguide-footer">
+        <p>Data: <a href="https://www.artportalen.se" target="_blank" rel="noopener">Artportalen</a>. Samtliga
+            fågelobservationer i Åstorps kommun, alla observatörer, alla år.</p>
+        <p class="artguide-footer__date"></p>
+    </footer>
+
+</div>
+
+<style>
+     
+    dialog::backdrop {
+        background: rgba(15, 23, 42, 0.6);
+        backdrop-filter: blur(4px);
+    }
+
+    .arshjul-card {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 1rem;
+        padding: 1.5rem;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.05);
+        transition: transform 0.2s, box-shadow 0.2s;
+        cursor: pointer;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        position: relative;
+    }
+
+    .arshjul-card:hover {
+        transform: translateY(-4px);
+        box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+        border-color: #cbd5e1;
+    }
+
+    .arshjul-card-badge {
+        position: absolute;
+        top: 8px;
+        left: 8px;
+        width: 20px;
+        height: 20px;
+        z-index: 2;
+        filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.2));
+    }
+
+    .arshjul-card h3 {
+        margin: 0 0 1rem 0;
+        font-size: 1.25rem;
+        color: #334155;
+        text-align: center;
+    }
+
+    .arshjul-card-svg-wrapper {
+        width: 100%;
+        aspect-ratio: 1/1;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        opacity: 0;
+        transition: opacity 0.5s ease;
+    }
+
+    .arshjul-card-svg-wrapper.loaded {
+        opacity: 1;
+    }
+</style>
+
+    </main>
+
+    
+
+    
+    <div id="lightbox" class="lightbox" onclick="closeLightbox()">
+        <button class="lightbox-close" onclick="event.stopPropagation(); closeLightbox()" aria-label="Stäng">&times;</button>
+        <div class="lightbox-content" onclick="event.stopPropagation()">
+            <img id="lightbox-img" src="" alt="">
+        </div>
+        <div class="lightbox-caption" id="lightbox-caption" onclick="event.stopPropagation()">
+            <span class="lightbox-caption-title" id="lightbox-caption-title"></span>
+            <span class="lightbox-caption-meta" id="lightbox-caption-meta"></span>
+            <a class="lightbox-caption-link" id="lightbox-caption-link" href="#">Läs mer →</a>
+        </div>
+    </div>
+    <style>
+        .lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.95);
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            cursor: pointer;
+            padding: 3rem;
+            box-sizing: border-box;
+            overflow: hidden;
+        }
+
+        .lightbox.active {
+            display: flex;
+        }
+
+        body.lightbox-open {
+            overflow: hidden;
+        }
+
+        .lightbox-content {
+            position: relative;
+            max-width: 100%;
+            max-height: 100%;
+            cursor: default;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        .lightbox-content img {
+            max-width: 100%;
+            max-height: calc(100vh - 10rem);
+            border-radius: 4px;
+            display: block;
+            cursor: zoom-in;
+            transition: max-width 0.3s ease, max-height 0.3s ease;
+            object-fit: contain;
+        }
+
+        .lightbox-content img[src$=".svg"] {
+            width: calc(100vw - 6rem);
+            max-width: 1400px;
+        }
+
+        .lightbox-content img.zoomed {
+            max-width: none;
+            max-height: none;
+            cursor: zoom-out;
+        }
+
+        .lightbox-close {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            width: 44px;
+            height: 44px;
+            background: rgba(255, 255, 255, 0.15);
+            color: white;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 10000;
+            transition: background 0.2s ease;
+        }
+
+        .lightbox-close:hover {
+            background: rgba(255, 255, 255, 0.35);
+        }
+
+        .gallery img {
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
+
+        .gallery img:hover {
+            transform: scale(1.05);
+        }
+
+         
+        .lightbox-caption {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            padding: 14px 24px;
+            background: linear-gradient(to top, rgba(0,0,0,0.7), rgba(0,0,0,0.3));
+            color: rgba(255,255,255,0.9);
+            font-family: 'Inter', sans-serif;
+            font-size: 0.85rem;
+            opacity: 0;
+            transform: translateY(4px);
+            transition: opacity 0.4s ease 0.3s, transform 0.4s ease 0.3s;
+            z-index: 10001;
+        }
+        .lightbox-caption.visible {
+            display: flex;
+            opacity: 1;
+            transform: translateY(0);
+        }
+        .lightbox-caption-title {
+            font-family: 'Lora', Georgia, serif;
+            font-weight: 600;
+            font-size: 0.95rem;
+        }
+        .lightbox-caption-meta {
+            color: rgba(255,255,255,0.6);
+            font-size: 0.78rem;
+        }
+        .lightbox-caption-link {
+            color: rgba(255,255,255,0.7);
+            text-decoration: none;
+            font-size: 0.78rem;
+            font-weight: 500;
+            margin-left: auto;
+            transition: color 0.2s;
+        }
+        .lightbox-caption-link:hover {
+            color: white;
+        }
+    </style>
+    <script>
+        function openLightbox(src, alt, caption) {
+            const lb = document.getElementById('lightbox');
+            const img = document.getElementById('lightbox-img');
+            const cap = document.getElementById('lightbox-caption');
+            
+            lb.querySelectorAll('.lightbox-post-link').forEach(el => el.remove());
+            img.src = src; img.alt = alt || '';
+            img.classList.remove('zoomed');
+            
+            cap.classList.remove('visible');
+            if (caption && (caption.title || caption.meta)) {
+                document.getElementById('lightbox-caption-title').textContent = caption.title || '';
+                document.getElementById('lightbox-caption-meta').textContent = caption.meta || '';
+                const link = document.getElementById('lightbox-caption-link');
+                if (caption.href) {
+                    link.href = caption.href;
+                    link.style.display = '';
+                } else {
+                    link.style.display = 'none';
+                }
+                
+                requestAnimationFrame(() => requestAnimationFrame(() => cap.classList.add('visible')));
+            }
+            lb.classList.add('active');
+            document.body.classList.add('lightbox-open');
+        }
+        function closeLightbox() {
+            const img = document.getElementById('lightbox-img');
+            img.classList.remove('zoomed');
+            document.getElementById('lightbox').classList.remove('active');
+            document.body.classList.remove('lightbox-open');
+        }
+        function toggleZoom() {
+            document.getElementById('lightbox-img').classList.toggle('zoomed');
+        }
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
+        document.addEventListener('DOMContentLoaded', () => {
+            document.getElementById('lightbox-img').addEventListener('click', e => {
+                e.stopPropagation();
+                toggleZoom();
+            });
+            document.querySelectorAll('.lightbox-link').forEach(a => {
+                a.addEventListener('click', e => {
+                    e.preventDefault();
+                    openLightbox(a.href, a.querySelector('img')?.alt);
+                });
+            });
+            document.querySelectorAll('.gallery img, .post-body img').forEach(img => {
+                if (!img.closest('.lightbox-link')) {
+                    img.addEventListener('click', () => openLightbox(img.src, img.alt));
+                }
+            });
+        });
+    </script>
+
+    
+    <dialog id="obs-explorer-dialog" class="obs-explorer-dialog">
+        <div class="obs-explorer-container">
+            <button class="obs-explorer-close" onclick="closeObsExplorer()" aria-label="Stäng">&times;</button>
+            <h2 id="obs-explorer-title" class="obs-explorer-title">Historiska fyndplatser</h2>
+
+            <div class="obs-explorer-grid">
+                
+                <div class="obs-explorer-map-wrap">
+                    <div id="obs-explorer-map" class="obs-explorer-map"></div>
+                </div>
+
+                
+                <div class="obs-explorer-panel">
+                    
+                    <div class="obs-explorer-filters">
+                        <button class="obs-period-pill active" data-period="all">Alla</button>
+                        <button class="obs-period-pill" data-period="current">I år</button>
+                        <button class="obs-period-pill" data-period="last-year">Förra året</button>
+                        <button class="obs-period-pill" data-period="decade">2–10 år</button>
+                        <button class="obs-period-pill" data-period="older">Äldre</button>
+                    </div>
+
+                    
+                    <div id="obs-explorer-stats" class="obs-explorer-stats">Laddar...</div>
+
+                    
+                    <div class="obs-explorer-legend">
+                        <div class="legend-item"><span class="legend-dot" style="background: #dc2626;"></span>I år</div>
+                        <div class="legend-item"><span class="legend-dot" style="background: #f97316;"></span>Förra året</div>
+                        <div class="legend-item"><span class="legend-dot" style="background: #eab308;"></span>2–10 år</div>
+                        <div class="legend-item"><span class="legend-dot" style="background: #9ca3af;"></span>Äldre</div>
+                    </div>
+
+                    
+                    <div id="obs-explorer-list" class="obs-explorer-list"></div>
+
+                    
+                    <div id="obs-explorer-loading" class="obs-explorer-loading" style="display: none;">Laddar fyndplatser...</div>
+
+                    
+                    <p class="obs-explorer-disclaimer">
+                        Observera att allmänna fåglar ofta underrapporteras på Artportalen. Även för vanliga arter kan antalet fyndplatser vara lågt.
+                    </p>
+                </div>
+            </div>
+        </div>
+    </dialog>
+
+    <style>
+         
+        .obs-explorer-dialog {
+            padding: 0;
+            border: none;
+            border-radius: 12px;
+            background: transparent;
+            outline: none;
+            margin: auto;
+            width: 100vw;
+            height: 100vh;
+            max-width: 100vw;
+            max-height: 100vh;
+            overflow: hidden;
+        }
+
+        .obs-explorer-dialog::backdrop {
+            background: rgba(0, 0, 0, 0.88);
+            backdrop-filter: blur(6px);
+        }
+
+        .obs-explorer-container {
+            width: 100%;
+            height: 100%;
+            background: #fff;
+            padding: 1.25rem 1.5rem;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            box-sizing: border-box;
+        }
+
+        .obs-explorer-close {
+            position: absolute;
+            top: 0.75rem;
+            right: 0.75rem;
+            width: 44px;
+            height: 44px;
+            background: #f1f5f9;
+            color: #64748b;
+            border: none;
+            border-radius: 50%;
+            font-size: 1.8rem;
+            line-height: 1;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+            transition: background 0.2s, color 0.2s;
+        }
+
+        .obs-explorer-close:hover {
+            background: #e2e8f0;
+            color: #1e293b;
+        }
+
+        .obs-explorer-title {
+            margin: 0 0 0.75rem 0;
+            color: #1e293b;
+            text-align: center;
+            font-size: clamp(1.1rem, 2.5vw, 1.6rem);
+            font-weight: 600;
+            letter-spacing: -0.02em;
+        }
+
+        .obs-explorer-grid {
+            flex: 1;
+            display: grid;
+            grid-template-columns: 1.6fr 1fr;
+            gap: 1rem;
+            min-height: 0;
+            overflow: hidden;
+        }
+
+         
+        .obs-explorer-map-wrap {
+            border-radius: 8px;
+            overflow: hidden;
+            border: 1px solid #e2e8f0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .obs-explorer-map {
+            width: 100%;
+            height: 100%;
+            min-height: 300px;
+        }
+
+         
+        .obs-explorer-panel {
+            display: flex;
+            flex-direction: column;
+            gap: 0.6rem;
+            min-height: 0;
+            overflow: hidden;
+        }
+
+         
+        .obs-explorer-filters {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.4rem;
+        }
+
+        .obs-period-pill {
+            padding: 0.35rem 0.75rem;
+            border: 1px solid #e2e8f0;
+            border-radius: 9999px;
+            background: #f8fafc;
+            color: #64748b;
+            font-size: 0.8rem;
+            font-weight: 500;
+            cursor: pointer;
+            transition: all 0.2s;
+            white-space: nowrap;
+        }
+
+        .obs-period-pill:hover {
+            background: #f1f5f9;
+            border-color: #cbd5e1;
+        }
+
+        .obs-period-pill.active {
+            background: #1e293b;
+            color: #fff;
+            border-color: #1e293b;
+        }
+
+         
+        .obs-explorer-stats {
+            font-size: 0.82rem;
+            color: #64748b;
+            font-weight: 500;
+            padding: 0.25rem 0;
+        }
+
+         
+        .obs-explorer-legend {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            font-size: 0.78rem;
+            color: #64748b;
+            padding: 0.35rem 0;
+            border-bottom: 1px solid #f1f5f9;
+        }
+
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .legend-dot {
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 50%;
+            opacity: 0.85;
+        }
+
+         
+        .obs-explorer-list {
+            flex: 1;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 0.4rem;
+            padding-right: 0.25rem;
+            min-height: 0;
+        }
+
+        .obs-explorer-card {
+            padding: 0.65rem 0.75rem;
+            background: #f8fafc;
+            border-radius: 8px;
+            border-left: 3px solid var(--period-color, #9ca3af);
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .obs-explorer-card:hover {
+            background: #f1f5f9;
+            transform: translateX(2px);
+        }
+
+        .obs-explorer-card.active {
+            background: #eff6ff;
+            border-left-width: 4px;
+            box-shadow: 0 1px 4px rgba(0, 0, 0, 0.08);
+        }
+
+        .obs-explorer-card.pulse-highlight {
+            animation: obs-pulse 0.6s ease-out 2;
+        }
+
+        @keyframes obs-pulse {
+            0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+            70% { box-shadow: 0 0 0 8px rgba(59, 130, 246, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+        }
+
+        .obs-card-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            gap: 0.5rem;
+        }
+
+        .obs-card-locality {
+            font-weight: 600;
+            font-size: 0.88rem;
+            color: #1e293b;
+            line-height: 1.3;
+        }
+
+        .obs-card-count {
+            font-size: 0.75rem;
+            color: #64748b;
+            white-space: nowrap;
+            font-weight: 500;
+        }
+
+        .obs-card-meta {
+            margin-top: 0.2rem;
+            font-size: 0.78rem;
+            color: #64748b;
+        }
+
+        .obs-explorer-empty {
+            text-align: center;
+            padding: 2rem 1rem;
+            color: #94a3b8;
+            font-style: italic;
+        }
+
+        .obs-explorer-loading {
+            text-align: center;
+            padding: 1rem;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .obs-explorer-disclaimer {
+            text-align: center;
+            font-size: 0.75rem;
+            color: #94a3b8;
+            font-style: italic;
+            margin: 0.5rem 0 0;
+            line-height: 1.4;
+        }
+
+         
+        .obs-explorer-popup strong {
+            color: #1e293b;
+        }
+
+         
+        @media (max-width: 768px) {
+            .obs-explorer-dialog {
+                border-radius: 0;
+            }
+
+            .obs-explorer-container {
+                padding: 1rem;
+            }
+
+            .obs-explorer-grid {
+                grid-template-columns: 1fr;
+                grid-template-rows: 1fr 1fr;
+            }
+
+            .obs-explorer-map {
+                min-height: 200px;
+            }
+
+            .obs-explorer-title {
+                font-size: 1.1rem;
+                margin-bottom: 0.5rem;
+            }
+
+            .obs-explorer-close {
+                width: 36px;
+                height: 36px;
+                font-size: 1.5rem;
+            }
+        }
+
+         
+        .obs-explorer-list::-webkit-scrollbar {
+            width: 5px;
+        }
+        .obs-explorer-list::-webkit-scrollbar-track {
+            background: transparent;
+        }
+        .obs-explorer-list::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .obs-explorer-list::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+    </style>
+
+    <script src="/js/obs-explorer.js"></script>
+
+    
+    <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
+    <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+    <script>window.siteBaseURL = "https:\/\/astorpsfaglar.se\/";</script>
+    <script src="/js/location-popup.js"></script>
+
+    
+<script>
+    window.siteBaseURL = 'https:\/\/astorpsfaglar.se\/';
+    window.arshjulTaxonomy = [
+        
+        "Knölsvan", "Mindre sångsvan", "Sångsvan", "Prutgås", "Rödhalsad gås", "Kanadagås", "Vitkindad gås", "Stripgås", "Grågås", "Bläsgås", "Tundragås", "Spetsbergsgås", "Skogsgås", "Nilgås", "Gravand", "Ejder", "Knipa", "Salskrake", "Storskrake", "Brunand", "Vigg", "Årta", "Skedand", "Snatterand", "Bläsand", "Gräsand", "Stjärtand", "Kricka", "Rapphöna", "Fasan", "Vaktel", "Smådopping", "Gråhakedopping", "Gök", "Turturduva", "Turkduva", "Ringduva", "Klippduva (tamduva)", "Skogsduva", "Trana", "Vattenrall", "Kornknarr", "Småfläckig sumphöna", "Rörhöna", "Sothöna", "Skärfläcka", "Strandskata", "Ljungpipare", "Större strandpipare", "Mindre strandpipare", "Tofsvipa", "Småspov", "Storspov", "Rödspov", "Dvärgbeckasin", "Morkulla", "Dubbelbeckasin", "Enkelbeckasin", "Drillsnäppa", "Skogssnäppa", "Grönbena", "Rödbena", "Svartsnäppa", "Gluttsnäppa", "Brushane", "Mosnäppa", "Småsnäppa", "Fisktärna", "Skrattmås", "Svarthuvad mås", "Fiskmås", "Kaspisk trut", "Gråtrut", "Havstrut", "Silltrut", "Stormfågel", "Svart stork", "Vit stork", "Storskarv", "Ägretthäger", "Gråhäger", "Nattskärra", "Tornseglare", "Jorduggla", "Hornuggla", "Berguv", "Kattuggla", "Fiskgjuse", "Bivråk", "Stäppörn", "Kungsörn", "Sparvhök", "Duvhök", "Stäpphök", "Blå kärrhök", "Brun kärrhök", "Röd glada", "Brun glada", "Havsörn", "Fjällvråk", "Ormvråk", "Kungsfiskare", "Göktyta", "Gröngöling", "Spillkråka", "Större hackspett", "Mindre hackspett", "Tornfalk", "Aftonfalk", "Stenfalk", "Lärkfalk", "Pilgrimsfalk", "Varfågel", "Törnskata", "Nötskrika", "Skata", "Nötkråka", "Kaja", "Råka", "Korp", "Gråkråka", "Blåmes", "Talgoxe", "Svartmes", "Tofsmes", "Entita", "Talltita", "Trädlärka", "Sånglärka", "Härmsångare", "Sävsångare", "Kärrsångare", "Rörsångare", "Gräshoppsångare", "Backsvala", "Ladusvala", "Hussvala", "Stjärtmes", "Grönsångare", "Lövsångare", "Gransångare", "Lundsångare", "Trädgårdssångare", "Svarthätta", "Ärtsångare", "Törnsångare", "Sidensvans", "Brandkronad kungsfågel", "Kungsfågel", "Nötväcka", "Trädkrypare", "Trädgårdsträdkrypare", "Gärdsmyg", "Stare", "Strömstare", "Dubbeltrast", "Taltrast", "Rödvingetrast", "Koltrast", "Björktrast", "Ringtrast", "Grå flugsnappare", "Rödhake", "Näktergal", "Mindre flugsnappare", "Svartvit flugsnappare", "Svart rödstjärt", "Rödstjärt", "Buskskvätta", "Stenskvätta", "Järnsparv", "Pilfink", "Gråsparv", "Forsärla", "Gulärla", "Sädesärla", "Trädpiplärka", "Rödstrupig piplärka", "Ängspiplärka", "Bergfink", "Bofink", "Stenknäck", "Tallbit", "Domherre", "Grönfink", "Vinterhämpling", "Hämpling", "Gråsiska", "Bändelkorsnäbb", "Större korsnäbb", "Mindre korsnäbb", "Steglits", "Gulhämpling", "Grönsiska", "Snösparv", "Sävsparv", "Kornsparv", "Gulsparv", 
+    ];
+
+    
+    document.addEventListener("DOMContentLoaded", () => {
+        const btnToggleTips = document.getElementById("btn-toggle-tips");
+        const btnToggleKalender = document.getElementById("btn-toggle-kalender");
+        const btnCloseTips = document.getElementById("btn-close-tips");
+        const btnCloseKalender = document.getElementById("btn-close-kalender");
+
+        const panelTips = document.getElementById("panel-tips");
+        const panelKalender = document.getElementById("panel-kalender");
+        const panelArshjul = document.getElementById("panel-arshjul");
+
+        const allBtns = [btnToggleTips, btnToggleKalender].filter(Boolean);
+
+        function showPanel(activePanel) {
+            [panelTips, panelKalender, panelArshjul].forEach(p => {
+                if (p) p.style.display = "none";
+            });
+            if (activePanel) activePanel.style.display = "block";
+
+            
+            allBtns.forEach(b => {
+                b.style.background = 'none';
+                b.style.color = '#475569';
+                b.style.borderColor = '#cbd5e1';
+            });
+        }
+
+        function activateBtn(btn) {
+            btn.style.background = '#2d5016';
+            btn.style.color = 'white';
+            btn.style.borderColor = '#2d5016';
+        }
+
+        if (btnToggleTips) {
+            btnToggleTips.addEventListener("click", () => {
+                const isHidden = panelTips.style.display === "none";
+                if (isHidden) {
+                    showPanel(panelTips);
+                    activateBtn(btnToggleTips);
+                } else {
+                    showPanel(panelArshjul);
+                }
+            });
+        }
+
+        if (btnToggleKalender) {
+            btnToggleKalender.addEventListener("click", () => {
+                const isHidden = panelKalender.style.display === "none";
+                if (isHidden) {
+                    showPanel(panelKalender);
+                    activateBtn(btnToggleKalender);
+                } else {
+                    showPanel(panelArshjul);
+                }
+            });
+        }
+
+        if (btnCloseTips) {
+            btnCloseTips.addEventListener("click", () => showPanel(panelArshjul));
+        }
+        if (btnCloseKalender) {
+            btnCloseKalender.addEventListener("click", () => showPanel(panelArshjul));
+        }
+    });
+
+</script>
+
+<script src="/js/artguide.14d5878b7b124e0406451d49442d47299fb2a95b5c216ca878e6d289f13def1a.js"></script>
+<script src="/js/arshjul.js?v=1785186517" defer></script>
+
+
+    
+    <script data-goatcounter="https://hlgk.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+
+    
+    
+</body>
+
+</html>

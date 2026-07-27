@@ -1,1 +1,33 @@
-<?xml version="1.0" encoding="utf-8" standalone="yes"?><rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom"><channel><title>Fotons on Fågelåret i Åstorp</title><link>https://astorpsfaglar.se/foton/</link><description>Recent content in Fotons on Fågelåret i Åstorp</description><generator>Hugo</generator><language>sv</language><lastBuildDate>Thu, 04 Jun 2026 19:26:01 +0200</lastBuildDate><atom:link href="https://astorpsfaglar.se/foton/index.xml" rel="self" type="application/rss+xml"/><item><title>Vy över Körslättaravinen</title><link>https://astorpsfaglar.se/foton/2026-06-06-korslattaravinen/</link><pubDate>Thu, 04 Jun 2026 19:26:01 +0200</pubDate><guid>https://astorpsfaglar.se/foton/2026-06-06-korslattaravinen/</guid><description/></item><item><title>Svärdsliljor i morgonljus</title><link>https://astorpsfaglar.se/foton/2026-06-06-svardsliljor/</link><pubDate>Thu, 04 Jun 2026 19:25:01 +0200</pubDate><guid>https://astorpsfaglar.se/foton/2026-06-06-svardsliljor/</guid><description/></item><item><title>Närbild på blommorna</title><link>https://astorpsfaglar.se/foton/2026-06-06-svardsliljor-narbild/</link><pubDate>Wed, 03 Jun 2026 19:13:00 +0200</pubDate><guid>https://astorpsfaglar.se/foton/2026-06-06-svardsliljor-narbild/</guid><description/></item></channel></rss>
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>Fotons on Fågelåret i Åstorp</title>
+    <link>https://astorpsfaglar.se/foton/</link>
+    <description>Recent content in Fotons on Fågelåret i Åstorp</description>
+    <generator>Hugo</generator>
+    <language>sv</language>
+    <lastBuildDate>Thu, 04 Jun 2026 19:26:01 +0200</lastBuildDate>
+    <atom:link href="https://astorpsfaglar.se/foton/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Vy över Körslättaravinen</title>
+      <link>https://astorpsfaglar.se/foton/2026-06-06-korslattaravinen/</link>
+      <pubDate>Thu, 04 Jun 2026 19:26:01 +0200</pubDate>
+      <guid>https://astorpsfaglar.se/foton/2026-06-06-korslattaravinen/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Svärdsliljor i morgonljus</title>
+      <link>https://astorpsfaglar.se/foton/2026-06-06-svardsliljor/</link>
+      <pubDate>Thu, 04 Jun 2026 19:25:01 +0200</pubDate>
+      <guid>https://astorpsfaglar.se/foton/2026-06-06-svardsliljor/</guid>
+      <description></description>
+    </item>
+    <item>
+      <title>Närbild på blommorna</title>
+      <link>https://astorpsfaglar.se/foton/2026-06-06-svardsliljor-narbild/</link>
+      <pubDate>Wed, 03 Jun 2026 19:13:00 +0200</pubDate>
+      <guid>https://astorpsfaglar.se/foton/2026-06-06-svardsliljor-narbild/</guid>
+      <description></description>
+    </item>
+  </channel>
+</rss>
