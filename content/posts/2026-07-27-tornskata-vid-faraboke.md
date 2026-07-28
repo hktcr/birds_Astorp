@@ -1,7 +1,7 @@
 ---
 title: "Törnskata vid Fåraböke"
 date: 2026-07-27
-draft: false
+draft: true
 location: "Fåraböke"
 species:
   - Törnskata
