@@ -138,6 +138,8 @@
         var dpr = window.devicePixelRatio || 1;
         var rect = canvas.parentElement.getBoundingClientRect();
         var size = Math.min(rect.width, 380);
+        // Hidden tabs have zero width. Keep the existing drawing until visible.
+        if (size <= 82) return;
         canvas.width = size * dpr;
         canvas.height = size * dpr;
         canvas.style.width = size + 'px';
@@ -629,6 +631,19 @@
 
         loadSavedLocation();
         update();
+
+        // A tab becoming visible does not trigger a window resize.
+        if (window.ResizeObserver) {
+            var previousWidth = 0;
+            var observer = new ResizeObserver(function (entries) {
+                var width = entries[0].contentRect.width;
+                if (width !== previousWidth) {
+                    previousWidth = width;
+                    renderWheel(canvas);
+                }
+            });
+            observer.observe(canvas.parentElement);
+        }
 
         // Uppdatera varje minut
         setInterval(update, UPDATE_INTERVAL);

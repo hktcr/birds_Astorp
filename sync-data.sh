@@ -14,6 +14,7 @@ set -e
 cd "$(dirname "$0")"
 
 if [[ "$1" == "--verify" ]]; then
+    python3 scripts/verify-data.py
     echo "🔍 Verifierar synk..."
     if diff -q data/checklist-2026.json static/data/checklist-2026.json > /dev/null 2>&1; then
         echo "✅ checklist-2026.json är synkad"
@@ -44,7 +45,7 @@ elif [[ "$1" == "--deploy" ]]; then
     python3 scripts/generate_radial_data.py
     
     echo "🏗️  Bygger Hugo-sajt..."
-    hugo --minify --quiet
+    bash scripts/build.sh --quiet
     echo "✅ Hugo-build klar"
     
     echo "🚀 Publicerar till GitHub..."
@@ -66,10 +67,9 @@ else
     python3 scripts/generate_radial_data.py
     
     echo "🏗️  Bygger Hugo-sajt..."
-    hugo --minify --quiet
+    bash scripts/build.sh --quiet
     echo "✅ Hugo-build klar"
     echo ""
     echo "💡 Kör 'git add -A && git commit -m \"...\" && git push' för att publicera"
     echo "   Eller: ./sync-data.sh --deploy för full automatisk publicering"
 fi
-

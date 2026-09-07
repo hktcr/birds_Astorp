@@ -98,12 +98,14 @@ hugo server -D
 # Öppna: http://localhost:1313/birds_Astorp/
 
 # Publicera
-hugo --minify
+bash scripts/build.sh
 git add -A
 git commit -m "Beskrivning"
 git push
 # GitHub Pages serverar från docs/-mappen automatiskt
 ```
+
+`scripts/build.sh` synkar checklistan och lokalerna före Hugo och verifierar alla tre datakopior efteråt. Granska ändringarna före commit och publicering. CARTO:s klientnyckel kan anges vid byggtid med Hugo-parametern `cartoBasemapKey` (miljövariabel `HUGO_PARAMS_CARTOBASEMAPKEY`). Utan nyckel används OpenStreetMap. Ange aldrig någon privat CARTO-kontonyckel här; parametern publiceras i kartans HTML.
 
 ---
 

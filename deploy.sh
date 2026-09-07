@@ -8,7 +8,7 @@ echo "🖼️  Genererar thumbnails (800px bredd)..."
 bash scripts/generate-thumbnails.sh
 
 echo "🔨 Building Hugo..."
-hugo --minify
+bash scripts/build.sh
 
 echo "📋 Syncing data → docs/data..."
 mkdir -p docs/data

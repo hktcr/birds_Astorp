@@ -38,19 +38,16 @@ birds_Astorp/
 
 ## Deploy-ritual
 
-Använd **alltid** `deploy.sh` för att publicera ändringar:
+Bygg och verifiera först, innan commit och separat publicering:
 
 ```bash
-./deploy.sh
+bash scripts/build.sh
+node scripts/test-weather.cjs
 ```
 
-Skriptet kör:
-1. `hugo --minify` — bygger sajten till `docs/`
-2. `cp data/*.json docs/data/` — synkar JSON-data
-3. `git add -A && git commit && git push`
+Byggskriptet synkar checklistan och lokalerna från `data/` till `static/data/`, kör Hugo och jämför sedan alla tre kopiorna inklusive `docs/data/`. Ett synkfel stoppar bygget. Det gör ingen commit eller push. `deploy.sh` använder samma byggsteg men är interaktivt; gAIa följer `/Åstorp-2026` steg D enligt kommentaren i det skriptet.
 
-**Kör aldrig** `hugo` och `git push` separat — det skapar risk för skew mellan byggtid-data (startsidan) och klient-data (artlista/karta).
-**Pusha heller aldrig** ändringar i `layouts/`, `static/`, eller `content/` rakt upp med vanliga git-kommandon, eftersom GitHub Pages serveras från `docs/`-mappen på main-branchen. Om du inte kör `deploy.sh` så kommer ändringarna finnas i källkoden, men den statiska produktsajten (`docs/`) uppdateras aldrig och visar fortsättningsvis gammal bruten kod!
+Publicera både granskade källändringar och motsvarande byggda filer i `docs/` på `main`. Kör byggskriptet i stället för ett fristående Hugo-bygge så att gamla klientdata inte återpubliceras. Granska arbetsbranch, diff och eventuella utkast före commit; gör push separat.
 
 ---
 
@@ -120,12 +117,7 @@ Numreringen beräknas dynamiskt av JS — inga nummer lagras i JSON. CSS-klassen
 
 ### Produktionsfilen: `docs/index.html`
 
-> ⚠️ **KRITISKT:** `docs/index.html` innehåller en **inline `<script>`-tagg** med en kopia av all observationsdata (minifierad). Denna uppdateras **INTE** automatiskt av `hugo --minify` eller `deploy.sh`.
-
-Vid nya observationer måste `docs/index.html` uppdateras manuellt:
-1. Lägg till ny observation i inline `data.observations`-arrayen
-2. Kontrollera att hue-beräkningen finns intakt
-3. Kontrollera att observationsspårets numrering (`sn`/`nn`-variabler) fungerar
+`docs/index.html` innehåller inline observationsdata som genereras automatiskt från `data/checklist-2026.json` via `layouts/index.html`. Redigera källdatan och kör `bash scripts/build.sh`; handredigera inte den byggda HTML-filen. Kontrollera sedan artantal, senaste observation och observationsspårets numrering.
 
 Se `/Åstorp-2026`-workflowen, steg **A3b** för detaljerade instruktioner.
 

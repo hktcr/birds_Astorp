@@ -1288,7 +1288,7 @@
             var dirVals = dirData.value || [];
             var spdVals = spdData.value || [];
             if (dirVals.length === 0 || spdVals.length === 0) {
-                document.getElementById('wind-beaufort').textContent = 'Ingen data';
+                document.getElementById('wind-timestamp').textContent = 'Vinddata saknas';
                 return;
             }
 
@@ -1298,6 +1298,9 @@
             var deg = parseFloat(latestDir.value);
             var spd = parseFloat(latestSpd.value);
             var timestamp = latestSpd.date;
+            if (!Number.isFinite(deg) || !Number.isFinite(spd)) {
+                throw new Error('Ogiltiga vindvärden');
+            }
 
             // Vindpil — SMHI anger varifrån vinden blåser.
             // Pilen ska peka dit vinden blåser, dvs rotera 180° ytterligare.
@@ -1312,7 +1315,7 @@
 
             // Beaufort-skala
             var beaufort = getBeaufortText(spd);
-            document.getElementById('wind-beaufort').textContent = beaufort;
+            document.getElementById('wind-speed-value').title = beaufort;
 
             // Riktningstext
             var dirText = getWindDirectionText(deg);
@@ -1350,8 +1353,7 @@
             hero.classList.add('vader-now-hero-loaded');
         }).catch(function (err) {
             console.warn('Kunde inte hämta realtidsvinddata:', err);
-            var bf = document.getElementById('wind-beaufort');
-            if (bf) bf.textContent = 'Data ej tillgänglig';
+            document.getElementById('wind-timestamp').textContent = 'Vinddata ej tillgänglig';
         });
     }
 
@@ -1476,18 +1478,16 @@
     function buildPressureNowWidget() {
         var STATION_PRESSURE = '62040'; // Helsingborg A
         var urlPressure = 'https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/9/station/' + STATION_PRESSURE + '/period/latest-day/data.json';
-        var urlHumidity = 'https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/6/station/' + STATION_PRESSURE + '/period/latest-hour/data.json';
-
-        Promise.all([
-            fetch(urlPressure).then(function(r) { return r.json(); }),
-            fetch(urlHumidity).then(function(r) { return r.json(); })
-        ]).then(function(results) {
-            var pData = results[0].value || [];
-            var hData = results[1].value || [];
+        fetch(urlPressure).then(function(r) {
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            return r.json();
+        }).then(function(result) {
+            var pData = result.value || [];
 
             if (pData.length === 0) return;
 
             var currentP = parseFloat(pData[pData.length - 1].value);
+            if (!Number.isFinite(currentP)) throw new Error('Ogiltigt lufttryck');
             document.getElementById('pressure-now-value').textContent = currentP.toFixed(1);
             
             // Beräkna korttidstrend (senaste ~3 timmarna)
@@ -1498,7 +1498,6 @@
             var diffP = currentP - pastP;
 
             // Trend-visning i tryck-kortet
-            var trendTextEl = document.getElementById('pressure-trend-text');
             var trendIconEl = document.getElementById('pressure-trend-icon');
             var iconMarkup = '';
             var textMarkup = '';
@@ -1517,13 +1516,13 @@
                 colorMarkup = '#d94a4a';
             }
             trendIconEl.innerHTML = iconMarkup;
-            trendTextEl.textContent = textMarkup;
-            if (document.getElementById('pressure-now-trend')) {
-                document.getElementById('pressure-now-trend').style.color = colorMarkup;
-            }
+            trendIconEl.title = textMarkup;
+            trendIconEl.setAttribute('role', 'img');
+            trendIconEl.setAttribute('aria-label', 'Lufttryck: ' + textMarkup.toLowerCase());
+            trendIconEl.style.color = colorMarkup;
 
         }).catch(function(err) {
-            console.warn('Kunde inte hämta tryck/fuktighet:', err);
+            console.warn('Kunde inte hämta lufttryck:', err);
         });
     }
 

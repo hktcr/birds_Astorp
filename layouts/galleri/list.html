@@ -1359,7 +1359,7 @@
                         <img src="{{ $thumbUrl }}" alt="{{ $alt }}" decoding="async">
                         <div class="gallery-overlay">
                             <span class="gallery-title">{{ $post.Title }}</span>
-                            <span class="gallery-date">{{ $post.Date.Format "2 Jan, 2006" }}</span>
+                            <span class="gallery-date">{{ partial "date-sv.html" $post.Date }}</span>
                             {{ with $speciesTags }}
                             <span class="gallery-species">{{ delimit . ", " }}</span>
                             {{ end }}
