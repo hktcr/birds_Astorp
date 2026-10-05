@@ -277,6 +277,12 @@
             "lat": 56.12542568564323,
             "lng": 12.922705175235263,
             "description": ""
+        },
+        {
+            "name": "Söderåsen ovanför Maglaby (ungefärlig observationsplats)",
+            "lat": 56.101,
+            "lng": 13.053,
+            "description": "Ungefärlig observationsplats för förbiflygande mindre korsnäbbar den 4 oktober 2026. Markören visar platsområdet, inte fåglarnas exakta position."
         }
     ]
 }

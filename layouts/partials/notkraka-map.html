@@ -1,0 +1,41 @@
+{{- $id := .id -}}
+<link rel="stylesheet" href="{{ "css/notkraka-map.css" | relURL }}">
+<figure class="notkraka-map" id="{{ $id }}" data-notkraka-map
+    data-boundary-url="{{ "data/astorp-kommun.geojson" | relURL }}"
+    data-fallback-url="{{ "data/notkraka-astorp-fallback.json" | relURL }}"
+    aria-labelledby="{{ $id }}-title">
+    <div class="nkm-heading">
+        <h3 id="{{ $id }}-title">Nötkråka i Åstorps kommun</h3>
+        <button type="button" class="nkm-refresh" disabled>Hämta igen</button>
+    </div>
+    <p class="nkm-status" role="status" aria-live="polite">Hämtar offentliga rapporter från Artportalen…</p>
+    <div class="nkm-filters" aria-label="Välj observationsperiod">
+        <button type="button" data-period="all" aria-pressed="true">Alla år</button>
+        <button type="button" data-period="recent" aria-pressed="false">Senaste 30 dagarna</button>
+        <button type="button" data-period="current" aria-pressed="false">I år</button>
+        <button type="button" data-period="last-year" aria-pressed="false">Förra året</button>
+        <button type="button" data-period="decade" aria-pressed="false">2–10 år</button>
+        <button type="button" data-period="older" aria-pressed="false">Äldre</button>
+    </div>
+    <div class="nkm-canvas" role="region" aria-label="Karta över rapporterade nötkråkor i Åstorps kommun"></div>
+    <div class="nkm-legend" aria-label="Markörernas åldersfärger">
+        <span><i class="nkm-current"></i>I år</span>
+        <span><i class="nkm-last-year"></i>Förra året</span>
+        <span><i class="nkm-decade"></i>2–10 år</span>
+        <span><i class="nkm-older"></i>Äldre</span>
+    </div>
+    <p class="nkm-count"></p>
+    <details class="nkm-details">
+        <summary>Visa rapporterna som lista</summary>
+        <ul class="nkm-list"></ul>
+    </details>
+    <figcaption>
+        Rapporterade nötkråkor i Åstorps kommun. Färgen visar åldern på den senaste rapporten på varje fyndplats i det valda urvalet:
+        rött i år, orange förra året, gult 2–10 år sedan och grått äldre. Större markörer betyder fler rapporter, inte fler individer.
+        Klicka på en markör för datum, antal och källänk. Data hämtas vid varje sidladdning från
+        <a href="https://www.artportalen.se/">Artportalen</a> via SLU:s offentliga SOS-tjänst.
+        Nya rapporter kan dröja och skyddade fynd visas inte. Kartan visar rapporterade fynd, inte alla förekomster.
+    </figcaption>
+    <noscript><p>Kartan behöver JavaScript. <a href="{{ "species/nötkråka/" | relURL }}">Läs om nötkråka i Fågelatlasen</a>.</p></noscript>
+</figure>
+<script src="{{ "js/notkraka-map.js" | relURL }}" defer></script>

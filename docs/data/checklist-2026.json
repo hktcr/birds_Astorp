@@ -1198,8 +1198,16 @@
       "location": "Fåraböke",
       "lat": 56.07789001813259,
       "lng": 13.067594119415102
+    },
+    {
+      "species": "Mindre korsnäbb",
+      "latin": "Loxia curvirostra",
+      "date": "2026-10-04",
+      "location": "Söderåsen ovanför Maglaby (ungefärlig observationsplats)",
+      "lat": 56.101,
+      "lng": 13.053
     }
   ],
-  "last_updated": "2026-06-05T10:23:03Z",
-  "lastUpdated": "2026-06-05 10:23:03"
+  "last_updated": "2026-10-04T18:53:27Z",
+  "lastUpdated": "2026-10-04 20:53:27"
 }

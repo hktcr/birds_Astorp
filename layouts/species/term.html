@@ -181,6 +181,12 @@
             {{/* ── MAIN COLUMN ── */}}
             <div class="species-main-col">
 
+                {{ if eq $speciesName "Nötkråka" }}
+                <section class="species-section">
+                    {{ partial "notkraka-map.html" (dict "id" "notkraka-atlas-map") }}
+                </section>
+                {{ end }}
+
                 {{/* Mini-gallery with lightbox */}}
                 {{ if gt (len $allImages) 0 }}
                 <section class="species-section">

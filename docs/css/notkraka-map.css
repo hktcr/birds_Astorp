@@ -1,0 +1,37 @@
+/* Scoped to the embedded article map; leaves the existing atlas explorer unchanged. */
+.notkraka-map { margin: 2rem 0; padding: 1rem; background: #fff; border: 1px solid #e2e8f0; border-radius: 12px; min-width: 0; }
+.notkraka-map .nkm-heading { display: flex; align-items: center; justify-content: space-between; gap: .75rem; }
+.notkraka-map .nkm-heading h3 { margin: 0; font-size: 1.1rem; }
+.notkraka-map .nkm-refresh, .notkraka-map .nkm-filters button { font: inherit; font-size: .75rem; border: 1px solid #cbd5e1; background: #f8fafc; color: #475569; border-radius: 20px; padding: .45rem .7rem; cursor: pointer; line-height: 1.4; min-height: 36px; }
+.notkraka-map .nkm-refresh { flex: 0 0 auto; }
+.notkraka-map .nkm-refresh:disabled { cursor: wait; opacity: .6; }
+.notkraka-map .nkm-filters { display: flex; flex-wrap: wrap; gap: .35rem; margin: .8rem 0; }
+.notkraka-map .nkm-filters button[aria-pressed="true"] { background: #1f2937; color: #fff; border-color: #1f2937; }
+.notkraka-map button:focus-visible, .notkraka-map summary:focus-visible, .notkraka-map a:focus-visible { outline: 3px solid #2b5a2b; outline-offset: 3px; }
+.notkraka-map .nkm-status, .notkraka-map .nkm-count { margin: .6rem 0; font-size: .78rem; color: #475569; line-height: 1.5; }
+.notkraka-map .nkm-status[data-state="reserve"], .notkraka-map .nkm-status[data-state="error"] { color: #92400e; background: #fffbeb; padding: .6rem; border-left: 3px solid #d97706; border-radius: 4px; }
+.notkraka-map .nkm-canvas { height: 420px; width: 100%; border-radius: 8px; background: #e2e8f0; isolation: isolate; }
+.notkraka-map .nkm-canvas[hidden] { display: none; }
+/* The article's generic image rules must not resize Leaflet's tiles or controls. */
+.notkraka-map .leaflet-container img { max-width: none !important; margin: 0; border-radius: 0; cursor: inherit; }
+.notkraka-map .leaflet-control a { text-decoration: none; }
+.notkraka-map .leaflet-popup-content { font-family: Inter, sans-serif; font-size: .8rem; line-height: 1.5; }
+.notkraka-map .nkm-popup-list { margin: .4rem 0; padding-left: 1.1rem; max-height: 180px; overflow: auto; }
+.notkraka-map .nkm-legend { display: flex; flex-wrap: wrap; gap: .45rem 1rem; margin-top: .65rem; font-size: .75rem; color: #475569; }
+.notkraka-map .nkm-legend span { display: inline-flex; align-items: center; gap: .3rem; }
+.notkraka-map .nkm-legend i { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+.notkraka-map .nkm-current { background: #dc2626; }
+.notkraka-map .nkm-last-year { background: #f97316; }
+.notkraka-map .nkm-decade { background: #eab308; }
+.notkraka-map .nkm-older { background: #9ca3af; }
+.notkraka-map .nkm-details { margin: .75rem 0; font-size: .8rem; }
+.notkraka-map .nkm-details summary { cursor: pointer; font-weight: 600; }
+.notkraka-map .nkm-list { max-height: 320px; overflow: auto; margin: .6rem 0; padding-left: 1.2rem; }
+.notkraka-map .nkm-list li { margin: .5rem 0; line-height: 1.5; }
+.notkraka-map figcaption { font-family: Lora, Georgia, serif; font-size: .78rem; font-style: italic; color: #64748b; margin-top: .8rem; line-height: 1.6; }
+@media (max-width: 600px) {
+    .notkraka-map { padding: .7rem; }
+    .notkraka-map .nkm-canvas { height: 350px; }
+    .notkraka-map .nkm-heading h3 { font-size: 1rem; }
+    .notkraka-map .nkm-filters button, .notkraka-map .nkm-refresh { min-height: 44px; }
+}

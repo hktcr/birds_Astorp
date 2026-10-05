@@ -1,0 +1,298 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "id": "SpeciesObservations.urn:lsid:artportalen.se:sighting:57033251",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.04089687848014,
+          56.09699050110374
+        ]
+      },
+      "properties": {
+        "occurrenceId": "urn:lsid:artportalen.se:sighting:57033251",
+        "url": "https://www.artportalen.se/sighting/57033251",
+        "isPresentObservation": true,
+        "dataProviderId": 1,
+        "startDate": "1995-10-08T22:00:00Z",
+        "decimalLatitude": 56.09699,
+        "decimalLongitude": 13.0409,
+        "coordinateUncertaintyInMeters": 400,
+        "locality": "Salshultskärret med omgivn, Söderåsen, Sk",
+        "municipality": "Åstorp",
+        "dyntaxaTaxonId": 100090,
+        "vernacularName": "nötkråka",
+        "scientificName": "Nucifraga caryocatactes",
+        "isUncertainIdentification": false,
+        "organismQuantity": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SpeciesObservations.urn:lsid:artportalen.se:sighting:68824988",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.03052133694856,
+          56.12445437579085
+        ]
+      },
+      "properties": {
+        "occurrenceId": "urn:lsid:artportalen.se:sighting:68824988",
+        "url": "https://www.artportalen.se/sighting/68824988",
+        "isPresentObservation": true,
+        "dataProviderId": 1,
+        "startDate": "1979-03-10T23:00:00Z",
+        "decimalLatitude": 56.12445,
+        "decimalLongitude": 13.03052,
+        "coordinateUncertaintyInMeters": 927,
+        "locality": "Gustavsfält herrgård, Kvidinge, Sk",
+        "municipality": "Åstorp",
+        "dyntaxaTaxonId": 100090,
+        "vernacularName": "nötkråka",
+        "scientificName": "Nucifraga caryocatactes",
+        "isUncertainIdentification": false,
+        "organismQuantity": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SpeciesObservations.urn:lsid:artportalen.se:sighting:95796027",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.976209194870695,
+          56.128344716535864
+        ]
+      },
+      "properties": {
+        "occurrenceId": "urn:lsid:artportalen.se:sighting:95796027",
+        "url": "https://www.artportalen.se/sighting/95796027",
+        "isPresentObservation": true,
+        "dataProviderId": 1,
+        "startDate": "2021-08-29T08:00:00Z",
+        "decimalLatitude": 56.12834,
+        "decimalLongitude": 12.97621,
+        "coordinateUncertaintyInMeters": 150,
+        "locality": "Heiners ängar, Björnås, Åstorp, Sk",
+        "municipality": "Åstorp",
+        "dyntaxaTaxonId": 100090,
+        "vernacularName": "nötkråka",
+        "scientificName": "Nucifraga caryocatactes",
+        "isUncertainIdentification": false,
+        "organismQuantity": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SpeciesObservations.urn:lsid:artportalen.se:sighting:136907508",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.07298470042889,
+          56.147595358559116
+        ]
+      },
+      "properties": {
+        "occurrenceId": "urn:lsid:artportalen.se:sighting:136907508",
+        "url": "https://www.artportalen.se/sighting/136907508",
+        "isPresentObservation": true,
+        "dataProviderId": 1,
+        "startDate": "2026-09-27T09:30:00Z",
+        "decimalLatitude": 56.1476,
+        "decimalLongitude": 13.07298,
+        "coordinateUncertaintyInMeters": 250,
+        "locality": "Tomarps ene, Sk",
+        "municipality": "Åstorp",
+        "dyntaxaTaxonId": 100090,
+        "vernacularName": "nötkråka",
+        "scientificName": "Nucifraga caryocatactes",
+        "isUncertainIdentification": false,
+        "organismQuantity": 15
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SpeciesObservations.urn:lsid:artportalen.se:sighting:47218462",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          12.96716315995961,
+          56.12885538841985
+        ]
+      },
+      "properties": {
+        "occurrenceId": "urn:lsid:artportalen.se:sighting:47218462",
+        "url": "https://www.artportalen.se/sighting/47218462",
+        "isPresentObservation": true,
+        "dataProviderId": 1,
+        "startDate": "2013-09-28T22:00:00Z",
+        "decimalLatitude": 56.12886,
+        "decimalLongitude": 12.96716,
+        "coordinateUncertaintyInMeters": 400,
+        "locality": "Kalvahagen-Fårhagen, Björnekulla, Sk",
+        "municipality": "Åstorp",
+        "dyntaxaTaxonId": 100090,
+        "vernacularName": "nötkråka",
+        "scientificName": "Nucifraga caryocatactes",
+        "isUncertainIdentification": false,
+        "organismQuantity": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SpeciesObservations.urn:lsid:artportalen.se:sighting:63293817",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.081419880946772,
+          56.0907466612533
+        ]
+      },
+      "properties": {
+        "occurrenceId": "urn:lsid:artportalen.se:sighting:63293817",
+        "url": "https://www.artportalen.se/sighting/63293817",
+        "isPresentObservation": true,
+        "dataProviderId": 1,
+        "startDate": "2001-10-10T22:00:00Z",
+        "decimalLatitude": 56.09075,
+        "decimalLongitude": 13.08142,
+        "coordinateUncertaintyInMeters": 500,
+        "locality": "Forsgård med omgivn, Söderåsen NV, Sk",
+        "municipality": "Åstorp",
+        "dyntaxaTaxonId": 100090,
+        "vernacularName": "nötkråka",
+        "scientificName": "Nucifraga caryocatactes",
+        "isUncertainIdentification": false,
+        "organismQuantity": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SpeciesObservations.urn:lsid:artportalen.se:sighting:136997417",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.087744020546973,
+          56.09419943939143
+        ]
+      },
+      "properties": {
+        "occurrenceId": "urn:lsid:artportalen.se:sighting:136997417",
+        "url": "https://www.artportalen.se/sighting/136997417",
+        "isPresentObservation": true,
+        "dataProviderId": 1,
+        "startDate": "2026-09-30T22:00:00Z",
+        "decimalLatitude": 56.0942,
+        "decimalLongitude": 13.08774,
+        "coordinateUncertaintyInMeters": 250,
+        "locality": "Forsgård med omgivn, Sk",
+        "municipality": "Åstorp",
+        "dyntaxaTaxonId": 100090,
+        "vernacularName": "nötkråka",
+        "scientificName": "Nucifraga caryocatactes",
+        "isUncertainIdentification": false,
+        "organismQuantity": 4
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SpeciesObservations.urn:lsid:artportalen.se:sighting:63498113",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.007192089019977,
+          56.11602145010842
+        ]
+      },
+      "properties": {
+        "occurrenceId": "urn:lsid:artportalen.se:sighting:63498113",
+        "url": "https://www.artportalen.se/sighting/63498113",
+        "isPresentObservation": true,
+        "dataProviderId": 1,
+        "startDate": "1992-08-01T22:00:00Z",
+        "decimalLatitude": 56.11602,
+        "decimalLongitude": 13.00719,
+        "coordinateUncertaintyInMeters": 100,
+        "locality": "Kärreberga stugområde  Söderåsen, Sk",
+        "municipality": "Åstorp",
+        "dyntaxaTaxonId": 100090,
+        "vernacularName": "nötkråka",
+        "scientificName": "Nucifraga caryocatactes",
+        "isUncertainIdentification": false,
+        "organismQuantity": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SpeciesObservations.urn:lsid:artportalen.se:sighting:57819734",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.007317853159751,
+          56.116477195832495
+        ]
+      },
+      "properties": {
+        "occurrenceId": "urn:lsid:artportalen.se:sighting:57819734",
+        "url": "https://www.artportalen.se/sighting/57819734",
+        "isPresentObservation": true,
+        "dataProviderId": 1,
+        "startDate": "1996-04-21T22:00:00Z",
+        "decimalLatitude": 56.11648,
+        "decimalLongitude": 13.00732,
+        "coordinateUncertaintyInMeters": 100,
+        "locality": "Kärreberga stugområde, Söderåsen, Sk",
+        "municipality": "Åstorp",
+        "dyntaxaTaxonId": 100090,
+        "vernacularName": "nötkråka",
+        "scientificName": "Nucifraga caryocatactes",
+        "isUncertainIdentification": false,
+        "organismQuantity": 1
+      }
+    },
+    {
+      "type": "Feature",
+      "id": "SpeciesObservations.urn:lsid:artportalen.se:sighting:96196012",
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          13.072652323773767,
+          56.14777050215211
+        ]
+      },
+      "properties": {
+        "occurrenceId": "urn:lsid:artportalen.se:sighting:96196012",
+        "url": "https://www.artportalen.se/sighting/96196012",
+        "isPresentObservation": true,
+        "dataProviderId": 1,
+        "startDate": "2021-09-19T13:00:00Z",
+        "decimalLatitude": 56.14777,
+        "decimalLongitude": 13.07265,
+        "coordinateUncertaintyInMeters": 100,
+        "locality": "Tomarps ene, Sk",
+        "municipality": "Åstorp",
+        "dyntaxaTaxonId": 100090,
+        "vernacularName": "nötkråka",
+        "scientificName": "Nucifraga caryocatactes",
+        "isUncertainIdentification": false,
+        "organismQuantity": 2
+      }
+    }
+  ],
+  "totalFeatures": 10,
+  "numberMatched": 10,
+  "numberReturned": 10,
+  "timeStamp": "2026-10-04T19:04:55.254Z",
+  "crs": {
+    "type": "name",
+    "properties": {
+      "name": "urn:ogc:def:crs:EPSG::4326"
+    }
+  },
+  "fetchedAt": "2026-10-04T19:04:55.426491+00:00",
+  "source": "SLU SOS WFS, offentliga Artportalen-rapporter, Dyntaxa 100090, Åstorps kommun",
+  "sourceQuery": "https://sosgeo.artdata.slu.se/geoserver/SOS/ows?service=wfs&version=1.0.0&request=GetFeature&typeName=SOS%3ASpeciesObservations&outputFormat=application%2Fjson&maxFeatures=1000&srsName=EPSG%3A4326&CQL_Filter=dyntaxaTaxonId%3D100090+AND+municipality%3D%27%C3%85storp%27+AND+dataProviderId%3D1+AND+isPresentObservation%3DTRUE"
+}
