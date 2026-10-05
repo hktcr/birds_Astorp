@@ -1364,9 +1364,10 @@
                             <span class="gallery-species">{{ delimit . ", " }}</span>
                             {{ end }}
                         </div>
-                        <script type="text/template" class="post-content-template">
+                        {{/* Native template content stays inert, including embedded map scripts. */}}
+                        <template class="post-content-template">
                             {{ $post.Content | safeHTML }}
-                        </script>
+                        </template>
                     </a>
                     {{ end }}
                 </div>
@@ -2074,6 +2075,8 @@
                     slideshowPostLinkEls.forEach(el => el.href = hrefStr);
                     const template = item.querySelector('.post-content-template');
                     if (template) {
+                        // Use innerHTML rather than cloning the fragment: embedded scripts
+                        // must remain inert when displaying a post in the slideshow.
                         slideshowFullContent.innerHTML = template.innerHTML;
                     } else {
                         slideshowFullContent.innerHTML = '';

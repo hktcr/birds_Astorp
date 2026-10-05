@@ -114,3 +114,18 @@ test('Published snapshot is complete, dated and omits reporter identities', () =
     assert(!/recordedBy|reportedBy/.test(JSON.stringify(snapshot)));
     assert(!Number.isNaN(new Date(snapshot.fetchedAt).getTime()));
 });
+
+
+test('Nearby markers paint oldest first without changing newest-first report order', () => {
+    const records = map.normalize(collection([
+        feature({ occurrenceId: 'new', locality: 'Tomarps Ene', startDate: '2026-09-30', decimalLatitude: 56.15452, decimalLongitude: 13.04341 }),
+        feature({ occurrenceId: 'old', locality: 'Tomarps Ene', startDate: '2021-10-02', decimalLatitude: 56.15470, decimalLongitude: 13.04373 })
+    ]), TODAY);
+    const groups = map.groupRecords(records);
+    assert.deepEqual(map.markerOrder(groups).map(g => g.date), ['2021-10-02', '2026-09-30']);
+    assert.deepEqual(groups.map(g => g.date), ['2026-09-30', '2021-10-02']);
+    assert.deepEqual(records.map(r => r.id), ['new', 'old']);
+    assert.equal(map.markerOrder(groups).reduce((sum, g) => sum + g.records.length, 0), 2);
+    assert.equal(map.filterRecords(records, 'current', TODAY).length, 1);
+    assert.equal(map.filterRecords(records, 'decade', TODAY).length, 1);
+});

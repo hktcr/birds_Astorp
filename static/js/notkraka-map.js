@@ -70,6 +70,11 @@
         }
         return [...groups.values()];
     }
+    function markerOrder(groups) {
+        // Leaflet draws later circles on top. Keep recent reports visible where
+        // distinct nearby localities overlap, without changing the report list.
+        return [...groups].sort((a, b) => a.date.localeCompare(b.date));
+    }
     async function fetchJSON(url, fetcher, timeout = 18000, options = {}) {
         const controller = new AbortController();
         const timer = setTimeout(() => controller.abort(), timeout);
@@ -152,7 +157,7 @@
             if (markers) markers.clearLayers();
             list.replaceChildren();
             count.textContent = selected.length ? `${selected.length} rapporter på ${groups.length} fyndplatser i urvalet. Senaste observation: ${formatDay(selected[0].date)}.` : 'Inga offentliga rapporter i det valda urvalet.';
-            for (const group of groups) {
+            for (const group of markerOrder(groups)) {
                 const color = COLORS[periodFor(group.date, today)];
                 if (markers) {
                     const popup = document.createElement('div');
@@ -199,7 +204,7 @@
         refresh.addEventListener('click', refreshData);
         refreshData();
     }
-    const api = { TAXON_ID, COLORS, buildURL, dateInSweden, periodFor, sourceURL, normalize, filterRecords, groupRecords, loadData };
+    const api = { TAXON_ID, COLORS, buildURL, dateInSweden, periodFor, sourceURL, normalize, filterRecords, groupRecords, markerOrder, loadData };
     if (typeof module !== 'undefined' && module.exports) module.exports = api;
     if (typeof document !== 'undefined') {
         const init = () => document.querySelectorAll('[data-notkraka-map]').forEach(initFigure);

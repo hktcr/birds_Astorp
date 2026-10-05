@@ -30,7 +30,7 @@ Däremot passerade ett tiotal mindre korsnäbbar, lockande med sina ”glipp-gli
 
 <figure>
   <a href="/images/posts/2026-10-04-mindre-korsnabbar-over-maglaby/maglaby-landskap.jpg" class="lightbox-link">
-    <img src="/images/posts/2026-10-04-mindre-korsnabbar-over-maglaby/maglaby-landskap.jpg" width="2048" height="1366" alt="Gräsmark och lövträd under vita moln på Söderåsen ovanför Maglaby. Inga fåglar syns i bilden." loading="lazy">
+    <img src="/images/posts/2026-10-04-mindre-korsnabbar-over-maglaby/maglaby-landskap.jpg" width="2048" height="1366" style="height: auto" alt="Gräsmark och lövträd under vita moln på Söderåsen ovanför Maglaby. Inga fåglar syns i bilden." loading="lazy">
   </a>
   <figcaption>Bilden visar kulissen till dagens runda. Fåglarna kom inte med.</figcaption>
 </figure>

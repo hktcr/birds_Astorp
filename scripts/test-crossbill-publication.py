@@ -48,6 +48,8 @@ for asset in ('css/notkraka-map.css', 'js/notkraka-map.js', 'data/notkraka-astor
 assert '56.1005396' not in post and '13.0529855' not in post
 images = [a for t, a in Elements(post).elements if t == 'img' and a.get('src') == PHOTO_URL]
 assert len(images) == 1 and 'Inga fåglar' in images[0]['alt']
+assert (images[0]['width'], images[0]['height']) == ('2048', '1366')
+assert 'height:auto' in images[0].get('style', '').replace(' ', ''), 'Responsive width must preserve the photo aspect ratio'
 for root in ('static', 'docs'):
     photo = ROOT / root / PHOTO_URL.lstrip('/')
     assert photo.is_file()
@@ -73,3 +75,42 @@ photos = [a for t,a in gallery.elements if t=='a' and a.get('data-image-src')==P
 assert len(photos)==1 and photos[0]['data-species']=='landskap'
 assert 'vagen-mot-150' not in home and 'vagen-mot-150' not in (ROOT/'docs/posts/index.html').read_text()
 print('PASS: 148 species, current post/home/feed/atlas, landscape taxonomy, original + thumbnail, approximate locality, no nutcracker tick, draft remains hidden.')
+
+
+class GalleryTemplates(HTMLParser):
+    """Embedded post HTML must stay within a native inert template."""
+    def __init__(self, html):
+        super().__init__()
+        self.depth = 0
+        self.templates = 0
+        self.cards = 0
+        self.map_scripts = 0
+        self.milestones = 0
+        self.feed(html)
+        assert self.depth == 0
+    def handle_starttag(self, tag, attrs):
+        attrs = dict(attrs)
+        if tag == 'template':
+            self.depth += 1
+            if attrs.get('class') == 'post-content-template':
+                self.templates += 1
+        if tag == 'a' and attrs.get('class') == 'gallery-item':
+            self.cards += 1
+        if tag == 'script' and attrs.get('class') == 'post-content-template':
+            raise AssertionError('Raw scripts cannot hold nested post HTML')
+        if tag == 'script' and attrs.get('src', '').endswith('/notkraka-map.js'):
+            assert self.depth > 0, 'The map script must not execute on the gallery grid'
+            self.map_scripts += 1
+    def handle_endtag(self, tag):
+        if tag == 'template':
+            self.depth -= 1
+            assert self.depth >= 0
+    def handle_data(self, text):
+        if 'Fågelåret i Åstorp, 148/150' in text:
+            assert self.depth > 0, 'The milestone must not leak below the thumbnail'
+            self.milestones += 1
+
+templates = GalleryTemplates((ROOT/'docs/galleri/index.html').read_text())
+assert templates.templates == templates.cards and templates.cards > 50
+assert templates.map_scripts == 1 and templates.milestones == 1
+print('PASS: proportional photo dimensions, inert gallery templates, no leaked milestone or gallery map script.')
