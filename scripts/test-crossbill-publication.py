@@ -98,7 +98,7 @@ class GalleryTemplates(HTMLParser):
             self.cards += 1
         if tag == 'script' and attrs.get('class') == 'post-content-template':
             raise AssertionError('Raw scripts cannot hold nested post HTML')
-        if tag == 'script' and attrs.get('src', '').endswith('/notkraka-map.js'):
+        if tag == 'script' and attrs.get('src', '').split('?', 1)[0].endswith('/notkraka-map.js'):
             assert self.depth > 0, 'The map script must not execute on the gallery grid'
             self.map_scripts += 1
     def handle_endtag(self, tag):
@@ -114,3 +114,9 @@ templates = GalleryTemplates((ROOT/'docs/galleri/index.html').read_text())
 assert templates.templates == templates.cards and templates.cards > 50
 assert templates.map_scripts == 1 and templates.milestones == 1
 print('PASS: proportional photo dimensions, inert gallery templates, no leaked milestone or gallery map script.')
+
+map_version = hashlib.sha256((ROOT/'static/js/notkraka-map.js').read_bytes()).hexdigest()
+for html in (post, nutcracker):
+    map_scripts = [a['src'] for t, a in Elements(html).elements if t == 'script' and '/notkraka-map.js' in a.get('src', '')]
+    assert map_scripts == ['/js/notkraka-map.js?v=' + map_version], 'Map changes must invalidate cached scripts on both pages'
+print('PASS: content-based map script version on article and atlas.')

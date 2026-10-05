@@ -38,4 +38,4 @@
     </figcaption>
     <noscript><p>Kartan behöver JavaScript. <a href="{{ "species/nötkråka/" | relURL }}">Läs om nötkråka i Fågelatlasen</a>.</p></noscript>
 </figure>
-<script src="{{ "js/notkraka-map.js" | relURL }}" defer></script>
+<script src="{{ "js/notkraka-map.js" | relURL }}?v={{ readFile "static/js/notkraka-map.js" | sha256 }}" defer></script>
