@@ -56,6 +56,10 @@ publishDir = 'docs'
     name = 'Om'
     pageRef = '/om/'
     weight = 40
+  [[menus.main]]
+    name = 'Kontakt'
+    pageRef = '/kontakt/'
+    weight = 45
 
 
 # Params

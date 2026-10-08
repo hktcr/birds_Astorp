@@ -1,0 +1,110 @@
+{{ define "main" }}
+<section class="contact-page" aria-labelledby="contact-title">
+    <h1 id="contact-title">KONTAKT</h1>
+    <p class="contact-intro">En fråga om fåglarna i Åstorp, ett tips eller en synpunkt på sidan? Skriv gärna några rader.</p>
+
+    {{/* method=dialog cannot submit fields to the site, even if JavaScript is unavailable. */}}
+    <form id="contact-form" class="contact-form" method="dialog" aria-describedby="contact-help">
+        <div class="contact-name-row">
+            <div class="contact-field">
+                <label for="contact-first-name">Förnamn <span>(valfritt)</span></label>
+                <input id="contact-first-name" type="text" autocomplete="given-name" maxlength="100">
+            </div>
+            <div class="contact-field">
+                <label for="contact-last-name">Efternamn <span>(valfritt)</span></label>
+                <input id="contact-last-name" type="text" autocomplete="family-name" maxlength="100">
+            </div>
+        </div>
+        <div class="contact-field">
+            <label for="contact-email">E-post</label>
+            <input id="contact-email" type="email" autocomplete="email" inputmode="email" required maxlength="254">
+        </div>
+        <div class="contact-field">
+            <label for="contact-message">Meddelande</label>
+            <textarea id="contact-message" rows="6" required></textarea>
+        </div>
+        <button class="contact-button" type="submit">Öppna mejlprogram</button>
+        <p id="contact-help" class="contact-help">Knappen öppnar ditt mejlprogram med uppgifterna ifyllda. Du granskar och skickar själv. Sidan sparar inte fältuppgifterna.</p>
+        <noscript><p class="contact-help">För att fylla i mejlet automatiskt behövs JavaScript. Du kan också skriva direkt till mejladressen nedan.</p></noscript>
+    </form>
+
+    <div class="contact-signature">
+        <p><strong>Håkan Karlsson</strong><br>Kommunornitolog, Åstorps kommun</p>
+        <a href="mailto:HLG.Karlsson@gmail.com">HLG.Karlsson@gmail.com</a>
+        <img class="contact-bird" src="/images/logo-strandpipare.png" alt="Illustration av en strandpipare" width="1024" height="825" loading="lazy">
+    </div>
+</section>
+<style>
+    .contact-page {
+        width: calc(100% - 40px);
+        max-width: 620px;
+        margin: 0 auto;
+        padding: 64px 0 56px;
+        color: #1A1A1A;
+        background: #fff;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+    }
+    .contact-page h1 {
+        margin: 0 0 20px;
+        font-size: 32px;
+        font-weight: 600;
+        line-height: 1.2;
+        letter-spacing: .04em;
+        color: #2B5A2B;
+    }
+    .contact-intro { margin: 0 0 32px; font-size: 17px; line-height: 1.75; }
+    .contact-form { display: grid; gap: 22px; }
+    .contact-name-row { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
+    .contact-field { display: grid; gap: 7px; min-width: 0; }
+    .contact-field label { font-size: 15px; font-weight: 500; }
+    .contact-field label span { color: #5A5A5A; font-weight: 400; }
+    .contact-field input, .contact-field textarea {
+        width: 100%;
+        min-width: 0;
+        padding: 11px 13px;
+        border: 1px solid #C5C2BA;
+        border-radius: 5px;
+        background: #fff;
+        color: #1A1A1A;
+        font: inherit;
+        font-size: 16px;
+        line-height: 1.5;
+    }
+    .contact-field textarea { resize: vertical; min-height: 160px; }
+    .contact-field input:focus-visible, .contact-field textarea:focus-visible,
+    .contact-button:focus-visible, .contact-signature a:focus-visible {
+        outline: 3px solid #2B5A2B;
+        outline-offset: 3px;
+    }
+    .contact-button {
+        justify-self: start;
+        border: 0;
+        border-radius: 5px;
+        padding: 13px 24px;
+        min-height: 48px;
+        background: #2B5A2B;
+        color: #fff;
+        font: inherit;
+        font-size: 16px;
+        font-weight: 600;
+        cursor: pointer;
+    }
+    .contact-button:hover { background: #1E4220; }
+    .contact-help { margin: -7px 0 0; color: #5A5A5A; font-size: 14px; line-height: 1.7; }
+    .contact-signature { margin-top: 44px; text-align: center; font-size: 15px; line-height: 1.7; }
+    .contact-signature p { margin: 0 0 8px; }
+    .contact-signature a { color: #2B5A2B; text-underline-offset: 3px; overflow-wrap: anywhere; }
+    .contact-bird { width: 150px; height: auto; margin: 28px auto 0; }
+    @media (max-width: 600px) {
+        .contact-page { padding-top: 36px; padding-bottom: 40px; }
+        .contact-page h1 { font-size: 28px; }
+        .contact-intro { font-size: 16px; margin-bottom: 28px; }
+        .contact-name-row { grid-template-columns: 1fr; gap: 22px; }
+        .contact-button { width: 100%; }
+    }
+</style>
+{{ end }}
+
+{{ define "scripts" }}
+<script src="/js/contact.js" defer></script>
+{{ end }}
