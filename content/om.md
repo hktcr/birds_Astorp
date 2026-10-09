@@ -29,5 +29,5 @@ Antingen jag eller fågeln ska befinna sig inom kommungränsen. Samma princip so
 ---
 
 *Håkan Karlsson*<br>
-*Kommunornitolog, Åstorps kommun*<br>
+*Kommunornitolog, Åstorp*<br>
 📧 [HLG.Karlsson@gmail.com](mailto:HLG.Karlsson@gmail.com)
