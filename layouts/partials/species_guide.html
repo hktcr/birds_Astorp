@@ -1,0 +1,2 @@
+{{- /* Read the same existing export as the browser without rewriting historical data. */ -}}
+{{- return (readFile "static/data/species-guide.json" | transform.Unmarshal) -}}

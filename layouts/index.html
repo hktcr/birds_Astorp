@@ -7,6 +7,10 @@ RATT: dubbelklammer range dubbelklammer
 */}}
 
 {{ define "main" }}
+<style>
+    a.prediction-card { color: inherit; text-decoration: none; }
+    a.prediction-card:focus-visible { outline: 3px solid #2B5A2B; outline-offset: 4px; }
+</style>
 <!-- Professionell mjuk startsida -->
 <section class="home-hero">
     <div class="home-container">
@@ -40,6 +44,7 @@ RATT: dubbelklammer range dubbelklammer
             <div class="prediction-header">
                 <h2 class="prediction-title">Nästa på tur?</h2>
                 <p class="prediction-subtitle">Tre arter systemet tror dyker upp härnäst</p>
+                <p class="prediction-subtitle" id="prediction-link-hint">Öppna en art för årshjul och historisk karta.</p>
             </div>
             <div class="prediction-cards" id="prediction-cards">
                 <!-- Fylls av JavaScript -->
@@ -218,6 +223,12 @@ RATT: dubbelklammer range dubbelklammer
     initDashboard();
 
     // ── Prediktionssektion: "Nästa på tur?" ──
+    // Use Hugo's real term URLs, including Swedish letters and special names.
+    {{ $speciesLinks := dict }}
+    {{ range .Site.Taxonomies.species }}
+        {{ $speciesLinks = merge $speciesLinks (dict (lower .Page.Title) .Page.RelPermalink) }}
+    {{ end }}
+    var speciesLinks = {{ $speciesLinks | jsonify | safeJS }};
     function initPredictions() {
         if (!data || !data.observations) return;
 
@@ -315,19 +326,22 @@ RATT: dubbelklammer range dubbelklammer
                 var cardsEl = document.getElementById('prediction-cards');
                 if (!cardsEl) return;
 
-                var html = '';
+                cardsEl.replaceChildren();
                 predictions.forEach(function(name) {
-                    var info = candMap[name];
                     var isHit = !!observed[name];
-                    var meta = '';
-                    if (info) {
-                        meta = info.total + ' obs totalt · topp ' + info.peakMonth;
+                    var href = speciesLinks[name.toLocaleLowerCase('sv')];
+                    var card = document.createElement(href ? 'a' : 'div');
+                    card.className = 'prediction-card' + (isHit ? ' hit' : '');
+                    if (href) {
+                        card.href = href;
+                        card.setAttribute('aria-describedby', 'prediction-link-hint');
                     }
-                    html += '<div class="prediction-card' + (isHit ? ' hit' : '') + '">';
-                    html += '  <span class="prediction-species">' + name + '</span>';
-                    html += '</div>';
+                    var label = document.createElement('span');
+                    label.className = 'prediction-species';
+                    label.textContent = name;
+                    card.appendChild(label);
+                    cardsEl.appendChild(card);
                 });
-                cardsEl.innerHTML = html;
 
                 // Visa träffstatistik
                 var scoreEl = document.getElementById('prediction-score');

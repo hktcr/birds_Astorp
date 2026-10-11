@@ -8,7 +8,7 @@
     {{ $checklistObs := index $checklist "observations" | default slice }}
     {{ $portraits := site.Data.species_portraits | default (dict) }}
     {{ $portraitMap := index $portraits "portraits" | default (dict) }}
-    {{ $guide := site.Data.species_guide | default (dict) }}
+    {{ $guide := partialCached "species_guide.html" . }}
     {{ $guideSpecies := index $guide "species" | default slice }}
 
     {{/* Build checklist lookup */}}

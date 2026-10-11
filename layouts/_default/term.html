@@ -28,7 +28,7 @@
     {{ end }}
 
     {{/* Species guide data (Artportalen stats) */}}
-    {{ $guide := site.Data.species_guide | default (dict) }}
+    {{ $guide := partialCached "species_guide.html" . }}
     {{ $guideSpecies := index $guide "species" | default slice }}
     {{ $latinName := "" }}
     {{ $totalObs := 0 }}

@@ -43,9 +43,33 @@ Bygg och verifiera först, innan commit och separat publicering:
 ```bash
 bash scripts/build.sh
 node scripts/test-weather.cjs
+node scripts/test-weather-data.cjs
+python3 scripts/test-weather-archive.py
+node scripts/test-prediction-links.cjs
+node scripts/test-stockholm-dates.cjs
 ```
 
-Byggskriptet synkar checklistan och lokalerna från `data/` till `static/data/`, kör Hugo och jämför sedan alla tre kopiorna inklusive `docs/data/`. Ett synkfel stoppar bygget. Det gör ingen commit eller push. `deploy.sh` använder samma byggsteg men är interaktivt; gAIa följer `/Åstorp-2026` steg D enligt kommentaren i det skriptet.
+Byggskriptet synkar checklistan och lokalerna från `data/` till `static/data/`. Artstatistiken läses direkt från den befintliga `static/data/species-guide.json` via `layouts/partials/species_guide.html`, så att artguiden och artsidorna använder samma export utan att någon historisk datafil skrivs om. Sedan körs Hugo; checklistans och lokalernas tre kopior samt artstatistikens publicerade kopia i `docs/data/` jämförs. Ett synkfel stoppar bygget. Det gör ingen commit eller push. `deploy.sh` använder samma byggsteg men är interaktivt; gAIa följer `/Åstorp-2026` steg D enligt kommentaren i det skriptet.
+
+### Horisontens årsdata och aktualitet
+
+SMHI:s `latest-months` innehåller bara de senaste fyra månaderna. Horisonten kombinerar därför det med `static/data/weather-archive-2026.json`, ett utdrag ur SMHI:s CSV-arkiv för temperatur, vind och nederbörd. Utdraget innehåller källadresser och hämtningstid. Arkivvärdet används vid överlapp; varje datum/timstämpel räknas en gång. Avvisade, tomma och ogiltiga värden räknas inte som noll.
+
+Uppdatera utdraget manuellt med `python3 scripts/update-weather-archive.py`, granska och bygg därefter. Skriptet har inget schema och publicerar ingenting. Om arkivet blir gammalt eller en hämtning misslyckas redovisar sidan den faktiska täckningen i vald period. Framtida dygn räknas inte som saknade.
+
+Maderindikatorn kräver 14 sammanhängande, avslutade kalenderdygn i **båda** serierna, med samma slutdatum. Båda seriernas senaste datum får vara högst två kalenderdygn gamla. Annars visas ingen aktuell bedömning. Toleransen är en försiktig visningsregel för dygnsdata, inte en kalibrering av den experimentella modellen.
+
+### Skillnader mellan artunderlagen
+
+Den befintliga månadsstatistiken är exporten från 2026-03-01. Den äldre Hugo-kopian från 2026-02-20 bevaras på disk men används inte av mallarna. Exportens avvikelse för rödhalsad gås (total 1, månadssumma 0) bevaras och rapporteras av verifieringen; ingen månad gissas. Nya avvikelser stoppar verifieringen. Metadatafältet `totalObservations` är 19 345, medan summan av de listade arternas totaler är 19 289. Orsaken är inte fullt verifierad, och metadata ska inte skrivas om utifrån den summan.
+
+Årshjulet (`species_days_historic.json`, sammanställt 2026-06-07 enligt `_meta`) och kartan (`astorp_historic_locations.json`, saknar exportmetadata) är separata historiska underlag. De kan inte göras likvärdiga med månadsstatistiken genom att kopiera antal. Bevara originalfilerna tills en verifierad ny export finns.
+
+### Fältpulsens datum
+
+Grupprubriker och detaljkort använder samma källdatum (`plainStartDate` när det finns). Ett datum utan klockslag får inte tolkas i besökarens lokala tidszon. Om endast en tidsstämpel med tidszon finns används kalenderdagen i `Europe/Stockholm`.
+
+3 dagar, vecka och månad omfattar 3, 7 respektive 30 kalenderdagar till och med dagens datum i Stockholm. API-gränserna är Stockholms midnatt till sista millisekunden på slutdagen, uttryckta som UTC-tidsstämplar. Därmed blir sommartidsdygnen korrekt 23 respektive 25 timmar. Testet kör samma datagruppering i fem olika lokala tidszoner och bevarar fyndens originalfält.
 
 Publicera både granskade källändringar och motsvarande byggda filer i `docs/` på `main`. Kör byggskriptet i stället för ett fristående Hugo-bygge så att gamla klientdata inte återpubliceras. Granska arbetsbranch, diff och eventuella utkast före commit; gör push separat.
 
@@ -144,7 +168,7 @@ layouts/species/term.html      → enskild art-sida (/species/{artnamn}/)
 | Data | Källa | Vad den styr |
 |------|-------|--------------|
 | Kryssade arter | `data/checklist-2026.json` | Vilka kort som markeras som kryssade + #-nummer |
-| Historisk statistik | `data/species_guide.json` | "Övriga arter"-sektionen + antal rapporter |
+| Historisk statistik | `static/data/species-guide.json` via gemensam partial | "Övriga arter"-sektionen + antal rapporter |
 | Porträttbilder | `data/species_portraits.json` | Miniatyrbilder på atlas-korten |
 | Notiser per art | Blogginlägg med `species:` i frontmatter | Antal notiser + mini-galleri på art-sidan |
 
@@ -365,7 +389,7 @@ TaxonList.csv + Artportalen API        GeoJSON-export
   static/data/species-guide.json  ◄────────────┘
         │
         ├── Hugo kopierar → docs/data/ (klient-side JS)
-        └── Kopia i data/species_guide.json (Hugo byggtid: site.Data)
+        └── Läses direkt via partial species_guide.html (Hugo byggtid)
         +
   data/checklist-2026.json        (manuella kryss, ORÖRDA)
         ↓
@@ -377,7 +401,7 @@ TaxonList.csv + Artportalen API        GeoJSON-export
 | Fil | Syfte |
 |-----|-------|
 | `data/svenska-namn.json` | NL20 officiella svenska fågelnamn (namnuppslag för `preprocess_species_guide.py`) |
-| `data/species_guide.json` | Kopia av `static/data/species-guide.json` som Hugo läser vid byggtid via `site.Data.species_guide` (krävs för Fågelatlasen och term-sidor) |
+| `data/species_guide.json` | Äldre kopia bevarad på disk; mallarna läser den befintliga `static/data/species-guide.json` via `layouts/partials/species_guide.html`. |
 | `static/data/TaxonList_fåglar_Åstorpskommun.csv` | Lista över alla kända arter i kommunen (input till `update-species-guide.py`) |
 | `resources/artportalen-kommun-export/*.geojson` | Nedladdade exporter (input till `preprocess_species_guide.py`) |
 

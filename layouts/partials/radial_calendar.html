@@ -3,7 +3,10 @@
     <p class="text-sm text-gray-600 mb-4">
         Denna radiella kalender visar historisk närvaro i Åstorps kommun. Varje segment motsvarar en dag på året.
         <br>Färgerna indikerar antal år arten setts under detta datum (gult/orange för sommarhalvåret maj–sep, blått för
-        vinterhalvåret okt–apr). Data hämtas kontinuerligt från Artportalen.
+        vinterhalvåret okt–apr).
+        {{ $historic := transform.Unmarshal (os.ReadFile "static/data/species_days_historic.json") }}
+        {{ with $historic._meta.generated }}Årshjulets underlag sammanställt {{ . }}.{{ end }}
+        Den historiska kartan har ett separat underlag.
     </p>
 
     <!-- The container for our SVG -->

@@ -11,6 +11,23 @@ for name in ("checklist-2026.json", "locations.json"):
             raise SystemExit(f"Osynkad data: {folder}/{name}")
 
 observations = json.loads((root / "data/checklist-2026.json").read_text())["observations"]
+guide = json.loads((root / "static/data/species-guide.json").read_text())
+for relative in ("docs/data/species-guide.json",):
+    if json.loads((root / relative).read_text()) != guide:
+        raise SystemExit(f"Osynkad artstatistik: {relative}")
+names = [sp['name'] for sp in guide['species']]
+if len(names) != len(set(names)):
+    raise SystemExit("Dubblettarter i artstatistiken")
+for sp in guide['species']:
+    if len(sp['months']) != 12 or any(not isinstance(n, int) or n < 0 for n in sp['months']):
+        raise SystemExit(f"Ogiltiga månadsantal: {sp['name']}")
+    if sp['total'] != sum(sp['months']):
+        # Preserve this documented anomaly in the existing 2026-03-01 export.
+        # Any new mismatch needs source review, not inferred monthly counts.
+        if (guide.get('exportDate'), sp['name'], sp['total'], sum(sp['months'])) != ('2026-03-01', 'Rödhalsad gås', 1, 0):
+            raise SystemExit(f"Ny källavvikelse i månadsstatistik: {sp['name']}")
+        print(f"Befintlig källavvikelse (oförändrad): {sp['name']}, total {sp['total']}, månadssumma {sum(sp['months'])}")
+print(f"Artstatistik synkad: {len(names)} arter, export {guide.get('exportDate')}.")
 species = {obs["species"] for obs in observations}
 if len(species) != len(observations):
     raise SystemExit("Dubblettarter i årslistan")

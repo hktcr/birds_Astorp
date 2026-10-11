@@ -4,6 +4,10 @@
 
         <h1 class="vader-title">{{ .Title }}</h1>
         <p class="vader-subtitle">Ljus, väder och fältförhållanden</p>
+        <style>
+            .weather-coverage { font-size: 0.85rem; line-height: 1.5; color: #555; margin: 0.75rem 0; }
+            .weather-coverage[data-incomplete="true"] { color: #704b16; border-left: 3px solid #b78638; padding-left: 0.75rem; }
+        </style>
 
         <!-- ============================================================ -->
         <!-- DYGNSHJULET — Cirkulär ljusvisualisering -->
@@ -223,6 +227,7 @@
 
             <!-- FLIK: TEMPERATUR -->
             <div class="vader-tab-content" id="tab-temperatur">
+                <p id="temp-coverage" class="weather-coverage" role="status">Temperaturunderlag laddas…</p>
                 <div class="vader-chart-box" id="chart-temp-day">
                     <div class="vader-chart-label">Dagtemperatur (högsta)</div>
                     <canvas id="temp-day-chart"></canvas>
@@ -256,6 +261,7 @@
 
             <!-- FLIK: VIND -->
             <div class="vader-tab-content" id="tab-vind">
+                <p id="wind-coverage" class="weather-coverage" role="status">Vindunderlag laddas…</p>
                 <div class="vader-chart-box" id="chart-wind">
                     <div class="vader-chart-label">Vindkomponenter</div>
                     <canvas id="wind-chart"></canvas>
@@ -308,6 +314,7 @@
 
                 <div class="vader-chart-box" id="chart-precip">
                     <div class="vader-chart-label">Nederbörd</div>
+                    <p id="precip-coverage" class="weather-coverage" role="status">Nederbördsunderlag laddas…</p>
                     <canvas id="precip-chart"></canvas>
                     <div class="vader-chart-source">SMHI, Åstorps station (4 km)</div>
                 </div>
@@ -321,6 +328,7 @@
 
                 <div class="vader-chart-box" id="chart-flow">
                     <div class="vader-chart-label">Vattenföring</div>
+                    <p id="flow-coverage" class="weather-coverage" role="status">Vattenföringsunderlag laddas…</p>
                     <canvas id="flow-chart"></canvas>
                     <p class="vader-chart-hint">Diagrammet visar vattenföringen (m³/s) vid Forsmöllan i Rönne å.</p>
                     <div class="vader-chart-source">SMHI, Forsmöllan, Rönne å (15 km öster om Åstorp)</div>
@@ -335,6 +343,7 @@
 {{ define "scripts" }}
 <script src="https://cdn.jsdelivr.net/npm/chart.js@4"></script>
 <script src="https://cdn.jsdelivr.net/npm/chartjs-plugin-annotation@3"></script>
+<script src="/js/weather-data.js"></script>
 <script>
     var YEAR_GOAL = 150;
 
@@ -552,9 +561,25 @@
     // CHART 2: Temperatur — dag-max (orange) & natt-min (blå)
     // ================================================================
     function fetchSMHI(param, station) {
-        var url = 'https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/' +
-            param + '/station/' + station + '/period/latest-months/data.json';
-        return fetch(url).then(function (r) { return r.json(); });
+        return WeatherData.loadMetobs(param, station);
+    }
+
+    var weatherCoverage = {};
+    function setWeatherCoverage(id, points, warnings) {
+        weatherCoverage[id] = { points: points, warnings: warnings || [] };
+        updateWeatherCoverage();
+    }
+
+    function updateWeatherCoverage() {
+        Object.keys(weatherCoverage).forEach(function (id) {
+            var el = document.getElementById(id);
+            if (!el) return;
+            el.hidden = _currentTimeMode === '24h';
+            var entry = weatherCoverage[id];
+            var status = WeatherData.coverage(entry.points, _currentTimeFrom, _currentTimeTo);
+            el.textContent = status.text + (entry.warnings.length ? ' ' + entry.warnings.join(' ') : '');
+            el.setAttribute('data-incomplete', String(status.incomplete || entry.warnings.length > 0));
+        });
     }
 
     function buildTempChart() {
@@ -581,6 +606,10 @@
                 }
             });
 
+            setWeatherCoverage('temp-coverage', dayPoints.filter(function (p) {
+                return Object.prototype.hasOwnProperty.call(nightMap, p.date);
+            }).map(function (p) { return { x: p.date, y: p.value }; }), results[0].warnings.concat(results[1].warnings));
+
             // Gemensam y-skala (VEP Förslag A)
             var allVals = dayPoints.map(function (d) { return Math.abs(d.value); })
                 .concat(nightPoints.map(function (d) { return Math.abs(d.value); }));
@@ -593,6 +622,7 @@
             buildPhenologyStrip(dayMap, nightMap);
         }).catch(function (err) {
             console.warn('Kunde inte hämta temperaturdata:', err);
+            setWeatherCoverage('temp-coverage', [], ['Temperaturdata kunde inte laddas.']);
         });
     }
 
@@ -993,6 +1023,7 @@
 
             // Spara globalt för maderindikatorn
             _precipPoints = points;
+            setWeatherCoverage('precip-coverage', points, result.warnings);
 
             var xCfg = JSON.parse(JSON.stringify(timeScaleConfig));
             if (_currentTimeFrom) xCfg.min = _currentTimeFrom;
@@ -1052,7 +1083,9 @@
             tryBuildMeadowIndicator();
         }).catch(function (err) {
             console.warn('Kunde inte hämta nederbördsdata:', err);
-            canvas.parentElement.innerHTML = '<p class="vader-chart-error">Nederbördsdata kunde inte laddas</p>';
+            _precipPoints = [];
+            setWeatherCoverage('precip-coverage', [], ['Nederbördsdata kunde inte laddas.']);
+            tryBuildMeadowIndicator();
         });
     }
 
@@ -1067,17 +1100,20 @@
         var url = 'https://opendata-download-hydroobs.smhi.se/api/version/latest/parameter/1/station/' +
             STATION_FLOW + '/period/corrected-archive/data.json';
 
-        fetch(url).then(function (r) { return r.json(); }).then(function (result) {
+        fetch(url).then(function (r) {
+            if (!r.ok) throw new Error('HTTP ' + r.status);
+            return r.json();
+        }).then(function (result) {
             var vals = result.value || [];
             var startMs = new Date('2026-01-01').getTime();
 
             // Aggregera till dagsvärden (medel per dag)
             var dayMap = {};
             vals.forEach(function (v) {
-                if (v.date >= startMs) {
+                if (v.date >= startMs && v.date < Date.parse('2027-01-01') && v.value != null && String(v.value).trim() !== '' && Number.isFinite(Number(v.value)) && v.quality !== 'R') {
                     var d = new Date(v.date).toISOString().slice(0, 10);
                     if (!dayMap[d]) dayMap[d] = { sum: 0, count: 0 };
-                    dayMap[d].sum += v.value;
+                    dayMap[d].sum += Number(v.value);
                     dayMap[d].count++;
                 }
             });
@@ -1085,6 +1121,7 @@
             var points = Object.keys(dayMap).sort().map(function (d) {
                 return { x: d, y: Math.round(dayMap[d].sum / dayMap[d].count * 100) / 100 };
             });
+            setWeatherCoverage('flow-coverage', points);
 
             var xCfg = JSON.parse(JSON.stringify(timeScaleConfig));
             if (_currentTimeFrom) xCfg.min = _currentTimeFrom;
@@ -1099,7 +1136,8 @@
                 data: {
                     datasets: [{
                         label: 'Vattenföring',
-                        data: points,
+                        data: WeatherData.withGaps(points),
+                        spanGaps: false,
                         borderColor: '#2A7B8F',
                         backgroundColor: '#2A7B8F',
                         borderWidth: 2,
@@ -1146,7 +1184,9 @@
             tryBuildMeadowIndicator();
         }).catch(function (err) {
             console.warn('Kunde inte hämta vattenföringsdata:', err);
-            canvas.parentElement.innerHTML = '<p class="vader-chart-error">Vattenföringsdata kunde inte laddas</p>';
+            _flowPoints = [];
+            setWeatherCoverage('flow-coverage', [], ['Vattenföringsdata kunde inte laddas.']);
+            tryBuildMeadowIndicator();
         });
     }
 
@@ -1172,28 +1212,22 @@
 
     function buildMeadowIndicator(flowPoints, precipPoints) {
         var container = document.getElementById('meadow-indicator');
-        if (!container || !flowPoints || flowPoints.length < 2) return;
-
-        var LOOKBACK = 14; // dagar att titta bakåt
-
-        // Sortera kronologiskt
-        var sortedFlow = flowPoints.slice().sort(function (a, b) {
-            return a.x < b.x ? -1 : a.x > b.x ? 1 : 0;
-        });
-
-        // ── 1) 14-dagars glidande medelvärde av vattenföring ──
-        var recentFlow = sortedFlow.slice(-LOOKBACK);
-        var avg14dFlow = recentFlow.reduce(function (s, p) { return s + p.y; }, 0) / recentFlow.length;
-
-        // ── 2) 14-dagars kumulativ nederbörd ──
-        var precip14d = 0;
-        if (precipPoints && precipPoints.length > 0) {
-            var sortedPrecip = precipPoints.slice().sort(function (a, b) {
-                return a.x < b.x ? -1 : a.x > b.x ? 1 : 0;
-            });
-            var recentPrecip = sortedPrecip.slice(-LOOKBACK);
-            precip14d = recentPrecip.reduce(function (s, p) { return s + p.y; }, 0);
+        if (!container) return;
+        var windowData = WeatherData.meadowWindow(flowPoints, precipPoints);
+        if (!windowData.available) {
+            document.getElementById('meadow-level-box').style.background = '#626862';
+            document.getElementById('meadow-level-label').textContent = 'Ingen aktuell bedömning';
+            document.getElementById('meadow-level-detail').textContent = windowData.reason;
+            document.getElementById('meadow-trend-arrow').textContent = '';
+            container.style.display = 'block';
+            return;
         }
+
+        // Both inputs cover exactly the same 14 complete calendar days.
+        var sortedFlow = windowData.flow;
+        var recentFlow = windowData.flow;
+        var avg14dFlow = recentFlow.reduce(function (s, p) { return s + p.y; }, 0) / recentFlow.length;
+        var precip14d = windowData.rain.reduce(function (s, p) { return s + p.y; }, 0);
 
         // ── 3) Kompositscore ──
         // Normalisera nederbörd: 0 mm → 0, ~40 mm → bidrar ~1 "flödespoäng"
@@ -1253,7 +1287,7 @@
 
         if (box) box.style.background = 'linear-gradient(135deg, ' + level.color + ', ' + level.color + 'cc)';
         if (labelEl) labelEl.textContent = level.label;
-        if (detailEl) detailEl.textContent = level.detail;
+        if (detailEl) detailEl.textContent = level.detail + '. Underlag: ' + windowData.from + ' till ' + windowData.to + '.';
         if (arrowEl) arrowEl.textContent = trendArrow;
 
         container.style.display = 'block';
@@ -2077,12 +2111,12 @@
 
     function setTimeRange(mode, monthValue) {
         var xMin, xMax;
-        var today = new Date();
-        var todayStr = today.toISOString().slice(0, 10);
+        var todayStr = WeatherData.today();
 
         // Hantera 24h-läget separat (hämtar timdata)
         if (mode === '24h') {
             _currentTimeMode = '24h';
+            updateWeatherCoverage();
             show24hView();
             return;
         }
@@ -2091,9 +2125,7 @@
         restore24hView();
 
         if (mode === '14d') {
-            var from = new Date(today);
-            from.setDate(from.getDate() - 13);
-            xMin = from.toISOString().slice(0, 10);
+            xMin = WeatherData.dayOffset(todayStr, -13);
             xMax = todayStr;
             _currentTimeMode = '14d';
         } else if (mode === 'month') {
@@ -2116,6 +2148,7 @@
 
         _currentTimeFrom = xMin;
         _currentTimeTo = xMax;
+        updateWeatherCoverage();
 
         // 1. Uppdatera Chart.js-instanser (progress, precip, flow — temp är nu Canvas)
         var tu = timeUnitForRange(xMin, xMax);
@@ -2519,15 +2552,12 @@
         var canvas = document.getElementById('wind-chart');
         if (!canvas) return;
 
-        var urlDir = 'https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/3/station/' + STATION_TEMP + '/period/latest-months/data.json';
-        var urlSpd = 'https://opendata-download-metobs.smhi.se/api/version/1.0/parameter/4/station/' + STATION_TEMP + '/period/latest-months/data.json';
-
-        Promise.all([fetch(urlDir).then(function (r) { return r.json(); }), fetch(urlSpd).then(function (r) { return r.json(); })]).then(function (results) {
+        Promise.all([fetchSMHI(3, STATION_TEMP), fetchSMHI(4, STATION_TEMP)]).then(function (results) {
             var dirVals = results[0].value || [];
             var spdVals = results[1].value || [];
 
             var spdMap = {};
-            spdVals.forEach(function (v) { spdMap[v.date] = parseFloat(v.value) || 0; });
+            spdVals.forEach(function (v) { spdMap[v.date] = Number(v.value); });
 
             var startMs = new Date('2026-01-01').getTime();
 
@@ -2536,8 +2566,8 @@
             dirVals.forEach(function (v) {
                 if (v.date < startMs) return;
                 var deg = parseFloat(v.value);
-                var spd = spdMap[v.date] || 0;
-                if (isNaN(deg) || spd === 0) return;
+                var spd = spdMap[v.date];
+                if (!Number.isFinite(deg) || !Number.isFinite(spd)) return;
 
                 var d = new Date(v.date).toISOString().slice(0, 10);
                 if (!dayData[d]) dayData[d] = { ns_net: 0, ew_net: 0, count: 0 };
@@ -2553,6 +2583,7 @@
             });
 
             var days = Object.keys(dayData).sort();
+            setWeatherCoverage('wind-coverage', days.map(function (day) { return { x: day, y: dayData[day].count }; }), results[0].warnings.concat(results[1].warnings));
             var ns_raw = [];
             var ew_raw = [];
 
@@ -2857,8 +2888,7 @@
             buildWindTotalStrip(days, ns_raw, ew_raw);
         }).catch(function (error) {
             console.error('Error fetching wind data:', error);
-            var el = document.getElementById('wind-chart');
-            if (el) el.parentElement.innerHTML = '<p class="vader-chart-error">Vinddata kunde inte laddas</p>';
+            setWeatherCoverage('wind-coverage', [], ['Vinddata kunde inte laddas.']);
         });
     }
 

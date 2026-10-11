@@ -75,6 +75,7 @@
 {{ end }}
 
 {{ define "scripts" }}
+<script src="/js/stockholm-dates.js"></script>
 <script>
 (function() {
     // ── Config ─────────────────────────────────────────────
@@ -198,19 +199,14 @@
 
     // ── API-hämtning ───────────────────────────────────────
     function fetchObservations(days) {
-        var endDate = new Date();
-        var startDate = new Date();
-        startDate.setDate(startDate.getDate() - days);
-        var fmt = function(d) {
-            return d.getFullYear() + '-' + String(d.getMonth()+1).padStart(2,'0') + '-' + String(d.getDate()).padStart(2,'0');
-        };
+        var dates = StockholmDates.dateWindow(days);
 
         var body = {
             taxon: { ids: [TAXON_BIRDS], includeUnderlyingTaxa: true },
             geographics: { areas: [{ areaType: 'Municipality', featureId: MUNICIPALITY_ID }] },
             date: {
-                startDate: fmt(startDate),
-                endDate: fmt(endDate),
+                startDate: dates.startDate,
+                endDate: dates.endDate,
                 dateFilterType: 'BetweenStartDateAndEndDate'
             },
             output: {
@@ -276,9 +272,7 @@
     // ── Render ─────────────────────────────────────────────
     var MONTHS = ['jan','feb','mar','apr','maj','jun','jul','aug','sep','okt','nov','dec'];
     function fmtDate(dateStr) {
-        if (!dateStr) return '';
-        var d = new Date(dateStr);
-        return d.getDate() + ' ' + MONTHS[d.getMonth()];
+        return StockholmDates.formatDay(dateStr);
     }
 
     function getCat(obs) {
@@ -296,12 +290,10 @@
             // Check if it's been more than 3 days since the first find this year
             var firstDateStr = firstObsDates[name];
             if (firstDateStr) {
-                var firstDate = new Date(firstDateStr);
                 // We use the observation's date to calculate age, so that historical records
                 // don't retroactively lose their "Ny!" badge if we look back in time
-                var obsDateStr = ((obs.event || {}).startDate || '').substring(0, 10);
-                var obsDate = obsDateStr ? new Date(obsDateStr) : new Date();
-                var diffDays = (obsDate - firstDate) / (1000 * 60 * 60 * 24);
+                var obsDateStr = StockholmDates.observationDay(obs.event);
+                var diffDays = StockholmDates.difference(firstDateStr, obsDateStr);
                 if (diffDays > 3) {
                     cat = 'rare'; // downgrade to rare after 3 days
                 }
@@ -315,9 +307,7 @@
         switch(sortType) {
             case 'date':
                 sorted.sort(function(a, b) {
-                    var da = (a.event || {}).startDate || '';
-                    var db = (b.event || {}).startDate || '';
-                    var diff = db.localeCompare(da);
+                    var diff = StockholmDates.compareEvents(a.event, b.event);
                     if (diff !== 0) return diff;
                     
                     var catA = getCat(a);
@@ -332,9 +322,7 @@
                     var nameA = ((a.taxon || {}).vernacularName || '').toLowerCase();
                     var nameB = ((b.taxon || {}).vernacularName || '').toLowerCase();
                     if (nameA === nameB) {
-                        var da = (a.event || {}).startDate || '';
-                        var db = (b.event || {}).startDate || '';
-                        return db.localeCompare(da);
+                        return StockholmDates.compareEvents(a.event, b.event);
                     }
                     var ga = speciesGuide[nameA] || {};
                     var gb = speciesGuide[nameB] || {};
@@ -348,9 +336,7 @@
                     var nameA = ((a.taxon || {}).vernacularName || '').toLowerCase();
                     var nameB = ((b.taxon || {}).vernacularName || '').toLowerCase();
                     if (nameA === nameB) {
-                        var da = (a.event || {}).startDate || '';
-                        var db = (b.event || {}).startDate || '';
-                        return db.localeCompare(da);
+                        return StockholmDates.compareEvents(a.event, b.event);
                     }
                     var ga = speciesGuide[nameA] || {};
                     var gb = speciesGuide[nameB] || {};
@@ -427,16 +413,14 @@
             var speciesName = taxon.vernacularName || taxon.scientificName || '?';
             var sciName = taxon.scientificName || '';
             var reporter = occ.reportedBy || occ.recordedBy || 'Okänd';
-            var dateStr = event.plainStartDate || (event.startDate || '').substring(0, 10);
+            var dateStr = StockholmDates.observationDay(event);
             var place = loc.locality || '';
             var quantity = occ.quantity || occ.individualCount || '';
             var activity = occ.activity ? occ.activity.value || '' : '';
 
             // Datumseparator — spänner hela griden
             if (currentSort === 'date' && dateStr !== lastDateStr) {
-                var d = new Date(dateStr);
-                var dayNames = ['söndag','måndag','tisdag','onsdag','torsdag','fredag','lördag'];
-                var longDate = dayNames[d.getDay()] + ' ' + d.getDate() + ' ' + MONTHS[d.getMonth()];
+                var longDate = StockholmDates.formatDay(dateStr, true);
                 html += '<div class="fp-date-sep" style="grid-column:1/-1">' + longDate + '</div>';
                 lastDateStr = dateStr;
             }

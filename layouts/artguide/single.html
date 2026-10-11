@@ -447,7 +447,7 @@
 <script>
     window.siteBaseURL = '{{ .Site.BaseURL }}';
     window.arshjulTaxonomy = [
-        {{ $guide:= site.Data.species_guide }}
+        {{ $guide:= partialCached "species_guide.html" . }}
         {{ if $guide }}{{ range index $guide "species" }}"{{ .name }}", {{ end }}{{ end }}
     ];
 
