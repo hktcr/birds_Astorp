@@ -69,7 +69,9 @@
             const filterBar = document.getElementById('active-filter-bar');
             const filterName = document.getElementById('active-filter-name');
 
-            const displayLabel = decodeURIComponent(filterSpecies).replace(/-/g, ' ').replace(/^./, str => str.toUpperCase());
+            // URLSearchParams has already decoded the query. Keep it as text,
+            // including unknown values and malformed percent-encoded input.
+            const displayLabel = filterSpecies.replace(/-/g, ' ').replace(/^./, str => str.toUpperCase());
 
             if (filterBar && filterName) {
                 filterName.textContent = displayLabel;
@@ -95,7 +97,10 @@
             if (visibleCount === 0) {
                 const timeline = document.querySelector('.archive-grid-container');
                 if (timeline) {
-                    timeline.innerHTML = '<p class="empty-state">Inga inlägg hittades för ' + displayLabel + '.</p>';
+                    const emptyState = document.createElement('p');
+                    emptyState.className = 'empty-state';
+                    emptyState.textContent = 'Inga inlägg hittades för ' + displayLabel + '.';
+                    timeline.replaceChildren(emptyState);
                 }
             }
         }

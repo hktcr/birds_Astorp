@@ -1,6 +1,6 @@
 ---
 title: "Efterlysta"
-description: "Åstorps 54 kalla fall – en jakt på kommunens mest saknade arter"
+description: "Efterlysta arter och dokumenterade fynd i Åstorps kommun"
 layout: "efterlysta"
 url: "/efterlysta/"
 ---
@@ -8,8 +8,9 @@ url: "/efterlysta/"
 <div style="text-align: center; margin-bottom: 2rem;">
 <h1 style="font-size: 3rem; margin-bottom: 0.5rem; color: var(--text-color);">EFTERLYSTA</h1>
 <p style="font-size: 1.1rem; line-height: 1.6; text-align: left; opacity: 0.9; margin-bottom: 3rem; max-width: 680px; margin-left: auto; margin-right: auto;">
-Efter en noggrann genomgång av artlistan för Åstorp har jag identifierat 53 arter som utgör tydliga luckor: arter som borde kunna dyka upp, men ännu inte noterats i kommunen. Målet: minska listan, en art i taget.
+Listan innehåller 53 arter: 50 märkta som efterlysta och 3 med dokumenterade fynd i Åstorps kommun. De redan hittade arterna är markerade som historiska fynd eller förstafynd. Målet: minska listan, en art i taget.
 </p>
+<p class="bounty-data-note">Skånefynden är ett sparat underlag utan observationsdatum eller angiven hämtningsperiod. De visar inte aktuell fågelaktivitet. Ett fynd i Skåne innebär inte att arten har setts i Åstorps kommun.</p>
 </div>
 
 <style>
@@ -297,6 +298,7 @@ Efter en noggrann genomgång av artlistan för Åstorp har jag identifierat 53 a
     display: flex;
     gap: 0.5rem;
     align-items: center;
+    flex-wrap: wrap;
 }
 .meta-label {
     text-transform: uppercase;
@@ -323,6 +325,12 @@ Efter en noggrann genomgång av artlistan för Åstorp har jag identifierat 53 a
     margin-bottom: 1.5rem;
 }
 
+.bounty-data-note { max-width: 680px; margin: 0 auto 2rem; text-align: left; color: var(--text-muted, #6b7280); }
+#skane-map-dialog { width: min(1000px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); margin: auto; padding: 1rem; box-sizing: border-box; border: 1px solid var(--border-color); border-radius: 12px; background: var(--bg-color, #fff); color: var(--text-color); }
+#skane-map-dialog::backdrop { background: rgba(0,0,0,0.5); }
+#skane-map-title { margin: 0 2rem 0.5rem 0; font-size: 1.3rem; }
+#skane-map-note { margin: 0 0 1rem; font-size: 0.9rem; }
+#skane-map-container { height: min(62dvh, 600px); min-height: 240px; }
 </style>
 
 <div class="bounty-grid" id="bountyGrid">
@@ -679,6 +687,12 @@ Efter en noggrann genomgång av artlistan för Åstorp har jag identifierat 53 a
 </div>
 
 <!-- Modal Structure -->
+<dialog id="skane-map-dialog" aria-labelledby="skane-map-title" aria-describedby="skane-map-note">
+    <button class="obs-modal-close" onclick="closeSkaneObsMap()" aria-label="Stäng kartan">&times;</button>
+    <h2 id="skane-map-title">Sparade fyndplatser i Skåne</h2>
+    <p id="skane-map-note">Datum och tidsperiod saknas i underlaget. Kartan visar inte aktuella fynd.</p>
+    <div id="skane-map-container"></div>
+</dialog>
 <div id="obsModalOverlay" class="obs-modal-overlay" onclick="closeModal(event)">
     <div class="obs-modal" onclick="event.stopPropagation()">
         <button class="obs-modal-close" onclick="closeModal(event)">&times;</button>
@@ -695,7 +709,7 @@ const forstafyndInfo = {"102122": {"date": "25 maj 2026", "kommentar": "sjöng i
 const fetchWindows = {"100075": "", "102936": "", "102925": "", "100030": "", "233849": "", "102939": "", "100133": "", "102619": "", "100072": "", "100134": "", "100062": "", "100094": "", "100063": "", "100097": "", "102109": "", "103076": "", "102108": "", "102115": "", "100018": "", "100143": "", "103073": ""};
 
 function getFetchWindow(taxonId) {
-    return fetchWindows[String(taxonId)] || "senaste 7 dagarna";
+    return fetchWindows[String(taxonId)] || "Tidsperiod okänd";
 }
 
 function openModal(taxonId, speciesName) {
@@ -745,10 +759,10 @@ function openModal(taxonId, speciesName) {
     const records = obsData[taxonId];
     if (!records || records.length === 0) return;
 
-    const window7 = getFetchWindow(taxonId);
+    const dateWindow = getFetchWindow(taxonId);
 
     let html = `<div class="modal-title">${speciesName}</div>`;
-    html += `<div class="modal-subtitle">Fynd i Skåne · <span style="opacity:0.75;font-size:0.9em">${window7}</span> · ${records.length} observationer</div>`;
+    html += `<div class="modal-subtitle">Sparade fynd i Skåne · <span style="opacity:0.75;font-size:0.9em">${dateWindow}</span> · ${records.length} observationer</div>`;
 
     // Kartknapp — visas bara för arter med koordinatdata
     const hasCoords = records.some(r => r.maps_url && r.maps_url.match(/query=([\d.]+),([\d.]+)/));
@@ -773,7 +787,7 @@ function openModal(taxonId, speciesName) {
                 <span class="modal-obs-count">${obs.count} ex</span>
             </div>
             <div class="modal-obs-meta">
-                <span class="meta-label">Datum:</span> <span class="meta-value">${obs.date}</span>
+                <span class="meta-label">Datum:</span> <span class="meta-value">${obs.date || 'Saknas i underlaget'}</span>
                 <span class="meta-divider">|</span>
                 <span class="meta-label">Observatör:</span> <span class="meta-value">${safeObs}</span>
             </div>
@@ -790,20 +804,25 @@ function closeModal(event) {
     document.getElementById("obsModalOverlay").classList.remove("open");
 }
 
-// Öppna global map-lightbox med Skåne-fynddata
-function openSkaneObsMap(records, speciesName) {
-    const dialog = document.getElementById('map-lightbox');
-    if (!dialog) { alert('Kartfunktionen är inte laddad ännu.'); return; }
+// Keep the saved Skåne observations separate from the Åstorp history explorer.
+let skaneObsMap = null;
+function closeSkaneObsMap() {
+    document.getElementById('skane-map-dialog').close();
+    document.body.classList.remove('lightbox-open');
+}
 
-    const titleEl = document.getElementById('map-lightbox-title');
-    if (titleEl) titleEl.textContent = 'Fyndplatser i Skåne: ' + speciesName;
+function openSkaneObsMap(records, speciesName) {
+    const dialog = document.getElementById('skane-map-dialog');
+
+    const titleEl = document.getElementById('skane-map-title');
+    titleEl.textContent = 'Sparade fyndplatser i Skåne: ' + speciesName;
 
     if (!dialog.open) dialog.showModal();
     document.body.classList.add('lightbox-open');
 
     setTimeout(() => {
-        let map = window.globalHistoricMapInstance;
-        const container = document.getElementById('map-lightbox-container');
+        let map = skaneObsMap;
+        const container = document.getElementById('skane-map-container');
         if (!container) return;
 
         if (!map) {
@@ -812,8 +831,7 @@ function openSkaneObsMap(records, speciesName) {
                 maxZoom: 17,
                 attribution: '© OpenTopoMap'
             }).addTo(map);
-            window.globalHistoricMapInstance = map;
-            window.globalHistoricMapInitialized = true;
+            skaneObsMap = map;
         }
 
         map.eachLayer(layer => {
@@ -849,6 +867,7 @@ function openSkaneObsMap(records, speciesName) {
             marker.bindPopup(
                 `<strong>${safeLoc}</strong><br>` +
                 `<span style="font-size:1.1em;font-weight:bold;color:#dc2626">${count} individer</span><br>` +
+                `<span>Datum: ${obs.date || 'Saknas i underlaget'}</span><br>` +
                 `<span style="font-size:0.85em;opacity:0.7">${safeObs}</span>`
             );
             bounds.push([lat, lng]);
@@ -856,45 +875,30 @@ function openSkaneObsMap(records, speciesName) {
 
         if (bounds.length > 0) map.fitBounds(L.latLngBounds(bounds), { padding: [30, 30] });
 
-        const loading = document.getElementById('map-lightbox-loading');
-        if (loading) loading.style.display = 'none';
     }, 80);
 }
 
-// Initialisering av heatmaps/spotlights och flip-animation
+// Undated saved records cannot justify heat/recency highlighting.
 (function() {
-    const cards = document.querySelectorAll(".heat-logic");
-    
-    cards.forEach(card => {
-        try {
-            const locs = parseInt(card.getAttribute("data-unique-locs")) || 0;
-            
-            if (locs >= 20) {
-                card.classList.add("heat-3");
-            } else if (locs >= 10) {
-                card.classList.add("heat-2");
-            } else if (locs >= 5) {
-                card.classList.add("heat-1");
-            } else if (locs >= 1) {
-                card.classList.add("heat-0");
-            }
-            
-            // If this is a flip card, we need to apply heat class to the front face instead
-            if (card.classList.contains("flip-wrapper")) {
-                const front = card.querySelector(".bounty-card-front");
-                if (front && !front.classList.contains("tomtkryss-card")) {
-                    if (locs >= 20) front.classList.add("heat-3");
-                    else if (locs >= 10) front.classList.add("heat-2");
-                    else if (locs >= 5) front.classList.add("heat-1");
-                    else if (locs >= 1) front.classList.add("heat-0");
-                }
-                card.classList.remove("heat-3", "heat-2", "heat-1", "heat-0");
-            }
-        } catch(e) {
-            console.error("Error parsing card data", e);
+    const mapDialog = document.getElementById('skane-map-dialog');
+    // Handle Escape before Leaflet consumes it for an open marker popup.
+    mapDialog.addEventListener('keydown', event => {
+        if (event.key === 'Escape') {
+            event.preventDefault();
+            event.stopPropagation();
+            closeSkaneObsMap();
         }
+    }, true);
+    mapDialog.addEventListener('cancel', event => {
+        event.preventDefault();
+        closeSkaneObsMap();
     });
-    
+    mapDialog.addEventListener('click', event => {
+        const rect = mapDialog.getBoundingClientRect();
+        if (event.clientX < rect.left || event.clientX > rect.right ||
+            event.clientY < rect.top || event.clientY > rect.bottom) closeSkaneObsMap();
+    });
+
     // Continuous flip animation for flip cards
     const flipCards = document.querySelectorAll(".flip-card");
     if (flipCards.length > 0) {
@@ -916,7 +920,7 @@ function openSkaneObsMap(records, speciesName) {
     
     // Stäng modal på escape
     document.addEventListener('keydown', function(event) {
-        if (event.key === "Escape") {
+        if (event.key === "Escape" && !mapDialog.open) {
             closeModal();
         }
     });
