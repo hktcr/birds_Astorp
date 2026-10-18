@@ -26,6 +26,8 @@
     function readCache() { try { return JSON.parse(localStorage.getItem(CACHE_KEY)); } catch (_) { return null; } }
     function saveCache(cache) { try { localStorage.setItem(CACHE_KEY, JSON.stringify(cache)); } catch (_) { /* Live data remains usable if storage is unavailable. */ } }
     function sourceLink(record) { return 'https://www.artportalen.se/sighting/' + record.id.split(':').pop(); }
+    function localityCount(count) { return count + (count === 1 ? ' lokal' : ' lokaler'); }
+    function reportCount(count) { return count + (count === 1 ? ' rapport' : ' rapporter'); }
     function recordCount(record) { return record.count === null ? 'Antal ej angivet' : record.count + (record.count === 1 ? ' individ' : ' individer'); }
     function recordDate(record) { return Dates.formatDay(record.day) + (record.endDay !== record.day ? '–' + Dates.formatDay(record.endDay) : ''); }
     function setStatus(message, state) { status.textContent = message; status.dataset.state = state; }
@@ -41,7 +43,7 @@
                 var label = 'Aktuellt underlag saknas';
                 if (cache) {
                     card.dataset.uniqueLocs = String(item.locationCount);
-                    label = (isCurrent ? '' : 'Sparat: ') + item.locationCount + (item.locationCount === 1 ? ' lokal' : ' lokaler') + ' · ' + item.records.length + ' rapporter';
+                    label = (isCurrent ? '' : 'Sparat: ') + localityCount(item.locationCount) + ' · ' + reportCount(item.records.length);
                     var level = Data.heatLevel(item.locationCount);
                     if (isCurrent && level !== null) card.classList.add('heat-' + level);
                 }
@@ -51,7 +53,7 @@
         });
         if (cache) {
             coverage.textContent = 'Period: ' + rangeLabel(cache.period) + ' (svensk tid). Hämtat ' + timeLabel(cache.fetchedAt) +
-                '. Samtliga ' + targets.length + ' arter sökta, ' + cache.records.length + ' offentliga rapporter. ' +
+                '. Samtliga ' + targets.length + ' arter sökta, ' + cache.records.length + (cache.records.length === 1 ? ' offentlig rapport. ' : ' offentliga rapporter. ') +
                 (cache.rejected ? cache.rejected + ' ofullständiga eller avvikande poster räknas inte. ' : '') +
                 'Dagens rapportering pågår.';
         } else coverage.textContent = 'Avsedd period: ' + rangeLabel(period) + ' (svensk tid). Inga aktuella antal eller färger visas innan hela sökningen lyckats.';
@@ -76,7 +78,7 @@
             detailContent.appendChild(element('p', 'Inga offentliga rapporter hittades för arten under perioden. Det betyder inte att arten saknas i Skåne.'));
             return;
         }
-        detailContent.appendChild(element('p', item.locationCount + ' lokaler · ' + item.records.length + ' rapporter'));
+        detailContent.appendChild(element('p', localityCount(item.locationCount) + ' · ' + reportCount(item.records.length)));
         if (item.records.some(function (r) { return r.lat !== null && r.lng !== null; })) {
             var mapButton = element('button', 'Visa på karta', 'efterlysta-map-button');
             mapButton.type = 'button';
