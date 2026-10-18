@@ -1,0 +1,345 @@
+
+.bounty-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 1.5rem;
+    margin-top: 2rem;
+    padding-bottom: 4rem;
+    align-items: stretch;
+}
+
+.bounty-card {
+    background: var(--bg-alt);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    height: 100%;
+    box-sizing: border-box;
+}
+.bounty-card.clickable {
+    cursor: pointer;
+}
+.bounty-card.clickable:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Flip card styling */
+.flip-wrapper {
+    perspective: 1000px;
+    background: transparent;
+    cursor: pointer;
+    min-height: 270px;
+}
+.flip-wrapper:hover .bounty-card-container {
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    transform: translateY(-5px);
+}
+.flip-wrapper:hover .bounty-card-container.is-flipped {
+    transform: translateY(-5px) rotateY(180deg);
+}
+
+.bounty-card-container {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    transform-style: preserve-3d;
+    transition: transform 0.6s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.3s;
+    border-radius: 8px;
+}
+
+.bounty-card-container.is-flipped {
+    transform: rotateY(180deg);
+}
+
+.bounty-card-front, .bounty-card-back {
+    background: var(--bg-alt);
+    border: 1px solid var(--border-color);
+    border-radius: 8px;
+    padding: 1.5rem 1rem;
+    text-align: center;
+    backface-visibility: hidden;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    align-items: center;
+}
+
+.bounty-card-back {
+    transform: rotateY(180deg);
+    background: rgba(34, 197, 94, 0.1);
+    border-color: rgba(34, 197, 94, 0.8);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+.tomtkryss-date {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #166534;
+    margin-bottom: 0.5rem;
+}
+
+.tomtkryss-label {
+    font-size: 0.9rem;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #15803d;
+    margin-bottom: 1rem;
+}
+
+/* Heat levels for ALL cards (normal + front of flip) */
+.heat-0 {
+    border-color: rgba(56, 189, 248, 0.8);
+    box-shadow: 0 0 12px rgba(56, 189, 248, 0.2);
+}
+.heat-0 .bounty-icon {
+    filter: drop-shadow(0px 4px 8px rgba(56, 189, 248, 0.4));
+    opacity: 0.8;
+}
+
+.heat-1 {
+    border-color: rgba(234, 179, 8, 0.8);
+    box-shadow: 0 0 15px rgba(234, 179, 8, 0.2);
+}
+.heat-1 .bounty-icon {
+    filter: drop-shadow(0px 4px 10px rgba(234, 179, 8, 0.5));
+    opacity: 0.85;
+}
+
+.heat-2 {
+    border-color: rgba(249, 115, 22, 0.9);
+    box-shadow: 0 0 25px rgba(249, 115, 22, 0.3), inset 0 0 15px rgba(249, 115, 22, 0.1);
+}
+.heat-2 .bounty-icon {
+    filter: drop-shadow(0px 4px 10px rgba(249, 115, 22, 0.7));
+    opacity: 0.95;
+}
+
+.heat-3 {
+    border-color: rgba(239, 68, 68, 1);
+    box-shadow: 0 0 35px rgba(239, 68, 68, 0.4), inset 0 0 20px rgba(239, 68, 68, 0.2);
+}
+.heat-3 .bounty-icon {
+    filter: drop-shadow(0px 4px 15px rgba(239, 68, 68, 0.9));
+    opacity: 1;
+}
+
+/* Tomtkryss specific styling */
+.tomtkryss-card {
+    border-color: rgba(34, 197, 94, 0.9);
+    box-shadow: 0 0 25px rgba(34, 197, 94, 0.3), inset 0 0 15px rgba(34, 197, 94, 0.1);
+}
+.tomtkryss-card .bounty-icon {
+    filter: drop-shadow(0px 4px 10px rgba(34, 197, 94, 0.7));
+    opacity: 0.95;
+}
+.tomtkryss-card .bounty-wanted {
+    color: #15803d;
+}
+
+.bounty-icon {
+    width: 140px;
+    height: 140px;
+    margin: 0 auto 1.5rem;
+    opacity: 0.6;
+    display: block;
+    object-fit: contain;
+    filter: drop-shadow(0px 4px 6px rgba(0,0,0,0.3));
+    transition: all 0.3s;
+}
+.bounty-wanted {
+    font-family: "Courier New", Courier, monospace;
+    font-weight: 900;
+    font-size: 1.3rem;
+    color: #991b1b;
+    letter-spacing: 0.15em;
+    margin-bottom: 0.25rem;
+    text-transform: uppercase;
+}
+.bounty-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+}
+.bounty-latin {
+    font-style: italic;
+    font-size: 0.85rem;
+    opacity: 0.7;
+    margin-bottom: 0.5rem;
+}
+
+/* Modal styles */
+.obs-modal-overlay {
+    display: none;
+    position: fixed;
+    top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.5);
+    z-index: 9999;
+    align-items: center;
+    justify-content: center;
+    backdrop-filter: blur(3px);
+}
+.obs-modal-overlay.open {
+    display: flex;
+}
+.obs-modal {
+    background: var(--bg-color, #fff);
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 16px;
+    width: 95vw;
+    max-width: 1100px;
+    max-height: 88vh;
+    overflow-y: auto;
+    box-shadow: 0 25px 50px -12px rgba(0,0,0,0.18), 0 8px 16px rgba(0,0,0,0.08);
+    position: relative;
+    padding: 2rem;
+}
+@media (max-width: 600px) {
+    .obs-modal { width: 98vw; padding: 1.25rem; }
+}
+.obs-modal-close {
+    position: absolute;
+    top: 1rem; right: 1rem;
+    background: none; border: none;
+    font-size: 1.5rem; cursor: pointer;
+    color: var(--text-color, #374151);
+    opacity: 0.6; transition: opacity 0.2s;
+}
+.obs-modal-close:hover { opacity: 1; }
+
+.modal-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.25rem;
+    color: var(--text-color);
+}
+.modal-subtitle {
+    font-size: 1rem;
+    color: var(--text-muted, #6b7280);
+    margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+    padding-bottom: 1rem;
+}
+
+.modal-obs-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 0;
+    border: 1px solid var(--border-color, #e5e7eb);
+    border-radius: 8px;
+    overflow: hidden;
+}
+@media (max-width: 600px) {
+    .modal-obs-list { grid-template-columns: 1fr; }
+}
+.modal-obs-item {
+    padding: 0.85rem 1rem;
+    border-bottom: 1px solid var(--border-color, #e5e7eb);
+    display: flex;
+    flex-direction: column;
+    gap: 0.2rem;
+}
+.modal-obs-item:last-child {
+    border-bottom: none;
+}
+.modal-obs-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+}
+.modal-obs-loc {
+    font-weight: 600;
+    color: var(--text-color);
+    font-size: 1.05rem;
+}
+.modal-obs-count {
+    background: rgba(249, 115, 22, 0.15);
+    color: #c2410c;
+    padding: 2px 8px;
+    border-radius: 12px;
+    font-weight: bold;
+    font-size: 0.85rem;
+}
+.modal-obs-meta {
+    font-size: 0.85rem;
+    color: var(--text-muted, #6b7280);
+    display: flex;
+    gap: 0.5rem;
+    align-items: center;
+    flex-wrap: wrap;
+}
+.meta-label {
+    text-transform: uppercase;
+    font-size: 0.7rem;
+    letter-spacing: 0.5px;
+    opacity: 0.7;
+}
+.meta-value {
+    color: var(--text-color, #374151);
+}
+.meta-divider {
+    opacity: 0.3;
+}
+
+/* Tomtkryss modal custom layout */
+.tomtkryss-modal-content {
+    font-size: 1.1rem;
+    line-height: 1.6;
+    color: var(--text-color);
+    background: rgba(34, 197, 94, 0.05);
+    border: 1px solid rgba(34, 197, 94, 0.3);
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.bounty-data-note { max-width: 680px; margin: 0 auto 2rem; text-align: left; color: var(--text-muted, #6b7280); }
+#skane-map-dialog { width: min(1000px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); margin: auto; padding: 1rem; box-sizing: border-box; border: 1px solid var(--border-color); border-radius: 12px; background: var(--bg-color, #fff); color: var(--text-color); }
+#skane-map-dialog::backdrop { background: rgba(0,0,0,0.5); }
+#skane-map-title { margin: 0 2rem 0.5rem 0; font-size: 1.3rem; }
+#skane-map-note { margin: 0 0 1rem; font-size: 0.9rem; }
+#skane-map-container { height: min(62dvh, 600px); min-height: 240px; }
+
+
+.efterlysta-intro { max-width: 760px; margin: 0 auto 2rem; }
+.efterlysta-intro h1 { font-size: clamp(2rem, 5vw, 3rem); text-align: center; }
+.efterlysta-intro p { line-height: 1.65; }
+.efterlysta-data-panel { padding: 1rem 1.25rem; border: 1px solid var(--border-color); border-radius: 12px; background: var(--bg-alt); }
+#efterlysta-status { font-weight: 600; margin: 0 0 .5rem; }
+#efterlysta-status[data-state="error"], #efterlysta-status[data-state="stale"] { color: #9a3412; }
+#efterlysta-coverage, .efterlysta-method, .efterlysta-source { font-size: .9rem; line-height: 1.5; }
+#efterlysta-refresh, .efterlysta-map-button { border: 1px solid var(--border-color); border-radius: 8px; padding: .6rem 1rem; font: inherit; color: var(--text-color); background: var(--bg-color); cursor: pointer; }
+#efterlysta-refresh:disabled { opacity: .55; cursor: wait; }
+.efterlysta-legend { font-size: .9rem; }
+.legend-blue { border-bottom: 3px solid #38bdf8; }
+.legend-yellow { border-bottom: 3px solid #eab308; }
+.legend-orange { border-bottom: 3px solid #f97316; }
+.legend-red { border-bottom: 3px solid #ef4444; }
+button.bounty-card { width: 100%; font: inherit; color: var(--text-color); cursor: pointer; min-height: 300px; }
+.bounty-card:focus-visible, #efterlysta-refresh:focus-visible { outline: 3px solid #2563eb; outline-offset: 4px; }
+button.bounty-card:hover { transform: translateY(-3px); }
+.bounty-card .bounty-wanted { font-size: 1.05rem; }
+.bounty-count { margin-top: auto; padding-top: 1rem; font-size: .85rem; line-height: 1.4; }
+#efterlysta-detail { width: min(1000px, calc(100vw - 32px)); max-height: calc(100dvh - 32px); margin: auto; padding: 1.5rem; box-sizing: border-box; border: 1px solid var(--border-color); border-radius: 12px; background: var(--bg-color, #fff); color: var(--text-color); }
+#efterlysta-detail::backdrop { background: rgba(0,0,0,.5); }
+#efterlysta-detail-title { margin: 0 2rem 1rem 0; }
+.efterlysta-map-button { margin-bottom: 1rem; }
+#efterlysta-detail .modal-obs-item a { font-size: .85rem; }
+@media (max-width: 600px) { .efterlysta-container { padding: 1rem !important; } .bounty-grid { grid-template-columns: repeat(2, minmax(0,1fr)); gap: .75rem; } .bounty-icon { width: 100%; max-width: 140px; height: 110px; } button.bounty-card { padding: 1rem .6rem; min-height: 280px; } .bounty-name { overflow-wrap: anywhere; } }

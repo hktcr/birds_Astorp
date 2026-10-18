@@ -1,0 +1,282 @@
+[
+  {
+    "id": 102122,
+    "name": "Flodsångare",
+    "latin": "Locustella fluviatilis",
+    "history": {
+      "label": "FÖRSTAFYND",
+      "date": "2026-05-25",
+      "text": "Flodsångare sjöng i slymarken vid Tomarps Ene den 25 maj 2026. Ny art för kommunen."
+    }
+  },
+  {
+    "id": 100075,
+    "name": "Myrspov",
+    "latin": "Limosa lapponica",
+    "history": {
+      "label": "HISTORISKT FYND",
+      "date": "2023-05-21",
+      "text": "Myrspov observerades överflygande på natten den 21 maj 2023 i Åstorps kommun."
+    }
+  },
+  {
+    "id": 102936,
+    "name": "Sjöorre",
+    "latin": "Melanitta nigra",
+    "history": {
+      "label": "HISTORISKT FYND",
+      "date": "2024-04-09",
+      "text": "Sjöorre hördes sträckande över tomten klockan 21:35 den 9 april 2024 i Åstorps kommun."
+    }
+  },
+  {
+    "id": 102925,
+    "name": "Skäggdopping",
+    "latin": "Podiceps cristatus"
+  },
+  {
+    "id": 100030,
+    "name": "Svarttärna",
+    "latin": "Chlidonias niger"
+  },
+  {
+    "id": 233849,
+    "name": "Svarthakad buskskvätta",
+    "latin": "Saxicola rubicola"
+  },
+  {
+    "id": 102939,
+    "name": "Småskrake",
+    "latin": "Mergus serrator"
+  },
+  {
+    "id": 100133,
+    "name": "Småtärna",
+    "latin": "Sternula albifrons"
+  },
+  {
+    "id": 102619,
+    "name": "Silvertärna",
+    "latin": "Sterna paradisaea"
+  },
+  {
+    "id": 100072,
+    "name": "Dvärgmås",
+    "latin": "Hydrocoloeus minutus"
+  },
+  {
+    "id": 100134,
+    "name": "Skräntärna",
+    "latin": "Hydroprogne caspia"
+  },
+  {
+    "id": 100062,
+    "name": "Storlom",
+    "latin": "Gavia arctica"
+  },
+  {
+    "id": 100094,
+    "name": "Sommargylling",
+    "latin": "Oriolus oriolus"
+  },
+  {
+    "id": 100063,
+    "name": "Smålom",
+    "latin": "Gavia stellata"
+  },
+  {
+    "id": 100097,
+    "name": "Skäggmes",
+    "latin": "Panurus biarmicus"
+  },
+  {
+    "id": 102109,
+    "name": "Svärta",
+    "latin": "Melanitta fusca"
+  },
+  {
+    "id": 103076,
+    "name": "Vassångare",
+    "latin": "Locustella luscinioides"
+  },
+  {
+    "id": 102108,
+    "name": "Alfågel",
+    "latin": "Clangula hyemalis"
+  },
+  {
+    "id": 102115,
+    "name": "Roskarl",
+    "latin": "Arenaria interpres"
+  },
+  {
+    "id": 100018,
+    "name": "Rördrom",
+    "latin": "Botaurus stellaris"
+  },
+  {
+    "id": 100143,
+    "name": "Härfågel",
+    "latin": "Upupa epops"
+  },
+  {
+    "id": 103073,
+    "name": "Citronärla",
+    "latin": "Motacilla citreola"
+  },
+  {
+    "id": 100014,
+    "name": "Bergand",
+    "latin": "Aythya marila"
+  },
+  {
+    "id": 232269,
+    "name": "Rödhalsad gås",
+    "latin": "Branta ruficollis"
+  },
+  {
+    "id": 233137,
+    "name": "Rödhuvad dykand",
+    "latin": "Netta rufina"
+  },
+  {
+    "id": 100113,
+    "name": "Svarthakedopping",
+    "latin": "Podiceps auritus"
+  },
+  {
+    "id": 100035,
+    "name": "Ängshök",
+    "latin": "Circus pygargus"
+  },
+  {
+    "id": 205550,
+    "name": "Mindre skrikörn",
+    "latin": "Clanga pomarina"
+  },
+  {
+    "id": 103064,
+    "name": "Kustpipare",
+    "latin": "Pluvialis squatarola"
+  },
+  {
+    "id": 103065,
+    "name": "Kustsnäppa",
+    "latin": "Calidris canutus"
+  },
+  {
+    "id": 205615,
+    "name": "Spovsnäppa",
+    "latin": "Calidris ferruginea"
+  },
+  {
+    "id": 205607,
+    "name": "Sandlöpare",
+    "latin": "Calidris alba"
+  },
+  {
+    "id": 102114,
+    "name": "Myrsnäppa",
+    "latin": "Calidris falcinellus"
+  },
+  {
+    "id": 102617,
+    "name": "Smalnäbbad simsnäppa",
+    "latin": "Phalaropus lobatus"
+  },
+  {
+    "id": 102111,
+    "name": "Fjällpipare",
+    "latin": "Eudromias morinellus"
+  },
+  {
+    "id": 103066,
+    "name": "Dammsnäppa",
+    "latin": "Tringa stagnatilis"
+  },
+  {
+    "id": 205613,
+    "name": "Tuvsnäppa",
+    "latin": "Calidris melanotos"
+  },
+  {
+    "id": 100125,
+    "name": "Tretåig mås",
+    "latin": "Rissa tridactyla"
+  },
+  {
+    "id": 205663,
+    "name": "Medelhavstrut",
+    "latin": "Larus michahellis"
+  },
+  {
+    "id": 103068,
+    "name": "Vitvingad tärna",
+    "latin": "Chlidonias leucopterus"
+  },
+  {
+    "id": 102621,
+    "name": "Sparvuggla",
+    "latin": "Glaucidium passerinum"
+  },
+  {
+    "id": 102622,
+    "name": "Pärluggla",
+    "latin": "Aegolius funereus"
+  },
+  {
+    "id": 102620,
+    "name": "Hökuggla",
+    "latin": "Surnia ulula"
+  },
+  {
+    "id": 103071,
+    "name": "Biätare",
+    "latin": "Merops apiaster"
+  },
+  {
+    "id": 103051,
+    "name": "Rosenfink",
+    "latin": "Carpodacus erythrinus"
+  },
+  {
+    "id": 100123,
+    "name": "Pungmes",
+    "latin": "Remiz pendulinus"
+  },
+  {
+    "id": 103053,
+    "name": "Lappsparv",
+    "latin": "Calcarius lapponicus"
+  },
+  {
+    "id": 100052,
+    "name": "Berglärka",
+    "latin": "Eremophila alpestris"
+  },
+  {
+    "id": 102126,
+    "name": "Ortolansparv",
+    "latin": "Emberiza hortulana"
+  },
+  {
+    "id": 102624,
+    "name": "Blåhake",
+    "latin": "Luscinia svecica"
+  },
+  {
+    "id": 205835,
+    "name": "Tajgasångare",
+    "latin": "Phylloscopus inornatus"
+  },
+  {
+    "id": 102123,
+    "name": "Höksångare",
+    "latin": "Curruca nisoria"
+  },
+  {
+    "id": 205750,
+    "name": "Större piplärka",
+    "latin": "Anthus richardi"
+  }
+]

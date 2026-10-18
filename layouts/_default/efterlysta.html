@@ -1,5 +1,49 @@
 {{ define "main" }}
 <div class="efterlysta-container" style="max-width: 1200px; margin: 0 auto; padding: 2rem;">
-    {{ .Content }}
+    <header class="efterlysta-intro">
+        <h1>EFTERLYSTA</h1>
+        {{ .Content }}
+        <p>De efterlysta arterna sorteras efter antal rapporterade lokaler i Skåne under de senaste sju kalenderdagarna, inklusive idag. Samma period styr färgerna. Vid lika antal sorteras arterna i bokstavsordning.</p>
+        <p>Ett Skånefynd innebär inte att arten har setts i Åstorp. Inga rapporter är inte samma sak som att arten saknas. Underlaget omfattar offentliga närvarofynd i Artportalen via SLU Artdatabanken, inklusive underarter som kan kopplas till arten. Osäker artbestämning räknas inte; rapporterna behöver inte vara expertgranskade.</p>
+    </header>
+    <section class="efterlysta-data-panel" aria-label="Datastatus">
+        <p id="efterlysta-status" role="status" aria-live="polite">Hämtar senaste sju dagarnas offentliga Skånefynd…</p>
+        <p id="efterlysta-coverage"></p>
+        <button id="efterlysta-refresh" type="button">Uppdatera fynd</button>
+        <p class="efterlysta-legend">Lokaler per art: <span class="legend-blue">1–4</span> · <span class="legend-yellow">5–9</span> · <span class="legend-orange">10–19</span> · <span class="legend-red">20 eller fler</span>. Grönt markerar dokumenterade Åstorpsfynd.</p>
+        <p class="efterlysta-method">En lokal räknas en gång per art och period: samma lokalnamn i samma kommun, annars publicerad position. Färgerna visar rapporterade lokaler, inte sannolikheten att hitta arten.</p>
+    </section>
+    <noscript><p>JavaScript behövs för att hämta aktuella fynd, sortera korten och öppna detaljer. Artlistan nedan visar ingen aktuell aktivitet.</p></noscript>
+    <div class="bounty-grid" id="bountyGrid">
+        {{ range site.Data.efterlysta_species }}
+        <button type="button" class="bounty-card {{ if .history }}tomtkryss-card{{ end }}" data-taxon-id="{{ .id }}" aria-label="Visa {{ .name }}">
+            <img class="bounty-icon" src="/images/profiles/{{ .id }}.png?v=17" alt="Illustration av {{ .name }}" loading="lazy">
+            <span class="bounty-wanted">{{ with .history }}{{ .label }}{{ else }}WANTED{{ end }}</span>
+            <span class="bounty-name">{{ .name }}</span>
+            <span class="bounty-latin">{{ .latin }}</span>
+            <span class="bounty-count">{{ with .history }}{{ .date }}{{ else }}Inväntar aktuella fynd{{ end }}</span>
+        </button>
+        {{ end }}
+    </div>
+    <p class="efterlysta-source">Källa: <a href="https://www.artportalen.se/">Artportalen</a> via <a href="https://github.com/biodiversitydata-se/SOS/blob/master/Docs/WfsService.md">SLU Artdatabankens offentliga WFS</a>. Skyddade fynd ingår inte. Källan kan ha fördröjning och fynd kan rapporteras eller rättas i efterhand.</p>
+    <p><em>Samtliga artillustrationer i detta galleri är skapade med hjälp av generativ AI och ska bara ses som mycket förenklade representationer av arterna.</em></p>
+    <dialog id="efterlysta-detail" aria-labelledby="efterlysta-detail-title">
+        <button type="button" class="obs-modal-close" id="efterlysta-close" aria-label="Stäng artdetaljer">×</button>
+        <h2 id="efterlysta-detail-title"></h2>
+        <div id="efterlysta-detail-content"></div>
+    </dialog>
+    <dialog id="skane-map-dialog" aria-labelledby="skane-map-title" aria-describedby="skane-map-note">
+        <button type="button" class="obs-modal-close" id="skane-map-close" aria-label="Stäng kartan">×</button>
+        <h2 id="skane-map-title"></h2>
+        <p id="skane-map-note"></p>
+        <div id="skane-map-container"></div>
+    </dialog>
+    <script type="application/json" id="efterlysta-targets">{{ site.Data.efterlysta_species | jsonify | safeJS }}</script>
 </div>
+<link rel="stylesheet" href="{{ "css/efterlysta.css" | relURL }}">
+{{ end }}
+{{ define "scripts" }}
+<script src="{{ "js/stockholm-dates.js" | relURL }}"></script>
+<script src="{{ "js/efterlysta-data.js" | relURL }}"></script>
+<script src="{{ "js/efterlysta.js" | relURL }}"></script>
 {{ end }}

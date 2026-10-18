@@ -475,3 +475,13 @@ Atlas-ingången (☀-symbolen) är en dold länk i `baseof.html`, inte i navigat
 
 ### Galleriet — bildextraktion
 `galleri/list.html` extraherar bilder via regex från blogginlägg (både `![alt](url)` och `<img src>`). Bilder **utan** `images:`-taggning tilldelas postens `species:` som fallback-kategori i gallerifiltren.
+
+### Efterlystas aktuella Skånefynd
+
+Artlistan och de tre dokumenterade Åstorpsfynden finns i `data/efterlysta_species.json`. Sidan hämtar endast offentliga Artportalen-fynd via SLU:s öppna SOS WFS, utan API-nyckel, inloggning eller rapportörs-/kommentarsfält. Underarter räknas till huvudarten; osäker bestämning och artkomplex ingår inte. Rapporterna behöver inte vara expertgranskade.
+
+`static/js/efterlysta-data.js` använder samma sju kalenderdagar i Stockholm, inklusive idag, för datumurval, lokalsummering, rangordning och färger. Dokumenterade Åstorpsfynd ligger kvar först. Därefter sorteras arterna efter fallande antal unika lokalnamn per kommun (position som reserv), med svensk bokstavsordning vid lika antal. Samma occurrenceId räknas bara en gång.
+
+WFS:s totalsiffror kan vara kapade vid 5000 och offsetpaginering kan överlappa. Fulla svar delas därför först per artgrupp och sedan i disjunkta starttidsintervall; observationsslutets gräns förblir hela periodens slut. Delresultat publiceras aldrig som kompletta. HTTP-fel, XML/felsvar, motstridiga totalsiffror eller otolkbara poster ger felstatus. Senaste kompletta cache får visas för samma period med tydlig hämtningstid, utan aktuella färger när kontrollen misslyckats. En annan periods cache används inte i dagens rangordning. Cache kontrolleras efter 15 minuter och vid svenskt datumskifte; en manuell uppdatering finns också.
+
+Kör `node scripts/test-efterlysta.cjs` före bygg/publicering. Kontrollera dessutom kort, detaljdialog, karta, stäng/öppna igen, nollfynd och felcache i webbläsaren. Källans offentliga täckning och fördröjning ska förbli synliga. Äldre odaterade majdata finns i Git-historiken och får inte återanvändas som aktuella fynd.
