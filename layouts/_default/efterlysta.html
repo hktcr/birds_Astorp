@@ -40,10 +40,10 @@
     </dialog>
     <script type="application/json" id="efterlysta-targets">{{ site.Data.efterlysta_species | jsonify | safeJS }}</script>
 </div>
-<link rel="stylesheet" href="{{ "css/efterlysta.css" | relURL }}">
+<link rel="stylesheet" href="{{ "css/efterlysta.css" | relURL }}?v={{ readFile "static/css/efterlysta.css" | sha256 }}">
 {{ end }}
 {{ define "scripts" }}
-<script src="{{ "js/stockholm-dates.js" | relURL }}"></script>
-<script src="{{ "js/efterlysta-data.js" | relURL }}"></script>
-<script src="{{ "js/efterlysta.js" | relURL }}"></script>
+<script src="{{ "js/stockholm-dates.js" | relURL }}?v={{ readFile "static/js/stockholm-dates.js" | sha256 }}"></script>
+<script src="{{ "js/efterlysta-data.js" | relURL }}?v={{ readFile "static/js/efterlysta-data.js" | sha256 }}"></script>
+<script src="{{ "js/efterlysta.js" | relURL }}?v={{ readFile "static/js/efterlysta.js" | sha256 }}"></script>
 {{ end }}

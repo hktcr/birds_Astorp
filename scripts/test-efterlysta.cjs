@@ -2,11 +2,17 @@
 const assert = require('node:assert/strict');
 const fs = require('node:fs');
 const path = require('node:path');
+const crypto = require('node:crypto');
 const Data = require('../static/js/efterlysta-data.js');
 const Dates = require('../static/js/stockholm-dates.js');
 const targets = require('../data/efterlysta_species.json');
 const period = Dates.dateWindow(7, '2026-10-18T13:00:00Z');
 const target = targets.find(t => t.name === 'Smålom');
+const built = fs.readFileSync(path.join(__dirname, '../docs/efterlysta/index.html'), 'utf8');
+for (const asset of ['css/efterlysta.css', 'js/stockholm-dates.js', 'js/efterlysta-data.js', 'js/efterlysta.js']) {
+    const hash = crypto.createHash('sha256').update(fs.readFileSync(path.join(__dirname, '../static/', asset))).digest('hex');
+    assert(built.includes('/' + asset + '?v=' + hash), 'Build must reference the exact asset version: ' + asset);
+}
 function feature(id = 1, props = {}) {
     return {type: 'Feature', properties: {occurrenceId: `urn:lsid:artportalen.se:sighting:${id}`,
         dataProviderId: 1, county: 'Skåne', isPresentObservation: true, isUncertainIdentification: false,
