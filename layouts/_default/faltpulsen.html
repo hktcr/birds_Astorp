@@ -211,7 +211,7 @@
             },
             output: {
                 fieldSet: 'Minimum',
-                fields: ['occurrence.reportedBy', 'occurrence.recordedBy', 'location.locality',
+                fields: ['occurrence.reportedBy', 'occurrence.recordedBy', 'occurrence.occurrenceRemarks', 'location.locality',
                          'location.decimalLatitude', 'location.decimalLongitude']
             }
         };
@@ -349,6 +349,30 @@
         return sorted;
     }
 
+    function appendObservationComment(card, occurrence) {
+        var comment = occurrence && occurrence.occurrenceRemarks;
+        if (typeof comment !== 'string' || !comment.trim()) return;
+        var grid = card.querySelector('.fp-detail-grid');
+        if (!grid) return;
+
+        var item = document.createElement('div');
+        item.className = 'fp-detail-item fp-detail-comment';
+        item.style.gridColumn = '1 / -1';
+        var label = document.createElement('span');
+        label.className = 'fp-detail-label';
+        label.textContent = 'Kommentar';
+        var text = document.createElement('span');
+        text.className = 'fp-comment-text';
+        text.style.whiteSpace = 'pre-wrap';
+        text.style.overflowWrap = 'anywhere';
+        // SOS maps this field from Artportalen's public observation comment.
+        // Keep it literal: never interpret report text as HTML or use private notes.
+        text.textContent = comment;
+        item.appendChild(label);
+        item.appendChild(text);
+        grid.appendChild(item);
+    }
+
     function renderList(records) {
         var container = document.getElementById('fp-list');
         var sorted = sortRecords(records, currentSort);
@@ -462,6 +486,8 @@
         
         // Klick på kort — expandera detaljer
         container.querySelectorAll('.fp-obs-card').forEach(function(card) {
+            var observation = sorted[Number(card.getAttribute('data-idx'))];
+            appendObservationComment(card, observation && observation.occurrence);
             card.addEventListener('click', function() {
                 var idx = card.getAttribute('data-idx');
                 var locName = card.getAttribute('data-loc');
