@@ -64,6 +64,7 @@ publishDir = 'docs'
 
 # Params
 [params]
+  galleryLighttable = true
   description = 'En fågelårsbok för Åstorps kommun — observationer, bilder och krysslista'
   author = 'Håkan Karlsson'
   municipality = 'Åstorp'

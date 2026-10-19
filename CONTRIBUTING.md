@@ -474,6 +474,14 @@ Atlas-ingången (☀-symbolen) är en dold länk i `baseof.html`, inte i navigat
 `map.js` identifierar automatiskt den senaste observationsplatsen och visar en pulserande SVG-ring.
 
 ### Galleriet — bildextraktion
+
+Ljusbordet visar hela notisgrupper med visningsdata i `data/gallery_photos.json`.
+Vid en ny bild: bevara befintliga ID:n, lägg till ett stabilt ID och verifiera motiv,
+proportioner, datumkälla och ursprunglig notiskoppling före bygge. Saknad metadata
+stoppar bygget. `date_label` anger endast säkert datum eller månad; ”notis” betyder
+notisdatum när bildens fotograferingsdatum saknas. `display_title` kan vara neutral
+när äldre originalrubriker motsäger bilden. Ändra inte bildens notiskoppling för
+att få rubriken att passa. Kör `node scripts/test-gallery-lighttable.cjs`.
 `galleri/list.html` extraherar bilder via regex från blogginlägg (både `![alt](url)` och `<img src>`). Bilder **utan** `images:`-taggning tilldelas postens `species:` som fallback-kategori i gallerifiltren.
 
 ### Efterlystas aktuella Skånefynd

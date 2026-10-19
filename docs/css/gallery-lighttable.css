@@ -1,0 +1,34 @@
+/* Local candidate, scoped to the gallery. Reference: hakankarlsson.se, 2026-10-19. */
+.lt-candidate-note {font-size:12px;color:#6a6256;text-align:center;margin:0 0 18px}
+.lt-show{position:relative;background:#fcfbf8;color:#30372e;padding:20px 14px 6px;border:1px solid #e4e5dd;isolation:isolate}
+.lt-stage{position:relative;height:clamp(360px,calc(100svh - 340px),740px);isolation:isolate}
+.lt-tile{position:absolute;margin:0;padding:0;transition:transform 450ms ease;}
+.lt-picture{display:block;position:relative;border:0;background:none;padding:0;width:100%;cursor:pointer;transition:filter 180ms ease,box-shadow 180ms ease}
+.lt-picture img{display:block;width:100%;height:100%;object-fit:contain;border-radius:0!important}
+.lt-caption{padding:9px 2px 0;font-size:12px;line-height:1.4;color:#656b60;text-align:left;overflow-wrap:anywhere}
+.lt-caption time{display:block;font:10px/1.4 Inter,Arial,sans-serif;letter-spacing:.04em;color:#73796e;margin-bottom:3px}
+.lt-caption em{display:block;font-family:Lora,Georgia,serif;font-weight:400}
+.lt-caption a{color:inherit;text-decoration:none}.lt-caption a:hover{text-decoration:underline}
+.lt-controls{display:flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:5px 16px;margin:14px 0 0;font:12px/1.4 Inter,Arial,sans-serif;color:#59634f}
+.lt-controls button{border:0;background:none;color:inherit;min-width:44px;min-height:44px;padding:8px 5px;font:inherit;cursor:pointer}
+.lt-controls [aria-pressed=true]{color:#26331f;text-decoration:underline;text-underline-offset:5px}
+.lt-controls button:disabled{opacity:.3;cursor:default}.lt-controls button:focus-visible,.lt-picture:focus-visible{outline:2px solid #526445;outline-offset:4px}
+.lt-controls .lt-arrow{font-size:22px;font-weight:300}.lt-controls [hidden]{display:none}
+.lt-status{text-align:center;font:11px/1.5 Inter,Arial,sans-serif;color:#7b8177;min-height:18px;margin:3px 0 5px}
+.lt-show[data-phase=glance] .lt-picture{filter:brightness(.42) saturate(.7)}
+.lt-show[data-phase=glance] .lt-glance .lt-picture{filter:brightness(1.14) saturate(1);box-shadow:0 0 0 3px #fff,0 0 20px 6px #ffffff70}
+.lt-show[data-phase=glance] .lt-chosen .lt-picture{filter:brightness(1.16) saturate(1);box-shadow:0 0 0 4px #fff,0 0 0 5px #555,0 0 26px 8px #ffffff80}
+.lt-dialog{width:96vw;max-width:1600px;height:94svh;max-height:100svh;padding:16px;background:#fcfbf8;border:0;color:#30372e}
+.lt-dialog::backdrop{background:rgba(25,30,22,.82)}
+.lt-dialog-top{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:12px}
+.lt-dialog-top button{border:0;background:none;min-height:44px;padding:5px 12px;cursor:pointer}
+.lt-dialog .lt-stage{height:calc(100% - 54px)}
+.lt-legacy{margin-top:28px}.lt-legacy>summary{cursor:pointer;font-size:13px;color:#68745e;padding:12px 0}
+.lt-show ~ .lt-legacy:not([open]) #gallery-grid{display:none!important}
+@media(min-width:1100px){body:has(.lt-show) main .container{max-width:1440px}body:has(.lt-show) main .col-lg-10{width:100%}}
+@media(max-width:600px){.lt-show{padding:12px 4px 6px;border-left:0;border-right:0}.lt-stage{height:520px}.lt-caption{font-size:11px;line-height:1.35;padding-top:7px}.lt-caption time{font-size:9px}.lt-controls{gap:2px 8px;font-size:11px}.lt-candidate-note{font-size:11px}.lt-dialog{width:100vw;padding:8px}.lt-dialog .lt-caption{font-size:11px}}
+@media(prefers-reduced-motion:reduce){.lt-tile,.lt-picture{transition:none!important}.lt-show[data-phase=glance] .lt-picture{filter:none}}
+
+body:has(.lt-show) .display-4{font-size:2.4rem}body:has(.lt-show) .lead{font-size:15px}
+
+.lt-focus{position:absolute;inset:0;background:#fcfbf8;z-index:3}.lt-dialog .lt-picture{cursor:default}

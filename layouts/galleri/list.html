@@ -1281,6 +1281,7 @@
 
                 <!-- Gallery View -->
                 <div id="gallery-view">
+                {{ if .Site.Params.galleryLighttable }}{{ partial "gallery-lighttable.html" . }}{{ end }}
 
                 <!-- Filter UI -->
                 <div class="gallery-filter-bar">
@@ -1318,6 +1319,7 @@
                     Inga bilder hittades för det valda filtret.
                 </div>
 
+                {{ if .Site.Params.galleryLighttable }}<details class="lt-legacy"><summary>Alla bilder · befintlig galleriöversikt</summary>{{ end }}
                 <div class="gallery-grid" id="gallery-grid">
                     {{/* Render collected unique images */}}
                     {{ range sort ($globalImages.Get "images") "post.Date" "desc" }}
@@ -1349,17 +1351,28 @@
                     {{ $monthData := $post.Date.Format "2006-01" }}
                     {{ $dateISO := $post.Date.Format "2006-01-02" }}
 
-                    <a href="{{ $post.RelPermalink }}" class="gallery-item" data-species="{{ $speciesData }}"
-                        data-month="{{ $monthData }}" data-image-src="{{ $url }}" data-image-alt="{{ $alt }}"
+                    {{ $review := index site.Data.gallery_photos $url }}
+                    {{ if and $.Site.Params.galleryLighttable (not $review) }}{{ errorf "Gallery needs verified display metadata for %s" $url }}{{ end }}
+                    {{ with $review.map_label }}
+                      {{ $mapLabel := . }}
+                      {{ $verifiedLocations := slice }}
+                      {{ range ($locsJSON | transform.Unmarshal) }}
+                        {{ $verifiedLocations = $verifiedLocations | append (merge . (dict "name" $mapLabel)) }}
+                      {{ end }}
+                      {{ $locsJSON = $verifiedLocations | jsonify }}
+                    {{ end }}
+                    {{ if $review.map_position_unknown }}{{ $locsJSON = "[]" }}{{ end }}
+                    <a {{ if $.Site.Params.galleryLighttable }}data-review="{{ $review | jsonify }}"{{ end }} href="{{ $post.RelPermalink }}" class="gallery-item" data-species="{{ $speciesData }}"
+                        data-month="{{ $monthData }}" data-image-src="{{ $url }}" data-image-alt="{{ $review.caption }}"
                         data-locations='{{ $locsJSON | safeHTMLAttr }}'
                         data-type="{{ $imgType }}"
                         data-date-iso="{{ $dateISO }}"
                         data-thumb-src="{{ $thumbUrl }}"
-                        title="Läs mer: {{ $post.Title }}">
-                        <img src="{{ $thumbUrl }}" alt="{{ $alt }}" decoding="async">
+                        title="Läs mer: {{ $review.display_title }}">
+                        <img src="{{ $thumbUrl }}" alt="{{ $review.caption }}" decoding="async">
                         <div class="gallery-overlay">
-                            <span class="gallery-title">{{ $post.Title }}</span>
-                            <span class="gallery-date">{{ partial "date-sv.html" $post.Date }}</span>
+                            <span class="gallery-title">{{ $review.display_title }}</span>
+                            <span class="gallery-date">{{ $review.date_label }}</span>
                             {{ with $speciesTags }}
                             <span class="gallery-species">{{ delimit . ", " }}</span>
                             {{ end }}
@@ -1372,12 +1385,14 @@
                     {{ end }}
                 </div>
 
+                {{ if .Site.Params.galleryLighttable }}</details>{{ end }}
                 </div><!-- /gallery-view -->
 
                 <!-- ═══════════════════════════════════════════
                      PHOTO MAP VIEW
                      ═══════════════════════════════════════════ -->
                 <div id="photomap-view">
+                    <p>Bilder utan säker fotoposition, däribland tornseglarens arkivfoto från 2010, visas i galleriet utan kartpunkt.</p>
                     <div class="photomap-container" id="photomap-container">
                         <div id="photomap"></div>
 
@@ -2428,7 +2443,7 @@
                         if (typeof window.openLightbox === 'function') {
                             window.openLightbox(photo.src, photo.alt, {
                                 title: photo.title,
-                                meta: `${formatDateSv(photo.date)} · ${photo.species}`,
+                                meta: `${photo.dateDisplay} · ${photo.species}`,
                                 href: photo.href
                             });
                         }
