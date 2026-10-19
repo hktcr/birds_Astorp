@@ -476,6 +476,12 @@ Atlas-ingången (☀-symbolen) är en dold länk i `baseof.html`, inte i navigat
 ### Galleriet — bildextraktion
 
 Ljusbordet visar hela notisgrupper med visningsdata i `data/gallery_photos.json`.
+Visningen återanvänder den verifierade startsidans `.hk-show` v7 från
+hakankarlsson.se (läst 2026-10-19): storbild först, 3–4 sekventiella byten,
+blickmarkeringar och zoom inom samma scen. Hela notisgrupper är odelbara;
+slumpens storbildslek ger varje grupp en visning per varv. Smala/korta skärmar
+får tillräcklig scenhöjd för läsbara bildtexter. Kronologiska pilar, fotokarta
+och befintliga filter finns kvar. Årsfilter ingår inte.
 Vid en ny bild: bevara befintliga ID:n, lägg till ett stabilt ID och verifiera motiv,
 proportioner, datumkälla och ursprunglig notiskoppling före bygge. Saknad metadata
 stoppar bygget. `date_label` anger endast säkert datum eller månad; ”notis” betyder

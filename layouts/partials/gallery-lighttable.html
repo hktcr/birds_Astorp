@@ -1,19 +1,23 @@
 <link rel="stylesheet" href="{{ "css/gallery-lighttable.css" | relURL }}?v={{ (readFile "static/css/gallery-lighttable.css") | sha256 }}">
 <section class="lt-show" id="lighttable" aria-label="Fotografier från fågelårets notiser">
-  <div class="lt-stage" id="lt-stage" aria-label="Aktuell hängning"></div>
-  <div class="lt-controls" aria-label="Bildvisning">
-    <button type="button" id="lt-random" aria-pressed="true">Slumpvis</button>
-    <button type="button" id="lt-chronological" aria-pressed="false">Kronologiskt</button>
-    <button type="button" id="lt-board">Ljusbord</button>
-    <button type="button" id="lt-pause" aria-pressed="false">Pausa</button>
-    <button type="button" class="lt-arrow" id="lt-prev" aria-label="Föregående hängning">←</button>
-    <button type="button" class="lt-arrow" id="lt-next" aria-label="Nästa hängning">→</button>
+  <div class="lt-stage" id="lt-stage">
+    <div class="lt-large" id="lt-large" aria-label="Notisens alla bilder"></div>
+    <div class="lt-grid" id="lt-grid" aria-label="Ljusbord – välj en notis" aria-hidden="true" inert></div>
+  </div>
+  <div class="lt-toolbar">
+    <div class="lt-modes" aria-label="Bildordning">
+      <button type="button" id="lt-random" aria-pressed="true">Slumpvis</button>
+      <button type="button" id="lt-chronological" aria-pressed="false">Kronologiskt</button>
+      <button type="button" class="lt-arrow" id="lt-prev" aria-label="Föregående notisgrupp" hidden>←</button>
+      <button type="button" class="lt-arrow" id="lt-next" aria-label="Nästa notisgrupp" hidden>→</button>
+    </div>
+    <button type="button" class="lt-options" id="lt-options" aria-label="Visa bildspelskontroller" aria-expanded="false" aria-controls="lt-tools">···</button>
+    <div class="lt-tools" id="lt-tools" hidden>
+      <button type="button" id="lt-pause" aria-pressed="false">Pausa</button>
+      <button type="button" id="lt-board">Ljusbord</button>
+    </div>
   </div>
   <p class="lt-status" id="lt-status" role="status" aria-live="polite"></p>
 </section>
-<dialog class="lt-dialog" id="lt-dialog" aria-label="Notisens alla bilder">
-  <div class="lt-dialog-top"><a id="lt-source">Läs notisen</a><button type="button" id="lt-close">Till ljusbordet · Stäng</button></div>
-  <div class="lt-stage" id="lt-detail"></div>
-</dialog>
 <script src="{{ "js/gallery-lighttable-core.js" | relURL }}?v={{ (readFile "static/js/gallery-lighttable-core.js") | sha256 }}" defer></script>
 <script src="{{ "js/gallery-lighttable.js" | relURL }}?v={{ (readFile "static/js/gallery-lighttable.js") | sha256 }}" defer></script>
