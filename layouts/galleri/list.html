@@ -827,45 +827,27 @@
                     border-radius: 4px;
                 }
 
-                /* Recency legend */
-                .photomap-legend {
-                    position: absolute;
-                    bottom: 90px;
-                    left: 12px;
-                    z-index: 1000;
-                    background: rgba(255,255,255,0.92);
-                    backdrop-filter: blur(10px);
-                    -webkit-backdrop-filter: blur(10px);
-                    border-radius: 10px;
-                    padding: 12px 16px;
-                    font-family: 'Inter', sans-serif;
-                    font-size: 12px;
-                    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
-                    border: 1px solid rgba(200,210,195,0.6);
-                }
-                .photomap-legend-title {
-                    font-weight: 600;
-                    color: #2b4022;
-                    margin-bottom: 8px;
-                    font-size: 12px;
-                    text-transform: uppercase;
-                    letter-spacing: 0.5px;
-                }
-                .photomap-legend-item {
-                    display: flex;
-                    align-items: center;
-                    gap: 8px;
-                    margin-bottom: 4px;
-                    color: #4a5e40;
-                }
-                .photomap-legend-dot {
-                    width: 12px;
-                    height: 12px;
-                    border-radius: 50%;
-                    border: 2px solid white;
-                    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
-                    flex-shrink: 0;
-                }
+                /* Date legend stays in normal flow, never over map controls. */
+                .photomap-legend { margin: 0 0 16px; padding: 16px; background: #fff;
+                    color: #24301f; border: 1px solid #bbc5b5; border-radius: 10px;
+                    font-family: 'Inter', sans-serif; font-size: 14px; }
+                .photomap-legend-title { font-size: 16px; font-weight: 700; margin: 0 0 6px; }
+                .photomap-legend p { margin: 6px 0 12px; line-height: 1.5; }
+                .photomap-age-options { display: grid; grid-template-columns: repeat(auto-fit,minmax(180px,1fr)); gap: 8px; }
+                .photomap-age-option { display: flex; align-items: center; gap: 10px; min-height: 48px;
+                    background: #fff; color: #24301f; border: 2px solid #b6c0b0; border-radius: 8px;
+                    padding: 8px 10px; font: inherit; text-align: left; cursor: pointer; }
+                .photomap-age-option[aria-pressed="true"] { border-color: #24301f; box-shadow: inset 0 0 0 1px #24301f; background: #f0f4ed; }
+                .photomap-age-option:focus-visible { outline: 3px solid #173c80; outline-offset: 3px; }
+                .photomap-age-symbol { display: inline-flex; align-items: center; justify-content: center;
+                    width: 38px; height: 38px; flex: 0 0 38px; border-radius: 50%; color: #fff;
+                    font-size: 12px; font-weight: 800; background: var(--age-color,#475569); }
+                .photomap-age-count { display: block; font-size: 13px; font-weight: 600; margin-top: 2px; }
+                .photomap-legend .photomap-cluster-help { margin-bottom: 0; font-size: 13px; }
+                .photomap-strip-age { position: absolute; top: 6px; left: 6px; max-width: calc(100% - 12px);
+                    padding: 4px 6px; background: #fff; color: #1f2937; border: 1px solid #475569;
+                    border-radius: 4px; font: 600 12px/1.35 'Inter',sans-serif; }
+                .photomap-empty { grid-column: 1/-1; color: #24301f; padding: 12px 0; }
 
                 /* Tile layer switcher override */
                 .leaflet-control-layers {
@@ -887,20 +869,8 @@
                 /* ═══════════════════════════════════════════
                    MONTH FILTER
                    ═══════════════════════════════════════════ */
-                .photomap-month-filter {
-                    position: absolute;
-                    bottom: 12px;
-                    left: 12px;
-                    z-index: 1000;
-                    background: rgba(255,255,255,0.92);
-                    backdrop-filter: blur(12px);
-                    -webkit-backdrop-filter: blur(12px);
-                    border-radius: 12px;
-                    padding: 8px 10px;
-                    box-shadow: 0 2px 12px rgba(0,0,0,0.1);
-                    border: 1px solid rgba(200,210,195,0.5);
-                    max-width: 260px;
-                }
+                .photomap-month-filter { position: static; margin: 0 0 14px; padding: 12px;
+                    background: #fff; border-radius: 10px; border: 1px solid #bbc5b5; }
                 .photomap-month-filter-title {
                     font-family: 'Inter', sans-serif;
                     font-size: 10px;
@@ -912,7 +882,7 @@
                 }
                 .photomap-month-filter-grid {
                     display: grid;
-                    grid-template-columns: repeat(6, 1fr);
+                    grid-template-columns: repeat(auto-fit, minmax(3.8em, 1fr));
                     gap: 3px;
                 }
                 .photomap-month-chip {
@@ -921,12 +891,13 @@
                     align-items: center;
                     justify-content: center;
                 }
-                .photomap-month-chip input {
-                    display: none;
-                }
+                .photomap-month-chip { position: relative; }
+                .photomap-month-chip input { position: absolute; opacity: 0; width: 1px; height: 1px; }
+                .photomap-month-chip input:focus-visible + span { outline: 3px solid #173c80; outline-offset: 2px; }
                 .photomap-month-chip span {
                     display: block;
-                    padding: 3px 0;
+                    padding: 10px 0;
+                    min-height: 44px; box-sizing: border-box;
                     border-radius: 6px;
                     font-family: 'Inter', sans-serif;
                     font-size: 11px;
@@ -1027,34 +998,21 @@
                 .photomap-marker {
                     transition: opacity 0.3s ease;
                 }
-                .photomap-marker.dimmed {
-                    opacity: 0.15 !important;
-                }
+                .photomap-marker.dimmed { stroke-width: 1.5px; }
+                .photomap-marker-selected { stroke: #111827; stroke-width: 5px; }
                 .photomap-marker.highlighted {
                     z-index: 10000 !important;
                 }
 
-                /* Cluster count labels */
-                .photomap-cluster-label {
-                    background: none !important;
-                    border: none !important;
-                    pointer-events: none !important;
-                }
-                .photomap-cluster-label span {
-                    display: flex;
-                    align-items: center;
-                    justify-content: center;
-                    width: 20px;
-                    height: 20px;
-                    background: rgba(30, 40, 25, 0.85);
-                    color: #fff;
-                    font-family: 'Inter', sans-serif;
-                    font-size: 10px;
-                    font-weight: 700;
-                    border-radius: 50%;
-                    border: 1.5px solid rgba(255,255,255,0.9);
-                    pointer-events: none;
-                }
+                /* Category code remains visible; count sits outside the color disk. */
+                .photomap-cluster-label { background: none !important; border: none !important;
+                    pointer-events: none !important; color: #fff; text-align: center;
+                    font: 800 12px/44px 'Inter',sans-serif; }
+                .photomap-cluster-label .photomap-point-count { position: absolute; right: -7px; top: -7px;
+                    min-width: 20px; height: 20px; padding: 0 3px; box-sizing: border-box;
+                    background: #fff; color: #1f2937; border: 1px solid #334155; border-radius: 10px;
+                    font: 700 11px/18px 'Inter',sans-serif; }
+                .photomap-marker:focus-visible { outline: none; stroke: #111827; stroke-width: 5px; }
 
                 /* Pulsing animation for recent markers */
                 @keyframes photomapPulse {
@@ -1073,10 +1031,8 @@
                         grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
                         gap: 8px;
                     }
-                    .photomap-legend {
-                        padding: 8px 12px;
-                        font-size: 11px;
-                    }
+                    .photomap-legend { padding: 12px; }
+                    .photomap-age-options { grid-template-columns: repeat(auto-fit,minmax(155px,1fr)); }
                     .gallery-tabs {
                         margin-bottom: 16px;
                     }
@@ -1392,23 +1348,19 @@
                      PHOTO MAP VIEW
                      ═══════════════════════════════════════════ -->
                 <div id="photomap-view">
-                    <p>Bilder utan säker fotoposition, däribland tornseglarens arkivfoto från 2010, visas i galleriet utan kartpunkt.</p>
-                    <div class="photomap-container" id="photomap-container">
-                        <div id="photomap"></div>
-
-
-
-                        <!-- Control buttons -->
-                        <div class="photomap-controls">
-                            <button class="photomap-btn" id="photomap-select-btn" title="Dra en rektangel för att filtrera bilder efter område">
-                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" stroke-dasharray="4 2"></rect></svg>
-                                Välj område
-                            </button>
-                            <button class="photomap-btn photomap-clear-btn" id="photomap-clear-btn">
-                                ✕ Rensa urval
-                            </button>
+                    <section class="photomap-legend" aria-labelledby="photomap-legend-title">
+                        <h2 class="photomap-legend-title" id="photomap-legend-title">Datum på bildens sida</h2>
+                        <p>Färgen utgår från sidans datum, inte när fotot togs. Välj en period för att visa de bilderna.</p>
+                        <div class="photomap-age-options" id="photomap-age-options">
+                            <button type="button" class="photomap-age-option" data-age="all" aria-pressed="true"><span>Alla perioder<span class="photomap-age-count" data-age-count="all"></span></span></button>
+                            <button type="button" class="photomap-age-option" data-age="week" aria-pressed="false"><span class="photomap-age-symbol" style="--age-color:#166534" aria-hidden="true">7d</span><span>Senaste 7 dagarna<span class="photomap-age-count" data-age-count="week"></span></span></button>
+                            <button type="button" class="photomap-age-option" data-age="month" aria-pressed="false"><span class="photomap-age-symbol" style="--age-color:#1d4ed8" aria-hidden="true">30d</span><span>7–29 dagar sedan<span class="photomap-age-count" data-age-count="month"></span></span></button>
+                            <button type="button" class="photomap-age-option" data-age="quarter" aria-pressed="false"><span class="photomap-age-symbol" style="--age-color:#854d0e" aria-hidden="true">90d</span><span>30–89 dagar sedan<span class="photomap-age-count" data-age-count="quarter"></span></span></button>
+                            <button type="button" class="photomap-age-option" data-age="older" aria-pressed="false"><span class="photomap-age-symbol" style="--age-color:#475569" aria-hidden="true">90+</span><span>90 dagar eller äldre<span class="photomap-age-count" data-age-count="older"></span></span></button>
+                            <button type="button" class="photomap-age-option" data-age="unknown" aria-pressed="false"><span class="photomap-age-symbol" style="--age-color:#374151" aria-hidden="true">?</span><span>Datum kan inte tidsplaceras<span class="photomap-age-count" data-age-count="unknown"></span></span></button>
                         </div>
-
+                        <p class="photomap-cluster-help">En punkt kan innehålla flera bilder. Färgen och koden visar den senaste sidans period; den lilla siffran visar antalet bilder. Antalen ovan gäller valda månader.</p>
+                    </section>
                         <!-- Month filter -->
                         <div class="photomap-month-filter" id="photomap-month-filter">
                             <div class="photomap-month-filter-title">Månad</div>
@@ -1427,27 +1379,24 @@
                                 <label class="photomap-month-chip"><input type="checkbox" value="12" checked><span>Dec</span></label>
                             </div>
                         </div>
+                    <div class="photomap-container" id="photomap-container">
+                        <div id="photomap"></div>
 
-                        <!-- Recency legend -->
-                        <div class="photomap-legend">
-                            <div class="photomap-legend-title">Aktualitet</div>
-                            <div class="photomap-legend-item">
-                                <div class="photomap-legend-dot" style="background: #22c55e;"></div>
-                                Senaste 7 dagarna
-                            </div>
-                            <div class="photomap-legend-item">
-                                <div class="photomap-legend-dot" style="background: #3b82f6;"></div>
-                                Senaste 30 dagarna
-                            </div>
-                            <div class="photomap-legend-item">
-                                <div class="photomap-legend-dot" style="background: #eab308;"></div>
-                                1–3 månader
-                            </div>
-                            <div class="photomap-legend-item">
-                                <div class="photomap-legend-dot" style="background: #9ca3af;"></div>
-                                Äldre
-                            </div>
+
+
+                        <!-- Control buttons -->
+                        <div class="photomap-controls">
+                            <button class="photomap-btn" id="photomap-select-btn" title="Dra en rektangel för att filtrera bilder efter område">
+                                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2" stroke-dasharray="4 2"></rect></svg>
+                                Välj område
+                            </button>
+                            <button class="photomap-btn photomap-clear-btn" id="photomap-clear-btn">
+                                ✕ Rensa urval
+                            </button>
                         </div>
+
+
+
 
                     </div>
 
@@ -2384,15 +2333,33 @@
                 });
             });
 
-            // ─── Recency color helper ───
-            const now = new Date();
-            function getRecencyColor(dateStr) {
-                const d = new Date(dateStr);
-                const diff = (now - d) / (1000 * 60 * 60 * 24);
-                if (diff <= 7)  return { color: '#22c55e', label: 'Nyligen',           pulse: true };
-                if (diff <= 30) return { color: '#3b82f6', label: 'Denna månad',       pulse: false };
-                if (diff <= 90) return { color: '#eab308', label: 'Senaste kvartalet', pulse: false };
-                return                  { color: '#9ca3af', label: 'Äldre',            pulse: false };
+            // ─── Page-date age categories, shared by markers, legend and filters ───
+            function getRecencyColor(dateStr, clock = new Date()) {
+                const unknown = { key: 'unknown', code: '?', color: '#374151', label: 'Datum kan inte tidsplaceras' };
+                if (!/^\d{4}-\d{2}-\d{2}$/.test(dateStr || '')) return unknown;
+                const day = new Date(dateStr + 'T00:00:00Z');
+                if (!Number.isFinite(day.getTime()) || day.toISOString().slice(0,10) !== dateStr) return unknown;
+                const today = new Intl.DateTimeFormat('sv-SE', { timeZone: 'Europe/Stockholm', year:'numeric', month:'2-digit', day:'2-digit' }).format(clock);
+                const diff = (Date.parse(today + 'T00:00:00Z') - day.getTime()) / 86400000;
+                if (diff < 0) return unknown;
+                if (diff < 7) return { key: 'week', code: '7d', color: '#166534', label: 'Senaste 7 dagarna' };
+                if (diff < 30) return { key: 'month', code: '30d', color: '#1d4ed8', label: '7–29 dagar sedan' };
+                if (diff < 90) return { key: 'quarter', code: '90d', color: '#854d0e', label: '30–89 dagar sedan' };
+                return { key: 'older', code: '90+', color: '#475569', label: '90 dagar eller äldre' };
+            }
+            let activeAge = 'all';
+            let ageClock = new Date();
+            const ageOf = photo => getRecencyColor(photo.date, ageClock);
+            function updateAgeLegend(monthIndices) {
+                const counts = { all: monthIndices.length, week:0, month:0, quarter:0, older:0, unknown:0 };
+                monthIndices.forEach(i => counts[ageOf(allPhotoData[i]).key]++);
+                document.querySelectorAll('[data-age-count]').forEach(el => {
+                    const n = counts[el.dataset.ageCount];
+                    el.textContent = `${n} ${n === 1 ? 'bild' : 'bilder'}`;
+                });
+                document.querySelectorAll('[data-age]').forEach(button => {
+                    button.setAttribute('aria-pressed', String(button.dataset.age === activeAge));
+                });
             }
 
             // Swedish date formatting
@@ -2426,17 +2393,28 @@
                     return new Date(allPhotoData[b].date) - new Date(allPhotoData[a].date);
                 });
 
+                if (!sorted.length) {
+                    const empty = document.createElement('p');
+                    empty.className = 'photomap-empty'; empty.setAttribute('role', 'status');
+                    empty.textContent = selectionRect ? 'Inga kartbilder i det valda området matchar filtren.' : activeAge === 'week'
+                        ? 'Inga kartbilder har ett siddatum från de senaste 7 dagarna med valda månader.'
+                        : 'Inga kartbilder matchar den valda perioden och månaderna.';
+                    stripGrid.appendChild(empty);
+                }
                 sorted.forEach(idx => {
                     const photo = allPhotoData[idx];
-                    const rc = getRecencyColor(photo.date);
+                    const rc = ageOf(photo);
 
                     const card = document.createElement('div');
                     card.className = 'photomap-strip-item';
                     card.dataset.markerIdx = idx;
 
-                    card.innerHTML = `
-                        <img src="${photo.thumb}" alt="${photo.alt}" loading="lazy">
-                    `;
+                    const image = document.createElement('img');
+                    image.src = photo.thumb; image.alt = photo.alt; image.loading = 'lazy';
+                    const ageLabel = document.createElement('span');
+                    ageLabel.className = 'photomap-strip-age';
+                    ageLabel.textContent = rc.label;
+                    card.append(image, ageLabel);
 
                     // Click → lightbox with caption
                     card.addEventListener('click', () => {
@@ -2453,7 +2431,7 @@
                 });
             }
 
-            populateStrip(null); // Show all initially
+            // Initial rebuild below renders after every selection variable is initialized.
 
             // ─── Cluster selection ───
             let selectedCluster = null;
@@ -2469,20 +2447,24 @@
                     return;
                 }
 
+                // A point replaces an area/drawing selection; never keep both active.
+                clearSelection();
                 selectedCluster = marker;
                 clearBtn.classList.add('visible');
 
                 // Dim all, highlight selected
                 allClusterMarkers.forEach(m => {
                     if (m === marker) {
-                        m.setStyle({ opacity: 1, fillOpacity: 0.9, weight: 3.5 });
+                        m.setStyle({ opacity: 1, fillOpacity: 1, weight: 3.5 });
                         m.getElement()?.classList.remove('dimmed');
                         m.getElement()?.classList.add('photomap-marker-selected');
+                        m.getElement()?.setAttribute('aria-pressed','true');
                         m.bringToFront();
                     } else {
-                        m.setStyle({ opacity: 0.3, fillOpacity: 0.15 });
+                        m.setStyle({ opacity: 1, fillOpacity: 1 });
                         m.getElement()?.classList.add('dimmed');
                         m.getElement()?.classList.remove('photomap-marker-selected');
+                        m.getElement()?.setAttribute('aria-pressed','false');
                     }
                 });
 
@@ -2579,13 +2561,15 @@
                     const inside = bounds.contains(m.getLatLng());
                     if (inside) {
                         m._clusterIndices.forEach(idx => insideIndices.push(idx));
-                        m.setStyle({ opacity: 1, fillOpacity: 0.85 });
+                        m.setStyle({ opacity: 1, fillOpacity: 1 });
                         m.getElement()?.classList.remove('dimmed');
                         m.getElement()?.classList.remove('photomap-marker-selected');
+                        m.getElement()?.setAttribute('aria-pressed','false');
                     } else {
-                        m.setStyle({ opacity: 0.3, fillOpacity: 0.15 });
+                        m.setStyle({ opacity: 1, fillOpacity: 1 });
                         m.getElement()?.classList.add('dimmed');
                         m.getElement()?.classList.remove('photomap-marker-selected');
+                        m.getElement()?.setAttribute('aria-pressed','false');
                     }
                 });
 
@@ -2598,6 +2582,10 @@
             });
 
             function clearSelection() {
+                isSelecting = false; selStart = null;
+                selectBtn.classList.remove('active');
+                container.classList.remove('selecting');
+                map.dragging.enable(); map.doubleClickZoom.enable();
                 selectedCluster = null;
                 if (selectionRect) {
                     map.removeLayer(selectionRect);
@@ -2607,19 +2595,21 @@
 
                 // Restore all markers
                 allClusterMarkers.forEach(m => {
-                    m.setStyle({ opacity: 1, fillOpacity: 0.85, weight: 2.5 });
+                    m.setStyle({ opacity: 1, fillOpacity: 1, weight: 2.5 });
                     m.getElement()?.classList.remove('dimmed');
                     m.getElement()?.classList.remove('photomap-marker-selected');
+                        m.getElement()?.setAttribute('aria-pressed','false');
                 });
 
                 // Reset strip
-                document.getElementById('photomap-strip-title').textContent = 'Alla bilder';
-                populateStrip(null);
+                const filtered = getFilteredIndices();
+                populateStrip(filtered);
+                document.getElementById('photomap-strip-title').textContent = activeAge !== 'all' || getActiveMonths().size < 12 ? `${filtered.length} bilder (filtrerade)` : 'Alla bilder';
             }
 
             // Keyboard: Escape clears selection
             document.addEventListener('keydown', (e) => {
-                if (e.key === 'Escape' && (selectionRect || selectedCluster)) {
+                if (e.key === 'Escape' && (isSelecting || selectionRect || selectedCluster)) {
                     clearSelection();
                 }
             });
@@ -2632,26 +2622,30 @@
                 return active;
             }
 
-            function getFilteredIndices() {
+            function getMonthIndices() {
                 const months = getActiveMonths();
-                return allPhotoData
-                    .map((p, i) => ({ idx: i, month: new Date(p.date).getMonth() + 1 }))
-                    .filter(o => months.has(o.month))
-                    .map(o => o.idx);
+                return allPhotoData.map((p,i) => ({ idx:i, month: Number((p.date || '').slice(5,7)) }))
+                    .filter(o => months.has(o.month) || ((!o.month || o.month > 12) && months.size === 12)).map(o => o.idx);
+            }
+            function getFilteredIndices() {
+                return getMonthIndices().filter(i => activeAge === 'all' || ageOf(allPhotoData[i]).key === activeAge);
             }
 
             function rebuildMarkers() {
+                const focusedPhotoIndex = document.activeElement?.getAttribute('data-photomap-index');
                 // Clear existing
                 markerGroup.clearLayers();
                 allClusterMarkers.length = 0;
                 markers.length = 0;
 
+                ageClock = new Date();
+                updateAgeLegend(getMonthIndices());
                 const filteredIndices = getFilteredIndices();
 
                 // Perform dynamic pixel-distance clustering at current zoom
                 const zoom = map.getZoom();
                 const clusters = []; // array of { lat, lng, photoIndices, locationNames }
-                const threshold = 24; // pixel distance threshold for clustering
+                const threshold = 52; // pixel distance threshold for clustering
 
                 filteredIndices.forEach(idx => {
                     const photo = allPhotoData[idx];
@@ -2688,8 +2682,8 @@
                     );
                     const newestPhoto = allPhotoData[sortedByDate[0]];
                     const count = sortedByDate.length;
-                    const rc = getRecencyColor(newestPhoto.date);
-                    const radius = count > 1 ? Math.min(9 + count * 1.5, 18) : 9;
+                    const rc = ageOf(newestPhoto);
+                    const radius = 22;
 
                     const marker = L.circleMarker([cluster.lat, cluster.lng], {
                         radius: radius,
@@ -2697,7 +2691,7 @@
                         color: '#fff',
                         weight: 2.5,
                         opacity: 1,
-                        fillOpacity: 0.85,
+                        fillOpacity: 1,
                         className: 'photomap-marker'
                     });
 
@@ -2706,21 +2700,25 @@
                     marker._baseRadius = radius;
                     marker._locationName = Array.from(cluster.locationNames).join(', ') || newestPhoto.locationName || '';
 
-                    if (count > 1) {
-                        const label = L.divIcon({
-                            className: 'photomap-cluster-label',
-                            html: `<span>${count}</span>`,
-                            iconSize: [20, 20],
-                            iconAnchor: [10, 10]
-                        });
-                        L.marker([cluster.lat, cluster.lng], { icon: label, interactive: false }).addTo(markerGroup);
-                    }
-
-                    marker.on('click', () => {
-                        selectCluster(marker);
+                    const label = L.divIcon({
+                        className: 'photomap-cluster-label',
+                        html: `<span aria-hidden="true">${rc.code}</span>${count > 1 ? `<span class="photomap-point-count" aria-hidden="true">${count}</span>` : ''}`,
+                        iconSize: [44,44], iconAnchor: [22,22]
                     });
-
+                    L.marker([cluster.lat,cluster.lng], { icon:label, interactive:false, keyboard:false }).addTo(markerGroup);
+                    marker.on('click', () => selectCluster(marker));
                     marker.addTo(markerGroup);
+                    const markerElement = marker.getElement();
+                    if (markerElement) {
+                        markerElement.setAttribute('tabindex','0');
+                        markerElement.setAttribute('data-photomap-index', String(sortedByDate[0]));
+                        markerElement.setAttribute('role','button');
+                        markerElement.setAttribute('aria-pressed','false');
+                        markerElement.setAttribute('aria-label', `${marker._locationName || 'Kartpunkt'}: ${count} ${count === 1 ? 'bild' : 'bilder'}. Senaste sidans datum ${newestPhoto.date}. ${rc.label}. Visa bilder.`);
+                        markerElement.addEventListener('keydown', event => {
+                            if (event.key === 'Enter' || event.key === ' ') { event.preventDefault(); selectCluster(marker); }
+                        });
+                    }
                     allClusterMarkers.push(marker);
 
                     sortedByDate.forEach(idx => {
@@ -2735,21 +2733,25 @@
                 }
 
                 // If a cluster was selected before, try to restore selection on the new cluster representing the same photo
-                if (selectedCluster) {
+                if (selectionRect) {
+                    applySelection(selectionRect.getBounds());
+                } else if (selectedCluster) {
                     const prevSelectedIndex = selectedCluster._clusterIndices[0];
                     const newMarker = markers[prevSelectedIndex];
                     if (newMarker) {
                         selectedCluster = newMarker;
                         allClusterMarkers.forEach(m => {
                             if (m === selectedCluster) {
-                                m.setStyle({ opacity: 1, fillOpacity: 0.9, weight: 3.5 });
+                                m.setStyle({ opacity: 1, fillOpacity: 1, weight: 3.5 });
                                 m.getElement()?.classList.remove('dimmed');
                                 m.getElement()?.classList.add('photomap-marker-selected');
+                                m.getElement()?.setAttribute('aria-pressed','true');
                                 m.bringToFront();
                             } else {
-                                m.setStyle({ opacity: 0.3, fillOpacity: 0.15 });
+                                m.setStyle({ opacity: 1, fillOpacity: 1 });
                                 m.getElement()?.classList.add('dimmed');
                                 m.getElement()?.classList.remove('photomap-marker-selected');
+                                m.getElement()?.setAttribute('aria-pressed','false');
                             }
                         });
                         populateStrip(selectedCluster._clusterIndices);
@@ -2760,11 +2762,16 @@
                 } else {
                     populateStrip(filteredIndices.length < allPhotoData.length ? filteredIndices : null);
                     const activeMonths = getActiveMonths();
-                    if (activeMonths.size < 12) {
+                    if (activeMonths.size < 12 || activeAge !== 'all') {
                         document.getElementById('photomap-strip-title').textContent = `${filteredIndices.length} bilder (filtrerade)`;
                     } else {
                         document.getElementById('photomap-strip-title').textContent = 'Alla bilder';
                     }
+                }
+                if (focusedPhotoIndex !== null && focusedPhotoIndex !== undefined) {
+                    const target = markers[Number(focusedPhotoIndex)]?.getElement();
+                    if (target) target.focus();
+                    else document.querySelector('#photomap-age-options [aria-pressed="true"]')?.focus();
                 }
             }
 
@@ -2773,6 +2780,16 @@
                 cb.addEventListener('change', rebuildMarkers);
             });
 
+            document.querySelectorAll('#photomap-age-options [data-age]').forEach(button => {
+                button.addEventListener('click', () => { activeAge = button.dataset.age; clearSelection(); rebuildMarkers(); });
+            });
+            // Recompute the same Stockholm-day clock after a midnight or return to the tab.
+            function refreshAgeDay() {
+                const formatter = new Intl.DateTimeFormat('sv-SE', { timeZone:'Europe/Stockholm', year:'numeric', month:'2-digit', day:'2-digit' });
+                if (!document.hidden && formatter.format(new Date()) !== formatter.format(ageClock)) rebuildMarkers();
+            }
+            document.addEventListener('visibilitychange', refreshAgeDay);
+            setInterval(refreshAgeDay, 60000);
             // Map zoom listener
             map.on('zoomend', rebuildMarkers);
 
