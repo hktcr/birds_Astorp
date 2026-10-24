@@ -12,8 +12,11 @@ class GalleryParser(HTMLParser):
     def __init__(self):
         super().__init__()
         self.items = {}
+        self.images = []
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
+        if tag == 'img':
+            self.images.append(attrs)
         if tag == 'a' and 'gallery-item' in attrs.get('class', '').split():
             self.items[attrs['data-image-src']] = attrs
 
@@ -32,7 +35,14 @@ for record in private:
     assert attrs['data-image-alt'] == record['caption']
     assert attrs['data-type'] == 'foto'
     assert attrs['data-species'] == 'landskap'
-    assert record['caption'] in (ROOT / 'docs' / record['post'].lstrip('/') / 'index.html').read_text()
+    photo_html = (ROOT / 'docs' / record['post'].lstrip('/') / 'index.html').read_text()
+    assert record['caption'] in photo_html
+    # Existing prose CSS limits image width; explicit intrinsic height needs auto
+    # to avoid stretching the standalone photo on narrow screens.
+    photo = GalleryParser()
+    photo.feed(photo_html)
+    photos = [image for image in photo.images if image.get('src') == record['url']]
+    assert photos and all(image.get('style', '').replace(' ', '').rstrip(';') == 'height:auto' for image in photos), 'Photo must keep its natural aspect ratio'
     for kind in ['url', 'thumb']:
         source = ROOT / 'static' / record[kind].lstrip('/')
         built = ROOT / 'docs' / record[kind].lstrip('/')
