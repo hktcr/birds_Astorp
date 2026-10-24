@@ -51,3 +51,7 @@ vm.runInContext(extract('function selectCluster(marker)','// ─── Rectangle
 console.log('PASS: area -> point -> zoom keeps mutually exclusive point selection.');
 
 assert(!source.includes('populateStrip(null); // Show all initially'));
+
+assert(source.includes("className: 'selection-rect',\n                        interactive: false"));
+
+assert(source.includes('#photomap .leaflet-overlay-pane svg { max-width: none; }'));

@@ -822,6 +822,7 @@
                     cursor: crosshair;
                 }
                 .selection-rect {
+                    pointer-events: none;
                     border: 2px dashed #465c3d;
                     background: rgba(70, 92, 61, 0.12);
                     border-radius: 4px;
@@ -994,6 +995,8 @@
                     opacity: 0.8;
                 }
 
+                /* Leaflet positions SVG in map pixels; do not shrink it with the global media reset. */
+                #photomap .leaflet-overlay-pane svg { max-width: none; }
                 /* Marker styling */
                 .photomap-marker {
                     transition: opacity 0.3s ease;
@@ -2529,7 +2532,8 @@
                         dashArray: '6 3',
                         fillColor: '#465c3d',
                         fillOpacity: 0.08,
-                        className: 'selection-rect'
+                        className: 'selection-rect',
+                        interactive: false
                     }).addTo(map);
                 }
             });
