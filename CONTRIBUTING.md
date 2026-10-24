@@ -490,6 +490,41 @@ när äldre originalrubriker motsäger bilden. Ändra inte bildens notiskoppling
 att få rubriken att passa. Kör `node scripts/test-gallery-lighttable.cjs`.
 `galleri/list.html` extraherar bilder via regex från blogginlägg (både `![alt](url)` och `<img src>`). Bilder **utan** `images:`-taggning tilldelas postens `species:` som fallback-kategori i gallerifiltren.
 
+### Fristående galleribilder med privat position
+
+Återanvänd `content/foton/` endast för bilder som Håkan uttryckligen har valt
+för publicering i galleriet. Lägg den publika bilden och dess 800-pixelsminiatyr
+under `static/images/foton/`, och lägg till visningsdata i
+`data/gallery_photos.json`. Bevara alla befintliga bild-ID:n.
+
+Om positionen ska vara privat: spara den godkända koordinatkopplingen i projektets
+redan godkända privata bildarkiv **utanför Git-repot**. Referera till originalet
+på dess befintliga privata lagringsplats; skapa inte en extra arkivkopia utan
+mandat för det. Lägg aldrig privata koordinater, originalmetadata eller privata
+arkivlänkar i `data/`, `static/`, `docs/`, frontmatter, EXIF-index,
+commitmeddelanden eller Git-historik. Publicera endast bildkopior utan EXIF,
+XMP, IPTC eller andra privata metadata. Sätt `map_private: true` i den publika
+visningsposten; mallen undertrycker då kartposition även om annan platsdata
+skulle finnas.
+
+Platsnamnet är inte koordinaten: behåll användarens godkända offentliga platsnamn,
+bildtext och datum synliga. `location:` kan innehålla enbart platsnamnet; lägg
+inte till en privat koordinat i `locations:` eller andra publika kartdata.
+Verifiera den färdiga galleriposten och bildsidan, inte bara källfälten.
+
+En uttrycklig beställning att publicera en vald bild med godkänd text, plats och
+datum ska inte följas av upprepade frågor om samma innehåll. Återanvänd detta
+avgränsade publiceringsflöde och bevara övriga poster oförändrade. Ny fråga behövs
+bara om omfattning, uppgifter, mål eller risk ändras, eller ett faktiskt
+behörighets- eller säkerhetsstopp kräver komplettering. Rutinen ersätter inte
+sådana kontroller, ger inget generellt mandat att publicera andra bilder och
+får aldrig användas för att kringgå ett stopp.
+
+Datum som enbart anger publicering ska märkas som sådant, inte som säkert
+fotograferingsdatum. Kör både `node scripts/test-gallery-lighttable.cjs` och
+`python3 scripts/test-gallery-private-photo.py` efter bygge. Granska dessutom
+releasefilernas bytes och metadata så att ingen privat position följer med.
+
 ### Efterlystas aktuella Skånefynd
 
 Artlistan och de tre dokumenterade Åstorpsfynden finns i `data/efterlysta_species.json`. Sidan hämtar endast offentliga Artportalen-fynd via SLU:s öppna SOS WFS, utan API-nyckel, inloggning eller rapportörs-/kommentarsfält. Underarter räknas till huvudarten; osäker bestämning och artkomplex ingår inte. Rapporterna behöver inte vara expertgranskade.

@@ -477,7 +477,7 @@
     "width": 3025,
     "height": 1699,
     "thumb": "/images/posts/2026-03-14-snosparv-tomarp/c25vc3BhcnYtdG9tYXJwLmpwZw-thumb-b64.jpg",
-    "caption": "Snösparven i fjolårsgräset strax söder om Tomarps kungsgård.",
+    "caption": "Snösparven på kvarstående stubbåker strax söder om Tomarps kungsgård.",
     "date_label": "14 mars 2026",
     "sort_date": "2026-03-14",
     "date_source": "Bildfilens EXIF DateTimeOriginal: 2026:03:14 16:48:24",
@@ -919,5 +919,21 @@
     "display_title": "En hjort passerar vägen uppe på åsen",
     "location": "Söderåsen",
     "map_position_unknown": true
+  },
+  "/images/foton/2026-10-24-tomarps-mader/boskap-tomarps-mader.jpg": {
+    "id": "img-bfd29fca5253",
+    "url": "/images/foton/2026-10-24-tomarps-mader/boskap-tomarps-mader.jpg",
+    "post": "/foton/2026-10-24-tomarps-mader/",
+    "title": "Ungdjur på Tomarps mader",
+    "date": "2026-10-24",
+    "width": 2048,
+    "height": 1542,
+    "thumb": "/images/foton/2026-10-24-tomarps-mader/Ym9za2FwLXRvbWFycHMtbWFkZXIuanBn-thumb-b64.jpg",
+    "caption": "Det märks tydligt att det börjar bli höst på allvar nu, men än så länge är ungdjuren ute på Tomarps mader.",
+    "date_label": "24 oktober 2026 · publicerad",
+    "sort_date": "2026-10-24",
+    "date_source": "Publiceringsdatum 2026-10-24; fotograferingsdatum saknas i bildens EXIF.",
+    "display_title": "Ungdjur på Tomarps mader",
+    "map_private": true
   }
 }

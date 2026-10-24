@@ -1361,7 +1361,7 @@
                       {{ end }}
                       {{ $locsJSON = $verifiedLocations | jsonify }}
                     {{ end }}
-                    {{ if $review.map_position_unknown }}{{ $locsJSON = "[]" }}{{ end }}
+                    {{ if or $review.map_position_unknown $review.map_private }}{{ $locsJSON = "[]" }}{{ end }}
                     <a {{ if $.Site.Params.galleryLighttable }}data-review="{{ $review | jsonify }}"{{ end }} href="{{ $post.RelPermalink }}" class="gallery-item" data-species="{{ $speciesData }}"
                         data-month="{{ $monthData }}" data-image-src="{{ $url }}" data-image-alt="{{ $review.caption }}"
                         data-locations='{{ $locsJSON | safeHTMLAttr }}'
