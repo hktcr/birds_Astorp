@@ -158,3 +158,14 @@ title: Fåglar/astorp-faglar Krönika
 
 *Signatur: gAIa 🌲 2026-05-26*
 
+
+
+## 2026-10-24 | Hjortbild från Söderåsen
+
+- event_id: EVT-2caae14c-7185-4d86-a8af-533aa997f86b; workstream_id: WS-dcd8899a-1eac-53eb-95c4-3220df96624d; project_ids: FAGLAR.
+- Beställt av Håkan i ChatGPT Work, tråd-ID ej exponerat. Fotograferingsdatum 23 oktober 2026 enligt användarens ”igår” den 24 oktober. EXIF-datum saknas; filnamnet stöder datumet.
+- Originalbild 1536 × 1156 px bytebevarad. Bild-ID img-b962daa36273, egen fotopost och 800 px miniatyr. Exakt bildtext: ”En hjort passerar vägen uppe på åsen.” Lokal: Söderåsen. Datum och lokal visas i befintlig metadatarad som ”23 oktober 2026 · Söderåsen”. Inga koordinater gissas och ingen kartmarkör skapas.
+- En generell ändring av galleriets kod för lokalvisning provades lokalt men togs tillbaka före release. Slutpaketet använder endast befintlig visning för den nya bilden; äldre bildmetadata förblir oförändrade. Dagens uppdrag om en bild innebär inget nytt godkännande av äldre bildtexter.
+- Hugo 0.154.5+extended: två byteidentiska slutbyggen, 1030 filer. Galleritest med 61 bilder/45 grupper, åtta storlekar och 1000 cykler passerar. Föreskrivna väder-, arkiv-, länknings-, Stockholmsdatum- och Efterlystatester passerar. Genererad metadata, originalbyte, miniatyr och månadskoppling kontrollerade. Den lokala förhandsvisningen kunde inte nås från molnwebbläsaren (ERR_CONNECTION_REFUSED); offentlig kontroll görs efter publicering av det rena innehållstillägget. Gränssnittets kod/CSS ändras inte.
+- work_status: lokalt verifierad, publicering pågår. documentation_status: dokumenterat i projektoriginal; MAIN har fortsatt dokumentationsskuld enligt gällande skrivstopp.
+- Projektkrönika https://drive.google.com/file/d/14xbeY1u0YSyXaR8znECeZ0Zov4WprmWP/view ↔ huvudkrönika https://drive.google.com/file/d/1c5gcTDT82TCl3pneLupbvMvQ9ZfD1wRW/view . Signatur: gAIa.

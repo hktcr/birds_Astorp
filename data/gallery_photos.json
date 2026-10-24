@@ -902,5 +902,22 @@
     "sort_date": "2026-10-19",
     "date_source": "Notisdatum 2026-10-19; fotograferingsdatum saknas i bildens EXIF.",
     "display_title": "Som ett höstlöv"
+  },
+  "/images/foton/2026-10-23-hjort-soderasen/hjort-soderasen.jpg": {
+    "id": "img-b962daa36273",
+    "url": "/images/foton/2026-10-23-hjort-soderasen/hjort-soderasen.jpg",
+    "post": "/foton/2026-10-23-hjort-soderasen/",
+    "title": "En hjort passerar vägen uppe på åsen",
+    "date": "2026-10-23",
+    "width": 1536,
+    "height": 1156,
+    "thumb": "/images/foton/2026-10-23-hjort-soderasen/aGpvcnQtc29kZXJhc2VuLmpwZw-thumb-b64.jpg",
+    "caption": "En hjort passerar vägen uppe på åsen.",
+    "date_label": "23 oktober 2026 · Söderåsen",
+    "sort_date": "2026-10-23",
+    "date_source": "Håkans uppgift 24 oktober 2026: bilden togs igår, 23 oktober. Filnamnet anger också 20261023; fotograferingsdatum saknas i EXIF.",
+    "display_title": "En hjort passerar vägen uppe på åsen",
+    "location": "Söderåsen",
+    "map_position_unknown": true
   }
 }
