@@ -7,7 +7,7 @@ const html = fs.readFileSync(path.join(__dirname, '../layouts/_default/faltpulse
 function source(name) {
     const begin = html.indexOf('    function ' + name + '(');
     assert(begin >= 0, 'Missing function: ' + name);
-    const end = html.indexOf('\n    function ', begin + 1);
+    const end = html.indexOf('\n    }\n', begin) + 7;
     return html.slice(begin, end);
 }
 function element(tag) {
@@ -57,7 +57,7 @@ const rendering = vm.createContext({ StockholmDates: dates, currentSort: 'date',
     currentLocationFilter: null, DAYS_LABEL: {7: 'veckan'}, CATEGORY_COLORS: {}, window: {}, getCat: () => 'regular',
     document: { createElement: element, getElementById: id => id === 'fp-list' ? list : (nodes[id] || (nodes[id] = { style: {} })) }
 });
-for (const name of ['fmtDate', 'sortRecords', 'appendObservationComment', 'renderList']) vm.runInContext(source(name), rendering);
+for (const name of ['escapeHtml', 'fmtDate', 'sortRecords', 'appendObservationComment', 'renderList']) vm.runInContext(source(name), rendering);
 const records = [
     { event: { plainStartDate: '2026-10-17' }, location: { locality: 'A' }, occurrence: { occurrenceRemarks: 'Äldre\nrapport', privateComment: 'PRIVATE_SENTINEL' } },
     { event: { plainStartDate: '2026-10-18' }, location: { locality: 'B' }, occurrence: { occurrenceRemarks: '<img src=x onerror="alert(1)"> & ny', privateComment: 'PRIVATE_SENTINEL' } },
@@ -80,18 +80,30 @@ assert.equal(JSON.stringify(records), original, 'Source observations must remain
 
 (async () => {
     const requests = [];
-    const fetching = vm.createContext({ StockholmDates: dates, API_BASE: 'https://example.invalid', API_KEY: 'test-only', TAXON_BIRDS: 1, MUNICIPALITY_ID: 'test',
-        fetch: async (url, options) => { requests.push({url, options, body: JSON.parse(options.body)}); return {ok: true, json: async () => ({records})}; }
+    const fetching = vm.createContext({ window: {siteBaseURL: '/'}, fetch() {},
+        ArtportalenSnapshot: {load: async (fetcher, url, days) => {requests.push({url, days}); return records;}}
     });
     vm.runInContext(source('fetchObservations'), fetching);
     const result = await fetching.fetchObservations(3);
-    const body = requests[0].body;
-    assert.equal(body.output.fieldSet, 'Minimum');
-    assert.deepEqual(body.output.fields, ['occurrence.reportedBy', 'occurrence.recordedBy', 'occurrence.occurrenceRemarks', 'location.locality', 'location.decimalLatitude', 'location.decimalLongitude']);
-    assert.deepEqual(body.taxon, {ids: [1], includeUnderlyingTaxa: true});
-    assert.deepEqual(body.geographics, {areas: [{areaType: 'Municipality', featureId: 'test'}]});
-    assert(!('protectionFilter' in body), 'Do not expand the existing public search');
-    assert(!('Authorization' in requests[0].options.headers), 'Do not add protected-observation access');
+    assert.deepEqual(requests, [{url: '/data/artportalen-public-snapshot.json', days: 3}]);
     assert.equal(result[0], records[0]);
-    console.log('PASS: public field requested; empty, non-text, HTML-like, Unicode and multiline remarks; literal text-only rendering; sorting, filtering, repeated rendering; unchanged source records and public search scope.');
+    assert(!html.includes('Ocp-Apim-Subscription-Key'));
+    assert(!html.includes('var API_KEY'));
+    console.log('PASS: unchanged literal comment renderer, sorting/filtering/repeated rendering; fetch delegates only to same-origin safe snapshot; no browser credential.');
 })().catch(error => { console.error(error); process.exitCode = 1; });
+// Display names are labels, not taxon identity; missing IDs are never a '?' taxon.
+rendering.currentLocationFilter = null;
+rendering.renderList([
+    {taxon:{id:100,vernacularName:'Synonym A'},event:{plainStartDate:'2026-10-18'}},
+    {taxon:{id:100,vernacularName:'Synonym B'},event:{plainStartDate:'2026-10-18'}},
+    {taxon:{id:101,vernacularName:'Synonym A'},event:{plainStartDate:'2026-10-18'}}
+]);
+assert.equal(nodes['fp-stat-species'].textContent,2);
+assert.equal(nodes['fp-stat-observers'].textContent,'–');
+assert.match(nodes['fp-dynamic-intro'].textContent,/2 taxa/);
+assert.doesNotMatch(nodes['fp-dynamic-intro'].textContent,/skådare|arter/);
+
+rendering.renderList([{taxon:{id:100,vernacularName:'<b>sentinel</b> "test"',scientificName:'<i>Latin</i>'},event:{plainStartDate:'2026-10-18'}}]);
+assert(!list.markup.includes('<b>sentinel</b>'));
+assert(list.markup.includes('&lt;b&gt;sentinel&lt;/b&gt; &quot;test&quot;'));
+assert(!list.markup.includes('<i>Latin</i>'));

@@ -1,4 +1,5 @@
 # Bidra till Fågelåret i Åstorp
+> **Utvecklingsgrenen 2026-10-25:** Se [DEVELOPMENT.md](DEVELOPMENT.md) för den separata Hugo-prototypen. Äldre pipeline-/publiceringsinstruktioner nedan är inte ett klartecken att köra livehämtning eller publicera grenen. Generatorerna kräver nu ett granskat `--snapshot`; använd `scripts/build.sh` för enbart lokal build.
 
 Detta dokument beskriver rutiner och checklistor för att underhålla sajten [astorpsfaglar.se](https://astorpsfaglar.se). Det är skrivet så att vem som helst — människa eller AI — ska kunna jobba med projektet.
 

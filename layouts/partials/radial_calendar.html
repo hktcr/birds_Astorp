@@ -5,8 +5,8 @@
         <br>Färgerna indikerar antal år arten setts under detta datum (gult/orange för sommarhalvåret maj–sep, blått för
         vinterhalvåret okt–apr).
         {{ $historic := transform.Unmarshal (os.ReadFile "static/data/species_days_historic.json") }}
-        {{ with $historic._meta.generated }}Årshjulets underlag sammanställt {{ . }}.{{ end }}
-        Den historiska kartan har ett separat underlag.
+        {{ if and (eq $historic._meta.dataProviderId 1) $historic._meta.complete }}{{ with $historic._meta.generated }}Årshjulets underlag sammanställt {{ . }}.{{ end }}{{ else }}Äldre underlag behöver källkontrolleras; statistik visas inte som noll.{{ end }}
+        Den historiska kartans separata underlag behöver också källkontrolleras.
     </p>
 
     <!-- The container for our SVG -->
@@ -32,16 +32,20 @@
 
             <!-- Center hole / text -->
             <text id="radial-center-text" x="0" y="0" text-anchor="middle" dominant-baseline="middle" font-size="24"
-                font-weight="bold" fill="#333">0</text>
-            <text x="0" y="20" text-anchor="middle" font-size="10" fill="#666">Dagar</text>
+                font-weight="bold" fill="#333">–</text>
+            <text id="radial-center-label" x="0" y="20" text-anchor="middle" font-size="10" fill="#666">Underlag saknas</text>
         </svg>
     </div>
 
     <!-- Karta link -->
     <div style="text-align: center; margin-bottom: 1rem;">
+        {{ if site.Params.developmentPreview }}
+        <p>Historiska fyndplatser är inte anslutna i utvecklingsversionen. Kartunderlaget behöver först stämmas av mot en verifierad källa.</p>
+        {{ else }}
         <button id="show-map-btn" style="background: none; border: none; font-size: 0.9rem; text-decoration: underline; cursor: pointer; font-weight: 600; color: var(--text-color); transition: all 0.2s;">
             Var i Åstorp har arten setts?
         </button>
+        {{ end }}
     </div>
 
 </div>
@@ -49,6 +53,17 @@
 <script>
     document.addEventListener("DOMContentLoaded", function () {
         const speciesName = "{{ .Title }}";
+    function publicStatsReady(meta) {
+        return !!meta && meta.dataProviderId === 1 && meta.municipalityId === '1277' &&
+            meta.complete === true && meta.sensitiveObservations === false &&
+            meta.taxonomyPolicy === 'species-rank-only-v1' &&
+            typeof meta.recordsSha256 === 'string' && /^[a-f0-9]{64}$/.test(meta.recordsSha256) &&
+            Number.isSafeInteger(meta.recordCount) && meta.recordCount >= 0 &&
+            /^\d{4}-\d{2}-\d{2}$/.test(meta.fromDay) && /^\d{4}-\d{2}-\d{2}$/.test(meta.toDay) &&
+            meta.fromDay <= meta.toDay && typeof meta.retrievedAt === 'string' && /(?:Z|[+-]\d{2}:\d{2})$/.test(meta.retrievedAt) &&
+            Number.isFinite(Date.parse(meta.retrievedAt)) && Date.parse(meta.retrievedAt) <= Date.now();
+    }
+
         const dataUrl = "/data/species_days_historic.json";
 
         // SVG Elements
@@ -197,7 +212,13 @@
         fetch(dataUrl)
             .then(response => response.json())
             .then(data => {
-                const speciesData = data[speciesName] || {};
+                if (!publicStatsReady(data._meta)) {
+                    centerText.textContent = '–';
+                    throw new Error('Källkontrollerat årshjulsunderlag saknas.');
+                }
+                const speciesData = data[speciesName];
+                if (!speciesData || !Object.keys(speciesData).length) throw new Error('Historiskt artunderlag saknas.');
+                document.getElementById('radial-center-label').textContent = 'Dagar';
 
                 // Find max count to normalize colors
                 let maxCount = 1;
@@ -251,7 +272,8 @@
             })
             .catch(error => {
                 console.error("Error loading radial calendar data:", error);
-                centerText.textContent = "?";
+                centerText.textContent = "–";
+                document.getElementById("radial-center-label").textContent = "Underlag saknas";
             });
 
         // Map logic
@@ -265,3 +287,4 @@
         }
     });
 </script>
+

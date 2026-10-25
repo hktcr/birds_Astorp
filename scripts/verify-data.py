@@ -32,3 +32,20 @@ species = {obs["species"] for obs in observations}
 if len(species) != len(observations):
     raise SystemExit("Dubblettarter i årslistan")
 print(f"Datasynk verifierad: {len(species)} arter, alla tre kopior överens.")
+
+# New-generation outputs must come from exactly the same source and taxonomy policy.
+# Legacy data is retained, not retroactively certified by this check.
+radial = json.loads((root / "static/data/species_days_historic.json").read_text())
+provenance, radial_meta = guide.get("provenance", {}), radial.get("_meta", {})
+if provenance or "dataProviderId" in radial_meta:
+    for meta in (provenance, radial_meta):
+        if (type(meta.get("dataProviderId")) is not int or meta.get("dataProviderId") != 1 or meta.get("municipalityId") != "1277" or meta.get("sensitiveObservations") is not False or meta.get("complete") is not True
+                or meta.get("taxonomyPolicy") != "species-rank-only-v1"
+                or not isinstance(meta.get("recordsSha256"), str) or len(meta["recordsSha256"]) != 64):
+            raise SystemExit("Ofullständig eller oväntad källproveniens")
+    if provenance["recordsSha256"] != radial_meta["recordsSha256"]:
+        raise SystemExit("Artguide och årshjul bygger på olika källuttag")
+    if json.loads((root / "docs/data/species_days_historic.json").read_text()) != radial:
+        raise SystemExit("Osynkat årshjul")
+else:
+    print("Äldre underlag: inte källcertifierat; blandad historik måste regenereras och stämmas av.")

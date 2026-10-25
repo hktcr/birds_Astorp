@@ -1,0 +1,434 @@
+{{/*
+PERSONLIGT-FAGELAR.HTML - Bevarad personlig startsida, avskild från kommunportalen
+
+VIKTIGT: Hugo-syntax måste vara EXAKT dubbelklammer UTAN mellanslag!
+FEL: klammer-mellanslag-klammer range
+RATT: dubbelklammer range dubbelklammer
+*/}}
+
+{{ define "main" }}
+{{ $portalCSS := resources.Get "css/kommunportal.css" | fingerprint }}
+<link rel="stylesheet" href="{{ $portalCSS.RelPermalink }}">
+<header class="personal-project-header">
+    <a href="{{ `/` | relURL }}" class="portal-back-link">← Åstorps fåglar</a>
+    <p class="portal-eyebrow">PERSONLIGT PROJEKT</p>
+    <h1>Mitt fågelår 2026 <span>· vägen till 150</span></h1>
+    <p>Min egen årslista, mina kryss och berättelser från markerna. Detta är inte kommunens samlade Artportalen-statistik.</p>
+    <nav class="personal-project-links" aria-label="Mitt fågelår">
+        <a href="{{ `arslista/` | relURL }}">Min årslista</a>
+        <a href="{{ `karta/` | relURL }}">Min krysskarta</a>
+        <a href="{{ `posts/` | relURL }}">Notiser</a>
+    </nav>
+</header>
+<style>
+    a.prediction-card { color: inherit; text-decoration: none; }
+    a.prediction-card:focus-visible { outline: 3px solid #2B5A2B; outline-offset: 4px; }
+</style>
+<!-- Professionell mjuk startsida -->
+<section class="home-hero">
+    <div class="home-container">
+        <!-- Stor logga centrerad -->
+        <div class="hero-logo">
+            <img src="{{ `images/logo-fagelaret-2026.png` | relURL }}" alt="Ett år med fåglar: Åstorp 2026">
+        </div>
+
+        <!-- Progressbar som termometer -->
+        <div class="hero-progress">
+            <div class="progress-header">
+                <span class="progress-label">Min årslista</span>
+                <span class="progress-count"><span id="species-count">—</span> av 150 arter</span>
+            </div>
+            <div class="thermometer">
+                <div class="thermometer-scale">
+                    <span class="scale-mark" style="left: 0%">0</span>
+                    <span class="scale-mark" style="left: 33%">50</span>
+                    <span class="scale-mark" style="left: 66%">100</span>
+                    <span class="scale-mark" style="left: 100%">150</span>
+                </div>
+                <div class="thermometer-bar">
+                    <div class="thermometer-fill" id="progress-fill"></div>
+                </div>
+            </div>
+            <p class="personal-goal-note" id="personal-goal-note">150 är en milstolpe, inte ett tak. Årslistan fortsätter även när målet är nått.</p>
+            <div class="latest-species" id="latest-species"></div>
+        </div>
+
+        <!-- Prediktion: Nästa på tur? -->
+        <div class="prediction-section" id="prediction-section">
+            <div class="prediction-header">
+                <h2 class="prediction-title">Nästa på tur?</h2>
+                <p class="prediction-subtitle" id="prediction-data-status">Artförslag väntar på ett källkontrollerat historiskt underlag.</p>
+                <p class="prediction-subtitle" id="prediction-link-hint">Öppna en art för årshjul och historisk karta.</p>
+            </div>
+            <div class="prediction-cards" id="prediction-cards">
+                <!-- Fylls av JavaScript -->
+            </div>
+            <div class="prediction-score" id="prediction-score"></div>
+        </div>
+
+        <!-- Senaste notis (rundad ruta utan emoji) -->
+        {{ $latest := first 1 (where .Site.RegularPages "Section" "posts") }}
+        {{ range $latest }}
+        <a href="{{ .RelPermalink }}" class="latest-post-box">
+            <span class="latest-post-label">Senaste notis</span>
+            <span class="latest-post-title">{{ .Title }}</span>
+            <span class="latest-post-date">{{ .Date.Day }} {{ index (slice "jan" "feb" "mar" "apr" "maj" "jun" "jul" "aug" "sep" "okt" "nov" "dec") (sub .Date.Month 1) }}</span>
+        </a>
+        {{ end }}
+
+        <!-- Observationsspår / Tidslinje -->
+        <div class="observation-trail">
+            <h2 class="trail-title">Observationsspår</h2>
+            <div class="trail-timeline" id="trail-timeline">
+                <!-- Fylls av JavaScript -->
+            </div>
+        </div>
+
+        <!-- Bounty Banner -->
+        <a href="{{ `efterlysta/` | relURL }}" class="bounty-banner-link" style="display: block; margin-top: 2rem; background: linear-gradient(135deg, #27272a, #18181b); border: 1px solid #3f3f46; border-radius: 12px; padding: 1.5rem; text-decoration: none; color: #f4f4f5; transition: transform 0.2s, box-shadow 0.2s; position: relative; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);">
+            <div style="position: absolute; right: -10px; top: -20px; font-size: 8rem; opacity: 0.04;">🎯</div>
+            <h3 style="margin: 0 0 0.25rem 0; font-size: 1.4rem; color: #fbbf24; font-weight: 600; letter-spacing: -0.02em;">Åstorps Most Wanted</h3>
+            <p style="margin: 0; opacity: 0.85; font-size: 0.95rem; line-height: 1.4;">Hjälp oss hitta de efterlysta arterna. Läs om de kalla fallen &rarr;</p>
+        </a>
+
+    </div>
+</section>
+{{ end }}
+
+{{ define "scripts" }}
+<script>
+    // Dashboard-logik
+    var YEAR_GOAL = 150;
+
+    // Mappa datum till notiser (genereras av Hugo vid byggtid)
+    var postsByDate = {};
+    {{ range where .Site.RegularPages "Section" "posts" }}
+    var pd = "{{ .Date.Format "2006-01-02" }}";
+    if (!postsByDate[pd]) postsByDate[pd] = [];
+    postsByDate[pd].unshift({ url: "{{ .RelPermalink }}", title: "{{ .Title }}" });
+    {{ end }}
+
+    // DATA: Inbäddas vid byggtid
+    {{/* This view needs only approved labels and dates, never coordinates. */}}
+    {{ $personalObservations := slice }}
+    {{ with index .Site.Data "checklist-2026" }}
+        {{ range .observations }}
+            {{ $personalObservations = $personalObservations | append (dict "species" .species "date" .date "location" .location) }}
+        {{ end }}
+    {{ end }}
+    var data = {{ dict "observations" $personalObservations | jsonify | safeJS }};
+
+    function escapePersonalHTML(value) {
+        return String(value == null ? '' : value).replace(/[&<>"']/g, function(character) {
+            return {'&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'}[character];
+        });
+    }
+
+    function personalCalendarDate(value) {
+        if (typeof value !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(value)) return null;
+        var stamp = Date.parse(value + 'T00:00:00Z');
+        if (!Number.isFinite(stamp) || new Date(stamp).toISOString().slice(0, 10) !== value) return null;
+        var parts = value.split('-');
+        var monthNames = ['januari','februari','mars','april','maj','juni','juli','augusti','september','oktober','november','december'];
+        return {day: Number(parts[2]), month: monthNames[Number(parts[1]) - 1]};
+    }
+
+    function initDashboard() {
+        if (!data || !data.observations) {
+            console.error("Ingen data laddad");
+            return;
+        }
+
+        var uniqueSpecies = Object.create(null);
+        data.observations.forEach(function (o) { uniqueSpecies[o.species] = true; });
+        var speciesCount = Object.keys(uniqueSpecies).length;
+
+        var countEl = document.getElementById('species-count');
+        if (countEl) countEl.textContent = speciesCount;
+        var goalNote = document.getElementById('personal-goal-note');
+        if (goalNote && speciesCount >= YEAR_GOAL) goalNote.textContent = 'Målet 150 är nått i min årslista. Fågelåret fortsätter, och varje ny art räknas.';
+
+        var percentage = (speciesCount / YEAR_GOAL) * 100;
+        var fill = document.getElementById('progress-fill');
+        if (fill) {
+            fill.style.width = Math.min(percentage, 100) + '%';
+            // 5-stegs crescendo-ramp: amber → guld → lime → grön → smaragd
+            // Färgen skiftar långsamt i början, accelererar mot målet
+            var hue, sat, light;
+            if (percentage <= 30) {
+                // Gryning → Morgon: varm amber till guld (hue 35→45)
+                var t = percentage / 30;
+                hue = 35 + t * 10;
+                sat = 85;
+                light = 55;
+            } else if (percentage <= 60) {
+                // Morgon → Dag: guld till lime (hue 45→65)
+                var t = (percentage - 30) / 30;
+                hue = 45 + t * 20;
+                sat = 85 + t * 5;
+                light = 55 - t * 5;
+            } else if (percentage <= 85) {
+                // Dag → Skymning: lime till rik grön (hue 65→100)
+                var t = (percentage - 60) / 25;
+                hue = 65 + t * 35;
+                sat = 90 - t * 10;
+                light = 50 - t * 6;
+            } else {
+                // Mål: rik grön till smaragd (hue 100→140)
+                var t = Math.min((percentage - 85) / 15, 1);
+                hue = 100 + t * 40;
+                sat = 80;
+                light = 44 - t * 6;
+            }
+            fill.style.backgroundColor = 'hsl(' + hue + ', ' + sat + '%, ' + light + '%)';
+        }
+
+        if (data.observations.length > 0) {
+            var latest = data.observations[data.observations.length - 1];
+            var latestEl = document.getElementById('latest-species');
+            if (latestEl) {
+                var latestDate = personalCalendarDate(latest.date);
+                latestEl.innerHTML = '<span class="latest-label">Senast kryssad:</span> <strong>' + escapePersonalHTML(latest.species) + '</strong> <span class="latest-meta">(' + escapePersonalHTML(latest.location) + ', ' + (latestDate ? latestDate.day + ' ' + latestDate.month : 'datum saknas') + ')</span>';
+            }
+        }
+
+        // Bygg observationsspår med ny layout
+        // Tilldela löpnummer per unik art i kronologisk ordning
+        var speciesNumber = Object.create(null);
+        var nextNumber = 1;
+        var byDate = Object.create(null);
+        data.observations.forEach(function (obs) {
+            if (!speciesNumber[obs.species]) {
+                speciesNumber[obs.species] = nextNumber++;
+            }
+            if (!byDate[obs.date]) {
+                byDate[obs.date] = { species: [], locations: [] };
+            }
+            byDate[obs.date].species.push(obs.species);
+            if (byDate[obs.date].locations.indexOf(obs.location) === -1) {
+                byDate[obs.date].locations.push(obs.location);
+            }
+        });
+
+        var dates = Object.keys(byDate).sort(function (a, b) { return b.localeCompare(a); });
+        var trailEl = document.getElementById('trail-timeline');
+
+        if (trailEl) {
+            var html = '';
+            dates.forEach(function (date, i) {
+                var info = byDate[date];
+                var calendarDate = personalCalendarDate(date);
+                var day = calendarDate ? calendarDate.day : '';
+                var month = calendarDate ? calendarDate.month : 'Datum saknas';
+                var isLast = i === dates.length - 1;
+                var postLink = postsByDate[date];
+
+                html += '<div class="trail-item' + (i === 0 ? ' trail-item-latest' : '') + '">';
+                html += '<div class="trail-line' + (isLast ? ' trail-line-end' : '') + '"></div>';
+                html += '<div class="trail-dot"></div>';
+                html += '<div class="trail-content">';
+
+                // Rad 1: Datum (länkat om notis finns)
+                if (postLink && postLink.length > 0) {
+                    if (postLink.length === 1) {
+                        html += '<a href="' + escapePersonalHTML(postLink[0].url) + '" class="trail-date has-post">' + day + ' ' + month + ' ↗</a>';
+                    } else {
+                        html += '<div class="trail-date has-post" style="display:flex; flex-wrap:wrap; gap:0.5rem; align-items:baseline;"><span>' + day + ' ' + month + '</span> <span style="font-size: 0.85em; font-weight: normal; opacity: 0.85;">';
+                        postLink.sort(function(a,b){ return a.title.localeCompare(b.title); }).forEach(function(link, j) {
+                            var cleanTitle = link.title.length > 30 ? link.title.substring(0, 27) + '...' : link.title;
+                            html += '<a href="' + escapePersonalHTML(link.url) + '" style="text-decoration:none; color:inherit; font-weight: 500;">' + escapePersonalHTML(cleanTitle) + ' ↗</a>' + (j < postLink.length - 1 ? ' <span style="opacity: 0.4;">|</span> ' : '');
+                        });
+                        html += '</span></div>';
+                    }
+                } else {
+                    html += '<div class="trail-date">' + day + ' ' + month + '</div>';
+                }
+
+                // Rad 2: Arter med löpnummer
+                var speciesWithNumbers = info.species.map(function (sp) {
+                    return '<span class="trail-species-number">#' + speciesNumber[sp] + '</span> ' + escapePersonalHTML(sp);
+                });
+                html += '<div class="trail-species">' + speciesWithNumbers.join(', ') + '</div>';
+
+                // Rad 3: Platser
+                html += '<div class="trail-location">' + escapePersonalHTML(info.locations.join(' • ')) + '</div>';
+
+                html += '</div></div>';
+            });
+            trailEl.innerHTML = html;
+        }
+    }
+
+    initDashboard();
+
+    // ── Prediktionssektion: "Nästa på tur?" ──
+    // Use Hugo's real term URLs, including Swedish letters and special names.
+    {{ $speciesLinks := dict }}
+    {{ range .Site.Taxonomies.species }}
+        {{ $speciesLinks = merge $speciesLinks (dict (lower .Page.Title) .Page.RelPermalink) }}
+    {{ end }}
+    var speciesLinks = {{ $speciesLinks | jsonify | safeJS }};
+    function initPredictions() {
+        var requestId = initPredictions.requestId = (initPredictions.requestId || 0) + 1;
+        var cards = document.getElementById('prediction-cards');
+        var score = document.getElementById('prediction-score');
+        if (cards) cards.replaceChildren();
+        if (score) score.textContent = '';
+        if (!data || !Array.isArray(data.observations)) return;
+
+        // Hämta species-guide med historisk månadsdata
+        return fetch('{{ `data/species-guide.json` | relURL }}')
+            .then(function(r) { if (r.ok === false) throw new Error('Historiskt underlag kunde inte hämtas.'); return r.json(); })
+            .then(function(guide) {
+                if (requestId !== initPredictions.requestId) return;
+                var source = guide.provenance || {};
+                if (source.dataProviderId !== 1 || source.municipalityId !== '1277' || source.complete !== true ||
+                    source.sensitiveObservations !== false || source.taxonomyPolicy !== 'species-rank-only-v1' ||
+                    typeof source.recordsSha256 !== 'string' || !/^[a-f0-9]{64}$/.test(source.recordsSha256) ||
+                    !Array.isArray(guide.species) || !guide.species.every(function(sp) {
+                        return sp && typeof sp.name === 'string' && sp.name.length > 0 &&
+                            Array.isArray(sp.months) && sp.months.length === 12 &&
+                            sp.months.every(function(n) { return Number.isInteger(n) && n >= 0; });
+                    })) {
+                    throw new Error('Historiskt underlag saknas eller behöver källkontrolleras.');
+                }
+                var status = document.getElementById('prediction-data-status');
+                if (status) status.textContent = 'Personliga artförslag utifrån det dokumenterade historiska underlaget, inte en säker prognos.';
+                var observed = {};
+                data.observations.forEach(function(o) { observed[o.species] = true; });
+
+                var now = new Date();
+                var currentMonth = now.getMonth(); // 0-indexed (jan=0, maj=4)
+                var nextMonth = (currentMonth + 1) % 12;
+                var monthAfter = (currentMonth + 2) % 12;
+
+                // Månadsnamn för visning
+                var monthNames = ['jan','feb','mar','apr','maj','jun','jul','aug','sep','okt','nov','dec'];
+
+                // Beräkna prediktion: vikta historiska observationer mot aktuell+kommande månader
+                var candidates = [];
+                guide.species.forEach(function(sp) {
+                    var cur = sp.months[currentMonth] || 0;
+                    var nxt = sp.months[nextMonth] || 0;
+                    var aft = sp.months[monthAfter] || 0;
+                    // Vikta: aktuell månad tyngst, sedan avtagande
+                    var score = cur * 3 + nxt * 2 + aft * 1;
+                    if (score > 0) {
+                        // Hitta bästa månad (den med flest obs)
+                        var peakMonth = currentMonth;
+                        var peakVal = cur;
+                        if (nxt > peakVal) { peakMonth = nextMonth; peakVal = nxt; }
+                        if (aft > peakVal) { peakMonth = monthAfter; peakVal = aft; }
+
+                        candidates.push({
+                            name: sp.name,
+                            latin: sp.latin,
+                            total: sp.total,
+                            score: score,
+                            isObserved: !!observed[sp.name],
+                            peakMonth: monthNames[peakMonth],
+                            category: sp.category
+                        });
+                    }
+                });
+
+                // Sortera efter score (högst först)
+                candidates.sort(function(a, b) { return b.score - a.score; });
+
+                // Hämta eller skapa prediktion-state i localStorage
+                var storageKey = 'astorp-predictions-2026';
+                var state = null;
+                try {
+                    state = JSON.parse(localStorage.getItem(storageKey));
+                } catch(e) {}
+                if (!state || !Array.isArray(state.species) || !state.species.every(function(name) { return typeof name === 'string'; })) state = null;
+                if (state) state.history = Array.isArray(state.history) ? state.history.filter(function(round) {
+                    return round && Number.isInteger(round.hits) && round.hits >= 0 && round.hits <= 3;
+                }) : [];
+
+                // Generera ny omgång om: ingen finns, eller alla tre är avkryssade
+                var needNew = !state || !state.species || state.species.length !== 3;
+                if (state && state.species) {
+                    var allHit = state.species.every(function(name) { return !!observed[name]; });
+                    if (allHit) needNew = true;
+                }
+
+                var predictions;
+                if (needNew) {
+                    // Välj topp 3 OOBSERVERADE arter
+                    var unobserved = candidates.filter(function(c) { return !c.isObserved; });
+                    predictions = unobserved.slice(0, 3).map(function(c) { return c.name; });
+
+                    // Uppdatera historik
+                    var history = [];
+                    if (state && state.history) history = state.history;
+                    // Spara gamla omgången som avslutad (om den fanns)
+                    if (state && state.species) {
+                        var hits = state.species.filter(function(name) { return !!observed[name]; }).length;
+                        history.push({ species: state.species, hits: hits, date: state.date });
+                    }
+
+                    state = {
+                        species: predictions,
+                        date: now.toISOString().slice(0, 10),
+                        history: history
+                    };
+                    try {
+                        localStorage.setItem(storageKey, JSON.stringify(state));
+                    } catch(e) {}
+                } else {
+                    predictions = state.species;
+                }
+
+                // Bygg kandidat-lookup för metadata
+                var candMap = {};
+                candidates.forEach(function(c) { candMap[c.name] = c; });
+
+                // Rendera kort
+                var cardsEl = document.getElementById('prediction-cards');
+                if (!cardsEl) return;
+
+                cardsEl.replaceChildren();
+                predictions.forEach(function(name) {
+                    var isHit = !!observed[name];
+                    var href = speciesLinks[name.toLocaleLowerCase('sv')];
+                    var card = document.createElement(href ? 'a' : 'div');
+                    card.className = 'prediction-card' + (isHit ? ' hit' : '');
+                    if (href) {
+                        card.href = href;
+                        card.setAttribute('aria-describedby', 'prediction-link-hint');
+                    }
+                    var label = document.createElement('span');
+                    label.className = 'prediction-species';
+                    label.textContent = name;
+                    card.appendChild(label);
+                    cardsEl.appendChild(card);
+                });
+
+                // Visa träffstatistik
+                var scoreEl = document.getElementById('prediction-score');
+                if (scoreEl && state.history && state.history.length > 0) {
+                    var totalPredictions = state.history.length * 3;
+                    var totalHits = 0;
+                    state.history.forEach(function(round) { totalHits += round.hits; });
+                    // Lägg till aktuell omgång
+                    var currentHits = predictions.filter(function(name) { return !!observed[name]; }).length;
+                    totalPredictions += 3;
+                    totalHits += currentHits;
+                    var pct = Math.round((totalHits / totalPredictions) * 100);
+                    scoreEl.textContent = 'Träffsäkerhet: ' + totalHits + '/' + totalPredictions + ' (' + pct + '%)';
+                }
+            })
+            .catch(function(err) {
+                if (requestId !== initPredictions.requestId) return;
+                if (cards) cards.replaceChildren();
+                if (score) score.textContent = '';
+                console.warn('Kunde inte ladda prediktioner:', err);
+                var status = document.getElementById('prediction-data-status');
+                if (status) status.textContent = 'Artförslag visas när det historiska underlaget har källkontrollerats. Din årslista påverkas inte.';
+            });
+    }
+
+    initPredictions();
+</script>
+{{ end }}

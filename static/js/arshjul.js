@@ -4,6 +4,17 @@
  */
 
 document.addEventListener("DOMContentLoaded", () => {
+    function publicStatsReady(meta) {
+        return !!meta && meta.dataProviderId === 1 && meta.municipalityId === '1277' &&
+            meta.complete === true && meta.sensitiveObservations === false &&
+            meta.taxonomyPolicy === 'species-rank-only-v1' &&
+            typeof meta.recordsSha256 === 'string' && /^[a-f0-9]{64}$/.test(meta.recordsSha256) &&
+            Number.isSafeInteger(meta.recordCount) && meta.recordCount >= 0 &&
+            /^\d{4}-\d{2}-\d{2}$/.test(meta.fromDay) && /^\d{4}-\d{2}-\d{2}$/.test(meta.toDay) &&
+            meta.fromDay <= meta.toDay && typeof meta.retrievedAt === 'string' && /(?:Z|[+-]\d{2}:\d{2})$/.test(meta.retrievedAt) &&
+            Number.isFinite(Date.parse(meta.retrievedAt)) && Date.parse(meta.retrievedAt) <= Date.now();
+    }
+
     const dataUrl = "/data/species_days_historic.json";
     const gridEl = document.getElementById("arshjul-grid");
     const loadingEl = document.getElementById("arshjul-loading");
@@ -19,6 +30,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const modalTitle = document.getElementById("arshjul-modal-title");
     const modalSvgContainer = document.getElementById("arshjul-modal-svg-container");
     const modalTooltip = document.getElementById("arshjul-modal-tooltip");
+    const modalTooltipDate = document.getElementById("arshjul-modal-tooltip-date");
     const modalTooltipCount = document.getElementById("arshjul-modal-tooltip-count");
 
     // Latin name lookup — populated by .then() callback, used by openModal
@@ -26,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     // Pre-calculate Calendar Data (dynamic leap year detection)
     const currentYear = new Date().getFullYear();
-    const isLeapYear = (currentYear % 4 === 0 && currentYear % 100 !== 0) || (currentYear % 400 === 0);
+    const isLeapYear = true; // Historical wheel must always include 29 February.
     const daysInMonths = [31, isLeapYear ? 29 : 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31];
     const monthNames = ["Jan", "Feb", "Mar", "Apr", "Maj", "Jun", "Jul", "Aug", "Sep", "Okt", "Nov", "Dec"];
     const totalDays = isLeapYear ? 366 : 365;
@@ -48,6 +60,17 @@ document.addEventListener("DOMContentLoaded", () => {
             });
             currentDayOfYear++;
         }
+    }
+
+    function stockholmDay(instant = new Date()) {
+        return new Intl.DateTimeFormat('sv-SE', {timeZone:'Europe/Stockholm',year:'numeric',month:'2-digit',day:'2-digit'}).format(new Date(instant));
+    }
+
+    function wheelDayIndex(plainDay) {
+        if (typeof plainDay !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(plainDay)) return -1;
+        const stamp = Date.parse(plainDay + 'T00:00:00Z');
+        if (!Number.isFinite(stamp) || new Date(stamp).toISOString().slice(0, 10) !== plainDay) return -1;
+        return dayAngles.findIndex(da => da.key === plainDay.slice(5));
     }
 
     // Geometry & Math helpers
@@ -113,6 +136,8 @@ document.addEventListener("DOMContentLoaded", () => {
      * @returns {SVGElement}
      */
     function createSVG(speciesData, isInteractive = false, checkDate = null) {
+        const hasHistory = !!speciesData && Object.keys(speciesData).length > 0;
+        speciesData = speciesData || {};
         const innerRadius = 80;
         const outerRadius = 100;
 
@@ -179,7 +204,7 @@ document.addEventListener("DOMContentLoaded", () => {
         textCount.setAttribute("font-size", "24");
         textCount.setAttribute("font-weight", "bold");
         textCount.setAttribute("fill", "#334155");
-        textCount.textContent = activeDays;
+        textCount.textContent = hasHistory ? activeDays : '–';
         svg.appendChild(textCount);
 
         const textLabel = document.createElementNS("http://www.w3.org/2000/svg", "text");
@@ -188,7 +213,7 @@ document.addEventListener("DOMContentLoaded", () => {
         textLabel.setAttribute("text-anchor", "middle");
         textLabel.setAttribute("font-size", "10");
         textLabel.setAttribute("fill", "#64748b");
-        textLabel.textContent = "Dagar";
+        textLabel.textContent = hasHistory ? "Dagar" : "Underlag saknas";
         svg.appendChild(textLabel);
 
         // Segments
@@ -231,11 +256,7 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
         // Today marker — small red tick outside the wheel
-        const now = new Date();
-        const startOfYear = new Date(now.getFullYear(), 0, 0);
-        const diff = now - startOfYear;
-        const oneDay = 1000 * 60 * 60 * 24;
-        const todayDOY = Math.floor(diff / oneDay) - 1; // 0-indexed
+        const todayDOY = wheelDayIndex(stockholmDay());
         const todayAngle = (todayDOY / totalDays) * 360 + 180;
         const tickInner = polarToCartesian(0, 0, outerRadius + 3, todayAngle);
         const tickOuter = polarToCartesian(0, 0, outerRadius + 10, todayAngle);
@@ -250,10 +271,8 @@ document.addEventListener("DOMContentLoaded", () => {
         svg.appendChild(todayTick);
 
         // Check-date marker — green tick outside the wheel (same radius as today)
-        if (checkDate) {
-            const checkD = new Date(checkDate);
-            const checkStartOfYear = new Date(checkD.getFullYear(), 0, 0);
-            const checkDOY = Math.floor((checkD - checkStartOfYear) / oneDay) - 1;
+        if (checkDate && wheelDayIndex(checkDate) >= 0) {
+            const checkDOY = wheelDayIndex(checkDate);
             const checkAngle = (checkDOY / totalDays) * 360 + 180;
             const checkInner = polarToCartesian(0, 0, outerRadius + 3, checkAngle);
             const checkOuter = polarToCartesian(0, 0, outerRadius + 10, checkAngle);
@@ -344,6 +363,10 @@ document.addEventListener("DOMContentLoaded", () => {
         fetch(checklistUrl).then(r => r.json()).catch(() => null)
     ])
         .then(([data, guideData, checklistData]) => {
+            if (!publicStatsReady(data._meta) || !guideData || !publicStatsReady(guideData.provenance) ||
+                guideData.provenance.recordsSha256 !== data._meta.recordsSha256) {
+                throw new Error('Årshjulets äldre underlag behöver källkontrolleras.');
+            }
             window._arshjulData = data;
             if (loadingEl) loadingEl.remove();
 
@@ -413,7 +436,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             if (!svgWrapper.hasChildNodes()) {
                                 // First time rendering! Use empty data if species has no historic records
                                 const cardCheckDate = card.dataset.checkdate || null;
-                                const svg = createSVG(data[speciesName] || {}, false, cardCheckDate);
+                                const svg = createSVG(data[speciesName], false, cardCheckDate);
                                 svgWrapper.appendChild(svg);
 
                                 // Let layout settle, then fade in
@@ -477,7 +500,7 @@ document.addEventListener("DOMContentLoaded", () => {
                 card.appendChild(svgWrapper);
 
                 // Add click listener for Modal — use empty data if species has no historic records
-                const speciesData = data[species] || {};
+                const speciesData = data[species];
                 card.addEventListener("click", () => {
                     openModal(species, slug, speciesData, card.dataset.checkdate || null);
                 });
@@ -555,9 +578,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
                 const showAll = document.getElementById("tips-show-all")?.checked || false;
 
-                const today = new Date();
-                const startOfYear = new Date(today.getFullYear(), 0, 0);
-                const todayDOY = Math.floor((today - startOfYear) / (1000 * 60 * 60 * 24)) - 1;
+                const today = stockholmDay();
+                const todayDOY = wheelDayIndex(today);
 
                 const possibleNow = [];
                 const arrivingSoon = [];
@@ -632,7 +654,7 @@ document.addEventListener("DOMContentLoaded", () => {
                             categorized = true;
                         }
                     } else {
-                        const currentMonth = today.getMonth() + 1;
+                        const currentMonth = Number(today.slice(5, 7));
                         if (sumNow >= RECOMMENDATION_MIN_YEARS) {
                             if (isWinterGuest && currentMonth >= 2 && currentMonth <= 5) {
                                 leavingSoon.push({ name: species, checked: isChecked2026 });
@@ -727,13 +749,13 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         const svgWrapper = document.createElement("div");
                         svgWrapper.className = "arshjul-card-svg-wrapper loaded";
-                        const svg = createSVG(data[species] || {}, false, checkDate);
+                        const svg = createSVG(data[species], false, checkDate);
                         svgWrapper.appendChild(svg);
                         card.appendChild(svgWrapper);
 
                         card.addEventListener("click", () => {
                             const slug = species.toLowerCase().replace(/å/g, "a").replace(/ä/g, "a").replace(/ö/g, "o").replace(/\s+/g, '-').replace(/[^a-z0-9-]/g, '');
-                            openModal(species, slug, data[species] || {}, checkDate);
+                            openModal(species, slug, data[species], checkDate);
                         });
 
                         grid.appendChild(card);
@@ -790,3 +812,4 @@ document.addEventListener("DOMContentLoaded", () => {
     };
 
 });
+

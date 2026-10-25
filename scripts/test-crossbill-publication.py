@@ -4,6 +4,7 @@ import hashlib
 import json
 from html.parser import HTMLParser
 from pathlib import Path
+from urllib.parse import unquote
 
 ROOT = Path(__file__).resolve().parents[1]
 SLUG = 'mindre-korsnabbar-over-maglaby'
@@ -57,7 +58,7 @@ for root in ('static', 'docs'):
     assert thumbnail.is_file()
 assert hashlib.sha256((ROOT/'static'/PHOTO_URL.lstrip('/')).read_bytes()).digest() == hashlib.sha256((ROOT/'docs'/PHOTO_URL.lstrip('/')).read_bytes()).digest()
 
-home = (ROOT/'docs/index.html').read_text()
+home = (ROOT/'docs/mitt-fagelar-2026/index.html').read_text()
 assert POST_URL in home and 'Mindre korsnäbbar över Maglaby' in home
 assert 'Senaste notis' in home
 assert POST_URL in (ROOT/'docs/posts/index.html').read_text()
@@ -112,7 +113,14 @@ class GalleryTemplates(HTMLParser):
 
 templates = GalleryTemplates((ROOT/'docs/galleri/index.html').read_text())
 assert templates.templates == templates.cards and templates.cards > 50
-assert templates.map_scripts == 1 and templates.milestones == 1
+# A later post may legitimately repeat the same milestone. Each gallery card
+# embeds its own source post; count those matches, not one global historical post.
+expected_milestones = sum(
+    (ROOT / 'docs' / unquote(a['href']).strip('/') / 'index.html').read_text().count('Fågelåret i Åstorp, 148/150')
+    for tag, a in gallery.elements if tag == 'a' and a.get('class') == 'gallery-item'
+)
+assert expected_milestones >= 1
+assert templates.map_scripts == 1 and templates.milestones == expected_milestones
 print('PASS: proportional photo dimensions, inert gallery templates, no leaked milestone or gallery map script.')
 
 map_version = hashlib.sha256((ROOT/'static/js/notkraka-map.js').read_bytes()).hexdigest()

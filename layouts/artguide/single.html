@@ -108,7 +108,7 @@
                 <button class="artguide-filter" data-filter="regular">Möjliga</button>
                 <button class="artguide-filter" data-filter="uncommon">Ovanliga</button>
                 <button class="artguide-filter" data-filter="rare">Rariteter</button>
-                <button class="artguide-filter" data-filter="new">Nya</button>
+                <button class="artguide-filter" data-filter="new">Endast min lista</button>
                 <button class="artguide-filter" data-filter="checked">Kryssade ✓</button>
                 <button class="artguide-filter" data-filter="missing">Saknade</button>
             </div>
@@ -139,7 +139,7 @@
             </div>
             <div class="artguide-legend__item" data-category="new">
                 <span class="artguide-legend__swatch artguide-legend__swatch--new"></span>
-                <span>Ny</span>
+                <span>Endast min lista</span>
                 <span class="artguide-legend__count" id="legend-count-new"></span>
             </div>
             <div class="artguide-legend__item artguide-legend__item--total">
@@ -354,9 +354,13 @@
 
             <!-- Karta link -->
             <div style="text-align: center; margin-top: 0.5rem; margin-bottom: 0.5rem;">
+                {{ if site.Params.developmentPreview }}
+                <p>Historiska fyndplatser är inte anslutna i utvecklingsversionen. Kartunderlaget behöver källkontrolleras.</p>
+                {{ else }}
                 <button id="arshjul-modal-map-btn" style="background: none; border: none; font-size: 0.9rem; text-decoration: underline; cursor: pointer; font-weight: 600; color: #1e293b; transition: all 0.2s;">
                     Var i Åstorp har arten setts?
                 </button>
+                {{ end }}
             </div>
 
             <div
@@ -376,8 +380,7 @@
 
     <!-- Footer -->
     <footer class="artguide-footer">
-        <p>Data: <a href="https://www.artportalen.se" target="_blank" rel="noopener">Artportalen</a>. Samtliga
-            fågelobservationer i Åstorps kommun, alla observatörer, alla år.</p>
+        <p>Data: <a href="https://www.artportalen.se" target="_blank" rel="noopener">Artportalen</a>. Offentliga rapporter inom det dokumenterade datumintervallet, Åstorps kommun. Statistik på artnivå räknas separat från personliga kryss; underarter och övriga taxon redovisas som undantag tills taxonomin har stämts av.</p>
         <p class="artguide-footer__date"></p>
     </footer>
 

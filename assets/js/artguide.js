@@ -6,8 +6,24 @@
 (function () {
     'use strict';
 
+    function publicStatsReady(meta) {
+        return !!meta && meta.dataProviderId === 1 && meta.municipalityId === '1277' &&
+            meta.complete === true && meta.sensitiveObservations === false &&
+            meta.taxonomyPolicy === 'species-rank-only-v1' &&
+            typeof meta.recordsSha256 === 'string' && /^[a-f0-9]{64}$/.test(meta.recordsSha256) &&
+            Number.isSafeInteger(meta.recordCount) && meta.recordCount >= 0 &&
+            /^\d{4}-\d{2}-\d{2}$/.test(meta.fromDay) && /^\d{4}-\d{2}-\d{2}$/.test(meta.toDay) &&
+            meta.fromDay <= meta.toDay && typeof meta.retrievedAt === 'string' && /(?:Z|[+-]\d{2}:\d{2})$/.test(meta.retrievedAt) &&
+            Number.isFinite(Date.parse(meta.retrievedAt)) && Date.parse(meta.retrievedAt) <= Date.now();
+    }
+
+    function escapeHtml(value) {
+        return String(value == null ? '' : value).replace(/[&<>"']/g, character => ({'&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;', "'":'&#39;'}[character]));
+    }
+
     // --- State ---
     let speciesData = [];
+    let statisticsReady = false;
     let checklistData = [];
     let currentMonth = new Date().getMonth(); // 0-indexed
     let currentView = 'year';
@@ -25,7 +41,7 @@
         regular: 'Möjlig',
         uncommon: 'Ovanlig',
         rare: 'Raritet',
-        new: 'Ny för kommunen'
+        new: 'Endast i min lista'
     };
 
     const CATEGORY_ICONS = {
@@ -49,13 +65,20 @@
             const guideJson = await guideRes.json();
             const checklistJson = await checklistRes.json();
 
-            speciesData = guideJson.species || [];
+            const provenance = guideJson.provenance || {};
+            const sourceReady = publicStatsReady(provenance) && Array.isArray(guideJson.species) && guideJson.species.every(sp =>
+                Number.isSafeInteger(sp.taxonId) && sp.taxonId > 0 && typeof sp.name === 'string' && typeof sp.latin === 'string' &&
+                ['abundant', 'regular', 'uncommon', 'rare'].includes(sp.category) && Number.isSafeInteger(sp.total) && sp.total >= 0 &&
+                Array.isArray(sp.months) && sp.months.length === 12 && sp.months.every(n => Number.isSafeInteger(n) && n >= 0) &&
+                sp.months.reduce((a, b) => a + b, 0) === sp.total);
+            statisticsReady = sourceReady;
+            speciesData = sourceReady ? (guideJson.species || []) : [];
             checklistData = checklistJson.observations || [];
 
             // Set export date in footer
             const footerDate = document.querySelector('.artguide-footer__date');
             if (footerDate) {
-                footerDate.textContent = `Exportdatum: ${guideJson.exportDate || guideJson.generated}`;
+                footerDate.textContent = sourceReady ? `Exportdatum: ${guideJson.exportDate || guideJson.generated}. Personliga kryss räknas separat.` : 'Äldre statistikunderlag behöver källkontrolleras. Endast personliga kryss visas.';
             }
 
             matchChecklist();
@@ -119,10 +142,10 @@
                     latin: obs.latin,
                     date: obs.date,
                     location: obs.location,
-                    allDates: [obs.date]
+                    personalDates: [obs.date]
                 });
             } else {
-                checkMap.get(key).allDates.push(obs.date);
+                checkMap.get(key).personalDates.push(obs.date);
             }
         }
         
@@ -136,6 +159,7 @@
                     latin: obs.latin,
                     total: 0,
                     category: 'new',
+                    personalOnly: true,
                     months: [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
                     checked: false // Sätts i nästa loop
                 });
@@ -150,22 +174,13 @@
                 sp.checkDate = match.date;
                 sp.checkLocation = match.location;
                 
-                // Baka in årets observationer dynamiskt i helårsöversikten
-                if (match.allDates) {
-                    match.allDates.forEach(dateStr => {
-                        if (!dateStr) return;
-                        const parts = dateStr.split('-');
-                        if (parts.length === 3) {
-                            const monthIdx = parseInt(parts[1], 10) - 1;
-                            if (monthIdx >= 0 && monthIdx < 12) {
-                                sp.months[monthIdx] += 1;
-                                sp.total += 1;
-                            }
-                        }
-                    });
-                }
+                // Personal checkmarks annotate the UI, never public statistics.
+                sp.personalDates = match.personalDates.slice();
             } else {
                 sp.checked = false;
+                delete sp.checkDate;
+                delete sp.checkLocation;
+                delete sp.personalDates;
             }
         }
     }
@@ -287,7 +302,7 @@
             checkedSpecies.sort((a, b) => b.checkDate.localeCompare(a.checkDate));
             if (checkedSpecies.length > 0) {
                 const latest = checkedSpecies[0];
-                latestEl.innerHTML = `<span style="color: var(--color-text-muted)">Senast kryssad:</span> <strong style="color: var(--color-primary)">${latest.name}</strong> <span style="color: var(--color-text-muted); font-size: var(--text-xs)">(${latest.checkLocation || ''}, ${formatDate(latest.checkDate)})</span>`;
+                latestEl.innerHTML = `<span style="color: var(--color-text-muted)">Senast kryssad:</span> <strong style="color: var(--color-primary)">${escapeHtml(latest.name)}</strong> <span style="color: var(--color-text-muted); font-size: var(--text-xs)">(${escapeHtml(latest.checkLocation || '')}, ${formatDate(latest.checkDate)})</span>`;
             }
         }
     }
@@ -384,8 +399,8 @@
             const totalInMonth = allMonthSpecies.length;
             const totalCheckedInMonth = allMonthSpecies.filter(sp => sp.checked).length;
             const monthName = MONTH_NAMES[month].toLowerCase();
-            let desc = `${yearChecked} av ${TARGET} arter har kryssats under 2026. I ${monthName} finns ${totalInMonth} arter rapporterade genom åren, och ${totalCheckedInMonth} av dessa är kryssade.`;
-            if (currentFilter && currentFilter !== 'all' && monthSpecies.length !== totalInMonth) {
+            let desc = statisticsReady ? `${yearChecked} av ${TARGET} arter har kryssats under 2026. I ${monthName} finns ${totalInMonth} arter rapporterade i det dokumenterade källunderlaget, och ${totalCheckedInMonth} av dessa är kryssade.` : 'Kommunens månadsstatistik saknas eller behöver källkontrolleras. Personliga kryss hålls separat.';
+            if (statisticsReady && currentFilter && currentFilter !== 'all' && monthSpecies.length !== totalInMonth) {
                 desc += ` Visar just nu: ${monthSpecies.length} arter.`;
             }
             descEl.textContent = desc;
@@ -415,11 +430,13 @@
         const checkedClass = sp.checked ? ' artguide-card--checked' : '';
         const checkMark = sp.checked ? ' <span class="artguide-card__check" aria-label="Kryssad">✓</span>' : '';
 
-        const sparkline = renderSparkline(sp.months, activeMonth, sp.category);
+        const sparkline = sp.personalOnly ? '' : renderSparkline(sp.months, activeMonth, sp.category);
 
         // Show contextual count based on sort mode
         let countText;
-        if (currentSort === 'chronological' && sp.checked) {
+        if (sp.personalOnly) {
+            countText = 'Saknas i statistikunderlaget';
+        } else if (currentSort === 'chronological' && sp.checked) {
             countText = `Kryssad ${formatDate(sp.checkDate)}`;
         } else if (currentSort === 'likely' && activeMonth !== undefined) {
             const monthCount = sp.months[activeMonth];
@@ -428,16 +445,16 @@
             countText = `${sp.total} rapp. totalt`;
         }
 
-        const ariaLabel = `${sp.name}: ${label}, ${sp.total} rapporter${sp.checked ? ', kryssad ' + sp.checkDate : ''}`;
+        const ariaLabel = `${sp.name}: ${label}, ${sp.personalOnly ? 'statistik saknas' : sp.total + ' rapporter'}${sp.checked ? ', kryssad ' + sp.checkDate : ''}`;
 
         return `
         <div class="artguide-card artguide-card--${sp.category}${checkedClass}"
-             tabindex="0" role="button" aria-label="${ariaLabel}"
-             data-species="${sp.name}">
+             tabindex="0" role="button" aria-label="${escapeHtml(ariaLabel)}"
+             data-species="${escapeHtml(sp.name)}">
             <div class="artguide-card__header">
                 <div class="artguide-card__names">
-                    <span class="artguide-card__name">${sp.name}${checkMark} ${icon}</span>
-                    <span class="artguide-card__latin">${sp.latin}</span>
+                    <span class="artguide-card__name">${escapeHtml(sp.name)}${checkMark} ${icon}</span>
+                    <span class="artguide-card__latin">${escapeHtml(sp.latin)}</span>
                 </div>
             </div>
             <div class="artguide-card__meta">
@@ -476,6 +493,7 @@
         let html = '<div class="artguide-detail">';
 
         // Monthly bar chart
+        if (!sp.personalOnly) {
         html += '<div class="artguide-detail__chart">';
         const max = Math.max(...sp.months, 1);
         for (let i = 0; i < 12; i++) {
@@ -491,12 +509,13 @@
         }
         html += '</div>';
 
+        }
         // Info
         html += `<div class="artguide-detail__info">`;
-        html += `<p><strong>Totalt:</strong> ${sp.total} rapporter i Åstorps kommun</p>`;
+        html += sp.personalOnly ? '<p>Saknas i statistikunderlaget. Det personliga krysset räknas inte som en Artportalen-rapport.</p>' : `<p><strong>Totalt:</strong> ${sp.total} rapporter i Åstorps kommun</p>`;
         if (sp.checked) {
             html += `<p><strong>Kryssad:</strong> ${formatDate(sp.checkDate)}`;
-            if (sp.checkLocation) html += `, ${sp.checkLocation}`;
+            if (sp.checkLocation) html += `, ${escapeHtml(sp.checkLocation)}`;
             html += `</p>`;
         }
         html += '</div>';
@@ -537,7 +556,7 @@
             const filtered0 = filterSpecies(speciesData);
             const checkedTotal = filtered0.filter(s => s.checked).length;
             if (title) title.textContent = 'Helårsöversikt';
-            if (subtitle) subtitle.textContent = `${filtered0.length} arter historiskt observerade · ${checkedTotal} kryssade`;
+            if (subtitle) subtitle.textContent = statisticsReady ? `${filtered0.filter(s => !s.personalOnly).length} arter i statistikunderlaget · ${checkedTotal} kryssade` : `Kommunstatistik saknas · ${checkedTotal} personliga kryss`;
             const descEl = document.getElementById('artguide-description');
             if (descEl) descEl.style.display = 'none';
         }
@@ -565,15 +584,15 @@
             const rowClass = sp.checked ? 'artguide-heatmap__row--checked' : '';
 
             html += `<tr class="artguide-heatmap__row artguide-heatmap__row--${sp.category} ${rowClass}">`;
-            html += `<td class="artguide-heatmap__name">${sp.name}${sp.checked ? ' <span class="artguide-heatmap__checkmark">✓</span>' : ''} <span class="artguide-heatmap__latin">${sp.latin}</span></td>`;
+            html += `<td class="artguide-heatmap__name">${escapeHtml(sp.name)}${sp.checked ? ' <span class="artguide-heatmap__checkmark">✓</span>' : ''} <span class="artguide-heatmap__latin">${escapeHtml(sp.latin)}</span></td>`;
 
             for (let i = 0; i < 12; i++) {
                 const val = sp.months[i];
                 const intensity = val > 0 ? Math.max(0.15, val / max) : 0;
                 const activeClass = i === currentMonth ? ' artguide-heatmap__cell--active' : '';
-                html += `<td class="artguide-heatmap__cell artguide-heatmap__cell--${sp.category}${activeClass}" style="--intensity:${intensity.toFixed(2)}" title="${val} obs i ${MONTH_NAMES[i]}">${val > 0 ? val : ''}</td>`;
+                html += `<td class="artguide-heatmap__cell artguide-heatmap__cell--${sp.category}${activeClass}" style="--intensity:${intensity.toFixed(2)}" title="${sp.personalOnly ? 'Statistik saknas' : val + ' obs i ' + MONTH_NAMES[i]}">${sp.personalOnly ? '–' : (val > 0 ? val : '')}</td>`;
             }
-            html += `<td class="artguide-heatmap__total">${sp.total}</td>`;
+            html += `<td class="artguide-heatmap__total">${sp.personalOnly ? "–" : sp.total}</td>`;
             html += '</tr>';
         }
 
@@ -584,10 +603,10 @@
 
     // --- Helpers ---
     function formatDate(dateStr) {
-        if (!dateStr) return '';
+        if (typeof dateStr !== 'string' || !/^\d{4}-\d{2}-\d{2}$/.test(dateStr)) return '';
         const months = ['jan', 'feb', 'mar', 'apr', 'maj', 'jun', 'jul', 'aug', 'sep', 'okt', 'nov', 'dec'];
         const parts = dateStr.split('-');
-        if (parts.length !== 3) return dateStr;
+        if (parts.length !== 3) return '';
         const day = parseInt(parts[2]);
         const month = months[parseInt(parts[1]) - 1];
         return `${day} ${month}`;
@@ -600,3 +619,4 @@
         init();
     }
 })();
+
