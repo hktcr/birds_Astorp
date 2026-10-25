@@ -1,0 +1,4 @@
+{{- /* Shared gate for derived Artportalen statistics. Legacy data is retained, not certified. */ -}}
+{{- $meta := . | default dict -}}
+{{- $hash := $meta.recordsSha256 | default "" -}}
+{{- return (and (eq $meta.dataProviderId 1) (eq $meta.municipalityId "1277") (eq $meta.complete true) (eq $meta.sensitiveObservations false) (eq $meta.taxonomyPolicy "species-rank-only-v1") (eq (len (findRE `^[a-f0-9]{64}$` $hash)) 1) (ne ($meta.fromDay | default "") "") (ne ($meta.toDay | default "") "")) -}}

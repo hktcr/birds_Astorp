@@ -6,7 +6,7 @@ const dates = require('../static/js/stockholm-dates.js');
 const html = fs.readFileSync(require('node:path').join(__dirname, '../layouts/_default/faltpulsen.html'), 'utf8');
 function source(name) {
     const begin = html.indexOf('    function ' + name + '(');
-    const end = html.indexOf('\n    function ', begin + 1);
+    const end = html.indexOf('\n    }\n', begin) + 7;
     return html.slice(begin, end);
 }
 
@@ -15,7 +15,7 @@ function renderFixture() {
     const scope = vm.createContext({ StockholmDates: dates, currentSort: 'date', currentDays: 7,
         currentLocationFilter: null, DAYS_LABEL: { 7: 'veckan' }, CATEGORY_COLORS: {}, window: {}, getCat: () => 'regular',
         document: { getElementById: id => nodes[id] || (nodes[id] = { style: {}, classList: { add() {}, remove() {} }, querySelectorAll: () => [] }) } });
-    for (const name of ['fmtDate', 'sortRecords', 'renderList']) vm.runInContext(source(name), scope);
+    for (const name of ['escapeHtml', 'fmtDate', 'sortRecords', 'renderList']) vm.runInContext(source(name), scope);
     const records = [
         ...Array.from({ length: 13 }, () => ({ event: { plainStartDate: '2026-10-01', startDate: '2026-10-01T00:00:00' } })),
         ...Array.from({ length: 6 }, () => ({ event: { plainStartDate: '2026-10-07', startDate: '2026-10-07T00:00:00' } }))
@@ -68,13 +68,12 @@ if (process.argv.includes('--timezone-case')) {
         assert.equal(actual, expected, 'Timezone-dependent result in ' + timezone);
     }
     const requests = [];
-    const scope = vm.createContext({ StockholmDates: { ...dates, dateWindow: days => dates.dateWindow(days, '2026-10-08T22:30:00Z') },
-        API_BASE: 'https://example.invalid', API_KEY: 'test-only', TAXON_BIRDS: 1, MUNICIPALITY_ID: 'test',
-        fetch: async (url, options) => { requests.push(JSON.parse(options.body)); return { ok: true, json: async () => ({ records: [] }) }; } });
+    const scope = vm.createContext({ window: {siteBaseURL: '/'}, fetch() {},
+        ArtportalenSnapshot: {load: async (fetcher, url, days) => {requests.push({url, days}); return [];}}
+    });
     vm.runInContext(source('fetchObservations'), scope);
     scope.fetchObservations(7).then(() => {
-        assert.equal(requests[0].date.startDate, '2026-10-02T22:00:00.000Z');
-        assert.equal(requests[0].date.endDate, '2026-10-09T21:59:59.999Z');
-        console.log('PASS: source dates and group labels, Stockholm query windows, midnight/year/month boundaries, 23/25-hour DST days in five process timezones, and actual request body.');
+        assert.deepEqual(requests, [{url:'/data/artportalen-public-snapshot.json', days:7}]);
+        console.log('PASS: source dates and group labels, Stockholm windows, midnight/year/month boundaries, 23/25-hour DST days in five timezones, and actual snapshot delegation.');
     }).catch(error => { console.error(error); process.exitCode = 1; });
 }

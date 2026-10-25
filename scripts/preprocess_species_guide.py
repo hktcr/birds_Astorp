@@ -352,4 +352,4 @@ def main():
 
 
 if __name__ == "__main__":
-    main()
+    raise SystemExit("Legacy unverified GeoJSON import disabled. Use update-species-guide.py --snapshot with a validated Artportalen-only snapshot. Previous data retained.")

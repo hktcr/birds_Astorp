@@ -11,6 +11,7 @@
     {{ $speciesName := .Title }}
     {{/* Hugo title-cases some taxonomy labels; match the exported species name. */}}
     {{ $guide := partialCached "species_guide.html" . }}
+    {{ $statisticsReady := partial "public-stats-ready.html" $guide.provenance }}
     {{ range (index $guide "species" | default slice) }}
         {{ if eq (lower .name) (lower $speciesName) }}{{ $speciesName = .name }}{{ end }}
     {{ end }}
@@ -156,9 +157,9 @@
                     {{ end }}
                 </div>
 
-                {{ if gt $totalObs 0 }}
+                {{ if and $statisticsReady (gt $totalObs 0) }}
                 <div class="species-fact-card">
-                    <h3><span class="atlas-icon atlas-icon--chart"></span> Artportalen (alla år)</h3>
+                    <h3><span class="atlas-icon atlas-icon--chart"></span> Artportalen, avgränsat källunderlag</h3>
                     <div class="species-fact-row">
                         <span class="species-fact-label">Rapporter</span>
                         <span class="species-fact-value">{{ $totalObs }}</span>
@@ -206,10 +207,10 @@
                 {{ end }}
 
                 {{/* Fenology Chart */}}
-                {{ if gt $totalObs 0 }}
+                {{ if and $statisticsReady (gt $totalObs 0) }}
                 <section class="species-section">
                     <h2>Närvaro i Åstorps kommun</h2>
-                    <p class="species-chart-caption">Rapporter per månad till Artportalen (alla år). Export {{ $guide.exportDate | default $guide.generated }}.</p>
+                    <p class="species-chart-caption">Rapporter per månad till Artportalen, avgränsat källunderlag. Export {{ $guide.exportDate | default $guide.generated }}.</p>
                     <div class="species-fenology" id="fenology-chart">
                         {{ $months := slice "J" "F" "M" "A" "M" "J" "J" "A" "S" "O" "N" "D" }}
                         {{ $maxVal := 1 }}
@@ -226,6 +227,13 @@
                         </div>
                         {{ end }}
                     </div>
+                </section>
+                {{ end }}
+
+                {{ if not $statisticsReady }}
+                <section class="species-section" aria-label="Kommunstatistik">
+                    <h2>Kommunstatistik behöver källkontrolleras</h2>
+                    <p>Det äldre statistikunderlaget bevaras men visas inte som säker Artportalen-statistik. Saknade rapportantal och månadsfördelningar är okända, inte noll. Personliga kryss ovan räknas separat.</p>
                 </section>
                 {{ end }}
 

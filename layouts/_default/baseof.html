@@ -8,6 +8,11 @@
     <meta name="author" content="{{ .Site.Params.author }}">
     <title>{{ if not .IsHome }}{{ .Title }} | {{ end }}{{ .Site.Title }}</title>
 
+    {{ if .Site.Params.developmentPreview }}
+    <meta name="robots" content="noindex, nofollow">
+    <meta http-equiv="Content-Security-Policy" content="connect-src 'self'">
+    {{ end }}
+
     <!-- Favicon: tightly cropped from the existing strandpipare logo. -->
     <link rel="icon" type="image/x-icon" href="{{ "favicon.ico" | relURL }}">
     <link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon-16x16.png" | relURL }}">
@@ -38,6 +43,11 @@
     <a href="#main-content" class="skip-link">Hoppa till innehåll</a>
 
     {{ partial "header.html" . }}
+    {{ if .Site.Params.developmentPreview }}
+    <aside aria-label="Utvecklingsversion" style="background:#fff8df;border-bottom:1px solid #dfce91;padding:.6rem 1rem;text-align:center;font-size:.8rem;line-height:1.5;">
+        <strong>Separat utvecklingsversion.</strong> Den ordinarie sajten är oförändrad. Livehämtning av observations- och väderdata är avstängd; saknat underlag är inte noll fynd.
+    </aside>
+    {{ end }}
 
     <main id="main-content" class="main">
         {{ block "main" . }}{{ end }}
@@ -247,6 +257,7 @@
         });
     </script>
 
+    {{ if not .Site.Params.developmentPreview }}
     <!-- Observation Explorer (karta + lista) -->
     <dialog id="obs-explorer-dialog" class="obs-explorer-dialog">
         <div class="obs-explorer-container">
@@ -603,6 +614,7 @@
     </style>
 
     <script src="/js/obs-explorer.js"></script>
+    {{ end }}
 
     <!-- Leaflet for location popup maps -->
     <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css">
@@ -613,7 +625,9 @@
     {{ block "scripts" . }}{{ end }}
 
     <!-- GoatCounter analytics (cookiefritt, GDPR-vänligt) -->
+    {{ if not .Site.Params.developmentPreview }}
     <script data-goatcounter="https://hlgk.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+    {{ end }}
 
     <!-- Easter egg — Fågelatlasen (☀ = enda ingång under utvecklingsfasen) -->
     {{/* Dold för tillfället enligt VEP beslut

@@ -9,6 +9,7 @@
     {{ $portraits := site.Data.species_portraits | default (dict) }}
     {{ $portraitMap := index $portraits "portraits" | default (dict) }}
     {{ $guide := partialCached "species_guide.html" . }}
+    {{ $statisticsReady := partial "public-stats-ready.html" $guide.provenance }}
     {{ $guideSpecies := index $guide "species" | default slice }}
 
     {{/* Build checklist lookup */}}
@@ -44,7 +45,7 @@
             <div class="atlas-hero-stats">
                 <div class="atlas-hero-stat">
                     <span class="atlas-hero-number">{{ len $tickedNames }}</span>
-                    <span class="atlas-hero-label">kryssade</span>
+                    <span class="atlas-hero-label">personliga kryss</span>
                 </div>
                 <div class="atlas-hero-divider"></div>
                 <div class="atlas-hero-stat">
@@ -55,6 +56,9 @@
         </div>
     </div>
 
+    {{ if not $statisticsReady }}
+    <p class="atlas-disclaimer">Artkatalog och personligt fågelår. Kommunens rapportantal inväntar källkontroll; äldre artnamn är inte en ny, verifierad kommunräkning.</p>
+    {{ end }}
     {{/* ── SEARCH BAR ── */}}
     <div class="atlas-search-bar">
         <span class="atlas-icon atlas-icon--search"></span>
@@ -125,7 +129,7 @@
             </div>
             <div class="atlas-card-info">
                 <span class="atlas-card-name">{{ $name }}</span>
-                <span class="atlas-card-count atlas-card-awaiting">{{ .total }} rapporter</span>
+                <span class="atlas-card-count atlas-card-awaiting">{{ if $statisticsReady }}{{ .total }} rapporter{{ else }}Statistik saknas{{ end }}</span>
             </div>
         </a>
         {{ end }}

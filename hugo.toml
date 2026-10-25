@@ -17,7 +17,7 @@ publishDir = 'docs'
 # Menu
 [menus]
   [[menus.main]]
-    name = 'Hem'
+    name = 'Kommunen'
     pageRef = '/'
     weight = 10
   [[menus.main]]
@@ -49,8 +49,8 @@ publishDir = 'docs'
     pageRef = '/faltpulsen/'
     weight = 29
   [[menus.main]]
-    name = 'Krysskarta'
-    pageRef = '/karta/'
+    name = 'Mitt fågelår'
+    pageRef = '/mitt-fagelar-2026/'
     weight = 20
   [[menus.main]]
     name = 'Om'
@@ -64,6 +64,7 @@ publishDir = 'docs'
 
 # Params
 [params]
+  developmentPreview = true
   galleryLighttable = true
   description = 'En fågelårsbok för Åstorps kommun — observationer, bilder och krysslista'
   author = 'Håkan Karlsson'
