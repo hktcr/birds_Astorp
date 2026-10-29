@@ -9,13 +9,7 @@ RATT: dubbelklammer range dubbelklammer
 {{ define "main" }}
 <style>
     #prediction-cards .prediction-card:hover { border-color: var(--color-border); box-shadow: var(--shadow-sm); transform: none; }
-    .prediction-method { margin: .25rem auto 0; max-width: 38rem; font-size: .875rem; text-align: left; }
-    .prediction-method summary { cursor: pointer; list-style: none; display: flex; align-items: center; justify-content: center; width: 44px; height: 44px; margin: 0 auto; border-radius: 50%; color: #2B5A2B; }
-    .prediction-method summary::-webkit-details-marker { display: none; }
-    .prediction-method summary span { display: inline-flex; align-items: center; justify-content: center; width: 20px; height: 20px; border: 1px solid currentColor; border-radius: 50%; font: 600 14px Georgia, serif; }
-    .prediction-method summary:focus-visible { outline: 3px solid #2B5A2B; outline-offset: 2px; }
-    .prediction-method[open] summary { background: #edf3ed; }
-    .prediction-method p { margin-top: .75rem; line-height: 1.6; }
+    .prediction-method { margin: .75rem 0 0; font-size: .8125rem; color: var(--color-text-muted); text-align: center; }
 </style>
 <!-- Professionell mjuk startsida -->
 <section class="home-hero">
@@ -49,15 +43,11 @@ RATT: dubbelklammer range dubbelklammer
         <div class="prediction-section" id="prediction-section">
             <div class="prediction-header">
                 <h2 class="prediction-title">Nästa på tur?</h2>
-                <details class="prediction-method">
-                    <summary aria-label="Så väljs tipsen"><span aria-hidden="true">i</span></summary>
-                    <p>Upp till tre arter som saknas i årets lista väljs efter historiska fynd på samma kalenderdagar de närmaste 30 dagarna. Närmare dagar väger tyngre, och perioden slutar senast vid årsskiftet. Tipsen är inte sannolikheter eller garantier.</p>
-                    <p id="prediction-source"></p>
-                </details>
             </div>
             <div class="prediction-cards" id="prediction-cards">
                 <!-- Fylls av JavaScript -->
             </div>
+            <p class="prediction-method">Förslag utifrån tidigare fynd och årstid.</p>
             <div class="prediction-score" id="prediction-score" role="status">Beräknar aktuella tips...</div>
 
         </div>

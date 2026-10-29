@@ -23,8 +23,11 @@ for (const sp of guide.species) {
     }
 }
 const source = fs.readFileSync(path.join(root, 'layouts/index.html'), 'utf8');
-assert.match(source, /\.prediction-method summary:focus-visible/);
-assert.match(source, /<summary aria-label="Så väljs tipsen">/);
+assert(!source.includes('<details class="prediction-method">'));
+assert(!source.includes('Så väljs tipsen'));
+assert.match(source, /<p class="prediction-method">Förslag utifrån tidigare fynd och årstid\.<\/p>/);
+assert(source.indexOf('<p class="prediction-method">') > source.indexOf('id="prediction-cards"'));
+assert(built.includes('Förslag utifrån tidigare fynd och årstid.'));
 assert(!source.includes('Möjliga nya årskryss de närmaste 30 dagarna'));
 assert(!source.includes('Öppna en art för årshjul och historisk karta.'));
 assert.match(source, /AstorpPredictions\.mount/);
