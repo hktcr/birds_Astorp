@@ -935,5 +935,22 @@
     "date_source": "Publiceringsdatum 2026-10-24; fotograferingsdatum saknas i bildens EXIF.",
     "display_title": "Ungdjur på Tomarps mader",
     "map_private": true
+  },
+  "/images/foton/2026-10-29-hostfarger-ronnea/hostfarger-ronnea.jpg": {
+    "id": "img-2c43f3a268f1",
+    "url": "/images/foton/2026-10-29-hostfarger-ronnea/hostfarger-ronnea.jpg",
+    "post": "/foton/2026-10-29-hostfarger-ronnea/",
+    "title": "Höstfärger",
+    "date": "2026-10-29",
+    "width": 1536,
+    "height": 1157,
+    "thumb": "/images/foton/2026-10-29-hostfarger-ronnea/aG9zdGZhcmdlci1yb25uZWEuanBn-thumb-b64.jpg",
+    "caption": "Höstfärger.",
+    "date_label": "29 oktober 2026 · Rönneå",
+    "sort_date": "2026-10-29",
+    "date_source": "Håkans uppgift 29 oktober 2026: idag nere vid Rönneå. Filnamnet anger också 20261029.",
+    "display_title": "Höstfärger",
+    "location": "Rönneå",
+    "map_position_unknown": true
   }
 }
