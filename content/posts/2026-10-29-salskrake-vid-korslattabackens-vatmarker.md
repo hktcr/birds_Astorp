@@ -20,11 +20,15 @@ images:
     categories:
       - Landskap
 ---
-Det skymmer tidigt nu, men i dag hann jag med en ny årsart i Åstorps kommun strax innan mörkret föll. Den nya våtmarken uppe på Söderåsen som jag brukar kalla för Körslättabäckens våtmarker är en av kommunens få större vattenspeglar, bortsett från Rönne å.
+En enda fågel låg på vattnet vid Körslättabäckens våtmarker. Det skymmer tidigt nu, och snart skulle det vara mörkt.
 
-När Sara och jag passerade våtmarken under kvällen låg det en enda fågel på vattnet. Vattnet låg spegelblankt, vilket gjorde det lätt att se fågeln, men det var på rejält långt håll. Alla reflektioner gjorde det svårt att urskilja form och teckning. Handkikaren fanns med men tuben var hemma. Det såg intressant ut. Märkbart ljus i huvudtrakten. Jag behövde komma närmare för att bekräfta det jag misstänkte, eller egentligen redan var ganska säker på. En honfärgad salskrake.
+Vattnet låg spegelblankt. Fågeln var lätt att upptäcka, men på rejält långt håll gjorde reflektionerna det svårt att urskilja form och teckning. Handkikaren fanns med. Tuben var hemma.
 
-En efterlängtad art och roligt att den här nya våtmarken visar sig locka ner den. Årets 149:e art i kommunen. Nu återstår en till målet på 150.
+Huvudtrakten var märkbart ljus. Jag gick ut på fältet för att komma närmare och bekräfta det jag misstänkte, eller egentligen redan var ganska säker på. En honfärgad salskrake.
+
+Den nya våtmarken uppe på Söderåsen är en av kommunens få större vattenspeglar, bortsett från Rönne å. Nu låg en salskrake där.
+
+Min 149:e art i Åstorps kommun i år. En kvar till målet på 150.
 
 <figure>
   <a href="/images/posts/2026-10-29-salskrake-vid-korslattabackens-vatmarker/vatmark-i-skymning.jpg" class="lightbox-link">
