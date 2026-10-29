@@ -1206,8 +1206,18 @@
       "location": "Söderåsen ovanför Maglaby (ungefärlig observationsplats)",
       "lat": 56.101,
       "lng": 13.053
+    },
+    {
+      "species": "Salskrake",
+      "latin": "Mergellus albellus",
+      "date": "2026-10-29",
+      "location": "Körslättabäckens våtmarker",
+      "lat": 56.093059657874605,
+      "lng": 13.065669791540584,
+      "count": 1,
+      "notes": "Honfärgad, kön och ålder obestämda."
     }
   ],
-  "last_updated": "2026-10-04T18:53:27Z",
-  "lastUpdated": "2026-10-04 20:53:27"
+  "last_updated": "2026-10-29T16:22:49Z",
+  "lastUpdated": "2026-10-29 17:22:49"
 }
