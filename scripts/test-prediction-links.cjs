@@ -23,31 +23,7 @@ for (const sp of guide.species) {
     }
 }
 const source = fs.readFileSync(path.join(root, 'layouts/index.html'), 'utf8');
-const begin = source.indexOf('    function initPredictions()');
-const end = source.indexOf('\n    initPredictions();', begin);
-function element(tag) {
-    return { tag, children: [], attrs: {}, appendChild(child) { this.children.push(child); },
-        replaceChildren() { this.children = []; }, setAttribute(key, value) { this.attrs[key] = value; } };
-}
-const cards = element('div');
-const savedNames = ['Mindre korsnäbb', 'Fiskgjuse', 'Duvhök'];
-const scope = vm.createContext({ speciesLinks, data: { observations: [{ species: 'Mindre korsnäbb' }] },
-    document: { createElement: element, getElementById: id => id === 'prediction-cards' ? cards : null },
-    fetch: async () => ({ json: async () => guide }), console,
-    localStorage: { getItem: () => JSON.stringify({ species: savedNames, history: [] }), setItem() { throw new Error('Existing prediction round should be preserved'); } }
-});
-vm.runInContext(source.slice(begin, end), scope);
-scope.initPredictions();
-setImmediate(() => {
-    assert.equal(cards.children.length, 3);
-    cards.children.forEach((card, i) => {
-        assert.equal(card.tag, 'a');
-        assert.equal(card.href, speciesLinks[savedNames[i].toLocaleLowerCase('sv')]);
-        assert.equal(card.children[0].textContent, savedNames[i]);
-        assert.equal(card.attrs['aria-describedby'], 'prediction-link-hint');
-        const page = fs.readFileSync(path.join(root, 'docs', decodeURIComponent(card.href), 'index.html'), 'utf8');
-        assert(page.includes('radial-svg') && page.includes('show-map-btn'), 'Target needs calendar and historic map');
-    });
-    assert.match(source, /\.prediction-card:focus-visible/);
-    console.log('PASS: all guide species resolve to built Hugo URLs; persisted prediction cards are semantic links to calendars and maps.');
-});
+assert.match(source, /\.prediction-card:focus-visible/);
+assert.match(source, /AstorpPredictions\.mount/);
+// Runtime link rendering, cache isolation and date regressions live in test-predictions.cjs.
+console.log('PASS: all guide species resolve to built Hugo URLs, calendars and historical maps.');
