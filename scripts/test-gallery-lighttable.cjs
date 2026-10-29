@@ -2,7 +2,7 @@ const assert=require('node:assert/strict'),fs=require('node:fs');
 const core=require('../static/js/gallery-lighttable-core.js');
 const records=Object.values(JSON.parse(fs.readFileSync('data/gallery_photos.json')));
 const groups=[...Map.groupBy(records,r=>r.post)].map(([id,images])=>({id,images:images.map(p=>({...p,ratio:p.width/p.height}))}));
-assert.equal(records.length,63);assert.equal(groups.length,47);assert.equal(new Set(records.map(r=>r.id)).size,63);
+assert.equal(records.length,64);assert.equal(groups.length,48);assert.equal(new Set(records.map(r=>r.id)).size,64);
 for(const r of records)assert.ok(r.caption&&r.date_source&&r.date_label&&r.display_title);
 let seed=17;const pick=n=>{seed=(seed*1664525+1013904223)>>>0;return seed%n;};
 const sizes=[[284,558],[354,620],[532,368],[808,220],[620,398],[909,600],[1324,566],[1792,780]];
@@ -51,4 +51,4 @@ for(let cycle=0;cycle<1000;cycle++){
 assert.ok([...counts.values()].every(n=>n===1000),'Every group, including 5 images, gets one large view per cycle');
 const archive=records.find(r=>r.id==='img-2a6f344e5d06');assert.equal(archive.sort_date,'2010-08-07');assert.equal(archive.map_position_unknown,true);
 assert.ok(records.filter(r=>['img-caa59dd4ff51','img-9c4002f91706','img-4dd7877848e4'].includes(r.id)).every(r=>r.sort_date==='2026-05'));
-console.log('PASS: 63 verified records / 47 whole groups; dense board and 1–5-image large views at eight sizes; 1000 complete large-view cycles; every sequential swap preserves complete unique groups and its zoom target; provenance unchanged.');
+console.log('PASS: 64 verified records / 48 whole groups; dense board and 1–5-image large views at eight sizes; 1000 complete large-view cycles; every sequential swap preserves complete unique groups and its zoom target; provenance unchanged.');

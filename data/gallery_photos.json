@@ -952,5 +952,21 @@
     "display_title": "Höstfärger",
     "location": "Rönneå",
     "map_position_unknown": true
+  },
+  "/images/posts/2026-10-29-salskrake-vid-korslattabackens-vatmarker/vatmark-i-skymning.jpg": {
+    "id": "img-3a18271e5588",
+    "url": "/images/posts/2026-10-29-salskrake-vid-korslattabackens-vatmarker/vatmark-i-skymning.jpg",
+    "post": "/posts/2026/10/salskrake-vid-korslattabackens-vatmarker/",
+    "title": "Salskrake vid Körslättabäckens våtmarker",
+    "date": "2026-10-29",
+    "width": 5761,
+    "height": 2658,
+    "thumb": "/images/posts/2026-10-29-salskrake-vid-korslattabackens-vatmarker/dmF0bWFyay1pLXNreW1uaW5nLmpwZw-thumb-b64.jpg",
+    "caption": "Körslättabäckens våtmarker i skymningen med skog och himmel speglade i vattnet.",
+    "date_label": "29 oktober 2026",
+    "sort_date": "2026-10-29",
+    "date_source": "Fotograferingsdatum från originalets EXIF: 2026-10-29.",
+    "display_title": "Körslättabäckens våtmarker i skymningen",
+    "map_private": true
   }
 }

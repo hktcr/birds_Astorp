@@ -33,7 +33,8 @@ for record in private:
     assert json.loads(attrs['data-locations']) == [], 'Private photo has a map location'
     assert json.loads(attrs['data-review']) == record
     assert attrs['data-image-alt'] == record['caption']
-    assert attrs['data-type'] == 'foto'
+    expected_type = 'notis' if record['post'] == '/posts/2026/10/salskrake-vid-korslattabackens-vatmarker/' else 'foto'
+    assert attrs['data-type'] == expected_type
     assert attrs['data-species'] == 'landskap'
     photo_html = (ROOT / 'docs' / record['post'].lstrip('/') / 'index.html').read_text()
     assert record['caption'] in photo_html

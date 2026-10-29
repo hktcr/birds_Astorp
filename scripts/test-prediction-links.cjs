@@ -23,7 +23,10 @@ for (const sp of guide.species) {
     }
 }
 const source = fs.readFileSync(path.join(root, 'layouts/index.html'), 'utf8');
-assert.match(source, /\.prediction-card:focus-visible/);
+assert.match(source, /\.prediction-method summary:focus-visible/);
+assert.match(source, /<summary aria-label="Så väljs tipsen">/);
+assert(!source.includes('Möjliga nya årskryss de närmaste 30 dagarna'));
+assert(!source.includes('Öppna en art för årshjul och historisk karta.'));
 assert.match(source, /AstorpPredictions\.mount/);
-// Runtime link rendering, cache isolation and date regressions live in test-predictions.cjs.
+// Runtime non-interactive cards, cache isolation and date regressions live in test-predictions.cjs.
 console.log('PASS: all guide species resolve to built Hugo URLs, calendars and historical maps.');

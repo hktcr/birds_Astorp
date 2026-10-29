@@ -54,7 +54,7 @@ async function browserTest(builtModule) {
     const displayed = () => elements['prediction-cards'].children.map(x => x.children[0].textContent);
     assert.deepEqual(displayed(), ['Sidensvans', 'Duvhök', 'Kungsfiskare']);
     assert.match(elements['prediction-score'].textContent, /29 okt till 27 nov 2026/);
-    elements['prediction-cards'].children.forEach(card => { assert.equal(card.tag, 'a'); assert(card.href.startsWith('/species/')); assert.equal(card.attrs['aria-describedby'], 'prediction-link-hint'); });
+    elements['prediction-cards'].children.forEach(card => { assert.equal(card.tag, 'div'); assert.equal(card.href, undefined); assert.equal(card.attrs.tabindex, undefined); assert.equal(card.attrs.role, undefined); });
     currentChecklist.observations.push({ species: 'Sidensvans', date: '2026-10-29' });
     await app.refresh(); assert(!displayed().includes('Sidensvans'));
     now = date('2026-10-30'); tick(); await new Promise(setImmediate);

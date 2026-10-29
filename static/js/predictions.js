@@ -81,10 +81,8 @@
                     }
                     cards.replaceChildren();
                     result.candidates.forEach(function (candidate) {
-                        var href = options.speciesLinks[key(candidate.name)];
-                        var card = doc.createElement(href ? 'a' : 'div');
+                        var card = doc.createElement('div');
                         card.className = 'prediction-card';
-                        if (href) { card.href = href; card.setAttribute('aria-describedby', 'prediction-link-hint'); }
                         var label = doc.createElement('span');
                         label.className = 'prediction-species';
                         label.textContent = candidate.name;
