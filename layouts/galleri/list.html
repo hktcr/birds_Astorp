@@ -1360,7 +1360,7 @@
                             <button type="button" class="photomap-age-option" data-age="week" aria-pressed="false"><span class="photomap-age-symbol" style="--age-color:#166534" aria-hidden="true">7d</span><span>Senaste 7 dagarna<span class="photomap-age-count" data-age-count="week"></span></span></button>
                             <button type="button" class="photomap-age-option" data-age="month" aria-pressed="false"><span class="photomap-age-symbol" style="--age-color:#1d4ed8" aria-hidden="true">30d</span><span>7–29 dagar sedan<span class="photomap-age-count" data-age-count="month"></span></span></button>
                             <button type="button" class="photomap-age-option" data-age="quarter" aria-pressed="false"><span class="photomap-age-symbol" style="--age-color:#854d0e" aria-hidden="true">90d</span><span>30–89 dagar sedan<span class="photomap-age-count" data-age-count="quarter"></span></span></button>
-                            <button type="button" class="photomap-age-option" data-age="older" aria-pressed="false"><span class="photomap-age-symbol" style="--age-color:#475569" aria-hidden="true">90+</span><span>90 dagar eller äldre<span class="photomap-age-count" data-age-count="older"></span></span></button>
+                            <button type="button" class="photomap-age-option" data-age="older" aria-pressed="false"><span class="photomap-age-symbol" style="--age-color:#475569" aria-hidden="true">90+ d</span><span>90 dagar eller äldre<span class="photomap-age-count" data-age-count="older"></span></span></button>
                             <button type="button" class="photomap-age-option" data-age="unknown" aria-pressed="false"><span class="photomap-age-symbol" style="--age-color:#374151" aria-hidden="true">?</span><span>Datum kan inte tidsplaceras<span class="photomap-age-count" data-age-count="unknown"></span></span></button>
                         </div>
                         <p class="photomap-cluster-help">En punkt kan innehålla flera bilder. Färgen och koden visar den senaste sidans period; den lilla siffran visar antalet bilder. Antalen ovan gäller valda månader.</p>
@@ -2349,7 +2349,7 @@
                 if (diff < 7) return { key: 'week', code: '7d', color: '#166534', label: 'Senaste 7 dagarna' };
                 if (diff < 30) return { key: 'month', code: '30d', color: '#1d4ed8', label: '7–29 dagar sedan' };
                 if (diff < 90) return { key: 'quarter', code: '90d', color: '#854d0e', label: '30–89 dagar sedan' };
-                return { key: 'older', code: '90+', color: '#475569', label: '90 dagar eller äldre' };
+                return { key: 'older', code: '90+ d', color: '#475569', label: '90 dagar eller äldre' };
             }
             let activeAge = 'all';
             let ageClock = new Date();
