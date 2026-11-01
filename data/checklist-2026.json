@@ -1216,8 +1216,18 @@
       "lng": 13.065669791540584,
       "count": 1,
       "notes": "Honfärgad, kön och ålder obestämda."
+    },
+    {
+      "species": "Sidensvans",
+      "latin": "Bombycilla garrulus",
+      "date": "2026-10-31",
+      "location": "Kvidinge (generaliserad position)",
+      "lat": 56.1136,
+      "lng": 13.0642,
+      "count": 7,
+      "notes": "Minst 7 exemplar. Positionen är generaliserad enligt publiceringsrutinen."
     }
   ],
-  "last_updated": "2026-10-29T16:22:49Z",
-  "lastUpdated": "2026-10-29 17:22:49"
+  "last_updated": "2026-10-31T11:39:00Z",
+  "lastUpdated": "2026-10-31 12:39:00"
 }
