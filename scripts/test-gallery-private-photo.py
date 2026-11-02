@@ -33,9 +33,9 @@ for record in private:
     assert json.loads(attrs['data-locations']) == [], 'Private photo has a map location'
     assert json.loads(attrs['data-review']) == record
     assert attrs['data-image-alt'] == record['caption']
-    expected_type = 'notis' if record['post'] == '/posts/2026/10/salskrake-vid-korslattabackens-vatmarker/' else 'foto'
+    expected_type = 'notis' if record['post'] in ['/posts/2026/10/salskrake-vid-korslattabackens-vatmarker/', '/posts/2026/10/art-nummer-150/'] else 'foto'
     assert attrs['data-type'] == expected_type
-    assert attrs['data-species'] == 'landskap'
+    assert attrs['data-species'] == ('sidensvans' if record['post'] == '/posts/2026/10/art-nummer-150/' else 'landskap')
     photo_html = (ROOT / 'docs' / record['post'].lstrip('/') / 'index.html').read_text()
     assert record['caption'] in photo_html
     # Existing prose CSS limits image width; explicit intrinsic height needs auto

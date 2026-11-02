@@ -968,5 +968,21 @@
     "date_source": "Fotograferingsdatum från originalets EXIF: 2026-10-29.",
     "display_title": "Körslättabäckens våtmarker i skymningen",
     "map_private": true
+  },
+  "/images/posts/2026-10-31-art-nummer-150/6506.jpg": {
+    "id": "img-c1398828cfe9",
+    "url": "/images/posts/2026-10-31-art-nummer-150/6506.jpg",
+    "post": "/posts/2026/10/art-nummer-150/",
+    "title": "Art nummer 150!",
+    "date": "2026-10-31",
+    "width": 2048,
+    "height": 1365,
+    "thumb": "/images/posts/2026-10-31-art-nummer-150/6506.jpg",
+    "caption": "Sidensvans på en bar gren med tofs och färgade vingteckningar.",
+    "date_label": "oktober 2026 · notis",
+    "sort_date": "2026-10",
+    "date_source": "Notisdatum 2026-10-31; fotograferingsdatum saknas i bildens EXIF.",
+    "display_title": "Art nummer 150!",
+    "map_private": true
   }
 }
