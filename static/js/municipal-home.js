@@ -28,6 +28,7 @@ function mount(env){
  const doc=env.document,el=id=>doc.getElementById(id),host=el('municipal-home');
  if(!host)return;
  const year=Number(host.dataset.year),base=host.dataset.base,cacheKey='astorp-home-'+year+'-v1';
+ const comparison=env.MunicipalComparison?env.MunicipalComparison.mount(env,{year,base}):null;
  let data=null,busy=false,failure='',hintSources=null,hintFailure='',hintDay='';
  const create=(tag,className,value)=>{const n=doc.createElement(tag);if(className)n.className=className;if(value!=null)n.textContent=value;return n;};
  function checked(value){
@@ -79,6 +80,7 @@ function mount(env){
  function render(){
    status();renderHints();if(!data)return;
    const m=model(data,year);el('species-count').textContent=m.count;
+   if(comparison)comparison.update(data);
    const latestNames=m.days.length?m.days[0][1].map(r=>r.name).sort((a,b)=>a.localeCompare(b,'sv')):[];
    el('latest-species').textContent=latestNames.length?(latestNames.length===1?'Senaste art: ':'Senaste arter: ')+new Intl.ListFormat('sv',{style:'long',type:'conjunction'}).format(latestNames)+' – '+dateLabel(m.latest)+'.':'Inga arter i det kontrollerade urvalet.';
    const recent=el('recent-species');recent.replaceChildren();
@@ -129,7 +131,7 @@ function mount(env){
  const interval=env.setInterval(()=>{if(doc.hidden)return;if(env.StockholmDates.stockholmDay(new env.Date())!==hintDay)renderHints();if(!data||!current(data,new env.Date(),env.MunicipalLive))refresh();},60000);
  function visible(){if(doc.hidden)return;renderHints();if(!data||!current(data,new env.Date(),env.MunicipalLive))refresh();}
  doc.addEventListener('visibilitychange',visible);
- return {ready,refresh,destroy(){env.clearInterval(interval);doc.removeEventListener('visibilitychange',visible);}};
+ return {ready,refresh,destroy(){if(comparison)comparison.destroy();env.clearInterval(interval);doc.removeEventListener('visibilitychange',visible);}};
 }
 return {model,current,dateLabel,mount};
 });
