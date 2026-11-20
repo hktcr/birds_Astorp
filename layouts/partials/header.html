@@ -9,10 +9,11 @@
             <ul class="nav-list">
                 {{ range .Site.Menus.main }}
                 {{ if .HasChildren }}
-                <li class="nav-item nav-dropdown">
-                    <span class="nav-link nav-dropdown-trigger">
-                        {{ .Name }} ▾
-                    </span>
+                <li class="nav-item">
+                    <details class="home-year-menu">
+                    <summary class="nav-link">
+                        {{ .Name }}
+                    </summary>
                     <ul class="nav-dropdown-menu">
                         {{ range .Children }}
                         <li>
@@ -22,6 +23,7 @@
                         </li>
                         {{ end }}
                     </ul>
+                    </details>
                 </li>
                 {{ else }}
                 <li class="nav-item">
@@ -40,34 +42,4 @@
     </div>
 </header>
 
-<script>
-    // Inline script to ensure mobile menu works without caching issues/external request delays
-    document.addEventListener('DOMContentLoaded', () => {
-        const menuToggle = document.getElementById('mobile-menu-btn');
-        const mainNav = document.querySelector('.main-nav');
-
-        if (menuToggle && mainNav) {
-            menuToggle.addEventListener('click', (e) => {
-                e.preventDefault();
-                e.stopPropagation();
-
-                // Toggle classes
-                mainNav.classList.toggle('open');
-
-                // Update aria
-                const isExpanded = menuToggle.getAttribute('aria-expanded') === 'true';
-                menuToggle.setAttribute('aria-expanded', !isExpanded);
-            });
-
-            // Close menu when clicking outside
-            document.addEventListener('click', (e) => {
-                if (mainNav.classList.contains('open') &&
-                    !mainNav.contains(e.target) &&
-                    !menuToggle.contains(e.target)) {
-                    mainNav.classList.remove('open');
-                    menuToggle.setAttribute('aria-expanded', 'false');
-                }
-            });
-        }
-    });
-</script>
+<script src="{{ "js/municipal-navigation.js" | relURL }}?v={{ readFile "static/js/municipal-navigation.js" | sha256 }}" defer></script>

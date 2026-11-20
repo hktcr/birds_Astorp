@@ -24,6 +24,8 @@
     {{ $css := resources.Get "css/style.css" | fingerprint }}
     <link rel="stylesheet" href="{{ $css.RelPermalink }}">
 
+    <link rel="stylesheet" href="{{ "css/municipal-home.css" | relURL }}?v={{ readFile "static/css/municipal-home.css" | sha256 }}">
+
     <!-- Prefetch galleri för snabbare laddning vid navigering -->
     <link rel="prefetch" href="/galleri/" as="document">
 

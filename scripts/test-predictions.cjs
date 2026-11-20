@@ -44,7 +44,7 @@ async function browserTest(builtModule) {
         setInterval: fn => { tick = fn; return 1; }, clearInterval() {},
         localStorage: { getItem() { throw new Error('Legacy state must not influence current suggestions'); }, setItem() { throw new Error('Legacy history must be preserved'); } },
         fetch: async url => ({ ok: !fail, status: fail ? 503 : 200, json: async () => structuredClone(url.includes('checklist') ? currentChecklist : url.includes('guide') ? guide : daily) }) };
-    const built = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
+    const built = fs.readFileSync(path.join(root, 'docs/mitt-fagelar-2026/index.html'), 'utf8');
     const speciesLinks = vm.runInNewContext('(' + built.match(/speciesLinks=(\{[^}]+\})/)[1] + ')');
     const scope = vm.createContext({ window: env, Intl, Date, Set, Object, Number, String, Promise });
     vm.runInContext(fs.readFileSync(path.join(root, 'static/js/stockholm-dates.js'), 'utf8'), scope);
@@ -69,7 +69,7 @@ async function browserTest(builtModule) {
     await browserTest('static/js/predictions.js');
     await browserTest('docs/js/predictions.js');
     assert.equal(fs.readFileSync(path.join(root, 'static/js/predictions.js'), 'utf8'), fs.readFileSync(path.join(root, 'docs/js/predictions.js'), 'utf8'));
-    const built = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
+    const built = fs.readFileSync(path.join(root, 'docs/mitt-fagelar-2026/index.html'), 'utf8');
     assert.match(built, /predictions\.js\?v=[a-f0-9]{64}/);
     assert.match(built, /AstorpPredictions\.mount/);
     assert(!built.includes('astorp-predictions-2026'));

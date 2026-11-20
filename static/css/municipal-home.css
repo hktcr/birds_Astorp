@@ -1,0 +1,32 @@
+/* Reuse the original homepage's typography, widths, cards and observation trail. */
+.home-intro{margin:-.5rem 0 1.75rem;color:var(--color-text-muted);font-size:1rem}
+.home-title{font-family:var(--font-heading);font-size:1.45rem;font-weight:500;color:var(--color-primary-dark);margin:0 0 .5rem}
+.home-scope,.home-data-status,.home-source,.home-empty{font-size:.875rem;color:var(--color-text-muted);line-height:1.6}
+.home-scope{margin:.5rem 0 0}.home-data-status{margin:1rem 0 .5rem}
+.home-data-status[data-state=stale],.home-data-status[data-state=error]{color:#80551c}
+.home-actions{display:flex;align-items:center;justify-content:center;flex-wrap:wrap;gap:1rem;margin:1rem 0}
+.home-button{font:inherit;font-size:.875rem;border:1px solid var(--color-border);border-radius:var(--radius-md);padding:.6rem .9rem;background:white;color:var(--color-primary);cursor:pointer;min-height:44px}
+.home-button:disabled{opacity:.65;cursor:wait}.home-actions a{font-size:.875rem}
+.municipal-home-page .hero-logo img{max-width:100%}
+.municipal-home-page .hero-progress{margin-bottom:2rem}
+.municipal-home-page .progress-label,.municipal-home-page .progress-count{font-size:1rem}
+.municipal-home-page .progress-count #species-count{font-size:2rem}
+.municipal-home-page .prediction-section{margin-bottom:1.5rem}
+.municipal-home-page .prediction-card{display:block;text-align:left;animation:none;transform:none}
+.municipal-home-page .prediction-card:hover{transform:none;border-color:var(--color-border);box-shadow:var(--shadow-sm)}
+.municipal-home-page .prediction-species{display:block}.municipal-home-page .prediction-meta{display:block;font-size:.875rem;color:var(--color-text-muted);margin-top:.3rem}
+.municipal-home-page .trail-item-latest .trail-dot{animation:none;background:var(--color-primary);box-shadow:0 0 0 2px var(--color-primary)}
+.municipal-home-page .trail-source{font-size:.875rem;margin-left:.45rem;white-space:nowrap}
+.home-source{text-align:left;border-top:1px solid var(--color-border);padding-top:1rem;margin-top:2rem}
+.home-source summary{cursor:pointer;color:var(--color-primary);min-height:44px;padding:.5rem 0}
+.home-preview-note{font-size:.875rem;text-align:center;padding:.6rem 1rem;margin:0;background:var(--color-bg-alt)}
+.home-year-menu{position:relative}.home-year-menu summary{list-style:none;cursor:pointer;display:flex;align-items:center;gap:.5rem}
+.home-year-menu summary::-webkit-details-marker{display:none}
+.home-year-menu summary:after{content:"";width:.4rem;height:.4rem;border-right:1.5px solid;border-bottom:1.5px solid;transform:rotate(45deg);margin-top:-.25rem}
+.home-year-menu[open]>.nav-dropdown-menu{display:block}
+.home-year-menu .nav-dropdown-menu{left:0;transform:none;z-index:100;background:var(--color-bg,#fff)}
+
+.site-header .nav-link{font-size:.875rem}.home-year-menu .nav-dropdown-link{font-size:.875rem;min-height:44px}
+.municipal-home-page a:focus-visible,.home-button:focus-visible,.site-header a:focus-visible,.site-header summary:focus-visible{outline:3px solid var(--color-accent);outline-offset:3px}
+@media(max-width:768px){.site-header .main-nav{max-height:70vh;max-height:70dvh;overflow-y:auto}.home-year-menu .nav-dropdown-menu{position:static;transform:none;box-shadow:none}.municipal-home-page{padding:1.5rem 1rem}.municipal-home-page .hero-progress{padding:1.25rem}.municipal-home-page .progress-header{gap:.8rem;flex-wrap:wrap}.municipal-home-page .trail-source{display:inline-block;margin-left:.2rem}}
+@media(prefers-reduced-motion:reduce){.municipal-home-page *{animation:none!important;transition:none!important}}

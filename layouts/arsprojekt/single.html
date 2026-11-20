@@ -1,0 +1,245 @@
+{{/*
+INDEX.HTML - Startsida för Fågelåret i Åstorp
+
+VIKTIGT: Hugo-syntax måste vara EXAKT dubbelklammer UTAN mellanslag!
+FEL: klammer-mellanslag-klammer range
+RATT: dubbelklammer range dubbelklammer
+*/}}
+
+{{ define "main" }}
+<style>
+    #prediction-cards .prediction-card:hover { border-color: var(--color-border); box-shadow: var(--shadow-sm); transform: none; }
+    .prediction-method { margin: .75rem 0 0; font-size: .8125rem; color: var(--color-text-muted); text-align: center; }
+</style>
+<!-- Professionell mjuk startsida -->
+<section class="home-hero">
+    <div class="home-container">
+        <!-- Stor logga centrerad -->
+        <div class="hero-logo">
+            <img src="{{ `images/logo-fagelaret-2026.png` | relURL }}" alt="Ett år med fåglar: Åstorp 2026">
+        </div>
+
+        <!-- Progressbar som termometer -->
+        <div class="hero-progress">
+            <div class="progress-header">
+                <span class="progress-label">Årslista</span>
+                <span class="progress-count"><span id="species-count">—</span> av 150 arter</span>
+            </div>
+            <div class="thermometer">
+                <div class="thermometer-scale">
+                    <span class="scale-mark" style="left: 0%">0</span>
+                    <span class="scale-mark" style="left: 33%">50</span>
+                    <span class="scale-mark" style="left: 66%">100</span>
+                    <span class="scale-mark" style="left: 100%">150</span>
+                </div>
+                <div class="thermometer-bar">
+                    <div class="thermometer-fill" id="progress-fill"></div>
+                </div>
+            </div>
+            <div class="latest-species" id="latest-species"></div>
+        </div>
+
+        <!-- Prediktion: Nästa på tur? -->
+        <div class="prediction-section" id="prediction-section">
+            <div class="prediction-header">
+                <h2 class="prediction-title">Nästa på tur?</h2>
+            </div>
+            <div class="prediction-cards" id="prediction-cards">
+                <!-- Fylls av JavaScript -->
+            </div>
+            <p class="prediction-method">Förslag utifrån tidigare fynd och årstid.</p>
+            <div class="prediction-score" id="prediction-score" role="status">Beräknar aktuella tips...</div>
+
+        </div>
+
+        <!-- Senaste notis (rundad ruta utan emoji) -->
+        {{ $latest := first 1 (where .Site.RegularPages "Section" "posts") }}
+        {{ range $latest }}
+        <a href="{{ .RelPermalink }}" class="latest-post-box">
+            <span class="latest-post-label">Senaste notis</span>
+            <span class="latest-post-title">{{ .Title }}</span>
+            <span class="latest-post-date">{{ .Date.Day }} {{ index (slice "jan" "feb" "mar" "apr" "maj" "jun" "jul" "aug" "sep" "okt" "nov" "dec") (sub .Date.Month 1) }}</span>
+        </a>
+        {{ end }}
+
+        <!-- Observationsspår / Tidslinje -->
+        <div class="observation-trail">
+            <h2 class="trail-title">Observationsspår</h2>
+            <div class="trail-timeline" id="trail-timeline">
+                <!-- Fylls av JavaScript -->
+            </div>
+        </div>
+
+        <!-- Bounty Banner -->
+        <a href="{{ `efterlysta/` | relURL }}" class="bounty-banner-link" style="display: block; margin-top: 2rem; background: linear-gradient(135deg, #27272a, #18181b); border: 1px solid #3f3f46; border-radius: 12px; padding: 1.5rem; text-decoration: none; color: #f4f4f5; transition: transform 0.2s, box-shadow 0.2s; position: relative; overflow: hidden; box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);">
+            <div style="position: absolute; right: -10px; top: -20px; font-size: 8rem; opacity: 0.04;">🎯</div>
+            <h3 style="margin: 0 0 0.25rem 0; font-size: 1.4rem; color: #fbbf24; font-weight: 600; letter-spacing: -0.02em;">Åstorps Most Wanted</h3>
+            <p style="margin: 0; opacity: 0.85; font-size: 0.95rem; line-height: 1.4;">Hjälp oss hitta de efterlysta arterna. Läs om de kalla fallen &rarr;</p>
+        </a>
+
+    </div>
+</section>
+{{ end }}
+
+{{ define "scripts" }}
+<script src="{{ "js/stockholm-dates.js" | relURL }}?v={{ readFile "static/js/stockholm-dates.js" | sha256 }}"></script>
+<script src="{{ "js/predictions.js" | relURL }}?v={{ readFile "static/js/predictions.js" | sha256 }}"></script>
+<script>
+    // Dashboard-logik
+    var YEAR_GOAL = 150;
+
+    // Mappa datum till notiser (genereras av Hugo vid byggtid)
+    var postsByDate = {};
+    {{ range where .Site.RegularPages "Section" "posts" }}
+    var pd = "{{ .Date.Format "2006-01-02" }}";
+    if (!postsByDate[pd]) postsByDate[pd] = [];
+    postsByDate[pd].unshift({ url: "{{ .RelPermalink }}", title: "{{ .Title }}" });
+    {{ end }}
+
+    // DATA: Inbäddas vid byggtid
+    var data = {{ index .Site.Data "checklist-2026" | jsonify | safeJS }};
+
+    function initDashboard() {
+        if (!data || !data.observations) {
+            console.error("Ingen data laddad");
+            return;
+        }
+
+        var uniqueSpecies = {};
+        data.observations.forEach(function (o) { uniqueSpecies[o.species] = true; });
+        var speciesCount = Object.keys(uniqueSpecies).length;
+
+        var countEl = document.getElementById('species-count');
+        if (countEl) countEl.textContent = speciesCount;
+
+        var percentage = (speciesCount / YEAR_GOAL) * 100;
+        var fill = document.getElementById('progress-fill');
+        if (fill) {
+            fill.style.width = Math.min(percentage, 100) + '%';
+            // 5-stegs crescendo-ramp: amber → guld → lime → grön → smaragd
+            // Färgen skiftar långsamt i början, accelererar mot målet
+            var hue, sat, light;
+            if (percentage <= 30) {
+                // Gryning → Morgon: varm amber till guld (hue 35→45)
+                var t = percentage / 30;
+                hue = 35 + t * 10;
+                sat = 85;
+                light = 55;
+            } else if (percentage <= 60) {
+                // Morgon → Dag: guld till lime (hue 45→65)
+                var t = (percentage - 30) / 30;
+                hue = 45 + t * 20;
+                sat = 85 + t * 5;
+                light = 55 - t * 5;
+            } else if (percentage <= 85) {
+                // Dag → Skymning: lime till rik grön (hue 65→100)
+                var t = (percentage - 60) / 25;
+                hue = 65 + t * 35;
+                sat = 90 - t * 10;
+                light = 50 - t * 6;
+            } else {
+                // Mål: rik grön till smaragd (hue 100→140)
+                var t = Math.min((percentage - 85) / 15, 1);
+                hue = 100 + t * 40;
+                sat = 80;
+                light = 44 - t * 6;
+            }
+            fill.style.backgroundColor = 'hsl(' + hue + ', ' + sat + '%, ' + light + '%)';
+        }
+
+        if (data.observations.length > 0) {
+            var latest = data.observations[data.observations.length - 1];
+            var latestEl = document.getElementById('latest-species');
+            if (latestEl) {
+                latestEl.innerHTML = '<span class="latest-label">Senast kryssad:</span> <strong>' + latest.species + '</strong> <span class="latest-meta">(' + latest.location + ', ' + new Date(latest.date).toLocaleDateString('sv-SE', { day: 'numeric', month: 'short' }) + ')</span>';
+            }
+        }
+
+        // Bygg observationsspår med ny layout
+        // Tilldela löpnummer per unik art i kronologisk ordning
+        var speciesNumber = {};
+        var nextNumber = 1;
+        var byDate = {};
+        data.observations.forEach(function (obs) {
+            if (!speciesNumber[obs.species]) {
+                speciesNumber[obs.species] = nextNumber++;
+            }
+            if (!byDate[obs.date]) {
+                byDate[obs.date] = { species: [], locations: [] };
+            }
+            byDate[obs.date].species.push(obs.species);
+            if (byDate[obs.date].locations.indexOf(obs.location) === -1) {
+                byDate[obs.date].locations.push(obs.location);
+            }
+        });
+
+        var dates = Object.keys(byDate).sort(function (a, b) { return new Date(b) - new Date(a); });
+        var trailEl = document.getElementById('trail-timeline');
+
+        if (trailEl) {
+            var html = '';
+            dates.forEach(function (date, i) {
+                var info = byDate[date];
+                var dateObj = new Date(date);
+                var day = dateObj.getDate();
+                var month = dateObj.toLocaleDateString('sv-SE', { month: 'long' });
+                var isLast = i === dates.length - 1;
+                var postLink = postsByDate[date];
+
+                html += '<div class="trail-item' + (i === 0 ? ' trail-item-latest' : '') + '">';
+                html += '<div class="trail-line' + (isLast ? ' trail-line-end' : '') + '"></div>';
+                html += '<div class="trail-dot"></div>';
+                html += '<div class="trail-content">';
+
+                // Rad 1: Datum (länkat om notis finns)
+                if (postLink && postLink.length > 0) {
+                    if (postLink.length === 1) {
+                        html += '<a href="' + postLink[0].url + '" class="trail-date has-post">' + day + ' ' + month + ' ↗</a>';
+                    } else {
+                        html += '<div class="trail-date has-post" style="display:flex; flex-wrap:wrap; gap:0.5rem; align-items:baseline;"><span>' + day + ' ' + month + '</span> <span style="font-size: 0.85em; font-weight: normal; opacity: 0.85;">';
+                        postLink.sort(function(a,b){ return a.title.localeCompare(b.title); }).forEach(function(link, j) {
+                            var cleanTitle = link.title.length > 30 ? link.title.substring(0, 27) + '...' : link.title;
+                            html += '<a href="' + link.url + '" style="text-decoration:none; color:inherit; font-weight: 500;">' + cleanTitle + ' ↗</a>' + (j < postLink.length - 1 ? ' <span style="opacity: 0.4;">|</span> ' : '');
+                        });
+                        html += '</span></div>';
+                    }
+                } else {
+                    html += '<div class="trail-date">' + day + ' ' + month + '</div>';
+                }
+
+                // Rad 2: Arter med löpnummer
+                var speciesWithNumbers = info.species.map(function (sp) {
+                    return '<span class="trail-species-number">#' + speciesNumber[sp] + '</span> ' + sp;
+                });
+                html += '<div class="trail-species">' + speciesWithNumbers.join(', ') + '</div>';
+
+                // Rad 3: Platser
+                html += '<div class="trail-location">' + info.locations.join(' • ') + '</div>';
+
+                html += '</div></div>';
+            });
+            trailEl.innerHTML = html;
+        }
+    }
+
+    initDashboard();
+
+    // ── Prediktionssektion: "Nästa på tur?" ──
+    // Use Hugo's real term URLs, including Swedish letters and special names.
+    {{ $speciesLinks := dict }}
+    {{ range .Site.Taxonomies.species }}
+        {{ $speciesLinks = merge $speciesLinks (dict (lower .Page.Title) .Page.RelPermalink) }}
+    {{ end }}
+    var speciesLinks = {{ $speciesLinks | jsonify | safeJS }};
+    function initPredictions() {
+        return AstorpPredictions.mount({
+            speciesLinks: speciesLinks,
+            checklistURL: '/data/checklist-{{ .Site.Params.year }}.json',
+            guideURL: '/data/species-guide.json',
+            dailyURL: '/data/species_days_historic.json'
+        });
+    }
+
+    initPredictions();
+</script>
+{{ end }}
