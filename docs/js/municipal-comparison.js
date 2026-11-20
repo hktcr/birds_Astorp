@@ -131,7 +131,7 @@ function mount(env,options){
   el('comparison-chart-end').textContent=dateLabel(model.day);
   el('comparison-chart').setAttribute('aria-label','Ackumulerat antal arter fram till '+dateLabel(model.day)+': '+model.current.length+' under '+year+' och '+model.previous.length+' under '+model.comparisonYear+'.');
   el('comparison-sources').textContent='Underlaget för '+year+' hämtades '+stamp(current.source.retrievedAt)+' och för '+model.comparisonYear+' '+stamp(history.source.retrievedAt)+' svensk tid.';
-  status.textContent=model.previous.length?'':'Inga offentliga arter finns i urvalet för '+model.comparisonYear+' fram till '+dateLabel(model.priorDay)+'.';
+  status.textContent=model.previous.length?'':'Inga arter har rapporterats i det här urvalet för '+model.comparisonYear+' fram till '+dateLabel(model.priorDay)+'.';
   result.hidden=false;result.dataset.year=String(model.comparisonYear);
  }
  async function show(){

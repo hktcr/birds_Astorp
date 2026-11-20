@@ -104,7 +104,7 @@ function mount(env){
  }
  async function read(url,signal){const r=await env.fetch(url,{cache:'no-store',signal});if(!r.ok)throw Error('HTTP '+r.status+'.');return r.json();}
  async function refresh(){
-   if(busy)return;busy=true;failure='';el('refresh-data').disabled=true;status();renderHints();
+   if(busy)return;busy=true;failure='';el('refresh-data').disabled=true;status();renderHints();if(comparison&&data)comparison.update(data);
    const controller=new env.AbortController(),timer=env.setTimeout(()=>controller.abort(),90000);
    try{
      const taxonomy=await read(base+'data/municipal-taxonomy.json',controller.signal);
