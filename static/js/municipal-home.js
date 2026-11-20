@@ -18,7 +18,7 @@ function model(data,year){
   chronological.forEach(r=>{if(!days.has(r.day))days.set(r.day,[]);days.get(r.day).push(r);});
   return {count:rows.size,latest:chronological.length?chronological.at(-1).day:null,
     recent:[...chronological].sort((a,b)=>b.day.localeCompare(a.day)||a.name.localeCompare(b.name,'sv')).slice(0,3),
-    days:[...days].sort((a,b)=>a[0].localeCompare(b[0]))};
+    days:[...days].sort((a,b)=>b[0].localeCompare(a[0])).map(([day,rows])=>[day,[...rows].reverse()])};
 }
 function current(data,now,live){
   const age=+now-Date.parse(data.source.retrievedAt);
@@ -58,7 +58,7 @@ function mount(env){
    m.recent.forEach(r=>{const card=create('div','prediction-card');card.append(create('span','prediction-species',r.name),create('span','prediction-meta',dateLabel(r.day)));recent.append(card);});
    const trail=el('trail-timeline');trail.replaceChildren();
    m.days.forEach(([day,rows],i)=>{
-     const item=create('div','trail-item'+(i===m.days.length-1?' trail-item-latest':''));
+     const item=create('div','trail-item'+(i===0?' trail-item-latest':''));
      const line=create('div','trail-line'+(i===m.days.length-1?' trail-line-end':'')),dot=create('div','trail-dot');
      line.setAttribute('aria-hidden','true');dot.setAttribute('aria-hidden','true');
      const content=create('div','trail-content');const date=create('time','trail-date',dateLabel(day));date.dateTime=day;content.append(date);
