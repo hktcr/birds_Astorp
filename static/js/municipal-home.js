@@ -28,7 +28,7 @@ function mount(env){
  const doc=env.document,el=id=>doc.getElementById(id),host=el('municipal-home');
  if(!host)return;
  const year=Number(host.dataset.year),base=host.dataset.base,cacheKey='astorp-home-'+year+'-v1';
- let data=null,busy=false,failure='',hintSources=null,hintFailure='';
+ let data=null,busy=false,failure='',hintSources=null,hintFailure='',hintDay='';
  const create=(tag,className,value)=>{const n=doc.createElement(tag);if(className)n.className=className;if(value!=null)n.textContent=value;return n;};
  function checked(value){
    const result=env.MunicipalPreview.verify(value),s=result.source;
@@ -51,6 +51,7 @@ function mount(env){
    el('source-detail').textContent='Urval: 1 januari till '+dateLabel(s.toDay)+' '+year+'. Hämtat '+stamp+' svensk tid. Underlaget kan ändras när fynd läggs till eller rättas. Artantalet bygger på hela det kontrollerade urvalet.';
  }
  function renderHints(){
+   hintDay=env.StockholmDates.stockholmDay(new env.Date());
    const cards=el('prediction-cards'),label=el('prediction-score');
    if(!cards||!label)return;
    cards.replaceChildren();
@@ -100,7 +101,7 @@ function mount(env){
  }
  async function read(url,signal){const r=await env.fetch(url,{cache:'no-store',signal});if(!r.ok)throw Error('HTTP '+r.status+'.');return r.json();}
  async function refresh(){
-   if(busy)return;busy=true;failure='';el('refresh-data').disabled=true;status();
+   if(busy)return;busy=true;failure='';el('refresh-data').disabled=true;status();renderHints();
    const controller=new env.AbortController(),timer=env.setTimeout(()=>controller.abort(),90000);
    try{
      const taxonomy=await read(base+'data/municipal-taxonomy.json',controller.signal);
@@ -124,8 +125,8 @@ function mount(env){
    await hintReady;
  }
  const ready=start();
- const interval=env.setInterval(()=>{if(!doc.hidden&&(!data||!current(data,new env.Date(),env.MunicipalLive)))refresh();},900000);
- function visible(){if(!doc.hidden&&(!data||!current(data,new env.Date(),env.MunicipalLive)))refresh();}
+ const interval=env.setInterval(()=>{if(doc.hidden)return;if(env.StockholmDates.stockholmDay(new env.Date())!==hintDay)renderHints();if(!data||!current(data,new env.Date(),env.MunicipalLive))refresh();},60000);
+ function visible(){if(doc.hidden)return;renderHints();if(!data||!current(data,new env.Date(),env.MunicipalLive))refresh();}
  doc.addEventListener('visibilitychange',visible);
  return {ready,refresh,destroy(){env.clearInterval(interval);doc.removeEventListener('visibilitychange',visible);}};
 }
