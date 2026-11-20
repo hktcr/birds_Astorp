@@ -110,7 +110,7 @@ function mount(env){
      data=next;
      try{env.sessionStorage.setItem(cacheKey,JSON.stringify({schemaVersion:1,...next}));}catch(_){}
    }catch(e){failure=e.name==='AbortError'?'Hämtningen tog för lång tid.':e.message;}
-   finally{env.clearTimeout(timer);busy=false;el('refresh-data').disabled=false;render();if(!data){el('latest-species').textContent='Underlag saknas.';el('trail-timeline').replaceChildren(create('p','home-empty','Använd Uppdatera fynd för att försöka igen.'));}}
+   finally{env.clearTimeout(timer);busy=false;el('refresh-data').disabled=false;render();if(!data){el('latest-species').textContent='Underlag saknas.';el('trail-timeline').replaceChildren(create('p','home-empty','Öppna Uppdatering och fågeldata nedan och välj Uppdatera fynd för att försöka igen.'));}}
  }
  async function start(){
    const hintReady=loadHintSources();
