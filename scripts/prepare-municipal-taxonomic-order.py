@@ -15,7 +15,12 @@ TAXONOMY = ROOT / "static/data/municipal-taxonomy.json"
 OUTPUT = ROOT / "static/data/municipal-taxonomic-order.json"
 NS = {"m": "http://schemas.openxmlformats.org/spreadsheetml/2006/main"}
 REL = "http://schemas.openxmlformats.org/officeDocument/2006/relationships"
-with urllib.request.urlopen(URL, timeout=90) as response:
+request = urllib.request.Request(URL, headers={
+    "User-Agent": "Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/142.0.0.0 Safari/537.36",
+    "Referer": "https://www.avilist.org/checklist/v2026/",
+    "Accept": "application/vnd.openxmlformats-officedocument.spreadsheetml.sheet,*/*;q=0.8"
+})
+with urllib.request.urlopen(request, timeout=90) as response:
     raw = response.read()
 digest = hashlib.sha256(raw).hexdigest()
 with zipfile.ZipFile(io.BytesIO(raw)) as book:
