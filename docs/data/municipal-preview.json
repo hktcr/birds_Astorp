@@ -1,0 +1,2797 @@
+{
+  "schemaVersion": 1,
+  "source": {
+    "complete": true,
+    "municipality": "Åstorp",
+    "fromDay": "2025-01-01",
+    "toDay": "2026-11-20",
+    "retrievedAt": "2026-11-20T06:29:29.099Z",
+    "scopeNote": "Artnivå enligt AviList v2026 (20 oktober 2026). Underarter räknas till art; gråkråka och svartkråka är en art. Tamduva ingår i klippduva, inte som extra art. Ospecificerade taxa, skyddade och ännu inte registrerade fynd ingår inte.",
+    "taxonomyPolicy": "AviList-v2026-2026-10-20-with-existing-feral-pigeon-inclusion",
+    "endpoint": "https://sosgeo.artdata.slu.se/geoserver/SOS/ows",
+    "partitions": [
+      {
+        "fromDay": "2025-01-01",
+        "toDay": "2025-12-31",
+        "countBefore": 2366,
+        "countAfter": 2366,
+        "fetchedCount": 2366,
+        "subpartitions": [
+          {
+            "fromUtc": "2024-12-31T23:00:00.000Z",
+            "toUtc": "2025-12-31T23:00:00.000Z",
+            "countBefore": 2366,
+            "countAfter": 2366,
+            "fetchedCount": 2366
+          }
+        ]
+      },
+      {
+        "fromDay": "2026-01-01",
+        "toDay": "2026-11-20",
+        "countBefore": 1496,
+        "countAfter": 1496,
+        "fetchedCount": 1496,
+        "subpartitions": [
+          {
+            "fromUtc": "2025-12-31T23:00:00.000Z",
+            "toUtc": "2026-11-20T06:29:25.131Z",
+            "countBefore": 1496,
+            "countAfter": 1496,
+            "fetchedCount": 1496
+          }
+        ]
+      }
+    ],
+    "aggregation": "Earliest day per species and year; all public source references on that day; no coordinates or person fields.",
+    "atomicSnapshot": false,
+    "taxonomyEvidence": {
+      "verifiedAt": "2026-10-29T18:26:40Z",
+      "method": "Read actual Artfakta child page and immediate parent breadcrumb accessible link; extract exact href. No string-based taxonomy inference.",
+      "mappings": [
+        {
+          "childTaxonId": 100083,
+          "parentTaxonId": 205761,
+          "parentName": "gulärla",
+          "parentScientificName": "Motacilla flava",
+          "childSource": "https://artfakta.se/taxa/100083/information",
+          "observedParentHref": "/taxa/205761"
+        },
+        {
+          "childTaxonId": 102965,
+          "parentTaxonId": 205660,
+          "parentName": "silltrut",
+          "parentScientificName": "Larus fuscus",
+          "childSource": "https://artfakta.se/taxa/102965/information",
+          "observedParentHref": "/taxa/205660"
+        },
+        {
+          "childTaxonId": 205976,
+          "parentTaxonId": 103035,
+          "parentName": "kråka",
+          "parentScientificName": "Corvus corone",
+          "childSource": "https://artfakta.se/taxa/205976/information",
+          "observedParentHref": "/taxa/103035"
+        },
+        {
+          "childTaxonId": 233133,
+          "parentTaxonId": 102942,
+          "parentName": "ormvråk",
+          "parentScientificName": "Buteo buteo",
+          "childSource": "https://artfakta.se/taxa/233133/information",
+          "observedParentHref": "/taxa/102942"
+        }
+      ]
+    },
+    "populationExceptionEvidence": {
+      "verifiedAt": "2026-10-29T18:27:50Z",
+      "childTaxonId": 102970,
+      "parentTaxonId": 6332453,
+      "parentScientificName": "Columba livia",
+      "source": "https://artfakta.se/taxa/102970/information",
+      "observedParentHref": "/taxa/6332453",
+      "limitation": "Taxonomic parenthood does not itself establish wild-origin status; all returned records have isNaturalOccurrence=true, but population exception must remain transparent.",
+      "treatment": "Included as Columba livia under the existing feral-pigeon exception; never an additional species."
+    },
+    "taxonomyReference": "https://www.avilist.org/checklist/v2026/",
+    "sourceIdentifiers": "taxonId is the source Artfakta identifier, not an AviList taxonomic ID.",
+    "exclusions": {
+      "unspecified": 4
+    },
+    "aggregateManifest": [
+      {
+        "year": 2025,
+        "records": 165,
+        "species": 148
+      },
+      {
+        "year": 2026,
+        "records": 170,
+        "species": 156
+      }
+    ],
+    "mode": "live"
+  },
+  "records": [
+    {
+      "id": "urn:lsid:artportalen.se:sighting:121865337",
+      "taxonId": 100082,
+      "name": "röd glada",
+      "scientificName": "Milvus milvus",
+      "rank": "species",
+      "day": "2025-01-02"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:121844468",
+      "taxonId": 100082,
+      "name": "röd glada",
+      "scientificName": "Milvus milvus",
+      "rank": "species",
+      "day": "2025-01-02"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:121865387",
+      "taxonId": 102933,
+      "name": "gräsand",
+      "scientificName": "Anas platyrhynchos",
+      "rank": "species",
+      "day": "2025-01-02"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:121865532",
+      "taxonId": 102937,
+      "name": "knipa",
+      "scientificName": "Bucephala clangula",
+      "rank": "species",
+      "day": "2025-01-02"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:121892063",
+      "taxonId": 100056,
+      "name": "tornfalk",
+      "scientificName": "Falco tinnunculus",
+      "rank": "species",
+      "day": "2025-01-03"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122079655",
+      "taxonId": 103001,
+      "name": "rödvingetrast",
+      "scientificName": "Turdus iliacus",
+      "rank": "species",
+      "day": "2025-01-12"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122497104",
+      "taxonId": 102952,
+      "name": "tofsvipa",
+      "scientificName": "Vanellus vanellus",
+      "rank": "species",
+      "day": "2025-02-06"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:121892379",
+      "taxonId": 102941,
+      "name": "sparvhök",
+      "scientificName": "Accipiter nisus",
+      "rank": "species",
+      "day": "2025-01-03"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:123166070",
+      "taxonId": 102983,
+      "name": "ängspiplärka",
+      "scientificName": "Anthus pratensis",
+      "rank": "species",
+      "day": "2025-03-08"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122644768",
+      "taxonId": 102979,
+      "name": "sånglärka",
+      "scientificName": "Alauda arvensis",
+      "rank": "species",
+      "day": "2025-02-06"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122497105",
+      "taxonId": 102979,
+      "name": "sånglärka",
+      "scientificName": "Alauda arvensis",
+      "rank": "species",
+      "day": "2025-02-06"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:121892065",
+      "taxonId": 103037,
+      "name": "stare",
+      "scientificName": "Sturnus vulgaris",
+      "rank": "species",
+      "day": "2025-01-03"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:121881465",
+      "taxonId": 103033,
+      "name": "kaja",
+      "scientificName": "Coloeus monedula",
+      "rank": "species",
+      "day": "2025-01-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122713508",
+      "taxonId": 100065,
+      "name": "trana",
+      "scientificName": "Grus grus",
+      "rank": "species",
+      "day": "2025-02-22"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122036882",
+      "taxonId": 102989,
+      "name": "gärdsmyg",
+      "scientificName": "Nannus troglodytes",
+      "rank": "species",
+      "day": "2025-01-10"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:123166337",
+      "taxonId": 102963,
+      "name": "skrattmås",
+      "scientificName": "Chroicocephalus ridibundus",
+      "rank": "species",
+      "day": "2025-03-07"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122036974",
+      "taxonId": 103020,
+      "name": "entita",
+      "scientificName": "Poecile palustris",
+      "rank": "species",
+      "day": "2025-01-10"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:123174151",
+      "taxonId": 102950,
+      "name": "strandskata",
+      "scientificName": "Haematopus ostralegus",
+      "rank": "species",
+      "day": "2025-03-06"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:121865476",
+      "taxonId": 100045,
+      "name": "sångsvan",
+      "scientificName": "Cygnus cygnus",
+      "rank": "species",
+      "day": "2025-01-02"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:121865321",
+      "taxonId": 100067,
+      "name": "havsörn",
+      "scientificName": "Haliaeetus albicilla",
+      "rank": "species",
+      "day": "2025-01-02"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:123163929",
+      "taxonId": 102990,
+      "name": "järnsparv",
+      "scientificName": "Prunella modularis",
+      "rank": "species",
+      "day": "2025-03-13"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122036975",
+      "taxonId": 103027,
+      "name": "nötväcka",
+      "scientificName": "Sitta europaea",
+      "rank": "species",
+      "day": "2025-01-10"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:121865517",
+      "taxonId": 100012,
+      "name": "gråhäger",
+      "scientificName": "Ardea cinerea",
+      "rank": "species",
+      "day": "2025-01-02"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:121865348",
+      "taxonId": 102942,
+      "name": "ormvråk",
+      "scientificName": "Buteo buteo",
+      "rank": "species",
+      "day": "2025-01-02"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:121937571",
+      "taxonId": 102946,
+      "name": "fasan",
+      "scientificName": "Phasianus colchicus",
+      "rank": "species",
+      "day": "2025-01-04"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122036980",
+      "taxonId": 103044,
+      "name": "grönsiska",
+      "scientificName": "Spinus spinus",
+      "rank": "species",
+      "day": "2025-01-10"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122379241",
+      "taxonId": 103024,
+      "name": "svartmes",
+      "scientificName": "Periparus ater",
+      "rank": "species",
+      "day": "2025-01-29"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122303110",
+      "taxonId": 100102,
+      "name": "storskarv",
+      "scientificName": "Phalacrocorax carbo",
+      "rank": "species",
+      "day": "2025-01-24"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:121835154",
+      "taxonId": 103026,
+      "name": "talgoxe",
+      "scientificName": "Parus major",
+      "rank": "species",
+      "day": "2025-01-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:121881452",
+      "taxonId": 103026,
+      "name": "talgoxe",
+      "scientificName": "Parus major",
+      "rank": "species",
+      "day": "2025-01-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122036986",
+      "taxonId": 100037,
+      "name": "stenknäck",
+      "scientificName": "Coccothraustes coccothraustes",
+      "rank": "species",
+      "day": "2025-01-10"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:121865483",
+      "taxonId": 102929,
+      "name": "kanadagås",
+      "scientificName": "Branta canadensis",
+      "rank": "species",
+      "day": "2025-01-02"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:121914371",
+      "taxonId": 102971,
+      "name": "ringduva",
+      "scientificName": "Columba palumbus",
+      "rank": "species",
+      "day": "2025-01-04"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122710189",
+      "taxonId": 102971,
+      "name": "ringduva",
+      "scientificName": "Columba palumbus",
+      "rank": "species",
+      "day": "2025-01-04"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:124077691",
+      "taxonId": 103011,
+      "name": "svarthätta",
+      "scientificName": "Sylvia atricapilla",
+      "rank": "species",
+      "day": "2025-04-14"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:123388305",
+      "taxonId": 103045,
+      "name": "hämpling",
+      "scientificName": "Linaria cannabina",
+      "rank": "species",
+      "day": "2025-03-22"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:123823365",
+      "taxonId": 205660,
+      "name": "silltrut",
+      "scientificName": "Larus fuscus",
+      "rank": "species",
+      "day": "2025-04-07"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:125559013",
+      "taxonId": 102119,
+      "name": "göktyta",
+      "scientificName": "Jynx torquilla",
+      "rank": "species",
+      "day": "2025-05-31"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:124077710",
+      "taxonId": 102982,
+      "name": "trädpiplärka",
+      "scientificName": "Anthus trivialis",
+      "rank": "species",
+      "day": "2025-04-14"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:124319923",
+      "taxonId": 103018,
+      "name": "svartvit flugsnappare",
+      "scientificName": "Ficedula hypoleuca",
+      "rank": "species",
+      "day": "2025-04-22"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122713467",
+      "taxonId": 103043,
+      "name": "steglits",
+      "scientificName": "Carduelis carduelis",
+      "rank": "species",
+      "day": "2025-02-22"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:127461536",
+      "taxonId": 100031,
+      "name": "vit stork",
+      "scientificName": "Ciconia ciconia",
+      "rank": "species",
+      "day": "2025-08-13"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:124323685",
+      "taxonId": 102980,
+      "name": "ladusvala",
+      "scientificName": "Hirundo rustica",
+      "rank": "species",
+      "day": "2025-04-22"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:121937561",
+      "taxonId": 102991,
+      "name": "rödhake",
+      "scientificName": "Erithacus rubecula",
+      "rank": "species",
+      "day": "2025-01-04"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:123434301",
+      "taxonId": 103013,
+      "name": "gransångare",
+      "scientificName": "Phylloscopus collybita",
+      "rank": "species",
+      "day": "2025-03-21"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:123166339",
+      "taxonId": 102964,
+      "name": "fiskmås",
+      "scientificName": "Larus canus",
+      "rank": "species",
+      "day": "2025-03-07"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:121915150",
+      "taxonId": 103036,
+      "name": "korp",
+      "scientificName": "Corvus corax",
+      "rank": "species",
+      "day": "2025-01-04"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122421422",
+      "taxonId": 103052,
+      "name": "domherre",
+      "scientificName": "Pyrrhula pyrrhula",
+      "rank": "species",
+      "day": "2025-02-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122379247",
+      "taxonId": 103040,
+      "name": "bofink",
+      "scientificName": "Fringilla coelebs",
+      "rank": "species",
+      "day": "2025-01-29"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:124320865",
+      "taxonId": 205761,
+      "name": "gulärla",
+      "scientificName": "Motacilla flava",
+      "rank": "species",
+      "day": "2025-04-22"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:125086469",
+      "taxonId": 100100,
+      "name": "bivråk",
+      "scientificName": "Pernis apivorus",
+      "rank": "species",
+      "day": "2025-05-14"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:121881447",
+      "taxonId": 103025,
+      "name": "blåmes",
+      "scientificName": "Cyanistes caeruleus",
+      "rank": "species",
+      "day": "2025-01-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:121835152",
+      "taxonId": 103025,
+      "name": "blåmes",
+      "scientificName": "Cyanistes caeruleus",
+      "rank": "species",
+      "day": "2025-01-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:123906066",
+      "taxonId": 102994,
+      "name": "rödstjärt",
+      "scientificName": "Phoenicurus phoenicurus",
+      "rank": "species",
+      "day": "2025-04-08"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122379240",
+      "taxonId": 103042,
+      "name": "grönfink",
+      "scientificName": "Chloris chloris",
+      "rank": "species",
+      "day": "2025-01-29"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122379248",
+      "taxonId": 103042,
+      "name": "grönfink",
+      "scientificName": "Chloris chloris",
+      "rank": "species",
+      "day": "2025-01-29"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:124570285",
+      "taxonId": 102995,
+      "name": "buskskvätta",
+      "scientificName": "Saxicola rubetra",
+      "rank": "species",
+      "day": "2025-04-27"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:124636816",
+      "taxonId": 100124,
+      "name": "backsvala",
+      "scientificName": "Riparia riparia",
+      "rank": "species",
+      "day": "2025-05-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:124833470",
+      "taxonId": 100054,
+      "name": "pilgrimsfalk",
+      "scientificName": "Falco peregrinus",
+      "rank": "species",
+      "day": "2025-05-07"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122222712",
+      "taxonId": 100034,
+      "name": "blå kärrhök",
+      "scientificName": "Circus cyaneus",
+      "rank": "species",
+      "day": "2025-01-19"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122223054",
+      "taxonId": 100034,
+      "name": "blå kärrhök",
+      "scientificName": "Circus cyaneus",
+      "rank": "species",
+      "day": "2025-01-19"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:121835155",
+      "taxonId": 103039,
+      "name": "pilfink",
+      "scientificName": "Passer montanus",
+      "rank": "species",
+      "day": "2025-01-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:121881460",
+      "taxonId": 103039,
+      "name": "pilfink",
+      "scientificName": "Passer montanus",
+      "rank": "species",
+      "day": "2025-01-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122288053",
+      "taxonId": 102978,
+      "name": "större hackspett",
+      "scientificName": "Dendrocopos major",
+      "rank": "species",
+      "day": "2025-01-23"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:123821400",
+      "taxonId": 102975,
+      "name": "hornuggla",
+      "scientificName": "Asio otus",
+      "rank": "species",
+      "day": "2025-04-06"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:123258248",
+      "taxonId": 102987,
+      "name": "sädesärla",
+      "scientificName": "Motacilla alba",
+      "rank": "species",
+      "day": "2025-03-16"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:124989610",
+      "taxonId": 103010,
+      "name": "trädgårdssångare",
+      "scientificName": "Sylvia borin",
+      "rank": "species",
+      "day": "2025-05-05"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:124989641",
+      "taxonId": 103010,
+      "name": "trädgårdssångare",
+      "scientificName": "Sylvia borin",
+      "rank": "species",
+      "day": "2025-05-05"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:124764453",
+      "taxonId": 103010,
+      "name": "trädgårdssångare",
+      "scientificName": "Sylvia borin",
+      "rank": "species",
+      "day": "2025-05-05"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:121865354",
+      "taxonId": 103035,
+      "name": "kråka",
+      "scientificName": "Corvus corone",
+      "rank": "species",
+      "day": "2025-01-02"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:123364931",
+      "taxonId": 102960,
+      "name": "skogssnäppa",
+      "scientificName": "Tringa ochropus",
+      "rank": "species",
+      "day": "2025-03-21"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122713452",
+      "taxonId": 100038,
+      "name": "skogsduva",
+      "scientificName": "Columba oenas",
+      "rank": "species",
+      "day": "2025-02-22"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:121865272",
+      "taxonId": 102998,
+      "name": "koltrast",
+      "scientificName": "Turdus merula",
+      "rank": "species",
+      "day": "2025-01-02"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122713431",
+      "taxonId": 102110,
+      "name": "fjällvråk",
+      "scientificName": "Buteo lagopus",
+      "rank": "species",
+      "day": "2025-02-22"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122036927",
+      "taxonId": 100011,
+      "name": "kungsörn",
+      "scientificName": "Aquila chrysaetos",
+      "rank": "species",
+      "day": "2025-01-10"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122449922",
+      "taxonId": 100019,
+      "name": "vitkindad gås",
+      "scientificName": "Branta leucopsis",
+      "rank": "species",
+      "day": "2025-02-03"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122261158",
+      "taxonId": 103034,
+      "name": "råka",
+      "scientificName": "Corvus frugilegus",
+      "rank": "species",
+      "day": "2025-01-21"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122478139",
+      "taxonId": 103019,
+      "name": "stjärtmes",
+      "scientificName": "Aegithalos caudatus",
+      "rank": "species",
+      "day": "2025-02-05"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:121881470",
+      "taxonId": 103032,
+      "name": "skata",
+      "scientificName": "Pica pica",
+      "rank": "species",
+      "day": "2025-01-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:124570332",
+      "taxonId": 103009,
+      "name": "törnsångare",
+      "scientificName": "Curruca communis",
+      "rank": "species",
+      "day": "2025-04-27"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:123174150",
+      "taxonId": 100091,
+      "name": "storspov",
+      "scientificName": "Numenius arquata",
+      "rank": "species",
+      "day": "2025-03-06"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:123204350",
+      "taxonId": 102954,
+      "name": "enkelbeckasin",
+      "scientificName": "Gallinago gallinago",
+      "rank": "species",
+      "day": "2025-02-26"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:123388263",
+      "taxonId": 100103,
+      "name": "brushane",
+      "scientificName": "Calidris pugnax",
+      "rank": "species",
+      "day": "2025-03-22"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122742122",
+      "taxonId": 102932,
+      "name": "kricka",
+      "scientificName": "Anas crecca",
+      "rank": "species",
+      "day": "2025-02-24"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122261132",
+      "taxonId": 102966,
+      "name": "gråtrut",
+      "scientificName": "Larus argentatus",
+      "rank": "species",
+      "day": "2025-01-21"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:123555942",
+      "taxonId": 103000,
+      "name": "taltrast",
+      "scientificName": "Turdus philomelos",
+      "rank": "species",
+      "day": "2025-03-28"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122261122",
+      "taxonId": 102931,
+      "name": "bläsand",
+      "scientificName": "Mareca penelope",
+      "rank": "species",
+      "day": "2025-01-21"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:123165976",
+      "taxonId": 102951,
+      "name": "större strandpipare",
+      "scientificName": "Charadrius hiaticula",
+      "rank": "species",
+      "day": "2025-03-08"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:123787513",
+      "taxonId": 100049,
+      "name": "spillkråka",
+      "scientificName": "Dryocopus martius",
+      "rank": "species",
+      "day": "2025-04-04"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122098637",
+      "taxonId": 103002,
+      "name": "dubbeltrast",
+      "scientificName": "Turdus viscivorus",
+      "rank": "species",
+      "day": "2025-01-13"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:123823385",
+      "taxonId": 102996,
+      "name": "stenskvätta",
+      "scientificName": "Oenanthe oenanthe",
+      "rank": "species",
+      "day": "2025-04-07"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:121865493",
+      "taxonId": 102928,
+      "name": "grågås",
+      "scientificName": "Anser anser",
+      "rank": "species",
+      "day": "2025-01-02"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:123823366",
+      "taxonId": 100033,
+      "name": "brun kärrhök",
+      "scientificName": "Circus aeruginosus",
+      "rank": "species",
+      "day": "2025-04-07"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:123821390",
+      "taxonId": 100033,
+      "name": "brun kärrhök",
+      "scientificName": "Circus aeruginosus",
+      "rank": "species",
+      "day": "2025-04-07"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122612972",
+      "taxonId": 102977,
+      "name": "gröngöling",
+      "scientificName": "Picus viridis",
+      "rank": "species",
+      "day": "2025-02-14"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122036892",
+      "taxonId": 103028,
+      "name": "trädkrypare",
+      "scientificName": "Certhia familiaris",
+      "rank": "species",
+      "day": "2025-01-10"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:125085931",
+      "taxonId": 102976,
+      "name": "tornseglare",
+      "scientificName": "Apus apus",
+      "rank": "species",
+      "day": "2025-05-14"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:125558899",
+      "taxonId": 102626,
+      "name": "törnskata",
+      "scientificName": "Lanius collurio",
+      "rank": "species",
+      "day": "2025-05-31"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:125558702",
+      "taxonId": 103007,
+      "name": "härmsångare",
+      "scientificName": "Hippolais icterina",
+      "rank": "species",
+      "day": "2025-05-31"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122379242",
+      "taxonId": 103015,
+      "name": "kungsfågel",
+      "scientificName": "Regulus regulus",
+      "rank": "species",
+      "day": "2025-01-29"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:124628226",
+      "taxonId": 103008,
+      "name": "ärtsångare",
+      "scientificName": "Curruca curruca",
+      "rank": "species",
+      "day": "2025-04-22"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:124320222",
+      "taxonId": 103008,
+      "name": "ärtsångare",
+      "scientificName": "Curruca curruca",
+      "rank": "species",
+      "day": "2025-04-22"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:123166394",
+      "taxonId": 102958,
+      "name": "rödbena",
+      "scientificName": "Tringa totanus",
+      "rank": "species",
+      "day": "2025-03-07"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:121915334",
+      "taxonId": 102124,
+      "name": "vinterhämpling",
+      "scientificName": "Linaria flavirostris",
+      "rank": "species",
+      "day": "2025-01-04"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:124570322",
+      "taxonId": 102981,
+      "name": "hussvala",
+      "scientificName": "Delichon urbicum",
+      "rank": "species",
+      "day": "2025-04-27"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122421417",
+      "taxonId": 103055,
+      "name": "gulsparv",
+      "scientificName": "Emberiza citrinella",
+      "rank": "species",
+      "day": "2025-02-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:126959272",
+      "taxonId": 103016,
+      "name": "brandkronad kungsfågel",
+      "scientificName": "Regulus ignicapilla",
+      "rank": "species",
+      "day": "2025-07-27"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122041303",
+      "taxonId": 102999,
+      "name": "björktrast",
+      "scientificName": "Turdus pilaris",
+      "rank": "species",
+      "day": "2025-01-10"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122036967",
+      "taxonId": 102999,
+      "name": "björktrast",
+      "scientificName": "Turdus pilaris",
+      "rank": "species",
+      "day": "2025-01-10"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122678027",
+      "taxonId": 6332453,
+      "name": "Klippduva (tamduva)",
+      "scientificName": "Columba livia",
+      "rank": "species",
+      "day": "2025-02-19"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:129694494",
+      "taxonId": 102121,
+      "name": "sidensvans",
+      "scientificName": "Bombycilla garrulus",
+      "rank": "species",
+      "day": "2025-11-14"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:128424165",
+      "taxonId": 103060,
+      "name": "brun glada",
+      "scientificName": "Milvus migrans",
+      "rank": "species",
+      "day": "2025-09-13"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:124013972",
+      "taxonId": 102949,
+      "name": "sothöna",
+      "scientificName": "Fulica atra",
+      "rank": "species",
+      "day": "2025-04-12"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:124145988",
+      "taxonId": 103014,
+      "name": "lövsångare",
+      "scientificName": "Phylloscopus trochilus",
+      "rank": "species",
+      "day": "2025-04-16"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:123556196",
+      "taxonId": 103057,
+      "name": "sävsparv",
+      "scientificName": "Schoeniclus schoeniclus",
+      "rank": "species",
+      "day": "2025-03-28"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:121937565",
+      "taxonId": 102972,
+      "name": "turkduva",
+      "scientificName": "Streptopelia decaocto",
+      "rank": "species",
+      "day": "2025-01-04"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:128289123",
+      "taxonId": 102623,
+      "name": "trädlärka",
+      "scientificName": "Lullula arborea",
+      "rank": "species",
+      "day": "2025-09-07"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:121881457",
+      "taxonId": 103038,
+      "name": "gråsparv",
+      "scientificName": "Passer domesticus",
+      "rank": "species",
+      "day": "2025-01-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:121835156",
+      "taxonId": 103038,
+      "name": "gråsparv",
+      "scientificName": "Passer domesticus",
+      "rank": "species",
+      "day": "2025-01-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:126300892",
+      "taxonId": 102943,
+      "name": "lärkfalk",
+      "scientificName": "Falco subbuteo",
+      "rank": "species",
+      "day": "2025-06-29"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:124753362",
+      "taxonId": 102973,
+      "name": "gök",
+      "scientificName": "Cuculus canorus",
+      "rank": "species",
+      "day": "2025-05-04"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:123204581",
+      "taxonId": 102934,
+      "name": "vigg",
+      "scientificName": "Aythya fuligula",
+      "rank": "species",
+      "day": "2025-02-26"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:121915131",
+      "taxonId": 103058,
+      "name": "bläsgås",
+      "scientificName": "Anser albifrons",
+      "rank": "species",
+      "day": "2025-01-04"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122659501",
+      "taxonId": 100099,
+      "name": "rapphöna",
+      "scientificName": "Perdix perdix",
+      "rank": "species",
+      "day": "2025-02-17"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:123550786",
+      "taxonId": 102106,
+      "name": "skedand",
+      "scientificName": "Spatula clypeata",
+      "rank": "species",
+      "day": "2025-03-28"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122261148",
+      "taxonId": 205497,
+      "name": "ägretthäger",
+      "scientificName": "Ardea alba",
+      "rank": "species",
+      "day": "2025-01-21"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:125331237",
+      "taxonId": 103005,
+      "name": "kärrsångare",
+      "scientificName": "Acrocephalus palustris",
+      "rank": "species",
+      "day": "2025-05-22"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:123928439",
+      "taxonId": 205543,
+      "name": "stäpphök",
+      "scientificName": "Circus macrourus",
+      "rank": "species",
+      "day": "2025-04-09"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:124764547",
+      "taxonId": 102992,
+      "name": "näktergal",
+      "scientificName": "Luscinia luscinia",
+      "rank": "species",
+      "day": "2025-05-05"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:124989599",
+      "taxonId": 102992,
+      "name": "näktergal",
+      "scientificName": "Luscinia luscinia",
+      "rank": "species",
+      "day": "2025-05-05"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122079664",
+      "taxonId": 103030,
+      "name": "nötskrika",
+      "scientificName": "Garrulus glandarius",
+      "rank": "species",
+      "day": "2025-01-12"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122713474",
+      "taxonId": 100001,
+      "name": "duvhök",
+      "scientificName": "Astur gentilis",
+      "rank": "species",
+      "day": "2025-02-22"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122496075",
+      "taxonId": 102974,
+      "name": "kattuggla",
+      "scientificName": "Strix aluco",
+      "rank": "species",
+      "day": "2025-02-06"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122612967",
+      "taxonId": 102940,
+      "name": "storskrake",
+      "scientificName": "Mergus merganser",
+      "rank": "species",
+      "day": "2025-02-14"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:127640366",
+      "taxonId": 100112,
+      "name": "ljungpipare",
+      "scientificName": "Pluvialis apricaria",
+      "rank": "species",
+      "day": "2025-08-17"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:127635392",
+      "taxonId": 103021,
+      "name": "talltita",
+      "scientificName": "Poecile montanus",
+      "rank": "species",
+      "day": "2025-08-17"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:129909010",
+      "taxonId": 102988,
+      "name": "strömstare",
+      "scientificName": "Cinclus cinclus",
+      "rank": "species",
+      "day": "2025-11-29"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122184526",
+      "taxonId": 205866,
+      "name": "trädgårdsträdkrypare",
+      "scientificName": "Certhia brachydactyla",
+      "rank": "species",
+      "day": "2025-01-17"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:123364983",
+      "taxonId": 103041,
+      "name": "bergfink",
+      "scientificName": "Fringilla montifringilla",
+      "rank": "species",
+      "day": "2025-03-21"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:125086465",
+      "taxonId": 103017,
+      "name": "grå flugsnappare",
+      "scientificName": "Muscicapa striata",
+      "rank": "species",
+      "day": "2025-05-14"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:127086105",
+      "taxonId": 102986,
+      "name": "forsärla",
+      "scientificName": "Motacilla cinerea",
+      "rank": "species",
+      "day": "2025-08-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:123204803",
+      "taxonId": 102930,
+      "name": "gravand",
+      "scientificName": "Tadorna tadorna",
+      "rank": "species",
+      "day": "2025-02-25"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:127782380",
+      "taxonId": 100096,
+      "name": "fiskgjuse",
+      "scientificName": "Pandion haliaetus",
+      "rank": "species",
+      "day": "2025-08-24"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:127635389",
+      "taxonId": 103023,
+      "name": "tofsmes",
+      "scientificName": "Lophophanes cristatus",
+      "rank": "species",
+      "day": "2025-08-17"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:125584267",
+      "taxonId": 100043,
+      "name": "vaktel",
+      "scientificName": "Coturnix coturnix",
+      "rank": "species",
+      "day": "2025-05-31"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122361519",
+      "taxonId": 100004,
+      "name": "kungsfiskare",
+      "scientificName": "Alcedo atthis",
+      "rank": "species",
+      "day": "2025-01-28"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122742052",
+      "taxonId": 100079,
+      "name": "salskrake",
+      "scientificName": "Mergellus albellus",
+      "rank": "species",
+      "day": "2025-02-24"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122742046",
+      "taxonId": 100079,
+      "name": "salskrake",
+      "scientificName": "Mergellus albellus",
+      "rank": "species",
+      "day": "2025-02-24"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:124323710",
+      "taxonId": 100114,
+      "name": "gråhakedopping",
+      "scientificName": "Podiceps grisegena",
+      "rank": "species",
+      "day": "2025-04-22"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:124323720",
+      "taxonId": 100114,
+      "name": "gråhakedopping",
+      "scientificName": "Podiceps grisegena",
+      "rank": "species",
+      "day": "2025-04-22"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:124658479",
+      "taxonId": 103012,
+      "name": "grönsångare",
+      "scientificName": "Phylloscopus sibilatrix",
+      "rank": "species",
+      "day": "2025-05-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:125677114",
+      "taxonId": 102948,
+      "name": "rörhöna",
+      "scientificName": "Gallinula chloropus",
+      "rank": "species",
+      "day": "2025-06-03"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:121915314",
+      "taxonId": 102927,
+      "name": "knölsvan",
+      "scientificName": "Cygnus olor",
+      "rank": "species",
+      "day": "2025-01-04"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122079628",
+      "taxonId": 6332438,
+      "name": "varfågel",
+      "scientificName": "Lanius excubitor",
+      "rank": "species",
+      "day": "2025-01-12"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:127068098",
+      "taxonId": 103049,
+      "name": "mindre korsnäbb",
+      "scientificName": "Loxia curvirostra",
+      "rank": "species",
+      "day": "2025-07-30"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122748660",
+      "taxonId": 102611,
+      "name": "stenfalk",
+      "scientificName": "Falco columbarius",
+      "rank": "species",
+      "day": "2025-02-24"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:127310790",
+      "taxonId": 100044,
+      "name": "kornknarr",
+      "scientificName": "Crex crex",
+      "rank": "species",
+      "day": "2025-05-21"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:125331235",
+      "taxonId": 103003,
+      "name": "gräshoppsångare",
+      "scientificName": "Locustella naevia",
+      "rank": "species",
+      "day": "2025-05-22"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:123364990",
+      "taxonId": 100048,
+      "name": "mindre hackspett",
+      "scientificName": "Dryobates minor",
+      "rank": "species",
+      "day": "2025-03-21"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:123659280",
+      "taxonId": 100006,
+      "name": "stjärtand",
+      "scientificName": "Anas acuta",
+      "rank": "species",
+      "day": "2025-03-31"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:122478153",
+      "taxonId": 103050,
+      "name": "större korsnäbb",
+      "scientificName": "Loxia pytyopsittacus",
+      "rank": "species",
+      "day": "2025-02-05"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:127351400",
+      "taxonId": 102959,
+      "name": "gluttsnäppa",
+      "scientificName": "Tringa nebularia",
+      "rank": "species",
+      "day": "2025-08-09"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:125534909",
+      "taxonId": 103006,
+      "name": "rörsångare",
+      "scientificName": "Acrocephalus scirpaceus",
+      "rank": "species",
+      "day": "2025-05-29"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:127650607",
+      "taxonId": 205662,
+      "name": "kaspisk trut",
+      "scientificName": "Larus cachinnans",
+      "rank": "species",
+      "day": "2025-08-17"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:124323722",
+      "taxonId": 103004,
+      "name": "sävsångare",
+      "scientificName": "Acrocephalus schoenobaenus",
+      "rank": "species",
+      "day": "2025-04-22"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130559440",
+      "taxonId": 103033,
+      "name": "kaja",
+      "scientificName": "Coloeus monedula",
+      "rank": "species",
+      "day": "2026-01-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130424883",
+      "taxonId": 100082,
+      "name": "röd glada",
+      "scientificName": "Milvus milvus",
+      "rank": "species",
+      "day": "2026-01-02"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130559473",
+      "taxonId": 103034,
+      "name": "råka",
+      "scientificName": "Corvus frugilegus",
+      "rank": "species",
+      "day": "2026-01-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130656663",
+      "taxonId": 100037,
+      "name": "stenknäck",
+      "scientificName": "Coccothraustes coccothraustes",
+      "rank": "species",
+      "day": "2026-01-12"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130833440",
+      "taxonId": 102978,
+      "name": "större hackspett",
+      "scientificName": "Dendrocopos major",
+      "rank": "species",
+      "day": "2026-01-22"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130559442",
+      "taxonId": 102998,
+      "name": "koltrast",
+      "scientificName": "Turdus merula",
+      "rank": "species",
+      "day": "2026-01-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130386011",
+      "taxonId": 102998,
+      "name": "koltrast",
+      "scientificName": "Turdus merula",
+      "rank": "species",
+      "day": "2026-01-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131049353",
+      "taxonId": 100102,
+      "name": "storskarv",
+      "scientificName": "Phalacrocorax carbo",
+      "rank": "species",
+      "day": "2026-01-25"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130559445",
+      "taxonId": 103027,
+      "name": "nötväcka",
+      "scientificName": "Sitta europaea",
+      "rank": "species",
+      "day": "2026-01-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130472930",
+      "taxonId": 102989,
+      "name": "gärdsmyg",
+      "scientificName": "Nannus troglodytes",
+      "rank": "species",
+      "day": "2026-01-04"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130559457",
+      "taxonId": 103025,
+      "name": "blåmes",
+      "scientificName": "Cyanistes caeruleus",
+      "rank": "species",
+      "day": "2026-01-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130386056",
+      "taxonId": 103025,
+      "name": "blåmes",
+      "scientificName": "Cyanistes caeruleus",
+      "rank": "species",
+      "day": "2026-01-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130743383",
+      "taxonId": 100045,
+      "name": "sångsvan",
+      "scientificName": "Cygnus cygnus",
+      "rank": "species",
+      "day": "2026-01-17"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131049365",
+      "taxonId": 102933,
+      "name": "gräsand",
+      "scientificName": "Anas platyrhynchos",
+      "rank": "species",
+      "day": "2026-01-23"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130692817",
+      "taxonId": 100099,
+      "name": "rapphöna",
+      "scientificName": "Perdix perdix",
+      "rank": "species",
+      "day": "2026-01-14"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130385994",
+      "taxonId": 103032,
+      "name": "skata",
+      "scientificName": "Pica pica",
+      "rank": "species",
+      "day": "2026-01-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130559460",
+      "taxonId": 103032,
+      "name": "skata",
+      "scientificName": "Pica pica",
+      "rank": "species",
+      "day": "2026-01-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130430692",
+      "taxonId": 102110,
+      "name": "fjällvråk",
+      "scientificName": "Buteo lagopus",
+      "rank": "species",
+      "day": "2026-01-03"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130429363",
+      "taxonId": 102110,
+      "name": "fjällvråk",
+      "scientificName": "Buteo lagopus",
+      "rank": "species",
+      "day": "2026-01-03"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130438418",
+      "taxonId": 102110,
+      "name": "fjällvråk",
+      "scientificName": "Buteo lagopus",
+      "rank": "species",
+      "day": "2026-01-03"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:132462854",
+      "taxonId": 103011,
+      "name": "svarthätta",
+      "scientificName": "Sylvia atricapilla",
+      "rank": "species",
+      "day": "2026-04-15"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:133130047",
+      "taxonId": 103009,
+      "name": "törnsångare",
+      "scientificName": "Curruca communis",
+      "rank": "species",
+      "day": "2026-05-02"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131460531",
+      "taxonId": 102955,
+      "name": "morkulla",
+      "scientificName": "Scolopax rusticola",
+      "rank": "species",
+      "day": "2026-03-02"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:133130039",
+      "taxonId": 103003,
+      "name": "gräshoppsångare",
+      "scientificName": "Locustella naevia",
+      "rank": "species",
+      "day": "2026-05-03"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:133575332",
+      "taxonId": 103004,
+      "name": "sävsångare",
+      "scientificName": "Acrocephalus schoenobaenus",
+      "rank": "species",
+      "day": "2026-05-14"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:133361580",
+      "taxonId": 103007,
+      "name": "härmsångare",
+      "scientificName": "Hippolais icterina",
+      "rank": "species",
+      "day": "2026-05-12"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130981459",
+      "taxonId": 103043,
+      "name": "steglits",
+      "scientificName": "Carduelis carduelis",
+      "rank": "species",
+      "day": "2026-01-31"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131207111",
+      "taxonId": 100038,
+      "name": "skogsduva",
+      "scientificName": "Columba oenas",
+      "rank": "species",
+      "day": "2026-02-16"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:133130075",
+      "taxonId": 102994,
+      "name": "rödstjärt",
+      "scientificName": "Phoenicurus phoenicurus",
+      "rank": "species",
+      "day": "2026-04-16"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130438426",
+      "taxonId": 102972,
+      "name": "turkduva",
+      "scientificName": "Streptopelia decaocto",
+      "rank": "species",
+      "day": "2026-01-03"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130445814",
+      "taxonId": 102972,
+      "name": "turkduva",
+      "scientificName": "Streptopelia decaocto",
+      "rank": "species",
+      "day": "2026-01-03"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:133335949",
+      "taxonId": 103010,
+      "name": "trädgårdssångare",
+      "scientificName": "Sylvia borin",
+      "rank": "species",
+      "day": "2026-05-08"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:133166341",
+      "taxonId": 102973,
+      "name": "gök",
+      "scientificName": "Cuculus canorus",
+      "rank": "species",
+      "day": "2026-05-05"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131111407",
+      "taxonId": 102927,
+      "name": "knölsvan",
+      "scientificName": "Cygnus olor",
+      "rank": "species",
+      "day": "2026-02-10"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:133841656",
+      "taxonId": 103005,
+      "name": "kärrsångare",
+      "scientificName": "Acrocephalus palustris",
+      "rank": "species",
+      "day": "2026-05-23"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130559430",
+      "taxonId": 103035,
+      "name": "kråka",
+      "scientificName": "Corvus corone",
+      "rank": "species",
+      "day": "2026-01-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131460544",
+      "taxonId": 100006,
+      "name": "stjärtand",
+      "scientificName": "Anas acuta",
+      "rank": "species",
+      "day": "2026-03-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131049382",
+      "taxonId": 100067,
+      "name": "havsörn",
+      "scientificName": "Haliaeetus albicilla",
+      "rank": "species",
+      "day": "2026-01-22"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130744225",
+      "taxonId": 102942,
+      "name": "ormvråk",
+      "scientificName": "Buteo buteo",
+      "rank": "species",
+      "day": "2026-01-17"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130429370",
+      "taxonId": 102952,
+      "name": "tofsvipa",
+      "scientificName": "Vanellus vanellus",
+      "rank": "species",
+      "day": "2026-01-03"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130559464",
+      "taxonId": 102971,
+      "name": "ringduva",
+      "scientificName": "Columba palumbus",
+      "rank": "species",
+      "day": "2026-01-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131836857",
+      "taxonId": 102950,
+      "name": "strandskata",
+      "scientificName": "Haematopus ostralegus",
+      "rank": "species",
+      "day": "2026-03-20"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131263592",
+      "taxonId": 6332438,
+      "name": "varfågel",
+      "scientificName": "Lanius excubitor",
+      "rank": "species",
+      "day": "2026-02-20"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131089823",
+      "taxonId": 100034,
+      "name": "blå kärrhök",
+      "scientificName": "Circus cyaneus",
+      "rank": "species",
+      "day": "2026-02-09"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131207110",
+      "taxonId": 102931,
+      "name": "bläsand",
+      "scientificName": "Mareca penelope",
+      "rank": "species",
+      "day": "2026-02-16"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:132387061",
+      "taxonId": 100007,
+      "name": "årta",
+      "scientificName": "Spatula querquedula",
+      "rank": "species",
+      "day": "2026-04-12"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131328062",
+      "taxonId": 102105,
+      "name": "snatterand",
+      "scientificName": "Mareca strepera",
+      "rank": "species",
+      "day": "2026-02-27"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:136496838",
+      "taxonId": 102624,
+      "name": "blåhake",
+      "scientificName": "Luscinia svecica",
+      "rank": "species",
+      "day": "2026-09-10"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131617164",
+      "taxonId": 103001,
+      "name": "rödvingetrast",
+      "scientificName": "Turdus iliacus",
+      "rank": "species",
+      "day": "2026-03-10"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:133575313",
+      "taxonId": 102976,
+      "name": "tornseglare",
+      "scientificName": "Apus apus",
+      "rank": "species",
+      "day": "2026-05-17"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130445866",
+      "taxonId": 103052,
+      "name": "domherre",
+      "scientificName": "Pyrrhula pyrrhula",
+      "rank": "species",
+      "day": "2026-01-03"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:135363062",
+      "taxonId": 100096,
+      "name": "fiskgjuse",
+      "scientificName": "Pandion haliaetus",
+      "rank": "species",
+      "day": "2026-07-23"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131869649",
+      "taxonId": 103013,
+      "name": "gransångare",
+      "scientificName": "Phylloscopus collybita",
+      "rank": "species",
+      "day": "2026-03-21"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:132462891",
+      "taxonId": 103014,
+      "name": "lövsångare",
+      "scientificName": "Phylloscopus trochilus",
+      "rank": "species",
+      "day": "2026-04-15"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:132543812",
+      "taxonId": 102980,
+      "name": "ladusvala",
+      "scientificName": "Hirundo rustica",
+      "rank": "species",
+      "day": "2026-04-16"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130520223",
+      "taxonId": 102946,
+      "name": "fasan",
+      "scientificName": "Phasianus colchicus",
+      "rank": "species",
+      "day": "2026-01-05"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130472925",
+      "taxonId": 103041,
+      "name": "bergfink",
+      "scientificName": "Fringilla montifringilla",
+      "rank": "species",
+      "day": "2026-01-04"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:132827298",
+      "taxonId": 102982,
+      "name": "trädpiplärka",
+      "scientificName": "Anthus trivialis",
+      "rank": "species",
+      "day": "2026-04-24"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130496226",
+      "taxonId": 102124,
+      "name": "vinterhämpling",
+      "scientificName": "Linaria flavirostris",
+      "rank": "species",
+      "day": "2026-01-05"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130386082",
+      "taxonId": 102991,
+      "name": "rödhake",
+      "scientificName": "Erithacus rubecula",
+      "rank": "species",
+      "day": "2026-01-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131033194",
+      "taxonId": 102977,
+      "name": "gröngöling",
+      "scientificName": "Picus viridis",
+      "rank": "species",
+      "day": "2026-02-04"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131207117",
+      "taxonId": 232125,
+      "name": "skogsgås",
+      "scientificName": "Anser fabalis",
+      "rank": "species",
+      "day": "2026-02-13"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130559434",
+      "taxonId": 102966,
+      "name": "gråtrut",
+      "scientificName": "Larus argentatus",
+      "rank": "species",
+      "day": "2026-01-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130381408",
+      "taxonId": 102966,
+      "name": "gråtrut",
+      "scientificName": "Larus argentatus",
+      "rank": "species",
+      "day": "2026-01-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130559477",
+      "taxonId": 103036,
+      "name": "korp",
+      "scientificName": "Corvus corax",
+      "rank": "species",
+      "day": "2026-01-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:133130042",
+      "taxonId": 102992,
+      "name": "näktergal",
+      "scientificName": "Luscinia luscinia",
+      "rank": "species",
+      "day": "2026-05-03"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130386027",
+      "taxonId": 103038,
+      "name": "gråsparv",
+      "scientificName": "Passer domesticus",
+      "rank": "species",
+      "day": "2026-01-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130559432",
+      "taxonId": 103038,
+      "name": "gråsparv",
+      "scientificName": "Passer domesticus",
+      "rank": "species",
+      "day": "2026-01-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130558474",
+      "taxonId": 100056,
+      "name": "tornfalk",
+      "scientificName": "Falco tinnunculus",
+      "rank": "species",
+      "day": "2026-01-06"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131297225",
+      "taxonId": 102932,
+      "name": "kricka",
+      "scientificName": "Anas crecca",
+      "rank": "species",
+      "day": "2026-02-24"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131869650",
+      "taxonId": 100048,
+      "name": "mindre hackspett",
+      "scientificName": "Dryobates minor",
+      "rank": "species",
+      "day": "2026-03-21"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131785544",
+      "taxonId": 102990,
+      "name": "järnsparv",
+      "scientificName": "Prunella modularis",
+      "rank": "species",
+      "day": "2026-03-17"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:132469292",
+      "taxonId": 100028,
+      "name": "mindre strandpipare",
+      "scientificName": "Thinornis dubius",
+      "rank": "species",
+      "day": "2026-04-10"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131167529",
+      "taxonId": 103037,
+      "name": "stare",
+      "scientificName": "Sturnus vulgaris",
+      "rank": "species",
+      "day": "2026-02-15"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130520251",
+      "taxonId": 103055,
+      "name": "gulsparv",
+      "scientificName": "Emberiza citrinella",
+      "rank": "species",
+      "day": "2026-01-05"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:132332572",
+      "taxonId": 100033,
+      "name": "brun kärrhök",
+      "scientificName": "Circus aeruginosus",
+      "rank": "species",
+      "day": "2026-04-10"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:132469291",
+      "taxonId": 100033,
+      "name": "brun kärrhök",
+      "scientificName": "Circus aeruginosus",
+      "rank": "species",
+      "day": "2026-04-10"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131049337",
+      "taxonId": 102928,
+      "name": "grågås",
+      "scientificName": "Anser anser",
+      "rank": "species",
+      "day": "2026-01-28"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130744314",
+      "taxonId": 103028,
+      "name": "trädkrypare",
+      "scientificName": "Certhia familiaris",
+      "rank": "species",
+      "day": "2026-01-17"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131207116",
+      "taxonId": 103058,
+      "name": "bläsgås",
+      "scientificName": "Anser albifrons",
+      "rank": "species",
+      "day": "2026-02-13"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130744330",
+      "taxonId": 103030,
+      "name": "nötskrika",
+      "scientificName": "Garrulus glandarius",
+      "rank": "species",
+      "day": "2026-01-17"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:133277797",
+      "taxonId": 103017,
+      "name": "grå flugsnappare",
+      "scientificName": "Muscicapa striata",
+      "rank": "species",
+      "day": "2026-05-09"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:133385042",
+      "taxonId": 100100,
+      "name": "bivråk",
+      "scientificName": "Pernis apivorus",
+      "rank": "species",
+      "day": "2026-05-12"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:132827306",
+      "taxonId": 205761,
+      "name": "gulärla",
+      "scientificName": "Motacilla flava",
+      "rank": "species",
+      "day": "2026-04-23"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:133130040",
+      "taxonId": 100043,
+      "name": "vaktel",
+      "scientificName": "Coturnix coturnix",
+      "rank": "species",
+      "day": "2026-05-03"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130386074",
+      "taxonId": 103026,
+      "name": "talgoxe",
+      "scientificName": "Parus major",
+      "rank": "species",
+      "day": "2026-01-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130559455",
+      "taxonId": 103026,
+      "name": "talgoxe",
+      "scientificName": "Parus major",
+      "rank": "species",
+      "day": "2026-01-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130559475",
+      "taxonId": 102999,
+      "name": "björktrast",
+      "scientificName": "Turdus pilaris",
+      "rank": "species",
+      "day": "2026-01-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131860054",
+      "taxonId": 103000,
+      "name": "taltrast",
+      "scientificName": "Turdus philomelos",
+      "rank": "species",
+      "day": "2026-03-22"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:132310569",
+      "taxonId": 102948,
+      "name": "rörhöna",
+      "scientificName": "Gallinula chloropus",
+      "rank": "species",
+      "day": "2026-03-30"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:137567196",
+      "taxonId": 102979,
+      "name": "sånglärka",
+      "scientificName": "Alauda arvensis",
+      "rank": "species",
+      "day": "2026-02-27"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131326954",
+      "taxonId": 102979,
+      "name": "sånglärka",
+      "scientificName": "Alauda arvensis",
+      "rank": "species",
+      "day": "2026-02-27"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:137567294",
+      "taxonId": 102940,
+      "name": "storskrake",
+      "scientificName": "Mergus merganser",
+      "rank": "species",
+      "day": "2026-02-06"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131460525",
+      "taxonId": 102954,
+      "name": "enkelbeckasin",
+      "scientificName": "Gallinago gallinago",
+      "rank": "species",
+      "day": "2026-03-05"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131228644",
+      "taxonId": 100011,
+      "name": "kungsörn",
+      "scientificName": "Aquila chrysaetos",
+      "rank": "species",
+      "day": "2026-02-19"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131049347",
+      "taxonId": 102941,
+      "name": "sparvhök",
+      "scientificName": "Accipiter nisus",
+      "rank": "species",
+      "day": "2026-01-25"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130386042",
+      "taxonId": 103039,
+      "name": "pilfink",
+      "scientificName": "Passer montanus",
+      "rank": "species",
+      "day": "2026-01-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131049351",
+      "taxonId": 102937,
+      "name": "knipa",
+      "scientificName": "Bucephala clangula",
+      "rank": "species",
+      "day": "2026-01-25"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:132827299",
+      "taxonId": 102981,
+      "name": "hussvala",
+      "scientificName": "Delichon urbicum",
+      "rank": "species",
+      "day": "2026-04-24"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131529146",
+      "taxonId": 103045,
+      "name": "hämpling",
+      "scientificName": "Linaria cannabina",
+      "rank": "species",
+      "day": "2026-03-07"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131316608",
+      "taxonId": 100065,
+      "name": "trana",
+      "scientificName": "Grus grus",
+      "rank": "species",
+      "day": "2026-02-26"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130472927",
+      "taxonId": 103040,
+      "name": "bofink",
+      "scientificName": "Fringilla coelebs",
+      "rank": "species",
+      "day": "2026-01-04"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:132827304",
+      "taxonId": 100114,
+      "name": "gråhakedopping",
+      "scientificName": "Podiceps grisegena",
+      "rank": "species",
+      "day": "2026-04-23"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:132827305",
+      "taxonId": 102616,
+      "name": "grönbena",
+      "scientificName": "Tringa glareola",
+      "rank": "species",
+      "day": "2026-04-23"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:132387083",
+      "taxonId": 102949,
+      "name": "sothöna",
+      "scientificName": "Fulica atra",
+      "rank": "species",
+      "day": "2026-04-12"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:132469290",
+      "taxonId": 102949,
+      "name": "sothöna",
+      "scientificName": "Fulica atra",
+      "rank": "species",
+      "day": "2026-04-12"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131836856",
+      "taxonId": 102987,
+      "name": "sädesärla",
+      "scientificName": "Motacilla alba",
+      "rank": "species",
+      "day": "2026-03-20"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:137545309",
+      "taxonId": 100079,
+      "name": "salskrake",
+      "scientificName": "Mergellus albellus",
+      "rank": "species",
+      "day": "2026-10-29"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131328060",
+      "taxonId": 102930,
+      "name": "gravand",
+      "scientificName": "Tadorna tadorna",
+      "rank": "species",
+      "day": "2026-02-27"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131154111",
+      "taxonId": 103020,
+      "name": "entita",
+      "scientificName": "Poecile palustris",
+      "rank": "species",
+      "day": "2026-02-14"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131460527",
+      "taxonId": 102964,
+      "name": "fiskmås",
+      "scientificName": "Larus canus",
+      "rank": "species",
+      "day": "2026-03-04"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131098208",
+      "taxonId": 205497,
+      "name": "ägretthäger",
+      "scientificName": "Ardea alba",
+      "rank": "species",
+      "day": "2026-02-09"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130744263",
+      "taxonId": 103024,
+      "name": "svartmes",
+      "scientificName": "Periparus ater",
+      "rank": "species",
+      "day": "2026-01-17"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131049357",
+      "taxonId": 102929,
+      "name": "kanadagås",
+      "scientificName": "Branta canadensis",
+      "rank": "species",
+      "day": "2026-01-25"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131098207",
+      "taxonId": 100019,
+      "name": "vitkindad gås",
+      "scientificName": "Branta leucopsis",
+      "rank": "species",
+      "day": "2026-02-09"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131252036",
+      "taxonId": 102934,
+      "name": "vigg",
+      "scientificName": "Aythya fuligula",
+      "rank": "species",
+      "day": "2026-02-21"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130445872",
+      "taxonId": 103042,
+      "name": "grönfink",
+      "scientificName": "Chloris chloris",
+      "rank": "species",
+      "day": "2026-01-03"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131460538",
+      "taxonId": 103057,
+      "name": "sävsparv",
+      "scientificName": "Schoeniclus schoeniclus",
+      "rank": "species",
+      "day": "2026-03-02"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131458336",
+      "taxonId": 102983,
+      "name": "ängspiplärka",
+      "scientificName": "Anthus pratensis",
+      "rank": "species",
+      "day": "2026-03-05"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:132827319",
+      "taxonId": 102975,
+      "name": "hornuggla",
+      "scientificName": "Asio otus",
+      "rank": "species",
+      "day": "2026-04-16"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:137690850",
+      "taxonId": 100001,
+      "name": "duvhök",
+      "scientificName": "Astur gentilis",
+      "rank": "species",
+      "day": "2026-11-05"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131460539",
+      "taxonId": 102963,
+      "name": "skrattmås",
+      "scientificName": "Chroicocephalus ridibundus",
+      "rank": "species",
+      "day": "2026-03-02"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131049320",
+      "taxonId": 103019,
+      "name": "stjärtmes",
+      "scientificName": "Aegithalos caudatus",
+      "rank": "species",
+      "day": "2026-02-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131460530",
+      "taxonId": 100049,
+      "name": "spillkråka",
+      "scientificName": "Dryocopus martius",
+      "rank": "species",
+      "day": "2026-03-03"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:134114144",
+      "taxonId": 100031,
+      "name": "vit stork",
+      "scientificName": "Ciconia ciconia",
+      "rank": "species",
+      "day": "2026-06-02"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130520232",
+      "taxonId": 103015,
+      "name": "kungsfågel",
+      "scientificName": "Regulus regulus",
+      "rank": "species",
+      "day": "2026-01-05"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:132827309",
+      "taxonId": 102995,
+      "name": "buskskvätta",
+      "scientificName": "Saxicola rubetra",
+      "rank": "species",
+      "day": "2026-04-21"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131460532",
+      "taxonId": 102974,
+      "name": "kattuggla",
+      "scientificName": "Strix aluco",
+      "rank": "species",
+      "day": "2026-03-02"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131460550",
+      "taxonId": 103002,
+      "name": "dubbeltrast",
+      "scientificName": "Turdus viscivorus",
+      "rank": "species",
+      "day": "2026-03-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:136907508",
+      "taxonId": 100090,
+      "name": "nötkråka",
+      "scientificName": "Nucifraga caryocatactes",
+      "rank": "species",
+      "day": "2026-09-27"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131617166",
+      "taxonId": 102986,
+      "name": "forsärla",
+      "scientificName": "Motacilla cinerea",
+      "rank": "species",
+      "day": "2026-03-09"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:137252495",
+      "taxonId": 102623,
+      "name": "trädlärka",
+      "scientificName": "Lullula arborea",
+      "rank": "species",
+      "day": "2026-09-22"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131658260",
+      "taxonId": 103054,
+      "name": "snösparv",
+      "scientificName": "Plectrophenax nivalis",
+      "rank": "species",
+      "day": "2026-03-14"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:133385045",
+      "taxonId": 102943,
+      "name": "lärkfalk",
+      "scientificName": "Falco subbuteo",
+      "rank": "species",
+      "day": "2026-05-12"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130532974",
+      "taxonId": 102121,
+      "name": "sidensvans",
+      "scientificName": "Bombycilla garrulus",
+      "rank": "species",
+      "day": "2026-01-06"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131049328",
+      "taxonId": 103044,
+      "name": "grönsiska",
+      "scientificName": "Spinus spinus",
+      "rank": "species",
+      "day": "2026-01-30"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130744266",
+      "taxonId": 100012,
+      "name": "gråhäger",
+      "scientificName": "Ardea cinerea",
+      "rank": "species",
+      "day": "2026-01-17"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131297224",
+      "taxonId": 102611,
+      "name": "stenfalk",
+      "scientificName": "Falco columbarius",
+      "rank": "species",
+      "day": "2026-02-24"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:132505766",
+      "taxonId": 102996,
+      "name": "stenskvätta",
+      "scientificName": "Oenanthe oenanthe",
+      "rank": "species",
+      "day": "2026-04-16"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:134985961",
+      "taxonId": 102626,
+      "name": "törnskata",
+      "scientificName": "Lanius collurio",
+      "rank": "species",
+      "day": "2026-07-08"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:134989960",
+      "taxonId": 102626,
+      "name": "törnskata",
+      "scientificName": "Lanius collurio",
+      "rank": "species",
+      "day": "2026-07-08"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131265779",
+      "taxonId": 102988,
+      "name": "strömstare",
+      "scientificName": "Cinclus cinclus",
+      "rank": "species",
+      "day": "2026-02-22"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:134933804",
+      "taxonId": 100061,
+      "name": "dubbelbeckasin",
+      "scientificName": "Gallinago media",
+      "rank": "species",
+      "day": "2026-05-08"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:132310570",
+      "taxonId": 102960,
+      "name": "skogssnäppa",
+      "scientificName": "Tringa ochropus",
+      "rank": "species",
+      "day": "2026-03-27"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131962929",
+      "taxonId": 102960,
+      "name": "skogssnäppa",
+      "scientificName": "Tringa ochropus",
+      "rank": "species",
+      "day": "2026-03-27"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:133575331",
+      "taxonId": 102993,
+      "name": "svart rödstjärt",
+      "scientificName": "Phoenicurus ochruros",
+      "rank": "species",
+      "day": "2026-05-14"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:133335941",
+      "taxonId": 100124,
+      "name": "backsvala",
+      "scientificName": "Riparia riparia",
+      "rank": "species",
+      "day": "2026-05-10"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131460533",
+      "taxonId": 100091,
+      "name": "storspov",
+      "scientificName": "Numenius arquata",
+      "rank": "species",
+      "day": "2026-03-02"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:133130048",
+      "taxonId": 103008,
+      "name": "ärtsångare",
+      "scientificName": "Curruca curruca",
+      "rank": "species",
+      "day": "2026-04-29"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:133335948",
+      "taxonId": 103012,
+      "name": "grönsångare",
+      "scientificName": "Phylloscopus sibilatrix",
+      "rank": "species",
+      "day": "2026-05-08"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131836860",
+      "taxonId": 103016,
+      "name": "brandkronad kungsfågel",
+      "scientificName": "Regulus ignicapilla",
+      "rank": "species",
+      "day": "2026-03-17"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:132310564",
+      "taxonId": 102958,
+      "name": "rödbena",
+      "scientificName": "Tringa totanus",
+      "rank": "species",
+      "day": "2026-04-07"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:132827313",
+      "taxonId": 103018,
+      "name": "svartvit flugsnappare",
+      "scientificName": "Ficedula hypoleuca",
+      "rank": "species",
+      "day": "2026-04-20"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:137337385",
+      "taxonId": 103049,
+      "name": "mindre korsnäbb",
+      "scientificName": "Loxia curvirostra",
+      "rank": "species",
+      "day": "2026-10-04"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:132414709",
+      "taxonId": 100054,
+      "name": "pilgrimsfalk",
+      "scientificName": "Falco peregrinus",
+      "rank": "species",
+      "day": "2026-04-13"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:133841658",
+      "taxonId": 103006,
+      "name": "rörsångare",
+      "scientificName": "Acrocephalus scirpaceus",
+      "rank": "species",
+      "day": "2026-05-22"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:133166340",
+      "taxonId": 102112,
+      "name": "mosnäppa",
+      "scientificName": "Calidris temminckii",
+      "rank": "species",
+      "day": "2026-05-05"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131460534",
+      "taxonId": 103046,
+      "name": "gråsiska",
+      "scientificName": "Acanthis flammea",
+      "rank": "species",
+      "day": "2026-03-02"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:130559468",
+      "taxonId": 6332453,
+      "name": "Klippduva (tamduva)",
+      "scientificName": "Columba livia",
+      "rank": "species",
+      "day": "2026-01-01"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:132827300",
+      "taxonId": 100112,
+      "name": "ljungpipare",
+      "scientificName": "Pluvialis apricaria",
+      "rank": "species",
+      "day": "2026-04-23"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:137318911",
+      "taxonId": 100044,
+      "name": "kornknarr",
+      "scientificName": "Crex crex",
+      "rank": "species",
+      "day": "2026-06-06"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131252075",
+      "taxonId": 102104,
+      "name": "smådopping",
+      "scientificName": "Tachybaptus ruficollis",
+      "rank": "species",
+      "day": "2026-02-21"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:132451870",
+      "taxonId": 103060,
+      "name": "brun glada",
+      "scientificName": "Milvus migrans",
+      "rank": "species",
+      "day": "2026-04-14"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:133575328",
+      "taxonId": 102118,
+      "name": "nattskärra",
+      "scientificName": "Caprimulgus europaeus",
+      "rank": "species",
+      "day": "2026-05-15"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131460535",
+      "taxonId": 102107,
+      "name": "brunand",
+      "scientificName": "Aythya ferina",
+      "rank": "species",
+      "day": "2026-03-02"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:132827318",
+      "taxonId": 205660,
+      "name": "silltrut",
+      "scientificName": "Larus fuscus",
+      "rank": "species",
+      "day": "2026-04-16"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131460537",
+      "taxonId": 102106,
+      "name": "skedand",
+      "scientificName": "Spatula clypeata",
+      "rank": "species",
+      "day": "2026-03-02"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:136696908",
+      "taxonId": 102122,
+      "name": "flodsångare",
+      "scientificName": "Locustella fluviatilis",
+      "rank": "species",
+      "day": "2026-05-25"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:132310563",
+      "taxonId": 102951,
+      "name": "större strandpipare",
+      "scientificName": "Charadrius hiaticula",
+      "rank": "species",
+      "day": "2026-04-07"
+    },
+    {
+      "id": "urn:lsid:artportalen.se:sighting:131836862",
+      "taxonId": 100103,
+      "name": "brushane",
+      "scientificName": "Calidris pugnax",
+      "rank": "species",
+      "day": "2026-03-17"
+    }
+  ]
+}
