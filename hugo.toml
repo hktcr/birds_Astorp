@@ -58,7 +58,7 @@ publishDir = 'docs'
     parent = 'fagelar'
     weight = 1
   [[menus.main]]
-    name = 'Mitt fågelår 2026'
+    name = 'Håkans fågelår 2026'
     pageRef = '/mitt-fagelar-2026/'
     parent = 'fagelar'
     weight = 2
