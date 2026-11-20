@@ -14,6 +14,8 @@
 .municipal-home-page .prediction-section{margin-bottom:1.5rem}
 .municipal-home-page .prediction-card{display:block;text-align:left;animation:none;transform:none}
 .municipal-home-page .prediction-card:hover{transform:none;border-color:var(--color-border);box-shadow:var(--shadow-sm)}
+.municipal-home-page #recent-species .prediction-card{background:#f5f8f5;border-color:#d4e0d3}
+.municipal-home-page #prediction-cards .prediction-card{background:#fbf8e9;border-color:#e6dfbf}
 .municipal-home-page .prediction-species{display:block}.municipal-home-page .prediction-meta{display:block;font-size:.875rem;color:var(--color-text-muted);margin-top:.3rem}
 .municipal-home-page .trail-item-latest .trail-dot{animation:none;background:var(--color-primary);box-shadow:0 0 0 2px var(--color-primary)}
 .municipal-home-page .trail-source{font-size:.875rem;margin-left:.45rem;white-space:nowrap}
