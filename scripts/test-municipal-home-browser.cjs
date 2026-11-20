@@ -66,7 +66,7 @@ const server=http.createServer((req,res)=>{
    assert.equal(await page.locator('#comparison-prior-count').innerText(),String(previous));
    assert.equal(await page.locator('#comparison-year').inputValue(),String(year-1));
    assert.equal(await page.evaluate(()=>{const d=document.querySelector('#year-comparison-dialog');return d.scrollWidth<=d.clientWidth+1&&d.contains(document.activeElement);}),true);
-   assert.equal(await page.locator('#comparison-current-list li').count(),require('../static/js/municipal-preview-data.js').summarize(data,data.source.toDay).newCutoff.length);
+   assert.equal(await page.locator('#comparison-current-list .comparison-species').count(),require('../static/js/municipal-preview-data.js').summarize(data,data.source.toDay).newCutoff.length);
    await page.screenshot({path:path.join(output,'comparison-'+viewport.width+'.png'),fullPage:false});
    await page.locator('#comparison-year').selectOption('2024');
    await page.waitForFunction(()=>!document.querySelector('#comparison-retry').hidden);
@@ -97,6 +97,7 @@ const server=http.createServer((req,res)=>{
     const slow=filter.includes("startDate >= '2023-12-31T23:00:00.000Z'");
     const fast=filter.includes("startDate >= '2022-12-31T23:00:00.000Z'");
     if(url.hostname==='sosgeo.artdata.slu.se'&&(slow||fast)){
+     if(slow)window.comparisonSlowStarted=true;
      return new Promise(resolve=>setTimeout(()=>resolve(new Response(JSON.stringify({type:'FeatureCollection',numberMatched:0,numberReturned:0,features:[]}),{status:200,headers:{'Content-Type':'application/json'}})),slow?300:10));
     }
     return original(input,options);
@@ -109,6 +110,7 @@ const server=http.createServer((req,res)=>{
   await racePage.waitForFunction(()=>!document.querySelector('#year-comparison-open').disabled);
   await racePage.locator('#year-comparison-open').click();
   await racePage.locator('#comparison-year').selectOption('2024');
+  await racePage.waitForFunction(()=>window.comparisonSlowStarted===true);
   await racePage.locator('#comparison-year').selectOption('2023');
   await racePage.waitForFunction(()=>document.querySelector('#comparison-result').dataset.year==='2023'&&!document.querySelector('#comparison-result').hidden);
   await racePage.waitForTimeout(1200);
