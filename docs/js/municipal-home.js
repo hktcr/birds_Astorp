@@ -79,7 +79,8 @@ function mount(env){
  function render(){
    status();renderHints();if(!data)return;
    const m=model(data,year);el('species-count').textContent=m.count;
-   el('latest-species').textContent=m.latest?'Senaste tillskott i årslistan: '+dateLabel(m.latest)+'.':'Inga arter i det kontrollerade urvalet.';
+   const latestNames=m.days.length?m.days[0][1].map(r=>r.name).sort((a,b)=>a.localeCompare(b,'sv')):[];
+   el('latest-species').textContent=latestNames.length?(latestNames.length===1?'Senaste art: ':'Senaste arter: ')+new Intl.ListFormat('sv',{style:'long',type:'conjunction'}).format(latestNames)+' – '+dateLabel(m.latest)+'.':'Inga arter i det kontrollerade urvalet.';
    const recent=el('recent-species');recent.replaceChildren();
    m.recent.forEach(r=>{const card=create('div','prediction-card');card.append(create('span','prediction-species',r.name),create('span','prediction-meta',dateLabel(r.day)));recent.append(card);});
    const trail=el('trail-timeline');trail.replaceChildren();
