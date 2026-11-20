@@ -9,6 +9,13 @@
       <p class="home-scope">Fågelarter rapporterade i Åstorps kommun under året.</p>
       <div class="latest-species" id="latest-species">Hämtar årets artlista …</div>
     </div>
+    {{ range first 1 (where .Site.RegularPages "Section" "posts") }}
+    <a href="{{ .RelPermalink }}" class="latest-post-box">
+      <span class="latest-post-meta"><span class="latest-post-label">Senaste notis</span><time class="latest-post-date" datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Day }} {{ index (slice "jan" "feb" "mar" "apr" "maj" "jun" "jul" "aug" "sep" "okt" "nov" "dec") (sub .Date.Month 1) }}</time></span>
+      <span class="latest-post-title">{{ .Title }}</span>
+      <span class="latest-post-read">Läs notisen</span>
+    </a>
+    {{ end }}
     <section class="prediction-section" aria-labelledby="recent-title"><div class="prediction-header"><h2 class="prediction-title" id="recent-title">Senast tillkomna arter</h2></div><div class="prediction-cards" id="recent-species"></div></section>
     <section class="prediction-section" id="prediction-section" aria-labelledby="prediction-title">
       <div class="prediction-header"><h2 class="prediction-title" id="prediction-title">Nästa på tur?</h2></div>
@@ -16,7 +23,6 @@
       <p class="home-scope">Förslag utifrån tidigare fynd och årstid.</p>
       <p class="home-scope" id="prediction-score" role="status">Beräknar aktuella tips …</p>
     </section>
-    {{ range first 1 (where .Site.RegularPages "Section" "posts") }}<a href="{{ .RelPermalink }}" class="latest-post-box"><span class="latest-post-label">Senaste notis</span><span class="latest-post-title">{{ .Title }}</span><span class="latest-post-date">{{ .Date.Day }} {{ index (slice "jan" "feb" "mar" "apr" "maj" "jun" "jul" "aug" "sep" "okt" "nov" "dec") (sub .Date.Month 1) }}</span></a>{{ end }}
     <section class="observation-trail" aria-labelledby="trail-title"><h2 class="trail-title" id="trail-title">Årets observationsspår</h2><p class="home-scope">Varje art visas vid årets första rapporterade fynddatum.</p><div class="trail-timeline" id="trail-timeline"><p class="home-empty">Årslistan laddas …</p></div></section>
     <details class="home-source"><summary>Uppdatering och fågeldata</summary>
       <p class="home-data-status" id="data-status" role="status">Läser underlaget från Artportalen …</p>
