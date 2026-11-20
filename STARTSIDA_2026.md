@@ -1,0 +1,9 @@
+# Kommunens startsida, 20 november 2026
+
+Startsidan återanvänder originalets logga, typsnitt, home-hero, kort och observationsspår. Kommunens artantal och första fynddatum hämtas separat från Artportalen via SLU:s offentliga WFS. Den personliga startsidemallen har kopierats utan ändringar till layouts/arsprojekt/single.html och finns på /mitt-fagelar-2026/, under Fågelår tillsammans med den personliga årslistan och krysskartan. Checklistan, notiser och bilder har inte ändrats.
+
+Kommundata: provider 1, exakt Åstorp, fåglar, positiva naturliga fynd utan osäker bestämning. Befintlig AviList-mappning återanvänds. Ofullständiga svar, okända taxa och tidsstämplar utan tidszon stoppas. Komplett svar sparas i sessionStorage i 15 minuter. Ett hämtningsfel behåller daterat underlag och visar aldrig noll som ersättning. Ett saknat statiskt underlag hindrar inte försök till livehämtning. Kommunfilen som följer med gäller 29 oktober och är endast daterad reserv, inte aktuell statistik.
+
+Avgränsning: denna ändring gäller 2026. Loader och verifierare är uttryckligen årsbundna till 2025/2026 och behöver uppdateras inför nästa år. Rapporteringsdatum används inte som observationsdatum. Årets första fynd är inte kommunens första fynd någonsin. Flera källfynd på första dagen länkas utan att en ensam förstafinnare utses.
+
+Verifierat: JS-syntax och datalogik/controllerfall i körbar JavaScript-isolat. Ingen executor, Hugo eller riktig webbläsare fanns i arbetstråden. SLU:s WFS kunde inte nås genom webbverktyget; aktuell anslutning och CORS är därför inte verifierade. Före produktionsbyte: bash scripts/build.sh, relevanta befintliga kontroller, webb-/mobilkontroll och verifierad livehämtning. docs/ är inte uppdaterad här. Den befintliga sajten ska inte ersättas innan förhandsversionen har granskats enligt användarens tidigare önskemål.
