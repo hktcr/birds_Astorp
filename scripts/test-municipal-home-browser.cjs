@@ -80,7 +80,7 @@ const server=http.createServer((req,res)=>{
 
    if(viewport.width<768)await page.locator('#mobile-menu-btn').click();
    await page.locator('.home-year-menu summary').click();
-   await page.getByRole('link',{name:'Mitt fågelår 2026',exact:true}).click();
+   await page.getByRole('link',{name:'Håkans fågelår 2026',exact:true}).click();
    await page.waitForFunction(n=>document.querySelector('#species-count')?.textContent===String(n),personalCount);
    assert.equal(await page.locator('.municipal-home-page').count(),0);
    await page.screenshot({path:path.join(output,'personal-'+viewport.width+'.png'),fullPage:false});
