@@ -41,7 +41,7 @@ jobs:
           echo "372d2f0538b24d2bb9285f0583c1e3b02d023ec2c2b8eb90e5c3bbfb3139fb13  hugo.tar.gz" | sha256sum --check
           tar -xzf hugo.tar.gz hugo
           echo "$RUNNER_TEMP/astorp-hugo" >> "$GITHUB_PATH"
-      - name: Verify and extract official AviList v2026 taxonomic sequence
+      - name: Verify pinned public AviList v2026 sequence and all municipal identities
         run: python3 scripts/prepare-municipal-taxonomic-order.py
       - name: Build and run existing release checks
         run: |

@@ -9,7 +9,7 @@ const OBSERVER_FIELDS='occurrenceId,dataProviderId,municipality,organismGroup,is
 function firstRows(data,year){return preview.first(data,year);}
 
 function orderIndex(order){
- if(!order||order.schemaVersion!==1||order.taxonomyVersion!=='AviList v2026'||order.source?.sequenceField!=='#'||order.source?.rankFilter!=='species'||!/^[a-f0-9]{64}$/.test(order.source?.sha256||'')||!order.sequenceByScientificName||typeof order.sequenceByScientificName!=='object')throw Error('Den taxonomiska ordningen kunde inte verifieras.');
+ if(!order||order.schemaVersion!==1||order.taxonomyVersion!=='AviList v2026'||order.source?.sequenceField!=='avilist_seq'||order.source?.rankFilter!=='species'||!/^[a-f0-9]{64}$/.test(order.source?.sha256||'')||!order.sequenceByScientificName||typeof order.sequenceByScientificName!=='object')throw Error('Den taxonomiska ordningen kunde inte verifieras.');
  const entries=Object.entries(order.sequenceByScientificName),positions=new Set();
  if(!entries.length||entries.length!==order.speciesCount)throw Error('Den taxonomiska listan är ofullständig.');
  for(const [name,sequence] of entries){if(!name||!Number.isSafeInteger(sequence)||sequence<=0||positions.has(sequence))throw Error('Den taxonomiska sekvensen är ogiltig.');positions.add(sequence);}
