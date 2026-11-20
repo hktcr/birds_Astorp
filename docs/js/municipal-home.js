@@ -28,7 +28,7 @@ function mount(env){
  const doc=env.document,el=id=>doc.getElementById(id),host=el('municipal-home');
  if(!host)return;
  const year=Number(host.dataset.year),base=host.dataset.base,cacheKey='astorp-home-'+year+'-v1';
- let data=null,busy=false,failure='';
+ let data=null,busy=false,failure='',hintSources=null,hintFailure='',hintDay='';
  const create=(tag,className,value)=>{const n=doc.createElement(tag);if(className)n.className=className;if(value!=null)n.textContent=value;return n;};
  function checked(value){
    const result=env.MunicipalPreview.verify(value),s=result.source;
@@ -50,8 +50,34 @@ function mount(env){
    node.textContent=(busy?'Uppdaterar. ':'')+(ok?'Hämtat ':'Senast kontrollerade underlag: ')+stamp+' svensk tid. Fynd till och med '+dateLabel(s.toDay)+' '+year+'.'+(failure?' Nya fynd kunde inte hämtas. '+failure:'');
    el('source-detail').textContent='Urval: 1 januari till '+dateLabel(s.toDay)+' '+year+'. Hämtat '+stamp+' svensk tid. Underlaget kan ändras när fynd läggs till eller rättas. Artantalet bygger på hela det kontrollerade urvalet.';
  }
+ function renderHints(){
+   hintDay=env.StockholmDates.stockholmDay(new env.Date());
+   const cards=el('prediction-cards'),label=el('prediction-score');
+   if(!cards||!label)return;
+   cards.replaceChildren();
+   if(!data){label.textContent='Tips visas när kommunens årslista har hämtats.';return;}
+   if(!hintSources){label.textContent=hintFailure||'Beräknar aktuella tips …';return;}
+   try{
+     const result=env.MunicipalHints.rank(data,year,hintSources.guide,hintSources.daily,hintSources.taxonomy,new env.Date());
+     result.candidates.forEach(candidate=>{
+       const card=create('div','prediction-card');
+       card.append(create('span','prediction-species',candidate.name));
+       cards.append(card);
+     });
+     label.textContent=(result.candidates.length?'Period: ':'Inga återstående arter har fynd i underlaget för perioden ')+env.StockholmDates.formatDay(result.today)+' till '+env.StockholmDates.formatDay(result.endDay)+' '+year+'.';
+     el('prediction-source').textContent='Tipsens historiska dagsunderlag är märkt '+(result.sourceDate||'okänt datum')+' och bygger på Artportalen och fältdagboken. Artguidens export är från '+(hintSources.guide.exportDate||'okänt datum')+'. Urvalet utesluter arter i kommunens aktuella årslista. Tipsen är en säsongsbedömning, inte nya observationer eller beräknade sannolikheter.';
+   }catch(e){label.textContent=e.message;}
+ }
+ async function loadHintSources(){
+   const controller=new env.AbortController(),timer=env.setTimeout(()=>controller.abort(),15000);
+   try{
+     const sources=await Promise.all(['species-guide.json','species_days_historic.json','municipal-taxonomy.json'].map(name=>read(base+'data/'+name,controller.signal)));
+     hintSources={guide:sources[0],daily:sources[1],taxonomy:sources[2]};hintFailure='';
+   }catch(_){hintFailure='Det historiska underlaget kunde inte hämtas. Ladda om sidan för att försöka igen.';}
+   finally{env.clearTimeout(timer);renderHints();}
+ }
  function render(){
-   status();if(!data)return;
+   status();renderHints();if(!data)return;
    const m=model(data,year);el('species-count').textContent=m.count;
    el('latest-species').textContent=m.latest?'Senaste tillskott i årslistan: '+dateLabel(m.latest)+'.':'Inga arter i det kontrollerade urvalet.';
    const recent=el('recent-species');recent.replaceChildren();
@@ -75,7 +101,7 @@ function mount(env){
  }
  async function read(url,signal){const r=await env.fetch(url,{cache:'no-store',signal});if(!r.ok)throw Error('HTTP '+r.status+'.');return r.json();}
  async function refresh(){
-   if(busy)return;busy=true;failure='';el('refresh-data').disabled=true;status();
+   if(busy)return;busy=true;failure='';el('refresh-data').disabled=true;status();renderHints();
    const controller=new env.AbortController(),timer=env.setTimeout(()=>controller.abort(),90000);
    try{
      const taxonomy=await read(base+'data/municipal-taxonomy.json',controller.signal);
@@ -87,18 +113,20 @@ function mount(env){
    finally{env.clearTimeout(timer);busy=false;el('refresh-data').disabled=false;render();if(!data){el('latest-species').textContent='Underlag saknas.';el('trail-timeline').replaceChildren(create('p','home-empty','Använd Uppdatera fynd för att försöka igen.'));}}
  }
  async function start(){
+   const hintReady=loadHintSources();
    el('refresh-data').addEventListener('click',refresh);
    try{const saved=env.sessionStorage.getItem(cacheKey);if(saved)data=checked(JSON.parse(saved));}catch(_){}
-   if(data){render();if(current(data,new env.Date(),env.MunicipalLive))return;}
+   if(data){render();if(current(data,new env.Date(),env.MunicipalLive)){await hintReady;return;}}
    else {
      const controller=new env.AbortController(),timer=env.setTimeout(()=>controller.abort(),10000);
      try{data=checked(await read(base+'data/municipal-preview.json',controller.signal));render();}catch(_){}finally{env.clearTimeout(timer);}
    }
    await refresh();
+   await hintReady;
  }
  const ready=start();
- const interval=env.setInterval(()=>{if(!doc.hidden&&(!data||!current(data,new env.Date(),env.MunicipalLive)))refresh();},900000);
- function visible(){if(!doc.hidden&&(!data||!current(data,new env.Date(),env.MunicipalLive)))refresh();}
+ const interval=env.setInterval(()=>{if(doc.hidden)return;if(env.StockholmDates.stockholmDay(new env.Date())!==hintDay)renderHints();if(!data||!current(data,new env.Date(),env.MunicipalLive))refresh();},60000);
+ function visible(){if(doc.hidden)return;renderHints();if(!data||!current(data,new env.Date(),env.MunicipalLive))refresh();}
  doc.addEventListener('visibilitychange',visible);
  return {ready,refresh,destroy(){env.clearInterval(interval);doc.removeEventListener('visibilitychange',visible);}};
 }

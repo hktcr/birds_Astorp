@@ -12,15 +12,21 @@
       <div class="home-actions"><button class="home-button" id="refresh-data" type="button">Uppdatera fynd</button><a href="https://www.artportalen.se/List/Top/Species/F%C3%A5glar/2026/Kommun/%C3%85storp/AnySite/OrderByDate/Desc">Årslistan hos Artportalen</a></div>
     </div>
     <section class="prediction-section" aria-labelledby="recent-title"><div class="prediction-header"><h2 class="prediction-title" id="recent-title">Senast tillkomna arter</h2></div><div class="prediction-cards" id="recent-species"></div></section>
+    <section class="prediction-section" id="prediction-section" aria-labelledby="prediction-title">
+      <div class="prediction-header"><h2 class="prediction-title" id="prediction-title">Nästa på tur?</h2></div>
+      <div class="prediction-cards" id="prediction-cards"></div>
+      <p class="home-scope">Förslag utifrån tidigare fynd och årstid.</p>
+      <p class="home-scope" id="prediction-score" role="status">Beräknar aktuella tips …</p>
+    </section>
     {{ range first 1 (where .Site.RegularPages "Section" "posts") }}<a href="{{ .RelPermalink }}" class="latest-post-box"><span class="latest-post-label">Senaste notis</span><span class="latest-post-title">{{ .Title }}</span><span class="latest-post-date">{{ .Date.Day }} {{ index (slice "jan" "feb" "mar" "apr" "maj" "jun" "jul" "aug" "sep" "okt" "nov" "dec") (sub .Date.Month 1) }}</span></a>{{ end }}
     <section class="observation-trail" aria-labelledby="trail-title"><h2 class="trail-title" id="trail-title">Årets observationsspår</h2><p class="home-scope">Varje art visas vid årets första rapporterade fynddatum.</p><div class="trail-timeline" id="trail-timeline"><p class="home-empty">Årslistan laddas …</p></div></section>
-    <details class="home-source"><summary>Om årets fågeldata</summary><p>Underlaget är offentliga fågelfynd i Åstorps kommun från Artportalen via SLU. Alla observatörer ingår. Skyddade fynd, osäkra bestämningar och fynd markerade som ej naturligt förekommande ingår inte.</p><p>En art räknas en gång enligt den befintliga AviList-indelningen. Underarter förs till art, och tamduva ingår i klippduva. Artportalens egna listregler kan ge ett annat antal.</p><p id="source-detail">Hämtningstid och täckning visas när ett komplett underlag finns.</p><p>Fynd kan rapporteras i efterhand. Ett tomt sökresultat betyder inte att arten saknas i naturen. Vid ett hämtningsfel ligger senast kontrollerade underlag kvar med sitt datum.</p><p><a href="https://www.slu.se/artdatabanken/rapportering-och-fynd/oppna-data-och-apier/">Om SLU:s öppna data</a></p></details>
+    <details class="home-source"><summary>Om årets fågeldata</summary><p>Underlaget är offentliga fågelfynd i Åstorps kommun från Artportalen via SLU. Alla observatörer ingår. Skyddade fynd, osäkra bestämningar och fynd markerade som ej naturligt förekommande ingår inte.</p><p>En art räknas en gång enligt den befintliga AviList-indelningen. Underarter förs till art, och tamduva ingår i klippduva. Artportalens egna listregler kan ge ett annat antal.</p><p id="source-detail">Hämtningstid och täckning visas när ett komplett underlag finns.</p><p>Fynd kan rapporteras i efterhand. Ett tomt sökresultat betyder inte att arten saknas i naturen. Vid ett hämtningsfel ligger senast kontrollerade underlag kvar med sitt datum.</p><p id="prediction-source">Tipsen använder det daterade historiska underlaget från Artportalen och fältdagboken. Kommunens aktuella årslista avgör vilka arter som redan är sedda.</p><p><a href="https://www.slu.se/artdatabanken/rapportering-och-fynd/oppna-data-och-apier/">Om SLU:s öppna data</a></p></details>
     <noscript><p>JavaScript behövs för att hämta kommunens årslista. Du kan även öppna årslistan hos Artportalen via länken ovan.</p></noscript>
   </div>
 </section>
 {{ end }}
 {{ define "scripts" }}
-{{ range slice "municipal-preview-data.js" "municipal-home-live.js" "municipal-home.js" }}
+{{ range slice "stockholm-dates.js" "predictions.js" "municipal-preview-data.js" "municipal-home-live.js" "municipal-hints.js" "municipal-home.js" }}
 <script src="{{ printf "js/%s" . | relURL }}?v={{ readFile (printf "static/js/%s" .) | sha256 }}" defer></script>
 {{ end }}
 {{ end }}
