@@ -1,7 +1,6 @@
 ---
-title: "Årslista 2026"
-layout: "arslista"
+title: "Kommunens årslista 2026"
+layout: "single"
 type: "arslista"
+description: "Årets rapporterade fågelarter i Åstorps kommun, med första fynddatum och observatörsuppgifter från Artportalen."
 ---
-
-Alla arter som observerats i Åstorps kommun under 2026.

@@ -32,7 +32,7 @@ birds_Astorp/
 └── hugo.toml           ← Hugo-konfiguration (taxonomier, meny, params)
 ```
 
-> **OBS:** Hugo kopierar INTE `data/`-filer till `docs/`. Artlistan och kartan hämtar JSON via klient-side `fetch()` från `docs/data/`. Startsidan bäddar in data vid byggtid via Hugo-template.
+> **OBS:** Hugo kopierar INTE `data/`-filer till `docs/`. Artlistan och kartan hämtar JSON via klient-side `fetch()` från `docs/data/`. Håkans personliga startsida bäddar in data vid byggtid via Hugo-template. Kommunstartsidan och kommunens årslista hämtar det separat verifierade kommununderlaget i webbläsaren.
 
 ---
 
@@ -108,12 +108,14 @@ Om "Tomarps Ene" ska bli "Rönneå vid Tomarps Ene":
 
 | Sida | Datakälla | Renderas |
 |------|-----------|----------|
-| **Startsidan** (`/`) | `data/checklist-2026.json` via Hugo-template + `docs/index.html` inline JS | Byggtid + manuell synk |
+| **Kommunstartsidan** (`/`) | Verifierat offentligt Artportalen-underlag via `municipal-home.js` och `municipal-home-live.js`, daterad reservfil `municipal-preview.json` | Klient-side |
 | **Notiser** (`/posts/`) | Blogginlägg frontmatter + `location-popup.js` | Vid byggtid |
 | **Artkalender** (`/artguide/`) | `species-guide.json` + `checklist-2026.json` via `artguide.js` | Klient-side |
 | **Galleri** (`/galleri/`) | Bilder extraherade ur blogginlägg via Hugo regex, med JS-filter (art/månad/landskap) + lightbox | Vid byggtid |
-| **Karta** (`/karta/`) | `checklist-2026.json` (koordinater per obs) + `astorp-kommun.geojson` via `map.js` | Klient-side |
-| **Årslista** (`/arslista/`) | `species-guide.json` + `checklist-2026.json` via `checklist.js` (TARGET=150 hårdkodad) | Klient-side |
+| **Håkans krysskarta** (`/karta/`) | `checklist-2026.json` (koordinater per obs) + `astorp-kommun.geojson` via `map.js` | Klient-side |
+| **Kommunens årslista** (`/arslista/`) | Samma verifierade kommununderlag som startsidan via `municipal-annual.js`; separat läsning av offentliga observatörsuppgifter | Klient-side |
+| **Håkans årslista** (`/hakans-arslista-2026/`) | `species-guide.json` + `checklist-2026.json` via `checklist.js` (TARGET=150 hårdkodad) | Klient-side |
+| **Håkans fågelår** (`/mitt-fagelar-2026/`) | `checklist-2026.json` via `layouts/arsprojekt/single.html` | Byggtid + klient-side |
 | **Fågelatlasen** (`/species/`) | `checklist-2026.json` + `species-guide.json` + `species_portraits.json` via Hugo-taxonomi | Vid byggtid |
 | **Om** (`/om/`) | `content/om.md` | Vid byggtid |
 
@@ -141,7 +143,9 @@ Numreringen beräknas dynamiskt av JS — inga nummer lagras i JSON. CSS-klassen
 
 ### Produktionsfilen: `docs/index.html`
 
-`docs/index.html` innehåller inline observationsdata som genereras automatiskt från `data/checklist-2026.json` via `layouts/index.html`. Redigera källdatan och kör `bash scripts/build.sh`; handredigera inte den byggda HTML-filen. Kontrollera sedan artantal, senaste observation och observationsspårets numrering.
+Kommunstartsidan (`layouts/index.html`) använder det verifierade kommununderlaget via `municipal-home.js`. Håkans fågelår (`layouts/arsprojekt/single.html`) använder den personliga checklistan. Håll datakällorna åtskilda och kör `bash scripts/build.sh`; handredigera inte byggda HTML-filer. Kontrollera artantal och observationsspår på respektive sida.
+
+Kommunens årslista visar alla källfynd på artens första kalenderdag. `municipal-annual.js` återläser endast dessa ID:n och kontrollerar datum och normaliserad art innan `recordedBy` visas. `reportedBy` får inte användas som observatörsfallback. Bevara hela källtexten, även ”Via …”; saknad uppgift och hämtningsfel ska skiljas åt. Observatörsuppgifter sparas inte i byggda datafiler. Saknade klockslag kan representeras som midnatt i WFS, så samma-dag-fynd får inte rangordnas som en säker upptäckarordning.
 
 Se `/Åstorp-2026`-workflowen, steg **A3b** för detaljerade instruktioner.
 

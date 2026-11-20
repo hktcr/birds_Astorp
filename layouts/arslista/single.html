@@ -1,120 +1,34 @@
 {{ define "main" }}
-<section class="checklist-page">
-    <header class="checklist-header">
-        <div>
-            <h1 class="page-title">Årslista {{ .Site.Params.year }}</h1>
-            <p>Arter observerade i {{ .Site.Params.municipality }}s kommun</p>
-            <p class="checklist-description">Artlistan baseras på vanliga fågelarter i Skåne. Observationer registreras
-                löpande under året.</p>
-        </div>
-
-        <div class="checklist-stats">
-            <div class="checklist-stat">
-                <div class="checklist-stat-value" id="total-species">—</div>
-                <div class="checklist-stat-label">Arter totalt</div>
-            </div>
-            <div class="checklist-stat">
-                <div class="checklist-stat-value" id="last-added">—</div>
-                <div class="checklist-stat-label">Senast tillagd</div>
-            </div>
-        </div>
-    </header>
-
-    <div class="checklist-controls">
-        <div class="checklist-filters">
-            <button class="checklist-filter active" data-filter="all">Alla</button>
-            <button class="checklist-filter" data-filter="observed">Kryssade</button>
-            <button class="checklist-filter" data-filter="pending">Saknas</button>
-        </div>
-
-        <div class="checklist-search-wrapper">
-            <input type="text" id="checklist-search" class="checklist-search-input" placeholder="Sök art..." autocomplete="off">
-            <button type="button" id="checklist-search-clear" class="checklist-search-clear" title="Rensa och sök igen" aria-label="Rensa och sök igen">🔄</button>
-        </div>
-
-        <div class="checklist-sort">
-            <select id="sort-select" class="checklist-filter">
-                <option value="taxonomic">Taxonomisk ordning</option>
-                <option value="chronological">Kronologisk (första obs)</option>
-                <option value="alphabetical">Alfabetisk</option>
-            </select>
-        </div>
-    </div>
-
-    <div class="checklist-grid" id="species-grid">
-        <!-- Populated by JavaScript -->
-        <p class="empty-state">Laddar artlista...</p>
-    </div>
+<link rel="stylesheet" href="{{ "css/municipal-annual.css" | relURL }}?v={{ readFile "static/css/municipal-annual.css" | sha256 }}">
+<section class="municipal-annual-page" id="municipal-annual" data-year="{{ .Site.Params.year }}" data-base="{{ "" | relURL }}">
+  <header class="annual-header">
+    <div><h1 class="page-title">{{ .Title }}</h1><p>Fågelarter rapporterade i Åstorps kommun. Alla observatörer ingår.</p></div>
+    <div class="annual-count"><strong id="annual-total">—</strong><span>rapporterade arter</span></div>
+  </header>
+  <p class="annual-intro">Här visas årets första offentliga fynddatum per art och observatörsuppgifterna i källfynden. Flera fynd samma första dag visas tillsammans.</p>
+  <div class="annual-controls">
+    <div class="annual-search-control"><label for="annual-search">Sök art</label><input type="search" id="annual-search" placeholder="Svenskt eller vetenskapligt namn" autocomplete="off"></div>
+    <div><label for="annual-sort">Ordna efter</label><select id="annual-sort"><option value="alphabetical">Alfabetisk ordning</option><option value="latest">Senast tillkomna först</option><option value="first">Första fynd först</option></select></div>
+  </div>
+  <p id="annual-visible" class="annual-scope" role="status">Årslistan laddas …</p>
+  <div class="annual-column-headings" aria-hidden="true"><span>Art</span><span>Första fynddatum</span><span>Observatörsuppgifter</span></div>
+  <div id="annual-rows" role="list" aria-label="Kommunens observerade arter"><p class="annual-empty">Hämtar kommunens årslista …</p></div>
+  <p id="annual-name-status" class="annual-scope" role="status"></p>
+  <button type="button" class="home-button" id="annual-observer-retry" hidden>Försök hämta observatörsuppgifterna igen</button>
+  <details class="annual-data-details">
+    <summary>Om fynddatum och observatörer</summary>
+    <p>Datumet är det tidigaste offentliga fynddatumet i årets kommunlista. Alla publicerade observatörsuppgifter från fynd samma dag visas. Källan anger inte alltid klockslag eller vem i en grupp som upptäckte fågeln.</p>
+    <p>Observatörsuppgiften återges som den står i Artportalen. Texten ”Via …” behålls när källan använder den. Rapportörens namn används inte som ersättning för en saknad observatörsuppgift.</p>
+    <p>Underlaget kommer från Artportalen via SLU:s offentliga data. Skyddade fynd, osäkra bestämningar och fynd som inte är naturligt förekommande ingår inte. En art räknas en gång enligt samma AviList-indelning som på startsidan.</p>
+    <p>Efterrapporterade och rättade fynd kan ändra både första datum och observatörsuppgifter. Vid ett hämtningsfel ligger senast kontrollerade artlista kvar med sitt datum.</p>
+    <p id="annual-data-status" role="status">Läser underlaget …</p>
+  </details>
+  <div class="annual-actions"><button type="button" class="home-button" id="annual-refresh">Uppdatera årslistan</button><a href="https://www.artportalen.se/List/Top/Species/F%C3%A5glar/2026/Kommun/%C3%85storp/AnySite/OrderByDate/Desc">Årslistan hos Artportalen</a></div>
+  <noscript><p>JavaScript behövs för kommunens artlista och observatörsuppgifter. Öppna länken till Artportalen för att läsa fynden där.</p></noscript>
 </section>
 {{ end }}
-
 {{ define "scripts" }}
-<script>
-    window.siteBaseURL = '{{ .Site.BaseURL }}';
-</script>
-<script src="{{ "js/checklist.js" | relURL }}?v={{ now.Unix }}"></script>
-<script>
-    // Inline search + clear button + keyboard shortcuts
-    (function() {
-        var search = document.getElementById('checklist-search');
-        var clearBtn = document.getElementById('checklist-search-clear');
-        if (!search) return;
-
-        // Filter species cards by search text
-        function filterCards() {
-            var q = search.value.toLowerCase().trim();
-            var cards = document.querySelectorAll('.species-card');
-            cards.forEach(function(card) {
-                var name = card.querySelector('.species-name');
-                var latin = card.querySelector('.species-latin');
-                var nameText = name ? name.textContent.toLowerCase() : '';
-                var latinText = latin ? latin.textContent.toLowerCase() : '';
-                card.style.display = (!q || nameText.includes(q) || latinText.includes(q)) ? '' : 'none';
-            });
-        }
-
-        // Clear and refocus
-        function clearAndFocus() {
-            search.value = '';
-            search.focus();
-            filterCards();
-        }
-
-        // Search input events
-        search.addEventListener('input', function() {
-            filterCards();
-        });
-
-        // Click clear button → clear + refocus
-        if (clearBtn) {
-            clearBtn.addEventListener('click', function(e) {
-                e.preventDefault();
-                clearAndFocus();
-            });
-        }
-
-        // Keyboard shortcuts: R = clear + focus, Escape = clear + blur
-        document.addEventListener('keydown', function(e) {
-            var active = document.activeElement;
-            var isTyping = active && (
-                active.tagName === 'INPUT' ||
-                active.tagName === 'TEXTAREA' ||
-                active.tagName === 'SELECT' ||
-                active.isContentEditable
-            );
-
-            if (e.key === 'Escape') {
-                search.value = '';
-                search.blur();
-                filterCards();
-                return;
-            }
-
-            if ((e.key === 'r' || e.key === 'R') && !isTyping && !e.ctrlKey && !e.metaKey && !e.altKey) {
-                e.preventDefault();
-                clearAndFocus();
-            }
-        });
-    })();
-</script>
+{{ range slice "municipal-preview-data.js" "municipal-home-live.js" "municipal-annual.js" }}
+<script src="{{ printf "js/%s" . | relURL }}?v={{ readFile (printf "static/js/%s" .) | sha256 }}" defer></script>
+{{ end }}
 {{ end }}
