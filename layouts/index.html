@@ -8,6 +8,7 @@
       <div class="progress-header"><span class="progress-label">Kommunens årslista</span><span class="progress-count"><span id="species-count">—</span> arter</span></div>
       <p class="home-scope">Fågelarter rapporterade i Åstorps kommun under året.</p>
       <div class="latest-species" id="latest-species">Hämtar årets artlista …</div>
+      <button type="button" class="year-comparison-open" id="year-comparison-open" aria-haspopup="dialog" aria-controls="year-comparison-dialog" disabled><span id="comparison-summary">Jämför med samma tid förra året</span><span class="comparison-open-label">Jämför åren</span></button>
     </div>
     {{ range first 1 (where .Site.RegularPages "Section" "posts") }}
     <a href="{{ .RelPermalink }}" class="latest-post-box">
@@ -28,12 +29,50 @@
       <p class="home-data-status" id="data-status" role="status">Läser underlaget från Artportalen …</p>
       <div class="home-actions"><button class="home-button" id="refresh-data" type="button">Uppdatera fynd</button><a href="https://www.artportalen.se/List/Top/Species/F%C3%A5glar/2026/Kommun/%C3%85storp/AnySite/OrderByDate/Desc">Årslistan hos Artportalen</a></div>
       <p>Underlaget är offentliga fågelfynd i Åstorps kommun från Artportalen via SLU. Alla observatörer ingår. Skyddade fynd, osäkra bestämningar och fynd markerade som ej naturligt förekommande ingår inte.</p><p>En art räknas en gång enligt den befintliga AviList-indelningen. Underarter förs till art, och tamduva ingår i klippduva. Artportalens egna listregler kan ge ett annat antal.</p><p id="source-detail">Hämtningstid och täckning visas när ett komplett underlag finns.</p><p>Fynd kan rapporteras i efterhand. Ett tomt sökresultat betyder inte att arten saknas i naturen. Vid ett hämtningsfel ligger senast kontrollerade underlag kvar med sitt datum.</p><p id="prediction-source">Tipsen använder det daterade historiska underlaget från Artportalen och fältdagboken. Kommunens aktuella årslista avgör vilka arter som redan är sedda.</p><p><a href="https://www.slu.se/artdatabanken/rapportering-och-fynd/oppna-data-och-apier/">Om SLU:s öppna data</a></p></details>
+
+    <dialog id="year-comparison-dialog" class="municipal-comparison-dialog" aria-labelledby="comparison-title" aria-describedby="comparison-period">
+      <div class="comparison-dialog-header"><h2 id="comparison-title">Fågelåret i jämförelse</h2><button type="button" class="home-button" id="comparison-close" autofocus>Stäng</button></div>
+      <div class="comparison-dialog-body">
+        <p id="comparison-period" class="home-scope">Jämför till samma månad och dag i båda åren.</p>
+        <div class="comparison-year-control"><label for="comparison-year">Jämför 2026 med</label><select id="comparison-year"></select></div>
+        <p id="comparison-status" class="home-scope" role="status"></p>
+        <button type="button" class="home-button" id="comparison-retry" hidden>Försök igen</button>
+        <div id="comparison-result" hidden>
+          <div class="comparison-counts">
+            <div class="comparison-count-card comparison-current"><span id="comparison-current-year">2026</span><strong id="comparison-current-count"></strong><span>arter</span></div>
+            <div class="comparison-count-card comparison-prior"><span id="comparison-prior-year"></span><strong id="comparison-prior-count"></strong><span>arter</span></div>
+          </div>
+          <p id="comparison-difference" class="comparison-difference"></p>
+          <section class="comparison-chart-section" aria-labelledby="comparison-chart-title">
+            <h3 id="comparison-chart-title">Så växte årslistorna</h3>
+            <div class="comparison-chart-legend"><span class="comparison-legend-current" id="comparison-legend-current"></span><span class="comparison-legend-prior" id="comparison-legend-prior"></span></div>
+            <div class="comparison-chart-caption">Antal arter</div>
+            <div class="comparison-chart-layout">
+              <div class="comparison-chart-axis" aria-hidden="true"><span id="comparison-chart-max"></span><span id="comparison-chart-mid"></span><span>0</span></div>
+              <svg id="comparison-chart" viewBox="0 0 600 180" preserveAspectRatio="none" role="img" aria-label="Ackumulerat antal arter">
+                <path class="comparison-chart-grid" d="M0 1H600 M0 90H600 M0 179H600"></path>
+                <path id="comparison-chart-current" class="comparison-chart-current"></path>
+                <path id="comparison-chart-prior" class="comparison-chart-prior"></path>
+              </svg>
+            </div>
+            <div class="comparison-chart-dates" aria-hidden="true"><span>1 januari</span><span id="comparison-chart-end"></span></div>
+          </section>
+          <div class="comparison-lists">
+            <details><summary id="comparison-current-summary"></summary><ul id="comparison-current-list"></ul></details>
+            <details><summary id="comparison-prior-summary"></summary><ul id="comparison-prior-list"></ul></details>
+            <details><summary id="comparison-shared-summary"></summary><ul id="comparison-shared-list"></ul></details>
+          </div>
+          <p class="home-scope">Jämförelsen bygger på fynddatum. Efterrapporterade fynd kan ändra siffrorna. Samma geografiska urval och artindelning används för båda åren, men rapporteringens omfattning kan variera.</p>
+          <p class="home-scope" id="comparison-sources"></p>
+        </div>
+      </div>
+    </dialog>
     <noscript><p>JavaScript behövs för att hämta kommunens årslista. Öppna Uppdatering och fågeldata ovan för en länk till årslistan hos Artportalen.</p></noscript>
   </div>
 </section>
 {{ end }}
 {{ define "scripts" }}
-{{ range slice "stockholm-dates.js" "predictions.js" "municipal-preview-data.js" "municipal-home-live.js" "municipal-hints.js" "municipal-home.js" }}
+{{ range slice "stockholm-dates.js" "predictions.js" "municipal-preview-data.js" "municipal-home-live.js" "municipal-hints.js" "municipal-comparison.js" "municipal-home.js" }}
 <script src="{{ printf "js/%s" . | relURL }}?v={{ readFile (printf "static/js/%s" .) | sha256 }}" defer></script>
 {{ end }}
 {{ end }}

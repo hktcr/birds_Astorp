@@ -56,6 +56,28 @@ const server=http.createServer((req,res)=>{
    assert(dates.every((d,i)=>!i||d<=dates[i-1]));
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true);
    await page.screenshot({path:path.join(output,'home-'+viewport.width+'.png'),fullPage:false});
+   const compareButton=page.locator('#year-comparison-open');
+   await page.waitForFunction(()=>!document.querySelector('#year-comparison-open').disabled);
+   const previous=require('../static/js/municipal-preview-data.js').summarize(data,data.source.toDay).previous;
+   assert((await compareButton.innerText()).includes(previous+' arter'));
+   await compareButton.focus();await page.keyboard.press('Enter');
+   await page.waitForFunction(()=>document.querySelector('#year-comparison-dialog').open&&!document.querySelector('#comparison-result').hidden);
+   assert.equal(await page.locator('#comparison-current-count').innerText(),String(expected.count));
+   assert.equal(await page.locator('#comparison-prior-count').innerText(),String(previous));
+   assert.equal(await page.locator('#comparison-year').inputValue(),String(year-1));
+   assert.equal(await page.evaluate(()=>{const d=document.querySelector('#year-comparison-dialog');return d.scrollWidth<=d.clientWidth+1&&d.contains(document.activeElement);}),true);
+   assert.equal(await page.locator('#comparison-current-list .comparison-species').count(),require('../static/js/municipal-preview-data.js').summarize(data,data.source.toDay).newCutoff.length);
+   await page.screenshot({path:path.join(output,'comparison-'+viewport.width+'.png'),fullPage:false});
+   await page.locator('#comparison-year').selectOption('2024');
+   await page.waitForFunction(()=>!document.querySelector('#comparison-retry').hidden);
+   assert.equal(await page.locator('#comparison-result').isVisible(),false);
+   assert.equal(await page.locator('#species-count').innerText(),String(expected.count));
+   await page.locator('#comparison-year').selectOption(String(year-1));
+   await page.waitForFunction(()=>!document.querySelector('#comparison-result').hidden);
+   await page.keyboard.press('Escape');
+   assert.equal(await page.locator('#year-comparison-dialog').isVisible(),false);
+   assert.equal(await page.evaluate(()=>document.activeElement.id),'year-comparison-open');
+
    if(viewport.width<768)await page.locator('#mobile-menu-btn').click();
    await page.locator('.home-year-menu summary').click();
    await page.getByRole('link',{name:'Mitt fågelår 2026',exact:true}).click();
@@ -65,6 +87,38 @@ const server=http.createServer((req,res)=>{
    await context.close();
   }
 
+
+  // Deliberately ignore aborts in a delayed response to verify the request-id guard.
+  const raceContext=await browser.newContext();
+  await raceContext.addInitScript(()=>{
+   const original=window.fetch.bind(window);
+   window.fetch=(input,options)=>{
+    const url=new URL(String(input),location.href),filter=url.searchParams.get('CQL_FILTER')||'';
+    const slow=filter.includes("startDate >= '2023-12-31T23:00:00.000Z'");
+    const fast=filter.includes("startDate >= '2022-12-31T23:00:00.000Z'");
+    if(url.hostname==='sosgeo.artdata.slu.se'&&(slow||fast)){
+     if(slow)window.comparisonSlowStarted=true;
+     return new Promise(resolve=>setTimeout(()=>resolve(new Response(JSON.stringify({type:'FeatureCollection',numberMatched:0,numberReturned:0,features:[]}),{status:200,headers:{'Content-Type':'application/json'}})),slow?300:10));
+    }
+    return original(input,options);
+   };
+  });
+  const racePage=await raceContext.newPage();
+  await racePage.route('**/*goatcounter*',r=>r.abort());
+  await racePage.route('https://sosgeo.artdata.slu.se/**',r=>r.abort());
+  await racePage.goto(origin+'/',{waitUntil:'domcontentloaded'});
+  await racePage.waitForFunction(()=>!document.querySelector('#year-comparison-open').disabled);
+  await racePage.locator('#year-comparison-open').click();
+  await racePage.locator('#comparison-year').selectOption('2024');
+  await racePage.waitForFunction(()=>window.comparisonSlowStarted===true);
+  await racePage.locator('#comparison-year').selectOption('2023');
+  await racePage.waitForFunction(()=>document.querySelector('#comparison-result').dataset.year==='2023'&&!document.querySelector('#comparison-result').hidden);
+  await racePage.waitForTimeout(1200);
+  assert.equal(await racePage.locator('#comparison-result').getAttribute('data-year'),'2023');
+  assert.equal(await racePage.locator('#comparison-year').inputValue(),'2023');
+  assert.equal(await racePage.locator('#comparison-prior-count').innerText(),'0');
+  assert.equal(await racePage.locator('#comparison-retry').isVisible(),false);
+  await raceContext.close();
   const failureContext=await browser.newContext();
   const failurePage=await failureContext.newPage();
   failurePage.on('pageerror',e=>errors.push(e.message));
@@ -103,8 +157,14 @@ const server=http.createServer((req,res)=>{
   const browserSnapshot=await page.evaluate(year=>JSON.parse(sessionStorage.getItem('astorp-home-'+year+'-v1')),year);
   require('../static/js/municipal-preview-data.js').verify(browserSnapshot);
   assert(Date.parse(browserSnapshot.source.retrievedAt)>=Date.parse(data.source.retrievedAt));
+  await page.locator('#year-comparison-open').click();
+  await page.locator('#comparison-year').selectOption('2024');
+  await page.waitForFunction(()=>!document.querySelector('#comparison-result').hidden&&document.querySelector('#comparison-result').dataset.year==='2024',null,{timeout:120000});
+  const historicalCount=Number(await page.locator('#comparison-prior-count').innerText());
+  assert(historicalCount>0,'Real 2024 comparison must load a verified nonempty year');
+
   await context.close();
-  fs.writeFileSync(path.join(output,'result.json'),JSON.stringify({passed:true,year,species:expected.count,personalSpecies:personalCount,viewports:[1440,390],allSpeciesVisible:true,newestFirst:true,seasonalHints:expectedHints,hintsFailureIsolated:true,liveCors:response,browserRetrievedAt:browserSnapshot.source.retrievedAt,retrievedAt:data.source.retrievedAt},null,2));
+  fs.writeFileSync(path.join(output,'result.json'),JSON.stringify({passed:true,year,species:expected.count,personalSpecies:personalCount,viewports:[1440,390],allSpeciesVisible:true,newestFirst:true,seasonalHints:expectedHints,hintsFailureIsolated:true,comparison:{previousYear:true,alternateYear:2024,historicalCount,staleResponsesIgnored:true,keyboardAndMobile:true},liveCors:response,browserRetrievedAt:browserSnapshot.source.retrievedAt,retrievedAt:data.source.retrievedAt},null,2));
   console.log('PASS municipal home: Hugo HTML, full newest-first list, mobile menu, personal archive, live WFS and CORS.');
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;}).finally(()=>server.close());

@@ -41,3 +41,45 @@
 .municipal-home-page a:focus-visible,.home-source summary:focus-visible,.home-button:focus-visible,.site-header a:focus-visible,.site-header summary:focus-visible{outline:3px solid var(--color-accent);outline-offset:3px}
 @media(max-width:768px){.site-header .main-nav{max-height:70vh;max-height:70dvh;overflow-y:auto}.home-year-menu .nav-dropdown-menu{position:static;transform:none;box-shadow:none}.municipal-home-page{padding:1.5rem 1rem}.municipal-home-page .hero-progress{padding:1.25rem}.municipal-home-page .progress-header{gap:.8rem;flex-wrap:wrap}.municipal-home-page .trail-source{display:inline-block;margin-left:.2rem}}
 @media(prefers-reduced-motion:reduce){.municipal-home-page *{animation:none!important;transition:none!important}}
+
+/* Year comparison: a compact entry point with a full accessible dialog. */
+.year-comparison-open{display:inline-flex;justify-content:center;align-items:center;flex-wrap:wrap;gap:.25rem .75rem;min-height:44px;margin:.6rem 0 0;padding:.4rem 0;border:0;background:none;color:var(--color-primary);font:inherit;font-size:.875rem;line-height:1.6;cursor:pointer}
+.year-comparison-open:disabled{color:var(--color-text-muted);cursor:default}
+.comparison-open-label{text-decoration:underline;text-underline-offset:3px;font-weight:500}
+.municipal-comparison-open{overflow:hidden}
+.municipal-comparison-dialog{width:calc(100% - 2rem);max-width:48rem;max-height:90vh;max-height:calc(100dvh - 2rem);margin:auto;padding:0;border:1px solid var(--color-border);border-radius:var(--radius-lg);background:white;color:var(--color-text);text-align:left;overflow:auto}
+.municipal-comparison-dialog::backdrop{background:rgba(22,35,24,.5)}
+.comparison-dialog-header{display:flex;align-items:center;justify-content:space-between;gap:1rem;position:sticky;top:0;z-index:2;padding:1rem 1.5rem;background:white;border-bottom:1px solid var(--color-border)}
+.comparison-dialog-header h2{font-size:1.25rem}.comparison-dialog-header .home-button{flex-shrink:0}
+.comparison-dialog-body{padding:0 1.5rem 1.5rem}
+.comparison-year-control{display:flex;align-items:center;flex-wrap:wrap;gap:.75rem;margin:1.25rem 0;font-size:1rem}
+.comparison-year-control select{min-height:44px;min-width:7rem;padding:.5rem .75rem;border:1px solid var(--color-border-dark);border-radius:var(--radius-sm);font:inherit;background:white;color:var(--color-primary-dark)}
+.comparison-counts{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin:1rem 0}
+.comparison-count-card{display:flex;flex-direction:column;align-items:center;padding:1rem;border:1px solid;border-radius:var(--radius-md);font-size:.875rem;color:var(--color-primary-dark)}
+.comparison-current{background:#f5f8f5;border-color:#d4e0d3}.comparison-prior{background:#fbf8e9;border-color:#e6dfbf}
+.comparison-count-card strong{font-size:2rem;line-height:1.4;font-weight:600}
+.comparison-difference{margin:1rem 0;font-size:1rem}
+.comparison-chart-section{margin:1.5rem 0}.comparison-chart-section h3{font-size:1rem}
+.comparison-chart-legend{display:flex;gap:1.5rem;flex-wrap:wrap;margin:.5rem 0;font-size:.875rem}
+.comparison-chart-legend span{display:inline-flex;align-items:center;gap:.5rem}
+.comparison-chart-legend span:before{content:"";display:inline-block;width:1.5rem;border-top:3px solid #2b5a2b}
+.comparison-chart-legend .comparison-legend-prior:before{border-top:3px dashed #85621b}
+.comparison-chart-caption,.comparison-chart-dates,.comparison-chart-axis{font-size:.875rem;color:var(--color-text-muted)}
+.comparison-chart-layout{position:relative;padding-left:3rem;margin-top:.5rem}
+.comparison-chart-axis{position:absolute;left:0;top:0;bottom:0;display:flex;flex-direction:column;justify-content:space-between;line-height:1}
+#comparison-chart{display:block;width:100%;height:180px;overflow:visible}
+#comparison-chart path{fill:none;vector-effect:non-scaling-stroke}
+.comparison-chart-grid{stroke:#e0ddd5;stroke-width:1}
+.comparison-chart-current{stroke:#2b5a2b;stroke-width:2.5}
+.comparison-chart-prior{stroke:#85621b;stroke-width:2.5;stroke-dasharray:6 4}
+.comparison-chart-dates{display:flex;justify-content:space-between;gap:.5rem;margin:.5rem 0 0 3rem}
+.comparison-lists details{border-top:1px solid var(--color-border);padding:.25rem 0}
+.comparison-lists summary{min-height:44px;padding:.5rem 0;cursor:pointer;color:var(--color-primary-dark);font-size:1rem}
+.comparison-lists ul{list-style:none;margin:0;padding:0}
+.comparison-species{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:.5rem 1rem;padding:.65rem 0;border-top:1px solid #efefea}
+.comparison-species-info{display:flex;flex-direction:column;min-width:0;flex:1 1 10rem}
+.comparison-species-name{font-size:1rem;overflow-wrap:anywhere}
+.comparison-species-date,.comparison-source-link,.comparison-empty{font-size:.875rem;color:var(--color-text-muted)}
+.comparison-source-link{padding:.5rem 0;min-height:44px;display:inline-flex;align-items:center;color:var(--color-primary)}
+.year-comparison-open:focus-visible,.municipal-comparison-dialog :is(button,select,summary,a):focus-visible{outline:3px solid var(--color-accent);outline-offset:3px}
+@media(max-width:480px){.comparison-dialog-header{padding:1rem;gap:.5rem}.comparison-dialog-header h2{font-size:1.125rem}.comparison-dialog-body{padding:0 1rem 1rem}.comparison-counts{gap:.75rem}.comparison-count-card{padding:.75rem}}
