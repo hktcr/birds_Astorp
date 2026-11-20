@@ -149,11 +149,11 @@ const payload=features=>({type:'FeatureCollection',numberMatched:features.length
   await sp.locator('#annual-refresh').click();
   await sp.waitForFunction(()=>sessionStorage.getItem('astorp-home-2026-v1')&&!document.querySelector('#annual-refresh').disabled);
   await sp.waitForTimeout(1800);
-  assert((await sp.locator('#annual-data-status').innerText()).includes(freshStamp),'Fresh source must survive the delayed initial snapshot');
+  assert((await sp.locator('#annual-data-status').textContent()).includes(freshStamp),'Fresh source must survive the delayed initial snapshot: '+JSON.stringify({expected:freshStamp,actual:await sp.locator('#annual-data-status').textContent(),calls:await sp.evaluate(()=>window.annualLoadCalls)}));
   assert.equal(await sp.evaluate(()=>window.annualLoadCalls),1,'Do not re-fetch after a fresh manual result');
   await sp.locator('#annual-refresh').click();
   await sp.waitForFunction(()=>!document.querySelector('#annual-refresh').disabled&&document.querySelector('#annual-data-status').textContent.includes('Later refresh failed'));
-  assert((await sp.locator('#annual-data-status').innerText()).includes(freshStamp),'A later failure must retain the successful refresh');
+  assert((await sp.locator('#annual-data-status').textContent()).includes(freshStamp),'A later failure must retain the successful refresh');
   assert.equal(await sp.locator('#annual-total').innerText(),String(expected.count));
   await startup.close();
 
