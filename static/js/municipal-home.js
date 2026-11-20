@@ -18,7 +18,7 @@ function model(data,year){
   chronological.forEach(r=>{if(!days.has(r.day))days.set(r.day,[]);days.get(r.day).push(r);});
   return {count:rows.size,latest:chronological.length?chronological.at(-1).day:null,
     recent:[...chronological].sort((a,b)=>b.day.localeCompare(a.day)||a.name.localeCompare(b.name,'sv')).slice(0,3),
-    days:[...days].sort((a,b)=>b[0].localeCompare(a[0]))};
+    days:[...days].sort((a,b)=>a[0].localeCompare(b[0]))};
 }
 function current(data,now,live){
   const age=+now-Date.parse(data.source.retrievedAt);
@@ -28,7 +28,7 @@ function mount(env){
  const doc=env.document,el=id=>doc.getElementById(id),host=el('municipal-home');
  if(!host)return;
  const year=Number(host.dataset.year),base=host.dataset.base,cacheKey='astorp-home-'+year+'-v1';
- let data=null,busy=false,failure='',visibleDays=12;
+ let data=null,busy=false,failure='';
  const create=(tag,className,value)=>{const n=doc.createElement(tag);if(className)n.className=className;if(value!=null)n.textContent=value;return n;};
  function checked(value){
    const result=env.MunicipalPreview.verify(value),s=result.source;
@@ -57,8 +57,8 @@ function mount(env){
    const recent=el('recent-species');recent.replaceChildren();
    m.recent.forEach(r=>{const card=create('div','prediction-card');card.append(create('span','prediction-species',r.name),create('span','prediction-meta',dateLabel(r.day)));recent.append(card);});
    const trail=el('trail-timeline');trail.replaceChildren();
-   m.days.slice(0,visibleDays).forEach(([day,rows],i)=>{
-     const item=create('div','trail-item'+(i===0?' trail-item-latest':''));
+   m.days.forEach(([day,rows],i)=>{
+     const item=create('div','trail-item'+(i===m.days.length-1?' trail-item-latest':''));
      const line=create('div','trail-line'+(i===m.days.length-1?' trail-line-end':'')),dot=create('div','trail-dot');
      line.setAttribute('aria-hidden','true');dot.setAttribute('aria-hidden','true');
      const content=create('div','trail-content');const date=create('time','trail-date',dateLabel(day));date.dateTime=day;content.append(date);
@@ -72,7 +72,6 @@ function mount(env){
      item.append(line,dot,content);trail.append(item);
    });
    if(!m.count)trail.append(create('p','home-empty','Inga arter i det kontrollerade underlaget för '+year+'.'));
-   el('more-days').hidden=m.days.length<=visibleDays;
  }
  async function read(url,signal){const r=await env.fetch(url,{cache:'no-store',signal});if(!r.ok)throw Error('HTTP '+r.status+'.');return r.json();}
  async function refresh(){
@@ -89,7 +88,6 @@ function mount(env){
  }
  async function start(){
    el('refresh-data').addEventListener('click',refresh);
-   el('more-days').addEventListener('click',()=>{visibleDays+=12;render();});
    try{const saved=env.sessionStorage.getItem(cacheKey);if(saved)data=checked(JSON.parse(saved));}catch(_){}
    if(data){render();if(current(data,new env.Date(),env.MunicipalLive))return;}
    else {
