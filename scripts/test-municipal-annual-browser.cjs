@@ -5,6 +5,7 @@ const path=require('node:path');
 const http=require('node:http');
 const {chromium}=require('playwright');
 const annual=require('../static/js/municipal-annual.js');
+const taxonomicOrder=require('../static/data/municipal-taxonomic-order.json');
 const home=require('../static/js/municipal-home.js');
 const live=require('../static/js/municipal-home-live.js');
 const hints=require('../static/js/municipal-hints.js');
@@ -64,7 +65,27 @@ const payload=features=>({type:'FeatureCollection',numberMatched:features.length
    assert(await page.locator('[data-state="missing"]').count()>0);
    assert((await page.locator('.annual-observer-name').allTextContents()).includes('Via Testförmedlare'));
    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true);
-   await page.screenshot({path:path.join(output,'annual-'+width+'.png'),fullPage:false});
+
+   assert.equal(await page.locator('#annual-sort').inputValue(),'taxonomic');
+   assert.deepEqual(await page.locator('#annual-sort option').allTextContents(),['Taxonomisk ordning','Nyaste först','Tidigaste först']);
+   const allSourceIds=[...records.map(r=>r.id.split(':').at(-1))].sort();
+   const beforeNames=(await page.locator('.annual-observer-name').allTextContents()).sort();
+   const sourceRows=annual.firstRows(data,year),rank=taxonomicOrder.sequenceByScientificName;
+   for(const mode of ['taxonomic','latest','first']){
+    await page.locator('#annual-sort').selectOption(mode);
+    const expectedOrder=[...sourceRows].sort((a,b)=>(mode==='latest'?b.day.localeCompare(a.day):mode==='first'?a.day.localeCompare(b.day):0)||rank[a.scientificName]-rank[b.scientificName]);
+    const actual=await page.locator('.annual-row').evaluateAll(nodes=>nodes.map(n=>({scientificName:n.dataset.scientificName,day:n.querySelector('time').dateTime,ids:[...n.querySelectorAll('.annual-source-link')].map(a=>a.href.split('/').at(-1)).sort()})));
+    assert.deepEqual(actual,expectedOrder.map(row=>({scientificName:row.scientificName,day:row.day,ids:row.ids.map(id=>id.split(':').at(-1)).sort()})));
+    assert.deepEqual((await page.locator('.annual-source-link').evaluateAll(nodes=>nodes.map(a=>a.href.split('/').at(-1)))).sort(),allSourceIds);
+    assert.deepEqual((await page.locator('.annual-observer-name').allTextContents()).sort(),beforeNames);
+    assert.equal(await page.locator('.annual-row').count(),expected.count);
+    assert.equal(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth+1),true);
+    await page.screenshot({path:path.join(output,'annual-'+mode+'-'+width+'.png'),fullPage:false});
+   }
+   const latestDay=sourceRows.reduce((day,row)=>row.day>day?row.day:day,'');
+   assert.equal(await page.locator('#annual-latest-date').getAttribute('datetime'),latestDay);
+   const annualVisual=await page.evaluate(()=>({titleFont:getComputedStyle(document.querySelector('h1')).fontFamily,titleSize:getComputedStyle(document.querySelector('h1')).fontSize,maxWidth:getComputedStyle(document.querySelector('.municipal-annual-page')).maxWidth,rowBackground:getComputedStyle(document.querySelector('.annual-row')).backgroundColor,tickBackground:getComputedStyle(document.querySelector('.annual-check')).backgroundColor}));
+
    await page.locator('#annual-sort').selectOption('latest');
    const dates=await page.locator('.annual-first time').evaluateAll(nodes=>nodes.map(n=>n.dateTime));
    assert(dates.every((d,i)=>!i||d<=dates[i-1]));
@@ -78,7 +99,10 @@ const payload=features=>({type:'FeatureCollection',numberMatched:features.length
    await page.locator('#annual-search').fill('xyz-no-species-xyz');
    assert.equal(await page.locator('.annual-row').count(),0);
    assert.equal(await page.locator('#annual-total').innerText(),String(expected.count));
-   await page.locator('#annual-search').fill('');
+   await page.locator('#annual-search-clear').click();
+   assert.equal(await page.locator('#annual-search').inputValue(),'');
+   assert.equal(await page.locator('.annual-row').count(),expected.count);
+   assert.equal(await page.locator('#annual-sort').inputValue(),'first');
    if(width<768)await page.locator('#mobile-menu-btn').click();
    await page.locator('.home-year-menu summary').click();
    const menu=await page.locator('.home-year-menu a').allTextContents();
@@ -88,6 +112,12 @@ const payload=features=>({type:'FeatureCollection',numberMatched:features.length
    await page.waitForFunction(n=>document.querySelector('#total-species')?.textContent.startsWith(n+'/'),personalCount);
    assert.equal(await page.locator('h1').innerText(),'Håkans årslista 2026');
    assert.equal(await page.locator('#municipal-annual').count(),0);
+   const personalVisual=await page.evaluate(()=>({titleFont:getComputedStyle(document.querySelector('h1')).fontFamily,titleSize:getComputedStyle(document.querySelector('h1')).fontSize,maxWidth:getComputedStyle(document.querySelector('.checklist-page')).maxWidth,rowBackground:getComputedStyle(document.querySelector('.species-card.observed')).backgroundColor,tickBackground:getComputedStyle(document.querySelector('.species-card.observed .species-checkbox')).backgroundColor}));
+   assert.equal(annualVisual.titleFont,personalVisual.titleFont);
+   assert.equal(annualVisual.maxWidth,personalVisual.maxWidth);
+   assert.equal(annualVisual.rowBackground,personalVisual.rowBackground);
+   assert.equal(annualVisual.tickBackground,personalVisual.tickBackground);
+   if(width===1440)assert.equal(annualVisual.titleSize,personalVisual.titleSize);
    await page.goto(origin+'/karta/',{waitUntil:'domcontentloaded'});
    assert.equal(await page.locator('h1').innerText(),'Håkans krysskarta');
    await context.close();
@@ -167,7 +197,7 @@ const payload=features=>({type:'FeatureCollection',numberMatched:features.length
   assert(namedGroups>0);
   await context.close();
   assert.deepEqual(errors,[]);
-  fs.writeFileSync(path.join(output,'annual-result.json'),JSON.stringify({passed:true,species:actualCount,personalSpecies:personalCount,firstDaySources:records.length,namedGroups,viewports:[1440,390],verifiedLiveObservers:true,searchAndSort:true,partialFailureAndRetry:true,staleResponsesIgnored:true,startupSnapshotRace:true},null,2));
+  fs.writeFileSync(path.join(output,'annual-result.json'),JSON.stringify({passed:true,species:actualCount,personalSpecies:personalCount,firstDaySources:records.length,namedGroups,viewports:[1440,390],verifiedLiveObservers:true,searchAndSort:true,sortModes:["taxonomic","latest","first"],stableTaxonomicTies:true,allSourceIdsAndObserverGroupsPreserved:true,personalStyleMatched:true,partialFailureAndRetry:true,staleResponsesIgnored:true,startupSnapshotRace:true},null,2));
   console.log('PASS municipal annual: desktop/mobile, complete list, live verified observers, source links, search, sorting, partial failure/retry, race and personal pages.');
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;}).finally(()=>server.close());

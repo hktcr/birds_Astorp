@@ -1,34 +1,48 @@
-/* Public municipal annual list; personal checklist styles remain independent. */
-.municipal-annual-page{max-width:1120px;margin:0 auto;padding:2rem 1.5rem 3rem}
-.annual-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:1.5rem;margin-bottom:1.5rem}
-.annual-header .page-title{font-size:clamp(1.5rem,1.2rem + 1vw,2rem);margin-bottom:.5rem}
-.annual-header p,.annual-intro{font-size:1rem;line-height:1.7}
-.annual-count{display:flex;align-items:baseline;flex-wrap:wrap;gap:.5rem;padding:1rem 1.25rem;background:#f5f8f5;border:1px solid #d4e0d3;border-radius:var(--radius-md);color:var(--color-primary-dark)}
-.annual-count strong{font-size:2rem;line-height:1.2;font-weight:600}.annual-count span{font-size:.875rem}
-.annual-intro{max-width:52rem;margin-bottom:1.5rem;color:var(--color-text-muted)}
-.annual-controls{display:flex;align-items:end;flex-wrap:wrap;gap:1rem;margin:1.5rem 0}
-.annual-controls>div{display:flex;flex-direction:column;gap:.4rem}.annual-search-control{flex:1 1 20rem}
-.annual-controls label{font-size:.875rem;color:var(--color-primary-dark);font-weight:500}
-.annual-controls input,.annual-controls select{min-height:44px;max-width:100%;padding:.6rem .75rem;border:1px solid var(--color-border-dark);border-radius:var(--radius-sm);background:white;color:var(--color-text);font:inherit;font-size:1rem}
-.annual-scope,.annual-data-details,.annual-empty{font-size:.875rem;color:var(--color-text-muted);line-height:1.7}
+/* The personal checklist's compact appearance, scoped to the municipal annual list. */
+.municipal-annual-page{max-width:var(--max-width);margin:0 auto;padding:var(--space-2xl) var(--space-lg)}
+.annual-header{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:var(--space-lg);margin-bottom:var(--space-xl)}
+.annual-heading{flex:1 1 30rem}.annual-header .page-title{font-size:var(--text-4xl);margin-bottom:var(--space-sm)}
+.annual-header p{line-height:1.7}.annual-description{font-size:var(--text-sm);color:var(--color-text-muted);margin-top:var(--space-xs);font-style:italic;max-width:44rem}
+.annual-stats{display:flex;align-items:start;gap:var(--space-xl)}.annual-stat{text-align:center;display:flex;flex-direction:column;align-items:center}
+.annual-stat-value{font-family:var(--font-heading);font-size:var(--text-2xl);font-weight:700;color:var(--color-primary);line-height:1.35}
+.annual-stat-label{font-size:var(--text-xs);color:var(--color-text-muted);text-transform:uppercase;margin-top:.25rem}
+.annual-stat-latest{max-width:22rem}.annual-stat-latest .annual-stat-value{overflow-wrap:anywhere}.annual-stat time{font-size:var(--text-sm);color:var(--color-text-muted);margin-top:.2rem}
+.annual-controls{display:flex;align-items:end;flex-wrap:wrap;gap:var(--space-md);margin:var(--space-xl) 0 var(--space-md)}
+.annual-controls>div{display:flex;flex-direction:column;gap:.35rem}.annual-search-control{flex:0 1 320px;min-width:180px}
+.annual-controls label{font-size:var(--text-xs);color:var(--color-text-muted)}.annual-search-wrapper{position:relative}
+.annual-controls input,.annual-controls select{width:100%;min-height:44px;padding:var(--space-sm) var(--space-md);border:1px solid var(--color-border);border-radius:var(--radius-md);background:var(--color-bg);color:var(--color-text);font:inherit;font-size:var(--text-sm)}
+.annual-controls select{font-family:var(--font-heading);background:var(--color-bg-alt);cursor:pointer}
+.annual-controls input{padding-right:3rem}.annual-controls input::-webkit-search-cancel-button{display:none}
+#annual-search-clear{position:absolute;right:0;top:0;min-width:44px;min-height:44px;border:0;background:transparent;border-radius:var(--radius-md);font-size:1.4rem;color:var(--color-text-muted);cursor:pointer}
+#annual-search-clear:hover{background:rgba(43,90,43,.08);color:var(--color-primary)}
+.annual-sort-help{font-size:var(--text-xs);color:var(--color-text-muted);max-width:18rem;line-height:1.6;margin-bottom:.25rem}
+.annual-scope,.annual-data-details,.annual-empty{font-size:var(--text-sm);color:var(--color-text-muted);line-height:1.7}
 .annual-scope{margin:.75rem 0}
-.annual-column-headings,.annual-row{display:grid;grid-template-columns:minmax(0,1fr) 10rem minmax(0,1.6fr);gap:1rem}
-.annual-column-headings{padding:.8rem 1rem;background:#f5f8f5;border-radius:var(--radius-sm);font-size:.875rem;font-weight:600;color:var(--color-primary-dark)}
-.annual-row{padding:1rem;border-bottom:1px solid var(--color-border)}
-.annual-row:nth-child(even){background:#fcfdfb}
-.annual-species-name{font-size:1.05rem;line-height:1.5;overflow-wrap:anywhere}
-.annual-latin{display:block;font-size:.875rem;font-style:italic;color:var(--color-text-muted);overflow-wrap:anywhere}
-.annual-first{font-size:1rem}
-.annual-mobile-label{display:none}
+.annual-column-headings,.annual-row{display:grid;grid-template-columns:18px minmax(0,1.15fr) 6rem minmax(0,1.45fr);gap:var(--space-md);align-items:center}
+.annual-column-headings{padding:.5rem var(--space-md);font-size:var(--text-xs);color:var(--color-text-muted);border-bottom:1px solid var(--color-border)}
+.annual-row{padding:var(--space-sm) var(--space-md);border-bottom:1px solid var(--color-border);background:rgba(43,90,43,.03)}
+.annual-row:hover{background:rgba(43,90,43,.055)}
+.annual-check{width:18px;height:18px;display:flex;align-items:center;justify-content:center;align-self:start;margin-top:.25rem;background:var(--color-primary);border:2px solid var(--color-primary);border-radius:var(--radius-sm);font-size:10px;line-height:1;color:var(--color-text-light)}
+.annual-species{display:flex;align-items:baseline;flex-wrap:wrap;gap:.1rem var(--space-sm);min-width:0}
+.annual-species-name{font-family:var(--font-heading);font-size:1rem;font-weight:600;line-height:1.5;margin:0;overflow-wrap:anywhere}
+.annual-latin{font-size:var(--text-sm);font-style:italic;color:var(--color-text-muted);overflow-wrap:anywhere}
+.annual-first{font-size:var(--text-sm);font-weight:500;color:var(--color-primary)}.annual-mobile-label{display:none}
 .annual-observer-list{margin:0;padding:0;list-style:none}
-.annual-observer-group{display:flex;flex-direction:column;gap:.1rem;margin-bottom:.65rem}.annual-observer-group:last-child{margin-bottom:0}
-.annual-observer-name{font-size:1rem;overflow-wrap:anywhere}
-.annual-observer-muted .annual-observer-name{color:var(--color-text-muted);font-size:.875rem}
-.annual-source-links{display:flex;flex-wrap:wrap;gap:.3rem 1rem}
-.annual-source-link{font-size:.875rem;min-height:44px;display:inline-flex;align-items:center}
+.annual-observer-group{display:flex;align-items:baseline;flex-wrap:wrap;gap:0 .65rem}.annual-observer-name{font-size:var(--text-sm);line-height:1.6;overflow-wrap:anywhere}
+.annual-observer-muted .annual-observer-name{color:var(--color-text-muted)}
+.annual-source-links{display:inline-flex;flex-wrap:wrap;gap:0 .65rem}
+.annual-source-link{font-size:var(--text-xs);min-height:44px;display:inline-flex;align-items:center}
 .annual-data-details{border-top:1px solid var(--color-border);padding-top:1rem;margin-top:2rem}
 .annual-data-details summary{cursor:pointer;color:var(--color-primary);min-height:44px;padding:.5rem 0;font-size:1rem}
 .annual-data-details p{margin:.75rem 0}
-.annual-actions{display:flex;align-items:center;flex-wrap:wrap;gap:1rem;margin-top:1.25rem}.annual-actions a{font-size:.875rem;min-height:44px;display:inline-flex;align-items:center}
+.annual-actions{display:flex;align-items:center;flex-wrap:wrap;gap:1rem;margin-top:1.25rem}.annual-actions a{font-size:var(--text-sm);min-height:44px;display:inline-flex;align-items:center}
 .municipal-annual-page :is(a,button,summary,input,select):focus-visible{outline:3px solid var(--color-accent);outline-offset:3px}
-@media(max-width:680px){.municipal-annual-page{padding:1.5rem 1rem 2rem}.annual-column-headings{display:none}.annual-row{grid-template-columns:1fr;gap:.7rem;padding:1rem 0}.annual-mobile-label{display:block;font-size:.875rem;font-weight:500;color:var(--color-text-muted);margin-bottom:.2rem}.annual-controls>div{width:100%}.annual-count{padding:.8rem 1rem}.annual-row:nth-child(even){background:none}}
+@media(max-width:680px){
+ .municipal-annual-page{padding:var(--space-xl) var(--space-md)}
+ .annual-header .page-title{font-size:var(--text-3xl)}.annual-stats{width:100%;justify-content:flex-start;gap:var(--space-xl)}.annual-stat{text-align:left;align-items:start}.annual-stat-latest{max-width:65%}
+ .annual-controls>div{width:100%;flex-basis:100%}.annual-sort-help{max-width:none}
+ .annual-column-headings{display:none}.annual-row{grid-template-columns:18px minmax(0,1fr);gap:.4rem .75rem;padding:.75rem}
+ .annual-check{grid-column:1;grid-row:1}.annual-species{grid-column:2;display:block}.annual-latin{display:block}
+ .annual-first,.annual-observers{grid-column:2}.annual-mobile-label{display:block;font-size:var(--text-xs);font-weight:500;color:var(--color-text-muted);margin-bottom:.1rem}
+ .annual-first{display:flex;flex-wrap:wrap;gap:.5rem}.annual-first .annual-mobile-label{margin:0}
+}

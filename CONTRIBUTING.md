@@ -538,3 +538,12 @@ Artlistan och de tre dokumenterade Åstorpsfynden finns i `data/efterlysta_speci
 WFS:s totalsiffror kan vara kapade vid 5000 och offsetpaginering kan överlappa. Fulla svar delas därför först per artgrupp och sedan i disjunkta starttidsintervall; observationsslutets gräns förblir hela periodens slut. Delresultat publiceras aldrig som kompletta. HTTP-fel, XML/felsvar, motstridiga totalsiffror eller otolkbara poster ger felstatus. Senaste kompletta cache får visas för samma period med tydlig hämtningstid, utan aktuella färger när kontrollen misslyckats. En annan periods cache används inte i dagens rangordning. Cache kontrolleras efter 15 minuter och vid svenskt datumskifte; en manuell uppdatering finns också.
 
 Kör `bash scripts/build.sh` och därefter `node scripts/test-efterlysta.cjs` före publicering. Bygget versionsmärker Efterlystas skript och stilfil med innehållets hash, så att äldre webbläsarcache inte blandas med en ny sidversion. Kontrollera dessutom kort, detaljdialog, karta, stäng/öppna igen, nollfynd och felcache i webbläsaren. Källans offentliga täckning och fördröjning ska förbli synliga. Äldre odaterade majdata finns i Git-historiken och får inte återanvändas som aktuella fynd.
+
+
+### Kommunårslistans taxonomiska ordning och utseende
+
+`static/data/municipal-taxonomic-order.json` innehåller explicit sekvens från kolumnen `#` i AviList v2026, filtrerad på `RANK = species`. Den används för standardordningen och som stabil sortering vid lika första fynddatum. Varken artnamn, Artportalens taxon-ID, JSON-nyckelordning eller äldre v2025-listor får användas som taxonomisk reservordning. Alla kommunarter måste ha ett verifierat sekvensnummer.
+
+Återskapa vid avsedd taxonomiuppdatering med `python3 scripts/prepare-municipal-taxonomic-order.py`. Skriptet kontrollerar samtliga vetenskapliga namn och Avibase-identiteter mot projektets taxonomi, sparar källadress och arbetsbokens SHA256 samt bevarar sekvensens luckor. Vanligt Hugo-bygge använder den incheckade JSON-filen utan extern taxonomihämtning.
+
+Kommunlistans tätare stil följer den personliga checklistan, men alla ändringar är avgränsade till `annual-*` och kommunlayouten. Håkans personliga lista och karta ska inte ändras. `node scripts/test-municipal-annual-sort.cjs` kontrollerar de tre sorteringslägena, datumlikheter och bevarade källfynd; webbläsartestet kontrollerar dessutom alla lägen i mobil- och datorbredder samt oförändrade observatörsgrupper. Kommunlistan hämtar inga lokalnamn, koordinater eller privata fynd.
