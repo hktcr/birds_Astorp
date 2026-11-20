@@ -2,16 +2,19 @@
 <link rel="stylesheet" href="{{ "css/municipal-annual.css" | relURL }}?v={{ readFile "static/css/municipal-annual.css" | sha256 }}">
 <section class="municipal-annual-page" id="municipal-annual" data-year="{{ .Site.Params.year }}" data-base="{{ "" | relURL }}">
   <header class="annual-header">
-    <div><h1 class="page-title">{{ .Title }}</h1><p>Fågelarter rapporterade i Åstorps kommun. Alla observatörer ingår.</p></div>
-    <div class="annual-count"><strong id="annual-total">—</strong><span>rapporterade arter</span></div>
+    <div class="annual-heading"><h1 class="page-title">{{ .Title }}</h1><p>Fågelarter rapporterade i Åstorps kommun. Alla observatörer ingår.</p><p class="annual-description">Första offentliga fynddatum per art, med observatörsuppgifter från alla fynd samma första dag.</p></div>
+    <div class="annual-stats">
+      <div class="annual-stat"><strong class="annual-stat-value" id="annual-total">—</strong><span class="annual-stat-label">Arter totalt</span></div>
+      <div class="annual-stat annual-stat-latest"><strong class="annual-stat-value" id="annual-latest">—</strong><span class="annual-stat-label" id="annual-latest-label">Senaste art</span><time id="annual-latest-date"></time></div>
+    </div>
   </header>
-  <p class="annual-intro">Här visas årets första offentliga fynddatum per art och observatörsuppgifterna i källfynden. Flera fynd samma första dag visas tillsammans.</p>
   <div class="annual-controls">
-    <div class="annual-search-control"><label for="annual-search">Sök art</label><input type="search" id="annual-search" placeholder="Svenskt eller vetenskapligt namn" autocomplete="off"></div>
-    <div><label for="annual-sort">Ordna efter</label><select id="annual-sort"><option value="alphabetical">Alfabetisk ordning</option><option value="latest">Senast tillkomna först</option><option value="first">Första fynd först</option></select></div>
+    <div class="annual-search-control"><label for="annual-search">Sök art</label><div class="annual-search-wrapper"><input type="search" id="annual-search" placeholder="Sök art …" autocomplete="off"><button type="button" id="annual-search-clear" aria-label="Rensa sökningen" title="Rensa sökningen">×</button></div></div>
+    <div class="annual-sort-control"><label for="annual-sort">Ordna efter</label><select id="annual-sort"><option value="taxonomic">Taxonomisk ordning</option><option value="latest">Nyaste först</option><option value="first">Tidigaste först</option></select></div>
+    <p class="annual-sort-help">Nyaste och tidigaste avser artens första fynddag under året.</p>
   </div>
   <p id="annual-visible" class="annual-scope" role="status">Årslistan laddas …</p>
-  <div class="annual-column-headings" aria-hidden="true"><span>Art</span><span>Första fynddatum</span><span>Observatörsuppgifter</span></div>
+  <div class="annual-column-headings" aria-hidden="true"><span aria-hidden="true"></span><span>Art</span><span>Första fynd</span><span>Observatörsuppgifter</span></div>
   <div id="annual-rows" role="list" aria-label="Kommunens observerade arter"><p class="annual-empty">Hämtar kommunens årslista …</p></div>
   <p id="annual-name-status" class="annual-scope" role="status"></p>
   <button type="button" class="home-button" id="annual-observer-retry" hidden>Försök hämta observatörsuppgifterna igen</button>
@@ -20,6 +23,8 @@
     <p>Datumet är det tidigaste offentliga fynddatumet i årets kommunlista. Alla publicerade observatörsuppgifter från fynd samma dag visas. Källan anger inte alltid klockslag eller vem i en grupp som upptäckte fågeln.</p>
     <p>Observatörsuppgiften återges som den står i Artportalen. Texten ”Via …” behålls när källan använder den. Rapportörens namn används inte som ersättning för en saknad observatörsuppgift.</p>
     <p>Underlaget kommer från Artportalen via SLU:s offentliga data. Skyddade fynd, osäkra bestämningar och fynd som inte är naturligt förekommande ingår inte. En art räknas en gång enligt samma AviList-indelning som på startsidan.</p>
+    <p>Taxonomisk ordning följer <a href="https://www.avilist.org/checklist/v2026/">AviList v2026</a>, via ett <a href="https://github.com/alchaincyf/huashu-bird-sticker/blob/01264126448bd3d5d3bf69102abbfe98d9e3b489/NOTICE.md">versionslåst publicerat utdrag</a> med verifierade artidentiteter och sekvens. Nyaste först och Tidigaste först sorterar efter första fynddatum; arter med samma datum följer taxonomisk ordning.</p>
+    <p>Utdraget omfattar 11 011 arter och täcker alla arter i kommununderlaget. 161 arter som källan flaggar som utdöda eller möjligen utdöda är utelämnade. En art som saknar verifierad ordning får ingen gissad placering.</p>
     <p>Efterrapporterade och rättade fynd kan ändra både första datum och observatörsuppgifter. Vid ett hämtningsfel ligger senast kontrollerade artlista kvar med sitt datum.</p>
     <p id="annual-data-status" role="status">Läser underlaget …</p>
   </details>
@@ -28,6 +33,7 @@
 </section>
 {{ end }}
 {{ define "scripts" }}
+<script type="application/json" id="annual-taxonomic-order">{{ readFile "static/data/municipal-taxonomic-order.json" | safeJS }}</script>
 {{ range slice "municipal-preview-data.js" "municipal-home-live.js" "municipal-annual.js" }}
 <script src="{{ printf "js/%s" . | relURL }}?v={{ readFile (printf "static/js/%s" .) | sha256 }}" defer></script>
 {{ end }}

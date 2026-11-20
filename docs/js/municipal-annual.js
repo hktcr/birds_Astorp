@@ -1,13 +1,28 @@
 /* Municipal annual list. Personal checklist data and observer reporting are kept separate. */
 (function(root,factory){
- if(typeof module==='object'&&module.exports)module.exports=factory(require('./municipal-home-live.js'),require('./municipal-preview-data.js'));
- else {root.MunicipalAnnual=factory(root.MunicipalLive,root.MunicipalPreview);root.MunicipalAnnual.mount(root);}
-})(typeof window==='undefined'?this:window,function(live,preview){
+ if(typeof module==='object'&&module.exports)module.exports=factory(require('./municipal-home-live.js'),require('./municipal-preview-data.js'),require('../data/municipal-taxonomic-order.json'));
+ else {let order=null;try{order=JSON.parse(root.document.getElementById('annual-taxonomic-order').textContent);}catch(_){}root.MunicipalAnnual=factory(root.MunicipalLive,root.MunicipalPreview,order);root.MunicipalAnnual.mount(root);}
+})(typeof window==='undefined'?this:window,function(live,preview,defaultOrder){
 'use strict';
 const ENDPOINT='https://sosgeo.artdata.slu.se/geoserver/SOS/ows';
 const OBSERVER_FIELDS='occurrenceId,dataProviderId,municipality,organismGroup,isPresentObservation,isUncertainIdentification,isNaturalOccurrence,startDate,scientificName,dyntaxaTaxonId,taxonCategory,vernacularName,recordedBy';
 function firstRows(data,year){return preview.first(data,year);}
-function dateLabel(day){return new Intl.DateTimeFormat('sv-SE',{day:'numeric',month:'long',timeZone:'UTC'}).format(new Date(day+'T12:00:00Z'));}
+
+function orderIndex(order){
+ if(!order||order.schemaVersion!==1||order.taxonomyVersion!=='AviList v2026'||order.source?.sequenceField!=='avilist_seq'||order.source?.rankFilter!=='species'||!/^[a-f0-9]{64}$/.test(order.source?.sha256||'')||!order.sequenceByScientificName||typeof order.sequenceByScientificName!=='object')throw Error('Den taxonomiska ordningen kunde inte verifieras.');
+ const entries=Object.entries(order.sequenceByScientificName),positions=new Set();
+ if(!entries.length||entries.length!==order.speciesCount)throw Error('Den taxonomiska listan är ofullständig.');
+ for(const [name,sequence] of entries){if(!name||!Number.isSafeInteger(sequence)||sequence<=0||positions.has(sequence))throw Error('Den taxonomiska sekvensen är ogiltig.');positions.add(sequence);}
+ return new Map(entries);
+}
+function sortRows(rows,mode='taxonomic',order=defaultOrder){
+ if(!['taxonomic','latest','first'].includes(mode))throw Error('Okänt sorteringsval.');
+ const index=orderIndex(order);
+ for(const row of rows){if(!index.has(row.scientificName)||!preview.day(row.day))throw Error('Artens taxonomiska ordning eller första fynddatum kunde inte verifieras.');}
+ return [...rows].sort((a,b)=>(mode==='latest'?b.day.localeCompare(a.day):mode==='first'?a.day.localeCompare(b.day):0)||index.get(a.scientificName)-index.get(b.scientificName));
+}
+
+function dateLabel(day){return new Intl.DateTimeFormat('sv-SE',{day:'numeric',month:'short',timeZone:'UTC'}).format(new Date(day+'T12:00:00Z'));}
 async function fetchObserverBatch(fetcher,records,taxonomy,options={}){
  if(!Array.isArray(records)||!records.length||records.length>50)throw Error('Ogiltigt urval av källfynd.');
  const expected=new Map();
@@ -65,13 +80,20 @@ function mount(env){
  function renderRows(){
   if(!data)return;
   const query=el('annual-search').value.trim().normalize('NFC').toLocaleLowerCase('sv'),sort=el('annual-sort').value;
-  const visible=rows.filter(r=>!query||(r.name+' '+r.scientificName).normalize('NFC').toLocaleLowerCase('sv').includes(query));
-  visible.sort((a,b)=>sort==='first'?a.day.localeCompare(b.day)||a.name.localeCompare(b.name,'sv'):sort==='latest'?b.day.localeCompare(a.day)||a.name.localeCompare(b.name,'sv'):a.name.localeCompare(b.name,'sv'));
-  const focus=doc.activeElement?.id,container=el('annual-rows');container.replaceChildren();
+  const container=el('annual-rows');el('annual-total').textContent=String(rows.length);
+  let sorted;try{sorted=sortRows(rows,sort);}catch(error){el('annual-sort').disabled=true;el('annual-visible').textContent=error.message;container.replaceChildren(create('p','annual-empty','Ladda om sidan för att läsa den verifierade sorteringslistan. Artantalet och källunderlaget är bevarade.'));return;}
+  const lastDay=rows.reduce((last,row)=>row.day>last?row.day:last,'');
+  const latest=sortRows(rows.filter(row=>row.day===lastDay),'taxonomic');
+  el('annual-latest').textContent=latest.length?latest.map(row=>row.name).join(', '):'—';
+  el('annual-latest-label').textContent=latest.length>1?'Senaste arter':'Senaste art';
+  el('annual-latest-date').textContent=lastDay?dateLabel(lastDay):'';el('annual-latest-date').dateTime=lastDay;
+  const visible=sorted.filter(r=>!query||(r.name+' '+r.scientificName).normalize('NFC').toLocaleLowerCase('sv').includes(query));
+  const focus=doc.activeElement?.id;container.replaceChildren();
   el('annual-total').textContent=String(rows.length);el('annual-visible').textContent=query?'Visar '+visible.length+' av '+rows.length+' arter':'Visar alla '+rows.length+' arter';
   if(!visible.length){container.append(create('p','annual-empty',rows.length?'Inga arter matchar sökningen.':'Inga arter finns i det kontrollerade urvalet.'));return;}
   visible.forEach(row=>{
-   const article=create('article','annual-row');article.setAttribute('role','listitem');
+   const article=create('article','annual-row');article.setAttribute('role','listitem');article.dataset.scientificName=row.scientificName;
+   const tick=create('span','annual-check','✓');tick.setAttribute('aria-hidden','true');
    const heading=create('h2','annual-species-name',row.name);heading.id='annual-species-'+row.taxonId;article.setAttribute('aria-labelledby',heading.id);
    const species=create('div','annual-species');species.append(heading,create('span','annual-latin',row.scientificName));
    const first=create('div','annual-first');first.append(create('span','annual-mobile-label','Första fynddatum'));
@@ -85,7 +107,7 @@ function mount(env){
     group.ids.forEach((id,index)=>{const a=create('a','annual-source-link',group.ids.length===1?'Källfynd':'Källfynd '+(index+1));a.href='https://www.artportalen.se/Sighting/'+id.split(':').at(-1);a.id='annual-source-'+id.split(':').at(-1);a.setAttribute('aria-label','Källfynd '+(index+1)+' för '+row.name);links.append(a);});
     item.append(links);list.append(item);
    });
-   observer.append(list);article.append(species,first,observer);container.append(article);
+   observer.append(list);article.append(tick,species,first,observer);container.append(article);
   });
   if(focus?.startsWith('annual-source-'))el(focus)?.focus({preventScroll:true});
  }
@@ -124,7 +146,8 @@ function mount(env){
   finally{env.clearTimeout(timer);busy=false;status();if(!data)el('annual-rows').replaceChildren(create('p','annual-empty','Underlaget saknas. Använd Uppdatera årslistan för att försöka igen.'));}
  }
  async function start(){
-  el('annual-search').addEventListener('input',renderRows);el('annual-sort').addEventListener('change',renderRows);
+  el('annual-search').addEventListener('input',renderRows);
+  el('annual-search-clear').addEventListener('click',()=>{el('annual-search').value='';renderRows();el('annual-search').focus();});el('annual-sort').addEventListener('change',renderRows);
   el('annual-refresh').addEventListener('click',()=>refresh(true));
   el('annual-observer-retry').addEventListener('click',()=>{observerReady=loadObservers();});
   try{const cached=env.sessionStorage.getItem(cacheKey);if(cached)accept(checked(JSON.parse(cached)));}catch(_){}
@@ -138,5 +161,5 @@ function mount(env){
  doc.addEventListener('visibilitychange',visible);
  return {ready,refresh,destroy(){cancelObservers();env.clearInterval(interval);doc.removeEventListener('visibilitychange',visible);}};
 }
-return {firstRows,fetchObserverBatch,observerGroups,mount};
+return {firstRows,sortRows,orderIndex,fetchObserverBatch,observerGroups,mount};
 });
