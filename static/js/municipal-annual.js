@@ -129,8 +129,8 @@ function mount(env){
   el('annual-observer-retry').addEventListener('click',()=>{observerReady=loadObservers();});
   try{const cached=env.sessionStorage.getItem(cacheKey);if(cached)accept(checked(JSON.parse(cached)));}catch(_){}
   if(data&&fresh(data)){await observerReady;return;}
-  if(!data){const controller=new env.AbortController(),timer=env.setTimeout(()=>controller.abort(),10000);try{accept(checked(await read(base+'data/municipal-preview.json',controller.signal)));}catch(_){}finally{env.clearTimeout(timer);}}
-  await refresh();await observerReady;
+  if(!data){const controller=new env.AbortController(),timer=env.setTimeout(()=>controller.abort(),10000);try{const snapshot=checked(await read(base+'data/municipal-preview.json',controller.signal));if(!data)accept(snapshot);}catch(_){}finally{env.clearTimeout(timer);}}
+  if(!data||!fresh(data))await refresh();await observerReady;
  }
  const ready=start();
  const interval=env.setInterval(()=>{if(!doc.hidden&&(!data||!fresh(data)))refresh(true);},900000);

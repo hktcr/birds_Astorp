@@ -42,9 +42,10 @@ const response=data=>async()=>({ok:true,json:async()=>data});
  }
  await assert.rejects(()=>annual.fetchObserverBatch(async()=>({ok:false,status:503}),records,taxonomy));
  await assert.rejects(()=>annual.fetchObserverBatch(async()=>{throw Error('Network');},records,taxonomy));
- const noFetch=async()=>{assert.fail('Invalid input must not fetch');};
+ let unexpectedFetches=0;const noFetch=async()=>{unexpectedFetches++;throw Error('Unexpected fetch');};
  await assert.rejects(()=>annual.fetchObserverBatch(noFetch,[records[0],records[0]],taxonomy));
  await assert.rejects(()=>annual.fetchObserverBatch(noFetch,Array(51).fill(records[0]),taxonomy));
+ assert.equal(unexpectedFetches,0,'Invalid input must not fetch');
  const groups=annual.observerGroups({ids:[id(1),id(2),id(3),id(4),id(5)]},byId,new Set([id(4)]));
  assert.deepEqual(new Set(groups.flatMap(g=>g.ids)),new Set([1,2,3,4,5].map(id)));
  assert(groups.some(g=>g.label==='Via Testrapportör B'));

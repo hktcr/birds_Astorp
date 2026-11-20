@@ -118,6 +118,45 @@ const payload=features=>({type:'FeatureCollection',numberMatched:features.length
   await rp.waitForTimeout(1800);
   assert((await rp.locator('.annual-observer-name').allTextContents()).every(t=>t==='Aktuell testuppgift'));
   await race.close();
+
+  // A slow initial snapshot must never replace a successful manual live refresh.
+  const startup=await browser.newContext();
+  await startup.addInitScript(({snapshot,features})=>{
+   window.annualSnapshot=snapshot;window.annualLoadCalls=0;
+   const original=window.fetch.bind(window);
+   window.fetch=(input,options)=>{
+    const url=new URL(String(input),location.href);
+    if(url.pathname.endsWith('/data/municipal-preview.json')){
+     window.annualSnapshotPending=true;
+     return new Promise(resolve=>setTimeout(()=>resolve(new Response(JSON.stringify(snapshot),{status:200})),1500));
+    }
+    if(url.hostname==='sosgeo.artdata.slu.se'&&url.searchParams.get('propertyName')?.split(',').includes('recordedBy')){
+     const ids=url.searchParams.get('CQL_FILTER').match(/urn:lsid:artportalen\.se:sighting:\d+/g),rows=features.filter(f=>ids.includes(f.properties.occurrenceId));
+     return Promise.resolve(new Response(JSON.stringify({type:'FeatureCollection',numberMatched:rows.length,numberReturned:rows.length,features:rows}),{status:200}));
+    }
+    return original(input,options);
+   };
+  },{snapshot:data,features:records.map(r=>mockFeature(r,'Testobservatör'))});
+  const sp=await startup.newPage();sp.on('pageerror',e=>errors.push(e.message));
+  await sp.route('**/*goatcounter*',r=>r.abort());await sp.route('https://sosgeo.artdata.slu.se/**',r=>r.abort());
+  await sp.goto(origin+'/arslista/',{waitUntil:'domcontentloaded'});
+  await sp.waitForFunction(()=>window.annualSnapshotPending&&window.MunicipalLive);
+  const freshStamp=await sp.evaluate(()=>{
+   const fresh=structuredClone(window.annualSnapshot);fresh.source.retrievedAt=new Date().toISOString();fresh.source.mode='live';
+   window.MunicipalLive.load=async()=>{if(++window.annualLoadCalls>1)throw Error('Later refresh failed');return fresh;};
+   return new Intl.DateTimeFormat('sv-SE',{dateStyle:'short',timeStyle:'short',timeZone:'Europe/Stockholm'}).format(new Date(fresh.source.retrievedAt));
+  });
+  await sp.locator('#annual-refresh').click();
+  await sp.waitForFunction(()=>sessionStorage.getItem('astorp-home-2026-v1')&&!document.querySelector('#annual-refresh').disabled);
+  await sp.waitForTimeout(1800);
+  assert((await sp.locator('#annual-data-status').innerText()).includes(freshStamp),'Fresh source must survive the delayed initial snapshot');
+  assert.equal(await sp.evaluate(()=>window.annualLoadCalls),1,'Do not re-fetch after a fresh manual result');
+  await sp.locator('#annual-refresh').click();
+  await sp.waitForFunction(()=>!document.querySelector('#annual-refresh').disabled&&document.querySelector('#annual-data-status').textContent.includes('Later refresh failed'));
+  assert((await sp.locator('#annual-data-status').innerText()).includes(freshStamp),'A later failure must retain the successful refresh');
+  assert.equal(await sp.locator('#annual-total').innerText(),String(expected.count));
+  await startup.close();
+
   const context=await browser.newContext(),page=await context.newPage();page.on('pageerror',e=>errors.push(e.message));
   await page.route('**/*goatcounter*',r=>r.abort());
   await page.goto(origin+'/arslista/',{waitUntil:'domcontentloaded'});
@@ -128,7 +167,7 @@ const payload=features=>({type:'FeatureCollection',numberMatched:features.length
   assert(namedGroups>0);
   await context.close();
   assert.deepEqual(errors,[]);
-  fs.writeFileSync(path.join(output,'annual-result.json'),JSON.stringify({passed:true,species:actualCount,personalSpecies:personalCount,firstDaySources:records.length,namedGroups,viewports:[1440,390],verifiedLiveObservers:true,searchAndSort:true,partialFailureAndRetry:true,staleResponsesIgnored:true},null,2));
+  fs.writeFileSync(path.join(output,'annual-result.json'),JSON.stringify({passed:true,species:actualCount,personalSpecies:personalCount,firstDaySources:records.length,namedGroups,viewports:[1440,390],verifiedLiveObservers:true,searchAndSort:true,partialFailureAndRetry:true,staleResponsesIgnored:true,startupSnapshotRace:true},null,2));
   console.log('PASS municipal annual: desktop/mobile, complete list, live verified observers, source links, search, sorting, partial failure/retry, race and personal pages.');
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;}).finally(()=>server.close());
