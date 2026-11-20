@@ -83,3 +83,5 @@
 .comparison-source-link{padding:.5rem 0;min-height:44px;display:inline-flex;align-items:center;color:var(--color-primary)}
 .year-comparison-open:focus-visible,.municipal-comparison-dialog :is(button,select,summary,a):focus-visible{outline:3px solid var(--color-accent);outline-offset:3px}
 @media(max-width:480px){.comparison-dialog-header{padding:1rem;gap:.5rem}.comparison-dialog-header h2{font-size:1.125rem}.comparison-dialog-body{padding:0 1rem 1rem}.comparison-counts{gap:.75rem}.comparison-count-card{padding:.75rem}}
+
+.municipal-home-page a.progress-label{color:var(--color-primary);text-underline-offset:3px}

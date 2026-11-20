@@ -1,7 +1,7 @@
 ---
-title: "Karta"
+title: "Håkans krysskarta"
 layout: "single"
 type: "karta"
 ---
 
-Klicka på en markör för att se vilka arter som observerats på platsen.
+Klicka på en markör för att se observationerna från Håkans personliga fågelår.
