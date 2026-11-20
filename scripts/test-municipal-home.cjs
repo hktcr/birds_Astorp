@@ -21,7 +21,7 @@ assert.equal(live.stockholmDay('2025-12-31T23:00:00Z'),'2026-01-01');
 assert.equal(live.stockholmDay('2026-06-30T22:00:00Z'),'2026-07-01');
 assert.equal(live.stockholmDay('2026-01-01T00:00:00-05:00'),'2026-01-01');
 assert.throws(()=>live.stockholmDay('2026-01-01T00:00:00'));
-assert.equal(home.current(checked,new Date('2026-11-20T06:30:00Z'),live),false);
+assert.equal(home.current({...checked,source:{...checked.source,mode:'snapshot',retrievedAt:'2026-10-29T18:22:11Z'}},new Date('2026-11-20T06:30:00Z'),live),false);
 const fresh={source:{mode:'live',retrievedAt:'2026-11-20T06:30:00Z',toDay:'2026-11-20'}};
 assert.equal(home.current(fresh,new Date('2026-11-20T06:40:00Z'),live),true);
 assert.equal(home.current(fresh,new Date('2026-11-20T06:46:00Z'),live),false);

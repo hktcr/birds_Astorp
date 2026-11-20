@@ -3,7 +3,7 @@ const fs = require('node:fs');
 const vm = require('node:vm');
 const path = require('node:path');
 const root = path.join(__dirname, '..');
-const built = fs.readFileSync(path.join(root, 'docs/index.html'), 'utf8');
+const built = fs.readFileSync(path.join(root, 'docs/mitt-fagelar-2026/index.html'), 'utf8');
 const speciesLinks = vm.runInNewContext('(' + built.match(/speciesLinks=(\{[^}]+\})/)[1] + ')');
 const guide = JSON.parse(fs.readFileSync(path.join(root, 'static/data/species-guide.json'), 'utf8'));
 for (const sp of guide.species) {
@@ -22,7 +22,7 @@ for (const sp of guide.species) {
         assert(page.includes('Export ' + guide.exportDate), 'Export date missing for ' + sp.name);
     }
 }
-const source = fs.readFileSync(path.join(root, 'layouts/index.html'), 'utf8');
+const source = fs.readFileSync(path.join(root, 'layouts/arsprojekt/single.html'), 'utf8');
 assert(!source.includes('<details class="prediction-method">'));
 assert(!source.includes('Så väljs tipsen'));
 assert.match(source, /<p class="prediction-method">Förslag utifrån tidigare fynd och årstid\.<\/p>/);
