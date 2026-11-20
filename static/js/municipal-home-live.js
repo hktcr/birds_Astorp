@@ -2,7 +2,7 @@
 (function(root,factory){if(typeof module==='object'&&module.exports)module.exports=factory();else root.MunicipalLive=factory();})(typeof window==='undefined'?this:window,function(){'use strict';
 const endpoint='https://sosgeo.artdata.slu.se/geoserver/SOS/ows';
 const fields='occurrenceId,dataProviderId,municipality,dyntaxaTaxonId,taxonCategory,scientificName,vernacularName,organismGroup,startDate,isPresentObservation,isUncertainIdentification,isNaturalOccurrence';
-function instant(x){if(typeof x==='string'&&!/(?:Z|[+-]\\d{2}:\\d{2})$/.test(x))throw Error('Källans tidszon kan inte verifieras.');return +new Date(x);}
+function instant(x){if(typeof x==='string'&&!/(?:Z|[+-]\d{2}:\d{2})$/.test(x))throw Error('Källans tidszon kan inte verifieras.');return +new Date(x);}
 function stockholmDay(x){const d=new Date(instant(x));if(!Number.isFinite(+d))throw Error('Ogiltigt källdatum.');return new Intl.DateTimeFormat('sv-SE',{timeZone:'Europe/Stockholm',year:'numeric',month:'2-digit',day:'2-digit'}).format(d);}
 function query(from,to,limit){const filter="dataProviderId=1 AND municipality='Åstorp' AND organismGroup='Fåglar' AND isPresentObservation=true AND isUncertainIdentification=false AND isNaturalOccurrence=true AND startDate >= '"+new Date(from).toISOString()+"' AND startDate < '"+new Date(to).toISOString()+"'";return endpoint+'?'+new URLSearchParams({service:'WFS',version:'1.0.0',request:'GetFeature',typeName:'SOS:SpeciesObservations',outputFormat:'application/json',maxFeatures:String(limit),propertyName:fields,CQL_FILTER:filter});}
 async function json(fetcher,url,signal){const r=await fetcher(url,{cache:'no-store',signal});if(!r.ok)throw Error('SLU svarade HTTP '+r.status+'.');const value=await r.json();return value;}
