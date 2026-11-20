@@ -71,9 +71,17 @@ const server=http.createServer((req,res)=>{
   assert.equal(response.type,'FeatureCollection');
   assert(Number.isSafeInteger(response.numberMatched));
   assert(response.numberMatched>0);
-  await page.waitForFunction(()=>document.querySelector('#data-status')?.dataset.state==='live',{},{timeout:120000});
+  await page.waitForFunction(year=>{
+   const cached=sessionStorage.getItem('astorp-home-'+year+'-v1');
+   return document.querySelector('#data-status')?.dataset.state==='live'
+    && !document.querySelector('#refresh-data').disabled
+    && cached && JSON.parse(cached).source.mode==='live';
+  },year,{timeout:120000});
+  const browserSnapshot=await page.evaluate(year=>JSON.parse(sessionStorage.getItem('astorp-home-'+year+'-v1')),year);
+  require('../static/js/municipal-preview-data.js').verify(browserSnapshot);
+  assert(Date.parse(browserSnapshot.source.retrievedAt)>=Date.parse(data.source.retrievedAt));
   await context.close();
-  fs.writeFileSync(path.join(output,'result.json'),JSON.stringify({passed:true,year,species:expected.count,personalSpecies:personalCount,viewports:[1440,390],allSpeciesVisible:true,newestFirst:true,liveCors:response,retrievedAt:data.source.retrievedAt},null,2));
+  fs.writeFileSync(path.join(output,'result.json'),JSON.stringify({passed:true,year,species:expected.count,personalSpecies:personalCount,viewports:[1440,390],allSpeciesVisible:true,newestFirst:true,liveCors:response,browserRetrievedAt:browserSnapshot.source.retrievedAt,retrievedAt:data.source.retrievedAt},null,2));
   console.log('PASS municipal home: Hugo HTML, full newest-first list, mobile menu, personal archive, live WFS and CORS.');
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;}).finally(()=>server.close());
