@@ -6,9 +6,14 @@ const http=require('node:http');
 const {chromium}=require('playwright');
 const home=require('../static/js/municipal-home.js');
 const live=require('../static/js/municipal-home-live.js');
+const hints=require('../static/js/municipal-hints.js');
+const guide=require('../static/data/species-guide.json');
+const daily=require('../static/data/species_days_historic.json');
+const taxonomy=require('../static/data/municipal-taxonomy.json');
 const root=path.resolve(__dirname,'../docs');
 const data=JSON.parse(fs.readFileSync(path.join(root,'data/municipal-preview.json'),'utf8'));
 const year=Number(data.source.toDay.slice(0,4)),expected=home.model(data,year);
+const expectedHints=hints.rank(data,year,guide,daily,taxonomy,new Date()).candidates.map(c=>c.name);
 const personal=JSON.parse(fs.readFileSync(path.resolve(__dirname,'../data/checklist-2026.json'),'utf8'));
 const personalCount=new Set(personal.observations.map(r=>r.species)).size;
 const output=path.resolve(__dirname,'../test-results/municipal-home');
@@ -41,6 +46,10 @@ const server=http.createServer((req,res)=>{
    assert.equal(await page.locator('#species-count').innerText(),String(expected.count));
    assert.equal(await page.locator('#trail-timeline .trail-species').count(),expected.count);
    assert.equal(await page.locator('#more-days').count(),0);
+   await page.waitForFunction(n=>document.querySelectorAll('#prediction-cards .prediction-species').length===n,expectedHints.length);
+   assert.deepEqual(await page.locator('#prediction-cards .prediction-species').allTextContents(),expectedHints);
+   assert.equal(await page.locator('#prediction-cards a, #prediction-cards button').count(),0);
+   assert.equal(await page.evaluate(()=>document.querySelector('#recent-species').closest('section').nextElementSibling.id), 'prediction-section');
    const numbers=await page.locator('#trail-timeline .trail-species-number').allTextContents();
    assert.deepEqual(numbers.map(n=>Number(n.replace(/[^0-9]/g,''))),Array.from({length:expected.count},(_,i)=>expected.count-i));
    const dates=await page.locator('#trail-timeline time').evaluateAll(nodes=>nodes.map(n=>n.dateTime));
@@ -55,6 +64,20 @@ const server=http.createServer((req,res)=>{
    await page.screenshot({path:path.join(output,'personal-'+viewport.width+'.png'),fullPage:false});
    await context.close();
   }
+
+  const failureContext=await browser.newContext();
+  const failurePage=await failureContext.newPage();
+  failurePage.on('pageerror',e=>errors.push(e.message));
+  await failurePage.route('**/*goatcounter*',r=>r.abort());
+  await failurePage.route('https://sosgeo.artdata.slu.se/**',r=>r.abort());
+  await failurePage.route('**/data/species-guide.json',r=>r.fulfill({status:503,body:'Unavailable'}));
+  await failurePage.goto(origin+'/',{waitUntil:'domcontentloaded'});
+  await failurePage.waitForFunction(()=>document.querySelector('#prediction-score')?.textContent.includes('kunde inte hämtas'));
+  await failurePage.waitForFunction(()=>document.querySelector('#data-status')?.dataset.state==='stale');
+  assert.equal(await failurePage.locator('#species-count').innerText(),String(expected.count));
+  assert.equal(await failurePage.locator('#trail-timeline .trail-species').count(),expected.count);
+  assert.equal(await failurePage.locator('#prediction-cards .prediction-species').count(),0);
+  await failureContext.close();
   assert.deepEqual(errors,[],'JavaScript page errors');
   const context=await browser.newContext();
   const page=await context.newPage();
@@ -81,7 +104,7 @@ const server=http.createServer((req,res)=>{
   require('../static/js/municipal-preview-data.js').verify(browserSnapshot);
   assert(Date.parse(browserSnapshot.source.retrievedAt)>=Date.parse(data.source.retrievedAt));
   await context.close();
-  fs.writeFileSync(path.join(output,'result.json'),JSON.stringify({passed:true,year,species:expected.count,personalSpecies:personalCount,viewports:[1440,390],allSpeciesVisible:true,newestFirst:true,liveCors:response,browserRetrievedAt:browserSnapshot.source.retrievedAt,retrievedAt:data.source.retrievedAt},null,2));
+  fs.writeFileSync(path.join(output,'result.json'),JSON.stringify({passed:true,year,species:expected.count,personalSpecies:personalCount,viewports:[1440,390],allSpeciesVisible:true,newestFirst:true,seasonalHints:expectedHints,hintsFailureIsolated:true,liveCors:response,browserRetrievedAt:browserSnapshot.source.retrievedAt,retrievedAt:data.source.retrievedAt},null,2));
   console.log('PASS municipal home: Hugo HTML, full newest-first list, mobile menu, personal archive, live WFS and CORS.');
  }finally{await browser.close();}
 })().catch(e=>{console.error(e);process.exitCode=1;}).finally(()=>server.close());
