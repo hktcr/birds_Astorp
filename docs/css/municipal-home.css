@@ -17,6 +17,14 @@
 .municipal-home-page .prediction-species{display:block}.municipal-home-page .prediction-meta{display:block;font-size:.875rem;color:var(--color-text-muted);margin-top:.3rem}
 .municipal-home-page .trail-item-latest .trail-dot{animation:none;background:var(--color-primary);box-shadow:0 0 0 2px var(--color-primary)}
 .municipal-home-page .trail-source{font-size:.875rem;margin-left:.45rem;white-space:nowrap}
+/* Highlight the latest story within the municipality homepage. */
+.municipal-home-page .latest-post-box{align-items:stretch;gap:.45rem;margin:0 0 2rem;padding:1.15rem 1.4rem;background:#f5f8f5;border-color:#d4e0d3;border-left:4px solid var(--color-accent);text-align:left;transition:background-color var(--transition-fast),box-shadow var(--transition-fast)}
+.municipal-home-page .latest-post-box:hover{background:#edf3ec;border-color:#d4e0d3;border-left-color:var(--color-accent);box-shadow:var(--shadow-md);transform:none}
+.municipal-home-page .latest-post-meta{display:flex;justify-content:space-between;align-items:baseline;flex-wrap:wrap;gap:.3rem 1rem}
+.municipal-home-page .latest-post-label{font-size:.875rem;font-weight:600;letter-spacing:.07em;color:var(--color-primary)}
+.municipal-home-page .latest-post-date{font-size:.875rem;color:var(--color-text-muted)}
+.municipal-home-page .latest-post-title{font-size:clamp(1.125rem,1rem + .5vw,1.375rem);line-height:1.4;text-align:left;overflow-wrap:anywhere}
+.municipal-home-page .latest-post-read{align-self:flex-start;font-size:.875rem;font-weight:500;color:var(--color-primary);text-decoration:underline;text-underline-offset:3px}
 .home-source{text-align:left;border-top:1px solid var(--color-border);padding-top:1rem;margin-top:2rem}
 .home-source .home-actions{justify-content:flex-start}
 .home-source summary{cursor:pointer;color:var(--color-primary);min-height:44px;padding:.5rem 0}
